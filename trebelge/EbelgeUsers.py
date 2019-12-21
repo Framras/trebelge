@@ -1,8 +1,8 @@
 class EbelgeUsers:  # The target object of the parser
     def __init__(self):
         self.tax_id = ""
-        self.is_tax_data = False  #
-        self.activity_count = 0  # use when document is of ebelge type to determine if active
+        self.is_tax_data = False
+        self.activity_count = 0
         self.is_einvoice_document = False
         self.is_edespatchadvice_document = False
         self.is_efatura_user = False
