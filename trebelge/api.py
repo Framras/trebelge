@@ -1,7 +1,7 @@
 import frappe
 
 from xml.etree.ElementTree import XMLParser
-from trgibebelge.EbelgeUsers import EbelgeUsers
+from trebelge.EbelgeUsers import EbelgeUsers
 
 
 @frappe.whitelist()

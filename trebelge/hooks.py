@@ -90,23 +90,29 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"trebelge.tasks.all"
-# 	],
-# 	"daily": [
-# 		"trebelge.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"trebelge.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"trebelge.tasks.weekly"
-# 	]
-# 	"monthly": [
-# 		"trebelge.tasks.monthly"
-# 	]
-# }
+scheduler_events = {
+    # 	"all": [
+    # 		"trebelge.tasks.all"
+    # 	],
+    # 	"daily": [
+    # 		"trebelge.tasks.daily"
+    # 	],
+    # 	"hourly": [
+    # 		"trebelge.tasks.hourly"
+    # 	],
+    # 	"weekly": [
+    # 		"trebelge.tasks.weekly"
+    # 	]
+    # 	"monthly": [
+    # 		"trebelge.tasks.monthly"
+    # 	]
+    "cron": {
+        "38 02 * * *":
+            [
+                "trebelge.tasks.every_day_at_02_38"
+            ]
+    }
+}
 
 # Testing
 # -------
