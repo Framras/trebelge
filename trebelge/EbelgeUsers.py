@@ -34,7 +34,7 @@ class EbelgeUsers:  # The target object of the parser
                     self.is_efatura_user = True
                 elif self.is_edespatchadvice_document:
                     self.is_eirsaliye_user = True
-        if tag == "Documents":
+        elif tag == "Documents":
             self.return_data[self.tax_id] = dict(
                 [("is_efatura_user", self.is_efatura_user), ("is_eirsaliye_user", self.is_eirsaliye_user)])
             self.setup()
