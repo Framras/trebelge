@@ -1,0 +1,52 @@
+{
+  "actions": [],
+  "creation": "2019-12-29 12:38:40.933145",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "ublversionid",
+    "customizationid",
+    "profileid"
+  ],
+  "fields": [
+    {
+      "fieldname": "ublversionid",
+      "fieldtype": "Data",
+      "label": "UBLVersionID"
+    },
+    {
+      "fieldname": "customizationid",
+      "fieldtype": "Data",
+      "label": "CustomizationID"
+    },
+    {
+      "fieldname": "profileid",
+      "fieldtype": "Data",
+      "label": "ProfileID"
+    }
+  ],
+  "issingle": 1,
+  "links": [],
+  "modified": "2019-12-29 12:38:57.888647",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura Settings",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "print": 1,
+      "read": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "quick_entry": 1,
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
