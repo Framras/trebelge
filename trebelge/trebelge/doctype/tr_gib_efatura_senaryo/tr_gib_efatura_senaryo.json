@@ -1,0 +1,47 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:profileid",
+  "creation": "2021-10-18 17:15:19.343105",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "profileid"
+  ],
+  "fields": [
+    {
+      "description": "Kullan\u0131lan senaryodur.",
+      "fieldname": "profileid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Senaryo",
+      "reqd": 1,
+      "unique": 1
+    }
+  ],
+  "links": [],
+  "modified": "2021-10-18 18:09:33.012893",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura Senaryo",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "track_seen": 1
+}

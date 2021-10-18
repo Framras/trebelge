@@ -1,0 +1,190 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:uuid",
+  "creation": "2021-10-18 17:54:11.010187",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "ublversionid",
+    "customizationid",
+    "profileid",
+    "id",
+    "copyindicator",
+    "uuid",
+    "issuedate",
+    "issuetime",
+    "invoicetypecode",
+    "note",
+    "documentcurrencycode",
+    "taxcurrencycode",
+    "pricingcurrencycode",
+    "paymentcurrencycode",
+    "paymentalternativecurrencycode",
+    "accountingcost",
+    "linecountnumeric"
+  ],
+  "fields": [
+    {
+      "fieldname": "ublversionid",
+      "fieldtype": "Link",
+      "label": "UBL Versiyon Numaras\u0131",
+      "options": "TR GIB eFatura UBL Versiyon Numarasi",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "customizationid",
+      "fieldtype": "Link",
+      "label": "\u00d6zelle\u015ftirme Numaras\u0131",
+      "options": "TR GIB eFatura Ozellestirme Numarasi",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "profileid",
+      "fieldtype": "Link",
+      "label": "Senaryo",
+      "options": "TR GIB eFatura Senaryo",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "description": "\u00dc\u00e7 haneli alfanumerik birim kod ile 13 haneli m\u00fcteselsil numaran\u0131n birle\u015fiminden meydana gelen Fatura Numaras\u0131 bu elemana yaz\u0131lacakt\u0131r. M\u00fcteselsil numaran\u0131n ilk d\u00f6rt hanesi faturan\u0131n d\u00fczenlendi\u011fi y\u0131l\u0131 kalan dokuz hane ise m\u00fcteselsil numaray\u0131 ifade etmektedir. Fatura d\u00fczenleyen b\u00fcnyesinde ayn\u0131 fatura numaras\u0131 birden fazla kullan\u0131lamaz.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_filter": 1,
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Fatura Numaras\u0131",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "copyindicator",
+      "fieldtype": "Link",
+      "label": "As\u0131l/Suret",
+      "options": "TR GIB eFatura Asil Suret",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r.",
+      "fieldname": "uuid",
+      "fieldtype": "Data",
+      "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenleme tarihi yaz\u0131lacakt\u0131r.",
+      "fieldname": "issuedate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "D\u00fczenleme Tarihi",
+      "reqd": 1
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
+      "fieldname": "issuetime",
+      "fieldtype": "Time",
+      "label": "D\u00fczenleme Zaman\u0131"
+    },
+    {
+      "fieldname": "invoicetypecode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Fatura Tip Kodu",
+      "options": "TR GIB eFatura Fatura Tip Kodu",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "note",
+      "fieldtype": "Text",
+      "label": "Not"
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenlendi\u011fi paran\u0131n birim kodu yaz\u0131lacakt\u0131r.",
+      "fieldname": "documentcurrencycode",
+      "fieldtype": "Link",
+      "label": "Belge Para Birim Kodu",
+      "options": "Currency",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "description": "Fatura \u00fczerinde g\u00f6sterilen vergilerin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi gerekiyorsa bu para biriminin kodu yaz\u0131labilecektir.",
+      "fieldname": "taxcurrencycode",
+      "fieldtype": "Link",
+      "label": "Vergi Para Birimi Kodu",
+      "options": "Currency",
+      "search_index": 1
+    },
+    {
+      "description": "Mal veya hizmet bedellerinin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda bir para birimi ile g\u00f6sterilmesi gerekiyorsa s\u00f6zkonusu para birimi bu elemana kodlanabilecektir.",
+      "fieldname": "pricingcurrencycode",
+      "fieldtype": "Link",
+      "label": "Fiyatland\u0131rma Para Birim Kodu",
+      "options": "Currency",
+      "search_index": 1
+    },
+    {
+      "description": "\u00d6demenin yap\u0131laca\u011f\u0131 para birimi \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda bir para birimi ise bu bedellerin g\u00f6sterildi\u011fi para birimi bu elemana kodlanabilecektir.",
+      "fieldname": "paymentcurrencycode",
+      "fieldtype": "Link",
+      "label": "\u00d6deme Para Birim Kodu",
+      "options": "Currency",
+      "search_index": 1
+    },
+    {
+      "description": "\u00d6denecek tutar\u0131n belge para birimi ile \u00f6deme para birimi d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile de ifade edilmesinin istenmesi halinde s\u00f6z konusu para biriminin kodu bu elemana yaz\u0131labilecektir.",
+      "fieldname": "paymentalternativecurrencycode",
+      "fieldtype": "Link",
+      "label": "Alternatif \u00d6deme Para Birim Kodu",
+      "options": "Currency",
+      "search_index": 1
+    },
+    {
+      "description": "M\u00fckellefin faturan\u0131n tipi olarak ilave bir ay\u0131r\u0131ma gitmesi gerekiyorsa kendi belirleyece\u011fi farkl\u0131 bir fatura tipini bu elemana yazabilir.",
+      "fieldname": "accountingcost",
+      "fieldtype": "Data",
+      "label": "Hesap Kodu"
+    },
+    {
+      "description": "Bu elemana fatura \u00fczerinde yer alan kalem say\u0131s\u0131 yaz\u0131lacakt\u0131r. Mal\u0131n adedi birden fazla olsa dahi bu mal grubu tek bir kalem olarak g\u00f6sterilecektir.",
+      "fieldname": "linecountnumeric",
+      "fieldtype": "Int",
+      "label": "Kalem Say\u0131s\u0131",
+      "non_negative": 1,
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-10-18 18:42:50.795098",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura Gelen",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "track_seen": 1
+}

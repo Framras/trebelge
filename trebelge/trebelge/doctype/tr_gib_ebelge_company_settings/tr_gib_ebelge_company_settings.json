@@ -1,4 +1,5 @@
 {
+  "actions": [],
   "autoname": "field:company",
   "creation": "2019-12-21 00:42:42.282659",
   "doctype": "DocType",
@@ -7,7 +8,9 @@
   "field_order": [
     "company",
     "initiate_ebelge_parties",
-    "last_run"
+    "last_run",
+    "ublversionid",
+    "customizationid"
   ],
   "fields": [
     {
@@ -28,9 +31,25 @@
       "fieldtype": "Date",
       "label": "Last Run",
       "read_only": 1
+    },
+    {
+      "fieldname": "ublversionid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "UBL Versiyon Numaras\u0131",
+      "options": "TR GIB eFatura UBL Versiyon Numarasi"
+    },
+    {
+      "fieldname": "customizationid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u00d6zelle\u015ftirme Numaras\u0131",
+      "options": "TR GIB eFatura Ozellestirme Numarasi"
     }
   ],
-  "modified": "2019-12-21 00:47:53.306603",
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-10-18 17:49:07.891017",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eBelge Company Settings",
