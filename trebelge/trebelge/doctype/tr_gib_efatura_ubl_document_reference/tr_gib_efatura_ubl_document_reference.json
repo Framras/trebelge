@@ -3,6 +3,7 @@
   "allow_rename": 1,
   "creation": "2021-10-18 21:32:12.278918",
   "doctype": "DocType",
+  "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
     "id",
@@ -34,16 +35,19 @@
     {
       "fieldname": "documenttypecode",
       "fieldtype": "Data",
+      "in_list_view": 1,
       "label": "Document Type Code"
     },
     {
       "fieldname": "documenttype",
       "fieldtype": "Data",
+      "in_list_view": 1,
       "label": "Document Type"
     },
     {
       "fieldname": "documentdesciption",
-      "fieldtype": "Data",
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
       "label": "Document Desciption"
     },
     {
@@ -69,7 +73,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 13:44:41.287508",
+  "modified": "2021-10-19 15:32:11.548293",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Document Reference",

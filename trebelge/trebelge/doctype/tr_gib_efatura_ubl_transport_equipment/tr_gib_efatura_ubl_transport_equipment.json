@@ -1,0 +1,49 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 19:33:33.629466",
+  "description": "Ta\u015f\u0131ma ekipman\u0131 bilgileri girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "transportequipmenttypecode",
+    "description"
+  ],
+  "fields": [
+    {
+      "description": "Tekil numaras\u0131 girilir. \u00d6rne\u011fin Dorse Plaka numaras\u0131.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "ID"
+    },
+    {
+      "description": "Ekipman tipi kodu girilir.",
+      "fieldname": "transportequipmenttypecode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Transport Equipment Type Code"
+    },
+    {
+      "description": "Serbest metin a\u00e7\u0131klama girilir.",
+      "fieldname": "description",
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
+      "label": "Description"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 21:10:03.666811",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Transport Equipment",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

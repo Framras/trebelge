@@ -1,0 +1,41 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 17:22:02.834551",
+  "description": "Sat\u0131c\u0131 bilgilerini tutan elemand\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "party",
+    "despatchcontact"
+  ],
+  "fields": [
+    {
+      "description": "Sat\u0131c\u0131 taraf\u0131 tan\u0131mlar ve a\u015fa\u011f\u0131daki k\u0131s\u0131tlar uygulan\u0131r:\n* \u201cParty/PartyIdentification\u201d: Sat\u0131c\u0131n\u0131n kurum olmas\u0131 durumunda vergi kimlik numaras\u0131 girilmesi zorunludur. Sat\u0131c\u0131n\u0131n \u015fah\u0131s olmas\u0131 durumunda TC kimlik numaras\u0131 girilmesi zorunludur.\n* \u201cParty/PartyName\u201d eleman\u0131 sat\u0131c\u0131n\u0131n kurum olmas\u0131 durumunda zorunludur. Taraf\u0131n vergi kimlik numaras\u0131 girilmi\u015fse bu alana vergi dairesi ad\u0131 girilir.\n* \u201cParty/Person\u201d: Taraf\u0131n \u015fah\u0131s olmas\u0131 durumunda bu eleman zorunludur.",
+      "fieldname": "party",
+      "fieldtype": "Table",
+      "label": "Party",
+      "options": "TR GIB eFatura UBL Party",
+      "reqd": 1
+    },
+    {
+      "fieldname": "despatchcontact",
+      "fieldtype": "Table",
+      "label": "Despatch Contact",
+      "options": "TR GIB eFatura UBL Contact"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 17:22:02.834551",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Supplier Party",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

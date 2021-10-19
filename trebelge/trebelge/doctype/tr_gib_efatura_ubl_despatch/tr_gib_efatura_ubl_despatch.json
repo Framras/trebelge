@@ -1,0 +1,85 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 18:10:27.668476",
+  "description": "Mallar\u0131n al\u0131c\u0131ya g\u00f6nderimlesi i\u00e7in sat\u0131c\u0131dan teslim al\u0131nmas\u0131 kapsam\u0131nda zaman ve mekan bilgileri girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "actualdespatchdate",
+    "actualdespatchtime",
+    "instructions",
+    "despatchaddress",
+    "despatchparty",
+    "contact",
+    "estimateddespatchperiod"
+  ],
+  "fields": [
+    {
+      "description": "\u0130lgili g\u00f6nderimi belge i\u00e7erisinde tekil olarak tan\u0131mlar.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "label": "ID"
+    },
+    {
+      "description": "Ger\u00e7ekle\u015fen g\u00f6nderim tarihi girilir. (Fiili Sevk Tarihi)",
+      "fieldname": "actualdespatchdate",
+      "fieldtype": "Date",
+      "label": "Actual Despatch Date"
+    },
+    {
+      "description": "Ger\u00e7ekle\u015fen g\u00f6nderim zaman\u0131 girilir. (Fiili Sevk Zaman\u0131)",
+      "fieldname": "actualdespatchtime",
+      "fieldtype": "Time",
+      "label": "Actual Despatch Time"
+    },
+    {
+      "description": "Serbest metin olarak g\u00f6nderime y\u00f6nelik a\u00e7\u0131klamalar girilir.",
+      "fieldname": "instructions",
+      "fieldtype": "Small Text",
+      "label": "Instructions"
+    },
+    {
+      "description": "Mallar\u0131n g\u00f6nderim i\u00e7in al\u0131naca\u011f\u0131 adres girilir.",
+      "fieldname": "despatchaddress",
+      "fieldtype": "Table",
+      "label": "Despatch Address",
+      "options": "TR GIB eFatura UBL Address"
+    },
+    {
+      "description": "Mallar\u0131 sat\u0131c\u0131dan teslim alacak taraf bilgileri girilir.",
+      "fieldname": "despatchparty",
+      "fieldtype": "Table",
+      "label": "Despatch Party",
+      "options": "TR GIB eFatura UBL Party"
+    },
+    {
+      "description": "Mallar\u0131 sat\u0131c\u0131dan teslim alacak taraf\u0131n ileti\u015fim bilgileri girilir.",
+      "fieldname": "contact",
+      "fieldtype": "Table",
+      "label": "Contact",
+      "options": "TR GIB eFatura UBL Contact"
+    },
+    {
+      "description": "Tahmini teslim al\u0131\u015f d\u00f6nemi girilir.",
+      "fieldname": "estimateddespatchperiod",
+      "fieldtype": "Table",
+      "label": "Estimated Despatch Period",
+      "options": "TR GIB eFatura UBL Period"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 18:14:04.963692",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Despatch",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

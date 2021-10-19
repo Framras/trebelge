@@ -1,0 +1,52 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 15:40:15.536161",
+  "description": "Bu elemana belgelerde kullan\u0131lan mali m\u00fch\u00fcr/elektronik imza ile ilgili bilgiler girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "signatoryparty",
+    "digitalsignatureattachment"
+  ],
+  "fields": [
+    {
+      "description": "Bu alana dokumana eklenecek elektronik imza ile ilgili bir referans numaras\u0131 verilecektir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "ID",
+      "reqd": 1
+    },
+    {
+      "description": "Bu alana dokuman\u0131 imzalayan imza sahibinin bilgileri eklenecektir.",
+      "fieldname": "signatoryparty",
+      "fieldtype": "Table",
+      "label": "Signatory Party",
+      "options": "TR GIB eFatura UBL Party",
+      "reqd": 1
+    },
+    {
+      "description": "Bu alana UBLExtensions alan\u0131na eklenen dijital imzaya referans eklenecektir.",
+      "fieldname": "digitalsignatureattachment",
+      "fieldtype": "Table",
+      "label": "Digital Signature Attachment",
+      "options": "TR GIB eFatura UBL Attachment",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 15:40:15.536161",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Signature",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

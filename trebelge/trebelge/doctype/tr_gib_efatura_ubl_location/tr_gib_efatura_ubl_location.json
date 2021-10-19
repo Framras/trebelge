@@ -1,0 +1,39 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 18:05:38.698483",
+  "description": "Mekan bilgisi girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "address"
+  ],
+  "fields": [
+    {
+      "description": "Mekan\u0131 tan\u0131mlamak i\u00e7in kullan\u0131l\u0131r (\u00f6rne\u011fin GLN numaras\u0131)",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "label": "ID"
+    },
+    {
+      "fieldname": "address",
+      "fieldtype": "Table",
+      "label": "Address",
+      "options": "TR GIB eFatura UBL Address"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 18:05:38.698483",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Location",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

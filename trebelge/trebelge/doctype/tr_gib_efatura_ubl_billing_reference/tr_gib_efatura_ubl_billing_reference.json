@@ -4,6 +4,7 @@
   "creation": "2021-10-19 13:10:52.007818",
   "description": "Fatura s\u00fcrecindeki di\u011fer ilgili fatura dok\u00fcmanlar\u0131na referans vermek i\u00e7in kullan\u0131l\u0131r. \u00d6rne\u011fin iade faturalar\u0131nda iade edilen faturaya ili\u015fkin referans bilgisi bu elman\u0131n alt\u0131ndaki \u201cInvoiceDocumentReference\u201d eleman\u0131na eklenir. Ayr\u0131ca \u201cCreditNote\u201d ve \u201cDebitNote\u201d gibi yurtd\u0131\u015f\u0131 ticarette iade i\u015flemleri i\u00e7in s\u0131k\u00e7a kullan\u0131lan belgelerede bu eleman arac\u0131l\u0131\u011f\u0131 ile referans verilir.",
   "doctype": "DocType",
+  "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
     "invoicedocumentreference",
@@ -75,7 +76,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 13:45:28.475720",
+  "modified": "2021-10-19 15:30:18.677325",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Billing Reference",

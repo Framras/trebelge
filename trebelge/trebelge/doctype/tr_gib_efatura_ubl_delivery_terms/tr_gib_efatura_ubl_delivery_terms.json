@@ -1,0 +1,45 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 18:18:06.229117",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "specialterms",
+    "amount"
+  ],
+  "fields": [
+    {
+      "description": "Teslim ko\u015fullar\u0131 girilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "label": "ID"
+    },
+    {
+      "description": "Teslimat ko\u015fullar\u0131 serbest metin olarak girilir.",
+      "fieldname": "specialterms",
+      "fieldtype": "Data",
+      "label": "Special Terms"
+    },
+    {
+      "description": "Teslimat ko\u015fullar\u0131n\u0131n kapsad\u0131\u011f\u0131 tutar girilebilir.",
+      "fieldname": "amount",
+      "fieldtype": "Data",
+      "label": "Amount"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 18:18:06.229117",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Delivery Terms",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

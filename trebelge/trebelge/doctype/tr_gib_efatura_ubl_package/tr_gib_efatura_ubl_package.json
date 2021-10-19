@@ -1,0 +1,91 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 19:33:21.317248",
+  "description": "Ta\u015f\u0131ma s\u0131ras\u0131ndaki paket bilgisi girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "quantity",
+    "returnablematerialindicator",
+    "packagelevelcode",
+    "packagingtypecode",
+    "packagingmaterial",
+    "containedpackage",
+    "goodsitem",
+    "measurementdimension"
+  ],
+  "fields": [
+    {
+      "description": "Paket numaras\u0131 girilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "label": "ID"
+    },
+    {
+      "description": "Paket adedi girilir.",
+      "fieldname": "quantity",
+      "fieldtype": "Data",
+      "label": "Quantity"
+    },
+    {
+      "description": "Paket materyali geri d\u00f6n\u00fc\u015f\u00fcml\u00fc olup olmad\u0131\u011f\u0131n\u0131 belirtir.",
+      "fieldname": "returnablematerialindicator",
+      "fieldtype": "Data",
+      "label": "Returnable Material Indicator"
+    },
+    {
+      "description": "Paketleme seviyesini belirtir.",
+      "fieldname": "packagelevelcode",
+      "fieldtype": "Data",
+      "label": "Package Level Code"
+    },
+    {
+      "description": "Paketleme tipini belirtir.",
+      "fieldname": "packagingtypecode",
+      "fieldtype": "Data",
+      "label": "Packaging Type Code"
+    },
+    {
+      "description": "Paketleme materyalini belirtir.",
+      "fieldname": "packagingmaterial",
+      "fieldtype": "Data",
+      "label": "Packaging Material"
+    },
+    {
+      "description": "\u0130\u00e7erdi\u011fi di\u011fer paketler girilir.",
+      "fieldname": "containedpackage",
+      "fieldtype": "Table",
+      "label": "Contained Package",
+      "options": "TR GIB eFatura UBL Package"
+    },
+    {
+      "description": "\u0130\u00e7erdi\u011fi \u00fcr\u00fcnler girilir.",
+      "fieldname": "goodsitem",
+      "fieldtype": "Table",
+      "label": "Goods Item",
+      "options": "TR GIB eFatura UBL Goods Item"
+    },
+    {
+      "description": "Paket boyutlar\u0131 girilir.",
+      "fieldname": "measurementdimension",
+      "fieldtype": "Table",
+      "label": "Measurement Dimension",
+      "options": "TR GIB eFatura UBL Dimension"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 22:41:37.076396",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Package",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
