@@ -23,10 +23,14 @@
     "paymentcurrencycode",
     "paymentalternativecurrencycode",
     "accountingcost",
-    "linecountnumeric"
+    "linecountnumeric",
+    "invoiceperiod",
+    "orderreference",
+    "billingreference"
   ],
   "fields": [
     {
+      "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
       "fieldname": "ublversionid",
       "fieldtype": "Link",
       "label": "UBL Versiyon Numaras\u0131",
@@ -35,6 +39,7 @@
       "search_index": 1
     },
     {
+      "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
       "fieldname": "customizationid",
       "fieldtype": "Link",
       "label": "\u00d6zelle\u015ftirme Numaras\u0131",
@@ -43,6 +48,7 @@
       "search_index": 1
     },
     {
+      "description": "Kullan\u0131lan senaryodur.",
       "fieldname": "profileid",
       "fieldtype": "Link",
       "label": "Senaryo",
@@ -58,11 +64,11 @@
       "in_global_search": 1,
       "in_list_view": 1,
       "label": "Fatura Numaras\u0131",
-      "read_only": 1,
       "reqd": 1,
       "unique": 1
     },
     {
+      "description": "As\u0131l ise \u201cfalse\u201d, suret ise \u201ctrue\u201d.",
       "fieldname": "copyindicator",
       "fieldtype": "Link",
       "label": "As\u0131l/Suret",
@@ -93,6 +99,7 @@
       "label": "D\u00fczenleme Zaman\u0131"
     },
     {
+      "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
       "fieldname": "invoicetypecode",
       "fieldtype": "Link",
       "in_list_view": 1,
@@ -102,9 +109,11 @@
       "search_index": 1
     },
     {
+      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r.",
       "fieldname": "note",
-      "fieldtype": "Text",
-      "label": "Not"
+      "fieldtype": "Table",
+      "label": "Not",
+      "options": "TR GIB eFatura Note"
     },
     {
       "description": "Bu elemana faturan\u0131n d\u00fczenlendi\u011fi paran\u0131n birim kodu yaz\u0131lacakt\u0131r.",
@@ -160,11 +169,32 @@
       "label": "Kalem Say\u0131s\u0131",
       "non_negative": 1,
       "reqd": 1
+    },
+    {
+      "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman kullan\u0131lacakt\u0131r.",
+      "fieldname": "invoiceperiod",
+      "fieldtype": "Table",
+      "label": "Fatura D\u00f6nemi",
+      "options": "TR GIB eFatura UBL Period"
+    },
+    {
+      "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
+      "fieldname": "orderreference",
+      "fieldtype": "Table",
+      "label": "Sipari\u015f Bilgileri",
+      "options": "TR GIB eFatura UBL Order Reference"
+    },
+    {
+      "description": "Faturan\u0131n ili\u015fkili oldu\u011fu di\u011fer belgelerin bilgileri bu elemana yaz\u0131lacakt\u0131r.",
+      "fieldname": "billingreference",
+      "fieldtype": "Table",
+      "label": "Faturan\u0131n \u0130li\u015fkili Oldu\u011fu Di\u011fer Belgelerin Bilgileri",
+      "options": "TR GIB eFatura UBL Billing Reference"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-18 18:42:50.795098",
+  "modified": "2021-10-19 14:59:47.702280",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",

@@ -1,0 +1,87 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 13:10:52.007818",
+  "description": "Fatura s\u00fcrecindeki di\u011fer ilgili fatura dok\u00fcmanlar\u0131na referans vermek i\u00e7in kullan\u0131l\u0131r. \u00d6rne\u011fin iade faturalar\u0131nda iade edilen faturaya ili\u015fkin referans bilgisi bu elman\u0131n alt\u0131ndaki \u201cInvoiceDocumentReference\u201d eleman\u0131na eklenir. Ayr\u0131ca \u201cCreditNote\u201d ve \u201cDebitNote\u201d gibi yurtd\u0131\u015f\u0131 ticarette iade i\u015flemleri i\u00e7in s\u0131k\u00e7a kullan\u0131lan belgelerede bu eleman arac\u0131l\u0131\u011f\u0131 ile referans verilir.",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "invoicedocumentreference",
+    "selfbilledinvoicedocumentreference",
+    "creditnotedocumentreference",
+    "selfbilledcreditnotedocumentreference",
+    "debitnotedocumentreference",
+    "reminderdocumentreference",
+    "additionaldocumentreference",
+    "billingreferenceline"
+  ],
+  "fields": [
+    {
+      "description": "\u00d6nceki ili\u015fkili fatura belgelerine referans bilgisi girilir.\n\u0130ade faturalar\u0131nda iade edilen faturaya ili\u015fkin referans bilgisi bu eleman\u0131n alt\u0131ndaki \u201cInvoiceDocumentReference\u201d eleman\u0131na eklenir. Ayr\u0131ca \u201cCreditNote\u201d ve \u201cDebitNote\u201d gibi yurtd\u0131\u015f\u0131 ticarette iade i\u015flemleri i\u00e7in s\u0131k\u00e7a kullan\u0131lan belgelerede bu eleman arac\u0131l\u0131\u011f\u0131 ile referans verilir.",
+      "fieldname": "invoicedocumentreference",
+      "fieldtype": "Table",
+      "label": "Invoice Document Reference",
+      "options": "TR GIB eFatura UBL Document Reference"
+    },
+    {
+      "fieldname": "selfbilledinvoicedocumentreference",
+      "fieldtype": "Table",
+      "label": "Self Billed Invoice Document Reference",
+      "options": "TR GIB eFatura UBL Document Reference"
+    },
+    {
+      "description": "\u0130lgili CreditNote (Sat\u0131c\u0131 taraf\u0131ndan d\u00fczenlenip al\u0131c\u0131n\u0131n borcunu d\u00fc\u015f\u00fcrmek i\u00e7in kullan\u0131lan belge) dok\u00fcman\u0131na referans bilgisini tutar.",
+      "fieldname": "creditnotedocumentreference",
+      "fieldtype": "Table",
+      "label": "Credit Note Document Reference",
+      "options": "TR GIB eFatura UBL Document Reference"
+    },
+    {
+      "description": "Yurt d\u0131\u015f\u0131nda bir kurum kendine iade faturas\u0131 kesebilmektedir. Bu eleman bu belgeye referans i\u00e7in kullan\u0131lmaktad\u0131r.",
+      "fieldname": "selfbilledcreditnotedocumentreference",
+      "fieldtype": "Table",
+      "label": "Self Billed Credit Note Document Reference",
+      "options": "TR GIB eFatura UBL Document Reference"
+    },
+    {
+      "description": "\u0130lgili DebitNote (Al\u0131c\u0131 taraf\u0131ndan d\u00fczenlenip al\u0131c\u0131n\u0131n borcunu d\u00fc\u015f\u00fcrmek i\u00e7in kullan\u0131lan belge) dok\u00fcman\u0131na referans bilgisini tutar.",
+      "fieldname": "debitnotedocumentreference",
+      "fieldtype": "Table",
+      "label": "Debit Note Document Reference",
+      "options": "TR GIB eFatura UBL Document Reference"
+    },
+    {
+      "description": "\u0130lgili hat\u0131rlatma belgesine referans girilir.",
+      "fieldname": "reminderdocumentreference",
+      "fieldtype": "Table",
+      "label": "Reminder Document Reference",
+      "options": "TR GIB eFatura UBL Document Reference"
+    },
+    {
+      "description": "Di\u011fer ba\u015fka dok\u00fcmanlara referans bilgisi girilebilir.",
+      "fieldname": "additionaldocumentreference",
+      "fieldtype": "Table",
+      "label": "\u00d6KC Bilgisi",
+      "options": "TR GIB eFatura UBL Additional Document Reference"
+    },
+    {
+      "description": "Detayl\u0131 olarak belli bir kaleme referans atmak istenirse kullan\u0131l\u0131r.",
+      "fieldname": "billingreferenceline",
+      "fieldtype": "Table",
+      "label": "Billing Reference Line",
+      "options": "TR GIB eFatura UBL Billing Reference Line"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 13:45:28.475720",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Billing Reference",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

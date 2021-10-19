@@ -1,0 +1,45 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-18 22:15:19.798209",
+  "description": "Bu eleman arac\u0131l\u0131\u011f\u0131yla Taraf\u0131n(Party) vergi dairesi ile ilgili bilgiler verilir.",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "registrationname",
+    "companyid",
+    "taxscheme"
+  ],
+  "fields": [
+    {
+      "description": "\u0130hracat faturas\u0131nda ilgili \u00fclkedeki kurumun resmi \u00fcnvan\u0131 yaz\u0131l\u0131r.",
+      "fieldname": "registrationname",
+      "fieldtype": "Data",
+      "label": "Registration Name"
+    },
+    {
+      "description": "\u0130hracat faturas\u0131nda ilgili \u00fclkedeki kurumun vergi kay\u0131t kodu yaz\u0131l\u0131r.",
+      "fieldname": "companyid",
+      "fieldtype": "Data",
+      "label": "Company ID"
+    },
+    {
+      "fieldname": "taxscheme",
+      "fieldtype": "Table",
+      "label": "Tax Scheme",
+      "options": "TR GIB eFatura UBL Tax Scheme"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 13:45:38.844720",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Party Tax Scheme",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

@@ -1,0 +1,81 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-18 21:32:12.278918",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "issuedate",
+    "documenttypecode",
+    "documenttype",
+    "documentdesciption",
+    "attachment",
+    "validityperiod",
+    "issuerparty"
+  ],
+  "fields": [
+    {
+      "description": "Referans verilen veya eklenen belgenin s\u0131ra numaras\u0131 girilecektir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "ID",
+      "reqd": 1
+    },
+    {
+      "description": "Belgenin d\u00fczenlenme tarihi girilecektir.",
+      "fieldname": "issuedate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Issue Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "documenttypecode",
+      "fieldtype": "Data",
+      "label": "Document Type Code"
+    },
+    {
+      "fieldname": "documenttype",
+      "fieldtype": "Data",
+      "label": "Document Type"
+    },
+    {
+      "fieldname": "documentdesciption",
+      "fieldtype": "Data",
+      "label": "Document Desciption"
+    },
+    {
+      "fieldname": "attachment",
+      "fieldtype": "Table",
+      "label": "Attachment",
+      "options": "TR GIB eFatura UBL Attachment"
+    },
+    {
+      "fieldname": "validityperiod",
+      "fieldtype": "Table",
+      "label": "Validity Period",
+      "options": "TR GIB eFatura UBL Period"
+    },
+    {
+      "description": "Referans verilen ya da eklenen belgeyi yay\u0131nlayan taraf bilgisi girilebilir.",
+      "fieldname": "issuerparty",
+      "fieldtype": "Table",
+      "label": "Issuer Party",
+      "options": "TR GIB eFatura UBL Party"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 13:44:41.287508",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Document Reference",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

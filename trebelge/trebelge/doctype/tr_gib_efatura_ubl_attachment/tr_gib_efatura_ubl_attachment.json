@@ -1,0 +1,36 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-18 21:31:47.807989",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "externalreference",
+    "embeddeddocumentbinaryobject"
+  ],
+  "fields": [
+    {
+      "description": "\u0130li\u015fkilendirilmek istenen dok\u00fcman\u0131n URI format\u0131nda referans\u0131n\u0131 tutar.",
+      "fieldname": "externalreference",
+      "fieldtype": "Data",
+      "label": "External Reference"
+    },
+    {
+      "fieldname": "embeddeddocumentbinaryobject",
+      "fieldtype": "Attach",
+      "label": "Embedded Document Binary Object"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 13:47:09.744581",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Attachment",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

@@ -1,0 +1,122 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-18 21:54:52.264325",
+  "description": "Bu eleman adres bilgilerinin tan\u0131mlanmas\u0131nda kullan\u0131lacakt\u0131r.",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "postbox",
+    "room",
+    "streetname",
+    "blockname",
+    "buildingname",
+    "buildingnumber",
+    "citysubdivisionname",
+    "cityname",
+    "postalzone",
+    "region",
+    "district",
+    "country"
+  ],
+  "fields": [
+    {
+      "description": "Mahalle, meydan, bulvar, cadde, sokak ve k\u00fcme evlere kar\u015f\u0131l\u0131k gelecek \u015fekilde, standart say\u0131sal e\u015fde\u011fer olarak T\u00dc\u0130K taraf\u0131ndan verilmi\u015f olan \u201csabit tan\u0131mlama numaras\u0131\u201d girilebilecektir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "label": "ID"
+    },
+    {
+      "description": "Posta Kutusu girilecektir.",
+      "fieldname": "postbox",
+      "fieldtype": "Data",
+      "label": "Postbox"
+    },
+    {
+      "description": "\u0130\u00e7 kap\u0131 numaras\u0131 girilecektir.",
+      "fieldname": "room",
+      "fieldtype": "Data",
+      "label": "Room"
+    },
+    {
+      "description": "Meydan/bulvar/cadde/sokak/k\u00fcme evler/site ad\u0131 bilgileri girilecektir.",
+      "fieldname": "streetname",
+      "fieldtype": "Data",
+      "label": "Street Name"
+    },
+    {
+      "description": "Blok ad\u0131 girilebilecektir.",
+      "fieldname": "blockname",
+      "fieldtype": "Data",
+      "label": "Block Name"
+    },
+    {
+      "description": "Bina girilebilecektir.",
+      "fieldname": "buildingname",
+      "fieldtype": "Data",
+      "label": "Building Name"
+    },
+    {
+      "description": "Bina veya blo\u011fa ait d\u0131\u015f kap\u0131 numaras\u0131 girilecektir.",
+      "fieldname": "buildingnumber",
+      "fieldtype": "Data",
+      "label": "Building Number"
+    },
+    {
+      "description": "\u0130l\u00e7e/semt ad\u0131 bilgileri girilecektir.",
+      "fieldname": "citysubdivisionname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "City Subdivision Name",
+      "reqd": 1
+    },
+    {
+      "description": "\u0130l ad\u0131 girilecektir.",
+      "fieldname": "cityname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "City Name",
+      "reqd": 1
+    },
+    {
+      "description": "Posta kod numaras\u0131 girilecektir.",
+      "fieldname": "postalzone",
+      "fieldtype": "Data",
+      "label": "Postal Zone"
+    },
+    {
+      "description": "Kasaba/k\u00f6y/mezra/mevkii bilgileri girilecektir.",
+      "fieldname": "region",
+      "fieldtype": "Data",
+      "label": "Region"
+    },
+    {
+      "description": "Mahalle ad\u0131 girilecektir.",
+      "fieldname": "district",
+      "fieldtype": "Data",
+      "label": "District"
+    },
+    {
+      "description": "\u00dclke bilgisi girilecektir.",
+      "fieldname": "country",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Country",
+      "options": "Country",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 13:46:37.001954",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Address",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

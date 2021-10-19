@@ -1,0 +1,30 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 12:14:39.713633",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "note"
+  ],
+  "fields": [
+    {
+      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r. Birden fazla a\u00e7\u0131klama yap\u0131lmak istenmesi halinde eleman\u0131n tekrar kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr.",
+      "fieldname": "note",
+      "fieldtype": "Text",
+      "label": "Note"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 13:46:13.432291",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura Note",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

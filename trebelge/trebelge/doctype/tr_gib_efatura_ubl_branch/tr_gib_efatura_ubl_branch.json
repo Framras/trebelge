@@ -1,0 +1,38 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-18 23:38:16.592058",
+  "description": "\u015eube bilgisi girilir.",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "branch_name",
+    "financialinstitution"
+  ],
+  "fields": [
+    {
+      "description": "\u015eube ad\u0131 girilir.",
+      "fieldname": "branch_name",
+      "fieldtype": "Data",
+      "label": "Name"
+    },
+    {
+      "fieldname": "financialinstitution",
+      "fieldtype": "Table",
+      "label": "Financial Institution",
+      "options": "TR GIB eFatura UBL Financial Institution"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 13:45:55.271212",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Branch",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

@@ -1,0 +1,74 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-10-19 00:09:40.878675",
+  "description": "Bu elemana irtibat bilgileri yaz\u0131labilecektir.",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "contact_name",
+    "telephone",
+    "telefax",
+    "electronicmail",
+    "note",
+    "othercommunication"
+  ],
+  "fields": [
+    {
+      "description": "\u0130rtibat\u0131n numara bilgisi yaz\u0131labilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "label": "ID"
+    },
+    {
+      "description": "\u0130rtibat\u0131n ismi metin olarak yaz\u0131labilir.",
+      "fieldname": "contact_name",
+      "fieldtype": "Data",
+      "label": "Name"
+    },
+    {
+      "description": "Telefon numaras\u0131 metin olarak girilecektir.",
+      "fieldname": "telephone",
+      "fieldtype": "Data",
+      "label": "Telephone"
+    },
+    {
+      "description": "Fax numaras\u0131 metin olarak girilecektir.",
+      "fieldname": "telefax",
+      "fieldtype": "Data",
+      "label": "Telefax"
+    },
+    {
+      "description": "Elektronik posta adresi metin olarak girilecektir.",
+      "fieldname": "electronicmail",
+      "fieldtype": "Data",
+      "label": "Electronic Mail"
+    },
+    {
+      "description": "Serbest metin a\u00e7\u0131klama girilebilecektir.",
+      "fieldname": "note",
+      "fieldtype": "Data",
+      "label": "Note"
+    },
+    {
+      "description": "Ba\u015fka ileti\u015fim kanal\u0131 veya ilave telefon, fax ve elektronik posta kullan\u0131l\u0131yor ise bu eleman kanal\u0131n tan\u0131mlanmas\u0131nda kullan\u0131lacakt\u0131r.",
+      "fieldname": "othercommunication",
+      "fieldtype": "Table",
+      "label": "Other Communication",
+      "options": "TR GIB eFatura UBL Communication"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-10-19 13:46:00.533643",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR GIB eFatura UBL Contact",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
