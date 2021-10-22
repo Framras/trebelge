@@ -20,6 +20,10 @@ class incomingEfaturaReader:  # The target object of the parser
         self.is_InvoiceTypeCode_data = False
         self.Notes = list()
         self.is_Note_data = False
+        self.DocumentCurrencyCode = ""
+        self.is_DocumentCurrencyCode_data = False
+        self.LineCountNumeric = ""
+        self.is_LineCountNumeric_data = False
         self.activity_count = 0
         self.is_einvoice_document = False
         self.is_edespatchadvice_document = False
@@ -48,6 +52,10 @@ class incomingEfaturaReader:  # The target object of the parser
             self.is_InvoiceTypeCode_data = True
         elif tag == "cbc:Note":
             self.is_Note_data = True
+        elif tag == "cbc:DocumentCurrencyCode":
+            self.is_DocumentCurrencyCode_data = True
+        elif tag == "cbc:LineCountNumeric":
+            self.is_LineCountNumeric_data = True
         elif tag == "Document":
             self.activity_count = 0
             if attrib["type"] == "Invoice":
@@ -78,6 +86,10 @@ class incomingEfaturaReader:  # The target object of the parser
             self.is_InvoiceTypeCode_data = False
         elif tag == "cbc:Note":
             self.is_Note_data = False
+        elif tag == "cbc:DocumentCurrencyCode":
+            self.is_DocumentCurrencyCode_data = False
+        elif tag == "cbc:LineCountNumeric":
+            self.is_LineCountNumeric_data = False
         elif tag == "CreationTime":
             self.activity_count += 1
         elif tag == "DeletionTime":
@@ -114,6 +126,10 @@ class incomingEfaturaReader:  # The target object of the parser
             self.InvoiceTypeCode = data
         elif self.is_Note_data:
             self.Notes.append(data)
+        elif self.is_DocumentCurrencyCode_data:
+            self.DocumentCurrencyCode = data
+        elif self.is_LineCountNumeric_data:
+            self.LineCountNumeric = data
 
     def close(self):  # Called when all data has been parsed.
         return self.return_data
