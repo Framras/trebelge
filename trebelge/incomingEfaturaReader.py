@@ -1,24 +1,24 @@
 class incomingEfaturaReader:  # The target object of the parser
     def __init__(self):
-        self.UBLVersionID = ""
+        self.UBLVersionID = ""  # Zorunlu (1)
         self.is_UBLVersionID_data = False
-        self.CustomizationID = ""
+        self.CustomizationID = ""  # Zorunlu (1)
         self.is_CustomizationID_data = False
-        self.ProfileID = ""
+        self.ProfileID = ""  # Zorunlu (1)
         self.is_ProfileID_data = False
-        self.ID = ""
+        self.ID = ""  # Zorunlu (1)
         self.is_ID_data = False
-        self.CopyIndicator = ""
+        self.CopyIndicator = ""  # Zorunlu (1)
         self.is_CopyIndicator_data = False
-        self.UUID = ""
+        self.UUID = ""  # Zorunlu (1)
         self.is_UUID_data = False
-        self.IssueDate = ""
+        self.IssueDate = ""  # Zorunlu (1)
         self.is_IssueDate_data = False
-        self.IssueTime = ""
+        self.IssueTime = ""  # Seçimli (0...1)
         self.is_IssueTime_data = False
-        self.InvoiceTypeCode = ""
+        self.InvoiceTypeCode = ""  # Zorunlu (1)
         self.is_InvoiceTypeCode_data = False
-        self.Notes = list()
+        self.Notes = list()  # Seçimli (0...n)
         self.is_Note_data = False
         self.DocumentCurrencyCode = ""
         self.is_DocumentCurrencyCode_data = False
