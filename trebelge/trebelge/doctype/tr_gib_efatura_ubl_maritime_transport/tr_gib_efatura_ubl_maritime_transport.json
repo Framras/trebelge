@@ -57,7 +57,7 @@
       "fieldname": "registrycertificatedocumentreference",
       "fieldtype": "Table",
       "label": "Registry Certificate Document Reference",
-      "options": "TR GIB eFatura UBL Document Reference"
+      "options": "TR UBL DocumentReference"
     },
     {
       "description": "Geminin kay\u0131t liman\u0131 bilgisi girilir.",
@@ -70,7 +70,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 19:29:12.870512",
+  "modified": "2021-10-22 13:12:50.564712",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Maritime Transport",

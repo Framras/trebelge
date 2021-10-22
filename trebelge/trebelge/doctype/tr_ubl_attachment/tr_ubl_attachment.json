@@ -2,6 +2,7 @@
   "actions": [],
   "allow_rename": 1,
   "creation": "2021-10-18 21:31:47.807989",
+  "description": "Belgelerde referans verilmek istenen referanslar\u0131n ya da belgelere eklenmek istenen dok\u00fcmanlar\u0131n yer ald\u0131\u011f\u0131 elemand\u0131r.",
   "doctype": "DocType",
   "engine": "InnoDB",
   "field_order": [
@@ -16,18 +17,18 @@
       "label": "External Reference"
     },
     {
+      "description": "\u0130li\u015fiklendirilmi\u015f dok\u00fcman\u0131 base64Encoded format\u0131nda tutar.",
       "fieldname": "embeddeddocumentbinaryobject",
       "fieldtype": "Attach",
       "label": "Embedded Document Binary Object"
     }
   ],
-  "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 13:47:09.744581",
+  "modified": "2021-10-22 13:03:06.454202",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "TR GIB eFatura UBL Attachment",
+  "name": "TR UBL Attachment",
   "owner": "Administrator",
   "permissions": [],
   "sort_field": "modified",

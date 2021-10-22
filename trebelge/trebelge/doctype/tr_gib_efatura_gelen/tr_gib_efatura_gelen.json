@@ -200,42 +200,42 @@
       "fieldname": "billingreference",
       "fieldtype": "Table",
       "label": "Faturan\u0131n \u0130li\u015fkili Oldu\u011fu Di\u011fer Belgelerin Bilgileri",
-      "options": "TR GIB eFatura UBL Billing Reference"
+      "options": "TR UBL BillingReference"
     },
     {
       "description": "\u0130rsaliye bilgileri i\u00e7in bu eleman kullan\u0131labilecektir. Birden fazla irsaliyeye ait bilgilerin girilmesi ve irsaliye belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
       "fieldname": "despatchdocumentreference",
       "fieldtype": "Table",
       "label": "\u0130rsaliye Bilgileri",
-      "options": "TR GIB eFatura UBL Document Reference"
+      "options": "TR UBL DocumentReference"
     },
     {
       "description": "Al\u0131nd\u0131 bilgilerinin g\u00f6sterilmesinde ve al\u0131nd\u0131 belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
       "fieldname": "receiptdocumentreference",
       "fieldtype": "Table",
       "label": "Al\u0131nd\u0131 Bilgileri",
-      "options": "TR GIB eFatura UBL Document Reference"
+      "options": "TR UBL DocumentReference"
     },
     {
       "description": "Faturan\u0131n d\u00fczenlenmesine referans te\u015fkil eden ilgili belgelere ait bilgiler bu elemana yaz\u0131lacakt\u0131r.",
       "fieldname": "originatordocumentreference",
       "fieldtype": "Table",
       "label": "Ba\u015flang\u0131\u00e7 Dok\u00fcman\u0131 Bilgileri",
-      "options": "TR GIB eFatura UBL Document Reference"
+      "options": "TR UBL DocumentReference"
     },
     {
       "description": "Fatura ile ilgili kontrat dok\u00fcman\u0131n bilgilerinin g\u00f6sterilmesinde bu eleman kullan\u0131labilecektir.",
       "fieldname": "contractdocumentreference",
       "fieldtype": "Table",
       "label": "Kontrat Dok\u00fcman\u0131 Bilgileri",
-      "options": "TR GIB eFatura UBL Document Reference"
+      "options": "TR UBL DocumentReference"
     },
     {
       "description": "\u0130rsaliye, sipari\u015f, kontrat, al\u0131nd\u0131 ve di\u011fer fatura belgeleri d\u0131\u015f\u0131nda faturaya eklenmek istenen di\u011fer belgeler i\u00e7in bu eleman kullan\u0131labilecektir. \u00d6rne\u011fin belge para birimi d\u0131\u015f\u0131nda ayr\u0131ca fatura d\u00fczenlenmek isteniyorsa bu fatura d\u00fczenlenip AdditionalDocumentReference eleman\u0131n\u0131n EmbeddedDocumentBinaryObject eleman\u0131na eklenebilir.",
       "fieldname": "additionaldocumentreference",
       "fieldtype": "Table",
       "label": "\u0130lave Dok\u00fcman",
-      "options": "TR GIB eFatura UBL Document Reference"
+      "options": "TR UBL DocumentReference"
     },
     {
       "fieldname": "signature",
@@ -283,7 +283,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-19 19:33:46.120911",
+  "modified": "2021-10-22 13:12:51.896956",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",

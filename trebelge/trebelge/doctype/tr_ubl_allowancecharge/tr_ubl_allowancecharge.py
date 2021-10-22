@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRGIBeFaturaUBLAirTransport(Document):
+class TRUBLAllowanceCharge(Document):
     pass

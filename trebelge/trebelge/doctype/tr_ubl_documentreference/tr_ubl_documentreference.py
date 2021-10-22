@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRGIBeFaturaUBLAttachment(Document):
+class TRUBLDocumentReference(Document):
     pass

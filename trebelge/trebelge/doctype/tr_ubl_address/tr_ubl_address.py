@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRGIBeFaturaUBLAddress(Document):
+class TRUBLAddress(Document):
     pass

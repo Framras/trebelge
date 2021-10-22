@@ -58,7 +58,7 @@
       "fieldname": "attachment",
       "fieldtype": "Table",
       "label": "Attachment",
-      "options": "TR GIB eFatura UBL Attachment"
+      "options": "TR UBL Attachment"
     },
     {
       "description": "\u0130rsaliye yerine ge\u00e7mesi durumunda bilgi fi\u015fi tarihi yaz\u0131lmal\u0131d\u0131r.\n\u0130rsaliye yerine ge\u00e7mesi durumunda bilgi fi\u015fi zaman\u0131 yaz\u0131lmal\u0131d\u0131r.",
@@ -78,7 +78,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 13:45:33.591815",
+  "modified": "2021-10-22 12:55:38.274861",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Additional Document Reference",

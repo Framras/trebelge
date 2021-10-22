@@ -141,7 +141,7 @@
       "fieldname": "returnaddress",
       "fieldtype": "Table",
       "label": "Return Address",
-      "options": "TR GIB eFatura UBL Address"
+      "options": "TR UBL Address"
     },
     {
       "fieldname": "firstarrivalportlocation",
@@ -159,7 +159,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 18:27:29.010458",
+  "modified": "2021-10-22 11:53:02.617143",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Shipment",
