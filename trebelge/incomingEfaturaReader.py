@@ -20,8 +20,12 @@ class incomingEfaturaReader:  # The target object of the parser
         self.is_InvoiceTypeCode_data = False
         self.Notes = list()  # Seçimli (0...n)
         self.is_Note_data = False
-        self.DocumentCurrencyCode = ""
+        self.DocumentCurrencyCode = ""  # Zorunlu (1)
         self.is_DocumentCurrencyCode_data = False
+        self.TaxCurrencyCode = ""  # Seçimli (0...1)
+        self.is_TaxCurrencyCode_data = False
+        self.PricingCurrencyCode = ""  # Seçimli (0...1)
+        self.is_PricingCurrencyCode_data = False
         self.LineCountNumeric = ""
         self.is_LineCountNumeric_data = False
         self.activity_count = 0
@@ -54,6 +58,10 @@ class incomingEfaturaReader:  # The target object of the parser
             self.is_Note_data = True
         elif tag == "cbc:DocumentCurrencyCode":
             self.is_DocumentCurrencyCode_data = True
+        elif tag == "cbc:TaxCurrencyCode":
+            self.is_TaxCurrencyCode_data = True
+        elif tag == "cbc:PricingCurrencyCode":
+            self.is_PricingCurrencyCode_data = True
         elif tag == "cbc:LineCountNumeric":
             self.is_LineCountNumeric_data = True
         elif tag == "Document":
@@ -88,6 +96,10 @@ class incomingEfaturaReader:  # The target object of the parser
             self.is_Note_data = False
         elif tag == "cbc:DocumentCurrencyCode":
             self.is_DocumentCurrencyCode_data = False
+        elif tag == "cbc:TaxCurrencyCode":
+            self.is_TaxCurrencyCode_data = False
+        elif tag == "cbc:PricingCurrencyCode":
+            self.is_PricingCurrencyCode_data = False
         elif tag == "cbc:LineCountNumeric":
             self.is_LineCountNumeric_data = False
         elif tag == "CreationTime":
@@ -128,6 +140,10 @@ class incomingEfaturaReader:  # The target object of the parser
             self.Notes.append(data)
         elif self.is_DocumentCurrencyCode_data:
             self.DocumentCurrencyCode = data
+        elif self.is_TaxCurrencyCode_data:
+            self.TaxCurrencyCode = data
+        elif self.is_PricingCurrencyCode_data:
+            self.PricingCurrencyCode = data
         elif self.is_LineCountNumeric_data:
             self.LineCountNumeric = data
 
