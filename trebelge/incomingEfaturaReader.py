@@ -18,6 +18,8 @@ class incomingEfaturaReader:  # The target object of the parser
         self.is_IssueTime_data = False
         self.InvoiceTypeCode = ""
         self.is_InvoiceTypeCode_data = False
+        self.Notes = list()
+        self.is_Note_data = False
         self.activity_count = 0
         self.is_einvoice_document = False
         self.is_edespatchadvice_document = False
@@ -44,6 +46,8 @@ class incomingEfaturaReader:  # The target object of the parser
             self.is_IssueTime_data = True
         elif tag == "cbc:InvoiceTypeCode":
             self.is_InvoiceTypeCode_data = True
+        elif tag == "cbc:Note":
+            self.is_Note_data = True
         elif tag == "Document":
             self.activity_count = 0
             if attrib["type"] == "Invoice":
@@ -72,6 +76,8 @@ class incomingEfaturaReader:  # The target object of the parser
             self.is_IssueTime_data = False
         elif tag == "cbc:InvoiceTypeCode":
             self.is_InvoiceTypeCode_data = False
+        elif tag == "cbc:Note":
+            self.is_Note_data = False
         elif tag == "CreationTime":
             self.activity_count += 1
         elif tag == "DeletionTime":
@@ -106,6 +112,8 @@ class incomingEfaturaReader:  # The target object of the parser
             self.IssueTime = data
         elif self.is_InvoiceTypeCode_data:
             self.InvoiceTypeCode = data
+        elif self.is_Note_data:
+            self.Notes.append(data)
 
     def close(self):  # Called when all data has been parsed.
         return self.return_data
