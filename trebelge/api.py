@@ -169,3 +169,6 @@ def read_ebelge_file():
                     OrderReference_IssueDate = elem.text
                 elif elem.tag == cbc_namespace + 'OrderTypeCode' and is_OrderReference_data:
                     OrderReference_OrderTypeCode = elem.text
+                # end of OrderReference processing
+                if elem.tag == cac_namespace + 'OrderReference':
+                    is_OrderReference_data = False
