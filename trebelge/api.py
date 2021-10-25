@@ -3,7 +3,6 @@ import xml.etree.ElementTree as ET
 
 from xml.etree.ElementTree import XMLParser
 from trebelge.EbelgeUsers import EbelgeUsers
-from trebelge.incomingEfaturaReader import incomingEfaturaReader
 
 
 @frappe.whitelist()
@@ -148,7 +147,7 @@ def read_ebelge_file():
                 if elem.tag == cbc_namespace + 'StartDate' and is_InvoicePeriod_data:
                     InvoicePeriod_StartDate = elem.text
                 elif elem.tag == cbc_namespace + 'StartTime' and is_InvoicePeriod_data:
-                    InvoicePeriod_StartTime == elem.text
+                    InvoicePeriod_StartTime = elem.text
                 elif elem.tag == cbc_namespace + 'EndDate' and is_InvoicePeriod_data:
                     InvoicePeriod_EndDate = elem.text
                 elif elem.tag == cbc_namespace + 'EndTime' and is_InvoicePeriod_data:
