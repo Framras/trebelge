@@ -84,6 +84,7 @@ def read_ebelge_file():
         OrderReference_IssueDate = ""  # Zorunlu(1)
         OrderReference_OrderTypeCode = ''  # Seçimli(0..1)
         OrderReference_DocumentReferences = list()  # Seçimli(0..n)
+        is_BillingReference_data = False
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
@@ -106,6 +107,10 @@ def read_ebelge_file():
                     OrderReference_IssueDate = ""  # Zorunlu(1)
                     OrderReference_OrderTypeCode = ''  # Seçimli(0..1)
                     OrderReference_DocumentReferences = list()  # Seçimli(0..n)
+                if elem.tag == cac_namespace + 'BillingReference':
+                    # start processing BillingReference
+                    # Seçimli(0...n)
+                    is_BillingReference_data = True
 
             elif event == 'end':
                 # process the tags
