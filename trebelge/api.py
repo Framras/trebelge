@@ -1,7 +1,9 @@
 import frappe
+import xml.etree.ElementTree as ET
 
 from xml.etree.ElementTree import XMLParser
 from trebelge.EbelgeUsers import EbelgeUsers
+from trebelge.incomingEfaturaReader import incomingEfaturaReader
 
 
 @frappe.whitelist()
@@ -42,3 +44,17 @@ def get_ebelge_users():
     parser.feed(
         frappe.read_file(frappe.get_site_path("private", "files", "KullaniciListesiXml", "newUserPkList.xml")))
     return parser.close()
+
+
+def read_ebelge_file():
+    filename = '/home/tufankaynak/bench/sites/trgibebelgedev/private/files/13D2021000002726.xml'
+    namespaces = read_all_namespaces(filename)
+    if ET.parse(filename).getroot().tag == '{' + namespaces.get('') + '}Invoice':
+        parser = XMLParser(target=incomingEfaturaReader(namespaces))
+        parser.feed(frappe.read_file(filename))
+        return parser.close()
+
+
+def read_all_namespaces(filename):
+    namespaces = dict([node for _, node in ET.iterparse(filename, events=['start-ns'])])
+    return namespaces

@@ -1,5 +1,7 @@
-class incomingEfaturaReader:  # The target object of the parser
-    def __init__(self):
+class incomingEfaturaReader():  # The target object of the parser
+
+    def __init__(self, namespaces):
+        self.namespaces = namespaces
         self.UBLVersionID = ""  # Zorunlu (1)
         self.is_UBLVersionID_data = False
         self.CustomizationID = ""  # Zorunlu (1)
@@ -28,91 +30,69 @@ class incomingEfaturaReader:  # The target object of the parser
         self.is_PricingCurrencyCode_data = False
         self.LineCountNumeric = ""
         self.is_LineCountNumeric_data = False
-        self.activity_count = 0
-        self.is_einvoice_document = False
-        self.is_edespatchadvice_document = False
-        self.is_efatura_user = False
-        self.is_eirsaliye_user = False
         self.return_data = dict()
 
     def start(self, tag, attrib):  # Called for each opening tag.
-        if tag == "cbc:UBLVersionID":
+        print(self.namespaces)
+        if tag == '{' + self.namespaces.get('cbc') + '}UBLVersionID':
             self.is_UBLVersionID_data = True
-        elif tag == "cbc:CustomizationID":
+        elif tag == '{' + self.namespaces.get('cbc') + '}CustomizationID':
             self.is_CustomizationID_data = True
-        elif tag == "cbc:ProfileID":
+        elif tag == '{' + self.namespaces.get('cbc') + '}ProfileID':
             self.is_ProfileID_data = True
-        elif tag == "cbc:ID":
+        elif tag == '{' + self.namespaces.get('cbc') + '}ID':
             self.is_ID_data = True
-        elif tag == "cbc:CopyIndicator":
+        elif tag == '{' + self.namespaces.get('cbc') + '}CopyIndicator':
             self.is_CopyIndicator_data = True
-        elif tag == "cbc:UUID":
+        elif tag == '{' + self.namespaces.get('cbc') + '}UUID':
             self.is_UUID_data = True
-        elif tag == "cbc:IssueDate":
+        elif tag == '{' + self.namespaces.get('cbc') + '}IssueDate':
             self.is_IssueDate_data = True
-        elif tag == "cbc:IssueTime":
+        elif tag == '{' + self.namespaces.get('cbc') + '}IssueTime':
             self.is_IssueTime_data = True
-        elif tag == "cbc:InvoiceTypeCode":
+        elif tag == '{' + self.namespaces.get('cbc') + '}InvoiceTypeCode':
             self.is_InvoiceTypeCode_data = True
-        elif tag == "cbc:Note":
+        elif tag == '{' + self.namespaces.get('cbc') + '}Note':
             self.is_Note_data = True
-        elif tag == "cbc:DocumentCurrencyCode":
+        elif tag == '{' + self.namespaces.get('cbc') + '}DocumentCurrencyCode':
             self.is_DocumentCurrencyCode_data = True
-        elif tag == "cbc:TaxCurrencyCode":
+        elif tag == '{' + self.namespaces.get('cbc') + '}TaxCurrencyCode':
             self.is_TaxCurrencyCode_data = True
-        elif tag == "cbc:PricingCurrencyCode":
+        elif tag == '{' + self.namespaces.get('cbc') + '}PricingCurrencyCode':
             self.is_PricingCurrencyCode_data = True
-        elif tag == "cbc:LineCountNumeric":
+        elif tag == '{' + self.namespaces.get('cbc') + '}LineCountNumeric':
             self.is_LineCountNumeric_data = True
-        elif tag == "Document":
-            self.activity_count = 0
-            if attrib["type"] == "Invoice":
-                self.is_einvoice_document = True
-                self.is_edespatchadvice_document = False
-            elif attrib["type"] == "DespatchAdvice":
-                self.is_edespatchadvice_document = True
-                self.is_einvoice_document = False
 
     def end(self, tag):  # Called for each closing tag.
-        if tag == "cbc:UBLVersionID":
+        if tag == '{' + self.namespaces.get('cbc') + '}UBLVersionID':
             self.is_UBLVersionID_data = False
-        elif tag == "cbc:CustomizationID":
+        elif tag == '{' + self.namespaces.get('cbc') + '}CustomizationID':
             self.is_CustomizationID_data = False
-        elif tag == "cbc:ProfileID":
+        elif tag == '{' + self.namespaces.get('cbc') + '}ProfileID':
             self.is_ProfileID_data = False
-        elif tag == "cbc:ID":
+        elif tag == '{' + self.namespaces.get('cbc') + '}ID':
             self.is_ID_data = False
-        elif tag == "cbc:CopyIndicator":
+        elif tag == '{' + self.namespaces.get('cbc') + '}CopyIndicator':
             self.is_CopyIndicator_data = False
-        elif tag == "cbc:UUID":
+        elif tag == '{' + self.namespaces.get('cbc') + '}UUID':
             self.is_UUID_data = False
-        elif tag == "cbc:IssueDate":
+        elif tag == '{' + self.namespaces.get('cbc') + '}IssueDate':
             self.is_IssueDate_data = False
-        elif tag == "cbc:IssueTime":
+        elif tag == '{' + self.namespaces.get('cbc') + '}IssueTime':
             self.is_IssueTime_data = False
-        elif tag == "cbc:InvoiceTypeCode":
+        elif tag == '{' + self.namespaces.get('cbc') + '}InvoiceTypeCode':
             self.is_InvoiceTypeCode_data = False
-        elif tag == "cbc:Note":
+        elif tag == '{' + self.namespaces.get('cbc') + '}Note':
             self.is_Note_data = False
-        elif tag == "cbc:DocumentCurrencyCode":
+        elif tag == '{' + self.namespaces.get('cbc') + '}DocumentCurrencyCode':
             self.is_DocumentCurrencyCode_data = False
-        elif tag == "cbc:TaxCurrencyCode":
+        elif tag == '{' + self.namespaces.get('cbc') + '}TaxCurrencyCode':
             self.is_TaxCurrencyCode_data = False
-        elif tag == "cbc:PricingCurrencyCode":
+        elif tag == '{' + self.namespaces.get('cbc') + '}PricingCurrencyCode':
             self.is_PricingCurrencyCode_data = False
-        elif tag == "cbc:LineCountNumeric":
+        elif tag == '{' + self.namespaces.get('cbc') + '}LineCountNumeric':
             self.is_LineCountNumeric_data = False
-        elif tag == "CreationTime":
-            self.activity_count += 1
-        elif tag == "DeletionTime":
-            self.activity_count -= 1
-        elif tag == "Document":
-            if self.activity_count > 0:
-                if self.is_einvoice_document:
-                    self.is_efatura_user = True
-                elif self.is_edespatchadvice_document:
-                    self.is_eirsaliye_user = True
-        elif tag == "Documents":
+        elif tag == "Invoice":
             self.return_data[self.tax_id] = dict(
                 [("is_efatura_user", self.is_efatura_user), ("is_eirsaliye_user", self.is_eirsaliye_user)])
             self.setup()
