@@ -1,5 +1,3 @@
-from typing import Union, Any
-
 import frappe
 import xml.etree.ElementTree as ET
 
@@ -56,7 +54,7 @@ def read_ebelge_file():
     cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
     # check if ebelge is Invoice
     if ET.parse(filename).getroot().tag == default_namespace + 'Invoice':
-        UBLVersionID: str = ''  # Zorunlu (1)
+        UBLVersionID = ''  # Zorunlu (1)
         CustomizationID = ''  # Zorunlu (1)
         ProfileID = ''  # Zorunlu (1)
         ID = ''  # Zorunlu (1)
@@ -100,12 +98,7 @@ def read_ebelge_file():
                     DocumentCurrencyCode = elem.text
                 elif elem.tag == cbc_namespace + 'TaxCurrencyCode':
                     TaxCurrencyCode = elem.text
-                case
-                '{' + self.namespaces.get('cbc') + '}PricingCurrencyCode':
-                is_PricingCurrencyCode_data = True
-            case
-            '{' + self.namespaces.get('cbc') + '}LineCountNumeric':
-            is_LineCountNumeric_data = True
-
-
-return parser.close()
+                elif elem.tag == cbc_namespace + 'PricingCurrencyCode':
+                    PricingCurrencyCode = elem.text
+                elif elem.tag == cbc_namespace + 'LineCountNumeric':
+                    LineCountNumeric = elem.text
