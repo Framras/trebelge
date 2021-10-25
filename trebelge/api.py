@@ -72,18 +72,25 @@ def read_ebelge_file():
         PaymentAlternativeCurrencyCode = ''  # Seçimli (0...1)
         AccountingCost = ''  # Seçimli (0...1)
         LineCountNumeric = ""  # Zorunlu (1)
+        is_InvoicePeriod_data = False
         InvoicePeriod_StartDate = ""  # Seçimli(0..1)
         InvoicePeriod_StartTime = ""  # Seçimli(0..1)
         InvoicePeriod_EndDate = ""  # Seçimli(0..1)
         InvoicePeriod_EndTime = ""  # Seçimli(0..1)
         InvoicePeriod_DurationMeasure = ""  # Seçimli(0..1)
         InvoicePeriod_Description = ''  # Seçimli(0..1)
-        is_InvoicePeriod_data = False
+        is_OrderReference_data = False
+        OrderReference_ID = ''  # Zorunlu(1)
+        OrderReference_SalesOrderID = ''  # Seçimli(0..1)
+        OrderReference_IssueDate = ""  # Zorunlu(1)
+        OrderReference_OrderTypeCode = ''  # Seçimli(0..1)
+        OrderReference_DocumentReferences = list()  # Seçimli(0..n)
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
                 if elem.tag == cac_namespace + 'InvoicePeriod':
                     # start processing InvoicePeriod
+                    # Seçimli (0...1)
                     is_InvoicePeriod_data = True
                     InvoicePeriod_StartDate = ""
                     InvoicePeriod_StartTime = ""
@@ -91,6 +98,15 @@ def read_ebelge_file():
                     InvoicePeriod_EndTime = ""
                     InvoicePeriod_DurationMeasure = ""
                     InvoicePeriod_Description = ''
+                if elem.tag == cac_namespace + 'OrderReference':
+                    # start processing OrderReference
+                    # Seçimli (0...1)
+                    is_OrderReference_data = True
+                    OrderReference_ID = ''  # Zorunlu(1)
+                    OrderReference_SalesOrderID = ''  # Seçimli(0..1)
+                    OrderReference_IssueDate = ""  # Zorunlu(1)
+                    OrderReference_OrderTypeCode = ''  # Seçimli(0..1)
+                    OrderReference_DocumentReferences = list()  # Seçimli(0..n)
 
             elif event == 'end':
                 # process the tags
