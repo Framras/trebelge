@@ -83,7 +83,7 @@ def read_ebelge_file():
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
                 if elem.tag == cac_namespace + 'InvoicePeriod':
-                    # processing InvoicePeriod
+                    # start processing InvoicePeriod
                     is_InvoicePeriod_data = True
                     InvoicePeriod_StartDate = ""
                     InvoicePeriod_StartTime = ""
@@ -93,7 +93,7 @@ def read_ebelge_file():
                     InvoicePeriod_Description = ''
 
             elif event == 'end':
-                # process the tag
+                # process the tags
                 if elem.tag == cbc_namespace + 'UBLVersionID':
                     UBLVersionID = elem.text
                 elif elem.tag == cbc_namespace + 'CustomizationID':
@@ -128,3 +128,20 @@ def read_ebelge_file():
                     AccountingCost = elem.text
                 elif elem.tag == cbc_namespace + 'LineCountNumeric':
                     LineCountNumeric = elem.text
+                # process InvoicePeriod
+                if elem.tag == cbc_namespace + 'StartDate' and is_InvoicePeriod_data:
+                    InvoicePeriod_StartDate = elem.text
+                elif elem.tag == cbc_namespace + 'StartTime' and is_InvoicePeriod_data:
+                    InvoicePeriod_StartTime == elem.text
+                elif elem.tag == cbc_namespace + 'EndDate' and is_InvoicePeriod_data:
+                    InvoicePeriod_EndDate = elem.text
+                elif elem.tag == cbc_namespace + 'EndTime' and is_InvoicePeriod_data:
+                    InvoicePeriod_EndTime = elem.text
+                elif elem.tag == cbc_namespace + 'DurationMeasure' and is_InvoicePeriod_data:
+                    InvoicePeriod_DurationMeasure = elem.text
+                elif elem.tag == cbc_namespace + 'InvoicePeriod_Description' and is_InvoicePeriod_data:
+                    InvoicePeriod_Description = elem.text
+                # end of InvoicePeriod processing
+                if elem.tag == cac_namespace + 'InvoicePeriod':
+                    # processing InvoicePeriod
+                    is_InvoicePeriod_data = False
