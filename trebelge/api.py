@@ -72,10 +72,25 @@ def read_ebelge_file():
         PaymentAlternativeCurrencyCode = ''  # Seçimli (0...1)
         AccountingCost = ''  # Seçimli (0...1)
         LineCountNumeric = ""  # Zorunlu (1)
+        InvoicePeriod_StartDate = ""  # Seçimli(0..1)
+        InvoicePeriod_StartTime = ""  # Seçimli(0..1)
+        InvoicePeriod_EndDate = ""  # Seçimli(0..1)
+        InvoicePeriod_EndTime = ""  # Seçimli(0..1)
+        InvoicePeriod_DurationMeasure = ""  # Seçimli(0..1)
+        InvoicePeriod_Description = ''  # Seçimli(0..1)
+        is_InvoicePeriod_data = False
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
                 if elem.tag == cac_namespace + 'InvoicePeriod':
+                    # processing InvoicePeriod
+                    is_InvoicePeriod_data = True
+                    InvoicePeriod_StartDate = ""
+                    InvoicePeriod_StartTime = ""
+                    InvoicePeriod_EndDate = ""
+                    InvoicePeriod_EndTime = ""
+                    InvoicePeriod_DurationMeasure = ""
+                    InvoicePeriod_Description = ''
 
             elif event == 'end':
                 # process the tag
