@@ -67,7 +67,10 @@ def read_ebelge_file():
         DocumentCurrencyCode = ''  # Zorunlu (1)
         TaxCurrencyCode = ''  # Seçimli (0...1)
         PricingCurrencyCode = ''  # Seçimli (0...1)
-        LineCountNumeric = ""
+        PaymentCurrencyCode = ''  # Seçimli (0...1)
+        PaymentAlternativeCurrencyCode = ''  # Seçimli (0...1)
+        AccountingCost = ''  # Seçimli (0...1)
+        LineCountNumeric = ""  # Zorunlu (1)
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
@@ -100,5 +103,11 @@ def read_ebelge_file():
                     TaxCurrencyCode = elem.text
                 elif elem.tag == cbc_namespace + 'PricingCurrencyCode':
                     PricingCurrencyCode = elem.text
+                elif elem.tag == cbc_namespace + 'PaymentCurrencyCode':
+                    PaymentCurrencyCode = elem.text
+                elif elem.tag == cbc_namespace + 'PaymentAlternativeCurrencyCode':
+                    PaymentAlternativeCurrencyCode = elem.text
+                elif elem.tag == cbc_namespace + 'AccountingCost':
+                    AccountingCost = elem.text
                 elif elem.tag == cbc_namespace + 'LineCountNumeric':
                     LineCountNumeric = elem.text
