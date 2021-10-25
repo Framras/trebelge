@@ -1,3 +1,5 @@
+from typing import Union, Any
+
 import frappe
 import xml.etree.ElementTree as ET
 
@@ -48,13 +50,62 @@ def get_ebelge_users():
 
 def read_ebelge_file():
     filename = '/home/tufankaynak/bench/sites/trgibebelgedev/private/files/13D2021000002726.xml'
-    namespaces = read_all_namespaces(filename)
-    if ET.parse(filename).getroot().tag == '{' + namespaces.get('') + '}Invoice':
-        parser = XMLParser(target=incomingEfaturaReader(namespaces))
-        parser.feed(frappe.read_file(filename))
-        return parser.close()
-
-
-def read_all_namespaces(filename):
+    # read all namespaces
     namespaces = dict([node for _, node in ET.iterparse(filename, events=['start-ns'])])
-    return namespaces
+    default_namespace: str = '{' + namespaces.get('') + '}'
+    cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
+    # check if ebelge is Invoice
+    if ET.parse(filename).getroot().tag == default_namespace + 'Invoice':
+        UBLVersionID: str = ''  # Zorunlu (1)
+        CustomizationID = ''  # Zorunlu (1)
+        ProfileID = ''  # Zorunlu (1)
+        ID = ''  # Zorunlu (1)
+        CopyIndicator = ""  # Zorunlu (1)
+        UUID = ''  # Zorunlu (1)
+        IssueDate = ""  # Zorunlu (1)
+        IssueTime = ""  # Seçimli (0...1)
+        InvoiceTypeCode = ''  # Zorunlu (1)
+        Notes = list()  # Seçimli (0...n)
+        DocumentCurrencyCode = ''  # Zorunlu (1)
+        TaxCurrencyCode = ''  # Seçimli (0...1)
+        PricingCurrencyCode = ''  # Seçimli (0...1)
+        LineCountNumeric = ""
+
+        for event, elem in ET.iterparse(filename, events=("start", "end")):
+            if event == 'start':
+                pass
+            elif event == 'end':
+                # process the tag
+                if elem.tag == cbc_namespace + 'UBLVersionID':
+                    UBLVersionID = elem.text
+                elif elem.tag == cbc_namespace + 'CustomizationID':
+                    CustomizationID = elem.text
+                elif elem.tag == cbc_namespace + 'ProfileID':
+                    ProfileID = elem.text
+                elif elem.tag == cbc_namespace + 'ID':
+                    ID = elem.text
+                elif elem.tag == cbc_namespace + 'CopyIndicator':
+                    CopyIndicator = elem.text
+                elif elem.tag == cbc_namespace + 'UUID':
+                    UUID = elem.text
+                elif elem.tag == cbc_namespace + 'IssueDate':
+                    IssueDate = elem.text
+                elif elem.tag == cbc_namespace + 'IssueTime':
+                    IssueTime = elem.text
+                elif elem.tag == cbc_namespace + 'InvoiceTypeCode':
+                    InvoiceTypeCode = elem.text
+                elif elem.tag == cbc_namespace + 'Note':
+                    Notes.append(elem.text)
+                elif elem.tag == cbc_namespace + 'DocumentCurrencyCode':
+                    DocumentCurrencyCode = elem.text
+                elif elem.tag == cbc_namespace + 'TaxCurrencyCode':
+                    TaxCurrencyCode = elem.text
+                case
+                '{' + self.namespaces.get('cbc') + '}PricingCurrencyCode':
+                is_PricingCurrencyCode_data = True
+            case
+            '{' + self.namespaces.get('cbc') + '}LineCountNumeric':
+            is_LineCountNumeric_data = True
+
+
+return parser.close()

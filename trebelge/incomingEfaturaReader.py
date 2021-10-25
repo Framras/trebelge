@@ -33,7 +33,6 @@ class incomingEfaturaReader():  # The target object of the parser
         self.return_data = dict()
 
     def start(self, tag, attrib):  # Called for each opening tag.
-        print(self.namespaces)
         if tag == '{' + self.namespaces.get('cbc') + '}UBLVersionID':
             self.is_UBLVersionID_data = True
         elif tag == '{' + self.namespaces.get('cbc') + '}CustomizationID':
