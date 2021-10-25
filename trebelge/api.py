@@ -52,6 +52,7 @@ def read_ebelge_file():
     namespaces = dict([node for _, node in ET.iterparse(filename, events=['start-ns'])])
     default_namespace: str = '{' + namespaces.get('') + '}'
     cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
+    cac_namespace: str = '{' + namespaces.get('cac') + '}'
     # check if ebelge is Invoice
     if ET.parse(filename).getroot().tag == default_namespace + 'Invoice':
         UBLVersionID = ''  # Zorunlu (1)
@@ -74,7 +75,8 @@ def read_ebelge_file():
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
-                pass
+                if elem.tag == cac_namespace + 'InvoicePeriod':
+
             elif event == 'end':
                 # process the tag
                 if elem.tag == cbc_namespace + 'UBLVersionID':
