@@ -159,5 +159,13 @@ def read_ebelge_file():
                     InvoicePeriod_Description = elem.text
                 # end of InvoicePeriod processing
                 if elem.tag == cac_namespace + 'InvoicePeriod':
-                    # processing InvoicePeriod
                     is_InvoicePeriod_data = False
+                # process OrderReference
+                if elem.tag == cbc_namespace + 'ID' and is_OrderReference_data:
+                    OrderReference_ID = elem.text
+                elif elem.tag == cbc_namespace + 'SalesOrderID' and is_OrderReference_data:
+                    OrderReference_SalesOrderID = elem.text
+                elif elem.tag == cbc_namespace + 'IssueDate' and is_OrderReference_data:
+                    OrderReference_IssueDate = elem.text
+                elif elem.tag == cbc_namespace + 'OrderTypeCode' and is_OrderReference_data:
+                    OrderReference_OrderTypeCode = elem.text
