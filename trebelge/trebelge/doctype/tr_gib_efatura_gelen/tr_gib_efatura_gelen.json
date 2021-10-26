@@ -37,6 +37,7 @@
     "column_break_22",
     "invoiceperiod_enddate",
     "invoiceperiod_endtime",
+    "invoiceperiod_durationmeasure_unitcode",
     "invoiceperiod_description",
     "sipari\u015f_bilgileri_section",
     "orderreference_id",
@@ -87,27 +88,27 @@
     {
       "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
       "fieldname": "ublversionid",
-      "fieldtype": "Link",
+      "fieldtype": "Select",
       "label": "UBL Versiyon Numaras\u0131",
-      "options": "TR GIB eFatura UBL Versiyon Numarasi",
+      "options": "2.1",
       "reqd": 1,
       "search_index": 1
     },
     {
       "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
       "fieldname": "customizationid",
-      "fieldtype": "Link",
+      "fieldtype": "Select",
       "label": "\u00d6zelle\u015ftirme Numaras\u0131",
-      "options": "TR GIB eFatura Ozellestirme Numarasi",
+      "options": "TR1.2",
       "reqd": 1,
       "search_index": 1
     },
     {
       "description": "Kullan\u0131lan senaryodur.",
       "fieldname": "profileid",
-      "fieldtype": "Link",
+      "fieldtype": "Select",
       "label": "Senaryo",
-      "options": "TR GIB eFatura Senaryo",
+      "options": "TEMELFATURA\nTICARIFATURA\nYOLCUBERABERFATURA\nEARSIVFATURA\nIHRACAT",
       "reqd": 1,
       "search_index": 1
     },
@@ -125,9 +126,9 @@
     {
       "description": "As\u0131l ise \u201cfalse\u201d, suret ise \u201ctrue\u201d.",
       "fieldname": "copyindicator",
-      "fieldtype": "Link",
+      "fieldtype": "Select",
       "label": "As\u0131l/Suret",
-      "options": "TR GIB eFatura Asil Suret",
+      "options": "false\ntrue",
       "reqd": 1,
       "search_index": 1
     },
@@ -156,10 +157,10 @@
     {
       "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
       "fieldname": "invoicetypecode",
-      "fieldtype": "Link",
+      "fieldtype": "Select",
       "in_list_view": 1,
       "label": "Fatura Tip Kodu",
-      "options": "TR GIB eFatura Fatura Tip Kodu",
+      "options": "SATIS\nIADE\nTEVKIFAT\nISTISNA\nOZELMATRAH\nIHRACKAYITLI",
       "reqd": 1,
       "search_index": 1
     },
@@ -546,11 +547,17 @@
     {
       "fieldname": "column_break_21",
       "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "invoiceperiod_durationmeasure_unitcode",
+      "fieldtype": "Link",
+      "label": "D\u00f6nem Aral\u0131\u011f\u0131 Tipi",
+      "options": "TR UBL Period DurationMeasure unitCode"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-26 11:43:06.709967",
+  "modified": "2021-10-26 22:32:30.806244",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",

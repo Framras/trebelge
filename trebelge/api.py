@@ -54,6 +54,7 @@ def read_ebelge_file():
     cac_namespace: str = '{' + namespaces.get('cac') + '}'
     # check if ebelge is Invoice
     if ET.parse(filename).getroot().tag == default_namespace + 'Invoice':
+        is_Invoice_data = True
         UBLVersionID = ''  # Zorunlu (1)
         CustomizationID = ''  # Zorunlu (1)
         ProfileID = ''  # Zorunlu (1)
@@ -77,6 +78,7 @@ def read_ebelge_file():
         InvoicePeriod_EndDate = ""  # Seçimli(0..1)
         InvoicePeriod_EndTime = ""  # Seçimli(0..1)
         InvoicePeriod_DurationMeasure = ""  # Seçimli(0..1)
+        InvoicePeriod_DurationMeasure_unitCode = ''  # Seçimli(0..1)
         InvoicePeriod_Description = ''  # Seçimli(0..1)
         is_OrderReference_data = False
         OrderReference_ID = ''  # Zorunlu(1)
@@ -97,6 +99,7 @@ def read_ebelge_file():
                     InvoicePeriod_EndDate = ""
                     InvoicePeriod_EndTime = ""
                     InvoicePeriod_DurationMeasure = ""
+                    InvoicePeriod_DurationMeasure_unitCode = ''
                     InvoicePeriod_Description = ''
                 if elem.tag == cac_namespace + 'OrderReference':
                     # start processing OrderReference
@@ -122,39 +125,39 @@ def read_ebelge_file():
 
             elif event == 'end':
                 # process the tags
-                if elem.tag == cbc_namespace + 'UBLVersionID':
+                if elem.tag == cbc_namespace + 'UBLVersionID' and is_Invoice_data:
                     UBLVersionID = elem.text
-                elif elem.tag == cbc_namespace + 'CustomizationID':
+                elif elem.tag == cbc_namespace + 'CustomizationID' and is_Invoice_data:
                     CustomizationID = elem.text
-                elif elem.tag == cbc_namespace + 'ProfileID':
+                elif elem.tag == cbc_namespace + 'ProfileID' and is_Invoice_data:
                     ProfileID = elem.text
-                elif elem.tag == cbc_namespace + 'ID':
+                elif elem.tag == cbc_namespace + 'ID' and is_Invoice_data:
                     ID = elem.text
-                elif elem.tag == cbc_namespace + 'CopyIndicator':
+                elif elem.tag == cbc_namespace + 'CopyIndicator' and is_Invoice_data:
                     CopyIndicator = elem.text
-                elif elem.tag == cbc_namespace + 'UUID':
+                elif elem.tag == cbc_namespace + 'UUID' and is_Invoice_data:
                     UUID = elem.text
-                elif elem.tag == cbc_namespace + 'IssueDate':
+                elif elem.tag == cbc_namespace + 'IssueDate' and is_Invoice_data:
                     IssueDate = elem.text
-                elif elem.tag == cbc_namespace + 'IssueTime':
+                elif elem.tag == cbc_namespace + 'IssueTime' and is_Invoice_data:
                     IssueTime = elem.text
-                elif elem.tag == cbc_namespace + 'InvoiceTypeCode':
+                elif elem.tag == cbc_namespace + 'InvoiceTypeCode' and is_Invoice_data:
                     InvoiceTypeCode = elem.text
-                elif elem.tag == cbc_namespace + 'Note':
+                elif elem.tag == cbc_namespace + 'Note' and is_Invoice_data:
                     Notes.append(elem.text)
-                elif elem.tag == cbc_namespace + 'DocumentCurrencyCode':
+                elif elem.tag == cbc_namespace + 'DocumentCurrencyCode' and is_Invoice_data:
                     DocumentCurrencyCode = elem.text
-                elif elem.tag == cbc_namespace + 'TaxCurrencyCode':
+                elif elem.tag == cbc_namespace + 'TaxCurrencyCode' and is_Invoice_data:
                     TaxCurrencyCode = elem.text
-                elif elem.tag == cbc_namespace + 'PricingCurrencyCode':
+                elif elem.tag == cbc_namespace + 'PricingCurrencyCode' and is_Invoice_data:
                     PricingCurrencyCode = elem.text
-                elif elem.tag == cbc_namespace + 'PaymentCurrencyCode':
+                elif elem.tag == cbc_namespace + 'PaymentCurrencyCode' and is_Invoice_data:
                     PaymentCurrencyCode = elem.text
-                elif elem.tag == cbc_namespace + 'PaymentAlternativeCurrencyCode':
+                elif elem.tag == cbc_namespace + 'PaymentAlternativeCurrencyCode' and is_Invoice_data:
                     PaymentAlternativeCurrencyCode = elem.text
-                elif elem.tag == cbc_namespace + 'AccountingCost':
+                elif elem.tag == cbc_namespace + 'AccountingCost' and is_Invoice_data:
                     AccountingCost = elem.text
-                elif elem.tag == cbc_namespace + 'LineCountNumeric':
+                elif elem.tag == cbc_namespace + 'LineCountNumeric' and is_Invoice_data:
                     LineCountNumeric = elem.text
                 # process InvoicePeriod
                 if elem.tag == cbc_namespace + 'StartDate' and is_InvoicePeriod_data:
