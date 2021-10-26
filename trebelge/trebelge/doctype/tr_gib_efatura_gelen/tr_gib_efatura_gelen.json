@@ -8,20 +8,26 @@
   "engine": "InnoDB",
   "field_order": [
     "ublversionid",
-    "customizationid",
     "profileid",
-    "id",
+    "column_break_3",
+    "customizationid",
     "copyindicator",
-    "uuid",
+    "section_break_6",
+    "id",
     "issuedate",
     "issuetime",
+    "column_break_10",
+    "uuid",
     "invoicetypecode",
+    "section_break_13",
     "note",
+    "section_break_15",
     "documentcurrencycode",
     "taxcurrencycode",
     "pricingcurrencycode",
     "paymentcurrencycode",
     "paymentalternativecurrencycode",
+    "column_break_21",
     "accountingcost",
     "linecountnumeric",
     "fatura_d\u00f6nemi_section",
@@ -516,11 +522,35 @@
     {
       "fieldname": "section_break_33",
       "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "section_break_6",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "column_break_10",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "section_break_13",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "section_break_15",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "column_break_21",
+      "fieldtype": "Column Break"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-26 11:21:37.017239",
+  "modified": "2021-10-26 11:43:06.709967",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
