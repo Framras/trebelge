@@ -24,7 +24,15 @@
     "paymentalternativecurrencycode",
     "accountingcost",
     "linecountnumeric",
-    "invoiceperiod",
+    "fatura_d\u00f6nemi_section",
+    "invoiceperiod_startdate",
+    "invoiceperiod_starttime",
+    "invoiceperiod_durationmeasure",
+    "column_break_22",
+    "invoiceperiod_enddate",
+    "invoiceperiod_endtime",
+    "invoiceperiod_description",
+    "section_break_25",
     "orderreference",
     "billingreference",
     "despatchdocumentreference",
@@ -204,13 +212,6 @@
       "label": "Kalem Say\u0131s\u0131",
       "non_negative": 1,
       "reqd": 1
-    },
-    {
-      "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman kullan\u0131lacakt\u0131r.",
-      "fieldname": "invoiceperiod",
-      "fieldtype": "Table",
-      "label": "Fatura D\u00f6nemi",
-      "options": "TR GIB eFatura UBL Period"
     },
     {
       "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
@@ -427,11 +428,61 @@
     {
       "fieldname": "column_break_53",
       "fieldtype": "Column Break"
+    },
+    {
+      "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman kullan\u0131lacakt\u0131r.",
+      "fieldname": "fatura_d\u00f6nemi_section",
+      "fieldtype": "Section Break",
+      "label": "Fatura D\u00f6nemi"
+    },
+    {
+      "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih",
+      "fieldname": "invoiceperiod_startdate",
+      "fieldtype": "Date",
+      "label": "Ba\u015flang\u0131\u00e7 Tarihi"
+    },
+    {
+      "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman",
+      "fieldname": "invoiceperiod_starttime",
+      "fieldtype": "Time",
+      "label": "Ba\u015flang\u0131\u00e7 Zaman\u0131"
+    },
+    {
+      "description": "D\u00f6nemin bitti\u011fi tarih",
+      "fieldname": "invoiceperiod_enddate",
+      "fieldtype": "Date",
+      "label": "Biti\u015f Tarihi"
+    },
+    {
+      "description": "D\u00f6nemin bitti\u011fi zaman",
+      "fieldname": "invoiceperiod_endtime",
+      "fieldtype": "Time",
+      "label": "Biti\u015f Zaman\u0131"
+    },
+    {
+      "description": "D\u00f6nem s\u00fcresi numerik olarak, d\u00f6nem aral\u0131\u011f\u0131 tipi\u2019de \u201cunitCode\u201d attribute de\u011ferine y\u0131l i\u00e7in \u201cANN\u201d, ay i\u00e7in \u201cMON\u201d, g\u00fcn i\u00e7in \u201cDAY\u201d ve saat i\u00e7in \u201cHUR\u201d girilmesi gerekmektedir.",
+      "fieldname": "invoiceperiod_durationmeasure",
+      "fieldtype": "Data",
+      "label": "D\u00f6nem s\u00fcresi/birimi"
+    },
+    {
+      "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
+      "fieldname": "invoiceperiod_description",
+      "fieldtype": "Small Text",
+      "label": "A\u00e7\u0131klama"
+    },
+    {
+      "fieldname": "section_break_25",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "column_break_22",
+      "fieldtype": "Column Break"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-26 10:12:17.981352",
+  "modified": "2021-10-26 10:56:32.669333",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
