@@ -167,7 +167,7 @@ def read_ebelge_file():
                     InvoicePeriod_EndTime = elem.text
                 elif elem.tag == cbc_namespace + 'DurationMeasure' and is_InvoicePeriod_data:
                     InvoicePeriod_DurationMeasure = elem.text
-                elif elem.tag == cbc_namespace + 'InvoicePeriod_Description' and is_InvoicePeriod_data:
+                elif elem.tag == cbc_namespace + 'Description' and is_InvoicePeriod_data:
                     InvoicePeriod_Description = elem.text
                 # end of InvoicePeriod processing
                 if elem.tag == cac_namespace + 'InvoicePeriod':
