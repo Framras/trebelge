@@ -24,12 +24,13 @@
       "fieldname": "birim",
       "fieldtype": "Data",
       "in_list_view": 1,
+      "in_preview": 1,
       "label": "Birim",
       "translatable": 1
     }
   ],
   "links": [],
-  "modified": "2021-10-26 15:35:56.177532",
+  "modified": "2021-10-26 22:33:20.046027",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Period DurationMeasure unitCode",
