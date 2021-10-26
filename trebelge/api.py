@@ -94,6 +94,7 @@ def read_ebelge_file():
                     # start processing InvoicePeriod
                     # Seçimli (0...1)
                     is_InvoicePeriod_data = True
+                    is_Invoice_data = False
                     InvoicePeriod_StartDate = ""
                     InvoicePeriod_StartTime = ""
                     InvoicePeriod_EndDate = ""
@@ -105,6 +106,7 @@ def read_ebelge_file():
                     # start processing OrderReference
                     # Seçimli (0...1)
                     is_OrderReference_data = True
+                    is_Invoice_data = False
                     OrderReference_ID = ''  # Zorunlu(1)
                     OrderReference_SalesOrderID = ''  # Seçimli(0..1)
                     OrderReference_IssueDate = ""  # Zorunlu(1)
@@ -114,10 +116,12 @@ def read_ebelge_file():
                     # start processing BillingReference
                     # Seçimli(0...n)
                     is_BillingReference_data = True
+                    is_Invoice_data = False
                 if elem.tag == cac_namespace + 'PricingExchangeRate':
                     # start processing PricingExchangeRate
                     # Seçimli (0...1)
                     is_PricingExchangeRate_data = True
+                    is_Invoice_data = False
                     PricingExchangeRate_SourceCurrencyCode = ''  # Zorunlu(1)
                     PricingExchangeRate_TargetCurrencyCode = ''  # Zorunlu(1)
                     PricingExchangeRate_CalculationRate = ""  # Zorunlu(1)
@@ -172,7 +176,7 @@ def read_ebelge_file():
                         InvoicePeriod_EndTime = elem.text
                     elif elem.tag == cbc_namespace + 'DurationMeasure':
                         InvoicePeriod_DurationMeasure = elem.text
-                        InvoicePeriod_DurationMeasure_unitCode = elem.attrib.__getattribute__('unitCode')
+                        InvoicePeriod_DurationMeasure_unitCode = elem.attrib.get('unitCode')
                     elif elem.tag == cbc_namespace + 'Description':
                         InvoicePeriod_Description = elem.text
                 # end of InvoicePeriod processing
