@@ -37,7 +37,31 @@
     "accountingcustomerparty",
     "buyercustomerparty",
     "sellersupplierparty",
-    "taxrepresentativeparty"
+    "taxrepresentativeparty",
+    "vergi_d\u00f6viz_kuru_section",
+    "taxexchangerate_sourcecurrencycode",
+    "taxexchangerate_date",
+    "column_break_35",
+    "taxexchangerate_targetcurrencycode",
+    "taxexchangerate_calculationrate",
+    "fiyatland\u0131rma_d\u00f6viz_kuru_section",
+    "pricingexchangerate_sourcecurrencycode",
+    "pricingexchangerate_date",
+    "column_break_41",
+    "pricingexchangerate_targetcurrencycode",
+    "pricingexchangerate_calculationrate",
+    "\u00f6deme_d\u00f6viz_kuru_section",
+    "paymentexchangerate_sourcecurrencycode",
+    "paymentexchangerate_date",
+    "column_break_47",
+    "paymentexchangerate_targetcurrencycode",
+    "paymentexchangerate_calculationrate",
+    "alternatif_\u00f6deme_d\u00f6viz_kuru_section",
+    "paymentalternativeexchangerate_sourcecurrencycode",
+    "paymentalternativeexchangerate_date",
+    "column_break_53",
+    "paymentalternativeexchangerate_targetcurrencycode",
+    "paymentalternativeexchangerate_calculationrate"
   ],
   "fields": [
     {
@@ -279,11 +303,135 @@
       "fieldtype": "Table",
       "label": "Vergi \u0130\u015fleriyle Sorumlu Taraf",
       "options": "TR GIB eFatura UBL Party"
+    },
+    {
+      "fieldname": "fiyatland\u0131rma_d\u00f6viz_kuru_section",
+      "fieldtype": "Section Break",
+      "label": "Fiyatland\u0131rma D\u00f6viz Kuru"
+    },
+    {
+      "fieldname": "pricingexchangerate_sourcecurrencycode",
+      "fieldtype": "Link",
+      "label": "Kaynak D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "pricingexchangerate_calculationrate",
+      "fieldtype": "Currency",
+      "label": "Kur"
+    },
+    {
+      "fieldname": "column_break_35",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "pricingexchangerate_targetcurrencycode",
+      "fieldtype": "Link",
+      "label": "Hedef D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "pricingexchangerate_date",
+      "fieldtype": "Date",
+      "label": "Tarih"
+    },
+    {
+      "fieldname": "\u00f6deme_d\u00f6viz_kuru_section",
+      "fieldtype": "Section Break",
+      "label": "\u00d6deme D\u00f6viz Kuru"
+    },
+    {
+      "fieldname": "paymentexchangerate_sourcecurrencycode",
+      "fieldtype": "Link",
+      "label": "Kaynak D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "paymentexchangerate_date",
+      "fieldtype": "Date",
+      "label": "Tarih"
+    },
+    {
+      "fieldname": "column_break_41",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "paymentexchangerate_targetcurrencycode",
+      "fieldtype": "Link",
+      "label": "Hedef D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "paymentexchangerate_calculationrate",
+      "fieldtype": "Currency",
+      "label": "Kur"
+    },
+    {
+      "fieldname": "alternatif_\u00f6deme_d\u00f6viz_kuru_section",
+      "fieldtype": "Section Break",
+      "label": "Alternatif \u00d6deme D\u00f6viz Kuru"
+    },
+    {
+      "fieldname": "paymentalternativeexchangerate_sourcecurrencycode",
+      "fieldtype": "Link",
+      "label": "Kaynak D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "paymentalternativeexchangerate_date",
+      "fieldtype": "Date",
+      "label": "Tarih"
+    },
+    {
+      "fieldname": "column_break_47",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "paymentalternativeexchangerate_targetcurrencycode",
+      "fieldtype": "Link",
+      "label": "Hedef D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "paymentalternativeexchangerate_calculationrate",
+      "fieldtype": "Currency",
+      "label": "Kur"
+    },
+    {
+      "fieldname": "vergi_d\u00f6viz_kuru_section",
+      "fieldtype": "Section Break",
+      "label": "Vergi D\u00f6viz Kuru"
+    },
+    {
+      "fieldname": "taxexchangerate_sourcecurrencycode",
+      "fieldtype": "Link",
+      "label": "Kaynak D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "taxexchangerate_date",
+      "fieldtype": "Date",
+      "label": "Tarih"
+    },
+    {
+      "fieldname": "taxexchangerate_targetcurrencycode",
+      "fieldtype": "Link",
+      "label": "Hedef D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "taxexchangerate_calculationrate",
+      "fieldtype": "Currency",
+      "label": "Kur"
+    },
+    {
+      "fieldname": "column_break_53",
+      "fieldtype": "Column Break"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-22 13:12:51.896956",
+  "modified": "2021-10-26 10:12:17.981352",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",

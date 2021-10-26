@@ -111,6 +111,14 @@ def read_ebelge_file():
                     # start processing BillingReference
                     # Seçimli(0...n)
                     is_BillingReference_data = True
+                if elem.tag == cac_namespace + 'PricingExchangeRate':
+                    # start processing PricingExchangeRate
+                    # Seçimli (0...1)
+                    is_PricingExchangeRate_data = True
+                    PricingExchangeRate_SourceCurrencyCode = ''  # Zorunlu(1)
+                    PricingExchangeRate_TargetCurrencyCode = ''  # Zorunlu(1)
+                    PricingExchangeRate_CalculationRate = ""  # Zorunlu(1)
+                    PricingExchangeRate_Date = ""  # Seçimli(0..1)
 
             elif event == 'end':
                 # process the tags
