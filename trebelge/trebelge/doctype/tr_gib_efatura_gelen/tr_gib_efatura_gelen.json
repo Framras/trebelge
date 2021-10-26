@@ -32,8 +32,14 @@
     "invoiceperiod_enddate",
     "invoiceperiod_endtime",
     "invoiceperiod_description",
-    "section_break_25",
-    "orderreference",
+    "sipari\u015f_bilgileri_section",
+    "orderreference_id",
+    "orderreference_salesorderid",
+    "column_break_29",
+    "orderreference_issuedate",
+    "orderreference_ordertypecode",
+    "orderreference_documentreference",
+    "section_break_33",
     "billingreference",
     "despatchdocumentreference",
     "receiptdocumentreference",
@@ -212,13 +218,6 @@
       "label": "Kalem Say\u0131s\u0131",
       "non_negative": 1,
       "reqd": 1
-    },
-    {
-      "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
-      "fieldname": "orderreference",
-      "fieldtype": "Table",
-      "label": "Sipari\u015f Bilgileri",
-      "options": "TR GIB eFatura UBL Order Reference"
     },
     {
       "description": "Faturan\u0131n ili\u015fkili oldu\u011fu di\u011fer belgelerin bilgileri bu elemana yaz\u0131lacakt\u0131r.",
@@ -472,17 +471,56 @@
       "label": "A\u00e7\u0131klama"
     },
     {
-      "fieldname": "section_break_25",
-      "fieldtype": "Section Break"
-    },
-    {
       "fieldname": "column_break_22",
       "fieldtype": "Column Break"
+    },
+    {
+      "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
+      "fieldname": "sipari\u015f_bilgileri_section",
+      "fieldtype": "Section Break",
+      "label": "Sipari\u015f Bilgileri"
+    },
+    {
+      "description": "Sipari\u015f numaras\u0131 girilecektir.",
+      "fieldname": "orderreference_id",
+      "fieldtype": "Data",
+      "label": "Sipari\u015f numaras\u0131"
+    },
+    {
+      "description": "Sat\u0131c\u0131n\u0131n verdi\u011fi sipari\u015f numaras\u0131 girilecektir.",
+      "fieldname": "orderreference_salesorderid",
+      "fieldtype": "Data",
+      "label": "Sat\u0131c\u0131n\u0131n verdi\u011fi sipari\u015f numaras\u0131"
+    },
+    {
+      "fieldname": "column_break_29",
+      "fieldtype": "Column Break"
+    },
+    {
+      "description": "Sipari\u015f tarihi girilecektir.",
+      "fieldname": "orderreference_issuedate",
+      "fieldtype": "Date",
+      "label": "Sipari\u015f tarihi"
+    },
+    {
+      "description": "Sipari\u015f tipi girilecektir.",
+      "fieldname": "orderreference_ordertypecode",
+      "fieldtype": "Data",
+      "label": "Sipari\u015f tipi"
+    },
+    {
+      "fieldname": "orderreference_documentreference",
+      "fieldtype": "Attach",
+      "label": "Dok\u00fcman Bilgisi"
+    },
+    {
+      "fieldname": "section_break_33",
+      "fieldtype": "Section Break"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-26 10:56:32.669333",
+  "modified": "2021-10-26 11:21:37.017239",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
