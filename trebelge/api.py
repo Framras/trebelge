@@ -99,6 +99,21 @@ def read_ebelge_file():
         AccountingSupplierPartyParty_IndustryClassificationCode = ''  # Seçimli(0..1)
         is_AccountingSupplierPartyPartyPartyIdentification_data = False
         AccountingSupplierPartyPartyPartyIdentification_schemeID = ''  # Zorunlu(1..n)
+        is_AccountingSupplierPartyPartyPartyName_data = False
+        is_AccountingSupplierPartyPartyPostalAddress_data = False
+        AccountingSupplierPartyPartyPostalAddress_ID = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_Postbox = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_Room = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_StreetName = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_BlockName = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_BuildingName = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_BuildingNumbers = list()  # Seçimli(0..n)
+        AccountingSupplierPartyPartyPostalAddress_CitySubdivisionName = ''  # Zorunlu(1)
+        AccountingSupplierPartyPartyPostalAddress_CityName = ''  # Zorunlu(1)
+        AccountingSupplierPartyPartyPostalAddress_PostalZone = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_Region = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_District = ''  # Seçimli(0..1)
+        AccountingSupplierPartyPartyPostalAddress_Country = ''  # Zorunlu(1)
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
@@ -147,6 +162,11 @@ def read_ebelge_file():
                     # Seçimli(0..1)
                     # Taraf eğer kurum ise kurum ismi bu elemana metin olarak girilir.
                     is_AccountingSupplierPartyPartyPartyName_data = True
+                if elem.tag == 'PostalAddress' and is_AccountingSupplierPartyParty_data:
+                    # start sprocessing
+                    # Zorunlu(1)
+                    # Bu eleman adres bilgilerinin tanımlanmasında kullanılacaktır.
+                    is_AccountingSupplierPartyPartyPostalAddress_data = True
 
             elif event == 'end':
                 # process Invoice
@@ -241,3 +261,34 @@ def read_ebelge_file():
                 # end of AccountingSupplierParty\Party\PartyName processing
                 if elem.tag == cac_namespace + 'PartyName' and is_AccountingSupplierPartyParty_data:
                     is_AccountingSupplierPartyPartyPartyName_data = False
+                # process AccountingSupplierParty\Party\PostalAddress
+                if is_AccountingSupplierPartyPartyPostalAddress_data:
+                    if elem.tag == cbc_namespace + 'ID':
+                        AccountingSupplierPartyPartyPostalAddress_ID = elem.text
+                    elif elem.tag == cbc_namespace + 'Postbox':
+                        AccountingSupplierPartyPartyPostalAddress_Postbox = elem.text
+                    elif elem.tag == cbc_namespace + 'Room':
+                        AccountingSupplierPartyPartyPostalAddress_Room = elem.text
+                    elif elem.tag == cbc_namespace + 'StreetName':
+                        AccountingSupplierPartyPartyPostalAddress_StreetName = elem.text
+                    elif elem.tag == cbc_namespace + 'BlockName':
+                        AccountingSupplierPartyPartyPostalAddress_BlockName = elem.text
+                    elif elem.tag == cbc_namespace + 'BuildingName':
+                        AccountingSupplierPartyPartyPostalAddress_BuildingName = elem.text
+                    elif elem.tag == cbc_namespace + 'BuildingNumber':
+                        AccountingSupplierPartyPartyPostalAddress_BuildingNumbers.append(elem.text)
+                    elif elem.tag == cbc_namespace + 'CitySubdivisionName':
+                        AccountingSupplierPartyPartyPostalAddress_CitySubdivisionName = elem.text
+                    elif elem.tag == cbc_namespace + 'CityName':
+                        AccountingSupplierPartyPartyPostalAddress_CityName = elem.text
+                    elif elem.tag == cbc_namespace + 'PostalZone':
+                        AccountingSupplierPartyPartyPostalAddress_PostalZone = elem.text
+                    elif elem.tag == cbc_namespace + 'Region':
+                        AccountingSupplierPartyPartyPostalAddress_Region = elem.text
+                    elif elem.tag == cbc_namespace + 'District':
+                        AccountingSupplierPartyPartyPostalAddress_District = elem.text
+                    elif elem.tag == cbc_namespace + 'Country':
+                        AccountingSupplierPartyPartyPostalAddress_Country = elem.text
+                # end of AccountingSupplierParty\Party\PartyName processing
+                if elem.tag == cac_namespace + 'PostalAddress' and is_AccountingSupplierPartyParty_data:
+                    is_AccountingSupplierPartyPartyPostalAddress_data = False
