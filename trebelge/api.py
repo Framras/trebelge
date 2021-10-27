@@ -182,15 +182,20 @@ def read_ebelge_file():
                 # end of InvoicePeriod processing
                 if elem.tag == cac_namespace + 'InvoicePeriod':
                     is_InvoicePeriod_data = False
+                    is_Invoice_data = True
                 # process OrderReference
-                if elem.tag == cbc_namespace + 'ID' and is_OrderReference_data:
-                    OrderReference_ID = elem.text
-                elif elem.tag == cbc_namespace + 'SalesOrderID' and is_OrderReference_data:
-                    OrderReference_SalesOrderID = elem.text
-                elif elem.tag == cbc_namespace + 'IssueDate' and is_OrderReference_data:
-                    OrderReference_IssueDate = elem.text
-                elif elem.tag == cbc_namespace + 'OrderTypeCode' and is_OrderReference_data:
-                    OrderReference_OrderTypeCode = elem.text
+                if is_OrderReference_data:
+                    if elem.tag == cbc_namespace + 'ID':
+                        OrderReference_ID = elem.text
+                    elif elem.tag == cbc_namespace + 'SalesOrderID':
+                        OrderReference_SalesOrderID = elem.text
+                    elif elem.tag == cbc_namespace + 'IssueDate':
+                        OrderReference_IssueDate = elem.text
+                    elif elem.tag == cbc_namespace + 'OrderTypeCode':
+                        OrderReference_OrderTypeCode = elem.text
+                    elif elem.tag == cbc_namespace + 'DocumentReference':
+                        OrderReference_DocumentReferences.append(elem.text)
                 # end of OrderReference processing
                 if elem.tag == cac_namespace + 'OrderReference':
                     is_OrderReference_data = False
+                    is_Invoice_data = True
