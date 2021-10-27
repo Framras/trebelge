@@ -100,7 +100,7 @@ def read_ebelge_file():
                     InvoicePeriod_EndDate = ""
                     InvoicePeriod_EndTime = ""
                     InvoicePeriod_DurationMeasure = ""
-                    InvoicePeriod_DurationMeasure_unitCode = ''
+                    InvoicePeriod_DurationMeasure_unitCode = elem.attrib.get('unitCode')
                     InvoicePeriod_Description = ''
                 if elem.tag == cac_namespace + 'OrderReference':
                     # start processing OrderReference
@@ -176,7 +176,6 @@ def read_ebelge_file():
                         InvoicePeriod_EndTime = elem.text
                     elif elem.tag == cbc_namespace + 'DurationMeasure':
                         InvoicePeriod_DurationMeasure = elem.text
-                        InvoicePeriod_DurationMeasure_unitCode = elem.attrib.get('unitCode')
                     elif elem.tag == cbc_namespace + 'Description':
                         InvoicePeriod_Description = elem.text
                 # end of InvoicePeriod processing
