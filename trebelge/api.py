@@ -87,6 +87,10 @@ def read_ebelge_file():
         OrderReference_OrderTypeCode = ''  # Seçimli(0..1)
         OrderReference_DocumentReferences = list()  # Seçimli(0..n)
         is_BillingReference_data = False
+        is_AccountingSupplierParty_data = False
+        is_AccountingSupplierPartyParty_data = False
+        AccountingSupplierPartyParty_WebsiteURI = ''    # Seçimli(0..1)
+        AccountingSupplierPartyParty_IndustryClassificationCode = ''    # Seçimli(0..1)
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
@@ -126,6 +130,17 @@ def read_ebelge_file():
                     PricingExchangeRate_TargetCurrencyCode = ''  # Zorunlu(1)
                     PricingExchangeRate_CalculationRate = ""  # Zorunlu(1)
                     PricingExchangeRate_Date = ""  # Seçimli(0..1)
+                if elem.tag == cac_namespace + 'AccountingSupplierParty':
+                    # start processing AccountingSupplierParty
+                    # Zorunlu (1)
+                    # Bu elemanda faturayı düzenleyen tarafın bilgileri yer alacaktır.
+                    is_AccountingSupplierParty_data = True
+                    is_Invoice_data = False
+                if elem.tag == cac_namespace + 'Party' and is_AccountingSupplierParty_data:
+                    # start processing AccountingSupplierParty\Party
+                    # Zorunlu (1)
+                    is_AccountingSupplierPartyParty_data = True
+
 
             elif event == 'end':
                 # process the tags
@@ -198,3 +213,10 @@ def read_ebelge_file():
                 if elem.tag == cac_namespace + 'OrderReference':
                     is_OrderReference_data = False
                     is_Invoice_data = True
+                # process AccountingSupplierPartyParty
+                if is_AccountingSupplierPartyParty_data:
+                    if elem.tag == cbc_namespace + 'WebsiteURI':
+                        AccountingSupplierPartyParty_WebsiteURI = elem.text
+                    if elem.tag == cbc_namespace + 'IndustryClassificationCode':
+                        AccountingSupplierPartyParty_IndustryClassificationCode = elem.text
+
