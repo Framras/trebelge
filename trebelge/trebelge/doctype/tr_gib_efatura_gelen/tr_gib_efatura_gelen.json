@@ -34,7 +34,7 @@
     "invoiceperiod_startdate",
     "invoiceperiod_starttime",
     "invoiceperiod_durationmeasure",
-    "column_break_22",
+    "column_break_fatura_d\u00f6nemi_section",
     "invoiceperiod_enddate",
     "invoiceperiod_endtime",
     "invoiceperiod_durationmeasure_unitcode",
@@ -42,7 +42,7 @@
     "sipari\u015f_bilgileri_section",
     "orderreference_id",
     "orderreference_salesorderid",
-    "column_break_29",
+    "column_break_sipari\u015f_bilgileri_section",
     "orderreference_issuedate",
     "orderreference_ordertypecode",
     "orderreference_documentreference",
@@ -54,7 +54,10 @@
     "contractdocumentreference",
     "additionaldocumentreference",
     "signature",
-    "accountingsupplierparty",
+    "sat\u0131c\u0131_section",
+    "accountingsupplierparty_party_websiteuri",
+    "column_break_sat\u0131c\u0131_section",
+    "accountingsupplierparty_industryclassificationcode",
     "accountingcustomerparty",
     "buyercustomerparty",
     "sellersupplierparty",
@@ -229,9 +232,8 @@
     {
       "description": "Faturan\u0131n ili\u015fkili oldu\u011fu di\u011fer belgelerin bilgileri bu elemana yaz\u0131lacakt\u0131r.",
       "fieldname": "billingreference",
-      "fieldtype": "Table",
-      "label": "Faturan\u0131n \u0130li\u015fkili Oldu\u011fu Di\u011fer Belgelerin Bilgileri",
-      "options": "TR UBL BillingReference"
+      "fieldtype": "Data",
+      "label": "Faturan\u0131n \u0130li\u015fkili Oldu\u011fu Di\u011fer Belgelerin Bilgileri"
     },
     {
       "description": "\u0130rsaliye bilgileri i\u00e7in bu eleman kullan\u0131labilecektir. Birden fazla irsaliyeye ait bilgilerin girilmesi ve irsaliye belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
@@ -275,20 +277,10 @@
       "options": "TR GIB eFatura UBL Signature"
     },
     {
-      "description": "Bu elemanda faturay\u0131 d\u00fczenleyen taraf\u0131n bilgileri yer alacakt\u0131r.",
-      "fieldname": "accountingsupplierparty",
-      "fieldtype": "Table",
-      "label": "Sat\u0131c\u0131",
-      "options": "TR GIB eFatura UBL Supplier Party",
-      "reqd": 1
-    },
-    {
       "description": "Bu elemanda faturay\u0131 alan taraf\u0131n bilgileri yer alacakt\u0131r.",
       "fieldname": "accountingcustomerparty",
-      "fieldtype": "Table",
-      "label": "Al\u0131c\u0131",
-      "options": "TR GIB eFatura UBL Customer Party",
-      "reqd": 1
+      "fieldtype": "Section Break",
+      "label": "Al\u0131c\u0131"
     },
     {
       "description": "Faturan\u0131n al\u0131c\u0131s\u0131n\u0131n haricinde faturadaki mal veya hizmeti alan taraf i\u00e7in bu eleman kullan\u0131lacakt\u0131r.",
@@ -478,10 +470,6 @@
       "label": "A\u00e7\u0131klama"
     },
     {
-      "fieldname": "column_break_22",
-      "fieldtype": "Column Break"
-    },
-    {
       "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
       "fieldname": "sipari\u015f_bilgileri_section",
       "fieldtype": "Section Break",
@@ -498,10 +486,6 @@
       "fieldname": "orderreference_salesorderid",
       "fieldtype": "Data",
       "label": "Sat\u0131c\u0131n\u0131n verdi\u011fi sipari\u015f numaras\u0131"
-    },
-    {
-      "fieldname": "column_break_29",
-      "fieldtype": "Column Break"
     },
     {
       "description": "Sipari\u015f tarihi girilecektir.",
@@ -553,11 +537,39 @@
       "fieldtype": "Link",
       "label": "D\u00f6nem Aral\u0131\u011f\u0131 Tipi",
       "options": "TR UBL Period DurationMeasure unitCode"
+    },
+    {
+      "description": "Bu elemanda faturay\u0131 d\u00fczenleyen taraf\u0131n bilgileri yer alacakt\u0131r.",
+      "fieldname": "sat\u0131c\u0131_section",
+      "fieldtype": "Section Break",
+      "label": "Sat\u0131c\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_party_websiteuri",
+      "fieldtype": "Data",
+      "label": "Web Sayfas\u0131 Adresi"
+    },
+    {
+      "fieldname": "accountingsupplierparty_industryclassificationcode",
+      "fieldtype": "Data",
+      "label": "IndustryClassificationCode"
+    },
+    {
+      "fieldname": "column_break_fatura_d\u00f6nemi_section",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "column_break_sipari\u015f_bilgileri_section",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "column_break_sat\u0131c\u0131_section",
+      "fieldtype": "Column Break"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-26 22:32:30.806244",
+  "modified": "2021-10-27 17:17:27.251608",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",

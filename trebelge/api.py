@@ -87,10 +87,18 @@ def read_ebelge_file():
         OrderReference_OrderTypeCode = ''  # Seçimli(0..1)
         OrderReference_DocumentReferences = list()  # Seçimli(0..n)
         is_BillingReference_data = False
+        is_PricingExchangeRate_data = False
+        PricingExchangeRate_SourceCurrencyCode = ''  # Zorunlu(1)
+        PricingExchangeRate_TargetCurrencyCode = ''  # Zorunlu(1)
+        PricingExchangeRate_CalculationRate = ""  # Zorunlu(1)
+        PricingExchangeRate_Date = ""  # Seçimli(0..1)
         is_AccountingSupplierParty_data = False
         is_AccountingSupplierPartyParty_data = False
-        AccountingSupplierPartyParty_WebsiteURI = ''    # Seçimli(0..1)
-        AccountingSupplierPartyParty_IndustryClassificationCode = ''    # Seçimli(0..1)
+        AccountingSupplierPartyParty_WebsiteURI = ''  # Seçimli(0..1)
+        AccountingSupplierPartyParty_EndpointID = ''  # Seçimli(0..1)
+        AccountingSupplierPartyParty_IndustryClassificationCode = ''  # Seçimli(0..1)
+        is_AccountingSupplierPartyPartyPartyIdentification_data = False
+        AccountingSupplierPartyPartyPartyIdentification_schemeID = ''  # Zorunlu(1..n)
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
@@ -99,37 +107,23 @@ def read_ebelge_file():
                     # Seçimli (0...1)
                     is_InvoicePeriod_data = True
                     is_Invoice_data = False
-                    InvoicePeriod_StartDate = ""
-                    InvoicePeriod_StartTime = ""
-                    InvoicePeriod_EndDate = ""
-                    InvoicePeriod_EndTime = ""
-                    InvoicePeriod_DurationMeasure = ""
                     InvoicePeriod_DurationMeasure_unitCode = elem.attrib.get('unitCode')
-                    InvoicePeriod_Description = ''
                 if elem.tag == cac_namespace + 'OrderReference':
                     # start processing OrderReference
                     # Seçimli (0...1)
                     is_OrderReference_data = True
                     is_Invoice_data = False
-                    OrderReference_ID = ''  # Zorunlu(1)
-                    OrderReference_SalesOrderID = ''  # Seçimli(0..1)
-                    OrderReference_IssueDate = ""  # Zorunlu(1)
-                    OrderReference_OrderTypeCode = ''  # Seçimli(0..1)
-                    OrderReference_DocumentReferences = list()  # Seçimli(0..n)
                 if elem.tag == cac_namespace + 'BillingReference':
                     # start processing BillingReference
                     # Seçimli(0...n)
                     is_BillingReference_data = True
                     is_Invoice_data = False
+                    # TODO: BillingReference variables must be reinitialized here
                 if elem.tag == cac_namespace + 'PricingExchangeRate':
                     # start processing PricingExchangeRate
                     # Seçimli (0...1)
                     is_PricingExchangeRate_data = True
                     is_Invoice_data = False
-                    PricingExchangeRate_SourceCurrencyCode = ''  # Zorunlu(1)
-                    PricingExchangeRate_TargetCurrencyCode = ''  # Zorunlu(1)
-                    PricingExchangeRate_CalculationRate = ""  # Zorunlu(1)
-                    PricingExchangeRate_Date = ""  # Seçimli(0..1)
                 if elem.tag == cac_namespace + 'AccountingSupplierParty':
                     # start processing AccountingSupplierParty
                     # Zorunlu (1)
@@ -139,11 +133,23 @@ def read_ebelge_file():
                 if elem.tag == cac_namespace + 'Party' and is_AccountingSupplierParty_data:
                     # start processing AccountingSupplierParty\Party
                     # Zorunlu (1)
+                    # Tarafları (kurum ve şahıslar) tanımlamak için kullanılır.
                     is_AccountingSupplierPartyParty_data = True
-
+                if elem.tag == cac_namespace + 'PartyIdentification' and is_AccountingSupplierPartyParty_data:
+                    # start processing AccountingSupplierParty\Party\PartyIdentification
+                    # Zorunlu(1..n)
+                    # Tarafın vergi kimlik numarası veya TC kimlik numarası metin olarak girilir.
+                    is_AccountingSupplierPartyPartyPartyIdentification_data = True
+                    AccountingSupplierPartyPartyPartyIdentification_ID = ''
+                    AccountingSupplierPartyPartyPartyIdentification_schemeID = elem.attrib.get('schemeID')
+                if elem.tag == cac_namespace + 'PartyName' and is_AccountingSupplierPartyParty_data:
+                    # start processing AccountingSupplierParty\Party\PartyName
+                    # Seçimli(0..1)
+                    # Taraf eğer kurum ise kurum ismi bu elemana metin olarak girilir.
+                    is_AccountingSupplierPartyPartyPartyName_data = True
 
             elif event == 'end':
-                # process the tags
+                # process Invoice
                 if is_Invoice_data:
                     if elem.tag == cbc_namespace + 'UBLVersionID':
                         UBLVersionID = elem.text
@@ -213,10 +219,25 @@ def read_ebelge_file():
                 if elem.tag == cac_namespace + 'OrderReference':
                     is_OrderReference_data = False
                     is_Invoice_data = True
-                # process AccountingSupplierPartyParty
+                # process AccountingSupplierParty\Party
                 if is_AccountingSupplierPartyParty_data:
                     if elem.tag == cbc_namespace + 'WebsiteURI':
                         AccountingSupplierPartyParty_WebsiteURI = elem.text
-                    if elem.tag == cbc_namespace + 'IndustryClassificationCode':
+                    elif elem.tag == cbc_namespace + 'EndpointID':
+                        AccountingSupplierPartyParty_EndpointID = elem.text
+                    elif elem.tag == cbc_namespace + 'IndustryClassificationCode':
                         AccountingSupplierPartyParty_IndustryClassificationCode = elem.text
-
+                # process AccountingSupplierParty\Party\PartyIdentification
+                if is_AccountingSupplierPartyPartyPartyIdentification_data:
+                    if elem.tag == cbc_namespace + 'ID':
+                        AccountingSupplierPartyPartyPartyIdentification_ID = elem.text
+                # end of AccountingSupplierParty\Party\PartyIdentification processing
+                if elem.tag == cac_namespace + 'PartyIdentification' and is_AccountingSupplierPartyParty_data:
+                    is_AccountingSupplierPartyParty_data = False
+                # process AccountingSupplierParty\Party\PartyName
+                if is_AccountingSupplierPartyPartyPartyName_data:
+                    if elem.tag == cbc_namespace + 'Name':
+                        AccountingSupplierPartyPartyPartyName_Name = elem.text
+                # end of AccountingSupplierParty\Party\PartyName processing
+                if elem.tag == cac_namespace + 'PartyName' and is_AccountingSupplierPartyParty_data:
+                    is_AccountingSupplierPartyPartyPartyName_data = False
