@@ -53,11 +53,11 @@ def check_all_ebelge_files():
         if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                  "file": xmlFile.get('name'),
                                  "content_hash": xmlFile.get('content_hash')}):
-            read_ebelge_file()
+            read_ebelge_file(xmlFile.get('name'), xmlFile.get('content_hash'))
     return frappe.utils.nowdate()
 
 
-def read_ebelge_file():
+def read_ebelge_file(file_name, content_hash):
     filename = '/home/tufankaynak/bench/sites/trgibebelgedev/private/files/13D2021000002726.xml'
     # read all namespaces
     namespaces = dict([node for _, node in ET.iterparse(filename, events=['start-ns'])])
@@ -67,16 +67,11 @@ def read_ebelge_file():
     # check if ebelge is Invoice
     if ET.parse(filename).getroot().tag == default_namespace + 'Invoice':
         newdoc = frappe.new_doc('TR GIB eFatura Gelen')
+        newdoc.file = file_name
+        newdoc.content_hash = content_hash
         is_Invoice_data = True
         Notes = list()  # Seçimli (0...n)
         is_InvoicePeriod_data = False
-        InvoicePeriod_StartDate = ""  # Seçimli(0..1)
-        InvoicePeriod_StartTime = ""  # Seçimli(0..1)
-        InvoicePeriod_EndDate = ""  # Seçimli(0..1)
-        InvoicePeriod_EndTime = ""  # Seçimli(0..1)
-        InvoicePeriod_DurationMeasure = ""  # Seçimli(0..1)
-        InvoicePeriod_DurationMeasure_unitCode = ''  # Seçimli(0..1)
-        InvoicePeriod_Description = ''  # Seçimli(0..1)
         is_OrderReference_data = False
         OrderReference_ID = ''  # Zorunlu(1)
         OrderReference_SalesOrderID = ''  # Seçimli(0..1)
@@ -114,54 +109,49 @@ def read_ebelge_file():
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
-                if elem.tag == cac_namespace + 'InvoicePeriod':
+                if elem.tag == cac_namespace + 'InvoicePeriod':  # Seçimli (0...1)
                     # start processing InvoicePeriod
-                    # Seçimli (0...1)
                     is_InvoicePeriod_data = True
                     is_Invoice_data = False
-                    InvoicePeriod_DurationMeasure_unitCode = elem.attrib.get('unitCode')
-                if elem.tag == cac_namespace + 'OrderReference':
+                    newdoc.invoiceperiod_durationmeasure_unitcode = elem.attrib.get('unitCode')  # Seçimli(0..1)
+                if elem.tag == cac_namespace + 'OrderReference':  # Seçimli (0...1)
                     # start processing OrderReference
-                    # Seçimli (0...1)
                     is_OrderReference_data = True
                     is_Invoice_data = False
-                if elem.tag == cac_namespace + 'BillingReference':
+                if elem.tag == cac_namespace + 'BillingReference':  # Seçimli(0...n)
                     # start processing BillingReference
-                    # Seçimli(0...n)
                     is_BillingReference_data = True
                     is_Invoice_data = False
                     # TODO: BillingReference variables must be reinitialized here
-                if elem.tag == cac_namespace + 'PricingExchangeRate':
+                if elem.tag == cac_namespace + 'PricingExchangeRate':  # Seçimli (0...1)
                     # start processing PricingExchangeRate
-                    # Seçimli (0...1)
                     is_PricingExchangeRate_data = True
                     is_Invoice_data = False
-                if elem.tag == cac_namespace + 'AccountingSupplierParty':
+                if elem.tag == cac_namespace + 'AccountingSupplierParty':  # Zorunlu (1)
                     # start processing AccountingSupplierParty
-                    # Zorunlu (1)
                     # Bu elemanda faturayı düzenleyen tarafın bilgileri yer alacaktır.
                     is_AccountingSupplierParty_data = True
                     is_Invoice_data = False
                 if elem.tag == cac_namespace + 'Party' and is_AccountingSupplierParty_data:
-                    # start processing AccountingSupplierParty\Party
                     # Zorunlu (1)
+                    # start processing AccountingSupplierParty\Party
                     # Tarafları (kurum ve şahıslar) tanımlamak için kullanılır.
                     is_AccountingSupplierPartyParty_data = True
                 if elem.tag == cac_namespace + 'PartyIdentification' and is_AccountingSupplierPartyParty_data:
-                    # start processing AccountingSupplierParty\Party\PartyIdentification
                     # Zorunlu(1..n)
+                    # start processing AccountingSupplierParty\Party\PartyIdentification
                     # Tarafın vergi kimlik numarası veya TC kimlik numarası metin olarak girilir.
                     is_AccountingSupplierPartyPartyPartyIdentification_data = True
                     AccountingSupplierPartyPartyPartyIdentification_ID = ''
                     AccountingSupplierPartyPartyPartyIdentification_schemeID = elem.attrib.get('schemeID')
                 if elem.tag == cac_namespace + 'PartyName' and is_AccountingSupplierPartyParty_data:
-                    # start processing AccountingSupplierParty\Party\PartyName
                     # Seçimli(0..1)
+                    # start processing AccountingSupplierParty\Party\PartyName
                     # Taraf eğer kurum ise kurum ismi bu elemana metin olarak girilir.
                     is_AccountingSupplierPartyPartyPartyName_data = True
                 if elem.tag == 'PostalAddress' and is_AccountingSupplierPartyParty_data:
-                    # start sprocessing
                     # Zorunlu(1)
+                    # start sprocessing
                     # Bu eleman adres bilgilerinin tanımlanmasında kullanılacaktır.
                     is_AccountingSupplierPartyPartyPostalAddress_data = True
 
@@ -203,26 +193,28 @@ def read_ebelge_file():
                         newdoc.accountingcost = elem.text
                     elif elem.tag == cbc_namespace + 'LineCountNumeric':  # Zorunlu (1)
                         newdoc.linecountnumeric = elem.text
-                # commit the invoice
-                newdoc.insert
+                        # commit the invoice
+                        newdoc.insert()
+
                 # process InvoicePeriod
                 if is_InvoicePeriod_data:
-                    if elem.tag == cbc_namespace + 'StartDate':
-                        InvoicePeriod_StartDate = elem.text
-                    elif elem.tag == cbc_namespace + 'StartTime':
-                        InvoicePeriod_StartTime = elem.text
-                    elif elem.tag == cbc_namespace + 'EndDate':
-                        InvoicePeriod_EndDate = elem.text
-                    elif elem.tag == cbc_namespace + 'EndTime':
-                        InvoicePeriod_EndTime = elem.text
-                    elif elem.tag == cbc_namespace + 'DurationMeasure':
-                        InvoicePeriod_DurationMeasure = elem.text
-                    elif elem.tag == cbc_namespace + 'Description':
-                        InvoicePeriod_Description = elem.text
+                    if elem.tag == cbc_namespace + 'StartDate':  # Seçimli(0..1)
+                        newdoc.invoiceperiod_startdate = elem.text
+                    elif elem.tag == cbc_namespace + 'StartTime':  # Seçimli(0..1)
+                        newdoc.invoiceperiod_starttime = elem.text
+                    elif elem.tag == cbc_namespace + 'EndDate':  # Seçimli(0..1)
+                        newdoc.invoiceperiod_enddate = elem.text
+                    elif elem.tag == cbc_namespace + 'EndTime':  # Seçimli(0..1)
+                        newdoc.invoiceperiod_endtime = elem.text
+                    elif elem.tag == cbc_namespace + 'DurationMeasure':  # Seçimli(0..1)
+                        newdoc.invoiceperiod_durationmeasure = elem.text
+                    elif elem.tag == cbc_namespace + 'Description':  # Seçimli(0..1)
+                        newdoc.invoiceperiod_description = elem.text
                 # end of InvoicePeriod processing
                 if elem.tag == cac_namespace + 'InvoicePeriod':
                     is_InvoicePeriod_data = False
                     is_Invoice_data = True
+                    newdoc.save()
                 # process OrderReference
                 if is_OrderReference_data:
                     if elem.tag == cbc_namespace + 'ID':

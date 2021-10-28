@@ -426,7 +426,7 @@
     {
       "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
       "fieldname": "invoiceperiod_description",
-      "fieldtype": "Small Text",
+      "fieldtype": "Data",
       "label": "A\u00e7\u0131klama"
     },
     {
@@ -584,7 +584,7 @@
     }
   ],
   "links": [],
-  "modified": "2021-10-28 18:03:53.057334",
+  "modified": "2021-10-28 21:34:47.450168",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
