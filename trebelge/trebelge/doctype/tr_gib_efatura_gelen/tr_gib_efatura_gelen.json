@@ -60,9 +60,23 @@
     "accountingsupplierparty_websiteuri",
     "accountingsupplierparty_partyidentification_schemeid",
     "accountingsupplierparty_partyidentificationid",
+    "accountingsupplierparty_partyname",
     "column_break_satici",
     "accountingsupplierparty_industryclassificationcode",
     "accountingsupplierparty_endpointid",
+    "accountingsupplierparty_postaladdress_id",
+    "accountingsupplierparty_postaladdress_postbox",
+    "accountingsupplierparty_postaladdress_room",
+    "accountingsupplierparty_postaladdress_streetname",
+    "accountingsupplierparty_postaladdress_blockname",
+    "accountingsupplierparty_postaladdress_buildingname",
+    "accountingsupplierparty_postaladdress_buildingnumber",
+    "accountingsupplierparty_postaladdress_citysubdivisionname",
+    "accountingsupplierparty_postaladdress_cityname",
+    "accountingsupplierparty_postaladdress_postalzone",
+    "accountingsupplierparty_postaladdress_region",
+    "accountingsupplierparty_postaladdress_district",
+    "accountingsupplierparty_postaladdress_country",
     "accountingcustomerparty",
     "buyercustomerparty",
     "sellersupplierparty",
@@ -599,10 +613,81 @@
       "fieldname": "accountingsupplierparty_partyidentification_schemeid",
       "fieldtype": "Data",
       "label": "Vergi Bilgisi"
+    },
+    {
+      "fieldname": "accountingsupplierparty_partyname",
+      "fieldtype": "Data",
+      "label": "Kurum \u0130smi"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_id",
+      "fieldtype": "Data",
+      "label": "Adres Ayrac\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_postbox",
+      "fieldtype": "Data",
+      "label": "Posta Kutusu"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_room",
+      "fieldtype": "Data",
+      "label": "\u0130\u00e7 kap\u0131 numaras\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_streetname",
+      "fieldtype": "Data",
+      "label": "Meydan/bulvar/cadde/sokak/k\u00fcme evler/site ad\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_blockname",
+      "fieldtype": "Data",
+      "label": "Blok ad\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_buildingname",
+      "fieldtype": "Data",
+      "label": "Bina"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_buildingnumber",
+      "fieldtype": "Data",
+      "label": "D\u0131\u015f kap\u0131 numaras\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_citysubdivisionname",
+      "fieldtype": "Data",
+      "label": "\u0130l\u00e7e/semt"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_cityname",
+      "fieldtype": "Data",
+      "label": "\u0130l"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_postalzone",
+      "fieldtype": "Data",
+      "label": "Posta kod numaras\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_region",
+      "fieldtype": "Data",
+      "label": "Kasaba/k\u00f6y/mezra/mevkii"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_district",
+      "fieldtype": "Data",
+      "label": "Mahalle"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_country",
+      "fieldtype": "Link",
+      "label": "\u00dclke",
+      "options": "Country"
     }
   ],
   "links": [],
-  "modified": "2021-10-28 22:57:49.887686",
+  "modified": "2021-10-28 23:33:08.918458",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",

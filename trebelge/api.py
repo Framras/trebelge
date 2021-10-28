@@ -89,19 +89,7 @@ def read_ebelge_file(file_name, content_hash):
         is_AccountingSupplierPartyPartyPartyIdentification_data = False
         is_AccountingSupplierPartyPartyPartyName_data = False
         is_AccountingSupplierPartyPartyPostalAddress_data = False
-        AccountingSupplierPartyPartyPostalAddress_ID = ''  # Seçimli(0..1)
-        AccountingSupplierPartyPartyPostalAddress_Postbox = ''  # Seçimli(0..1)
-        AccountingSupplierPartyPartyPostalAddress_Room = ''  # Seçimli(0..1)
-        AccountingSupplierPartyPartyPostalAddress_StreetName = ''  # Seçimli(0..1)
-        AccountingSupplierPartyPartyPostalAddress_BlockName = ''  # Seçimli(0..1)
-        AccountingSupplierPartyPartyPostalAddress_BuildingName = ''  # Seçimli(0..1)
         AccountingSupplierPartyPartyPostalAddress_BuildingNumbers = list()  # Seçimli(0..n)
-        AccountingSupplierPartyPartyPostalAddress_CitySubdivisionName = ''  # Zorunlu(1)
-        AccountingSupplierPartyPartyPostalAddress_CityName = ''  # Zorunlu(1)
-        AccountingSupplierPartyPartyPostalAddress_PostalZone = ''  # Seçimli(0..1)
-        AccountingSupplierPartyPartyPostalAddress_Region = ''  # Seçimli(0..1)
-        AccountingSupplierPartyPartyPostalAddress_District = ''  # Seçimli(0..1)
-        AccountingSupplierPartyPartyPostalAddress_Country = ''  # Zorunlu(1)
 
         for event, elem in ET.iterparse(filename, events=("start", "end")):
             if event == 'start':
@@ -242,41 +230,44 @@ def read_ebelge_file(file_name, content_hash):
                 # end of AccountingSupplierParty\Party\PartyIdentification processing
                 if elem.tag == cac_namespace + 'PartyIdentification' and is_AccountingSupplierPartyParty_data:
                     is_AccountingSupplierPartyParty_data = False
+                    newdoc.save()
                 # process AccountingSupplierParty\Party\PartyName
                 if is_AccountingSupplierPartyPartyPartyName_data:
-                    if elem.tag == cbc_namespace + 'Name':
-                        AccountingSupplierPartyPartyPartyName_Name = elem.text
+                    if elem.tag == cbc_namespace + 'Name':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_partyname = elem.text
                 # end of AccountingSupplierParty\Party\PartyName processing
                 if elem.tag == cac_namespace + 'PartyName' and is_AccountingSupplierPartyParty_data:
                     is_AccountingSupplierPartyPartyPartyName_data = False
+                    newdoc.save()
                 # process AccountingSupplierParty\Party\PostalAddress
                 if is_AccountingSupplierPartyPartyPostalAddress_data:
-                    if elem.tag == cbc_namespace + 'ID':
-                        AccountingSupplierPartyPartyPostalAddress_ID = elem.text
-                    elif elem.tag == cbc_namespace + 'Postbox':
-                        AccountingSupplierPartyPartyPostalAddress_Postbox = elem.text
-                    elif elem.tag == cbc_namespace + 'Room':
-                        AccountingSupplierPartyPartyPostalAddress_Room = elem.text
-                    elif elem.tag == cbc_namespace + 'StreetName':
-                        AccountingSupplierPartyPartyPostalAddress_StreetName = elem.text
-                    elif elem.tag == cbc_namespace + 'BlockName':
-                        AccountingSupplierPartyPartyPostalAddress_BlockName = elem.text
-                    elif elem.tag == cbc_namespace + 'BuildingName':
-                        AccountingSupplierPartyPartyPostalAddress_BuildingName = elem.text
+                    if elem.tag == cbc_namespace + 'ID':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_id = elem.text
+                    elif elem.tag == cbc_namespace + 'Postbox':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_postbox = elem.text
+                    elif elem.tag == cbc_namespace + 'Room':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_room = elem.text
+                    elif elem.tag == cbc_namespace + 'StreetName':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_streetname = elem.text
+                    elif elem.tag == cbc_namespace + 'BlockName':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_blockname = elem.text
+                    elif elem.tag == cbc_namespace + 'BuildingName':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_buildingname = elem.text
                     elif elem.tag == cbc_namespace + 'BuildingNumber':
                         AccountingSupplierPartyPartyPostalAddress_BuildingNumbers.append(elem.text)
-                    elif elem.tag == cbc_namespace + 'CitySubdivisionName':
-                        AccountingSupplierPartyPartyPostalAddress_CitySubdivisionName = elem.text
-                    elif elem.tag == cbc_namespace + 'CityName':
-                        AccountingSupplierPartyPartyPostalAddress_CityName = elem.text
-                    elif elem.tag == cbc_namespace + 'PostalZone':
-                        AccountingSupplierPartyPartyPostalAddress_PostalZone = elem.text
-                    elif elem.tag == cbc_namespace + 'Region':
-                        AccountingSupplierPartyPartyPostalAddress_Region = elem.text
-                    elif elem.tag == cbc_namespace + 'District':
-                        AccountingSupplierPartyPartyPostalAddress_District = elem.text
-                    elif elem.tag == cbc_namespace + 'Country':
-                        AccountingSupplierPartyPartyPostalAddress_Country = elem.text
+                    elif elem.tag == cbc_namespace + 'CitySubdivisionName':  # Zorunlu(1)
+                        newdoc.accountingsupplierparty_postaladdress_citysubdivisionname = elem.text
+                    elif elem.tag == cbc_namespace + 'CityName':  # Zorunlu(1)
+                        newdoc.accountingsupplierparty_postaladdress_cityname = elem.text
+                    elif elem.tag == cbc_namespace + 'PostalZone':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_postalzone = elem.text
+                    elif elem.tag == cbc_namespace + 'Region':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_region = elem.text
+                    elif elem.tag == cbc_namespace + 'District':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_postaladdress_district = elem.text
+                    elif elem.tag == cbc_namespace + 'Country':  # Zorunlu(1)
+                        newdoc.accountingsupplierparty_postaladdress_country = elem.text
                 # end of AccountingSupplierParty\Party\PartyName processing
                 if elem.tag == cac_namespace + 'PostalAddress' and is_AccountingSupplierPartyParty_data:
                     is_AccountingSupplierPartyPartyPostalAddress_data = False
+                    newdoc.save()
