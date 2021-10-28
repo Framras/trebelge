@@ -44,6 +44,10 @@ def get_ebelge_users():
         frappe.read_file(frappe.get_site_path("private", "files", "KullaniciListesiXml", "newUserPkList.xml")))
     return parser.close()
 
+@frappe.whitelist()
+def check_all_ebelge_files():
+    for ebelgeFile in frappe.get_all(party_type, filters={"tax_id": ["not in", None], "disabled": 0},
+                                     fields={"name", "tax_id", "is_efatura_user", "is_eirsaliye_user"}):
 
 def read_ebelge_file():
     filename = '/home/tufankaynak/bench/sites/trgibebelgedev/private/files/13D2021000002726.xml'

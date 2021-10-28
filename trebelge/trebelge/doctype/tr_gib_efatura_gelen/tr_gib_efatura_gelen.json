@@ -7,6 +7,7 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
+    "file",
     "ublversionid",
     "profileid",
     "column_break_3",
@@ -565,11 +566,19 @@
     {
       "fieldname": "column_break_sat\u0131c\u0131_section",
       "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "file",
+      "fieldtype": "Link",
+      "label": "File",
+      "options": "File",
+      "reqd": 1,
+      "search_index": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-27 17:17:27.251608",
+  "modified": "2021-10-28 15:28:39.602217",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
