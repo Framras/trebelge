@@ -66,24 +66,9 @@ def read_ebelge_file():
     cac_namespace: str = '{' + namespaces.get('cac') + '}'
     # check if ebelge is Invoice
     if ET.parse(filename).getroot().tag == default_namespace + 'Invoice':
+        newdoc = frappe.new_doc('TR GIB eFatura Gelen')
         is_Invoice_data = True
-        UBLVersionID = ''  # Zorunlu (1)
-        CustomizationID = ''  # Zorunlu (1)
-        ProfileID = ''  # Zorunlu (1)
-        ID = ''  # Zorunlu (1)
-        CopyIndicator = ""  # Zorunlu (1)
-        UUID = ''  # Zorunlu (1)
-        IssueDate = ""  # Zorunlu (1)
-        IssueTime = ""  # Seçimli (0...1)
-        InvoiceTypeCode = ''  # Zorunlu (1)
         Notes = list()  # Seçimli (0...n)
-        DocumentCurrencyCode = ''  # Zorunlu (1)
-        TaxCurrencyCode = ''  # Seçimli (0...1)
-        PricingCurrencyCode = ''  # Seçimli (0...1)
-        PaymentCurrencyCode = ''  # Seçimli (0...1)
-        PaymentAlternativeCurrencyCode = ''  # Seçimli (0...1)
-        AccountingCost = ''  # Seçimli (0...1)
-        LineCountNumeric = ""  # Zorunlu (1)
         is_InvoicePeriod_data = False
         InvoicePeriod_StartDate = ""  # Seçimli(0..1)
         InvoicePeriod_StartTime = ""  # Seçimli(0..1)
@@ -183,40 +168,43 @@ def read_ebelge_file():
             elif event == 'end':
                 # process Invoice
                 if is_Invoice_data:
-                    if elem.tag == cbc_namespace + 'UBLVersionID':
-                        UBLVersionID = elem.text
-                    elif elem.tag == cbc_namespace + 'CustomizationID':
-                        CustomizationID = elem.text
-                    elif elem.tag == cbc_namespace + 'ProfileID':
-                        ProfileID = elem.text
-                    elif elem.tag == cbc_namespace + 'ID':
-                        ID = elem.text
-                    elif elem.tag == cbc_namespace + 'CopyIndicator':
-                        CopyIndicator = elem.text
-                    elif elem.tag == cbc_namespace + 'UUID':
-                        UUID = elem.text
-                    elif elem.tag == cbc_namespace + 'IssueDate':
-                        IssueDate = elem.text
-                    elif elem.tag == cbc_namespace + 'IssueTime':
-                        IssueTime = elem.text
-                    elif elem.tag == cbc_namespace + 'InvoiceTypeCode':
-                        InvoiceTypeCode = elem.text
+                    if elem.tag == cbc_namespace + 'UBLVersionID':  # Zorunlu (1)
+                        newdoc.ublversionid = elem.text
+                    elif elem.tag == cbc_namespace + 'CustomizationID':  # Zorunlu (1)
+                        newdoc.customizationid = elem.text
+                    elif elem.tag == cbc_namespace + 'ProfileID':  # Zorunlu (1)
+                        newdoc.profileid = elem.text
+                    elif elem.tag == cbc_namespace + 'ID':  # Zorunlu (1)
+                        newdoc.id = elem.text
+                    elif elem.tag == cbc_namespace + 'CopyIndicator':  # Zorunlu (1)
+                        newdoc.copyindicator = elem.text
+                    elif elem.tag == cbc_namespace + 'UUID':  # Zorunlu (1)
+                        newdoc.uuid = elem.text
+                    elif elem.tag == cbc_namespace + 'IssueDate':  # Zorunlu (1)
+                        newdoc.issuedate = elem.text
+                    elif elem.tag == cbc_namespace + 'IssueTime':  # Seçimli (0...1)
+                        newdoc.issuetime = elem.text
+                    elif elem.tag == cbc_namespace + 'InvoiceTypeCode':  # Zorunlu (1)
+                        newdoc.invoicetypecode = elem.text
+                    # TODO: implement this
                     elif elem.tag == cbc_namespace + 'Note':
                         Notes.append(elem.text)
-                    elif elem.tag == cbc_namespace + 'DocumentCurrencyCode':
-                        DocumentCurrencyCode = elem.text
-                    elif elem.tag == cbc_namespace + 'TaxCurrencyCode':
-                        TaxCurrencyCode = elem.text
-                    elif elem.tag == cbc_namespace + 'PricingCurrencyCode':
-                        PricingCurrencyCode = elem.text
-                    elif elem.tag == cbc_namespace + 'PaymentCurrencyCode':
-                        PaymentCurrencyCode = elem.text
-                    elif elem.tag == cbc_namespace + 'PaymentAlternativeCurrencyCode':
-                        PaymentAlternativeCurrencyCode = elem.text
-                    elif elem.tag == cbc_namespace + 'AccountingCost':
-                        AccountingCost = elem.text
-                    elif elem.tag == cbc_namespace + 'LineCountNumeric':
-                        LineCountNumeric = elem.text
+                    elif elem.tag == cbc_namespace + 'DocumentCurrencyCode':  # Zorunlu (1)
+                        newdoc.documentcurrencycode = elem.text
+                    elif elem.tag == cbc_namespace + 'TaxCurrencyCode':  # Seçimli (0...1)
+                        newdoc.taxcurrencycode = elem.text
+                    elif elem.tag == cbc_namespace + 'PricingCurrencyCode':  # Seçimli (0...1)
+                        newdoc.pricingcurrencycode = elem.text
+                    elif elem.tag == cbc_namespace + 'PaymentCurrencyCode':  # Seçimli (0...1)
+                        newdoc.paymentcurrencycode = elem.text
+                    elif elem.tag == cbc_namespace + 'PaymentAlternativeCurrencyCode':  # Seçimli (0...1)
+                        newdoc.paymentalternativecurrencycode = elem.text
+                    elif elem.tag == cbc_namespace + 'AccountingCost':  # Seçimli (0...1)
+                        newdoc.accountingcost = elem.text
+                    elif elem.tag == cbc_namespace + 'LineCountNumeric':  # Zorunlu (1)
+                        newdoc.linecountnumeric = elem.text
+                # commit the invoice
+                newdoc.insert
                 # process InvoicePeriod
                 if is_InvoicePeriod_data:
                     if elem.tag == cbc_namespace + 'StartDate':

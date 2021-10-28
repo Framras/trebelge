@@ -36,7 +36,7 @@
     "invoiceperiod_startdate",
     "invoiceperiod_starttime",
     "invoiceperiod_durationmeasure",
-    "column_break_fatura_d\u00f6nemi_section",
+    "column_break_fatura_donemi",
     "invoiceperiod_enddate",
     "invoiceperiod_endtime",
     "invoiceperiod_durationmeasure_unitcode",
@@ -44,7 +44,7 @@
     "siparis_bilgileri_section",
     "orderreference_id",
     "orderreference_salesorderid",
-    "column_break_sipari\u015f_bilgileri_section",
+    "column_break_siparis_bilgileri",
     "orderreference_issuedate",
     "orderreference_ordertypecode",
     "orderreference_documentreference",
@@ -58,7 +58,7 @@
     "signature",
     "satici_section",
     "accountingsupplierparty_party_websiteuri",
-    "column_break_satici_section",
+    "column_break_satici",
     "accountingsupplierparty_industryclassificationcode",
     "accountingcustomerparty",
     "buyercustomerparty",
@@ -503,14 +503,6 @@
       "label": "IndustryClassificationCode"
     },
     {
-      "fieldname": "column_break_fatura_d\u00f6nemi_section",
-      "fieldtype": "Column Break"
-    },
-    {
-      "fieldname": "column_break_sipari\u015f_bilgileri_section",
-      "fieldtype": "Column Break"
-    },
-    {
       "fieldname": "file",
       "fieldtype": "Link",
       "label": "File",
@@ -541,10 +533,6 @@
       "fieldname": "satici_section",
       "fieldtype": "Section Break",
       "label": "Sat\u0131c\u0131"
-    },
-    {
-      "fieldname": "column_break_satici_section",
-      "fieldtype": "Column Break"
     },
     {
       "fieldname": "vergi_doviz_kuru_section",
@@ -581,10 +569,22 @@
     {
       "fieldname": "column_break_alternatif_odeme_doviz_kuru",
       "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "column_break_fatura_donemi",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "column_break_siparis_bilgileri",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "column_break_satici",
+      "fieldtype": "Column Break"
     }
   ],
   "links": [],
-  "modified": "2021-10-28 18:00:54.333214",
+  "modified": "2021-10-28 18:03:53.057334",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
