@@ -116,12 +116,14 @@ def read_ebelge_file(file_name, content_hash):
                     # Bu elemanda faturayı düzenleyen tarafın bilgileri yer alacaktır.
                     is_AccountingSupplierParty_data = True
                     is_Invoice_data = False
-                if elem.tag == cac_namespace + 'Party' and is_AccountingSupplierParty_data:
+                if elem.tag == cac_namespace + 'Party' \
+                        and is_AccountingSupplierParty_data:
                     # Zorunlu (1)
                     # start processing AccountingSupplierParty\Party
                     # Tarafları (kurum ve şahıslar) tanımlamak için kullanılır.
                     is_AccountingSupplierPartyParty_data = True
-                if elem.tag == cac_namespace + 'PartyIdentification' and is_AccountingSupplierPartyParty_data:
+                if elem.tag == cac_namespace + 'PartyIdentification' \
+                        and is_AccountingSupplierPartyParty_data:
                     # Zorunlu(1..n)
                     # start processing AccountingSupplierParty\Party\PartyIdentification
                     # Tarafın vergi kimlik numarası veya TC kimlik numarası metin olarak girilir.
@@ -129,16 +131,30 @@ def read_ebelge_file(file_name, content_hash):
                     AccountingSupplierPartyPartyPartyIdentification_ID = ''
                     newdoc.accountingsupplierparty_partyidentification_schemeid = elem.attrib.get('schemeID')
                     # Zorunlu(1..n)
-                if elem.tag == cac_namespace + 'PartyName' and is_AccountingSupplierPartyParty_data:
+                if elem.tag == cac_namespace + 'PartyName' \
+                        and is_AccountingSupplierPartyParty_data:
                     # Seçimli(0..1)
                     # start processing AccountingSupplierParty\Party\PartyName
                     # Taraf eğer kurum ise kurum ismi bu elemana metin olarak girilir.
                     is_AccountingSupplierPartyPartyPartyName_data = True
-                if elem.tag == 'PostalAddress' and is_AccountingSupplierPartyParty_data:
+                if elem.tag == cac_namespace + 'PostalAddress' \
+                        and is_AccountingSupplierPartyParty_data:
                     # Zorunlu(1)
                     # start sprocessing
                     # Bu eleman adres bilgilerinin tanımlanmasında kullanılacaktır.
                     is_AccountingSupplierPartyPartyPostalAddress_data = True
+                if elem.tag == cac_namespace + 'PartyTaxScheme' \
+                        and is_AccountingSupplierPartyParty_data:
+                    # Zorunlu(1)
+                    # start sprocessing
+                    # Bu eleman adres bilgilerinin tanımlanmasında kullanılacaktır.
+                    is_AccountingSupplierPartyPartyPartyTaxScheme_data = True
+                if elem.tag == cac_namespace + 'TaxScheme' \
+                        and is_AccountingSupplierPartyParty_data:
+                    # Zorunlu(1)
+                    # start sprocessing
+                    # Bu eleman adres bilgilerinin tanımlanmasında kullanılacaktır.
+                    is_AccountingSupplierPartyPartyTaxScheme_data = True
 
             elif event == 'end':
                 # process Invoice
