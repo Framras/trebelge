@@ -57,9 +57,12 @@
     "additionaldocumentreference",
     "signature",
     "satici_section",
-    "accountingsupplierparty_party_websiteuri",
+    "accountingsupplierparty_websiteuri",
+    "accountingsupplierparty_partyidentification_schemeid",
+    "accountingsupplierparty_partyidentificationid",
     "column_break_satici",
     "accountingsupplierparty_industryclassificationcode",
+    "accountingsupplierparty_endpointid",
     "accountingcustomerparty",
     "buyercustomerparty",
     "sellersupplierparty",
@@ -493,11 +496,6 @@
       "options": "TR UBL Period DurationMeasure unitCode"
     },
     {
-      "fieldname": "accountingsupplierparty_party_websiteuri",
-      "fieldtype": "Data",
-      "label": "Web Sayfas\u0131 Adresi"
-    },
-    {
       "fieldname": "accountingsupplierparty_industryclassificationcode",
       "fieldtype": "Data",
       "label": "IndustryClassificationCode"
@@ -581,10 +579,30 @@
     {
       "fieldname": "column_break_satici",
       "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "accountingsupplierparty_websiteuri",
+      "fieldtype": "Data",
+      "label": "Web Sayfas\u0131 Adresi"
+    },
+    {
+      "fieldname": "accountingsupplierparty_partyidentificationid",
+      "fieldtype": "Data",
+      "label": "VKN/TCKN"
+    },
+    {
+      "fieldname": "accountingsupplierparty_endpointid",
+      "fieldtype": "Data",
+      "label": "EndpointID"
+    },
+    {
+      "fieldname": "accountingsupplierparty_partyidentification_schemeid",
+      "fieldtype": "Data",
+      "label": "Vergi Bilgisi"
     }
   ],
   "links": [],
-  "modified": "2021-10-28 21:34:47.450168",
+  "modified": "2021-10-28 22:57:49.887686",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",

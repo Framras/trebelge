@@ -86,11 +86,7 @@ def read_ebelge_file(file_name, content_hash):
         PricingExchangeRate_Date = ""  # Seçimli(0..1)
         is_AccountingSupplierParty_data = False
         is_AccountingSupplierPartyParty_data = False
-        AccountingSupplierPartyParty_WebsiteURI = ''  # Seçimli(0..1)
-        AccountingSupplierPartyParty_EndpointID = ''  # Seçimli(0..1)
-        AccountingSupplierPartyParty_IndustryClassificationCode = ''  # Seçimli(0..1)
         is_AccountingSupplierPartyPartyPartyIdentification_data = False
-        AccountingSupplierPartyPartyPartyIdentification_schemeID = ''  # Zorunlu(1..n)
         is_AccountingSupplierPartyPartyPartyName_data = False
         is_AccountingSupplierPartyPartyPostalAddress_data = False
         AccountingSupplierPartyPartyPostalAddress_ID = ''  # Seçimli(0..1)
@@ -143,7 +139,8 @@ def read_ebelge_file(file_name, content_hash):
                     # Tarafın vergi kimlik numarası veya TC kimlik numarası metin olarak girilir.
                     is_AccountingSupplierPartyPartyPartyIdentification_data = True
                     AccountingSupplierPartyPartyPartyIdentification_ID = ''
-                    AccountingSupplierPartyPartyPartyIdentification_schemeID = elem.attrib.get('schemeID')
+                    newdoc.accountingsupplierparty_partyidentification_schemeid = elem.attrib.get('schemeID')
+                    # Zorunlu(1..n)
                 if elem.tag == cac_namespace + 'PartyName' and is_AccountingSupplierPartyParty_data:
                     # Seçimli(0..1)
                     # start processing AccountingSupplierParty\Party\PartyName
@@ -195,7 +192,6 @@ def read_ebelge_file(file_name, content_hash):
                         newdoc.linecountnumeric = elem.text
                         # commit the invoice
                         newdoc.insert()
-
                 # process InvoicePeriod
                 if is_InvoicePeriod_data:
                     if elem.tag == cbc_namespace + 'StartDate':  # Seçimli(0..1)
@@ -233,16 +229,16 @@ def read_ebelge_file(file_name, content_hash):
                     is_Invoice_data = True
                 # process AccountingSupplierParty\Party
                 if is_AccountingSupplierPartyParty_data:
-                    if elem.tag == cbc_namespace + 'WebsiteURI':
-                        AccountingSupplierPartyParty_WebsiteURI = elem.text
-                    elif elem.tag == cbc_namespace + 'EndpointID':
-                        AccountingSupplierPartyParty_EndpointID = elem.text
-                    elif elem.tag == cbc_namespace + 'IndustryClassificationCode':
-                        AccountingSupplierPartyParty_IndustryClassificationCode = elem.text
+                    if elem.tag == cbc_namespace + 'WebsiteURI':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_websiteuri = elem.text
+                    elif elem.tag == cbc_namespace + 'EndpointID':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_endpointid = elem.text
+                    elif elem.tag == cbc_namespace + 'IndustryClassificationCode':  # Seçimli(0..1)
+                        newdoc.accountingsupplierparty_industryclassificationcode = elem.text
                 # process AccountingSupplierParty\Party\PartyIdentification
                 if is_AccountingSupplierPartyPartyPartyIdentification_data:
                     if elem.tag == cbc_namespace + 'ID':
-                        AccountingSupplierPartyPartyPartyIdentification_ID = elem.text
+                        newdoc.accountingsupplierparty_partyidentificationid = elem.text
                 # end of AccountingSupplierParty\Party\PartyIdentification processing
                 if elem.tag == cac_namespace + 'PartyIdentification' and is_AccountingSupplierPartyParty_data:
                     is_AccountingSupplierPartyParty_data = False
