@@ -46,29 +46,32 @@ def get_ebelge_users():
 
 
 @frappe.whitelist()
-def check_all_ebelge_files():
+def check_all_xml_files():
     for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
-                                  fields={"name", "content_hash"}):
+                                  fields={"file_url"}):
         # check if record exists by filters
-        if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
-                                 "file": xmlFile.get('name'),
-                                 "content_hash": xmlFile.get('content_hash')}):
-            read_ebelge_file(xmlFile.get('name'), xmlFile.get('content_hash'))
+        filepath = frappe.get_site_path() + xmlFile.file_url
+        # read all namespaces
+        namespaces = dict([node for _, node in ET.iterparse(filepath, events=['start-ns'])])
+        default_namespace: str = '{' + namespaces.get('') + '}'
+        cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
+        cac_namespace: str = '{' + namespaces.get('cac') + '}'
+        if ET.parse(filepath).getroot().tag == default_namespace + 'Invoice':
+            if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
+                                     "uuid": ET.parse(filepath).getroot().find(cbc_namespace + 'UUID').text}):
+                read_efatura_file(xmlFile.file_url)
     return frappe.utils.nowdate()
 
 
-def read_ebelge_file(file_name, content_hash):
-    filename = '/home/tufankaynak/bench/sites/trgibebelgedev/private/files/13D2021000002726.xml'
+def read_efatura_file(file_name):
     # read all namespaces
-    namespaces = dict([node for _, node in ET.iterparse(filename, events=['start-ns'])])
+    namespaces = dict([node for _, node in ET.iterparse(file_name, events=['start-ns'])])
     default_namespace: str = '{' + namespaces.get('') + '}'
     cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
     cac_namespace: str = '{' + namespaces.get('cac') + '}'
     # check if ebelge is Invoice
-    if ET.parse(filename).getroot().tag == default_namespace + 'Invoice':
+    if ET.parse(file_name).getroot().tag == default_namespace + 'Invoice':
         newdoc = frappe.new_doc('TR GIB eFatura Gelen')
-        newdoc.file = file_name
-        newdoc.content_hash = content_hash
         is_Invoice_data = True
         Notes = list()  # Seçimli (0...n)
         is_InvoicePeriod_data = False
@@ -195,7 +198,7 @@ def read_ebelge_file(file_name, content_hash):
                     elif elem.tag == cbc_namespace + 'LineCountNumeric':  # Zorunlu (1)
                         newdoc.linecountnumeric = elem.text
                         # commit the invoice
-                        newdoc.insert()
+                        newdoc.insert
                 # process InvoicePeriod
                 if is_InvoicePeriod_data:
                     if elem.tag == cbc_namespace + 'StartDate':  # Seçimli(0..1)
