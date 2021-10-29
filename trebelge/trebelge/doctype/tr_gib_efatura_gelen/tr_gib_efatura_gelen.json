@@ -7,8 +7,6 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "check_xml_files",
-    "last_run",
     "ublversionid",
     "profileid",
     "column_break_3",
@@ -144,8 +142,7 @@
       "in_global_search": 1,
       "in_list_view": 1,
       "label": "Fatura Numaras\u0131",
-      "reqd": 1,
-      "unique": 1
+      "reqd": 1
     },
     {
       "description": "As\u0131l ise \u201cfalse\u201d, suret ise \u201ctrue\u201d.",
@@ -161,6 +158,7 @@
       "fieldname": "uuid",
       "fieldtype": "Data",
       "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131",
+      "read_only": 1,
       "reqd": 1,
       "unique": 1
     },
@@ -672,22 +670,10 @@
       "fieldtype": "Link",
       "label": "\u00dclke",
       "options": "Country"
-    },
-    {
-      "fieldname": "check_xml_files",
-      "fieldtype": "Button",
-      "label": "Check xml files"
-    },
-    {
-      "fieldname": "last_run",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Last Run",
-      "read_only": 1
     }
   ],
   "links": [],
-  "modified": "2021-10-29 23:48:20.075051",
+  "modified": "2021-10-30 00:25:33.546435",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
