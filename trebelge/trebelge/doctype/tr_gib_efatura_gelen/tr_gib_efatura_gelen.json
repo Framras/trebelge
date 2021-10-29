@@ -7,6 +7,8 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
+    "check_xml_files",
+    "last_run",
     "ublversionid",
     "profileid",
     "column_break_3",
@@ -111,6 +113,7 @@
       "fieldtype": "Select",
       "label": "UBL Versiyon Numaras\u0131",
       "options": "2.1",
+      "read_only": 1,
       "reqd": 1,
       "search_index": 1
     },
@@ -120,6 +123,7 @@
       "fieldtype": "Select",
       "label": "\u00d6zelle\u015ftirme Numaras\u0131",
       "options": "TR1.2",
+      "read_only": 1,
       "reqd": 1,
       "search_index": 1
     },
@@ -668,10 +672,22 @@
       "fieldtype": "Link",
       "label": "\u00dclke",
       "options": "Country"
+    },
+    {
+      "fieldname": "check_xml_files",
+      "fieldtype": "Button",
+      "label": "Check xml files"
+    },
+    {
+      "fieldname": "last_run",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Last Run",
+      "read_only": 1
     }
   ],
   "links": [],
-  "modified": "2021-10-29 12:50:22.832656",
+  "modified": "2021-10-29 23:48:20.075051",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
