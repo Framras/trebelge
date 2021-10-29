@@ -59,7 +59,7 @@ def check_all_xml_files():
         if ET.parse(filepath).getroot().tag == default_namespace + 'Invoice':
             if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                      "uuid": ET.parse(filepath).getroot().find(cbc_namespace + 'UUID').text}):
-                read_efatura_file(xmlFile.file_url)
+                read_efatura_file(filepath)
     return frappe.utils.nowdate()
 
 
