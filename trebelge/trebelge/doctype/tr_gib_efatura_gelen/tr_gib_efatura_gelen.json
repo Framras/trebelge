@@ -7,8 +7,6 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "file",
-    "content_hash",
     "ublversionid",
     "profileid",
     "column_break_3",
@@ -515,20 +513,6 @@
       "label": "IndustryClassificationCode"
     },
     {
-      "fieldname": "file",
-      "fieldtype": "Link",
-      "label": "File",
-      "options": "File",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "fieldname": "content_hash",
-      "fieldtype": "Data",
-      "label": "Content Hash",
-      "reqd": 1
-    },
-    {
       "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman kullan\u0131lacakt\u0131r.",
       "fieldname": "fatura_donemi_section",
       "fieldtype": "Section Break",
@@ -687,7 +671,7 @@
     }
   ],
   "links": [],
-  "modified": "2021-10-28 23:33:08.918458",
+  "modified": "2021-10-29 12:50:22.832656",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
