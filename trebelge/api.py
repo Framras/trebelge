@@ -97,7 +97,7 @@ def read_efatura_file(filepath):
         is_AccountingSupplierPartyPartyPostalAddress_data = False
         AccountingSupplierPartyPartyPostalAddress_BuildingNumbers = list()  # Seçimli(0..n)
 
-        for event, elem in ET.iterparse(file_name, events=("start", "end")):
+        for event, elem in ET.iterparse(filepath, events=("start", "end")):
             if event == 'start':
                 if elem.tag == cac_namespace + 'InvoicePeriod':  # Seçimli (0...1)
                     # start processing InvoicePeriod
