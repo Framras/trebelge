@@ -47,7 +47,8 @@ def get_ebelge_users():
 
 @frappe.whitelist()
 def check_all_xml_files():
-    invoice_namespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard', 'invoice_namespace_specification')
+    invoice_namespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
+                                                        'invoice_namespace_specification')
     for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
         # check if record exists by filters
@@ -64,7 +65,7 @@ def check_all_xml_files():
     return frappe.utils.now_datetime()
 
 
-def read_efatura_file(file_name):
+def read_efatura_file(filepath):
     invoice_namespace: str = '{urn:oasis:names:specification:ubl:schema:xsd:Invoice-2}'
     # read all namespaces
     namespaces = dict([node for _, node in ET.iterparse(file_name, events=['start-ns'])])
@@ -72,7 +73,7 @@ def read_efatura_file(file_name):
     cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
     cac_namespace: str = '{' + namespaces.get('cac') + '}'
     # check if ebelge is Invoice
-    if ET.parse(file_name).getroot().tag == invoice_namespace + 'Invoice':
+    if ET.parse(filepath).getroot().tag == invoice_namespace + 'Invoice':
         newdoc = frappe.new_doc('TR GIB eFatura Gelen')
         is_Invoice_data = True
         Notes = list()  # Seçimli (0...n)
@@ -267,7 +268,7 @@ def read_efatura_file(file_name):
                 # end of AccountingSupplierParty\Party\PartyIdentification processing
                 if elem.tag == cac_namespace + 'PartyIdentification' and is_AccountingSupplierPartyParty_data:
                     is_AccountingSupplierPartyParty_data = False
-                    newdoc.save()
+                    # newdoc.save()
                 # process AccountingSupplierParty\Party\PartyName
                 if is_AccountingSupplierPartyPartyPartyName_data:
                     if elem.tag == cbc_namespace + 'Name':  # Seçimli(0..1)
