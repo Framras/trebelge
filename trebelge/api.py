@@ -61,7 +61,7 @@ def check_all_xml_files():
             if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                      "uuid": ET.parse(filepath).getroot().find(cbc_namespace + 'UUID').text}):
                 read_efatura_file(filepath)
-    return frappe.utils.nowdate()
+    return frappe.utils.now_datetime()
 
 
 def read_efatura_file(file_name):
