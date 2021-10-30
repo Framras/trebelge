@@ -56,7 +56,7 @@ def check_all_xml_files():
         default_namespace: str = '{' + namespaces.get('') + '}'
         cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
         cac_namespace: str = '{' + namespaces.get('cac') + '}'
-        if ET.parse(filepath).getroot().tag == default_namespace + 'Invoice':
+        if ET.parse(filepath).getroot().tag == 'Invoice':
             if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                      "uuid": ET.parse(filepath).getroot().find(cbc_namespace + 'UUID').text}):
                 read_efatura_file(filepath)
