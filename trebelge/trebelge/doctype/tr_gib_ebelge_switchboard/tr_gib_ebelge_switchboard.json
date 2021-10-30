@@ -6,8 +6,9 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "check_xml_files",
-    "last_run"
+    "invoice_namespace_specification",
+    "last_run",
+    "check_xml_files"
   ],
   "fields": [
     {
@@ -17,14 +18,20 @@
     },
     {
       "fieldname": "last_run",
-      "fieldtype": "Data",
+      "fieldtype": "Datetime",
       "label": "Last Run"
+    },
+    {
+      "default": "{urn:oasis:names:specification:ubl:schema:xsd:Invoice-2}",
+      "fieldname": "invoice_namespace_specification",
+      "fieldtype": "Data",
+      "label": "Invoice Namespace Specification"
     }
   ],
   "index_web_pages_for_search": 1,
   "issingle": 1,
   "links": [],
-  "modified": "2021-10-30 00:25:37.256044",
+  "modified": "2021-10-30 17:43:04.220126",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eBelge Switchboard",

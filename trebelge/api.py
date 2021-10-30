@@ -47,7 +47,7 @@ def get_ebelge_users():
 
 @frappe.whitelist()
 def check_all_xml_files():
-    invoice_namespace: str = '{urn:oasis:names:specification:ubl:schema:xsd:Invoice-2}'
+    invoice_namespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard', 'invoice_namespace_specification')
     for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
         # check if record exists by filters
