@@ -179,11 +179,9 @@ def read_efatura_file(file_name):
                         newdoc.uuid = elem.text
                     elif elem.tag == cbc_namespace + 'IssueDate':  # Zorunlu (1)
                         newdoc.issuedate = elem.text
-                    elif elem.tag == cbc_namespace + 'IssueTime':  # Seçimli (0...1)
-                        if not elem.text is None:
-                            newdoc.issuetime = elem.text
-                        else:
-                            newdoc.issuetime = ""
+                    # elif elem.tag == cbc_namespace + 'IssueTime':  # Seçimli (0...1)
+                    #     if not elem.text is None:
+                    #         newdoc.issuetime = elem.text
                     elif elem.tag == cbc_namespace + 'InvoiceTypeCode':  # Zorunlu (1)
                         newdoc.invoicetypecode = elem.text
                     # TODO: implement this
