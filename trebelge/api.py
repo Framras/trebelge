@@ -65,13 +65,14 @@ def check_all_xml_files():
 
 
 def read_efatura_file(file_name):
+    invoice_namespace: str = '{urn:oasis:names:specification:ubl:schema:xsd:Invoice-2}'
     # read all namespaces
     namespaces = dict([node for _, node in ET.iterparse(file_name, events=['start-ns'])])
     default_namespace: str = '{' + namespaces.get('') + '}'
     cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
     cac_namespace: str = '{' + namespaces.get('cac') + '}'
     # check if ebelge is Invoice
-    if ET.parse(file_name).getroot().tag == default_namespace + 'Invoice':
+    if ET.parse(file_name).getroot().tag == invoice_namespace + 'Invoice':
         newdoc = frappe.new_doc('TR GIB eFatura Gelen')
         is_Invoice_data = True
         Notes = list()  # Seçimli (0...n)
