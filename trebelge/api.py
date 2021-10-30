@@ -47,6 +47,7 @@ def get_ebelge_users():
 
 @frappe.whitelist()
 def check_all_xml_files():
+    invoice_namespace: str = '{urn:oasis:names:specification:ubl:schema:xsd:Invoice-2}'
     for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
         # check if record exists by filters
@@ -56,7 +57,7 @@ def check_all_xml_files():
         default_namespace: str = '{' + namespaces.get('') + '}'
         cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
         cac_namespace: str = '{' + namespaces.get('cac') + '}'
-        if ET.parse(filepath).getroot().tag == 'Invoice':
+        if ET.parse(filepath).getroot().tag == invoice_namespace + 'Invoice':
             if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                      "uuid": ET.parse(filepath).getroot().find(cbc_namespace + 'UUID').text}):
                 read_efatura_file(filepath)
