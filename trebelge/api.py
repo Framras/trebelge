@@ -200,7 +200,7 @@ def read_efatura_file(file_name):
                     elif elem.tag == cbc_namespace + 'LineCountNumeric':  # Zorunlu (1)
                         newdoc.linecountnumeric = elem.text
                         # commit the invoice
-                        newdoc.insert
+                        newdoc.insert()
                 # process InvoicePeriod
                 if is_InvoicePeriod_data:
                     if elem.tag == cbc_namespace + 'StartDate':  # Seçimli(0..1)
