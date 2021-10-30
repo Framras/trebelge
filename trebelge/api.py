@@ -102,7 +102,8 @@ def read_efatura_file(file_name):
                     # start processing InvoicePeriod
                     is_InvoicePeriod_data = True
                     is_Invoice_data = False
-                    newdoc.invoiceperiod_durationmeasure_unitcode = elem.attrib.get('unitCode')  # Seçimli(0..1)
+                    if not elem.attrib.get('unitCode') is None:
+                        newdoc.invoiceperiod_durationmeasure_unitcode = elem.attrib.get('unitCode')  # Seçimli(0..1)
                 if elem.tag == cac_namespace + 'OrderReference':  # Seçimli (0...1)
                     # start processing OrderReference
                     is_OrderReference_data = True
@@ -189,15 +190,20 @@ def read_efatura_file(file_name):
                     elif elem.tag == cbc_namespace + 'DocumentCurrencyCode':  # Zorunlu (1)
                         newdoc.documentcurrencycode = elem.text
                     elif elem.tag == cbc_namespace + 'TaxCurrencyCode':  # Seçimli (0...1)
-                        newdoc.taxcurrencycode = elem.text
+                        if not elem.text is None:
+                            newdoc.taxcurrencycode = elem.text
                     elif elem.tag == cbc_namespace + 'PricingCurrencyCode':  # Seçimli (0...1)
-                        newdoc.pricingcurrencycode = elem.text
+                        if not elem.text is None:
+                            newdoc.pricingcurrencycode = elem.text
                     elif elem.tag == cbc_namespace + 'PaymentCurrencyCode':  # Seçimli (0...1)
-                        newdoc.paymentcurrencycode = elem.text
+                        if not elem.text is None:
+                            newdoc.paymentcurrencycode = elem.text
                     elif elem.tag == cbc_namespace + 'PaymentAlternativeCurrencyCode':  # Seçimli (0...1)
-                        newdoc.paymentalternativecurrencycode = elem.text
+                        if not elem.text is None:
+                            newdoc.paymentalternativecurrencycode = elem.text
                     elif elem.tag == cbc_namespace + 'AccountingCost':  # Seçimli (0...1)
-                        newdoc.accountingcost = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingcost = elem.text
                     elif elem.tag == cbc_namespace + 'LineCountNumeric':  # Zorunlu (1)
                         newdoc.linecountnumeric = elem.text
                         # commit the invoice
@@ -205,17 +211,23 @@ def read_efatura_file(file_name):
                 # process InvoicePeriod
                 if is_InvoicePeriod_data:
                     if elem.tag == cbc_namespace + 'StartDate':  # Seçimli(0..1)
-                        newdoc.invoiceperiod_startdate = elem.text
+                        if not elem.text is None:
+                            newdoc.invoiceperiod_startdate = elem.text
                     elif elem.tag == cbc_namespace + 'StartTime':  # Seçimli(0..1)
-                        newdoc.invoiceperiod_starttime = elem.text
+                        if not elem.text is None:
+                            newdoc.invoiceperiod_starttime = elem.text
                     elif elem.tag == cbc_namespace + 'EndDate':  # Seçimli(0..1)
-                        newdoc.invoiceperiod_enddate = elem.text
+                        if not elem.text is None:
+                            newdoc.invoiceperiod_enddate = elem.text
                     elif elem.tag == cbc_namespace + 'EndTime':  # Seçimli(0..1)
-                        newdoc.invoiceperiod_endtime = elem.text
+                        if not elem.text is None:
+                            newdoc.invoiceperiod_endtime = elem.text
                     elif elem.tag == cbc_namespace + 'DurationMeasure':  # Seçimli(0..1)
-                        newdoc.invoiceperiod_durationmeasure = elem.text
+                        if not elem.text is None:
+                            newdoc.invoiceperiod_durationmeasure = elem.text
                     elif elem.tag == cbc_namespace + 'Description':  # Seçimli(0..1)
-                        newdoc.invoiceperiod_description = elem.text
+                        if not elem.text is None:
+                            newdoc.invoiceperiod_description = elem.text
                 # end of InvoicePeriod processing
                 if elem.tag == cac_namespace + 'InvoicePeriod':
                     is_InvoicePeriod_data = False
@@ -240,11 +252,14 @@ def read_efatura_file(file_name):
                 # process AccountingSupplierParty\Party
                 if is_AccountingSupplierPartyParty_data:
                     if elem.tag == cbc_namespace + 'WebsiteURI':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_websiteuri = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_websiteuri = elem.text
                     elif elem.tag == cbc_namespace + 'EndpointID':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_endpointid = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_endpointid = elem.text
                     elif elem.tag == cbc_namespace + 'IndustryClassificationCode':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_industryclassificationcode = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_industryclassificationcode = elem.text
                 # process AccountingSupplierParty\Party\PartyIdentification
                 if is_AccountingSupplierPartyPartyPartyIdentification_data:
                     if elem.tag == cbc_namespace + 'ID':
@@ -256,7 +271,8 @@ def read_efatura_file(file_name):
                 # process AccountingSupplierParty\Party\PartyName
                 if is_AccountingSupplierPartyPartyPartyName_data:
                     if elem.tag == cbc_namespace + 'Name':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_partyname = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_partyname = elem.text
                 # end of AccountingSupplierParty\Party\PartyName processing
                 if elem.tag == cac_namespace + 'PartyName' and is_AccountingSupplierPartyParty_data:
                     is_AccountingSupplierPartyPartyPartyName_data = False
@@ -264,17 +280,23 @@ def read_efatura_file(file_name):
                 # process AccountingSupplierParty\Party\PostalAddress
                 if is_AccountingSupplierPartyPartyPostalAddress_data:
                     if elem.tag == cbc_namespace + 'ID':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_id = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_id = elem.text
                     elif elem.tag == cbc_namespace + 'Postbox':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_postbox = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_postbox = elem.text
                     elif elem.tag == cbc_namespace + 'Room':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_room = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_room = elem.text
                     elif elem.tag == cbc_namespace + 'StreetName':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_streetname = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_streetname = elem.text
                     elif elem.tag == cbc_namespace + 'BlockName':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_blockname = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_blockname = elem.text
                     elif elem.tag == cbc_namespace + 'BuildingName':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_buildingname = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_buildingname = elem.text
                     elif elem.tag == cbc_namespace + 'BuildingNumber':
                         AccountingSupplierPartyPartyPostalAddress_BuildingNumbers.append(elem.text)
                     elif elem.tag == cbc_namespace + 'CitySubdivisionName':  # Zorunlu(1)
@@ -282,11 +304,14 @@ def read_efatura_file(file_name):
                     elif elem.tag == cbc_namespace + 'CityName':  # Zorunlu(1)
                         newdoc.accountingsupplierparty_postaladdress_cityname = elem.text
                     elif elem.tag == cbc_namespace + 'PostalZone':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_postalzone = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_postalzone = elem.text
                     elif elem.tag == cbc_namespace + 'Region':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_region = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_region = elem.text
                     elif elem.tag == cbc_namespace + 'District':  # Seçimli(0..1)
-                        newdoc.accountingsupplierparty_postaladdress_district = elem.text
+                        if not elem.text is None:
+                            newdoc.accountingsupplierparty_postaladdress_district = elem.text
                     elif elem.tag == cbc_namespace + 'Country':  # Zorunlu(1)
                         newdoc.accountingsupplierparty_postaladdress_country = elem.text
                 # end of AccountingSupplierParty\Party\PartyName processing
