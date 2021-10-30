@@ -35,7 +35,7 @@ def check_all_ebelge_parties():
                 if party["is_eirsaliye_user"] == 1:
                     doc = frappe.get_doc(party_type, party.name)
                     doc.db_set("is_eirsaliye_user", 0)
-    return frappe.utils.nowdate()
+    return frappe.utils.now_datetime()
 
 
 def get_ebelge_users():
