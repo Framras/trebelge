@@ -68,7 +68,7 @@ def check_all_xml_files():
 def read_efatura_file(filepath):
     invoice_namespace: str = '{urn:oasis:names:specification:ubl:schema:xsd:Invoice-2}'
     # read all namespaces
-    namespaces = dict([node for _, node in ET.iterparse(file_name, events=['start-ns'])])
+    namespaces = dict([node for _, node in ET.iterparse(filepath, events=['start-ns'])])
     default_namespace: str = '{' + namespaces.get('') + '}'
     cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
     cac_namespace: str = '{' + namespaces.get('cac') + '}'

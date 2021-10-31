@@ -120,7 +120,7 @@
       "fieldname": "customizationid",
       "fieldtype": "Select",
       "label": "\u00d6zelle\u015ftirme Numaras\u0131",
-      "options": "TR1.2",
+      "options": "TR1.2\nTR1.2.1",
       "read_only": 1,
       "reqd": 1,
       "search_index": 1
@@ -673,10 +673,11 @@
     }
   ],
   "links": [],
-  "modified": "2021-10-30 17:39:00.203477",
+  "modified": "2021-10-30 22:48:56.728519",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura Gelen",
+  "name_case": "UPPER CASE",
   "owner": "Administrator",
   "permissions": [
     {
@@ -692,6 +693,7 @@
       "write": 1
     }
   ],
+  "show_preview_popup": 1,
   "sort_field": "modified",
   "sort_order": "DESC"
 }
