@@ -10,11 +10,11 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
     CoR Handler method for checking if the FileType is Invoice.
     """
     successor = DespatchAdviceHandler()
+    invoice_namespace = frappe.db.get_single_value('TR GIB eBelge Switchboard',
+                                                   'invoice_namespace_specification')
 
     def handleRequest(self, filepath):
-        if ET.parse(filepath).getroot().tag == frappe.db.get_single_value('TR GIB eBelge Switchboard',
-                                                                          'invoice_namespace_specification'
-                                                                          ) + 'Invoice':
+        if ET.parse(filepath).getroot().tag == self.invoice_namespace + 'Invoice':
             pass
         else:
             self.successor.handleRequest(filepath)
