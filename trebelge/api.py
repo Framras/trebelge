@@ -51,9 +51,9 @@ def check_all_xml_files():
     for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
         # check if record exists by filters
-        filePath = frappe.get_site_path() + xmlFile.file_url
+        filePath: str = frappe.get_site_path() + xmlFile.file_url
         # process xmlFile
-        xmlFileProcessManager = XMLFileProcessManager(filePath)
+        processManager = XMLFileProcessManager(filePath)
         # read all namespaces
         namespaces = dict([node for _, node in ET.iterparse(filePath, events=['start-ns'])])
         default_namespace: str = '{' + namespaces.get('') + '}'
