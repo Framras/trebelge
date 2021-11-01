@@ -17,4 +17,4 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
         if ET.parse(file_path).getroot().tag == self.invoice_namespace + 'Invoice':
             pass
         else:
-            self.successor.handle_Request(file_path)
+            self.successor.handle_request(file_path)
