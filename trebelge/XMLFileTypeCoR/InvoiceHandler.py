@@ -13,6 +13,9 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
         if ET.parse(filepath).getroot().tag == frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                                           'invoice_namespace_specification'
                                                                           ) + 'Invoice':
+            pass
+        else:
+            successor.handleRequest(filepath)
 
     def setSuccessor(self, successor):
         pass
