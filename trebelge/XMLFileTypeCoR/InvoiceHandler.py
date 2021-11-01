@@ -13,7 +13,7 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
     invoiceNamespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                        'invoice_namespace_specification')
 
-    def handle_request(self, file_path):
+    def handle_request(self, file_path: str):
         if ET.parse(file_path).getroot().tag == self.invoiceNamespace + 'Invoice':
             pass
         else:
