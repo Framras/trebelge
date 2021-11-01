@@ -5,5 +5,5 @@ from trebelge.XMLFileTypeCoR.InvoiceHandler import InvoiceHandler
 class XMLFileProcessManager:
     hXMLFile: AbstractXMLFileTypeHandler = InvoiceHandler()
 
-    def __init__(self, filepath):
-        self.hXMLFile.handle_request(filepath)
+    def __init__(self, file_path):
+        self.hXMLFile.handle_request(file_path)
