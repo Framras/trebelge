@@ -1,4 +1,4 @@
-from trebelge.XMLFileTypeCoR import IXMLFileTypeHandler
+from trebelge.XMLFileTypeCoR import AbstractXMLFileTypeHandler
 import XMLFileProcessStateManager
 
 
