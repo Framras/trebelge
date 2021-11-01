@@ -1,2 +1,1 @@
 class XMLFileProcessStateManager:
-    xmlpsm = XMLFileProcessStateManager()
