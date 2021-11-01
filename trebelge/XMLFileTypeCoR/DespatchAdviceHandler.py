@@ -5,17 +5,16 @@ import frappe
 
 class DespatchAdviceHandler(AbstractXMLFileTypeHandler):
     """
-    This Handler declares a method for building the chain of handlers.
-    Handler method for checking if the FileType is Invoice.
+    This Handler has no successor.
+    CoR Handler method for checking if the FileType is DespatchAdvice.
     """
 
     def handleRequest(self, filepath):
         if ET.parse(filepath).getroot().tag == frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                                           'despatch_advice_namespace_specification'
                                                                           ) + 'DespatchAdvice':
+            # TODO: Implement DespatchAdvice processing
             pass
         else:
+            # TODO: Raise 'File is of unknown type' warning and leave it be
             pass
-
-    def setSuccessor(self, successor):
-        pass

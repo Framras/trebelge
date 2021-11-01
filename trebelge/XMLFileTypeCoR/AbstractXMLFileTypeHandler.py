@@ -11,7 +11,3 @@ class AbstractXMLFileTypeHandler(ABC):
     @abstractmethod
     def handleRequest(self, filepath):
         pass
-
-    @abstractmethod
-    def setSuccessor(self, successor):
-        pass
