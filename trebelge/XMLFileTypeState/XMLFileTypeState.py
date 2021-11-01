@@ -1,6 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
+from trebelge.XMLFileTypeState import XMLFileTypeContext
+
 
 class XMLFileTypeState(ABC):
     """
@@ -11,11 +13,11 @@ class XMLFileTypeState(ABC):
     """
 
     @property
-    def context(self) -> Context:
+    def context(self) -> XMLFileTypeContext:
         return self._context
 
     @context.setter
-    def context(self, context: Context) -> None:
+    def context(self, context: XMLFileTypeContext) -> None:
         self._context = context
 
     @abstractmethod

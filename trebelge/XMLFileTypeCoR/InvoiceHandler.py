@@ -1,6 +1,6 @@
-from trebelge.XMLFileTypeCoR.AbstractXMLFileTypeHandler import AbstractXMLFileTypeHandler
 import xml.etree.ElementTree as ET
 import frappe
+from trebelge.XMLFileTypeCoR.AbstractXMLFileTypeHandler import AbstractXMLFileTypeHandler
 from trebelge.XMLFileTypeCoR.DespatchAdviceHandler import DespatchAdviceHandler
 
 

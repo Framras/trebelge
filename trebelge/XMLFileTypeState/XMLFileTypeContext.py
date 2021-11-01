@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from trebelge.XMLFileTypeState import XMLFileTypeState
+
 
 class XMLFileTypeContext:
     """
@@ -16,12 +18,11 @@ class XMLFileTypeContext:
     def __init__(self, state: XMLFileTypeState) -> None:
         self.transition_to(state)
 
-    def transition_to(self, state: State):
+    def transition_to(self, state: XMLFileTypeState):
         """
         The Context allows changing the State object at runtime.
         """
 
-        print(f"Context: Transition to {type(state).__name__}")
         self._state = state
         self._state.context = self
 
