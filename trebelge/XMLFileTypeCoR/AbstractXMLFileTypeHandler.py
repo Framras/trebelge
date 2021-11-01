@@ -9,5 +9,5 @@ class AbstractXMLFileTypeHandler(ABC):
     """
 
     @abstractmethod
-    def handleRequest(self, filepath):
+    def handle_request(self, filepath):
         pass
