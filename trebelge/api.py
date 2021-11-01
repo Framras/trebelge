@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 
 from xml.etree.ElementTree import XMLParser
 from trebelge.EbelgeUsers import EbelgeUsers
+from trebelge.XMLFileProcessManager import XMLFileProcessManager
 
 
 @frappe.whitelist()
@@ -50,16 +51,18 @@ def check_all_xml_files():
     for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
         # check if record exists by filters
-        filepath = frappe.get_site_path() + xmlFile.file_url
+        filePath = frappe.get_site_path() + xmlFile.file_url
+        # process xmlFile
+        xmlFileProcessManager = XMLFileProcessManager(filePath)
         # read all namespaces
-        namespaces = dict([node for _, node in ET.iterparse(filepath, events=['start-ns'])])
+        namespaces = dict([node for _, node in ET.iterparse(filePath, events=['start-ns'])])
         default_namespace: str = '{' + namespaces.get('') + '}'
         cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
         cac_namespace: str = '{' + namespaces.get('cac') + '}'
-        if ET.parse(filepath).getroot().tag == invoice_namespace + 'Invoice':
+        if ET.parse(filePath).getroot().tag == invoice_namespace + 'Invoice':
             if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
-                                     "uuid": ET.parse(filepath).getroot().find(cbc_namespace + 'UUID').text}):
-                read_efatura_file(filepath)
+                                     "uuid": ET.parse(filePath).getroot().find(cbc_namespace + 'UUID').text}):
+                read_efatura_file(filePath)
     return frappe.utils.now_datetime()
 
 
