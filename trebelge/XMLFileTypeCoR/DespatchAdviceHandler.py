@@ -11,8 +11,8 @@ class DespatchAdviceHandler(AbstractXMLFileTypeHandler):
     despatchAdvice_namespace = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                           'despatch_advice_namespace_specification')
 
-    def handleRequest(self, filepath):
-        if ET.parse(filepath).getroot().tag == self.despatchAdvice_namespace + 'DespatchAdvice':
+    def handleRequest(self, file_path):
+        if ET.parse(file_path).getroot().tag == self.despatchAdvice_namespace + 'DespatchAdvice':
             # TODO: Implement DespatchAdvice processing
             pass
         else:
