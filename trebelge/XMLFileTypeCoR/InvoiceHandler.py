@@ -9,7 +9,7 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
     This Handler's successor is for DespatchAdvice FileType.
     CoR Handler method for checking if the FileType is Invoice.
     """
-    successor = DespatchAdviceHandler()
+    successor: AbstractXMLFileTypeHandler = DespatchAdviceHandler()
     invoice_namespace = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                    'invoice_namespace_specification')
 
