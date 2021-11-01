@@ -1,5 +1,6 @@
 {
   "actions": [],
+  "allow_events_in_timeline": 1,
   "allow_rename": 1,
   "creation": "2021-10-30 00:25:37.256044",
   "doctype": "DocType",
@@ -7,6 +8,7 @@
   "engine": "InnoDB",
   "field_order": [
     "invoice_namespace_specification",
+    "despatch_advice_namespace_specification",
     "last_run",
     "check_xml_files"
   ],
@@ -22,16 +24,19 @@
       "label": "Last Run"
     },
     {
-      "default": "{urn:oasis:names:specification:ubl:schema:xsd:Invoice-2}",
       "fieldname": "invoice_namespace_specification",
       "fieldtype": "Data",
       "label": "Invoice Namespace Specification"
+    },
+    {
+      "fieldname": "despatch_advice_namespace_specification",
+      "fieldtype": "Data",
+      "label": "Despatch Advice Namespace Specification"
     }
   ],
-  "index_web_pages_for_search": 1,
   "issingle": 1,
   "links": [],
-  "modified": "2021-10-30 17:43:04.220126",
+  "modified": "2021-11-01 22:14:09.714475",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eBelge Switchboard",
@@ -49,5 +54,6 @@
     }
   ],
   "sort_field": "modified",
-  "sort_order": "DESC"
+  "sort_order": "DESC",
+  "track_changes": 1
 }

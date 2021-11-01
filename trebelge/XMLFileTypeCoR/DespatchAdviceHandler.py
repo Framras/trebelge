@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import frappe
 
 
-class InvoiceHandler(AbstractXMLFileTypeHandler):
+class DespatchAdviceHandler(AbstractXMLFileTypeHandler):
     """
     This Handler declares a method for building the chain of handlers.
     Handler method for checking if the FileType is Invoice.
@@ -11,14 +11,11 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
 
     def handleRequest(self, filepath):
         if ET.parse(filepath).getroot().tag == frappe.db.get_single_value('TR GIB eBelge Switchboard',
-                                                                          'invoice_namespace_specification'
-                                                                          ) + 'Invoice':
+                                                                          'despatch_advice_namespace_specification'
+                                                                          ) + 'DespatchAdvice':
             pass
         else:
-            self.successor.handleRequest(filepath)
+            pass
 
     def setSuccessor(self, successor):
         pass
-
-    def __init__(self):
-        self.successor =
