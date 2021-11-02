@@ -1,18 +1,18 @@
 import xml.etree.ElementTree as ET
 import frappe
 
-from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileTypeHandler
+from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.DespatchAdviceHandler import DespatchAdviceHandler
 from trebelge.XMLFileTypeState import XMLFileTypeContext
 from trebelge.XMLFileTypeState.InvoiceState import InvoiceState
 
 
-class InvoiceHandler(AbstractXMLFileTypeHandler):
+class InvoiceHandler(AbstractXMLFileHandler):
     """
     This Handler's successor is for DespatchAdvice FileType.
     CoR Handler method for checking if the FileType is Invoice.
     """
-    successor: AbstractXMLFileTypeHandler = DespatchAdviceHandler()
+    successor: AbstractXMLFileHandler = DespatchAdviceHandler()
     invoiceNamespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                        'invoice_namespace_specification')
 

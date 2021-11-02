@@ -1,12 +1,12 @@
 import xml.etree.ElementTree as ET
 import frappe
 
-from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileTypeHandler
+from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileTypeState import XMLFileTypeContext
 from trebelge.XMLFileTypeState.DespatchAdviceState import DespatchAdviceState
 
 
-class DespatchAdviceHandler(AbstractXMLFileTypeHandler):
+class DespatchAdviceHandler(AbstractXMLFileHandler):
     """
     This Handler has no successor.
     CoR Handler method for checking if the FileType is DespatchAdvice.
