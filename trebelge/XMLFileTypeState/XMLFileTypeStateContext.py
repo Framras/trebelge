@@ -1,9 +1,9 @@
 # from __future__ import annotations
 
-from trebelge.XMLFileTypeState import XMLFileTypeState
+from trebelge.XMLFileTypeState.XMLFileTypeState import XMLFileTypeState
 
 
-class XMLFileTypeContext:
+class XMLFileTypeStateContext:
     """
     The Context defines the interface of interest to clients. It also maintains
     a reference to an instance of a State subclass, which represents the current
@@ -24,7 +24,7 @@ class XMLFileTypeContext:
         The Context allows changing the State object at runtime.
         """
         self._state = state
-        self._state. = self
+        self._state.set_context(self)
 
     def set_file_path(self, file_path: str):
         self._file_path = file_path

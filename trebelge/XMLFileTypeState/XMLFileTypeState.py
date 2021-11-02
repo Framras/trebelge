@@ -1,7 +1,7 @@
 # from __future__ import annotations
 from abc import ABC, abstractmethod
 
-from trebelge.XMLFileTypeState import XMLFileTypeContext
+from trebelge.XMLFileTypeState import XMLFileTypeStateContext
 
 
 class XMLFileTypeState(ABC):
@@ -21,9 +21,9 @@ class XMLFileTypeState(ABC):
         self._context = context
 
     @abstractmethod
-    def find_record_status(self, file_path: str):
+    def find_record_status(self):
         pass
 
     @abstractmethod
-    def handle2(self):
+    def list_file_namespaces(self):
         pass

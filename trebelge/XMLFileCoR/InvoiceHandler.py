@@ -4,7 +4,7 @@ import frappe
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.DespatchAdviceHandler import DespatchAdviceHandler
 from trebelge.XMLFileTypeState.InvoiceState import InvoiceState
-from trebelge.XMLFileTypeState.XMLFileTypeContext import XMLFileTypeContext
+from trebelge.XMLFileTypeState.XMLFileTypeStateContext import XMLFileTypeStateContext
 
 
 class InvoiceHandler(AbstractXMLFileHandler):
@@ -16,7 +16,7 @@ class InvoiceHandler(AbstractXMLFileHandler):
     _invoiceNamespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                         'invoice_namespace_specification')
 
-    def handle_xml_file(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
+    def handle_xml_file(self, file_path: str, xml_file_type_context: XMLFileTypeStateContext):
         if ET.parse(file_path).getroot().tag == self._invoiceNamespace + 'Invoice':
             xml_file_type_context.set_state = InvoiceState()
         else:
