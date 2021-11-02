@@ -2,7 +2,7 @@
 import xml.etree.ElementTree as ET
 
 import frappe
-from trebelge.XMLFileProcessStrategy.XMLFileProcessContext import XMLFileProcessContext
+from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
 from trebelge.XMLFileProcessStrategy.XMLNamespaces import XMLNamespaces
 from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import AbstractXMLFileTypeState
 
@@ -16,7 +16,7 @@ class InvoiceState(AbstractXMLFileTypeState):
     def find_record_status(self):
         file_path: str = self.get_context().get_file_path()
         # read all namespaces
-        namespaces_strategy = XMLFileProcessContext(XMLNamespaces())
+        namespaces_strategy = XMLFileProcessStrategyContext(XMLNamespaces())
         namespaces = namespaces_strategy.return_file_data(file_path)
         # read cbc namespace
         cbc_namespace: str = '{' + namespaces.get('cbc') + '}'

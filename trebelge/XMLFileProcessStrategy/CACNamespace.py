@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 from trebelge.XMLFileProcessStrategy.CBCNamespace import CBCNamespace
-from trebelge.XMLFileProcessStrategy.XMLFileProcessContext import XMLFileProcessContext
+from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
 from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategy import XMLFileProcessStrategy
 
 
@@ -12,6 +12,6 @@ class CACNamespace(XMLFileProcessStrategy):
     """
 
     def return_xml_file_data(self):
-        context = XMLFileProcessContext(CBCNamespace())
+        context = XMLFileProcessStrategyContext(CBCNamespace())
         namespaces = context.return_file_data(file_path)
         return ET.parse(file_path).getroot().find(cbc_namespace + 'UUID').text

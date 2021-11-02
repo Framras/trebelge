@@ -2,7 +2,7 @@
 from trebelge.XMLFileProcessStrategy import XMLFileProcessStrategy
 
 
-class XMLFileProcessContext:
+class XMLFileProcessStrategyContext:
     """
     The Context defines the interface of interest to clients.
     """
