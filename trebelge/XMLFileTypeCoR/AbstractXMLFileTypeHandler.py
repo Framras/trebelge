@@ -11,5 +11,5 @@ class AbstractXMLFileTypeHandler(ABC):
     """
 
     @abstractmethod
-    def handle_request(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
+    def handle_xml_file_type(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
         pass
