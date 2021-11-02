@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from trebelge.XMLFileTypeState import XMLFileTypeStateContext
 
 
-class XMLFileTypeState(ABC):
+class AbstractXMLFileTypeState(ABC):
     """
     The base State class declares methods that all Concrete State should
     implement and also provides a reference to the Context object,
