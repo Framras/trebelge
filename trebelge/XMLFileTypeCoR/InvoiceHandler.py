@@ -4,6 +4,7 @@ import frappe
 from trebelge.XMLFileTypeCoR.AbstractXMLFileTypeHandler import AbstractXMLFileTypeHandler
 from trebelge.XMLFileTypeCoR.DespatchAdviceHandler import DespatchAdviceHandler
 from trebelge.XMLFileTypeState import XMLFileTypeContext
+from trebelge.XMLFileTypeState.InvoiceState import InvoiceState
 
 
 class InvoiceHandler(AbstractXMLFileTypeHandler):
@@ -17,6 +18,6 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
 
     def handle_request(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
         if ET.parse(file_path).getroot().tag == self.invoiceNamespace + 'Invoice':
-            xml_file_type_context.
+            xml_file_type_context.set_state = InvoiceState()
         else:
             self.successor.handle_request(file_path)
