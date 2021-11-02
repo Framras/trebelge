@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 
 from trebelge.XMLFileProcessStrategy.CBCNamespace import CBCNamespace
-from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
 from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategy import XMLFileProcessStrategy
+from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
 
 
 class CACNamespace(XMLFileProcessStrategy):

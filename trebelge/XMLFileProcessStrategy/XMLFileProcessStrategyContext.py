@@ -6,21 +6,12 @@ class XMLFileProcessStrategyContext:
     """
     The Context defines the interface of interest to clients.
     """
-
-    def __init__(self, strategy: XMLFileProcessStrategy):
-        """
-        Usually, the Context accepts a strategy through the constructor, but
-        also provides a setter to change it at runtime.
-        """
-        self._strategy = strategy
-
-    def strategy(self):
-        """
-        The Context maintains a reference to one of the Strategy objects. The
-        Context does not know the concrete class of a strategy. It should work
-        with all strategies via the Strategy interface.
-        """
-        return self._strategy
+    _file_path: str = ''
+    _strategy: XMLFileProcessStrategy = None
+    """
+    Usually, the Context accepts a strategy through the constructor, but
+    also provides a setter to change it at runtime.
+    """
 
     def set_strategy(self, strategy: XMLFileProcessStrategy):
         """
@@ -28,9 +19,23 @@ class XMLFileProcessStrategyContext:
         """
         self._strategy = strategy
 
-    def return_file_data(self, file_path: str):
+    def get_strategy(self):
+        """
+        The Context maintains a reference to one of the Strategy objects. The
+        Context does not know the concrete class of a strategy. It should work
+        with all strategies via the Strategy interface.
+        """
+        return self._strategy
+
+    def set_file_path(self, file_path: str):
+        self._file_path = file_path
+
+    def get_file_path(self):
+        return self._file_path
+
+    def return_file_data(self):
         """
         The Context delegates some work to the Strategy object instead of
         implementing multiple versions of the algorithm on its own.
         """
-        return self._strategy.return_file_data(file_path)
+        return self._strategy.return_file_data(self)
