@@ -14,7 +14,7 @@ class DespatchAdviceHandler(AbstractXMLFileHandler):
     despatchAdviceNamespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                               'despatch_advice_namespace_specification')
 
-    def handle_xml_file_type(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
+    def handle_xml_file(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
         if ET.parse(file_path).getroot().tag == self.despatchAdviceNamespace + 'DespatchAdvice':
             xml_file_type_context.set_state = DespatchAdviceState()
         else:
