@@ -11,7 +11,7 @@ class DespatchAdviceState(XMLFileTypeState):
     Backreference to the Context object, associated with the State.
     """
 
-    def check_record_status(self) -> None:
+    def find_record_status(self) -> None:
         pass
 
     def handle2(self) -> None:

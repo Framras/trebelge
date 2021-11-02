@@ -5,7 +5,7 @@ from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
 
 class XMLFileProcessManager:
     # initiate Context of State pattern for FileType
-    cXMLFileTypeContext = XMLFileTypeContext()
+    cXMLFileTypeContext = XMLFileTypeContext
     # initiate CoR pattern for xmlFile
     hXMLFileTypeHandler: AbstractXMLFileHandler = InvoiceHandler()
 

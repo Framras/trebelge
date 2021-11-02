@@ -1,4 +1,4 @@
-from __future__ import annotations
+# from __future__ import annotations
 
 from trebelge.XMLFileTypeState import XMLFileTypeState
 
@@ -30,8 +30,8 @@ class XMLFileTypeContext:
     The Context delegates part of its behavior to the current State object.
     """
 
-    def check_record_status(self):
-        self._state.check_record_status()
+    def find_record_status(self, file_path: str):
+        self._state.find_record_status(file_path)
 
     def request2(self):
         self._state.handle2()

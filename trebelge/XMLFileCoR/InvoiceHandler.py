@@ -1,10 +1,10 @@
-import xml.etree.ElementTree as ET
-import frappe
-
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.DespatchAdviceHandler import DespatchAdviceHandler
-from trebelge.XMLFileTypeState import XMLFileTypeContext
+from trebelge.XMLFileTypeState.XMLFileTypeContext import XMLFileTypeContext
 from trebelge.XMLFileTypeState.InvoiceState import InvoiceState
+
+import xml.etree.ElementTree as ET
+import frappe
 
 
 class InvoiceHandler(AbstractXMLFileHandler):
@@ -19,6 +19,6 @@ class InvoiceHandler(AbstractXMLFileHandler):
     def handle_xml_file(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
         if ET.parse(file_path).getroot().tag == self.invoiceNamespace + 'Invoice':
             xml_file_type_context.set_state = InvoiceState()
-
+            xml_file_type_context.find_record_status(file_path)
         else:
             self.successor.handle_xml_file(file_path, xml_file_type_context)
