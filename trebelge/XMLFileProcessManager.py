@@ -12,5 +12,4 @@ class XMLFileProcessManager:
         self._cXMLFileTypeStateContext.set_file_path(file_path)
         # initiate Context of State pattern for FileType
         self._hXMLFileHandler.handle_xml_file(self._cXMLFileTypeStateContext)
-        if self._cXMLFileTypeStateContext.find_record_status():
-            pass
+        self._cXMLFileTypeStateContext.find_record_status()

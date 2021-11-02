@@ -1,8 +1,6 @@
-import xml.etree.ElementTree as ET
-
-from trebelge.XMLFileProcessStrategy.CBCNamespace import CBCNamespace
 from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategy import XMLFileProcessStrategy
 from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
+from trebelge.XMLFileProcessStrategy.XMLNamespaces import XMLNamespaces
 
 
 class CACNamespace(XMLFileProcessStrategy):
@@ -11,7 +9,11 @@ class CACNamespace(XMLFileProcessStrategy):
     interface. The interface makes them interchangeable in the Context.
     """
 
-    def return_xml_file_data(self):
-        context = XMLFileProcessStrategyContext(CBCNamespace())
-        namespaces = context.return_file_data(file_path)
-        return ET.parse(file_path).getroot().find(cbc_namespace + 'UUID').text
+    def return_xml_file_data(self, context: XMLFileProcessStrategyContext):
+        file_path = context.get_file_path()
+        xmlnamespaces_context = XMLFileProcessStrategyContext()
+        xmlnamespaces_context.set_strategy(XMLNamespaces())
+        xmlnamespaces_context.set_file_path(file_path)
+        namespaces = xmlnamespaces_context.return_file_data()
+        cbc_namespace: str = '{' + namespaces.get('cac') + '}'
+        return cbc_namespace

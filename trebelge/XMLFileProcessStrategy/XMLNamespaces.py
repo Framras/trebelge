@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
-from trebelge.XMLFileProcessStrategy import XMLFileProcessStrategyContext
 from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategy import XMLFileProcessStrategy
+from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
 
 
 class XMLNamespaces(XMLFileProcessStrategy):
@@ -11,4 +11,6 @@ class XMLNamespaces(XMLFileProcessStrategy):
     """
 
     def return_xml_file_data(self, context: XMLFileProcessStrategyContext):
+        file_path = context.get_file_path()
+        # return all namespaces
         return dict([node for _, node in ET.iterparse(file_path, events=['start-ns'])])
