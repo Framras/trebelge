@@ -30,7 +30,7 @@ class XMLFileTypeContext:
     The Context delegates part of its behavior to the current State object.
     """
 
-    def request1(self):
+    def request_uniqueness(self):
         self._state.handle1()
 
     def request2(self):
