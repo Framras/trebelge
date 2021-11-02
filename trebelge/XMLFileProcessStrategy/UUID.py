@@ -14,7 +14,8 @@ class UUID(XMLFileProcessStrategy):
     def return_xml_file_data(self, context: XMLFileProcessStrategyContext):
         file_path = context.get_file_path()
         uuid_context = XMLFileProcessStrategyContext()
-        uuid_context.set_strategy(CBCNamespace())
         uuid_context.set_file_path(file_path)
+        uuid_context.set_strategy(CBCNamespace())
         cbc_namespace = uuid_context.return_file_data()
-        return ET.parse(file_path).getroot().find(cbc_namespace + 'UUID').text
+        uuid_: str = ET.parse(file_path).getroot().find(cbc_namespace + 'UUID').text
+        return uuid_
