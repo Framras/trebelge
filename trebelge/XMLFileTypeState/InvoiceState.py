@@ -1,9 +1,6 @@
 # from __future__ import annotations
-from abc import ABC, abstractmethod
-
 from trebelge.XMLFileProcessStrategy.XMLFileProcessContext import XMLFileProcessContext
 from trebelge.XMLFileProcessStrategy.XMLNamespaces import XMLNamespaces
-from trebelge.XMLFileTypeState import XMLFileTypeContext
 from trebelge.XMLFileTypeState.XMLFileTypeState import XMLFileTypeState
 
 import xml.etree.ElementTree as ET
@@ -16,7 +13,7 @@ class InvoiceState(XMLFileTypeState):
     Backreference to the Context object, associated with the State.
     """
 
-    def find_record_status(self, file_path: str) -> None:
+    def find_record_status(self, file_path: str):
         # read all namespaces
         context = XMLFileProcessContext(XMLNamespaces())
         namespaces = context.return_file_data(file_path)

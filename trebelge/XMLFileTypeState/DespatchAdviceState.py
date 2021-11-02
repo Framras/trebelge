@@ -1,7 +1,4 @@
-from __future__ import annotations
-from abc import ABC, abstractmethod
-
-from trebelge.XMLFileTypeState import XMLFileTypeContext
+# from __future__ import annotations
 from trebelge.XMLFileTypeState.XMLFileTypeState import XMLFileTypeState
 
 

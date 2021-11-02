@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategy import XMLFileProcessStrategy
 
 
-class UUID(XMLFileProcessStrategy):
+class CACNamespace(XMLFileProcessStrategy):
     """
     Concrete Strategies implement the algorithm while following the base Strategy
     interface. The interface makes them interchangeable in the Context.

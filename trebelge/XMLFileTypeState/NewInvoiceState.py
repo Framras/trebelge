@@ -13,7 +13,7 @@ class NewInvoiceState(XMLFileTypeState, ABC):
     Backreference to the Context object, associated with the State.
     """
 
-    def check_record_status(self) -> None:
+    def find_record_status(self, file_path: str):
         if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                  "uuid": ET.parse(filePath).getroot().find(cbc_namespace + 'UUID').text}):
 

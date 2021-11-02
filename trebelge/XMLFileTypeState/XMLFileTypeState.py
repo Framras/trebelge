@@ -21,7 +21,7 @@ class XMLFileTypeState(ABC):
         self._context = context
 
     @abstractmethod
-    def find_record_status(self) -> None:
+    def find_record_status(self, file_path: str) -> None:
         pass
 
     @abstractmethod

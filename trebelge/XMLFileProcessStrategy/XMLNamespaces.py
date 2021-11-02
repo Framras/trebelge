@@ -4,5 +4,10 @@ from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategy import XMLFileProces
 
 
 class XMLNamespaces(XMLFileProcessStrategy):
+    """
+    Concrete Strategies implement the algorithm while following the base Strategy
+    interface. The interface makes them interchangeable in the Context.
+    """
+
     def return_xml_file_data(self, file_path: str):
         return dict([node for _, node in ET.iterparse(file_path, events=['start-ns'])])

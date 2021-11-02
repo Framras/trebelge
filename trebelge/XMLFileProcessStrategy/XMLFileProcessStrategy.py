@@ -13,9 +13,3 @@ class XMLFileProcessStrategy(ABC):
     @abstractmethod
     def return_xml_file_data(self, file_path: str):
         pass
-
-
-"""
-Concrete Strategies implement the algorithm while following the base Strategy
-interface. The interface makes them interchangeable in the Context.
-"""
