@@ -16,9 +16,9 @@ class XMLFileTypeContext:
     """
 
     def __init__(self, state: XMLFileTypeState) -> None:
-        self.transition_to(state)
+        self.set_state(state)
 
-    def transition_to(self, state: XMLFileTypeState):
+    def set_state(self, state: XMLFileTypeState):
         """
         The Context allows changing the State object at runtime.
         """

@@ -17,6 +17,6 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
 
     def handle_request(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
         if ET.parse(file_path).getroot().tag == self.invoiceNamespace + 'Invoice':
-            pass
+            xml_file_type_context.
         else:
             self.successor.handle_request(file_path)
