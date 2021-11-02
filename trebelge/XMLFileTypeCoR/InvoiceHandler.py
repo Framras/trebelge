@@ -1,7 +1,9 @@
 import xml.etree.ElementTree as ET
 import frappe
+
 from trebelge.XMLFileTypeCoR.AbstractXMLFileTypeHandler import AbstractXMLFileTypeHandler
 from trebelge.XMLFileTypeCoR.DespatchAdviceHandler import DespatchAdviceHandler
+from trebelge.XMLFileTypeState import XMLFileTypeContext
 
 
 class InvoiceHandler(AbstractXMLFileTypeHandler):
@@ -13,7 +15,7 @@ class InvoiceHandler(AbstractXMLFileTypeHandler):
     invoiceNamespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                        'invoice_namespace_specification')
 
-    def handle_request(self, file_path: str):
+    def handle_request(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
         if ET.parse(file_path).getroot().tag == self.invoiceNamespace + 'Invoice':
             pass
         else:

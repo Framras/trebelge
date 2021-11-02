@@ -8,4 +8,4 @@ class XMLFileProcessManager:
     hXMLFileTypeHandler: AbstractXMLFileTypeHandler = InvoiceHandler()
 
     def __init__(self, file_path: str):
-        self.hXMLFileTypeHandler.handle_request(file_path)
+        self.hXMLFileTypeHandler.handle_request(file_path, self.cXMLFileTypeContext)

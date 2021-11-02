@@ -1,6 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
+from trebelge.XMLFileTypeState import XMLFileTypeContext
+
 
 class AbstractXMLFileTypeHandler(ABC):
     """
@@ -9,5 +11,5 @@ class AbstractXMLFileTypeHandler(ABC):
     """
 
     @abstractmethod
-    def handle_request(self, file_path: str):
+    def handle_request(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
         pass
