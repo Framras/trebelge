@@ -4,7 +4,9 @@ from trebelge.XMLFileTypeCoR.InvoiceHandler import InvoiceHandler
 
 
 class XMLFileProcessManager:
+    # initiate Context of State pattern for FileType
     cXMLFileTypeContext = XMLFileTypeContext()
+    # initiate CoR pattern for xmlFile
     hXMLFileTypeHandler: AbstractXMLFileTypeHandler = InvoiceHandler()
 
     def __init__(self, file_path: str):
