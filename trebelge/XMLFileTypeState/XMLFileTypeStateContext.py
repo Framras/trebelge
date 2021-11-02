@@ -1,6 +1,6 @@
 # from __future__ import annotations
 
-from trebelge.XMLFileTypeState.XMLFileTypeState import XMLFileTypeState
+from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import XMLFileTypeState
 
 
 class XMLFileTypeStateContext:
@@ -33,7 +33,7 @@ class XMLFileTypeStateContext:
     """
 
     def find_record_status(self):
-        self._state.find_record_status(self.get_file_path())
+        self._state.find_record_status()
 
     def list_file_namespaces(self):
-        self._state.list_file_namespaces(self.get_file_path())
+        self._state.list_file_namespaces()

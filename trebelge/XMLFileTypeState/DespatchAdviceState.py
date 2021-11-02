@@ -1,5 +1,5 @@
 # from __future__ import annotations
-from trebelge.XMLFileTypeState.XMLFileTypeState import XMLFileTypeState
+from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import XMLFileTypeState
 
 
 class DespatchAdviceState(XMLFileTypeState):
