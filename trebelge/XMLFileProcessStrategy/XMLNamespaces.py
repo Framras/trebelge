@@ -9,5 +9,5 @@ class XMLNamespaces(XMLFileProcessStrategy):
     interface. The interface makes them interchangeable in the Context.
     """
 
-    def return_xml_file_data(self, file_path: str):
+    def return_xml_file_data(self):
         return dict([node for _, node in ET.iterparse(file_path, events=['start-ns'])])

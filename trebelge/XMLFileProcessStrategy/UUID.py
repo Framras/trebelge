@@ -9,7 +9,7 @@ class UUID(XMLFileProcessStrategy):
     interface. The interface makes them interchangeable in the Context.
     """
 
-    def return_xml_file_data(self, file_path: str):
+    def return_xml_file_data(self):
         context = XMLFileProcessContext(CBCNamespace())
         namespaces = context.return_file_data(file_path)
         return ET.parse(file_path).getroot().find(cbc_namespace + 'UUID').text

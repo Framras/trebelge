@@ -11,5 +11,5 @@ class XMLFileProcessStrategy(ABC):
     """
 
     @abstractmethod
-    def return_xml_file_data(self, file_path: str):
+    def return_xml_file_data(self):
         pass
