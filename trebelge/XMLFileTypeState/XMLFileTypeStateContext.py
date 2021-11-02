@@ -1,6 +1,5 @@
 # from __future__ import annotations
-
-from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import XMLFileTypeState
+from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import AbstractXMLFileTypeState
 
 
 class XMLFileTypeStateContext:
@@ -10,12 +9,12 @@ class XMLFileTypeStateContext:
     state of the Context.
     """
     _file_path: str = ''
-    _state: XMLFileTypeState = None
+    _state: AbstractXMLFileTypeState = None
     """
     A reference to the current state of the Context.
     """
 
-    def set_state(self, state: XMLFileTypeState):
+    def set_state(self, state: AbstractXMLFileTypeState):
         """
         The Context allows changing the State object at runtime.
         """
