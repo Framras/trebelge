@@ -19,10 +19,8 @@ class DespatchAdviceState(XMLFileTypeState):
     def context(self, context: XMLFileTypeContext) -> None:
         self._context = context
 
-    @abstractmethod
     def handle1(self) -> None:
         pass
 
-    @abstractmethod
     def handle2(self) -> None:
         pass
