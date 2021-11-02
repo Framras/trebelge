@@ -1,8 +1,8 @@
 # from __future__ import annotations
-from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import XMLFileTypeState
+from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import AbstractXMLFileTypeState
 
 
-class DespatchAdviceState(XMLFileTypeState):
+class DespatchAdviceState(AbstractXMLFileTypeState):
     """
     State methods
     Backreference to the Context object, associated with the State.

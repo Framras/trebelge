@@ -4,10 +4,10 @@ import xml.etree.ElementTree as ET
 import frappe
 from trebelge.XMLFileProcessStrategy.XMLFileProcessContext import XMLFileProcessContext
 from trebelge.XMLFileProcessStrategy.XMLNamespaces import XMLNamespaces
-from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import XMLFileTypeState
+from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import AbstractXMLFileTypeState
 
 
-class InvoiceState(XMLFileTypeState):
+class InvoiceState(AbstractXMLFileTypeState):
     """
     State methods
     Backreference to the Context object, associated with the State.
