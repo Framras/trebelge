@@ -6,10 +6,11 @@ from trebelge.XMLFileTypeState.XMLFileTypeStateContext import XMLFileTypeStateCo
 class XMLFileProcessManager:
     # initiate CoR pattern for xmlFile
     _hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
-    _cXMLFileTypeContext = XMLFileTypeStateContext(None, '')
+    _cXMLFileTypeStateContext = XMLFileTypeStateContext()
 
     def __init__(self, file_path: str):
-        self._cXMLFileTypeContext.set_file_path(file_path)
+        self._cXMLFileTypeStateContext.set_file_path(file_path)
         # initiate Context of State pattern for FileType
-        self._hXMLFileHandler.handle_xml_file(file_path, self._cXMLFileTypeContext)
-        if self._cXMLFileTypeContext.find_record_status():
+        self._hXMLFileHandler.handle_xml_file(self._cXMLFileTypeStateContext)
+        if self._cXMLFileTypeStateContext.find_record_status():
+            pass

@@ -2,8 +2,8 @@ import xml.etree.ElementTree as ET
 
 import frappe
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
-from trebelge.XMLFileTypeState import XMLFileTypeStateContext
 from trebelge.XMLFileTypeState.DespatchAdviceState import DespatchAdviceState
+from trebelge.XMLFileTypeState.XMLFileTypeStateContext import XMLFileTypeStateContext
 
 
 class DespatchAdviceHandler(AbstractXMLFileHandler):
@@ -14,7 +14,8 @@ class DespatchAdviceHandler(AbstractXMLFileHandler):
     despatchAdviceNamespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                               'despatch_advice_namespace_specification')
 
-    def handle_xml_file(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
+    def handle_xml_file(self, xml_file_type_context: XMLFileTypeStateContext):
+        file_path = xml_file_type_context.get_file_path()
         if ET.parse(file_path).getroot().tag == self.despatchAdviceNamespace + 'DespatchAdvice':
             xml_file_type_context.set_state = DespatchAdviceState()
         else:

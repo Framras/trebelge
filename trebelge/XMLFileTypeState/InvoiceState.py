@@ -14,7 +14,7 @@ class InvoiceState(XMLFileTypeState):
     """
 
     def find_record_status(self):
-        file_path: str = self.get_context().get_file_path
+        file_path: str = self.get_context().get_file_path()
         # read all namespaces
         namespaces_strategy = XMLFileProcessContext(XMLNamespaces())
         namespaces = namespaces_strategy.return_file_data(file_path)

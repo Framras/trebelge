@@ -15,10 +15,6 @@ class XMLFileTypeStateContext:
     A reference to the current state of the Context.
     """
 
-    def __init__(self, state: XMLFileTypeState, file_path: str):
-        self.set_state(state)
-        self.set_file_path(file_path)
-
     def set_state(self, state: XMLFileTypeState):
         """
         The Context allows changing the State object at runtime.

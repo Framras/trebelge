@@ -16,8 +16,9 @@ class InvoiceHandler(AbstractXMLFileHandler):
     _invoiceNamespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
                                                         'invoice_namespace_specification')
 
-    def handle_xml_file(self, file_path: str, xml_file_type_context: XMLFileTypeStateContext):
+    def handle_xml_file(self, xml_file_type_context: XMLFileTypeStateContext):
+        file_path = xml_file_type_context.get_file_path()
         if ET.parse(file_path).getroot().tag == self._invoiceNamespace + 'Invoice':
             xml_file_type_context.set_state = InvoiceState()
         else:
-            self._successor.handle_xml_file(file_path, xml_file_type_context)
+            self._successor.handle_xml_file(xml_file_type_context)
