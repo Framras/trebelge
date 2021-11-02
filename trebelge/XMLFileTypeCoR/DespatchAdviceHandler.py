@@ -3,7 +3,7 @@ import frappe
 
 from trebelge.XMLFileTypeCoR.AbstractXMLFileTypeHandler import AbstractXMLFileTypeHandler
 from trebelge.XMLFileTypeState import XMLFileTypeContext
-from trebelge.XMLFileTypeState.DespatchAdviceState import Desc
+from trebelge.XMLFileTypeState.DespatchAdviceState import DespatchAdviceState
 
 
 class DespatchAdviceHandler(AbstractXMLFileTypeHandler):
