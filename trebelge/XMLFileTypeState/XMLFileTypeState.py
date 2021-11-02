@@ -12,18 +12,18 @@ class XMLFileTypeState(ABC):
     transition the Context to another State.
     """
 
-    @property
-    def context(self) -> XMLFileTypeContext:
+    _context: XMLFileTypeContext = None
+
+    def get_context(self):
         return self._context
 
-    @context.setter
-    def context(self, context: XMLFileTypeContext) -> None:
+    def set_context(self, context: XMLFileTypeContext):
         self._context = context
 
     @abstractmethod
-    def find_record_status(self, file_path: str) -> None:
+    def find_record_status(self, file_path: str):
         pass
 
     @abstractmethod
-    def handle2(self) -> None:
+    def handle2(self):
         pass
