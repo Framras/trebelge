@@ -48,21 +48,13 @@ def get_ebelge_users():
 
 @frappe.whitelist()
 def check_all_xml_files():
+    # for all *.xml files in Frappe
     for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
-        # check if record exists by filters
+        # retrieve file path of xmlFile
         filePath: str = frappe.get_site_path() + xmlFile.file_url
         # process xmlFile
         processManager = XMLFileProcessManager(filePath)
-        # read all namespaces
-        namespaces = dict([node for _, node in ET.iterparse(filePath, events=['start-ns'])])
-        default_namespace: str = '{' + namespaces.get('') + '}'
-        cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
-        cac_namespace: str = '{' + namespaces.get('cac') + '}'
-        if ET.parse(filePath).getroot().tag == invoice_namespace + 'Invoice':
-            if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
-                                     "uuid": ET.parse(filePath).getroot().find(cbc_namespace + 'UUID').text}):
-                read_efatura_file(filePath)
     return frappe.utils.now_datetime()
 
 
