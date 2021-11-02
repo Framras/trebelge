@@ -33,5 +33,5 @@ class XMLFileTypeContext:
     def find_record_status(self, file_path: str):
         self._state.find_record_status(file_path)
 
-    def request2(self):
-        self._state.handle2()
+    def list_file_namespaces(self, file_path: str):
+        self._state.list_file_namespaces(file_path)

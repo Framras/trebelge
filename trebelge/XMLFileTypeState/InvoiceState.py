@@ -1,10 +1,10 @@
 # from __future__ import annotations
+import xml.etree.ElementTree as ET
+
+import frappe
 from trebelge.XMLFileProcessStrategy.XMLFileProcessContext import XMLFileProcessContext
 from trebelge.XMLFileProcessStrategy.XMLNamespaces import XMLNamespaces
 from trebelge.XMLFileTypeState.XMLFileTypeState import XMLFileTypeState
-
-import xml.etree.ElementTree as ET
-import frappe
 
 
 class InvoiceState(XMLFileTypeState):
