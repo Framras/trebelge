@@ -15,8 +15,7 @@ class DespatchAdviceHandler(AbstractXMLFileTypeHandler):
 
     def handle_request(self, file_path: str, xml_file_type_context: XMLFileTypeContext):
         if ET.parse(file_path).getroot().tag == self.despatchAdviceNamespace + 'DespatchAdvice':
-            # TODO: Implement DespatchAdvice processing
-            pass
+            xml_file_type_context.set_state = DespatchAdviceState()
         else:
             # TODO: Raise 'File is of unknown type' warning and leave it be
             pass
