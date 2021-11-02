@@ -15,6 +15,8 @@ class NewInvoiceState(AbstractXMLFileTypeState, ABC):
     def find_record_status(self):
         if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                  "uuid": ET.parse(filePath).getroot().find(cbc_namespace + 'UUID').text}):
+            # TODO: Implement this
+            pass
 
     def list_file_namespaces(self) -> None:
         pass
