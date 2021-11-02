@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import frappe
 
-from trebelge.XMLFileCoR.AbstractXMLFileTypeHandler import AbstractXMLFileTypeHandler
+from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileTypeHandler
 from trebelge.XMLFileCoR.DespatchAdviceHandler import DespatchAdviceHandler
 from trebelge.XMLFileTypeState import XMLFileTypeContext
 from trebelge.XMLFileTypeState.InvoiceState import InvoiceState
