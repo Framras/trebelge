@@ -16,3 +16,5 @@ class XMLFileProcessManager:
         self._hXMLFileHandler.handle_xml_file(self._cXMLFileTypeStateContext)
         # check on State if file is previously processed and recorded
         self._cXMLFileTypeStateContext.find_record_status()
+        # TODO: Take it from here (The current State in StateContext is the next step)
+        self._cXMLFileTypeStateContext.list_file_namespaces()

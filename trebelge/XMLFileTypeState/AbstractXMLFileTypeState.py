@@ -25,5 +25,5 @@ class AbstractXMLFileTypeState(ABC):
         pass
 
     @abstractmethod
-    def list_file_namespaces(self):
+    def initiate_new_record(self):
         pass

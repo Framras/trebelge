@@ -28,5 +28,5 @@ class InvoiceState(AbstractXMLFileTypeState):
                                  "uuid": ET.parse(file_path).getroot().find(cbc_namespace + uuid).text}):
             self.get_context().set_state(NewInvoiceState())
 
-    def list_file_namespaces(self) -> None:
+    def initiate_new_record(self) -> None:
         pass

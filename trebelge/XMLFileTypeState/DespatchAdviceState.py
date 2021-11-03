@@ -11,5 +11,5 @@ class DespatchAdviceState(AbstractXMLFileTypeState):
     def find_record_status(self) -> None:
         pass
 
-    def list_file_namespaces(self) -> None:
+    def initiate_new_record(self) -> None:
         pass

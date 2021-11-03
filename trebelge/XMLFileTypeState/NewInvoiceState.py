@@ -12,5 +12,5 @@ class NewInvoiceState(AbstractXMLFileTypeState):
     def find_record_status(self):
         pass
 
-    def list_file_namespaces(self) -> None:
+    def initiate_new_record(self) -> None:
         pass
