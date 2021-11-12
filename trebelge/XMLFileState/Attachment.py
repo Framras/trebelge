@@ -3,7 +3,7 @@
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 
 
-class AirTransport(AbstractXMLFileState):
+class Attachment(AbstractXMLFileState):
     """
     State methods
     Backreference to the Context object, associated with the State.
@@ -16,5 +16,7 @@ class AirTransport(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
-        self._mapping['AircraftID'] = ('cbc', '', 'Zorunlu (1)', False, False, True)
-        self._mapping['AirTransport'] = ('cac', 'AirTransport', '', False, False, True)
+        self._mapping['ExternalReference'] = ('cac', 'ExternalReference', 'Seçimli (0..1)', True, False, False)
+        self._mapping['EmbeddedDocumentBinaryObject'] = (
+            'cbc', '', 'Seçimli (0..1)', True, True, False)
+        self._mapping['Attachment'] = ('cac', 'Attachment', '', False, False, True)
