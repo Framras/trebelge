@@ -48,8 +48,8 @@ class XMLFileStateContext:
     def find_ebelge_type(self, file_path: str):
         self._state.find_ebelge_type(file_path)
 
-    def find_record_status(self):
-        self._state.find_record_status()
+    def find_ebelge_status(self):
+        self._state.find_ebelge_status()
 
     def initiate_new_record(self):
         self._state.initiate_new_record()

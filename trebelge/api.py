@@ -5,8 +5,6 @@ import frappe
 from trebelge.EbelgeUsers import EbelgeUsers
 from trebelge.XMLFileCoR import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
-from trebelge.XMLFileState import AbstractXMLFileState
-from trebelge.XMLFileState.InitialState import InitialState
 from trebelge.XMLFileState.XMLFileStateContext import XMLFileStateContext
 
 
@@ -59,7 +57,7 @@ def check_all_xml_files():
         filePath: str = frappe.get_site_path() + xmlFile.file_url
         hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
         stateContext = XMLFileStateContext()
-        stateContext.set_state(hXMLFileHandler.handle_xml_file())
+        stateContext.set_state(hXMLFileHandler.handle_xml_file(filePath))
         # process xmlFile
         stateContext.set_file_path(filePath)
 
