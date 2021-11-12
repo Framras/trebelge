@@ -2,7 +2,7 @@
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileTypeState
 
 
-class XMLFileTypeStateContext:
+class XMLFileStateContext:
     """
     The Context defines the interface of interest to clients. It also maintains
     a reference to an instance of a State subclass, which represents the current
@@ -13,6 +13,20 @@ class XMLFileTypeStateContext:
     """
     A reference to the current state of the Context.
     """
+    # initiate CoR pattern for xmlFile
+    _hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
+    # initiate Context of State pattern
+    _cXMLFileTypeStateContext = XMLFileTypeStateContext()
+
+    def __init__(self, file_path: str):
+        # initiate Context of State pattern for FileType
+        self._cXMLFileTypeStateContext.set_file_path(file_path)
+        # handle file by CoR to determine State
+        self._hXMLFileHandler.handle_xml_file(self._cXMLFileTypeStateContext)
+        # check on State if file is previously processed and recorded
+        self._cXMLFileTypeStateContext.find_record_status()
+        # TODO: Take it from here (The current State in StateContext is the next step)
+        self._cXMLFileTypeStateContext.list_file_namespaces()
 
     def set_state(self, state: AbstractXMLFileTypeState):
         """

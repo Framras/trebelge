@@ -4,7 +4,7 @@ import frappe
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.DespatchAdviceHandler import DespatchAdviceHandler
 from trebelge.XMLFileState.InvoiceState import InvoiceState
-from trebelge.XMLFileState.XMLFileTypeStateContext import XMLFileTypeStateContext
+from trebelge.XMLFileState.XMLFileStateContext import XMLFileTypeStateContext
 
 
 class InvoiceHandler(AbstractXMLFileHandler):
