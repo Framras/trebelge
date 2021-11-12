@@ -56,12 +56,16 @@ def check_all_xml_files():
         # retrieve file path of xmlFile
         filePath: str = frappe.get_site_path() + xmlFile.file_url
         hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
+        # initiate Context of State pattern
         stateContext = XMLFileStateContext()
         # handle file by CoR to determine State
         stateContext.set_state(hXMLFileHandler.handle_xml_file(filePath))
         # initiate Context of State pattern for FileType
         stateContext.set_file_path(filePath)
         # process xmlFile
+        stateContext.find_ebelge_type()
+        # check on State if file is previously processed and recorded
+        stateContext.find_record_status()
 
     return frappe.utils.now_datetime()
 
@@ -70,11 +74,6 @@ def read_efatura_file(filepath):
     if ET.parse(filepath).getroot().tag == invoice_namespace + 'Invoice':
         if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                  "uuid": ET.parse(filepath).getroot().find(cbc_namespace + 'UUID').text}):
-            # read all namespaces
-            namespaces = dict([node for _, node in ET.iterparse(filepath, events=['start-ns'])])
-            default_namespace: str = '{' + namespaces.get('') + '}'
-            cbc_namespace: str = '{' + namespaces.get('cbc') + '}'
-            cac_namespace: str = '{' + namespaces.get('cac') + '}'
             # check if ebelge is Invoice
             if ET.parse(filepath).getroot().tag == invoice_namespace + 'Invoice':
                 newdoc = frappe.new_doc('TR GIB eFatura Gelen')

@@ -1,9 +1,10 @@
 # from __future__ import annotations
 import xml.etree.ElementTree as ET
 
-import frappe
 from trebelge.XMLFileProcessStrategy.CBCNamespace import CBCNamespace
 from trebelge.XMLFileProcessStrategy.UUID import UUID
+
+import frappe
 from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileTypeState
 from trebelge.XMLFileState.NewInvoiceState import NewInvoiceState
