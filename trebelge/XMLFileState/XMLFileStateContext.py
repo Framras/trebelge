@@ -87,3 +87,6 @@ class XMLFileStateContext:
 
     def find_ebelge_status(self):
         self._state.find_ebelge_status()
+
+    def define_mappings(self):
+        self._state.define_mappings()

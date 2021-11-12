@@ -23,3 +23,7 @@ class AbstractXMLFileState(ABC):
     @abstractmethod
     def find_ebelge_status(self):
         pass
+
+    @abstractmethod
+    def define_mappings(self):
+        pass
