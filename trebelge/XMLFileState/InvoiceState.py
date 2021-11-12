@@ -1,33 +1,19 @@
 # from __future__ import annotations
 import xml.etree.ElementTree as ET
 
-from trebelge.XMLFileProcessStrategy.CBCNamespace import CBCNamespace
-from trebelge.XMLFileProcessStrategy.UUID import UUID
-
 import frappe
-from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
-from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileTypeState
+from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 from trebelge.XMLFileState.NewInvoiceState import NewInvoiceState
 
 
-class InvoiceState(AbstractXMLFileTypeState):
+class InvoiceState(AbstractXMLFileState):
     """
     State methods
     Backreference to the Context object, associated with the State.
     """
 
-    def find_record_status(self):
+    def find_ebelge_status(self):
         file_path: str = self.get_context().get_file_path()
-        context = XMLFileProcessStrategyContext()
-        context.set_file_path(file_path)
-        context.set_strategy(CBCNamespace())
-        cbc_namespace: str = context.return_file_data()
-        context.set_strategy(UUID())
-        uuid: str = context.return_file_data()
-
         if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                  "uuid": ET.parse(file_path).getroot().find(cbc_namespace + uuid).text}):
             self.get_context().set_state(NewInvoiceState())
-
-    def initiate_new_record(self) -> None:
-        pass

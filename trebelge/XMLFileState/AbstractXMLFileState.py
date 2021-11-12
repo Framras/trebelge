@@ -21,9 +21,5 @@ class AbstractXMLFileState(ABC):
         self._context = context
 
     @abstractmethod
-    def find_record_status(self):
-        pass
-
-    @abstractmethod
-    def initiate_new_record(self):
+    def find_ebelge_status(self):
         pass
