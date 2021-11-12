@@ -22,6 +22,7 @@ class XMLFileStateContext:
     _cac_namespace: str = ''
     _cbc_namespace: str = ''
     _uuid: str = ''
+    _mapping = dict()
     # initiate CoR pattern for xmlFile
     _hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
 
@@ -73,6 +74,12 @@ class XMLFileStateContext:
 
     def get_uuid(self):
         return self._uuid
+
+    def set_mapping(self, mapping: dict):
+        self._mapping = mapping
+
+    def get_mapping(self):
+        return self._mapping
 
     """
     The Context delegates part of its behavior to the current State object.
