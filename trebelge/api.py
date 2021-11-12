@@ -62,8 +62,6 @@ def check_all_xml_files():
         stateContext.set_state(hXMLFileHandler.handle_xml_file(filePath))
         # initiate Context of State pattern for FileType
         stateContext.set_file_path(filePath)
-        # process xmlFile
-        stateContext.find_ebelge_type()
         # check on State if file is previously processed and recorded
         stateContext.find_record_status()
 
