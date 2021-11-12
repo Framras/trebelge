@@ -3,7 +3,11 @@ from xml.etree.ElementTree import XMLParser
 
 import frappe
 from trebelge.EbelgeUsers import EbelgeUsers
-from trebelge.XMLFileProcessManager import XMLFileProcessManager
+from trebelge.XMLFileCoR import AbstractXMLFileHandler
+from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
+from trebelge.XMLFileState import AbstractXMLFileState
+from trebelge.XMLFileState.InitialState import InitialState
+from trebelge.XMLFileState.XMLFileStateContext import XMLFileStateContext
 
 
 @frappe.whitelist()
@@ -53,8 +57,12 @@ def check_all_xml_files():
                                   fields={"file_url"}):
         # retrieve file path of xmlFile
         filePath: str = frappe.get_site_path() + xmlFile.file_url
+        hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
+        stateContext = XMLFileStateContext()
+        stateContext.set_state(hXMLFileHandler.handle_xml_file())
         # process xmlFile
-        processManager = XMLFileProcessManager(filePath)
+        stateContext.set_file_path(filePath)
+
     return frappe.utils.now_datetime()
 
 

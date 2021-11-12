@@ -45,6 +45,9 @@ class XMLFileStateContext:
     The Context delegates part of its behavior to the current State object.
     """
 
+    def find_ebelge_type(self, file_path: str):
+        self._state.find_ebelge_type(file_path)
+
     def find_record_status(self):
         self._state.find_record_status()
 
