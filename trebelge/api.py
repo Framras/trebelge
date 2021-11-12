@@ -57,7 +57,9 @@ def check_all_xml_files():
         filePath: str = frappe.get_site_path() + xmlFile.file_url
         hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
         stateContext = XMLFileStateContext()
+        # handle file by CoR to determine State
         stateContext.set_state(hXMLFileHandler.handle_xml_file(filePath))
+        # initiate Context of State pattern for FileType
         stateContext.set_file_path(filePath)
         # process xmlFile
 
