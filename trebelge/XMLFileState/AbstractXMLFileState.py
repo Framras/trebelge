@@ -12,12 +12,12 @@ class AbstractXMLFileState(ABC):
     transition the Context to another State.
     """
 
-    _context: XMLFileTypeStateContext = None
+    _context: XMLFileStateContext = None
 
     def get_context(self):
         return self._context
 
-    def set_context(self, context: XMLFileTypeStateContext):
+    def set_context(self, context: XMLFileStateContext):
         self._context = context
 
     @abstractmethod

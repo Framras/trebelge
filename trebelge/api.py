@@ -58,15 +58,13 @@ def check_all_xml_files():
         hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
         stateContext = XMLFileStateContext()
         stateContext.set_state(hXMLFileHandler.handle_xml_file(filePath))
-        # process xmlFile
         stateContext.set_file_path(filePath)
+        # process xmlFile
 
     return frappe.utils.now_datetime()
 
 
 def read_efatura_file(filepath):
-    invoice_namespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
-                                                        'invoice_namespace_specification')
     if ET.parse(filepath).getroot().tag == invoice_namespace + 'Invoice':
         if not frappe.db.exists({"doctype": "TR GIB eFatura Gelen",
                                  "uuid": ET.parse(filepath).getroot().find(cbc_namespace + 'UUID').text}):
