@@ -6,7 +6,6 @@ class XMLFileProcessStrategyContext:
     """
     The Context defines the interface of interest to clients.
     """
-    _file_path: str = ''
     _strategy: XMLFileProcessStrategy = None
     """
     Usually, the Context accepts a strategy through the constructor, but
@@ -26,12 +25,6 @@ class XMLFileProcessStrategyContext:
         with all strategies via the Strategy interface.
         """
         return self._strategy
-
-    def set_file_path(self, file_path: str):
-        self._file_path = file_path
-
-    def get_file_path(self):
-        return self._file_path
 
     def return_file_data(self):
         """

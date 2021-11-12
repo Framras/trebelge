@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 
-from trebelge.XMLFileProcessStrategy import XMLFileProcessStrategyContext
-
 
 class XMLFileProcessStrategy(ABC):
     """
@@ -13,5 +11,5 @@ class XMLFileProcessStrategy(ABC):
     """
 
     @abstractmethod
-    def return_xml_file_data(self, context: XMLFileProcessStrategyContext):
+    def return_xml_file_data(self):
         pass
