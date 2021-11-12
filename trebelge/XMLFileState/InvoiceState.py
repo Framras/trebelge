@@ -5,8 +5,8 @@ import frappe
 from trebelge.XMLFileProcessStrategy.CBCNamespace import CBCNamespace
 from trebelge.XMLFileProcessStrategy.UUID import UUID
 from trebelge.XMLFileProcessStrategy.XMLFileProcessStrategyContext import XMLFileProcessStrategyContext
-from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import AbstractXMLFileTypeState
-from trebelge.XMLFileTypeState.NewInvoiceState import NewInvoiceState
+from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileTypeState
+from trebelge.XMLFileState.NewInvoiceState import NewInvoiceState
 
 
 class InvoiceState(AbstractXMLFileTypeState):

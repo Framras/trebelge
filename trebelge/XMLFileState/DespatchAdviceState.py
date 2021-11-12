@@ -1,15 +1,14 @@
 # from __future__ import annotations
+from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileTypeState
 
-from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import AbstractXMLFileTypeState
 
-
-class NewInvoiceState(AbstractXMLFileTypeState):
+class DespatchAdviceState(AbstractXMLFileTypeState):
     """
     State methods
     Backreference to the Context object, associated with the State.
     """
 
-    def find_record_status(self):
+    def find_record_status(self) -> None:
         pass
 
     def initiate_new_record(self) -> None:

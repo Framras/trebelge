@@ -1,6 +1,6 @@
 from trebelge.XMLFileCoR import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
-from trebelge.XMLFileTypeState.XMLFileTypeStateContext import XMLFileTypeStateContext
+from trebelge.XMLFileState.XMLFileTypeStateContext import XMLFileTypeStateContext
 
 
 class XMLFileProcessManager:

@@ -1,5 +1,5 @@
 # from __future__ import annotations
-from trebelge.XMLFileTypeState.AbstractXMLFileTypeState import AbstractXMLFileTypeState
+from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileTypeState
 
 
 class XMLFileTypeStateContext:

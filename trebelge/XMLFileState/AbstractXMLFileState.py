@@ -1,10 +1,10 @@
 # from __future__ import annotations
 from abc import ABC, abstractmethod
 
-from trebelge.XMLFileTypeState import XMLFileTypeStateContext
+from trebelge.XMLFileState import XMLFileTypeStateContext
 
 
-class AbstractXMLFileTypeState(ABC):
+class AbstractXMLFileState(ABC):
     """
     The base State class declares methods that all Concrete State should
     implement and also provides a reference to the Context object,
