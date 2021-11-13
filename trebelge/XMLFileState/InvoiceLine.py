@@ -53,4 +53,3 @@ class InvoiceLine(AbstractXMLFileState):
         self._mapping['SubInvoiceLine'] = (
             'cac', 'InvoiceLine', 'Seçimli (0...n)', True, False, False)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
-     
