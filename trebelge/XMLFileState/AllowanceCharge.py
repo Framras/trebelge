@@ -17,6 +17,9 @@ class AllowanceCharge(AbstractXMLFileState):
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
         self._mapping['ChargeIndicator'] = ('cbc', '', 'Zorunlu (1)', False, False, True)
+        """
+        İskonto ise “false”, artırım ise “true”
+        """
         self._mapping['AllowanceChargeReason'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['MultiplierFactorNumeric'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['SequenceNumeric'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
