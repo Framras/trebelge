@@ -1,8 +1,6 @@
 # from __future__ import annotations
 
-import frappe
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
-from trebelge.XMLFileState.NewInvoiceState import NewInvoiceState
 
 
 class PartyIdentification(AbstractXMLFileState):
@@ -14,10 +12,7 @@ class PartyIdentification(AbstractXMLFileState):
     _mapping = dict()
 
     def find_ebelge_status(self):
-        if not frappe.db.exists({"doctype": self._frappeDoctype,
-                                 "uuid": self.get_context().get_uuid()}):
-            self.define_mappings()
-            self.get_context().set_state(NewInvoiceState())
+        pass
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
