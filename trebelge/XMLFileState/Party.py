@@ -33,4 +33,4 @@ class Party(AbstractXMLFileState):
         self._mapping['Contact'] = ('cac', 'Contact', 'Seçimli (0...1)', True, False, False)
         self._mapping['Person'] = ('cac', 'Person', 'Seçimli (0...1)', True, False, False)
         self._mapping['AgentParty'] = ('cac', 'AgentParty', 'Seçimli (0...1)', True, False, False)
-        self._mapping['Party'] = ('cac', 'Party', 'Zorunlu (1...n)', False, False, True)
+        self._mapping['Party'] = ('cac', 'Party', '', False, False, True)
