@@ -10,6 +10,7 @@ class Party(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'Party'
 
     def find_ebelge_status(self):
         pass
@@ -28,4 +29,4 @@ class Party(AbstractXMLFileState):
         self._mapping['Contact'] = ('cac', 'Contact', 'Seçimli (0...1)', True, False, False)
         self._mapping['Person'] = ('cac', 'Person', 'Seçimli (0...1)', True, False, False)
         self._mapping['AgentParty'] = ('cac', 'AgentParty', 'Seçimli (0...1)', True, False, False)
-        self._mapping['Party'] = ('cac', 'Party', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

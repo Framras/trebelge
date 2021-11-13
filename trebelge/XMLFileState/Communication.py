@@ -10,6 +10,7 @@ class Communication(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'OtherCommunication'
 
     def find_ebelge_status(self):
         pass
@@ -19,4 +20,4 @@ class Communication(AbstractXMLFileState):
         self._mapping['ChannelCode'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
         self._mapping['Channel'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['Value'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
-        self._mapping['OtherCommunication'] = ('cac', 'OtherCommunication', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

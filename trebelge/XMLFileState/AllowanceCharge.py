@@ -10,6 +10,7 @@ class AllowanceCharge(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'AllowanceCharge'
 
     def find_ebelge_status(self):
         pass
@@ -26,4 +27,4 @@ class AllowanceCharge(AbstractXMLFileState):
         self._mapping['Amount'] = ('cbc', '', 'Zorunlu (1)', False, False, True)
         self._mapping['BaseAmount'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['PerUnitAmount'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
-        self._mapping['AllowanceCharge'] = ('cac', 'AllowanceCharge', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

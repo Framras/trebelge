@@ -10,6 +10,7 @@ class Period(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'InvoicePeriod'
 
     def find_ebelge_status(self):
         pass
@@ -23,4 +24,4 @@ class Period(AbstractXMLFileState):
         self._mapping['DurationMeasure'] = ('cbc', '', 'Seçimli (0...1)', True, True, True)
         self._mapping['unitCode'] = ('cbc', '', 'Zorunlu (1)', True, False, False)
         self._mapping['Description'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
-        self._mapping['Period'] = ('cac', 'Period', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

@@ -10,6 +10,7 @@ class Attachment(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'Attachment'
 
     def find_ebelge_status(self):
         pass
@@ -19,4 +20,4 @@ class Attachment(AbstractXMLFileState):
         self._mapping['ExternalReference'] = ('cac', 'ExternalReference', 'Seçimli (0..1)', True, False, False)
         self._mapping['EmbeddedDocumentBinaryObject'] = (
             'cbc', '', 'Seçimli (0..1)', True, True, False)
-        self._mapping['Attachment'] = ('cac', 'Attachment', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

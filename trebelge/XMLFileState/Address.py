@@ -3,13 +3,14 @@
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 
 
-class Adress(AbstractXMLFileState):
+class Address(AbstractXMLFileState):
     """
     State methods
     Backreference to the Context object, associated with the State.
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'Address'
 
     def find_ebelge_status(self):
         pass
@@ -29,4 +30,4 @@ class Adress(AbstractXMLFileState):
         self._mapping['Region'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['District'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['Country'] = ('cac', '', 'Zorunlu(1)', True, False, False)
-        self._mapping['PostalAddress'] = ('cac', 'PostalAddress', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

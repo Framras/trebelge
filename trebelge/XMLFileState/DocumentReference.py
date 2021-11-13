@@ -10,6 +10,7 @@ class DocumentReference(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'AdditionalDocumentReference'
 
     def find_ebelge_status(self):
         pass
@@ -24,4 +25,4 @@ class DocumentReference(AbstractXMLFileState):
         self._mapping['Attachment'] = ('cac', 'Attachment', 'Seçimli (0...1)', True, False, False)
         self._mapping['ValidityPeriod'] = ('cac', 'ValidityPeriod', 'Seçimli (0...1)', True, False, False)
         self._mapping['IssuerParty'] = ('cac', 'IssuerParty', 'Seçimli (0...1)', True, False, False)
-        self._mapping['DocumentReference'] = ('cac', 'DocumentReference', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

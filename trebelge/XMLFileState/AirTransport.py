@@ -10,6 +10,7 @@ class AirTransport(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'AirTransport'
 
     def find_ebelge_status(self):
         pass
@@ -17,4 +18,4 @@ class AirTransport(AbstractXMLFileState):
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
         self._mapping['AircraftID'] = ('cbc', '', 'Zorunlu (1)', False, False, True)
-        self._mapping['AirTransport'] = ('cac', 'AirTransport', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

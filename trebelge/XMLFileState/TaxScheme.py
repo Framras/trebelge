@@ -10,6 +10,7 @@ class TaxScheme(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'TaxScheme'
 
     def find_ebelge_status(self):
         pass
@@ -19,4 +20,4 @@ class TaxScheme(AbstractXMLFileState):
         self._mapping['ID'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['Name'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['TaxTypeCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
-        self._mapping['TaxScheme'] = ('cac', 'TaxScheme', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

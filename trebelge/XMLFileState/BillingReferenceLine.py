@@ -10,6 +10,7 @@ class BillingReferenceLine(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'BillingReferenceLine'
 
     def find_ebelge_status(self):
         pass
@@ -19,4 +20,4 @@ class BillingReferenceLine(AbstractXMLFileState):
         self._mapping['ID'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
         self._mapping['Amount'] = ('cbc', '', 'Seçimli (0..1)', False, False, True)
         self._mapping['AllowanceCharge.'] = ('cac', 'AllowanceCharge.', 'Seçimli (0...n)', True, False, False)
-        self._mapping['BillingReferenceLine'] = ('cac', 'BillingReferenceLine', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

@@ -10,6 +10,7 @@ class Contact(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'Contact'
 
     def find_ebelge_status(self):
         pass
@@ -23,4 +24,4 @@ class Contact(AbstractXMLFileState):
         self._mapping['ElectronicMail'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['Note'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['OtherCommunication'] = ('cac', 'OtherCommunication', 'Seçimli(0..n)', True, False, False)
-        self._mapping['Contact'] = ('cac', 'Contact', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

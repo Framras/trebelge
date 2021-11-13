@@ -10,6 +10,7 @@ class ExternalReference(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'ExternalReference'
 
     def find_ebelge_status(self):
         pass
@@ -18,4 +19,4 @@ class ExternalReference(AbstractXMLFileState):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
         self._mapping['URI'] = (
             'cbc', '', 'Zorunlu(1)', True, False, False)
-        self._mapping['ExternalReference'] = ('cac', 'ExternalReference', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

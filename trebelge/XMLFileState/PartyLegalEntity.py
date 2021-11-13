@@ -10,6 +10,7 @@ class PartyLegalEntity(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'PartyLegalEntity'
 
     def find_ebelge_status(self):
         pass
@@ -26,4 +27,4 @@ class PartyLegalEntity(AbstractXMLFileState):
         self._mapping['CorporateRegistrationScheme'] = (
             'cac', 'CorporateRegistrationScheme', 'Seçimli (0...1)', True, False, False)
         self._mapping['HeadOfficeParty'] = ('cac', 'HeadOfficeParty', 'Seçimli (0...1)', True, False, False)
-        self._mapping['PartyLegalEntity'] = ('cac', 'PartyLegalEntity', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

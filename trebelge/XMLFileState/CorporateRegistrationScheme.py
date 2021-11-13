@@ -10,6 +10,7 @@ class CorporateRegistrationScheme(AbstractXMLFileState):
     """
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
+    _elementTag: str = 'CorporateRegistrationScheme'
 
     def find_ebelge_status(self):
         pass
@@ -21,4 +22,4 @@ class CorporateRegistrationScheme(AbstractXMLFileState):
         self._mapping['CorporateRegistrationTypeCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping['JurisdictionRegionAddress'] = (
             'cac', 'JurisdictionRegionAddress', 'Seçimli(0..n)', True, False, False)
-        self._mapping['CorporateRegistrationScheme'] = ('cac', 'CorporateRegistrationScheme', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
