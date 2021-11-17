@@ -17,19 +17,27 @@ class BillingReference(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
+        # Seçimli(0..1): InvoiceDocumentReference:DocumentReference
         self._mapping['InvoiceDocumentReference'] = (
-            'cac', 'InvoiceDocumentReference', 'Seçimli (0..1)', True, False, False)
+            'cac', 'DocumentReference', 'Seçimli (0..1)', True, False, False)
+        # Seçimli(0..1): SelfBilledInvoiceDocumentReference:DocumentReference
         self._mapping['SelfBilledInvoiceDocumentReference'] = (
-            'cac', 'SelfBilledInvoiceDocumentReference', 'Seçimli (0..1)', True, False, False)
+            'cac', 'DocumentReference', 'Seçimli (0..1)', True, False, False)
+        # Seçimli(0..1): CreditNoteDocumentReference:DocumentReference
         self._mapping['CreditNoteDocumentReference'] = (
-            'cac', 'CreditNoteDocumentReference', 'Seçimli (0..1)', True, False, False)
+            'cac', 'DocumentReference', 'Seçimli (0..1)', True, False, False)
+        # Seçimli(0..1): SelfBilledCreditNoteDocumentReference:DocumentReference
         self._mapping['SelfBilledCreditNoteDocumentReference'] = (
-            'cac', 'SelfBilledCreditNoteDocumentReference', 'Seçimli (0..1)', True, False, False)
+            'cac', 'DocumentReference', 'Seçimli (0..1)', True, False, False)
+        # Seçimli(0..1): DebitNoteDocumentReference:DocumentReference
         self._mapping['DebitNoteDocumentReference'] = (
-            'cac', 'DebitNoteDocumentReference', 'Seçimli (0..1)', True, False, False)
+            'cac', 'DocumentReference', 'Seçimli (0..1)', True, False, False)
+        # Seçimli(0..1): ReminderDocumentReference:DocumentReference
         self._mapping['ReminderDocumentReference'] = (
-            'cac', 'ReminderDocumentReference', 'Seçimli (0..1)', True, False, False)
+            'cac', 'DocumentReference', 'Seçimli (0..1)', True, False, False)
+        # Seçimli(0..1): AdditionalDocumentReference:DocumentReference
         self._mapping['AdditionalDocumentReference'] = (
-            'cac', 'AdditionalDocumentReference', 'Seçimli (0..1)', True, False, False)
+            'cac', 'DocumentReference', 'Seçimli (0..1)', True, False, False)
+        # Seçimli(0..n): BillingReferenceLine:BillingReferenceLine
         self._mapping['BillingReferenceLine'] = ('cac', 'BillingReferenceLine', 'Seçimli (0...n)', True, False, False)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
