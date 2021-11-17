@@ -17,7 +17,10 @@ class PartyTaxScheme(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
+        # Seçimli(0..1): RegistrationName
         self._mapping['RegistrationName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Seçimli(0..1): CompanyID
         self._mapping['CompanyID'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Zorunlu(1): TaxScheme
         self._mapping['TaxScheme'] = ('cac', 'TaxScheme', 'Zorunlu (1)', True, False, False)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

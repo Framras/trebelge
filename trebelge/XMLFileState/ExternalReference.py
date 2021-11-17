@@ -17,6 +17,7 @@ class ExternalReference(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
+        # Zorunlu(1): URI
         self._mapping['URI'] = (
             'cbc', '', 'Zorunlu(1)', True, False, False)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

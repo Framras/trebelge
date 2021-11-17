@@ -17,7 +17,10 @@ class Communication(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
+        # Zorunlu(1): ChannelCode
         self._mapping['ChannelCode'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
+        # Seçimli(0..1): Channel
         self._mapping['Channel'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Zorunlu(1): Value
         self._mapping['Value'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

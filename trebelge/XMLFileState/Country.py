@@ -17,6 +17,8 @@ class Country(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
+        # Seçimli(0..1): IdentificationCode
         self._mapping['IdentificationCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Zorunlu(1): Name
         self._mapping['Name'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

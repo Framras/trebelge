@@ -17,12 +17,20 @@ class DocumentReference(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
+        # Zorunlu(1): ID
         self._mapping['ID'] = ('cbc', '', 'Zorunlu (1)', False, False, True)
+        # Zorunlu(1): IssueDate
         self._mapping['IssueDate'] = ('cbc', '', 'Zorunlu (1)', False, False, True)
+        # Seçimli(0..1) : DocumentTypeCode
         self._mapping['DocumentTypeCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Seçimli(0..1) : DocumentType
         self._mapping['DocumentType'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Seçimli(0..n) : DocumentDescription
         self._mapping['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', False, False, True)
+        # Seçimli(0..1): Attachment
         self._mapping['Attachment'] = ('cac', 'Attachment', 'Seçimli (0...1)', True, False, False)
-        self._mapping['ValidityPeriod'] = ('cac', 'ValidityPeriod', 'Seçimli (0...1)', True, False, False)
-        self._mapping['IssuerParty'] = ('cac', 'IssuerParty', 'Seçimli (0...1)', True, False, False)
+        # Seçimli(0..1): ValidityPeriod:Period
+        self._mapping['ValidityPeriod'] = ('cac', 'Period', 'Seçimli (0...1)', True, False, False)
+        # Seçimli(0..1): IssuerParty:Party
+        self._mapping['IssuerParty'] = ('cac', 'Party', 'Seçimli (0...1)', True, False, False)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)

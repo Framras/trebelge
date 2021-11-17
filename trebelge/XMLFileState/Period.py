@@ -17,11 +17,17 @@ class Period(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
+        # Seçimli (0..1): StartDate
         self._mapping['StartDate'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Seçimli (0..1): StartTime
         self._mapping['StartTime'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Seçimli(0..1): EndDate
         self._mapping['EndDate'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Seçimli (0..1): EndTime
         self._mapping['EndTime'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+        # Seçimli(0..1): DurationMeasure
         self._mapping['DurationMeasure'] = ('cbc', '', 'Seçimli (0...1)', True, True, True)
         self._mapping['unitCode'] = ('cbc', '', 'Zorunlu (1)', True, False, False)
+        # Seçimli(0..1): Description
         self._mapping['Description'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
