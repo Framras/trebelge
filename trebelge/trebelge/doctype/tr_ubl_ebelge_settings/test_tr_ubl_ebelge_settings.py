@@ -5,5 +5,5 @@
 import unittest
 
 
-class TestTRGIBeBelgeSwitchboard(unittest.TestCase):
+class TestTRUBLeBelgeSettings(unittest.TestCase):
     pass

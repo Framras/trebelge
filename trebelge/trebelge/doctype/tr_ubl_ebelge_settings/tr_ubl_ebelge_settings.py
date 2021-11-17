@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRGIBeBelgeSwitchboard(Document):
+class TRUBLeBelgeSettings(Document):
     pass

@@ -7,8 +7,6 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "invoice_namespace_specification",
-    "despatch_advice_namespace_specification",
     "last_run",
     "check_xml_files"
   ],
@@ -22,24 +20,14 @@
       "fieldname": "last_run",
       "fieldtype": "Datetime",
       "label": "Last Run"
-    },
-    {
-      "fieldname": "invoice_namespace_specification",
-      "fieldtype": "Data",
-      "label": "Invoice Namespace Specification"
-    },
-    {
-      "fieldname": "despatch_advice_namespace_specification",
-      "fieldtype": "Data",
-      "label": "Despatch Advice Namespace Specification"
     }
   ],
   "issingle": 1,
   "links": [],
-  "modified": "2021-11-01 22:14:09.714475",
+  "modified": "2021-11-17 11:48:48.010033",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "TR GIB eBelge Switchboard",
+  "name": "TR UBL eBelge Settings",
   "owner": "Administrator",
   "permissions": [
     {

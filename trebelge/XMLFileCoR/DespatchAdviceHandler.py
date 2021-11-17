@@ -8,16 +8,18 @@ from trebelge.XMLFileState.DespatchAdviceState import DespatchAdviceState
 
 class DespatchAdviceHandler(AbstractXMLFileHandler):
     """
-    This Handler has no successor.
+    This Handler's successor:
     CoR Handler method for checking if the FileType is DespatchAdvice.
     """
+    _eBelgeSettingsDoctype: str = 'TR UBL Namespace Specifications'
     _eBelgeTag: str = 'DespatchAdvice'
-    _eBelgeNamespace: str = frappe.db.get_single_value('TR GIB eBelge Switchboard',
-                                                       'despatch_advice_namespace_specification')
     _successor: AbstractXMLFileHandler = ReceiptAdviceHandler()
 
     def handle_xml_file(self, file_path: str):
-        if ET.parse(file_path).getroot().tag == self._eBelgeNamespace + self._eBelgeTag:
-            return DespatchAdviceState()
-        else:
-            self._successor.handle_xml_file(file_path)
+        for namespace in frappe.get_all(
+                self._eBelgeSettingsDoctype, filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
+                fields={"namespace_specification"}):
+            if ET.parse(file_path).getroot().tag == namespace + self._eBelgeTag:
+                return DespatchAdviceState()
+            else:
+                self._successor.handle_xml_file(file_path)
