@@ -10,7 +10,7 @@ class InvoiceState(AbstractXMLFileState):
     State methods
     Backreference to the Context object, associated with the State.
     """
-    _frappeDoctype: str = 'TR GIB eFatura Gelen'
+    _frappeDoctype: str = 'TR UBL Received Invoice'
     _mapping = dict()
 
     def find_ebelge_status(self):
