@@ -78,13 +78,13 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "TR GIB eFatura Gelen",
-      "options": "TR GIB eFatura Gelen",
+      "options": "TR UBL Received Invoice",
       "reqd": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-10-27 11:07:23.693814",
+  "modified": "2021-11-17 13:29:24.309076",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL BillingReference",

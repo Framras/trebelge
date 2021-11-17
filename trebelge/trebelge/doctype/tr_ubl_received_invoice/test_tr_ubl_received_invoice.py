@@ -5,5 +5,5 @@
 import unittest
 
 
-class TestTRGIBeFaturaGelen(unittest.TestCase):
+class TestTRUBLReceivedInvoice(unittest.TestCase):
     pass

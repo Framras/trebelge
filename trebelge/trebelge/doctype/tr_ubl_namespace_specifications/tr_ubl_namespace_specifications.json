@@ -21,7 +21,6 @@
     {
       "fieldname": "namespace_specification",
       "fieldtype": "Data",
-      "in_list_view": 1,
       "label": "Namespace Specification",
       "reqd": 1,
       "unique": 1
@@ -38,7 +37,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-11-17 12:56:30.415812",
+  "modified": "2021-11-17 13:11:32.360602",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Namespace Specifications",
