@@ -1,4 +1,5 @@
 # from __future__ import annotations
+import xml.etree.ElementTree as ET
 
 import frappe
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
@@ -190,3 +191,6 @@ class InvoiceState(AbstractXMLFileState):
         "paymentalternativeexchangerate_date"
         "paymentalternativeexchangerate_targetcurrencycode"
         "paymentalternativeexchangerate_calculationrate"
+
+    def read_element_by_action(self, event: str, element: ET.Element):
+        pass

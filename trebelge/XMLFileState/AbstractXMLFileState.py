@@ -1,4 +1,5 @@
 # from __future__ import annotations
+import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 
 from trebelge.XMLFileState import XMLFileStateContext
@@ -26,4 +27,8 @@ class AbstractXMLFileState(ABC):
 
     @abstractmethod
     def define_mappings(self):
+        pass
+
+    @abstractmethod
+    def read_element_by_action(self, event: str, element: ET.Element):
         pass

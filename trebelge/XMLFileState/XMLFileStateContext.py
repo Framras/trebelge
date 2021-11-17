@@ -90,3 +90,6 @@ class XMLFileStateContext:
 
     def define_mappings(self):
         self._state.define_mappings()
+
+    def read_element_by_action(self, event: str, element: ET.Element):
+        self._state.read_element(event, element)
