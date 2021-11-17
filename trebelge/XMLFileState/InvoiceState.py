@@ -76,7 +76,6 @@ class InvoiceState(AbstractXMLFileState):
         "invoiceperiod_startdate"
         "invoiceperiod_starttime"
         "invoiceperiod_durationmeasure"
-
         "invoiceperiod_enddate"
         "invoiceperiod_endtime"
         "invoiceperiod_durationmeasure_unitcode"
@@ -84,7 +83,6 @@ class InvoiceState(AbstractXMLFileState):
 
         "orderreference_id"
         "orderreference_salesorderid"
-
         "orderreference_issuedate"
         "orderreference_ordertypecode"
         "orderreference_documentreference"
@@ -101,7 +99,6 @@ class InvoiceState(AbstractXMLFileState):
         "accountingsupplierparty_partyidentification_schemeid"
         "accountingsupplierparty_partyidentificationid"
         "accountingsupplierparty_partyname"
-
         "accountingsupplierparty_industryclassificationcode"
         "accountingsupplierparty_endpointid"
         "accountingsupplierparty_postaladdress_id"
@@ -124,24 +121,20 @@ class InvoiceState(AbstractXMLFileState):
 
         "taxexchangerate_sourcecurrencycode"
         "taxexchangerate_date"
-        "column_break_vergi_doviz_kuru"
         "taxexchangerate_targetcurrencycode"
         "taxexchangerate_calculationrate"
 
         "pricingexchangerate_sourcecurrencycode"
         "pricingexchangerate_date"
-        "column_break_fiyatlandirma_doviz_kuru"
         "pricingexchangerate_targetcurrencycode"
         "pricingexchangerate_calculationrate"
 
         "paymentexchangerate_sourcecurrencycode"
         "paymentexchangerate_date"
-        "column_break_odeme_doviz_kuru"
         "paymentexchangerate_targetcurrencycode"
         "paymentexchangerate_calculationrate"
 
         "paymentalternativeexchangerate_sourcecurrencycode"
         "paymentalternativeexchangerate_date"
-        "column_break_alternatif_odeme_doviz_kuru"
         "paymentalternativeexchangerate_targetcurrencycode"
         "paymentalternativeexchangerate_calculationrate"
