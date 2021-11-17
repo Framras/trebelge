@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRGIBeFaturaNote(Document):
+class TRUBLReceivedInvoiceNote(Document):
     pass

@@ -40,7 +40,7 @@ class InvoiceState(AbstractXMLFileState):
         # Zorunlu (1)
         self._mapping['InvoiceTypeCode'] = ('cbc', 'invoicetypecode', 'Zorunlu (1)', False, False, True)
         # Seçimli (0...n)
-        self._mapping['Note'] = ('cbc', 'note', 'Seçimli (0...n)', False, False, True)
+        self._mapping['Note'] = ('cbc', 'notes', 'Seçimli (0...n)', False, False, True)
         # Zorunlu (1)
         self._mapping['DocumentCurrencyCode'] = ('cbc', 'documentcurrencycode', 'Zorunlu (1)', False, False, True)
         # Seçimli (0...1)
@@ -115,6 +115,15 @@ class InvoiceState(AbstractXMLFileState):
         self._mapping['LegalMonetaryTotal'] = ('cac', 'LegalMonetaryTotal', 'Zorunlu (1)', True, False, False)
         # Zorunlu (1...n): InvoiceLine:InvoiceLine
         self._mapping['InvoiceLine'] = ('cac', 'InvoiceLine', 'Zorunlu (1...n)', True, False, False)
+
+        # person = frappe.get_doc('Person', '000001')
+        # person.as_dict() { 'first_name': 'John',
+        # 'last_name': 'Doe',
+        # 'qualifications': [
+        # {'title': 'Frontend Architect', 'year': '2017'},
+        # {'title': 'DevOps Engineer', 'year': '2016'},
+        # ]
+        # }
 
         "invoiceperiod_startdate"
         "invoiceperiod_starttime"

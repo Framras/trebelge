@@ -20,7 +20,7 @@
     "uuid",
     "invoicetypecode",
     "section_break_13",
-    "note",
+    "notes",
     "section_break_15",
     "documentcurrencycode",
     "taxcurrencycode",
@@ -185,13 +185,6 @@
       "options": "SATIS\nIADE\nTEVKIFAT\nISTISNA\nOZELMATRAH\nIHRACKAYITLI",
       "reqd": 1,
       "search_index": 1
-    },
-    {
-      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r.",
-      "fieldname": "note",
-      "fieldtype": "Table",
-      "label": "Not",
-      "options": "TR GIB eFatura Note"
     },
     {
       "description": "Bu elemana faturan\u0131n d\u00fczenlendi\u011fi paran\u0131n birim kodu yaz\u0131lacakt\u0131r.",
@@ -670,10 +663,17 @@
       "fieldtype": "Link",
       "label": "\u00dclke",
       "options": "Country"
+    },
+    {
+      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r.",
+      "fieldname": "notes",
+      "fieldtype": "Table",
+      "label": "Not",
+      "options": "TR UBL Received Invoice Note"
     }
   ],
   "links": [],
-  "modified": "2021-10-30 22:48:56.728519",
+  "modified": "2021-11-18 00:09:53.793012",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",
