@@ -63,7 +63,10 @@ def check_all_xml_files():
         # initiate Context of State pattern for FileType
         stateContext.set_file_path(filePath)
         # check on State if file is previously processed and recorded
-        stateContext.find_record_status()
+        stateContext.find_ebelge_status()
+
+        for event, elem in ET.iterparse(filePath, events=("start", "end")):
+            stateContext.read_element_by_action(event, elem)
 
     return frappe.utils.now_datetime()
 

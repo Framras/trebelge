@@ -112,7 +112,6 @@
       "label": "UBL Versiyon Numaras\u0131",
       "options": "2.1",
       "read_only": 1,
-      "reqd": 1,
       "search_index": 1
     },
     {
@@ -122,7 +121,6 @@
       "label": "\u00d6zelle\u015ftirme Numaras\u0131",
       "options": "TR1.2\nTR1.2.1",
       "read_only": 1,
-      "reqd": 1,
       "search_index": 1
     },
     {
@@ -131,7 +129,6 @@
       "fieldtype": "Select",
       "label": "Senaryo",
       "options": "TEMELFATURA\nTICARIFATURA\nYOLCUBERABERFATURA\nEARSIVFATURA\nIHRACAT",
-      "reqd": 1,
       "search_index": 1
     },
     {
@@ -141,8 +138,7 @@
       "in_filter": 1,
       "in_global_search": 1,
       "in_list_view": 1,
-      "label": "Fatura Numaras\u0131",
-      "reqd": 1
+      "label": "Fatura Numaras\u0131"
     },
     {
       "description": "As\u0131l ise \u201cfalse\u201d, suret ise \u201ctrue\u201d.",
@@ -150,7 +146,6 @@
       "fieldtype": "Select",
       "label": "As\u0131l/Suret",
       "options": "false\ntrue",
-      "reqd": 1,
       "search_index": 1
     },
     {
@@ -167,8 +162,7 @@
       "fieldname": "issuedate",
       "fieldtype": "Date",
       "in_list_view": 1,
-      "label": "D\u00fczenleme Tarihi",
-      "reqd": 1
+      "label": "D\u00fczenleme Tarihi"
     },
     {
       "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
@@ -183,7 +177,6 @@
       "in_list_view": 1,
       "label": "Fatura Tip Kodu",
       "options": "SATIS\nIADE\nTEVKIFAT\nISTISNA\nOZELMATRAH\nIHRACKAYITLI",
-      "reqd": 1,
       "search_index": 1
     },
     {
@@ -192,7 +185,6 @@
       "fieldtype": "Link",
       "label": "Belge Para Birim Kodu",
       "options": "Currency",
-      "reqd": 1,
       "search_index": 1
     },
     {
@@ -238,8 +230,7 @@
       "fieldname": "linecountnumeric",
       "fieldtype": "Int",
       "label": "Kalem Say\u0131s\u0131",
-      "non_negative": 1,
-      "reqd": 1
+      "non_negative": 1
     },
     {
       "description": "Faturan\u0131n ili\u015fkili oldu\u011fu di\u011fer belgelerin bilgileri bu elemana yaz\u0131lacakt\u0131r.",
@@ -673,7 +664,7 @@
     }
   ],
   "links": [],
-  "modified": "2021-11-18 00:09:53.793012",
+  "modified": "2021-11-18 21:09:15.111315",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",
