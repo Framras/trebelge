@@ -17,40 +17,40 @@ class NewInvoiceState(AbstractXMLFileState):
 
     def define_mappings(self):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
-        # Zorunlu (1)
+        # Zorunlu (1): UBLVersionID
         self._mapping['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): CustomizationID
         self._mapping['CustomizationID'] = ('cbc', 'customizationid', 'Zorunlu (1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): ProfileID
         self._mapping['ProfileID'] = ('cbc', 'profileid', 'Zorunlu (1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): ID
         self._mapping['ID'] = ('cbc', 'id', 'Zorunlu (1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): CopyIndicator
         self._mapping['CopyIndicator'] = ('cbc', 'copyindicator', 'Zorunlu (1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): UUID
         self._mapping['UUID'] = ('cbc', 'uuid', 'Zorunlu (1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): IssueDate
         self._mapping['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu (1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): IssueTime
         self._mapping['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): InvoiceTypeCode
         self._mapping['InvoiceTypeCode'] = ('cbc', 'invoicetypecode', 'Zorunlu (1)', False, False, True)
-        # Seçimli (0...n)
+        # Seçimli (0...n): Note
         self._mapping['Note'] = ('cbc', 'notes', 'Seçimli (0...n)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): DocumentCurrencyCode
         self._mapping['DocumentCurrencyCode'] = ('cbc', 'documentcurrencycode', 'Zorunlu (1)', False, False, True)
-        # Seçimli (0...1)
+        # Seçimli (0...1): TaxCurrencyCode
         self._mapping['TaxCurrencyCode'] = ('cbc', 'taxcurrencycode', 'Seçimli (0...1)', False, False, True)
-        # Seçimli (0...1)
+        # Seçimli (0...1): PricingCurrencyCode
         self._mapping['PricingCurrencyCode'] = ('cbc', 'pricingcurrencycode', 'Seçimli (0...1)', False, False, True)
-        # Seçimli (0...1)
+        # Seçimli (0...1): PaymentCurrencyCode
         self._mapping['PaymentCurrencyCode'] = ('cbc', 'paymentcurrencycode', 'Seçimli (0...1)', False, False, True)
-        # Seçimli (0...1)
+        # Seçimli (0...1): PaymentAlternativeCurrencyCode
         self._mapping['PaymentAlternativeCurrencyCode'] = (
             'cbc', 'paymentalternativecurrencycode', 'Seçimli (0...1)', False, False, True)
-        # Seçimli (0...1)
+        # Seçimli (0...1): AccountingCost
         self._mapping['AccountingCost'] = ('cbc', 'accountingcost', 'Seçimli (0...1)', False, False, True)
-        # Zorunlu (1)
+        # Zorunlu (1): LineCountNumeric
         self._mapping['LineCountNumeric'] = ('cbc', 'linecountnumeric', 'Zorunlu (1)', False, False, True)
         # Seçimli (0...1): InvoicePeriod:Period
         self._mapping['InvoicePeriod'] = ('cac', 'Period', 'Seçimli (0...1)', True, False, False)
