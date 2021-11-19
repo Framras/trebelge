@@ -186,12 +186,24 @@ class NewInvoiceState(AbstractXMLFileState):
             tag = element.tag[len(self.get_context().get_cbc_namespace()):]
         if self._mapping[tag] is not None:
             if event == 'start' and self._mapping[tag][3]:
-                if self._mapping[tag][4]:
-                    for key in element.attrib.keys():
-                        if self._mapping[key] is not None:
-                            self.get_context().set_new_frappe_doc(
-                                self._mapping[key][1], element.attrib.get(key))
+                if element.tag.startswith(self.get_context().get_cbc_namespace()):
+                    if self._mapping[tag][4]:
+                        for key in element.attrib.keys():
+                            if self._mapping[key] is not None:
+                                self.get_context().set_new_frappe_doc(
+                                    self._mapping[key][1], element.attrib.get(key))
+                    else:
+
+                elif element.tag.startswith(self.get_context().get_cac_namespace()):
+
             elif event == 'end' and self._mapping[tag][5]:
+                if element.tag.startswith(self.get_context().get_cbc_namespace()):
+                    if self._mapping[tag][2] == 'Zorunlu (1)':
+                        self.get_context().set_new_frappe_doc(
+                            self._mapping[tag][1], element.text)
+                elif element.tag.startswith(self.get_context().get_cac_namespace()):
+                    # here you should change state
+                    pass
 
     def read_xml_file(self):
         self.get_context().set_new_frappe_doc('doctype', self._frappeDoctype)
