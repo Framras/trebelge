@@ -26,7 +26,7 @@ class XMLFileProcessStrategyContext:
         """
         return self._strategy
 
-    def return_file_data(self):
+    def return_element_data(self):
         """
         The Context delegates some work to the Strategy object instead of
         implementing multiple versions of the algorithm on its own.

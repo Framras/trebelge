@@ -117,14 +117,19 @@ class InvoiceState(AbstractXMLFileState):
         # Zorunlu (1...n): InvoiceLine:InvoiceLine
         self._mapping['InvoiceLine'] = ('cac', 'InvoiceLine', 'Zorunlu (1...n)', True, False, False)
 
-        invoice = frappe.get_doc(self._frappeDoctype, )
-        # person.as_dict() { 'first_name': 'John',
-        # 'last_name': 'Doe',
-        # 'qualifications': [
-        # {'title': 'Frontend Architect', 'year': '2017'},
-        # {'title': 'DevOps Engineer', 'year': '2016'},
-        # ]
-        # }
+        # invoice = frappe.get_doc(self._frappeDoctype, self.get_context().get_uuid())
+        # invoice.as_dict(
+        #     {
+        #         'ublversionid': ET.parse(self.get_context().get_file_path()).getroot().find(
+        #             self.get_context().get_cbc_namespace() + 'UBLVersionID').text,
+        #         'customizationid': ET.parse(self.get_context().get_file_path()).getroot().find(
+        #             self.get_context().get_cbc_namespace() + 'CustomizationID').text,
+        #         'qualifications': [
+        #             {'title': 'Frontend Architect', 'year': '2017'},
+        #             {'title': 'DevOps Engineer', 'year': '2016'},
+        #         ]
+        #     }
+        # )
 
         "invoiceperiod_startdate"
         "invoiceperiod_starttime"

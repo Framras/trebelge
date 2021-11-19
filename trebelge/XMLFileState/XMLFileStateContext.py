@@ -23,6 +23,7 @@ class XMLFileStateContext:
     _cbc_namespace: str = ''
     _uuid: str = ''
     _mapping = dict()
+    _new_frappe_doc = dict()
     # initiate CoR pattern for xmlFile
     _hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
 
@@ -80,6 +81,12 @@ class XMLFileStateContext:
 
     def get_mapping(self):
         return self._mapping
+
+    def set_new_frappe_doc(self, key: str, value):
+        self._new_frappe_doc[key] = value
+
+    def get_new_frappe_doc(self):
+        return self._new_frappe_doc
 
     """
     The Context delegates part of its behavior to the current State object.
