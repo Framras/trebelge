@@ -193,8 +193,10 @@ class NewInvoiceState(AbstractXMLFileState):
                                 self.get_context().set_new_frappe_doc(
                                     self._mapping[key][1], element.attrib.get(key))
                     else:
-
+                        pass
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
+                    # here state should change
+                    pass
 
             elif event == 'end' and self._mapping[tag][5]:
                 if element.tag.startswith(self.get_context().get_cbc_namespace()):
