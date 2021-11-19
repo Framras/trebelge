@@ -20,3 +20,7 @@ class NewInvoiceState(AbstractXMLFileState):
 
     def read_element_by_action(self, event: str, element: ET.Element):
         pass
+
+    def read_xml_file(self):
+        for event, elem in ET.iterparse(self.get_context().get_file_path(), events=("start", "end")):
+            self.get_context().read_element_by_action(event, elem)

@@ -32,3 +32,7 @@ class AbstractXMLFileState(ABC):
     @abstractmethod
     def read_element_by_action(self, event: str, element: ET.Element):
         pass
+
+    @abstractmethod
+    def read_xml_file(self):
+        pass

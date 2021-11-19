@@ -93,3 +93,6 @@ class XMLFileStateContext:
 
     def read_element_by_action(self, event: str, element: ET.Element):
         self._state.read_element(event, element)
+
+    def read_xml_file(self):
+        self._state.read_xml_file()

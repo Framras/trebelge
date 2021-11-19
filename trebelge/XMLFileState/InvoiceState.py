@@ -194,3 +194,6 @@ class InvoiceState(AbstractXMLFileState):
 
     def read_element_by_action(self, event: str, element: ET.Element):
         pass
+
+    def read_xml_file(self):
+        pass
