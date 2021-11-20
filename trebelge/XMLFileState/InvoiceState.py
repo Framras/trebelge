@@ -133,10 +133,6 @@ class InvoiceState(AbstractXMLFileState):
         #     }
         # )
 
-        "orderreference_id"
-        "orderreference_salesorderid"
-        "orderreference_issuedate"
-        "orderreference_ordertypecode"
         "orderreference_documentreference"
 
         "billingreference"

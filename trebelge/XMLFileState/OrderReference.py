@@ -1,8 +1,8 @@
 # from __future__ import annotations
 from xml.etree import ElementTree as ET
 
-from trebelge.XMLFileState import DocumentReference
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
+from trebelge.XMLFileState.DocumentReference import DocumentReference
 
 
 class OrderReference(AbstractXMLFileState):

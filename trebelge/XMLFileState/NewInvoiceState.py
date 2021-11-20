@@ -2,11 +2,22 @@
 import xml.etree.ElementTree as ET
 
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
+from trebelge.XMLFileState.AllowanceCharge import AllowanceCharge
 from trebelge.XMLFileState.BillingReference import BillingReference
+from trebelge.XMLFileState.CustomerParty import CustomerParty
+from trebelge.XMLFileState.Delivery import Delivery
 from trebelge.XMLFileState.DocumentReference import DocumentReference
+from trebelge.XMLFileState.ExchangeRate import ExchangeRate
+from trebelge.XMLFileState.InvoiceLine import InvoiceLine
+from trebelge.XMLFileState.MonetaryTotal import MonetaryTotal
 from trebelge.XMLFileState.OrderReference import OrderReference
+from trebelge.XMLFileState.Party import Party
+from trebelge.XMLFileState.PaymentMeans import PaymentMeans
+from trebelge.XMLFileState.PaymentTerms import PaymentTerms
 from trebelge.XMLFileState.Period import Period
 from trebelge.XMLFileState.Signature import Signature
+from trebelge.XMLFileState.SupplierParty import SupplierParty
+from trebelge.XMLFileState.TaxTotal import TaxTotal
 
 
 class NewInvoiceState(AbstractXMLFileState):
@@ -81,41 +92,41 @@ class NewInvoiceState(AbstractXMLFileState):
         # Zorunlu (1...n): Signature:Signature
         self._mapping['Signature'] = ('cac', Signature(), 'Zorunlu (1...n)', True, False, False, '')
         # Zorunlu (1): AccountingSupplierParty:SupplierParty
-        self._mapping['AccountingSupplierParty'] = ('cac', 'SupplierParty', 'Zorunlu (1)', True, False, False, '')
+        self._mapping['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', True, False, False, '')
         # Zorunlu (1): AccountingCustomerParty:CustomerParty
-        self._mapping['AccountingCustomerParty'] = ('cac', 'CustomerParty', 'Zorunlu (1)', True, False, False, '')
+        self._mapping['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', True, False, False, '')
         # Seçimli (0..1): BuyerCustomerParty:CustomerParty
-        self._mapping['BuyerCustomerParty'] = ('cac', 'CustomerParty', 'Seçimli (0..1)', True, False, False, '')
+        self._mapping['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', True, False, False, '')
         # Seçimli (0..1): SellerSupplierParty:SupplierParty
-        self._mapping['SellerSupplierParty'] = ('cac', 'SupplierParty', 'Seçimli (0..1)', True, False, False, '')
+        self._mapping['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)', True, False, False, '')
         # Seçimli (0..1): TaxRepresentativeParty:Party
         self._mapping['TaxRepresentativeParty'] = (
-            'cac', 'Party', 'Seçimli (0..1)', True, False, False, '')
+            'cac', Party(), 'Seçimli (0..1)', True, False, False, '')
         # Seçimli(0..n): Delivery:Delivery
-        self._mapping['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...n)', True, False, False, '')
+        self._mapping['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)', True, False, False, '')
         # Seçimli(0..n): PaymentMeans:PaymentMeans
-        self._mapping['PaymentMeans'] = ('cac', 'PaymentMeans', 'Seçimli (0...n)', True, False, False, '')
+        self._mapping['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', True, False, False, '')
         # Seçimli (0..1): PaymentTerms:PaymentTerms
-        self._mapping['PaymentTerms'] = ('cac', 'PaymentTerms', 'Seçimli (0..1)', True, False, False, '')
+        self._mapping['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)', True, False, False, '')
         # Seçimli (0...n): AllowanceCharge:AllowanceCharge
-        self._mapping['AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)', True, False, False, '')
+        self._mapping['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', True, False, False, '')
         # Seçimli (0...1): TaxExchangeRate:ExchangeRate
-        self._mapping['TaxExchangeRate'] = ('cac', 'ExchangeRate', 'Seçimli (0..1)', True, False, False, '')
+        self._mapping['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', True, False, False, '')
         # Seçimli (0...1): PricingExchangeRate:ExchangeRate
-        self._mapping['PricingExchangeRate'] = ('cac', 'ExchangeRate', 'Seçimli (0..1)', True, False, False, '')
+        self._mapping['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', True, False, False, '')
         # Seçimli (0...1): PaymentExchangeRate:ExchangeRate
-        self._mapping['PaymentExchangeRate'] = ('cac', 'ExchangeRate', 'Seçimli (0..1)', True, False, False, '')
+        self._mapping['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', True, False, False, '')
         # Seçimli (0...1): PaymentAlternativeExchangeRate:ExchangeRate
         self._mapping['PaymentAlternativeExchangeRate'] = (
-            'cac', 'ExchangeRate', 'Seçimli (0..1)', True, False, False, '')
+            'cac', ExchangeRate(), 'Seçimli (0..1)', True, False, False, '')
         # Zorunlu (1...n): TaxTotal:TaxTotal
-        self._mapping['TaxTotal'] = ('cac', 'TaxTotal', 'Zorunlu (1...n)', True, False, False, '')
+        self._mapping['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', True, False, False, '')
         # Seçimli (0...n): WithholdingTaxTotal:TaxTotal
-        self._mapping['WithholdingTaxTotal'] = ('cac', 'WithholdingTaxTotal', 'Seçimli (0...n)', True, False, False, '')
+        self._mapping['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', True, False, False, '')
         # Zorunlu (1): LegalMonetaryTotal:LegalMonetaryTotal
-        self._mapping['LegalMonetaryTotal'] = ('cac', 'LegalMonetaryTotal', 'Zorunlu (1)', True, False, False, '')
+        self._mapping['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)', True, False, False, '')
         # Zorunlu (1...n): InvoiceLine:InvoiceLine
-        self._mapping['InvoiceLine'] = ('cac', 'InvoiceLine', 'Zorunlu (1...n)', True, False, False, '')
+        self._mapping['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', True, False, False, '')
 
         "billingreference"
         "despatchdocumentreference"
