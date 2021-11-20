@@ -16,7 +16,7 @@ class NewInvoiceState(AbstractXMLFileState):
     def find_ebelge_status(self):
         pass
 
-    def define_mappings(self, tag: str):
+    def define_mappings(self, tag: str, initiator: AbstractXMLFileState):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event, child_field)
         # Zorunlu (1): UBLVersionID
         self._mapping['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)', False, False, True, '')
@@ -190,10 +190,10 @@ class NewInvoiceState(AbstractXMLFileState):
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
                         self.get_context().set_state = self._mapping[tag][1]
+                        self.get_context().define_mappings(tag, self)
                         self.get_context().read_element_by_action(event, element)
                     elif self._mapping[tag][2] in ['Seçimli (0...n)']:
                         pass
-
             elif event == 'end' and self._mapping[tag][5]:
                 if element.tag.startswith(self.get_context().get_cbc_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
@@ -206,7 +206,6 @@ class NewInvoiceState(AbstractXMLFileState):
                         else:
                             self.get_context().append_new_frappe_doc_field(
                                 self._mapping[tag][1], {self._mapping[tag][6]: element.text})
-
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
                     # here you should change state
                     pass

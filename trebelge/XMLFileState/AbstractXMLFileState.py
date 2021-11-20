@@ -26,7 +26,7 @@ class AbstractXMLFileState(ABC):
         pass
 
     @abstractmethod
-    def define_mappings(self, tag: str):
+    def define_mappings(self, tag: str, initiator):
         pass
 
     @abstractmethod

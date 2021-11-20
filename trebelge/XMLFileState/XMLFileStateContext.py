@@ -102,8 +102,8 @@ class XMLFileStateContext:
     def find_ebelge_status(self):
         self._state.find_ebelge_status()
 
-    def define_mappings(self, tag: str):
-        self._state.define_mappings(tag)
+    def define_mappings(self, tag: str, initiator: AbstractXMLFileState):
+        self._state.define_mappings(tag, initiator)
 
     def read_element_by_action(self, event: str, element: ET.Element):
         self._state.read_element(event, element)

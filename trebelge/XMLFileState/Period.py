@@ -19,7 +19,7 @@ class Period(AbstractXMLFileState):
     def find_ebelge_status(self):
         pass
 
-    def define_mappings(self, tag: str):
+    def define_mappings(self, tag: str, initiator: AbstractXMLFileState):
         if tag == self._invoiceElementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli (0..1): StartDate
@@ -57,14 +57,12 @@ class Period(AbstractXMLFileState):
             # Seçimli(0..1): Description
             self._mapping['Description'] = (
                 'cbc', '', 'Seçimli (0...1)', False, False, True, '')
-            self._mapping[self._elementTag] = ('cac', '', '', False, False, True, '')
+            self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True, '')
 
     def read_element_by_action(self, event: str, element: ET.Element):
         tag: str = ''
         if element.tag.startswith(self.get_context().get_cac_namespace()):
             tag = element.tag[len(self.get_context().get_cac_namespace()):]
-            if tag in [self._invoiceElementTag, self._elementTag]:
-                self.define_mappings(tag)
         elif element.tag.startswith(self.get_context().get_cbc_namespace()):
             tag = element.tag[len(self.get_context().get_cbc_namespace()):]
         if self._mapping[tag] is not None:
@@ -80,10 +78,10 @@ class Period(AbstractXMLFileState):
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
                         self.get_context().set_state = self._mapping[tag][1]
+                        self.get_context().define_mappings(tag, self)
                         self.get_context().read_element_by_action(event, element)
                     elif self._mapping[tag][2] in ['Seçimli (0...n)']:
                         pass
-
             elif event == 'end' and self._mapping[tag][5]:
                 if element.tag.startswith(self.get_context().get_cbc_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
@@ -96,10 +94,5 @@ class Period(AbstractXMLFileState):
                         else:
                             self.get_context().append_new_frappe_doc_field(
                                 self._mapping[tag][1], {self._mapping[tag][6]: element.text})
-
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
-                    if element.tag[len(self.get_context().get_cac_namespace()):] in [self._invoiceElementTag]:
-                        self.get_context().set_state = NewInvoiceState()
-                    if element.tag[len(self.get_context().get_cac_namespace()):] in [self._elementTag]:
-                        # TODO implement this
-                        pass
+                    self.get_context().set_state = self._mapping[tag][1]
