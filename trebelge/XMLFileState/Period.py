@@ -1,4 +1,5 @@
 # from __future__ import annotations
+from xml.etree import ElementTree as ET
 
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 
@@ -8,6 +9,7 @@ class Period(AbstractXMLFileState):
     State methods
     Backreference to the Context object, associated with the State.
     """
+
     _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
     _elementTag: str = 'InvoicePeriod'
@@ -31,3 +33,15 @@ class Period(AbstractXMLFileState):
         # Seçimli(0..1): Description
         self._mapping['Description'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
         self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
+
+    def read_xml_file(self):
+        pass
+
+    def read_element_by_action(self, event: str, element: ET.Element):
+        "invoiceperiod_startdate"
+        "invoiceperiod_starttime"
+        "invoiceperiod_durationmeasure"
+        "invoiceperiod_enddate"
+        "invoiceperiod_endtime"
+        "invoiceperiod_durationmeasure_unitcode"
+        "invoiceperiod_description"

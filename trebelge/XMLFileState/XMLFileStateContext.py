@@ -92,6 +92,9 @@ class XMLFileStateContext:
     The Context delegates part of its behavior to the current State object.
     """
 
+    def append_new_frappe_doc_field(self, key: str, value):
+        self._new_frappe_doc[key].append = value
+
     def find_ebelge_status(self):
         self._state.find_ebelge_status()
 
