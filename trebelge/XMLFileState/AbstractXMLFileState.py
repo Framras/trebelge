@@ -26,13 +26,9 @@ class AbstractXMLFileState(ABC):
         pass
 
     @abstractmethod
-    def define_mappings(self):
+    def define_mappings(self, tag: str):
         pass
 
     @abstractmethod
     def read_element_by_action(self, event: str, element: ET.Element):
-        pass
-
-    @abstractmethod
-    def read_xml_file(self):
         pass

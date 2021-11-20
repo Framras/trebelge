@@ -92,17 +92,18 @@ class XMLFileStateContext:
     The Context delegates part of its behavior to the current State object.
     """
 
+    def read_xml_file(self):
+        for event, elem in ET.iterparse(self.get_file_path(), events=("start", "end")):
+            self.read_element_by_action(event, elem)
+
     def append_new_frappe_doc_field(self, key: str, value):
         self._new_frappe_doc[key].append = value
 
     def find_ebelge_status(self):
         self._state.find_ebelge_status()
 
-    def define_mappings(self):
-        self._state.define_mappings()
+    def define_mappings(self, tag: str):
+        self._state.define_mappings(tag)
 
     def read_element_by_action(self, event: str, element: ET.Element):
         self._state.read_element(event, element)
-
-    def read_xml_file(self):
-        self._state.read_xml_file()

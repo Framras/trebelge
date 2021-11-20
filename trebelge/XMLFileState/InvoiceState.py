@@ -17,10 +17,12 @@ class InvoiceState(AbstractXMLFileState):
     def find_ebelge_status(self):
         if not frappe.db.exists({"doctype": self._frappeDoctype,
                                  "uuid": self.get_context().get_uuid()}):
-            self.define_mappings()
+            self.get_context().set_new_frappe_doc('doctype', self._frappeDoctype)
             self.get_context().set_state(NewInvoiceState())
+        else:
+            self.define_mappings(self._frappeDoctype)
 
-    def define_mappings(self):
+    def define_mappings(self, tag: str):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
         # Zorunlu (1): UBLVersionID
         self._mapping['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)', False, False, True)
@@ -131,14 +133,6 @@ class InvoiceState(AbstractXMLFileState):
         #     }
         # )
 
-        "invoiceperiod_startdate"
-        "invoiceperiod_starttime"
-        "invoiceperiod_durationmeasure"
-        "invoiceperiod_enddate"
-        "invoiceperiod_endtime"
-        "invoiceperiod_durationmeasure_unitcode"
-        "invoiceperiod_description"
-
         "orderreference_id"
         "orderreference_salesorderid"
         "orderreference_issuedate"
@@ -198,7 +192,4 @@ class InvoiceState(AbstractXMLFileState):
         "paymentalternativeexchangerate_calculationrate"
 
     def read_element_by_action(self, event: str, element: ET.Element):
-        pass
-
-    def read_xml_file(self):
         pass

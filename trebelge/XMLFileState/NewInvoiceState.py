@@ -2,6 +2,7 @@
 import xml.etree.ElementTree as ET
 
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
+from trebelge.XMLFileState.Period import Period
 
 
 class NewInvoiceState(AbstractXMLFileState):
@@ -15,7 +16,7 @@ class NewInvoiceState(AbstractXMLFileState):
     def find_ebelge_status(self):
         pass
 
-    def define_mappings(self):
+    def define_mappings(self, tag: str):
         # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event, child_field)
         # Zorunlu (1): UBLVersionID
         self._mapping['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)', False, False, True, '')
@@ -53,7 +54,7 @@ class NewInvoiceState(AbstractXMLFileState):
         # Zorunlu (1): LineCountNumeric
         self._mapping['LineCountNumeric'] = ('cbc', 'linecountnumeric', 'Zorunlu (1)', False, False, True, '')
         # Seçimli (0...1): InvoicePeriod:Period
-        self._mapping['InvoicePeriod'] = ('cac', 'Period', 'Seçimli (0...1)', True, False, False, '')
+        self._mapping['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', True, False, False, '')
         # Seçimli (0...1): OrderReference:OrderReference
         self._mapping['OrderReference'] = ('cac', 'OrderReference', 'Seçimli (0...1)', True, False, False, '')
         # Seçimli (0...n): BillingReference:BillingReference
@@ -188,7 +189,8 @@ class NewInvoiceState(AbstractXMLFileState):
                         pass
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
-                        pass
+                        self.get_context().set_state = self._mapping[tag][1]
+                        self.get_context().read_element_by_action(event, element)
                     elif self._mapping[tag][2] in ['Seçimli (0...n)']:
                         pass
 
@@ -208,8 +210,3 @@ class NewInvoiceState(AbstractXMLFileState):
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
                     # here you should change state
                     pass
-
-    def read_xml_file(self):
-        self.get_context().set_new_frappe_doc('doctype', self._frappeDoctype)
-        for event, elem in ET.iterparse(self.get_context().get_file_path(), events=("start", "end")):
-            self.get_context().read_element_by_action(event, elem)
