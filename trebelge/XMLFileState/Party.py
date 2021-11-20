@@ -65,7 +65,33 @@ class Party(AbstractXMLFileState):
             # Seçimli(0..1): AgentParty:Party
             self._mapping['AgentParty'] = ('cac', 'Party', 'Seçimli (0...1)', True, False, False)
             self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
-
+        elif tag == self._despatchElementTag:
+            # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
+            # Seçimli(0..1): WebsiteURI
+            self._mapping['WebsiteURI'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['EndpointID'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            # Seçimli(0..1): IndustryClassificationCode
+            self._mapping['IndustryClassificationCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            # Zorunlu(1..n): PartyIdentification
+            self._mapping['PartyIdentification'] = ('cac', 'PartyIdentification', 'Zorunlu (1...n)', True, False, False)
+            # Seçimli(0..1): PartyName
+            self._mapping['PartyName'] = ('cac', 'PartyName', 'Seçimli (0...1)', True, False, False)
+            # Zorunlu(1): PostalAddress:Address
+            self._mapping['PostalAddress'] = ('cac', 'Address', 'Zorunlu (1)', True, False, False)
+            # Seçimli(0..1): PhysicalLocation:Location
+            self._mapping['PhysicalLocation'] = ('cac', 'Location', 'Seçimli (0...1)', True, False, False)
+            # Seçimli(0..1): PartyTaxScheme:TaxScheme
+            self._mapping['PartyTaxScheme'] = ('cac', 'TaxScheme', 'Seçimli (0...1)', True, False, False)
+            # Seçimli(0..n): PartyLegalEntity:PartyLegalEntity
+            self._mapping['PartyLegalEntity'] = ('cac', 'PartyLegalEntity', 'Seçimli (0...n)', True, False, False)
+            # Seçimli(0..1): Contact:Contact
+            self._mapping['Contact'] = ('cac', 'Contact', 'Seçimli (0...1)', True, False, False)
+            # Seçimli(0..1): Person:Person
+            self._mapping['Person'] = ('cac', 'Person', 'Seçimli (0...1)', True, False, False)
+            # Seçimli(0..1): AgentParty:Party
+            self._mapping['AgentParty'] = ('cac', 'Party', 'Seçimli (0...1)', True, False, False)
+            self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
+        elif tag == self._elementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli(0..1): WebsiteURI
             self._mapping['WebsiteURI'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
@@ -111,7 +137,7 @@ class Party(AbstractXMLFileState):
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
                         self.get_context().set_state = self._mapping[tag][1]
-                        self.get_context().define_mappings(tag, self)
+                        self.get_context().define_mappings(self._initiatorTag, self)
                         self.get_context().read_element_by_action(event, element)
                     elif self._mapping[tag][2] in ['Seçimli (0...n)']:
                         pass
