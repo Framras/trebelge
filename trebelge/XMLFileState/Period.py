@@ -2,7 +2,6 @@
 from xml.etree import ElementTree as ET
 
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
-from trebelge.XMLFileState.NewInvoiceState import NewInvoiceState
 
 
 class Period(AbstractXMLFileState):
@@ -38,7 +37,7 @@ class Period(AbstractXMLFileState):
             # Seçimli(0..1): Description
             self._mapping['Description'] = (
                 'cbc', 'invoiceperiod_description', 'Seçimli (0...1)', False, False, True, '')
-            self._mapping[self._invoiceElementTag] = ('cac', NewInvoiceState(), '', False, False, True, '')
+            self._mapping[self._invoiceElementTag] = ('cac', initiator, '', False, False, True, '')
         elif tag == self._elementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli (0..1): StartDate

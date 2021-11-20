@@ -2,7 +2,11 @@
 import xml.etree.ElementTree as ET
 
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
+from trebelge.XMLFileState.BillingReference import BillingReference
+from trebelge.XMLFileState.DocumentReference import DocumentReference
+from trebelge.XMLFileState.OrderReference import OrderReference
 from trebelge.XMLFileState.Period import Period
+from trebelge.XMLFileState.Signature import Signature
 
 
 class NewInvoiceState(AbstractXMLFileState):
@@ -56,26 +60,26 @@ class NewInvoiceState(AbstractXMLFileState):
         # Seçimli (0...1): InvoicePeriod:Period
         self._mapping['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', True, False, False, '')
         # Seçimli (0...1): OrderReference:OrderReference
-        self._mapping['OrderReference'] = ('cac', 'OrderReference', 'Seçimli (0...1)', True, False, False, '')
+        self._mapping['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...1)', True, False, False, '')
         # Seçimli (0...n): BillingReference:BillingReference
-        self._mapping['BillingReference'] = ('cac', 'BillingReference', 'Seçimli (0...n)', True, False, False, '')
+        self._mapping['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', True, False, False, '')
         # Seçimli (0...n): DespatchDocumentReference:DocumentReference
         self._mapping['DespatchDocumentReference'] = (
-            'cac', 'DocumentReference', 'Seçimli (0...n)', True, False, False, '')
+            'cac', DocumentReference(), 'Seçimli (0...n)', True, False, False, '')
         # Seçimli (0...n): ReceiptDocumentReference:DocumentReference
         self._mapping['ReceiptDocumentReference'] = (
-            'cac', 'DocumentReference', 'Seçimli (0...n)', True, False, False, '')
+            'cac', DocumentReference(), 'Seçimli (0...n)', True, False, False, '')
         # Seçimli (0...n): OriginatorDocumentReference:DocumentReference
         self._mapping['OriginatorDocumentReference'] = (
-            'cac', 'DocumentReference', 'Seçimli (0...n)', True, False, False, '')
+            'cac', DocumentReference(), 'Seçimli (0...n)', True, False, False, '')
         # Seçimli (0...n): ContractDocumentReference:DocumentReference
         self._mapping['ContractDocumentReference'] = (
-            'cac', 'DocumentReference', 'Seçimli (0...n)', True, False, False, '')
+            'cac', DocumentReference(), 'Seçimli (0...n)', True, False, False, '')
         # Seçimli (0...n): AdditionalDocumentReference:DocumentReference
         self._mapping['AdditionalDocumentReference'] = (
-            'cac', 'DocumentReference', 'Seçimli (0...n)', True, False, False, '')
+            'cac', DocumentReference(), 'Seçimli (0...n)', True, False, False, '')
         # Zorunlu (1...n): Signature:Signature
-        self._mapping['Signature'] = ('cac', 'Signature', 'Zorunlu (1...n)', True, False, False, '')
+        self._mapping['Signature'] = ('cac', Signature(), 'Zorunlu (1...n)', True, False, False, '')
         # Zorunlu (1): AccountingSupplierParty:SupplierParty
         self._mapping['AccountingSupplierParty'] = ('cac', 'SupplierParty', 'Zorunlu (1)', True, False, False, '')
         # Zorunlu (1): AccountingCustomerParty:CustomerParty
@@ -112,12 +116,6 @@ class NewInvoiceState(AbstractXMLFileState):
         self._mapping['LegalMonetaryTotal'] = ('cac', 'LegalMonetaryTotal', 'Zorunlu (1)', True, False, False, '')
         # Zorunlu (1...n): InvoiceLine:InvoiceLine
         self._mapping['InvoiceLine'] = ('cac', 'InvoiceLine', 'Zorunlu (1...n)', True, False, False, '')
-
-        "orderreference_id"
-        "orderreference_salesorderid"
-        "orderreference_issuedate"
-        "orderreference_ordertypecode"
-        "orderreference_documentreference"
 
         "billingreference"
         "despatchdocumentreference"
