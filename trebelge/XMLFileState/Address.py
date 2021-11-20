@@ -2,6 +2,7 @@
 import xml.etree.ElementTree as ET
 
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
+from trebelge.XMLFileState.Country import Country
 
 
 class Address(AbstractXMLFileState):
@@ -25,99 +26,96 @@ class Address(AbstractXMLFileState):
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli(0..1) : ID
             self._mapping['ID'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_id', 'Seçimli (0...1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_id', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Postbox
             self._mapping['Postbox'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_postbox', 'Seçimli (0...1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_postbox', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Room
             self._mapping['Room'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_room', 'Seçimli (0...1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_room', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : StreetName
             self._mapping['StreetName'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_streetname', 'Seçimli (0...1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_streetname', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : BlockName
             self._mapping['BlockName'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_blockname', 'Seçimli (0...1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_blockname', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : BuildingName
             self._mapping['BuildingName'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_buildingname', 'Seçimli (0...1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_buildingname', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..n) : BuildingNumber
             self._mapping['BuildingNumber'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_buildingnumber', 'Seçimli(0..n)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_buildingnumber', 'Seçimli(0..n)', False, False, True, '')
             # Zorunlu(1): CitySubdivisionName
             self._mapping['CitySubdivisionName'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_citysubdivisionname', 'Zorunlu(1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_citysubdivisionname', 'Zorunlu(1)', False, False, True,
+                '')
             # Zorunlu(1): CityName
             self._mapping['CityName'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_cityname', 'Zorunlu(1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_cityname', 'Zorunlu(1)', False, False, True, '')
             # Seçimli(0..1) : PostalZone
             self._mapping['PostalZone'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_postalzone', 'Seçimli (0...1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_postalzone', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Region
             self._mapping['Region'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_region', 'Seçimli (0...1)', False, False, True)
+                'cbc', 'accountingsupplierparty_postaladdress_region', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : District
             self._mapping['District'] = (
-                'cbc', 'accountingsupplierparty_postaladdress_district', 'Seçimli (0...1)', False, False, True)
-            # Zorunlu(1): Country
-            self._mapping['Country'] = ('cac', '', 'Zorunlu(1)', True, False, False)
+                'cbc', 'accountingsupplierparty_postaladdress_district', 'Seçimli (0...1)', False, False, True, '')
         elif tag == self._despatchElementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli(0..1) : ID
-            self._mapping['ID'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['ID'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Postbox
-            self._mapping['Postbox'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['Postbox'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Room
-            self._mapping['Room'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['Room'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : StreetName
-            self._mapping['StreetName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['StreetName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : BlockName
-            self._mapping['BlockName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['BlockName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : BuildingName
-            self._mapping['BuildingName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['BuildingName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..n) : BuildingNumber
-            self._mapping['BuildingNumber'] = ('cbc', '', 'Seçimli(0..n)', False, False, True)
+            self._mapping['BuildingNumber'] = ('cbc', '', 'Seçimli(0..n)', False, False, True, '')
             # Zorunlu(1): CitySubdivisionName
-            self._mapping['CitySubdivisionName'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
+            self._mapping['CitySubdivisionName'] = ('cbc', '', 'Zorunlu(1)', False, False, True, '')
             # Zorunlu(1): CityName
-            self._mapping['CityName'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
+            self._mapping['CityName'] = ('cbc', '', 'Zorunlu(1)', False, False, True, '')
             # Seçimli(0..1) : PostalZone
-            self._mapping['PostalZone'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['PostalZone'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Region
-            self._mapping['Region'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['Region'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : District
-            self._mapping['District'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
-            # Zorunlu(1): Country
-            self._mapping['Country'] = ('cac', '', 'Zorunlu(1)', True, False, False)
+            self._mapping['District'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
         elif tag == self._elementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli(0..1) : ID
-            self._mapping['ID'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['ID'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Postbox
-            self._mapping['Postbox'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['Postbox'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Room
-            self._mapping['Room'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['Room'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : StreetName
-            self._mapping['StreetName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['StreetName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : BlockName
-            self._mapping['BlockName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['BlockName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : BuildingName
-            self._mapping['BuildingName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['BuildingName'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..n) : BuildingNumber
-            self._mapping['BuildingNumber'] = ('cbc', '', 'Seçimli(0..n)', False, False, True)
+            self._mapping['BuildingNumber'] = ('cbc', '', 'Seçimli(0..n)', False, False, True, '')
             # Zorunlu(1): CitySubdivisionName
-            self._mapping['CitySubdivisionName'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
+            self._mapping['CitySubdivisionName'] = ('cbc', '', 'Zorunlu(1)', False, False, True, '')
             # Zorunlu(1): CityName
-            self._mapping['CityName'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
+            self._mapping['CityName'] = ('cbc', '', 'Zorunlu(1)', False, False, True, '')
             # Seçimli(0..1) : PostalZone
-            self._mapping['PostalZone'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['PostalZone'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : Region
-            self._mapping['Region'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['Region'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Seçimli(0..1) : District
-            self._mapping['District'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['District'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Zorunlu(1): Country
-            self._mapping['Country'] = ('cac', '', 'Zorunlu(1)', True, False, False)
-        self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
+        self._mapping['Country'] = ('cac', Country(), 'Zorunlu(1)', True, False, False, '')
+        self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True, '')
 
     def read_element_by_action(self, event: str, element: ET.Element):
         tag: str = ''

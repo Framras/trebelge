@@ -24,23 +24,24 @@ class Country(AbstractXMLFileState):
         if tag == self._invoiceElementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli(0..1): IdentificationCode
-            self._mapping['IdentificationCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['IdentificationCode'] = (
+                'cbc', 'accountingsupplierparty_postaladdress_country', 'Seçimli (0...1)', False, False, True, '')
             # Zorunlu(1): Name
-            self._mapping['Name'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
+            self._mapping['Name'] = ('cbc', '', 'Zorunlu(1)', False, False, True, '')
         elif tag == self._despatchElementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli(0..1): IdentificationCode
-            self._mapping['IdentificationCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['IdentificationCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Zorunlu(1): Name
-            self._mapping['Name'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
+            self._mapping['Name'] = ('cbc', '', 'Zorunlu(1)', False, False, True, '')
         elif tag == self._elementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Seçimli(0..1): IdentificationCode
-            self._mapping['IdentificationCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True)
+            self._mapping['IdentificationCode'] = ('cbc', '', 'Seçimli (0...1)', False, False, True, '')
             # Zorunlu(1): Name
-            self._mapping['Name'] = ('cbc', '', 'Zorunlu(1)', False, False, True)
+            self._mapping['Name'] = ('cbc', '', 'Zorunlu(1)', False, False, True, '')
 
-            self._mapping[self._elementTag] = ('cac', '', '', False, False, True)
+        self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True)
 
     def read_element_by_action(self, event: str, element: ET.Element):
         tag: str = ''
