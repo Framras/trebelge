@@ -29,14 +29,14 @@ class SupplierParty(AbstractXMLFileState):
             self._mapping['Party'] = ('cac', Party(), 'Zorunlu(1)', True, False, False, '')
             # Seçimli(0..1): DespatchContact:Contact
             self._mapping['DespatchContact'] = ('cac', Contact(), 'Seçimli (0...1)', True, False, False, '')
-            self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True, '')
+            self._mapping[self._invoiceElementTag] = ('cac', initiator, '', False, False, True, '')
         elif tag == self._despatchElementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Zorunlu(1): Party:Party
             self._mapping['Party'] = ('cac', Party(), 'Zorunlu(1)', True, False, False, '')
             # Seçimli(0..1): DespatchContact:Contact
             self._mapping['DespatchContact'] = ('cac', Contact(), 'Seçimli (0...1)', True, False, False, '')
-            self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True, '')
+            self._mapping[self._despatchElementTag] = ('cac', initiator, '', False, False, True, '')
         elif tag == self._elementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Zorunlu(1): Party:Party
