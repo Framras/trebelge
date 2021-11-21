@@ -10,7 +10,7 @@ class ExchangeRate(AbstractXMLFileState):
     Backreference to the Context object, associated with the State.
     """
     _mapping = dict()
-    _elementTag: str = 'TaxExchangeRate'
+    _elementTag: str = 'ExchangeRate'
     _invoiceTaxElementTag: str = 'TaxExchangeRate'
     _invoicePricingElementTag: str = 'PricingExchangeRate'
     _invoicePaymentElementTag: str = 'PaymentExchangeRate'
