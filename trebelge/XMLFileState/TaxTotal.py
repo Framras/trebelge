@@ -1,4 +1,5 @@
 # from __future__ import annotations
+import xml.etree.ElementTree as ET
 
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 from trebelge.XMLFileState.TaxSubtotal import TaxSubtotal
@@ -22,30 +23,31 @@ class TaxTotal(AbstractXMLFileState):
         if tag == self._elementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Zorunlu(1): TaxAmount
-            self._mapping['TaxAmount'] = ('cbc', '', 'Zorunlu(1)', True, True, True)
-            # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
-            self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False)
+            self._mapping['TaxAmount'] = ('cbc', 'taxtotal_taxamount', 'Zorunlu(1)', True, True, True, '')
             # attrib currencyID for tags endswith('Amount')
-            self._mapping['currencyID'] = ('', '', 'Zorunlu(1)', False, False, False)
-            self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True)
+            self._mapping['currencyID'] = ('', 'taxtotal_taxamount_currencyid', 'Zorunlu(1)', False, False, False, '')
+            # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
+            self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False, '')
+            self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True, '')
         elif tag == self._withholdingElementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Zorunlu(1): TaxAmount
-            self._mapping['TaxAmount'] = ('cbc', '', 'Zorunlu(1)', True, True, True)
-            # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
-            self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False)
+            self._mapping['TaxAmount'] = ('cbc', 'withholdingtaxtotal_taxamount', 'Zorunlu(1)', True, True, True, '')
             # attrib currencyID for tags endswith('Amount')
-            self._mapping['currencyID'] = ('', '', 'Zorunlu(1)', False, False, False)
-            self._mapping[self._withholdingElementTag] = ('cac', initiator, '', False, False, True)
+            self._mapping['currencyID'] = (
+                '', 'withholdingtaxtotal_taxamount_currencyid', 'Zorunlu(1)', False, False, False, '')
+            # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
+            self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False, '')
+            self._mapping[self._withholdingElementTag] = ('cac', initiator, '', False, False, True, '')
         elif tag == self._elementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
             # Zorunlu(1): TaxAmount
-            self._mapping['TaxAmount'] = ('cbc', '', 'Zorunlu(1)', True, True, True)
-            # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
-            self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False)
+            self._mapping['TaxAmount'] = ('cbc', '', 'Zorunlu(1)', True, True, True, '')
             # attrib currencyID for tags endswith('Amount')
-            self._mapping['currencyID'] = ('', '', 'Zorunlu(1)', False, False, False)
-            self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True)
+            self._mapping['currencyID'] = ('', '', 'Zorunlu(1)', False, False, False, '')
+            # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
+            self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False, '')
+            self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True, '')
 
     def read_element_by_action(self, event: str, element: ET.Element):
         tag: str = ''
