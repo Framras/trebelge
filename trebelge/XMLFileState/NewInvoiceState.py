@@ -141,26 +141,6 @@ class NewInvoiceState(AbstractXMLFileState):
         "sellersupplierparty"
         "taxrepresentativeparty"
 
-        "taxexchangerate_sourcecurrencycode"
-        "taxexchangerate_date"
-        "taxexchangerate_targetcurrencycode"
-        "taxexchangerate_calculationrate"
-
-        "pricingexchangerate_sourcecurrencycode"
-        "pricingexchangerate_date"
-        "pricingexchangerate_targetcurrencycode"
-        "pricingexchangerate_calculationrate"
-
-        "paymentexchangerate_sourcecurrencycode"
-        "paymentexchangerate_date"
-        "paymentexchangerate_targetcurrencycode"
-        "paymentexchangerate_calculationrate"
-
-        "paymentalternativeexchangerate_sourcecurrencycode"
-        "paymentalternativeexchangerate_date"
-        "paymentalternativeexchangerate_targetcurrencycode"
-        "paymentalternativeexchangerate_calculationrate"
-
     def read_element_by_action(self, event: str, element: ET.Element):
         tag: str = ''
         if element.tag.startswith(self.get_context().get_cac_namespace()):
