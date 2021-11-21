@@ -114,8 +114,33 @@
     "paymentalternativeexchangerate_targetcurrencycode",
     "paymentalternativeexchangerate_calculationrate",
     "taxtotal",
+    "taxtotal_taxamount",
+    "column_break_109",
+    "taxtotal_taxamount_currencyid",
+    "taxtotal_taxsubtotal",
+    "taxtotal_taxsubtotals",
     "withholdingtaxtotal",
+    "withholdingtaxtotal_taxamount",
+    "column_break_113",
+    "withholdingtaxtotal_taxamount_currencyid",
+    "withholdingtaxtotal_taxsubtotal",
+    "withholdingtaxtotal_taxsubtotals",
     "legalmonetarytotal",
+    "legalmonetarytotal_lineextensionamount",
+    "legalmonetarytotal_taxexclusiveamount",
+    "legalmonetarytotal_taxinclusiveamount",
+    "legalmonetarytotal_allowancetotalamount",
+    "legalmonetarytotal_chargetotalamount",
+    "legalmonetarytotal_payableroundingamount",
+    "legalmonetarytotal_payableamount",
+    "column_break_127",
+    "legalmonetarytotal_lineextensionamount_currencyid",
+    "legalmonetarytotal_taxexclusiveamount_currencyid",
+    "legalmonetarytotal_taxinclusiveamount_currencyid",
+    "legalmonetarytotal_allowancetotalamount_currencyid",
+    "legalmonetarytotal_chargetotalamount_currencyid",
+    "legalmonetarytotal_payableroundingamount_currencyid",
+    "legalmonetarytotal_payableamount_currencyid",
     "invoiceline"
   ],
   "fields": [
@@ -746,10 +771,141 @@
       "fieldname": "invoiceline",
       "fieldtype": "Section Break",
       "label": "Mal/Hizmet Kalemleri"
+    },
+    {
+      "fieldname": "taxtotal_taxamount",
+      "fieldtype": "Currency",
+      "label": "Hesaplanan vergilerin toplam tutar\u0131"
+    },
+    {
+      "fieldname": "column_break_109",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "taxtotal_taxamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "withholdingtaxtotal_taxamount",
+      "fieldtype": "Currency",
+      "label": "Toplam tevkifat tutar\u0131"
+    },
+    {
+      "fieldname": "column_break_113",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "withholdingtaxtotal_taxamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "withholdingtaxtotal_taxsubtotal",
+      "fieldtype": "Section Break",
+      "label": "Tevkifat kod ve oranlar\u0131"
+    },
+    {
+      "fieldname": "withholdingtaxtotal_taxsubtotals",
+      "fieldtype": "Data",
+      "label": "Tevkifat kodu ve oran\u0131"
+    },
+    {
+      "fieldname": "taxtotal_taxsubtotal",
+      "fieldtype": "Section Break",
+      "label": "Vergi hesaplamas\u0131 ile ilgili bilgiler"
+    },
+    {
+      "fieldname": "taxtotal_taxsubtotals",
+      "fieldtype": "Data",
+      "label": "Vergi hesaplamas\u0131"
+    },
+    {
+      "fieldname": "legalmonetarytotal_lineextensionamount",
+      "fieldtype": "Currency",
+      "label": "LineExtensionAmount"
+    },
+    {
+      "fieldname": "legalmonetarytotal_taxexclusiveamount",
+      "fieldtype": "Currency",
+      "label": "TaxExclusiveAmount"
+    },
+    {
+      "fieldname": "legalmonetarytotal_taxinclusiveamount",
+      "fieldtype": "Currency",
+      "label": "TaxInclusiveAmount"
+    },
+    {
+      "fieldname": "legalmonetarytotal_allowancetotalamount",
+      "fieldtype": "Currency",
+      "label": "AllowanceTotalAmount"
+    },
+    {
+      "fieldname": "legalmonetarytotal_chargetotalamount",
+      "fieldtype": "Currency",
+      "label": "ChargeTotalAmount"
+    },
+    {
+      "fieldname": "legalmonetarytotal_payableroundingamount",
+      "fieldtype": "Currency",
+      "label": "PayableRoundingAmount"
+    },
+    {
+      "fieldname": "legalmonetarytotal_payableamount",
+      "fieldtype": "Currency",
+      "label": "PayableAmount"
+    },
+    {
+      "fieldname": "column_break_127",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "legalmonetarytotal_lineextensionamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "legalmonetarytotal_taxexclusiveamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "legalmonetarytotal_taxinclusiveamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "legalmonetarytotal_allowancetotalamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "legalmonetarytotal_chargetotalamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "legalmonetarytotal_payableroundingamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "legalmonetarytotal_payableamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
     }
   ],
   "links": [],
-  "modified": "2021-11-21 11:24:15.206176",
+  "modified": "2021-11-21 11:42:13.393445",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",
