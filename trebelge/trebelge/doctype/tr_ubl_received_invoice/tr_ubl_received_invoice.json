@@ -19,9 +19,9 @@
     "column_break_10",
     "uuid",
     "invoicetypecode",
-    "section_break_13",
+    "note_section",
     "notes",
-    "section_break_15",
+    "currencycode_section",
     "documentcurrencycode",
     "taxcurrencycode",
     "pricingcurrencycode",
@@ -30,7 +30,7 @@
     "column_break_21",
     "accountingcost",
     "linecountnumeric",
-    "fatura_donemi_section",
+    "invoiceperiod_section",
     "invoiceperiod_startdate",
     "invoiceperiod_starttime",
     "invoiceperiod_durationmeasure",
@@ -39,22 +39,28 @@
     "invoiceperiod_endtime",
     "invoiceperiod_durationmeasure_unitcode",
     "invoiceperiod_description",
-    "siparis_bilgileri_section",
+    "orderreference_section",
     "orderreference_id",
     "orderreference_salesorderid",
     "column_break_siparis_bilgileri",
     "orderreference_issuedate",
     "orderreference_ordertypecode",
     "orderreference_documentreference",
-    "section_break_33",
-    "billingreference",
-    "despatchdocumentreference",
-    "receiptdocumentreference",
-    "originatordocumentreference",
-    "contractdocumentreference",
-    "additionaldocumentreference",
-    "signature",
-    "satici_section",
+    "billingreference_section",
+    "invoicedocumentreference",
+    "selfbilledinvoicedocumentreference",
+    "creditnotedocumentreference",
+    "selfbilledcreditnotedocumentreference",
+    "debitnotedocumentreference",
+    "reminderdocumentreference",
+    "billingreferenceline",
+    "despatchdocumentreference_section",
+    "receiptdocumentreference_section",
+    "originatordocumentreference_section",
+    "contractdocumentreference_section",
+    "additionaldocumentreference_section",
+    "signature_section",
+    "accountingsupplierparty_section",
     "accountingsupplierparty_websiteuri",
     "accountingsupplierparty_partyidentification_schemeid",
     "accountingsupplierparty_partyidentificationid",
@@ -240,53 +246,6 @@
       "non_negative": 1
     },
     {
-      "description": "Faturan\u0131n ili\u015fkili oldu\u011fu di\u011fer belgelerin bilgileri bu elemana yaz\u0131lacakt\u0131r.",
-      "fieldname": "billingreference",
-      "fieldtype": "Data",
-      "label": "Faturan\u0131n \u0130li\u015fkili Oldu\u011fu Di\u011fer Belgelerin Bilgileri"
-    },
-    {
-      "description": "\u0130rsaliye bilgileri i\u00e7in bu eleman kullan\u0131labilecektir. Birden fazla irsaliyeye ait bilgilerin girilmesi ve irsaliye belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
-      "fieldname": "despatchdocumentreference",
-      "fieldtype": "Table",
-      "label": "\u0130rsaliye Bilgileri",
-      "options": "TR UBL DocumentReference"
-    },
-    {
-      "description": "Al\u0131nd\u0131 bilgilerinin g\u00f6sterilmesinde ve al\u0131nd\u0131 belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
-      "fieldname": "receiptdocumentreference",
-      "fieldtype": "Table",
-      "label": "Al\u0131nd\u0131 Bilgileri",
-      "options": "TR UBL DocumentReference"
-    },
-    {
-      "description": "Faturan\u0131n d\u00fczenlenmesine referans te\u015fkil eden ilgili belgelere ait bilgiler bu elemana yaz\u0131lacakt\u0131r.",
-      "fieldname": "originatordocumentreference",
-      "fieldtype": "Table",
-      "label": "Ba\u015flang\u0131\u00e7 Dok\u00fcman\u0131 Bilgileri",
-      "options": "TR UBL DocumentReference"
-    },
-    {
-      "description": "Fatura ile ilgili kontrat dok\u00fcman\u0131n bilgilerinin g\u00f6sterilmesinde bu eleman kullan\u0131labilecektir.",
-      "fieldname": "contractdocumentreference",
-      "fieldtype": "Table",
-      "label": "Kontrat Dok\u00fcman\u0131 Bilgileri",
-      "options": "TR UBL DocumentReference"
-    },
-    {
-      "description": "\u0130rsaliye, sipari\u015f, kontrat, al\u0131nd\u0131 ve di\u011fer fatura belgeleri d\u0131\u015f\u0131nda faturaya eklenmek istenen di\u011fer belgeler i\u00e7in bu eleman kullan\u0131labilecektir. \u00d6rne\u011fin belge para birimi d\u0131\u015f\u0131nda ayr\u0131ca fatura d\u00fczenlenmek isteniyorsa bu fatura d\u00fczenlenip AdditionalDocumentReference eleman\u0131n\u0131n EmbeddedDocumentBinaryObject eleman\u0131na eklenebilir.",
-      "fieldname": "additionaldocumentreference",
-      "fieldtype": "Table",
-      "label": "\u0130lave Dok\u00fcman",
-      "options": "TR UBL DocumentReference"
-    },
-    {
-      "fieldname": "signature",
-      "fieldtype": "Table",
-      "label": "Mali M\u00fch\u00fcr/\u0130mza",
-      "options": "TR GIB eFatura UBL Signature"
-    },
-    {
       "description": "Bu elemanda faturay\u0131 alan taraf\u0131n bilgileri yer alacakt\u0131r.",
       "fieldname": "accountingcustomerparty",
       "fieldtype": "Section Break",
@@ -467,10 +426,6 @@
       "label": "Dok\u00fcman Bilgisi"
     },
     {
-      "fieldname": "section_break_33",
-      "fieldtype": "Section Break"
-    },
-    {
       "fieldname": "column_break_3",
       "fieldtype": "Column Break"
     },
@@ -481,14 +436,6 @@
     {
       "fieldname": "column_break_10",
       "fieldtype": "Column Break"
-    },
-    {
-      "fieldname": "section_break_13",
-      "fieldtype": "Section Break"
-    },
-    {
-      "fieldname": "section_break_15",
-      "fieldtype": "Section Break"
     },
     {
       "fieldname": "column_break_21",
@@ -504,24 +451,6 @@
       "fieldname": "accountingsupplierparty_industryclassificationcode",
       "fieldtype": "Data",
       "label": "IndustryClassificationCode"
-    },
-    {
-      "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman kullan\u0131lacakt\u0131r.",
-      "fieldname": "fatura_donemi_section",
-      "fieldtype": "Section Break",
-      "label": "Fatura D\u00f6nemi"
-    },
-    {
-      "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
-      "fieldname": "siparis_bilgileri_section",
-      "fieldtype": "Section Break",
-      "label": "Sipari\u015f Bilgileri"
-    },
-    {
-      "description": "Bu elemanda faturay\u0131 d\u00fczenleyen taraf\u0131n bilgileri yer alacakt\u0131r.",
-      "fieldname": "satici_section",
-      "fieldtype": "Section Break",
-      "label": "Sat\u0131c\u0131"
     },
     {
       "fieldname": "vergi_doviz_kuru_section",
@@ -703,10 +632,118 @@
       "fieldname": "\u00f6deme_ko\u015fullar\u0131_section",
       "fieldtype": "Section Break",
       "label": "\u00d6deme Ko\u015fullar\u0131"
+    },
+    {
+      "description": "Faturan\u0131n ili\u015fkili oldu\u011fu di\u011fer belgelerin bilgileri bu elemana yaz\u0131lacakt\u0131r.",
+      "fieldname": "invoicedocumentreference",
+      "fieldtype": "Table",
+      "label": "InvoiceDocumentReference",
+      "options": "TR UBL DocumentReference"
+    },
+    {
+      "fieldname": "selfbilledinvoicedocumentreference",
+      "fieldtype": "Table",
+      "label": "SelfBilledInvoiceDocumentReference",
+      "options": "TR UBL DocumentReference"
+    },
+    {
+      "fieldname": "creditnotedocumentreference",
+      "fieldtype": "Table",
+      "label": "CreditNoteDocumentReference",
+      "options": "TR UBL DocumentReference"
+    },
+    {
+      "fieldname": "billingreference_section",
+      "fieldtype": "Section Break",
+      "label": "Di\u011fer \u0130li\u015fkili Oldu\u011fu Belgelerin Bilgileri"
+    },
+    {
+      "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
+      "fieldname": "orderreference_section",
+      "fieldtype": "Section Break",
+      "label": "Sipari\u015f Bilgileri"
+    },
+    {
+      "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman kullan\u0131lacakt\u0131r.",
+      "fieldname": "invoiceperiod_section",
+      "fieldtype": "Section Break",
+      "label": "Fatura D\u00f6nemi"
+    },
+    {
+      "fieldname": "note_section",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "currencycode_section",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "selfbilledcreditnotedocumentreference",
+      "fieldtype": "Table",
+      "label": "SelfBilledCreditNoteDocumentReference",
+      "options": "TR UBL DocumentReference"
+    },
+    {
+      "fieldname": "debitnotedocumentreference",
+      "fieldtype": "Table",
+      "label": "DebitNoteDocumentReference",
+      "options": "TR UBL DocumentReference"
+    },
+    {
+      "fieldname": "reminderdocumentreference",
+      "fieldtype": "Table",
+      "label": "ReminderDocumentReference",
+      "options": "TR UBL DocumentReference"
+    },
+    {
+      "fieldname": "billingreferenceline",
+      "fieldtype": "Table",
+      "label": "BillingReferenceLine",
+      "options": "TR UBL DocumentReference"
+    },
+    {
+      "fieldname": "despatchdocumentreference_section",
+      "fieldtype": "Section Break",
+      "label": "\u0130rsaliye Bilgileri"
+    },
+    {
+      "description": "Al\u0131nd\u0131 bilgilerinin g\u00f6sterilmesinde ve al\u0131nd\u0131 belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
+      "fieldname": "receiptdocumentreference_section",
+      "fieldtype": "Section Break",
+      "label": "Al\u0131nd\u0131 Bilgileri"
+    },
+    {
+      "description": "Faturan\u0131n d\u00fczenlenmesine referans te\u015fkil eden ilgili belgelere ait bilgiler bu elemana yaz\u0131lacakt\u0131r.",
+      "fieldname": "originatordocumentreference_section",
+      "fieldtype": "Section Break",
+      "label": "Ba\u015flang\u0131\u00e7 Dok\u00fcman\u0131 Bilgileri"
+    },
+    {
+      "description": "Fatura ile ilgili kontrat dok\u00fcman\u0131n bilgilerinin g\u00f6sterilmesinde bu eleman kullan\u0131labilecektir.",
+      "fieldname": "contractdocumentreference_section",
+      "fieldtype": "Section Break",
+      "label": "Kontrat Dok\u00fcman\u0131 Bilgileri"
+    },
+    {
+      "description": "\u0130rsaliye, sipari\u015f, kontrat, al\u0131nd\u0131 ve di\u011fer fatura belgeleri d\u0131\u015f\u0131nda faturaya eklenmek istenen di\u011fer belgeler i\u00e7in bu eleman kullan\u0131labilecektir. \u00d6rne\u011fin belge para birimi d\u0131\u015f\u0131nda ayr\u0131ca fatura d\u00fczenlenmek isteniyorsa bu fatura d\u00fczenlenip AdditionalDocumentReference eleman\u0131n\u0131n EmbeddedDocumentBinaryObject eleman\u0131na eklenebilir.",
+      "fieldname": "additionaldocumentreference_section",
+      "fieldtype": "Section Break",
+      "label": "\u0130lave Dok\u00fcman"
+    },
+    {
+      "fieldname": "signature_section",
+      "fieldtype": "Section Break",
+      "label": "Mali M\u00fch\u00fcr/\u0130mza"
+    },
+    {
+      "description": "Bu elemanda faturay\u0131 d\u00fczenleyen taraf\u0131n bilgileri yer alacakt\u0131r.",
+      "fieldname": "accountingsupplierparty_section",
+      "fieldtype": "Section Break",
+      "label": "Sat\u0131c\u0131"
     }
   ],
   "links": [],
-  "modified": "2021-11-21 09:48:43.227768",
+  "modified": "2021-11-21 10:46:56.695122",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",
