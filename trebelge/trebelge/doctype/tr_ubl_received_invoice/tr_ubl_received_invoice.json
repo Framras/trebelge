@@ -112,10 +112,10 @@
     "column_break_alternatif_odeme_doviz_kuru",
     "paymentalternativeexchangerate_targetcurrencycode",
     "paymentalternativeexchangerate_calculationrate",
-    "toplam_vergi_section",
-    "tevkifat_bilgileri_section",
-    "parasal_toplamlar_section",
-    "malhizmet_kalemleri_section"
+    "taxtotal_section",
+    "withholdingtaxtotal_section",
+    "legalmonetarytotal_section",
+    "invoiceline_section"
   ],
   "fields": [
     {
@@ -594,29 +594,9 @@
       "options": "TR UBL Received Invoice Note"
     },
     {
-      "fieldname": "toplam_vergi_section",
-      "fieldtype": "Section Break",
-      "label": "Toplam Vergi"
-    },
-    {
       "fieldname": "odeme_alternatif_doviz_kuru_section",
       "fieldtype": "Section Break",
       "label": "\u00d6deme Alternatif D\u00f6viz Kuru"
-    },
-    {
-      "fieldname": "tevkifat_bilgileri_section",
-      "fieldtype": "Section Break",
-      "label": "Tevkifat Bilgileri"
-    },
-    {
-      "fieldname": "parasal_toplamlar_section",
-      "fieldtype": "Section Break",
-      "label": "Parasal Toplamlar"
-    },
-    {
-      "fieldname": "malhizmet_kalemleri_section",
-      "fieldtype": "Section Break",
-      "label": "Mal/Hizmet Kalemleri"
     },
     {
       "fieldname": "g\u00f6nderim_ta\u015f\u0131ma_sevkiyat_bilgileri_section",
@@ -740,10 +720,30 @@
       "fieldname": "accountingsupplierparty_section",
       "fieldtype": "Section Break",
       "label": "Sat\u0131c\u0131"
+    },
+    {
+      "fieldname": "taxtotal_section",
+      "fieldtype": "Section Break",
+      "label": "Toplam Vergi"
+    },
+    {
+      "fieldname": "withholdingtaxtotal_section",
+      "fieldtype": "Section Break",
+      "label": "Tevkifat Bilgileri"
+    },
+    {
+      "fieldname": "legalmonetarytotal_section",
+      "fieldtype": "Section Break",
+      "label": "Parasal Toplamlar"
+    },
+    {
+      "fieldname": "invoiceline_section",
+      "fieldtype": "Section Break",
+      "label": "Mal/Hizmet Kalemleri"
     }
   ],
   "links": [],
-  "modified": "2021-11-21 10:46:56.695122",
+  "modified": "2021-11-21 11:16:15.943109",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",
