@@ -79,6 +79,9 @@
     "buyercustomerparty",
     "sellersupplierparty",
     "taxrepresentativeparty",
+    "g\u00f6nderim_ta\u015f\u0131ma_sevkiyat_bilgileri_section",
+    "\u00f6deme_\u015fekli_section",
+    "\u00f6deme_ko\u015fullar\u0131_section",
     "vergi_doviz_kuru_section",
     "taxexchangerate_sourcecurrencycode",
     "taxexchangerate_date",
@@ -97,12 +100,16 @@
     "column_break_odeme_doviz_kuru",
     "paymentexchangerate_targetcurrencycode",
     "paymentexchangerate_calculationrate",
-    "alternatif_odeme_doviz_kuru_section",
+    "odeme_alternatif_doviz_kuru_section",
     "paymentalternativeexchangerate_sourcecurrencycode",
     "paymentalternativeexchangerate_date",
     "column_break_alternatif_odeme_doviz_kuru",
     "paymentalternativeexchangerate_targetcurrencycode",
-    "paymentalternativeexchangerate_calculationrate"
+    "paymentalternativeexchangerate_calculationrate",
+    "toplam_vergi_section",
+    "tevkifat_bilgileri_section",
+    "parasal_toplamlar_section",
+    "malhizmet_kalemleri_section"
   ],
   "fields": [
     {
@@ -191,7 +198,7 @@
       "description": "Fatura \u00fczerinde g\u00f6sterilen vergilerin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi gerekiyorsa bu para biriminin kodu yaz\u0131labilecektir.",
       "fieldname": "taxcurrencycode",
       "fieldtype": "Link",
-      "label": "Vergi Para Birimi Kodu",
+      "label": "Vergi Para Birim Kodu",
       "options": "Currency",
       "search_index": 1
     },
@@ -223,7 +230,7 @@
       "description": "M\u00fckellefin faturan\u0131n tipi olarak ilave bir ay\u0131r\u0131ma gitmesi gerekiyorsa kendi belirleyece\u011fi farkl\u0131 bir fatura tipini bu elemana yazabilir.",
       "fieldname": "accountingcost",
       "fieldtype": "Data",
-      "label": "Hesap Kodu"
+      "label": "\u0130lave Fatura Tipi Ayr\u0131m\u0131"
     },
     {
       "description": "Bu elemana fatura \u00fczerinde yer alan kalem say\u0131s\u0131 yaz\u0131lacakt\u0131r. Mal\u0131n adedi birden fazla olsa dahi bu mal grubu tek bir kalem olarak g\u00f6sterilecektir.",
@@ -309,126 +316,126 @@
     {
       "fieldname": "pricingexchangerate_sourcecurrencycode",
       "fieldtype": "Link",
-      "label": "Kaynak D\u00f6viz",
+      "label": "Kaynak Para Birimi Kodu",
       "options": "Currency"
     },
     {
       "fieldname": "pricingexchangerate_calculationrate",
       "fieldtype": "Currency",
-      "label": "Kur"
+      "label": "D\u00f6viz kuru"
     },
     {
       "fieldname": "pricingexchangerate_targetcurrencycode",
       "fieldtype": "Link",
-      "label": "Hedef D\u00f6viz",
+      "label": "Hedef Para Birimi Kodu",
       "options": "Currency"
     },
     {
       "fieldname": "pricingexchangerate_date",
       "fieldtype": "Date",
-      "label": "Tarih"
+      "label": "Kurun tarihi"
     },
     {
       "fieldname": "paymentexchangerate_sourcecurrencycode",
       "fieldtype": "Link",
-      "label": "Kaynak D\u00f6viz",
+      "label": "Kaynak Para Birimi Kodu",
       "options": "Currency"
     },
     {
       "fieldname": "paymentexchangerate_date",
       "fieldtype": "Date",
-      "label": "Tarih"
+      "label": "Kurun tarihi"
     },
     {
       "fieldname": "paymentexchangerate_targetcurrencycode",
       "fieldtype": "Link",
-      "label": "Hedef D\u00f6viz",
+      "label": "Hedef Para Birimi Kodu",
       "options": "Currency"
     },
     {
       "fieldname": "paymentexchangerate_calculationrate",
       "fieldtype": "Currency",
-      "label": "Kur"
+      "label": "D\u00f6viz kuru"
     },
     {
       "fieldname": "paymentalternativeexchangerate_sourcecurrencycode",
       "fieldtype": "Link",
-      "label": "Kaynak D\u00f6viz",
+      "label": "Kaynak Para Birimi Kodu",
       "options": "Currency"
     },
     {
       "fieldname": "paymentalternativeexchangerate_date",
       "fieldtype": "Date",
-      "label": "Tarih"
+      "label": "Kurun tarihi"
     },
     {
       "fieldname": "paymentalternativeexchangerate_targetcurrencycode",
       "fieldtype": "Link",
-      "label": "Hedef D\u00f6viz",
+      "label": "Hedef Para Birimi Kodu",
       "options": "Currency"
     },
     {
       "fieldname": "paymentalternativeexchangerate_calculationrate",
       "fieldtype": "Currency",
-      "label": "Kur"
+      "label": "D\u00f6viz kuru"
     },
     {
       "fieldname": "taxexchangerate_sourcecurrencycode",
       "fieldtype": "Link",
-      "label": "Kaynak D\u00f6viz",
+      "label": "Kaynak Para Birimi Kodu",
       "options": "Currency"
     },
     {
       "fieldname": "taxexchangerate_date",
       "fieldtype": "Date",
-      "label": "Tarih"
+      "label": "Kurun tarihi"
     },
     {
       "fieldname": "taxexchangerate_targetcurrencycode",
       "fieldtype": "Link",
-      "label": "Hedef D\u00f6viz",
+      "label": "Hedef Para Birimi Kodu",
       "options": "Currency"
     },
     {
       "fieldname": "taxexchangerate_calculationrate",
       "fieldtype": "Currency",
-      "label": "Kur"
+      "label": "D\u00f6viz kuru"
     },
     {
       "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih",
       "fieldname": "invoiceperiod_startdate",
       "fieldtype": "Date",
-      "label": "Ba\u015flang\u0131\u00e7 Tarihi"
+      "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih"
     },
     {
       "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman",
       "fieldname": "invoiceperiod_starttime",
       "fieldtype": "Time",
-      "label": "Ba\u015flang\u0131\u00e7 Zaman\u0131"
+      "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
     },
     {
       "description": "D\u00f6nemin bitti\u011fi tarih",
       "fieldname": "invoiceperiod_enddate",
       "fieldtype": "Date",
-      "label": "Biti\u015f Tarihi"
+      "label": "D\u00f6nemin bitti\u011fi tarih"
     },
     {
       "description": "D\u00f6nemin bitti\u011fi zaman",
       "fieldname": "invoiceperiod_endtime",
       "fieldtype": "Time",
-      "label": "Biti\u015f Zaman\u0131"
+      "label": "D\u00f6nemin bitti\u011fi zaman"
     },
     {
       "description": "D\u00f6nem s\u00fcresi numerik olarak, d\u00f6nem aral\u0131\u011f\u0131 tipi\u2019de \u201cunitCode\u201d attribute de\u011ferine y\u0131l i\u00e7in \u201cANN\u201d, ay i\u00e7in \u201cMON\u201d, g\u00fcn i\u00e7in \u201cDAY\u201d ve saat i\u00e7in \u201cHUR\u201d girilmesi gerekmektedir.",
       "fieldname": "invoiceperiod_durationmeasure",
       "fieldtype": "Data",
-      "label": "D\u00f6nem s\u00fcresi/birimi"
+      "label": "D\u00f6nem s\u00fcresi"
     },
     {
       "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
       "fieldname": "invoiceperiod_description",
       "fieldtype": "Data",
-      "label": "A\u00e7\u0131klama"
+      "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
     },
     {
       "description": "Sipari\u015f numaras\u0131 girilecektir.",
@@ -544,11 +551,6 @@
       "fieldtype": "Column Break"
     },
     {
-      "fieldname": "alternatif_odeme_doviz_kuru_section",
-      "fieldtype": "Section Break",
-      "label": "Alternatif \u00d6deme D\u00f6viz Kuru"
-    },
-    {
       "fieldname": "column_break_alternatif_odeme_doviz_kuru",
       "fieldtype": "Column Break"
     },
@@ -661,10 +663,50 @@
       "fieldtype": "Table",
       "label": "Not",
       "options": "TR UBL Received Invoice Note"
+    },
+    {
+      "fieldname": "toplam_vergi_section",
+      "fieldtype": "Section Break",
+      "label": "Toplam Vergi"
+    },
+    {
+      "fieldname": "odeme_alternatif_doviz_kuru_section",
+      "fieldtype": "Section Break",
+      "label": "\u00d6deme Alternatif D\u00f6viz Kuru"
+    },
+    {
+      "fieldname": "tevkifat_bilgileri_section",
+      "fieldtype": "Section Break",
+      "label": "Tevkifat Bilgileri"
+    },
+    {
+      "fieldname": "parasal_toplamlar_section",
+      "fieldtype": "Section Break",
+      "label": "Parasal Toplamlar"
+    },
+    {
+      "fieldname": "malhizmet_kalemleri_section",
+      "fieldtype": "Section Break",
+      "label": "Mal/Hizmet Kalemleri"
+    },
+    {
+      "fieldname": "g\u00f6nderim_ta\u015f\u0131ma_sevkiyat_bilgileri_section",
+      "fieldtype": "Section Break",
+      "label": "G\u00f6nderim, Ta\u015f\u0131ma, Sevkiyat Bilgileri"
+    },
+    {
+      "fieldname": "\u00f6deme_\u015fekli_section",
+      "fieldtype": "Section Break",
+      "label": "\u00d6deme \u015eekli"
+    },
+    {
+      "fieldname": "\u00f6deme_ko\u015fullar\u0131_section",
+      "fieldtype": "Section Break",
+      "label": "\u00d6deme Ko\u015fullar\u0131"
     }
   ],
   "links": [],
-  "modified": "2021-11-18 21:09:15.111315",
+  "modified": "2021-11-21 09:48:43.227768",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",

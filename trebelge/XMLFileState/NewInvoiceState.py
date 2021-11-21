@@ -128,19 +128,6 @@ class NewInvoiceState(AbstractXMLFileState):
         # Zorunlu (1...n): InvoiceLine:InvoiceLine
         self._mapping['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', True, False, False, '')
 
-        "billingreference"
-        "despatchdocumentreference"
-        "receiptdocumentreference"
-        "originatordocumentreference"
-        "contractdocumentreference"
-        "additionaldocumentreference"
-        "signature"
-
-        "accountingcustomerparty"
-        "buyercustomerparty"
-        "sellersupplierparty"
-        "taxrepresentativeparty"
-
     def read_element_by_action(self, event: str, element: ET.Element):
         tag: str = ''
         if element.tag.startswith(self.get_context().get_cac_namespace()):
