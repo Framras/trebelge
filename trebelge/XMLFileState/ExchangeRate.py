@@ -9,7 +9,6 @@ class ExchangeRate(AbstractXMLFileState):
     State methods
     Backreference to the Context object, associated with the State.
     """
-    _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
     _elementTag: str = 'TaxExchangeRate'
     _invoiceTaxElementTag: str = 'TaxExchangeRate'
@@ -110,7 +109,7 @@ class ExchangeRate(AbstractXMLFileState):
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
                         self.get_context().set_state = self._mapping[tag][1]
-                        self.get_context().define_mappings(tag, self)
+                        self.get_context().define_mappings(self._initiatorTag, self)
                         self.get_context().read_element_by_action(event, element)
                     elif self._mapping[tag][2] in ['Seçimli (0...n)']:
                         pass
