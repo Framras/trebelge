@@ -37,7 +37,8 @@ class TaxTotal(AbstractXMLFileState):
             self._mapping['currencyID'] = (
                 '', '', 'Zorunlu(1)', False, False, False, '')
             # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
-            self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False, '')
+            self._mapping['TaxSubtotal'] = (
+                'cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False, 'taxtotal_taxsubtotals')
             self._mapping[self._withholdingElementTag] = ('cac', initiator, '', False, False, True, '')
         elif tag == self._elementTag:
             # _mapping[tag] = (namespace, frappe_field, cardinality, start_event, has_attribs, end_event)
@@ -70,14 +71,23 @@ class TaxTotal(AbstractXMLFileState):
                         self.get_context().set_state = self._mapping[tag][1]
                         self.get_context().define_mappings(self._initiatorTag, self)
                         self.get_context().read_element_by_action(event, element)
-                    elif self._mapping[tag][2] in ['Seçimli (0...n)']:
-                        pass
+                    elif self._mapping[tag][2] in ['Zorunlu(1..n)', 'Seçimli (0...n)']:
+                        if self.get_context().get_new_frappe_doc(self)[self._mapping[tag][6]] is None:
+                            self.get_context().set_new_frappe_doc(
+                                self._mapping[tag][1], {self._mapping[tag][6]: element.text})
+                        else:
+                            self.get_context().append_new_frappe_doc_field(
+                                self._mapping[tag][1], {self._mapping[tag][6]: element.text})
+
+                        self.get_context().set_state = self._mapping[tag][1]
+                        self.get_context().define_mappings(self._initiatorTag, self)
+                        self.get_context().read_element_by_action(event, element)
             elif event == 'end' and self._mapping[tag][5]:
                 if element.tag.startswith(self.get_context().get_cbc_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
                         self.get_context().set_new_frappe_doc(
                             self._mapping[tag][1], element.text)
-                    elif self._mapping[tag][2] in ['Seçimli (0...n)']:
+                    elif self._mapping[tag][2] in ['Zorunlu(1..n)', 'Seçimli (0...n)']:
                         if self.get_context().get_new_frappe_doc(self)[self._mapping[tag][1]] is None:
                             self.get_context().set_new_frappe_doc(
                                 self._mapping[tag][1], {self._mapping[tag][6]: element.text})

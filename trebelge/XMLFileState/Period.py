@@ -79,14 +79,14 @@ class Period(AbstractXMLFileState):
                         self.get_context().set_state = self._mapping[tag][1]
                         self.get_context().define_mappings(tag, self)
                         self.get_context().read_element_by_action(event, element)
-                    elif self._mapping[tag][2] in ['Seçimli (0...n)']:
+                    elif self._mapping[tag][2] in ['Zorunlu(1..n)', 'Seçimli (0...n)']:
                         pass
             elif event == 'end' and self._mapping[tag][5]:
                 if element.tag.startswith(self.get_context().get_cbc_namespace()):
                     if self._mapping[tag][2] in ['Zorunlu (1)', 'Seçimli (0..1)']:
                         self.get_context().set_new_frappe_doc(
                             self._mapping[tag][1], element.text)
-                    elif self._mapping[tag][2] in ['Seçimli (0...n)']:
+                    elif self._mapping[tag][2] in ['Zorunlu(1..n)', 'Seçimli (0...n)']:
                         if self.get_context().get_new_frappe_doc(self)[self._mapping[tag][1]] is None:
                             self.get_context().set_new_frappe_doc(
                                 self._mapping[tag][1], {self._mapping[tag][6]: element.text})

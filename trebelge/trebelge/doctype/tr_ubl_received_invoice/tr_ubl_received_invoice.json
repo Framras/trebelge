@@ -819,8 +819,9 @@
     },
     {
       "fieldname": "taxtotal_taxsubtotals",
-      "fieldtype": "Data",
-      "label": "Vergi hesaplamas\u0131"
+      "fieldtype": "Table",
+      "label": "Vergi hesaplamas\u0131",
+      "options": "TR UBL Received Invoice Tax Subtotal"
     },
     {
       "fieldname": "legalmonetarytotal_lineextensionamount",
@@ -905,7 +906,7 @@
     }
   ],
   "links": [],
-  "modified": "2021-11-21 11:42:13.393445",
+  "modified": "2021-11-22 06:55:21.129739",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",
