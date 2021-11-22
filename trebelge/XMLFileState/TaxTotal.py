@@ -25,7 +25,7 @@ class TaxTotal(AbstractXMLFileState):
             # Zorunlu(1): TaxAmount
             self._mapping['TaxAmount'] = ('cbc', 'taxtotal_taxamount', 'Zorunlu(1)', True, True, True, '')
             # attrib currencyID for tags endswith('Amount')
-            self._mapping['currencyID'] = ('', 'taxtotal_taxamount_currencyid', 'Zorunlu(1)', False, False, False, '')
+            self._mapping['currencyID'] = ('', '', 'Zorunlu(1)', False, False, False, '')
             # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
             self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False, '')
             self._mapping[self._elementTag] = ('cac', initiator, '', False, False, True, '')
@@ -35,7 +35,7 @@ class TaxTotal(AbstractXMLFileState):
             self._mapping['TaxAmount'] = ('cbc', 'withholdingtaxtotal_taxamount', 'Zorunlu(1)', True, True, True, '')
             # attrib currencyID for tags endswith('Amount')
             self._mapping['currencyID'] = (
-                '', 'withholdingtaxtotal_taxamount_currencyid', 'Zorunlu(1)', False, False, False, '')
+                '', '', 'Zorunlu(1)', False, False, False, '')
             # Zorunlu(1..n): TaxSubtotal:TaxSubtotal
             self._mapping['TaxSubtotal'] = ('cac', TaxSubtotal(), 'Zorunlu(1..n)', True, False, False, '')
             self._mapping[self._withholdingElementTag] = ('cac', initiator, '', False, False, True, '')
@@ -62,7 +62,7 @@ class TaxTotal(AbstractXMLFileState):
                         for key in element.attrib.keys():
                             if self._mapping[key] is not None:
                                 self.get_context().set_new_frappe_doc(
-                                    self._mapping[key][1], element.attrib.get(key))
+                                    self._mapping[tag][1] + '_' + key.lower(), element.attrib.get(key))
                     else:
                         pass
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):

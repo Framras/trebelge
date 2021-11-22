@@ -41,7 +41,7 @@ class TaxCategory(AbstractXMLFileState):
                         for key in element.attrib.keys():
                             if self._mapping[key] is not None:
                                 self.get_context().set_new_frappe_doc(
-                                    self._mapping[key][1], element.attrib.get(key))
+                                    self._mapping[tag][1] + '_' + key.lower(), element.attrib.get(key))
                     else:
                         pass
                 elif element.tag.startswith(self.get_context().get_cac_namespace()):
