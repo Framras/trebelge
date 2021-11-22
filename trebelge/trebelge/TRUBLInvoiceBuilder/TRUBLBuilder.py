@@ -49,6 +49,10 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def produce_part_despatchadvicetypecode(self) -> None:
+        pass
+
+    @abstractmethod
     def produce_part_notes(self) -> None:
         pass
 
@@ -89,6 +93,10 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def produce_part_orderreferences(self) -> None:
+        pass
+
+    @abstractmethod
     def produce_part_billingreferences(self) -> None:
         pass
 
@@ -117,11 +125,23 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def produce_part_despatchsupplierparty(self) -> None:
+        pass
+
+    @abstractmethod
     def produce_part_accountingcustomerparty(self) -> None:
         pass
 
     @abstractmethod
+    def produce_part_deliverycustomerparty(self) -> None:
+        pass
+
+    @abstractmethod
     def produce_part_buyercustomerparty(self) -> None:
+        pass
+
+    @abstractmethod
+    def produce_part_originatorcustomerparty(self) -> None:
         pass
 
     @abstractmethod
@@ -134,6 +154,10 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def produce_part_deliveries(self) -> None:
+        pass
+
+    @abstractmethod
+    def produce_part_shipment(self) -> None:
         pass
 
     @abstractmethod
@@ -178,4 +202,8 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def produce_part_invoicelines(self) -> None:
+        pass
+
+    @abstractmethod
+    def produce_part_despatchlines(self) -> None:
         pass

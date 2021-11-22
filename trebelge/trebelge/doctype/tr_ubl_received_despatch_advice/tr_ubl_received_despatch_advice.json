@@ -1,0 +1,389 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:uuid",
+  "creation": "2021-11-22 22:21:58.553361",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "ublversionid",
+    "profileid",
+    "column_break_3",
+    "customizationid",
+    "copyindicator",
+    "section_break_6",
+    "id",
+    "issuedate",
+    "issuetime",
+    "column_break_10",
+    "uuid",
+    "despatchadvicetypecode",
+    "linecountnumeric",
+    "note",
+    "notes",
+    "currencycode_section",
+    "orderreferences",
+    "orderreference_id",
+    "orderreference_salesorderid",
+    "column_break_siparis_bilgileri",
+    "orderreference_issuedate",
+    "orderreference_ordertypecode",
+    "orderreference_documentreference",
+    "additionaldocumentreferences",
+    "signatures",
+    "despatchsupplierparty",
+    "accountingsupplierparty_websiteuri",
+    "accountingsupplierparty_partyidentification_schemeid",
+    "accountingsupplierparty_partyidentificationid",
+    "accountingsupplierparty_partyname",
+    "column_break_satici",
+    "accountingsupplierparty_industryclassificationcode",
+    "accountingsupplierparty_endpointid",
+    "accountingsupplierparty_postaladdress_id",
+    "accountingsupplierparty_postaladdress_postbox",
+    "accountingsupplierparty_postaladdress_room",
+    "accountingsupplierparty_postaladdress_streetname",
+    "accountingsupplierparty_postaladdress_blockname",
+    "accountingsupplierparty_postaladdress_buildingname",
+    "accountingsupplierparty_postaladdress_buildingnumber",
+    "accountingsupplierparty_postaladdress_citysubdivisionname",
+    "accountingsupplierparty_postaladdress_cityname",
+    "accountingsupplierparty_postaladdress_postalzone",
+    "accountingsupplierparty_postaladdress_region",
+    "accountingsupplierparty_postaladdress_district",
+    "accountingsupplierparty_postaladdress_country",
+    "deliverycustomerparty",
+    "buyercustomerparty",
+    "sellersupplierparty",
+    "originatorcustomerparty",
+    "shipment",
+    "despatchlines"
+  ],
+  "fields": [
+    {
+      "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
+      "fieldname": "ublversionid",
+      "fieldtype": "Select",
+      "label": "UBL Versiyon Numaras\u0131",
+      "options": "2.1",
+      "read_only": 1,
+      "search_index": 1
+    },
+    {
+      "description": "Kullan\u0131lan senaryodur.",
+      "fieldname": "profileid",
+      "fieldtype": "Select",
+      "label": "Senaryo",
+      "search_index": 1
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
+      "fieldname": "customizationid",
+      "fieldtype": "Select",
+      "label": "\u00d6zelle\u015ftirme Numaras\u0131",
+      "options": "TR1.2\nTR1.2.1",
+      "read_only": 1,
+      "search_index": 1
+    },
+    {
+      "description": "As\u0131l ise \u201cfalse\u201d, suret ise \u201ctrue\u201d.",
+      "fieldname": "copyindicator",
+      "fieldtype": "Select",
+      "label": "As\u0131l/Suret",
+      "options": "false\ntrue",
+      "search_index": 1
+    },
+    {
+      "fieldname": "section_break_6",
+      "fieldtype": "Section Break"
+    },
+    {
+      "description": "\u00dc\u00e7 haneli alfanumerik birim kod ile 13 haneli m\u00fcteselsil numaran\u0131n birle\u015fiminden meydana gelen Fatura Numaras\u0131 bu elemana yaz\u0131lacakt\u0131r. M\u00fcteselsil numaran\u0131n ilk d\u00f6rt hanesi faturan\u0131n d\u00fczenlendi\u011fi y\u0131l\u0131 kalan dokuz hane ise m\u00fcteselsil numaray\u0131 ifade etmektedir. Fatura d\u00fczenleyen b\u00fcnyesinde ayn\u0131 fatura numaras\u0131 birden fazla kullan\u0131lamaz.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_filter": 1,
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Sevk \u0130rsaliyesi Numaras\u0131"
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenleme tarihi yaz\u0131lacakt\u0131r.",
+      "fieldname": "issuedate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "D\u00fczenleme Tarihi"
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
+      "fieldname": "issuetime",
+      "fieldtype": "Time",
+      "label": "D\u00fczenleme Zaman\u0131"
+    },
+    {
+      "fieldname": "column_break_10",
+      "fieldtype": "Column Break"
+    },
+    {
+      "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r.",
+      "fieldname": "uuid",
+      "fieldtype": "Data",
+      "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
+      "fieldname": "despatchadvicetypecode",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Tip Kodu",
+      "options": "SEVK\nMATBUDAN",
+      "search_index": 1
+    },
+    {
+      "fieldname": "note",
+      "fieldtype": "Section Break"
+    },
+    {
+      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r.",
+      "fieldname": "notes",
+      "fieldtype": "Table",
+      "label": "Not",
+      "options": "TR UBL Received Invoice Note"
+    },
+    {
+      "fieldname": "currencycode_section",
+      "fieldtype": "Section Break"
+    },
+    {
+      "description": "Bu elemana fatura \u00fczerinde yer alan kalem say\u0131s\u0131 yaz\u0131lacakt\u0131r. Mal\u0131n adedi birden fazla olsa dahi bu mal grubu tek bir kalem olarak g\u00f6sterilecektir.",
+      "fieldname": "linecountnumeric",
+      "fieldtype": "Int",
+      "label": "Kalem Say\u0131s\u0131",
+      "non_negative": 1
+    },
+    {
+      "description": "Sipari\u015f numaras\u0131 girilecektir.",
+      "fieldname": "orderreference_id",
+      "fieldtype": "Data",
+      "label": "Sipari\u015f numaras\u0131"
+    },
+    {
+      "description": "Sat\u0131c\u0131n\u0131n verdi\u011fi sipari\u015f numaras\u0131 girilecektir.",
+      "fieldname": "orderreference_salesorderid",
+      "fieldtype": "Data",
+      "label": "Sat\u0131c\u0131n\u0131n verdi\u011fi sipari\u015f numaras\u0131"
+    },
+    {
+      "fieldname": "column_break_siparis_bilgileri",
+      "fieldtype": "Column Break"
+    },
+    {
+      "description": "Sipari\u015f tarihi girilecektir.",
+      "fieldname": "orderreference_issuedate",
+      "fieldtype": "Date",
+      "label": "Sipari\u015f tarihi"
+    },
+    {
+      "description": "Sipari\u015f tipi girilecektir.",
+      "fieldname": "orderreference_ordertypecode",
+      "fieldtype": "Data",
+      "label": "Sipari\u015f tipi"
+    },
+    {
+      "fieldname": "orderreference_documentreference",
+      "fieldtype": "Attach",
+      "label": "Dok\u00fcman Bilgisi"
+    },
+    {
+      "description": "\u0130rsaliye, sipari\u015f, kontrat, al\u0131nd\u0131 ve di\u011fer fatura belgeleri d\u0131\u015f\u0131nda faturaya eklenmek istenen di\u011fer belgeler i\u00e7in bu eleman kullan\u0131labilecektir. \u00d6rne\u011fin belge para birimi d\u0131\u015f\u0131nda ayr\u0131ca fatura d\u00fczenlenmek isteniyorsa bu fatura d\u00fczenlenip AdditionalDocumentReference eleman\u0131n\u0131n EmbeddedDocumentBinaryObject eleman\u0131na eklenebilir.",
+      "fieldname": "additionaldocumentreferences",
+      "fieldtype": "Section Break",
+      "label": "\u0130lave Dok\u00fcman"
+    },
+    {
+      "fieldname": "signatures",
+      "fieldtype": "Section Break",
+      "label": "Mali M\u00fch\u00fcr/\u0130mza"
+    },
+    {
+      "fieldname": "accountingsupplierparty_websiteuri",
+      "fieldtype": "Data",
+      "label": "Web Sayfas\u0131 Adresi"
+    },
+    {
+      "fieldname": "accountingsupplierparty_partyidentification_schemeid",
+      "fieldtype": "Data",
+      "label": "Vergi Bilgisi"
+    },
+    {
+      "fieldname": "accountingsupplierparty_partyidentificationid",
+      "fieldtype": "Data",
+      "label": "VKN/TCKN"
+    },
+    {
+      "fieldname": "accountingsupplierparty_partyname",
+      "fieldtype": "Data",
+      "label": "Kurum \u0130smi"
+    },
+    {
+      "fieldname": "column_break_satici",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "accountingsupplierparty_industryclassificationcode",
+      "fieldtype": "Data",
+      "label": "IndustryClassificationCode"
+    },
+    {
+      "fieldname": "accountingsupplierparty_endpointid",
+      "fieldtype": "Data",
+      "label": "EndpointID"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_id",
+      "fieldtype": "Data",
+      "label": "Adres Ayrac\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_postbox",
+      "fieldtype": "Data",
+      "label": "Posta Kutusu"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_room",
+      "fieldtype": "Data",
+      "label": "\u0130\u00e7 kap\u0131 numaras\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_streetname",
+      "fieldtype": "Data",
+      "label": "Meydan/bulvar/cadde/sokak/k\u00fcme evler/site ad\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_blockname",
+      "fieldtype": "Data",
+      "label": "Blok ad\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_buildingname",
+      "fieldtype": "Data",
+      "label": "Bina"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_buildingnumber",
+      "fieldtype": "Data",
+      "label": "D\u0131\u015f kap\u0131 numaras\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_citysubdivisionname",
+      "fieldtype": "Data",
+      "label": "\u0130l\u00e7e/semt"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_cityname",
+      "fieldtype": "Data",
+      "label": "\u0130l"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_postalzone",
+      "fieldtype": "Data",
+      "label": "Posta kod numaras\u0131"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_region",
+      "fieldtype": "Data",
+      "label": "Kasaba/k\u00f6y/mezra/mevkii"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_district",
+      "fieldtype": "Data",
+      "label": "Mahalle"
+    },
+    {
+      "fieldname": "accountingsupplierparty_postaladdress_country",
+      "fieldtype": "Link",
+      "label": "\u00dclke",
+      "options": "Country"
+    },
+    {
+      "description": "Faturan\u0131n al\u0131c\u0131s\u0131n\u0131n haricinde faturadaki mal veya hizmeti alan taraf i\u00e7in bu eleman kullan\u0131lacakt\u0131r.",
+      "fieldname": "buyercustomerparty",
+      "fieldtype": "Table",
+      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan Taraf",
+      "options": "TR GIB eFatura UBL Customer Party"
+    },
+    {
+      "description": "Faturay\u0131 d\u00fczenleyen haricinde faturadaki mal veya hizmeti sa\u011flayan taraf bilgileri i\u00e7in bu eleman kullan\u0131lacakt\u0131r.",
+      "fieldname": "sellersupplierparty",
+      "fieldtype": "Table",
+      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan Taraf",
+      "options": "TR GIB eFatura UBL Supplier Party"
+    },
+    {
+      "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
+      "fieldname": "orderreferences",
+      "fieldtype": "Section Break",
+      "label": "Sipari\u015f Bilgileri"
+    },
+    {
+      "description": "Bu elemanda faturay\u0131 d\u00fczenleyen taraf\u0131n bilgileri yer alacakt\u0131r.",
+      "fieldname": "despatchsupplierparty",
+      "fieldtype": "Section Break",
+      "label": "Sat\u0131c\u0131"
+    },
+    {
+      "description": "Bu elemanda faturay\u0131 alan taraf\u0131n bilgileri yer alacakt\u0131r.",
+      "fieldname": "deliverycustomerparty",
+      "fieldtype": "Section Break",
+      "label": "Al\u0131c\u0131"
+    },
+    {
+      "description": "E\u011fer faturadaki vergi i\u015flerinden sorumlu olan taraf bilgileri eklenmek istiyorsa bu eleman kullan\u0131lacakt\u0131r.",
+      "fieldname": "originatorcustomerparty",
+      "fieldtype": "Table",
+      "label": "Vergi \u0130\u015fleriyle Sorumlu Taraf",
+      "options": "TR GIB eFatura UBL Party"
+    },
+    {
+      "fieldname": "shipment",
+      "fieldtype": "Section Break",
+      "label": "G\u00f6nderim, Ta\u015f\u0131ma, Sevkiyat Bilgileri"
+    },
+    {
+      "fieldname": "despatchlines",
+      "fieldtype": "Section Break",
+      "label": "Mal/Hizmet Kalemleri"
+    }
+  ],
+  "links": [],
+  "modified": "2021-11-22 22:37:50.759686",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "TR UBL Received Despatch Advice",
+  "name_case": "UPPER CASE",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "show_preview_popup": 1,
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}
