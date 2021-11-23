@@ -10,14 +10,19 @@ class TRUBLInvoice:
     unrelated products. In other words, results of various builders may not
     always follow the same interface.
     """
-
     _frappeDoctype: str = 'TR UBL Received Invoice'
-    invoice = frappe.get_doc(_frappeDoctype, self.get_context().get_uuid())
-    self.parts = []
+    _invoice = None
 
-    def add(self, part: Any) -> None:
-        self._new_frappe_doc[key].append = value
-        self.parts.append(part)
+    def __init__(self, uuid_: str):
+        if not frappe.db.exists({"doctype": self._frappeDoctype,
+                                 "uuid": uuid_}):
+            self._invoice = frappe.get_doc(self._frappeDoctype, uuid_)
+        else:
+            self._invoice = None
 
-    def list_parts(self) -> None:
-        print(f"Product parts: {', '.join(self.parts)}", end="")
+    def add(self, part) -> None:
+        if self._invoice[0] is not None:
+            self._invoice.as_dict.append = part
+
+    def commit_doc(self):
+        self._invoice.insert()

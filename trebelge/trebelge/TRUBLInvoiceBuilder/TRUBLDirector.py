@@ -17,10 +17,10 @@ class TRUBLDirector:
     _cac_namespace: str = ''
     _cbc_namespace: str = ''
     _uuid: str = ''
-    _new_frappe_doc = dict()
 
     def set_file_path(self, file_path: str):
         self._file_path = file_path
+        self._set_namespaces()
 
     def _get_file_path(self):
         return self._file_path
@@ -58,7 +58,7 @@ class TRUBLDirector:
     def _set_uuid(self):
         self._uuid = ET.parse(self._get_file_path()).getroot().find(self._get_cbc_namespace() + 'UUID').text
 
-    def _get_uuid(self):
+    def get_uuid(self):
         return self._uuid
 
     @property
@@ -80,13 +80,15 @@ class TRUBLDirector:
     """
 
     def build_tr_ubl_invoice(self) -> None:
-        self.builder.produce_part_ublversionid()
-        self.builder.produce_part_customizationid()
-        self.builder.produce_part_profileid()
-        self.builder.produce_part_id()
-        self.builder.produce_part_copyindicator()
+        self.builder.build_ublversionid(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_customizationid(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_profileid(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_id(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_copyindicator(self._get_file_path(), self._get_cbc_namespace())
 
     def build_tr_ubl_despatchadvice(self) -> None:
-        self.builder.produce_part_a()
-        self.builder.produce_part_b()
-        self.builder.produce_part_c()
+        self.builder.build_ublversionid(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_customizationid(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_profileid(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_id(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_copyindicator(self._get_file_path(), self._get_cbc_namespace())

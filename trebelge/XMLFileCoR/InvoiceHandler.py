@@ -3,7 +3,8 @@ import xml.etree.ElementTree as ET
 import frappe
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.DespatchAdviceHandler import DespatchAdviceHandler
-from trebelge.XMLFileState.InvoiceState import InvoiceState
+from trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLDirector import TRUBLDirector
+from trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLInvoiceBuilder import TRUBLInvoiceBuilder
 
 
 class InvoiceHandler(AbstractXMLFileHandler):
@@ -20,6 +21,8 @@ class InvoiceHandler(AbstractXMLFileHandler):
                 self._eBelgeSettingsDoctype, filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
                 fields={"namespace_specification"}):
             if ET.parse(file_path).getroot().tag == namespace + self._eBelgeTag:
-                return InvoiceState()
+                director: TRUBLDirector = TRUBLDirector()
+                director.set_file_path(file_path)
+                director.builder = TRUBLInvoiceBuilder(director.get_uuid())
             else:
                 self._successor.handle_xml_file(file_path)
