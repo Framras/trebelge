@@ -1,4 +1,7 @@
+import xml.etree.ElementTree as ET
+
 from trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
+from trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLInvoice import TRUBLInvoice
 
 
 class TRUBLInvoiceBuilder(TRUBLBuilder):
@@ -9,19 +12,35 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     """
 
     def produce_part_ublversionid(self) -> None:
-        pass
+        ublversionid = {
+            'ublversionid': ET.parse(self.get_context().get_file_path()).getroot().find(
+                self.get_context().get_cbc_namespace() + 'UBLVersionID').text
+        }
+        self._product.add("PartA1")
 
     def produce_part_customizationid(self) -> None:
-        pass
+        customizationid = {
+            'customizationid': ET.parse(self.get_context().get_file_path()).getroot().find(
+                self.get_context().get_cbc_namespace() + 'CustomizationID').text
+        }
 
     def produce_part_profileid(self) -> None:
-        pass
+        profileid = {
+            'profileid': ET.parse(self.get_context().get_file_path()).getroot().find(
+                self.get_context().get_cbc_namespace() + 'ProfileID').text
+        }
 
     def produce_part_id(self) -> None:
-        pass
+        id_ = {
+            'id': ET.parse(self.get_context().get_file_path()).getroot().find(
+                self.get_context().get_cbc_namespace() + 'ID').text
+        }
 
     def produce_part_copyindicator(self) -> None:
-        pass
+        copyindicator = {
+            'copyindicator': ET.parse(self.get_context().get_file_path()).getroot().find(
+                self.get_context().get_cbc_namespace() + 'CopyIndicator').text
+        }
 
     def produce_part_uuid(self) -> None:
         pass
@@ -163,10 +182,11 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self.reset()
 
     def reset(self) -> None:
+        invoice = frappe.get_doc(self._frappeDoctype, self.get_context().get_uuid())
         self._product = Product1()
 
     @property
-    def product(self) -> Product1:
+    def product(self) -> TRUBLInvoice:
         """
         Concrete Builders are supposed to provide their own methods for
         retrieving results. That's because various types of builders may create
@@ -184,12 +204,3 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         product = self._product
         self.reset()
         return product
-
-    def produce_part_a(self) -> None:
-        self._product.add("PartA1")
-
-    def produce_part_b(self) -> None:
-        self._product.add("PartB1")
-
-    def produce_part_c(self) -> None:
-        self._product.add("PartC1")

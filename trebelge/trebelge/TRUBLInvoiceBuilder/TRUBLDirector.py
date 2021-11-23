@@ -1,3 +1,6 @@
+from trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
+
+
 class TRUBLDirector:
     """
     The Director is only responsible for executing the building steps in a
@@ -10,11 +13,11 @@ class TRUBLDirector:
         self._builder = None
 
     @property
-    def builder(self) -> Builder:
+    def builder(self) -> TRUBLBuilder:
         return self._builder
 
     @builder.setter
-    def builder(self, builder: Builder) -> None:
+    def builder(self, builder: TRUBLBuilder) -> None:
         """
         The Director works with any builder instance that the client code passes
         to it. This way, the client code may alter the final type of the newly
@@ -27,10 +30,14 @@ class TRUBLDirector:
     building steps.
     """
 
-    def build_minimal_viable_product(self) -> None:
-        self.builder.produce_part_a()
+    def build_trublinvoice(self) -> None:
+        self.builder.produce_part_ublversionid()
+        self.builder.produce_part_customizationid()
+        self.builder.produce_part_profileid()
+        self.builder.produce_part_id()
+        self.builder.produce_part_copyindicator()
 
-    def build_full_featured_product(self) -> None:
+    def build_trubldespatchadvice(self) -> None:
         self.builder.produce_part_a()
         self.builder.produce_part_b()
         self.builder.produce_part_c()
