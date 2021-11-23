@@ -30,14 +30,14 @@ class TRUBLDirector:
     building steps.
     """
 
-    def build_trublinvoice(self) -> None:
+    def build_tr_ubl_invoice(self) -> None:
         self.builder.produce_part_ublversionid()
         self.builder.produce_part_customizationid()
         self.builder.produce_part_profileid()
         self.builder.produce_part_id()
         self.builder.produce_part_copyindicator()
 
-    def build_trubldespatchadvice(self) -> None:
+    def build_tr_ubl_despatchadvice(self) -> None:
         self.builder.produce_part_a()
         self.builder.produce_part_b()
         self.builder.produce_part_c()
