@@ -11,11 +11,12 @@ class TRUBLInvoice:
     always follow the same interface.
     """
 
-    def __init__(self) -> None:
-        invoice = frappe.get_doc(self._frappeDoctype, self.get_context().get_uuid())
-        self.parts = []
+    _frappeDoctype: str = 'TR UBL Received Invoice'
+    invoice = frappe.get_doc(_frappeDoctype, self.get_context().get_uuid())
+    self.parts = []
 
     def add(self, part: Any) -> None:
+        self._new_frappe_doc[key].append = value
         self.parts.append(part)
 
     def list_parts(self) -> None:

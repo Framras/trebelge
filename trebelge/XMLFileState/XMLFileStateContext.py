@@ -1,8 +1,6 @@
 # from __future__ import annotations
 import xml.etree.ElementTree as ET
 
-from trebelge.XMLFileCoR import AbstractXMLFileHandler
-from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
 from trebelge.XMLFileState import AbstractXMLFileState
 
 
@@ -24,8 +22,8 @@ class XMLFileStateContext:
     _uuid: str = ''
     _mapping = dict()
     _new_frappe_doc = dict()
+
     # initiate CoR pattern for xmlFile
-    _hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
 
     def set_state(self, state: AbstractXMLFileState):
         """

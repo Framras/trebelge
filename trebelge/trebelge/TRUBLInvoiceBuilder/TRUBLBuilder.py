@@ -13,75 +13,78 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def produce_part_ublversionid(self) -> None:
+    def produce_part_ublversionid(self, filepath: str, cbcnamespace: str) -> None:
+        # ['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)')
         pass
 
     @abstractmethod
-    def produce_part_customizationid(self) -> None:
+    def produce_part_customizationid(self, filepath: str, cbcnamespace: str) -> None:
+        # ['CustomizationID'] = ('cbc', 'customizationid', 'Zorunlu (1)')
         pass
 
     @abstractmethod
-    def produce_part_profileid(self) -> None:
+    def produce_part_profileid(self, filepath: str, cbcnamespace: str) -> None:
+        # ['ProfileID'] = ('cbc', 'profileid', 'Zorunlu (1)')
         pass
 
     @abstractmethod
-    def produce_part_id(self) -> None:
+    def produce_part_id(self, filepath: str, cbcnamespace: str) -> None:
+        # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
         pass
 
     @abstractmethod
-    def produce_part_copyindicator(self) -> None:
+    def produce_part_copyindicator(self, filepath: str, cbcnamespace: str) -> None:
+        # ['CopyIndicator'] = ('cbc', 'copyindicator', 'Zorunlu (1)')
         pass
 
     @abstractmethod
-    def produce_part_uuid(self) -> None:
+    def produce_part_issuedate(self, filepath: str, cbcnamespace: str) -> None:
+        # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu (1)')
         pass
 
     @abstractmethod
-    def produce_part_issuedate(self) -> None:
+    def produce_part_issuetime(self, filepath: str, cbcnamespace: str) -> None:
+        # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
         pass
 
     @abstractmethod
-    def produce_part_issuetime(self) -> None:
+    def produce_part_invoicetypecode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_invoicetypecode(self) -> None:
+    def produce_part_despatchadvicetypecode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_despatchadvicetypecode(self) -> None:
+    def produce_part_notes(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_notes(self) -> None:
+    def produce_part_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_documentcurrencycode(self) -> None:
+    def produce_part_taxcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_taxcurrencycode(self) -> None:
+    def produce_part_pricingcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_pricingcurrencycode(self) -> None:
+    def produce_part_paymentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_paymentcurrencycode(self) -> None:
+    def produce_part_paymentalternativecurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_paymentalternativecurrencycode(self) -> None:
+    def produce_part_accountingcost(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def produce_part_accountingcost(self) -> None:
-        pass
-
-    @abstractmethod
-    def produce_part_linecountnumeric(self) -> None:
+    def produce_part_linecountnumeric(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod

@@ -5,7 +5,6 @@ import frappe
 from trebelge.EbelgeUsers import EbelgeUsers
 from trebelge.XMLFileCoR import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
-from trebelge.XMLFileState.XMLFileStateContext import XMLFileStateContext
 
 
 @frappe.whitelist()
@@ -57,7 +56,7 @@ def check_all_xml_files():
         filePath: str = frappe.get_site_path() + xmlFile.file_url
         hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
         # initiate Context of State pattern
-        stateContext = XMLFileStateContext()
+        # stateContext = XMLFileStateContext()
         # handle file by CoR to determine State
         stateContext.set_state(hXMLFileHandler.handle_xml_file(filePath))
         # initiate Context of State pattern for FileType

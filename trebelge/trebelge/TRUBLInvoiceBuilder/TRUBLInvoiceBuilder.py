@@ -11,74 +11,92 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     several variations of Builders, implemented differently.
     """
 
-    def produce_part_ublversionid(self) -> None:
-        ublversionid = {
-            'ublversionid': ET.parse(self.get_context().get_file_path()).getroot().find(
-                self.get_context().get_cbc_namespace() + 'UBLVersionID').text
-        }
-        self._product.add("PartA1")
+    def produce_part_ublversionid(self, filepath: str, cbcnamespace: str) -> None:
+        self._product.add({
+            'ublversionid': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'UBLVersionID').text
+        })
 
-    def produce_part_customizationid(self) -> None:
-        customizationid = {
-            'customizationid': ET.parse(self.get_context().get_file_path()).getroot().find(
-                self.get_context().get_cbc_namespace() + 'CustomizationID').text
-        }
+    def produce_part_customizationid(self, filepath: str, cbcnamespace: str) -> None:
+        self._product.add({
+            'customizationid': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'CustomizationID').text
+        })
 
-    def produce_part_profileid(self) -> None:
-        profileid = {
-            'profileid': ET.parse(self.get_context().get_file_path()).getroot().find(
-                self.get_context().get_cbc_namespace() + 'ProfileID').text
-        }
+    def produce_part_profileid(self, filepath: str, cbcnamespace: str) -> None:
+        self._product.add({
+            'profileid': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'ProfileID').text
+        })
 
-    def produce_part_id(self) -> None:
-        id_ = {
-            'id': ET.parse(self.get_context().get_file_path()).getroot().find(
-                self.get_context().get_cbc_namespace() + 'ID').text
-        }
+    def produce_part_id(self, filepath: str, cbcnamespace: str) -> None:
+        self._product.add({
+            'id': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'ID').text
+        })
 
-    def produce_part_copyindicator(self) -> None:
-        copyindicator = {
-            'copyindicator': ET.parse(self.get_context().get_file_path()).getroot().find(
-                self.get_context().get_cbc_namespace() + 'CopyIndicator').text
-        }
+    def produce_part_copyindicator(self, filepath: str, cbcnamespace: str) -> None:
+        self._product.add({
+            'copyindicator': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'CopyIndicator').text
+        })
 
-    def produce_part_uuid(self) -> None:
+    def produce_part_issuedate(self, filepath: str, cbcnamespace: str) -> None:
+        self._product.add({
+            'issuedate': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'IssueDate').text
+        })
+
+    def produce_part_issuetime(self, filepath: str, cbcnamespace: str) -> None:
+        issuetime = ET.parse(filepath).getroot().find(
+            cbcnamespace + 'IssueTime').text
+        if issuetime is not None:
+            self._product.add({
+                'issuetime': issuetime
+            })
+
+    def produce_part_invoicetypecode(self, filepath: str, cbcnamespace: str) -> None:
+        self._product.add({
+            'invoicetypecode': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'InvoiceTypeCode').text
+        })
+
+    def produce_part_despatchadvicetypecode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def produce_part_issuedate(self) -> None:
+    def produce_part_notes(self, filepath: str, cbcnamespace: str) -> None:
+        invoice.as_dict(
+            {
+                'ublversionid': ET.parse(self.get_context().get_file_path()).getroot().find(
+                    self.get_context().get_cbc_namespace() + 'UBLVersionID').text,
+                'customizationid': ET.parse(self.get_context().get_file_path()).getroot().find(
+                    self.get_context().get_cbc_namespace() + 'CustomizationID').text,
+                'qualifications': [
+                    {'title': 'Frontend Architect', 'year': '2017'},
+                    {'title': 'DevOps Engineer', 'year': '2016'},
+                ]
+            }
+        )
+
+    def produce_part_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def produce_part_issuetime(self) -> None:
+    def produce_part_taxcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def produce_part_invoicetypecode(self) -> None:
+    def produce_part_pricingcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def produce_part_despatchadvicetypecode(self) -> None:
+    def produce_part_paymentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def produce_part_notes(self) -> None:
+    def produce_part_paymentalternativecurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def produce_part_documentcurrencycode(self) -> None:
+    def produce_part_accountingcost(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def produce_part_taxcurrencycode(self) -> None:
-        pass
-
-    def produce_part_pricingcurrencycode(self) -> None:
-        pass
-
-    def produce_part_paymentcurrencycode(self) -> None:
-        pass
-
-    def produce_part_paymentalternativecurrencycode(self) -> None:
-        pass
-
-    def produce_part_accountingcost(self) -> None:
-        pass
-
-    def produce_part_linecountnumeric(self) -> None:
+    def produce_part_linecountnumeric(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     def produce_part_invoiceperiod(self) -> None:

@@ -1,3 +1,5 @@
+import xml.etree.ElementTree as ET
+
 from trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
 
 
@@ -8,9 +10,56 @@ class TRUBLDirector:
     specific order or configuration. Strictly speaking, the Director class is
     optional, since the client can control builders directly.
     """
+    _builder: TRUBLBuilder = None
+    _file_path: str = ''
+    _namespaces = dict()
+    _default_namespace: str = ''
+    _cac_namespace: str = ''
+    _cbc_namespace: str = ''
+    _uuid: str = ''
+    _new_frappe_doc = dict()
 
-    def __init__(self) -> None:
-        self._builder = None
+    def set_file_path(self, file_path: str):
+        self._file_path = file_path
+
+    def _get_file_path(self):
+        return self._file_path
+
+    def _set_namespaces(self):
+        # read all namespaces
+        self._namespaces = dict([node for _, node in ET.iterparse(self._get_file_path(), events=['start-ns'])])
+        self._set_default_namespace()
+        self._set_cac_namespace()
+        self._set_cbc_namespace()
+        self._set_uuid()
+
+    def _get_namespaces(self):
+        # return all namespaces
+        return self._namespaces
+
+    def _set_default_namespace(self):
+        self._default_namespace = '{' + self._get_namespaces().get('') + '}'
+
+    def _get_default_namespace(self):
+        return self._default_namespace
+
+    def _set_cac_namespace(self):
+        self._cac_namespace = '{' + self._get_namespaces().get('cac') + '}'
+
+    def _get_cac_namespace(self):
+        return self._cac_namespace
+
+    def _set_cbc_namespace(self):
+        self._cbc_namespace = '{' + self._get_namespaces().get('cbc') + '}'
+
+    def _get_cbc_namespace(self):
+        return self._cbc_namespace
+
+    def _set_uuid(self):
+        self._uuid = ET.parse(self._get_file_path()).getroot().find(self._get_cbc_namespace() + 'UUID').text
+
+    def _get_uuid(self):
+        return self._uuid
 
     @property
     def builder(self) -> TRUBLBuilder:
