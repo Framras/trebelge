@@ -312,8 +312,21 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_withholdingtaxtotals(self) -> None:
         pass
 
-    def build_legalmonetarytotal(self) -> None:
-        pass
+    def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str) -> None:
+        # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu(1)')
+        # ['TaxExclusiveAmount'] = ('cbc', '', 'Zorunlu(1)')
+        # ['TaxInclusiveAmount'] = ('cbc', '', 'Zorunlu(1)')
+        # ['AllowanceTotalAmount'] = ('cbc', '', 'Seçimli (0...1)')
+        # ['ChargeTotalAmount'] = ('cbc', '', 'Seçimli (0...1)')
+        # ['PayableRoundingAmount'] = ('cbc', '', 'Seçimli (0...1)')
+        # ['PayableAmount'] = ('cbc', '', 'Zorunlu(1)')
+        # attrib currencyID for tags endswith('Amount')
+        # ['currencyID'] = ('', '', 'Zorunlu(1)', False, False, False)
+
+        self._product.add({
+            'legalmonetarytotal_lineextensionamount': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'ProfileID').text
+        })
 
     def build_invoicelines(self) -> None:
         pass

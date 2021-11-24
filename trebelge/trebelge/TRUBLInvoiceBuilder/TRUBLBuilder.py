@@ -232,7 +232,7 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_legalmonetarytotal(self) -> None:
+    def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str) -> None:
         # ['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)')
         pass
 
