@@ -102,7 +102,8 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_orderreference(self) -> None:
+    def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...1)')
         pass
 
     @abstractmethod

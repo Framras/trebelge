@@ -160,11 +160,79 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         })
 
     def build_invoiceperiod(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        if ET.parse(filepath).getroot().find(
-                cacnamespace + 'InvoicePeriod') is not None:
+        invoiceperiod = ET.parse(filepath).getroot().find(
+            cacnamespace + 'InvoicePeriod')
+        if invoiceperiod is not None:
+            # ['StartDate'] = ('cbc', 'invoiceperiod_startdate', 'Seçimli (0...1)')
+            invoiceperiod_startdate = invoiceperiod.find(cbcnamespace + 'StartDate').text
+            if invoiceperiod_startdate is not None:
+                self._product.add({
+                    'invoiceperiod_startdate': invoiceperiod_startdate
+                })
+            # ['StartTime'] = ('cbc', 'invoiceperiod_starttime', 'Seçimli (0...1)')
+            invoiceperiod_starttime = invoiceperiod.find(cbcnamespace + 'StartTime').text
+            if invoiceperiod_starttime is not None:
+                self._product.add({
+                    'invoiceperiod_starttime': invoiceperiod_starttime
+                })
+            # ['EndDate'] = ('cbc', 'invoiceperiod_enddate', 'Seçimli (0...1)')
+            invoiceperiod_enddate = invoiceperiod.find(cbcnamespace + 'EndDate').text
+            if invoiceperiod_enddate is not None:
+                self._product.add({
+                    'invoiceperiod_enddate': invoiceperiod_enddate
+                })
+            # ['EndTime'] = ('cbc', 'invoiceperiod_endtime', 'Seçimli (0...1)')
+            invoiceperiod_endtime = invoiceperiod.find(cbcnamespace + 'EndTime').text
+            if invoiceperiod_endtime is not None:
+                self._product.add({
+                    'invoiceperiod_endtime': invoiceperiod_endtime
+                })
+            # ['DurationMeasure'] = ('cbc', 'invoiceperiod_durationmeasure', 'Seçimli (0...1)')
+            invoiceperiod_durationmeasure = invoiceperiod.find(cbcnamespace + 'DurationMeasure').text
+            if invoiceperiod_durationmeasure is not None:
+                self._product.add({
+                    'invoiceperiod_durationmeasure': invoiceperiod_durationmeasure
+                })
+                # ['unitCode'] = ('cbc', 'invoiceperiod_durationmeasure_unitcode', 'Zorunlu (1)')
+                self._product.add({
+                    'invoiceperiod_durationmeasure_unitcode': invoiceperiod.find(
+                        cbcnamespace + 'DurationMeasure').attrib.get(
+                        'unitCode')
+                })
+            # ['Description'] = ('cbc', 'invoiceperiod_description', 'Seçimli (0...1)')
+            invoiceperiod_description = invoiceperiod.find(cbcnamespace + 'Description').text
+            if invoiceperiod_description is not None:
+                self._product.add({
+                    'invoiceperiod_description': invoiceperiod_description
+                })
 
-    def build_orderreference(self) -> None:
-        pass
+    def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        orderreference = ET.parse(filepath).getroot().find(
+            cacnamespace + 'OrderReference')
+        if orderreference is not None:
+            # ['ID'] = ('cbc', 'orderreference_id', 'Zorunlu(1)')
+            self._product.add({
+                'orderreference_id': orderreference.find(
+                    cbcnamespace + 'ID').text
+            })
+            # ['SalesOrderID'] = ('cbc', 'orderreference_salesorderid', 'Seçimli (0...1)')
+            orderreference_salesorderid = orderreference.find(cbcnamespace + 'SalesOrderID').text
+            if orderreference_salesorderid is not None:
+                self._product.add({
+                    'orderreference_salesorderid': orderreference_salesorderid
+                })
+            # ['IssueDate'] = ('cbc', 'orderreference_issuedate', 'Zorunlu(1)')
+            self._product.add({
+                'orderreference_issuedate': orderreference.find(
+                    cbcnamespace + 'IssueDate').text
+            })
+            # ['OrderTypeCode'] = ('cbc', 'orderreference_ordertypecode', 'Seçimli (0...1)')
+            orderreference_ordertypecode = orderreference.find(cbcnamespace + 'OrderTypeCode').text
+            if orderreference_ordertypecode is not None:
+                self._product.add({
+                    'orderreference_ordertypecode': orderreference_ordertypecode
+                })
+            # ['DocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
 
     def build_orderreferences(self) -> None:
         pass

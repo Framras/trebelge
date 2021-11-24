@@ -85,6 +85,7 @@ class TRUBLDirector:
         self.builder.build_profileid(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_id(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_copyindicator(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_issuedate(self._get_file_path(), self._get_cbc_namespace())
 
     def build_tr_ubl_despatchadvice(self) -> None:
         self.builder.build_ublversionid(self._get_file_path(), self._get_cbc_namespace())
@@ -92,3 +93,4 @@ class TRUBLDirector:
         self.builder.build_profileid(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_id(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_copyindicator(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_issuedate(self._get_file_path(), self._get_cbc_namespace())

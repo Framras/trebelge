@@ -10,7 +10,6 @@ class Period(AbstractXMLFileState):
     Backreference to the Context object, associated with the State.
     """
 
-    _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
     _elementTag: str = 'Period'
     _invoiceElementTag: str = 'InvoicePeriod'
