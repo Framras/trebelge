@@ -160,7 +160,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         })
 
     def build_invoiceperiod(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        pass
+        if ET.parse(filepath).getroot().find(
+                cacnamespace + 'InvoicePeriod') is not None:
 
     def build_orderreference(self) -> None:
         pass
