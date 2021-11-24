@@ -82,10 +82,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_issuetime(self, filepath: str, cbcnamespace: str) -> None:
         issuetime = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'IssueTime').text
+            cbcnamespace + 'IssueTime')
         if issuetime is not None:
             self._product.add({
-                'issuetime': issuetime
+                'issuetime': issuetime.text
             })
 
     def build_invoicetypecode(self, filepath: str, cbcnamespace: str) -> None:
@@ -99,7 +99,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_notes(self, filepath: str, cbcnamespace: str) -> None:
         if ET.parse(filepath).getroot().find(
-                cbcnamespace + 'Note').text is not None:
+                cbcnamespace + 'Note') is not None:
             notes: list = []
             for note in ET.parse(filepath).getroot().findall(cbcnamespace + 'Note'):
                 notes.append({'note': note.text})
@@ -115,42 +115,42 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_taxcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         taxcurrencycode = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'TaxCurrencyCode').text
+            cbcnamespace + 'TaxCurrencyCode')
         if taxcurrencycode is not None:
             self._product.add({
-                'taxcurrencycode': taxcurrencycode
+                'taxcurrencycode': taxcurrencycode.text
             })
 
     def build_pricingcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pricingcurrencycode = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'PricingCurrencyCode').text
+            cbcnamespace + 'PricingCurrencyCode')
         if pricingcurrencycode is not None:
             self._product.add({
-                'pricingcurrencycode': pricingcurrencycode
+                'pricingcurrencycode': pricingcurrencycode.text
             })
 
     def build_paymentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         paymentcurrencycode = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'PaymentCurrencyCode').text
+            cbcnamespace + 'PaymentCurrencyCode')
         if paymentcurrencycode is not None:
             self._product.add({
-                'paymentcurrencycode': paymentcurrencycode
+                'paymentcurrencycode': paymentcurrencycode.text
             })
 
     def build_paymentalternativecurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         paymentalternativecurrencycode = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'PaymentAlternativeCurrencyCode').text
+            cbcnamespace + 'PaymentAlternativeCurrencyCode')
         if paymentalternativecurrencycode is not None:
             self._product.add({
-                'paymentalternativecurrencycode': paymentalternativecurrencycode
+                'paymentalternativecurrencycode': paymentalternativecurrencycode.text
             })
 
     def build_accountingcost(self, filepath: str, cbcnamespace: str) -> None:
         accountingcost = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'AccountingCost').text
+            cbcnamespace + 'AccountingCost')
         if accountingcost is not None:
             self._product.add({
-                'accountingcost': accountingcost
+                'accountingcost': accountingcost.text
             })
 
     def build_linecountnumeric(self, filepath: str, cbcnamespace: str) -> None:
@@ -164,46 +164,45 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             cacnamespace + 'InvoicePeriod')
         if invoiceperiod is not None:
             # ['StartDate'] = ('cbc', 'invoiceperiod_startdate', 'Seçimli (0...1)')
-            invoiceperiod_startdate = invoiceperiod.find(cbcnamespace + 'StartDate').text
+            invoiceperiod_startdate = invoiceperiod.find(cbcnamespace + 'StartDate')
             if invoiceperiod_startdate is not None:
                 self._product.add({
-                    'invoiceperiod_startdate': invoiceperiod_startdate
+                    'invoiceperiod_startdate': invoiceperiod_startdate.text
                 })
             # ['StartTime'] = ('cbc', 'invoiceperiod_starttime', 'Seçimli (0...1)')
-            invoiceperiod_starttime = invoiceperiod.find(cbcnamespace + 'StartTime').text
+            invoiceperiod_starttime = invoiceperiod.find(cbcnamespace + 'StartTime')
             if invoiceperiod_starttime is not None:
                 self._product.add({
-                    'invoiceperiod_starttime': invoiceperiod_starttime
+                    'invoiceperiod_starttime': invoiceperiod_starttime.text
                 })
             # ['EndDate'] = ('cbc', 'invoiceperiod_enddate', 'Seçimli (0...1)')
-            invoiceperiod_enddate = invoiceperiod.find(cbcnamespace + 'EndDate').text
+            invoiceperiod_enddate = invoiceperiod.find(cbcnamespace + 'EndDate')
             if invoiceperiod_enddate is not None:
                 self._product.add({
-                    'invoiceperiod_enddate': invoiceperiod_enddate
+                    'invoiceperiod_enddate': invoiceperiod_enddate.text
                 })
             # ['EndTime'] = ('cbc', 'invoiceperiod_endtime', 'Seçimli (0...1)')
-            invoiceperiod_endtime = invoiceperiod.find(cbcnamespace + 'EndTime').text
+            invoiceperiod_endtime = invoiceperiod.find(cbcnamespace + 'EndTime')
             if invoiceperiod_endtime is not None:
                 self._product.add({
-                    'invoiceperiod_endtime': invoiceperiod_endtime
+                    'invoiceperiod_endtime': invoiceperiod_endtime.text
                 })
             # ['DurationMeasure'] = ('cbc', 'invoiceperiod_durationmeasure', 'Seçimli (0...1)')
-            invoiceperiod_durationmeasure = invoiceperiod.find(cbcnamespace + 'DurationMeasure').text
+            invoiceperiod_durationmeasure = invoiceperiod.find(cbcnamespace + 'DurationMeasure')
             if invoiceperiod_durationmeasure is not None:
                 self._product.add({
-                    'invoiceperiod_durationmeasure': invoiceperiod_durationmeasure
+                    'invoiceperiod_durationmeasure': invoiceperiod_durationmeasure.text
                 })
                 # ['unitCode'] = ('cbc', 'invoiceperiod_durationmeasure_unitcode', 'Zorunlu (1)')
                 self._product.add({
-                    'invoiceperiod_durationmeasure_unitcode': invoiceperiod.find(
-                        cbcnamespace + 'DurationMeasure').attrib.get(
+                    'invoiceperiod_durationmeasure_unitcode': invoiceperiod_durationmeasure.attrib.get(
                         'unitCode')
                 })
             # ['Description'] = ('cbc', 'invoiceperiod_description', 'Seçimli (0...1)')
-            invoiceperiod_description = invoiceperiod.find(cbcnamespace + 'Description').text
+            invoiceperiod_description = invoiceperiod.find(cbcnamespace + 'Description')
             if invoiceperiod_description is not None:
                 self._product.add({
-                    'invoiceperiod_description': invoiceperiod_description
+                    'invoiceperiod_description': invoiceperiod_description.text
                 })
 
     def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
@@ -216,10 +215,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                     cbcnamespace + 'ID').text
             })
             # ['SalesOrderID'] = ('cbc', 'orderreference_salesorderid', 'Seçimli (0...1)')
-            orderreference_salesorderid = orderreference.find(cbcnamespace + 'SalesOrderID').text
+            orderreference_salesorderid = orderreference.find(cbcnamespace + 'SalesOrderID')
             if orderreference_salesorderid is not None:
                 self._product.add({
-                    'orderreference_salesorderid': orderreference_salesorderid
+                    'orderreference_salesorderid': orderreference_salesorderid.text
                 })
             # ['IssueDate'] = ('cbc', 'orderreference_issuedate', 'Zorunlu(1)')
             self._product.add({
@@ -227,10 +226,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                     cbcnamespace + 'IssueDate').text
             })
             # ['OrderTypeCode'] = ('cbc', 'orderreference_ordertypecode', 'Seçimli (0...1)')
-            orderreference_ordertypecode = orderreference.find(cbcnamespace + 'OrderTypeCode').text
+            orderreference_ordertypecode = orderreference.find(cbcnamespace + 'OrderTypeCode')
             if orderreference_ordertypecode is not None:
                 self._product.add({
-                    'orderreference_ordertypecode': orderreference_ordertypecode
+                    'orderreference_ordertypecode': orderreference_ordertypecode.text
                 })
             # ['DocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
 
@@ -312,24 +311,92 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_withholdingtaxtotals(self) -> None:
         pass
 
-    def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str) -> None:
-        # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu(1)')
-        # ['TaxExclusiveAmount'] = ('cbc', '', 'Zorunlu(1)')
-        # ['TaxInclusiveAmount'] = ('cbc', '', 'Zorunlu(1)')
-        # ['AllowanceTotalAmount'] = ('cbc', '', 'Seçimli (0...1)')
-        # ['ChargeTotalAmount'] = ('cbc', '', 'Seçimli (0...1)')
-        # ['PayableRoundingAmount'] = ('cbc', '', 'Seçimli (0...1)')
-        # ['PayableAmount'] = ('cbc', '', 'Zorunlu(1)')
-        # attrib currencyID for tags endswith('Amount')
-        # ['currencyID'] = ('', '', 'Zorunlu(1)', False, False, False)
-
-        self._product.add({
-            'legalmonetarytotal_lineextensionamount': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'ProfileID').text
-        })
-
     def build_invoicelines(self) -> None:
         pass
+
+    def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        legalmonetarytotal = ET.parse(filepath).getroot().find(
+            cacnamespace + 'LegalMonetaryTotal')
+        # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu(1)')
+        legalmonetarytotal_lineextensionamount = legalmonetarytotal.find(cbcnamespace + 'LineExtensionAmount')
+        self._product.add({
+            'legalmonetarytotal_lineextensionamount': legalmonetarytotal_lineextensionamount.text
+        })
+        # ['currencyID'] = ('', '', 'Zorunlu(1)')
+        self._product.add({
+            'legalmonetarytotal_lineextensionamount_currencyid': legalmonetarytotal_lineextensionamount.attrib.get(
+                'currencyID')
+        })
+        # ['TaxExclusiveAmount'] = ('cbc', '', 'Zorunlu(1)')
+        legalmonetarytotal_taxexclusiveamount = legalmonetarytotal.find(cbcnamespace + 'TaxExclusiveAmount')
+        self._product.add({
+            'legalmonetarytotal_taxexclusiveamount': legalmonetarytotal_taxexclusiveamount.text
+        })
+        # ['currencyID'] = ('', '', 'Zorunlu(1)')
+        self._product.add({
+            'legalmonetarytotal_taxexclusiveamount_currencyid': legalmonetarytotal_taxexclusiveamount.attrib.get(
+                'currencyID')
+        })
+        # ['TaxInclusiveAmount'] = ('cbc', '', 'Zorunlu(1)')
+        legalmonetarytotal_taxinclusiveamount = legalmonetarytotal.find(cbcnamespace + 'TaxInclusiveAmount')
+        self._product.add({
+            'legalmonetarytotal_taxinclusiveamount': legalmonetarytotal_taxinclusiveamount.text
+        })
+        # ['currencyID'] = ('', '', 'Zorunlu(1)')
+        self._product.add({
+            'legalmonetarytotal_taxinclusiveamount_currencyid': legalmonetarytotal_taxinclusiveamount.attrib.get(
+                'currencyID')
+        })
+        # ['AllowanceTotalAmount'] = ('cbc', '', 'Seçimli (0...1)')
+        legalmonetarytotal_allowancetotalamount = legalmonetarytotal.find(cbcnamespace + 'AllowanceTotalAmount')
+        if legalmonetarytotal_allowancetotalamount is not None:
+            self._product.add({
+                'legalmonetarytotal_allowancetotalamount': legalmonetarytotal_allowancetotalamount.text
+            })
+            # ['currencyID'] = ('', '', 'Zorunlu(1)')
+            self._product.add({
+                'legalmonetarytotal_allowancetotalamount_currencyid': legalmonetarytotal_allowancetotalamount.attrib.get(
+                    'currencyID')
+            })
+        # ['ChargeTotalAmount'] = ('cbc', '', 'Seçimli (0...1)')
+        legalmonetarytotal_chargetotalamount = legalmonetarytotal.find(cbcnamespace + 'ChargeTotalAmount')
+        if legalmonetarytotal_chargetotalamount is not None:
+            self._product.add({
+                'legalmonetarytotal_chargetotalamount': legalmonetarytotal_chargetotalamount.text
+            })
+            # ['currencyID'] = ('', '', 'Zorunlu(1)')
+            self._product.add({
+                'legalmonetarytotal_chargetotalamount_currencyid': legalmonetarytotal_chargetotalamount.attrib.get(
+                    'currencyID')
+            })
+        # ['PayableRoundingAmount'] = ('cbc', '', 'Seçimli (0...1)')
+        legalmonetarytotal_chargetotalamount = legalmonetarytotal.find(cbcnamespace + 'PayableRoundingAmount')
+        if legalmonetarytotal_chargetotalamount is not None:
+            self._product.add({
+                'legalmonetarytotal_chargetotalamount': legalmonetarytotal_chargetotalamount.text
+            })
+            # ['currencyID'] = ('', '', 'Zorunlu(1)')
+            self._product.add({
+                'legalmonetarytotal_chargetotalamount_currencyid': legalmonetarytotal_chargetotalamount.attrib.get(
+                    'currencyID')
+            })
+        "legalmonetarytotal_payableroundingamount",
+        "legalmonetarytotal_payableroundingamount_currencyid",
+        # ['PayableAmount'] = ('cbc', '', 'Zorunlu(1)')
+        invoiceperiod_durationmeasure = invoiceperiod.find(cbcnamespace + 'DurationMeasure').text
+        if invoiceperiod_durationmeasure is not None:
+            self._product.add({
+                'invoiceperiod_durationmeasure': invoiceperiod_durationmeasure
+            })
+            # ['unitCode'] = ('cbc', 'invoiceperiod_durationmeasure_unitcode', 'Zorunlu (1)')
+            self._product.add({
+                'invoiceperiod_durationmeasure_unitcode': invoiceperiod.find(
+                    cbcnamespace + 'DurationMeasure').attrib.get(
+                    'unitCode')
+            })
+        "legalmonetarytotal_payableamount",
+        "legalmonetarytotal_payableamount_currencyid",
+        # attrib currencyID for tags endswith('Amount')
 
     def build_despatchlines(self) -> None:
         pass
