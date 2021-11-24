@@ -98,39 +98,66 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         pass
 
     def build_notes(self, filepath: str, cbcnamespace: str) -> None:
-        invoice.as_dict(
-            {
-                'ublversionid': ET.parse(self.get_context().get_file_path()).getroot().find(
-                    self.get_context().get_cbc_namespace() + 'UBLVersionID').text,
-                'customizationid': ET.parse(self.get_context().get_file_path()).getroot().find(
-                    self.get_context().get_cbc_namespace() + 'CustomizationID').text,
-                'qualifications': [
-                    {'title': 'Frontend Architect', 'year': '2017'},
-                    {'title': 'DevOps Engineer', 'year': '2016'},
-                ]
-            }
-        )
+        if ET.parse(filepath).getroot().find(
+                cbcnamespace + 'Note').text is not None:
+            notes: list = []
+            for note in ET.parse(filepath).getroot().findall(cbcnamespace + 'Note'):
+                notes.append({'note': note.text})
+            self._product.add({
+                'notes': notes
+            })
 
     def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
-        pass
+        self._product.add({
+            'documentcurrencycode': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'DocumentCurrencyCode').text
+        })
 
     def build_taxcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
-        pass
+        taxcurrencycode = ET.parse(filepath).getroot().find(
+            cbcnamespace + 'TaxCurrencyCode').text
+        if taxcurrencycode is not None:
+            self._product.add({
+                'taxcurrencycode': taxcurrencycode
+            })
 
     def build_pricingcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
-        pass
+        pricingcurrencycode = ET.parse(filepath).getroot().find(
+            cbcnamespace + 'PricingCurrencyCode').text
+        if pricingcurrencycode is not None:
+            self._product.add({
+                'pricingcurrencycode': pricingcurrencycode
+            })
 
     def build_paymentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
-        pass
+        paymentcurrencycode = ET.parse(filepath).getroot().find(
+            cbcnamespace + 'PaymentCurrencyCode').text
+        if paymentcurrencycode is not None:
+            self._product.add({
+                'paymentcurrencycode': paymentcurrencycode
+            })
 
     def build_paymentalternativecurrencycode(self, filepath: str, cbcnamespace: str) -> None:
-        pass
+        paymentalternativecurrencycode = ET.parse(filepath).getroot().find(
+            cbcnamespace + 'PaymentAlternativeCurrencyCode').text
+        if paymentalternativecurrencycode is not None:
+            self._product.add({
+                'paymentalternativecurrencycode': paymentalternativecurrencycode
+            })
 
     def build_accountingcost(self, filepath: str, cbcnamespace: str) -> None:
-        pass
+        accountingcost = ET.parse(filepath).getroot().find(
+            cbcnamespace + 'AccountingCost').text
+        if accountingcost is not None:
+            self._product.add({
+                'accountingcost': accountingcost
+            })
 
     def build_linecountnumeric(self, filepath: str, cbcnamespace: str) -> None:
-        pass
+        self._product.add({
+            'linecountnumeric': ET.parse(filepath).getroot().find(
+                cbcnamespace + 'LineCountNumeric').text
+        })
 
     def build_invoiceperiod(self) -> None:
         pass

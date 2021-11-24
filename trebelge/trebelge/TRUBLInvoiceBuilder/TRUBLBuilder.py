@@ -63,30 +63,37 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+        # ['DocumentCurrencyCode'] = ('cbc', 'documentcurrencycode', 'Zorunlu (1)')
         pass
 
     @abstractmethod
     def build_taxcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+        # ['TaxCurrencyCode'] = ('cbc', 'taxcurrencycode', 'Seçimli (0...1)')
         pass
 
     @abstractmethod
     def build_pricingcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+        # ['PricingCurrencyCode'] = ('cbc', 'pricingcurrencycode', 'Seçimli (0...1)')
         pass
 
     @abstractmethod
     def build_paymentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+        # ['PaymentCurrencyCode'] = ('cbc', 'paymentcurrencycode', 'Seçimli (0...1)')
         pass
 
     @abstractmethod
     def build_paymentalternativecurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+        # ['PaymentAlternativeCurrencyCode'] = ('cbc', 'paymentalternativecurrencycode', 'Seçimli (0...1)')
         pass
 
     @abstractmethod
     def build_accountingcost(self, filepath: str, cbcnamespace: str) -> None:
+        # ['AccountingCost'] = ('cbc', 'accountingcost', 'Seçimli (0...1)')
         pass
 
     @abstractmethod
     def build_linecountnumeric(self, filepath: str, cbcnamespace: str) -> None:
+        # ['LineCountNumeric'] = ('cbc', 'linecountnumeric', 'Zorunlu (1)')
         pass
 
     @abstractmethod
