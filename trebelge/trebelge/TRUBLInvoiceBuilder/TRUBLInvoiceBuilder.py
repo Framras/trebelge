@@ -159,7 +159,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                 cbcnamespace + 'LineCountNumeric').text
         })
 
-    def build_invoiceperiod(self) -> None:
+    def build_invoiceperiod(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     def build_orderreference(self) -> None:

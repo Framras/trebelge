@@ -97,7 +97,8 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_invoiceperiod(self) -> None:
+    def build_invoiceperiod(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)')
         pass
 
     @abstractmethod
