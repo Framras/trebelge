@@ -112,30 +112,37 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_billingreferences(self) -> None:
+        # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
     def build_despatchdocumentreferences(self) -> None:
+        # ['DespatchDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
     def build_receiptdocumentreferences(self) -> None:
+        # ['ReceiptDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
     def build_originatordocumentreferences(self) -> None:
+        # ['OriginatorDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
     def build_contractdocumentreferences(self) -> None:
+        # ['ContractDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
     def build_additionaldocumentreferences(self) -> None:
+        # ['AdditionalDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', True, False, False, '')
         pass
 
     @abstractmethod
     def build_accountingsupplierparty(self) -> None:
+        # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)')
         pass
 
     @abstractmethod
@@ -144,6 +151,7 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_accountingcustomerparty(self) -> None:
+        # ['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)')
         pass
 
     @abstractmethod
@@ -152,6 +160,7 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_buyercustomerparty(self) -> None:
+        # ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)')
         pass
 
     @abstractmethod
@@ -160,14 +169,17 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_sellersupplierparty(self) -> None:
+        # ['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)')
         pass
 
     @abstractmethod
     def build_taxrepresentativeparty(self) -> None:
+        # ['TaxRepresentativeParty'] = ('cac', Party(), 'Seçimli (0..1)')
         pass
 
     @abstractmethod
     def build_deliveries(self) -> None:
+        # ['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
@@ -176,46 +188,57 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_paymentmeans(self) -> None:
+        # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
     def build_paymentterm(self) -> None:
+        # ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
         pass
 
     @abstractmethod
     def build_allowancecharges(self) -> None:
+        # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
     def build_taxexchangerate(self) -> None:
+        # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)')
         pass
 
     @abstractmethod
     def build_pricingexchangerate(self) -> None:
+        # ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)')
         pass
 
     @abstractmethod
     def build_paymentexchangerate(self) -> None:
+        # ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)')
         pass
 
     @abstractmethod
     def build_paymentalternativeexchangerate(self) -> None:
+        # ['PaymentAlternativeExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)')
         pass
 
     @abstractmethod
     def build_taxtotals(self) -> None:
+        # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)')
         pass
 
     @abstractmethod
     def build_withholdingtaxtotals(self) -> None:
+        # ['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)')
         pass
 
     @abstractmethod
     def build_legalmonetarytotal(self) -> None:
+        # ['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)')
         pass
 
     @abstractmethod
     def build_invoicelines(self) -> None:
+        # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)')
         pass
 
     @abstractmethod
