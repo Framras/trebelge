@@ -38,7 +38,7 @@
     "invoiceperiod_enddate",
     "invoiceperiod_endtime",
     "invoiceperiod_durationmeasure_unitcode",
-    "invoiceperiod_description",
+    "invoiceperiod_descriptions",
     "orderreference",
     "orderreference_id",
     "orderreference_salesorderid",
@@ -54,6 +54,7 @@
     "debitnotedocumentreference",
     "reminderdocumentreference",
     "billingreferenceline",
+    "irsaliye_bilgileri",
     "despatchdocumentreferences",
     "receiptdocumentreferences",
     "originatordocumentreferences",
@@ -415,12 +416,6 @@
       "fieldname": "invoiceperiod_durationmeasure",
       "fieldtype": "Data",
       "label": "D\u00f6nem s\u00fcresi"
-    },
-    {
-      "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
-      "fieldname": "invoiceperiod_description",
-      "fieldtype": "Data",
-      "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
     },
     {
       "description": "Sipari\u015f numaras\u0131 girilecektir.",
@@ -842,8 +837,8 @@
     },
     {
       "fieldname": "despatchdocumentreferences",
-      "fieldtype": "Section Break",
-      "label": "\u0130rsaliye Bilgileri"
+      "fieldtype": "Data",
+      "label": "\u0130rsaliye bilgileri"
     },
     {
       "description": "Al\u0131nd\u0131 bilgilerinin g\u00f6sterilmesinde ve al\u0131nd\u0131 belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
@@ -903,10 +898,21 @@
       "fieldname": "invoicelines",
       "fieldtype": "Section Break",
       "label": "Mal/Hizmet Kalemleri"
+    },
+    {
+      "fieldname": "irsaliye_bilgileri",
+      "fieldtype": "Section Break",
+      "label": "\u0130rsaliye Bilgileri"
+    },
+    {
+      "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
+      "fieldname": "invoiceperiod_descriptions",
+      "fieldtype": "Long Text",
+      "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
     }
   ],
   "links": [],
-  "modified": "2021-11-22 21:19:00.381331",
+  "modified": "2021-11-25 09:46:31.066210",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",

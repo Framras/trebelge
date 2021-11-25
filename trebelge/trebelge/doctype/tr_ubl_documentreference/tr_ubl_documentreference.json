@@ -14,6 +14,14 @@
     "documentdesciption",
     "attachment",
     "validityperiod",
+    "validityperiod_startdate",
+    "validityperiod_starttime",
+    "validityperiod_durationmeasure",
+    "column_break_11",
+    "validityperiod_enddate",
+    "validityperiod_endtime",
+    "validityperiod_durationmeasure_unitcode",
+    "validityperiod_descriptions",
     "issuerparty"
   ],
   "fields": [
@@ -63,9 +71,8 @@
     {
       "description": "Referans verilen ya da eklenen belgenin ge\u00e7erlilik s\u00fcresi girilebilir.",
       "fieldname": "validityperiod",
-      "fieldtype": "Table",
-      "label": "Validity Period",
-      "options": "TR GIB eFatura UBL Period"
+      "fieldtype": "Section Break",
+      "label": "Belgenin Ge\u00e7erlilik S\u00fcresi"
     },
     {
       "description": "Referans verilen ya da eklenen belgeyi yay\u0131nlayan taraf bilgisi girilebilir.",
@@ -73,11 +80,51 @@
       "fieldtype": "Table",
       "label": "Issuer Party",
       "options": "TR GIB eFatura UBL Party"
+    },
+    {
+      "fieldname": "validityperiod_startdate",
+      "fieldtype": "Date",
+      "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih"
+    },
+    {
+      "fieldname": "validityperiod_starttime",
+      "fieldtype": "Time",
+      "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
+    },
+    {
+      "fieldname": "validityperiod_durationmeasure",
+      "fieldtype": "Data",
+      "label": "D\u00f6nem s\u00fcresi"
+    },
+    {
+      "fieldname": "column_break_11",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "validityperiod_enddate",
+      "fieldtype": "Date",
+      "label": "D\u00f6nemin bitti\u011fi tarih"
+    },
+    {
+      "fieldname": "validityperiod_endtime",
+      "fieldtype": "Time",
+      "label": "D\u00f6nemin bitti\u011fi zaman"
+    },
+    {
+      "fieldname": "validityperiod_durationmeasure_unitcode",
+      "fieldtype": "Link",
+      "label": "D\u00f6nem Aral\u0131\u011f\u0131 Tipi",
+      "options": "TR UBL Period DurationMeasure unitCode"
+    },
+    {
+      "fieldname": "validityperiod_descriptions",
+      "fieldtype": "Long Text",
+      "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
     }
   ],
   "istable": 1,
   "links": [],
-  "modified": "2021-10-22 13:12:34.006525",
+  "modified": "2021-11-25 09:45:26.803944",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL DocumentReference",
