@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 
 from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
@@ -185,17 +186,16 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                 }
             strategy: TRUBLCommonElement = TRUBLPeriod()
             self._strategyContext.set_strategy(strategy)
-            period = self._strategyContext.return_element_data(invoiceperiod, cbcnamespace, cacnamespace)
-            for key in period.keys():
-                if period.get(key) is not None:
-                    self._product.add({
-                        conversion.get(key): period.get(key)
-                    })
+            period_ = self._strategyContext.return_element_data(invoiceperiod, cbcnamespace, cacnamespace)
+            for key in period_.keys():
+                if period_.get(key) is not None:
+                    self._product.add({conversion.get(key): period_.get(key)
+                                       })
 
     def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        invoiceorderreference = ET.parse(filepath).getroot().find(
+        orderreference = ET.parse(filepath).getroot().find(
             cacnamespace + 'OrderReference')
-        if invoiceorderreference is not None:
+        if orderreference is not None:
             # ['ID'] = ('cbc', 'orderreference_id', 'Zorunlu(1)')
             # ['SalesOrderID'] = ('cbc', 'orderreference_salesorderid', 'Seçimli (0...1)')
             # ['IssueDate'] = ('cbc', 'orderreference_issuedate', 'Zorunlu(1)')
@@ -209,12 +209,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                 }
             strategy: TRUBLCommonElement = TRUBLOrderReference()
             self._strategyContext.set_strategy(strategy)
-            orderreference = self._strategyContext.return_element_data(invoiceorderreference, cbcnamespace,
-                                                                       cacnamespace)
-            for key in orderreference.keys():
-                if orderreference.get(key) is not None:
+            orderreference_ = self._strategyContext.return_element_data(orderreference, cbcnamespace,
+                                                                        cacnamespace)
+            for key in orderreference_.keys():
+                if orderreference_.get(key) is not None:
                     self._product.add({
-                        conversion.get(key): orderreference.get(key)
+                        conversion.get(key): orderreference_.get(key)
                     })
 
     def build_orderreferences(self) -> None:
@@ -312,66 +312,30 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['currencyID'] = ('', 'legalmonetarytotal_payableroundingamount_currencyid', 'Zorunlu(1)')
         # ['PayableAmount'] = ('cbc', 'legalmonetarytotal_payableamount', 'Zorunlu(1)')
         # ['currencyID'] = ('', 'legalmonetarytotal_payableamount_currencyid', 'Zorunlu(1)')
-        lineextensionamount = legalmonetarytotal.find(cbcnamespace + 'LineExtensionAmount')
-        self._product.add({
-            'legalmonetarytotal_lineextensionamount': lineextensionamount.text
-        })
-        self._product.add({
-            'legalmonetarytotal_lineextensionamount_currencyid': lineextensionamount.attrib.get(
-                'currencyID')
-        })
-        taxexclusiveamount = legalmonetarytotal.find(cbcnamespace + 'TaxExclusiveAmount')
-        self._product.add({
-            'legalmonetarytotal_taxexclusiveamount': taxexclusiveamount.text
-        })
-        self._product.add({
-            'legalmonetarytotal_taxexclusiveamount_currencyid': taxexclusiveamount.attrib.get(
-                'currencyID')
-        })
-        taxinclusiveamount = legalmonetarytotal.find(cbcnamespace + 'TaxInclusiveAmount')
-        self._product.add({
-            'legalmonetarytotal_taxinclusiveamount': taxinclusiveamount.text
-        })
-        self._product.add({
-            'legalmonetarytotal_taxinclusiveamount_currencyid': taxinclusiveamount.attrib.get(
-                'currencyID')
-        })
-        allowancetotalamount = legalmonetarytotal.find(cbcnamespace + 'AllowanceTotalAmount')
-        if allowancetotalamount is not None:
-            self._product.add({
-                'legalmonetarytotal_allowancetotalamount': allowancetotalamount.text
-            })
-            self._product.add({
-                'legalmonetarytotal_allowancetotalamount_currencyid': allowancetotalamount.attrib.get(
-                    'currencyID')
-            })
-        chargetotalamount = legalmonetarytotal.find(cbcnamespace + 'ChargeTotalAmount')
-        if chargetotalamount is not None:
-            self._product.add({
-                'legalmonetarytotal_chargetotalamount': chargetotalamount.text
-            })
-            self._product.add({
-                'legalmonetarytotal_chargetotalamount_currencyid': chargetotalamount.attrib.get(
-                    'currencyID')
-            })
-        payableroundingamount = legalmonetarytotal.find(cbcnamespace + 'PayableRoundingAmount')
-        if payableroundingamount is not None:
-            self._product.add({
-                'legalmonetarytotal_payableroundingamount': payableroundingamount.text
-            })
-            self._product.add({
-                'legalmonetarytotal_payableroundingamount_currencyid': payableroundingamount.attrib.get(
-                    'currencyID')
-            })
-        payableamount = legalmonetarytotal.find(cbcnamespace + 'PayableAmount')
-        if payableamount is not None:
-            self._product.add({
-                'legalmonetarytotal_payableamount': payableamount.text
-            })
-            self._product.add({
-                'legalmonetarytotal_payableamount_currencyid': payableamount.attrib.get(
-                    'currencyID')
-            })
+        conversion: dict = {'lineextensionamount': 'legalmonetarytotal_lineextensionamount',
+                            'lineextensionamount_currencyid': 'legalmonetarytotal_lineextensionamount_currencyid',
+                            'taxexclusiveamount': 'legalmonetarytotal_taxexclusiveamount',
+                            'taxexclusiveamount_currencyid': 'legalmonetarytotal_taxexclusiveamount_currencyid',
+                            'taxinclusiveamount': 'legalmonetarytotal_taxinclusiveamount',
+                            'taxinclusiveamount_currencyid': 'legalmonetarytotal_taxinclusiveamount_currencyid',
+                            'allowancetotalamount': 'legalmonetarytotal_allowancetotalamount',
+                            'allowancetotalamount_currencyid': 'legalmonetarytotal_allowancetotalamount_currencyid',
+                            'chargetotalamount': 'legalmonetarytotal_chargetotalamount',
+                            'chargetotalamount_currencyid': 'legalmonetarytotal_chargetotalamount_currencyid',
+                            'payableroundingamount': 'legalmonetarytotal_payableroundingamount',
+                            'payableroundingamount_currencyid': 'legalmonetarytotal_payableroundingamount_currencyid',
+                            'payableamount': 'legalmonetarytotal_payableamount',
+                            'payableamount_currencyid': 'legalmonetarytotal_payableamount_currencyid'
+                            }
+        strategy: TRUBLCommonElement = TRUBLMonetaryTotal()
+        self._strategyContext.set_strategy(strategy)
+        monetarytotal_ = self._strategyContext.return_element_data(legalmonetarytotal, cbcnamespace,
+                                                                   cacnamespace)
+        for key in monetarytotal_.keys():
+            if monetarytotal_.get(key) is not None:
+                self._product.add({
+                    conversion.get(key): monetarytotal_.get(key)
+                })
 
     def build_invoicelines(self) -> None:
         pass
