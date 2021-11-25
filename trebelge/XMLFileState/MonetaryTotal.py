@@ -8,7 +8,6 @@ class MonetaryTotal(AbstractXMLFileState):
     State methods
     Backreference to the Context object, associated with the State.
     """
-    _frappeDoctype: str = 'TR GIB eFatura Gelen'
     _mapping = dict()
     _elementTag: str = 'LegalMonetaryTotal'
 

@@ -15,25 +15,25 @@ class TRUBLPeriod(TRUBLCommonElement):
         ['Description'] = ('cbc', 'description', 'Seçimli (0...1)')
         """
         period: dict = {}
-        period_startdate = element.find(cbcnamespace + 'StartDate')
-        if period_startdate is not None:
-            period['startdate'] = period_startdate.text
-        period_starttime = element.find(cbcnamespace + 'StartTime')
-        if period_starttime is not None:
-            period['starttime'] = period_starttime.text
-        period_enddate = element.find(cbcnamespace + 'EndDate')
-        if period_enddate is not None:
-            period['enddate'] = period_enddate.text
-        period_endtime = element.find(cbcnamespace + 'EndTime')
-        if period_endtime is not None:
-            period['endtime'] = period_endtime.text
-        period_durationmeasure = element.find(cbcnamespace + 'DurationMeasure')
-        if period_durationmeasure is not None:
-            period['durationmeasure'] = period_durationmeasure.text
-            period['durationmeasure_unitcode'] = period_durationmeasure.attrib.get(
+        startdate_ = element.find(cbcnamespace + 'StartDate')
+        if startdate_ is not None:
+            period['startdate'] = startdate_.text
+        starttime_ = element.find(cbcnamespace + 'StartTime')
+        if starttime_ is not None:
+            period['starttime'] = starttime_.text
+        enddate_ = element.find(cbcnamespace + 'EndDate')
+        if enddate_ is not None:
+            period['enddate'] = enddate_.text
+        endtime_ = element.find(cbcnamespace + 'EndTime')
+        if endtime_ is not None:
+            period['endtime'] = endtime_.text
+        durationmeasure_ = element.find(cbcnamespace + 'DurationMeasure')
+        if durationmeasure_ is not None:
+            period['durationmeasure'] = durationmeasure_.text
+            period['durationmeasure_unitcode'] = durationmeasure_.attrib.get(
                 'unitCode')
-        period_description = element.find(cbcnamespace + 'Description')
-        if period_description is not None:
-            period['description'] = period_description.text
+        description_ = element.find(cbcnamespace + 'Description')
+        if description_ is not None:
+            period['description'] = description_.text
 
         return period

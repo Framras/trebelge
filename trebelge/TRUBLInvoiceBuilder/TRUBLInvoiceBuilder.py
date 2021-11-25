@@ -298,76 +298,76 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         legalmonetarytotal = ET.parse(filepath).getroot().find(
             cacnamespace + 'LegalMonetaryTotal')
-        # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu(1)')
+        # ['LineExtensionAmount'] = ('cbc', 'legalmonetarytotal_lineextensionamount', 'Zorunlu(1)')
+        # ['currencyID'] = ('', 'legalmonetarytotal_lineextensionamount_currencyid', 'Zorunlu(1)')
+        # ['TaxExclusiveAmount'] = ('cbc', 'legalmonetarytotal_taxexclusiveamount', 'Zorunlu(1)')
+        # ['currencyID'] = ('', 'legalmonetarytotal_taxexclusiveamount_currencyid', 'Zorunlu(1)')
+        # ['TaxInclusiveAmount'] = ('cbc', 'legalmonetarytotal_taxinclusiveamount', 'Zorunlu(1)')
+        # ['currencyID'] = ('', 'legalmonetarytotal_taxinclusiveamount_currencyid', 'Zorunlu(1)')
+        # ['AllowanceTotalAmount'] = ('cbc', 'legalmonetarytotal_allowancetotalamount', 'Seçimli (0...1)')
+        # ['currencyID'] = ('', 'legalmonetarytotal_allowancetotalamount_currencyid', 'Zorunlu(1)')
+        # ['ChargeTotalAmount'] = ('cbc', 'legalmonetarytotal_chargetotalamount', 'Seçimli (0...1)')
+        # ['currencyID'] = ('', 'legalmonetarytotal_chargetotalamount_currencyid', 'Zorunlu(1)')
+        # ['PayableRoundingAmount'] = ('cbc', 'legalmonetarytotal_payableroundingamount', 'Seçimli (0...1)')
+        # ['currencyID'] = ('', 'legalmonetarytotal_payableroundingamount_currencyid', 'Zorunlu(1)')
+        # ['PayableAmount'] = ('cbc', 'legalmonetarytotal_payableamount', 'Zorunlu(1)')
+        # ['currencyID'] = ('', 'legalmonetarytotal_payableamount_currencyid', 'Zorunlu(1)')
         lineextensionamount = legalmonetarytotal.find(cbcnamespace + 'LineExtensionAmount')
         self._product.add({
             'legalmonetarytotal_lineextensionamount': lineextensionamount.text
         })
-        # ['currencyID'] = ('', '', 'Zorunlu(1)')
         self._product.add({
             'legalmonetarytotal_lineextensionamount_currencyid': lineextensionamount.attrib.get(
                 'currencyID')
         })
-        # ['TaxExclusiveAmount'] = ('cbc', '', 'Zorunlu(1)')
         taxexclusiveamount = legalmonetarytotal.find(cbcnamespace + 'TaxExclusiveAmount')
         self._product.add({
             'legalmonetarytotal_taxexclusiveamount': taxexclusiveamount.text
         })
-        # ['currencyID'] = ('', '', 'Zorunlu(1)')
         self._product.add({
             'legalmonetarytotal_taxexclusiveamount_currencyid': taxexclusiveamount.attrib.get(
                 'currencyID')
         })
-        # ['TaxInclusiveAmount'] = ('cbc', '', 'Zorunlu(1)')
         taxinclusiveamount = legalmonetarytotal.find(cbcnamespace + 'TaxInclusiveAmount')
         self._product.add({
             'legalmonetarytotal_taxinclusiveamount': taxinclusiveamount.text
         })
-        # ['currencyID'] = ('', '', 'Zorunlu(1)')
         self._product.add({
             'legalmonetarytotal_taxinclusiveamount_currencyid': taxinclusiveamount.attrib.get(
                 'currencyID')
         })
-        # ['AllowanceTotalAmount'] = ('cbc', '', 'Seçimli (0...1)')
         allowancetotalamount = legalmonetarytotal.find(cbcnamespace + 'AllowanceTotalAmount')
         if allowancetotalamount is not None:
             self._product.add({
                 'legalmonetarytotal_allowancetotalamount': allowancetotalamount.text
             })
-            # ['currencyID'] = ('', '', 'Zorunlu(1)')
             self._product.add({
                 'legalmonetarytotal_allowancetotalamount_currencyid': allowancetotalamount.attrib.get(
                     'currencyID')
             })
-        # ['ChargeTotalAmount'] = ('cbc', '', 'Seçimli (0...1)')
         chargetotalamount = legalmonetarytotal.find(cbcnamespace + 'ChargeTotalAmount')
         if chargetotalamount is not None:
             self._product.add({
                 'legalmonetarytotal_chargetotalamount': chargetotalamount.text
             })
-            # ['currencyID'] = ('', '', 'Zorunlu(1)')
             self._product.add({
                 'legalmonetarytotal_chargetotalamount_currencyid': chargetotalamount.attrib.get(
                     'currencyID')
             })
-        # ['PayableRoundingAmount'] = ('cbc', '', 'Seçimli (0...1)')
         payableroundingamount = legalmonetarytotal.find(cbcnamespace + 'PayableRoundingAmount')
         if payableroundingamount is not None:
             self._product.add({
                 'legalmonetarytotal_payableroundingamount': payableroundingamount.text
             })
-            # ['currencyID'] = ('', '', 'Zorunlu(1)')
             self._product.add({
                 'legalmonetarytotal_payableroundingamount_currencyid': payableroundingamount.attrib.get(
                     'currencyID')
             })
-        # ['PayableAmount'] = ('cbc', '', 'Zorunlu(1)')
         payableamount = legalmonetarytotal.find(cbcnamespace + 'PayableAmount')
         if payableamount is not None:
             self._product.add({
                 'legalmonetarytotal_payableamount': payableamount.text
             })
-            # ['currencyID'] = ('', '', 'Zorunlu(1)')
             self._product.add({
                 'legalmonetarytotal_payableamount_currencyid': payableamount.attrib.get(
                     'currencyID')

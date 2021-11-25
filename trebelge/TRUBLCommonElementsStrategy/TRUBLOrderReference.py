@@ -14,14 +14,14 @@ class TRUBLOrderReference(TRUBLCommonElement):
         """
         orderreference: dict = {'id': element.find(cbcnamespace + 'ID').text,
                                 'issuedate': element.find(cbcnamespace + 'IssueDate').text}
-        orderreference_salesorderid = element.find(cbcnamespace + 'SalesOrderID')
-        if orderreference_salesorderid is not None:
-            orderreference['salesorderid'] = orderreference_salesorderid.text
-        orderreference_ordertypecode = element.find(cbcnamespace + 'OrderTypeCode')
-        if orderreference_ordertypecode is not None:
-            orderreference['ordertypecode'] = orderreference_ordertypecode.text
-        orderreference_documentreferences = element.findall(cacnamespace + 'DocumentReference')
-        if len(orderreference_documentreferences) != 0:
+        salesorderid_ = element.find(cbcnamespace + 'SalesOrderID')
+        if salesorderid_ is not None:
+            orderreference['salesorderid'] = salesorderid_.text
+        ordertypecode_ = element.find(cbcnamespace + 'OrderTypeCode')
+        if ordertypecode_ is not None:
+            orderreference['ordertypecode'] = ordertypecode_.text
+        documentreferences_ = element.findall(cacnamespace + 'DocumentReference')
+        if documentreferences_ is not None:
             # TODO implement this: process via DocumentReference instance
             pass
 
