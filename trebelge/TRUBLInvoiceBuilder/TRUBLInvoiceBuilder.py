@@ -297,7 +297,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                              }
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
-            exchangerate_ = self._strategyContext.return_element_data(taxexchangerate, cbcnamespace,
+            exchangerate_ = self._strategyContext.return_element_data(pricingexchangerate, cbcnamespace,
                                                                       cacnamespace)
             for key in exchangerate_.keys():
                 if exchangerate_.get(key) is not None:
@@ -316,7 +316,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                              }
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
-            exchangerate_ = self._strategyContext.return_element_data(taxexchangerate, cbcnamespace,
+            exchangerate_ = self._strategyContext.return_element_data(paymentexchangerate, cbcnamespace,
                                                                       cacnamespace)
             for key in exchangerate_.keys():
                 if exchangerate_.get(key) is not None:
@@ -335,7 +335,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                              }
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
-            exchangerate_ = self._strategyContext.return_element_data(taxexchangerate, cbcnamespace,
+            exchangerate_ = self._strategyContext.return_element_data(paymentalternativeexchangerate, cbcnamespace,
                                                                       cacnamespace)
             for key in exchangerate_.keys():
                 if exchangerate_.get(key) is not None:
