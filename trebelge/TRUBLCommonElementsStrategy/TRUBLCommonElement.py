@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
+from xml.etree.ElementTree import Element
 
 
-class XMLFileProcessStrategy(ABC):
+class TRUBLCommonElement(ABC):
     """
     The Strategy interface declares operations common to all supported versions
     of some algorithm.
@@ -11,5 +12,5 @@ class XMLFileProcessStrategy(ABC):
     """
 
     @abstractmethod
-    def return_file_data(self):
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         pass

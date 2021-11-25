@@ -1,7 +1,10 @@
 import xml.etree.ElementTree as ET
 
-from trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
-from trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLInvoice import TRUBLInvoice
+from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
+from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
+from trebelge.TRUBLInvoiceBuilder.TRUBLInvoice import TRUBLInvoice
 
 
 class TRUBLInvoiceBuilder(TRUBLBuilder):
@@ -164,46 +167,28 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             cacnamespace + 'InvoicePeriod')
         if invoiceperiod is not None:
             # ['StartDate'] = ('cbc', 'invoiceperiod_startdate', 'Seçimli (0...1)')
-            invoiceperiod_startdate = invoiceperiod.find(cbcnamespace + 'StartDate')
-            if invoiceperiod_startdate is not None:
-                self._product.add({
-                    'invoiceperiod_startdate': invoiceperiod_startdate.text
-                })
             # ['StartTime'] = ('cbc', 'invoiceperiod_starttime', 'Seçimli (0...1)')
-            invoiceperiod_starttime = invoiceperiod.find(cbcnamespace + 'StartTime')
-            if invoiceperiod_starttime is not None:
-                self._product.add({
-                    'invoiceperiod_starttime': invoiceperiod_starttime.text
-                })
             # ['EndDate'] = ('cbc', 'invoiceperiod_enddate', 'Seçimli (0...1)')
-            invoiceperiod_enddate = invoiceperiod.find(cbcnamespace + 'EndDate')
-            if invoiceperiod_enddate is not None:
-                self._product.add({
-                    'invoiceperiod_enddate': invoiceperiod_enddate.text
-                })
             # ['EndTime'] = ('cbc', 'invoiceperiod_endtime', 'Seçimli (0...1)')
-            invoiceperiod_endtime = invoiceperiod.find(cbcnamespace + 'EndTime')
-            if invoiceperiod_endtime is not None:
-                self._product.add({
-                    'invoiceperiod_endtime': invoiceperiod_endtime.text
-                })
             # ['DurationMeasure'] = ('cbc', 'invoiceperiod_durationmeasure', 'Seçimli (0...1)')
-            invoiceperiod_durationmeasure = invoiceperiod.find(cbcnamespace + 'DurationMeasure')
-            if invoiceperiod_durationmeasure is not None:
-                self._product.add({
-                    'invoiceperiod_durationmeasure': invoiceperiod_durationmeasure.text
-                })
-                # ['unitCode'] = ('cbc', 'invoiceperiod_durationmeasure_unitcode', 'Zorunlu (1)')
-                self._product.add({
-                    'invoiceperiod_durationmeasure_unitcode': invoiceperiod_durationmeasure.attrib.get(
-                        'unitCode')
-                })
+            # ['unitCode'] = ('', 'invoiceperiod_durationmeasure_unitcode', 'Zorunlu (1)')
             # ['Description'] = ('cbc', 'invoiceperiod_description', 'Seçimli (0...1)')
-            invoiceperiod_description = invoiceperiod.find(cbcnamespace + 'Description')
-            if invoiceperiod_description is not None:
-                self._product.add({
-                    'invoiceperiod_description': invoiceperiod_description.text
-                })
+            conversion: dict = {'startdate': 'invoiceperiod_startdate',
+                                'starttime': 'invoiceperiod_starttime',
+                                'enddate': 'invoiceperiod_enddate',
+                                'endtime': 'invoiceperiod_endtime',
+                                'durationmeasure': 'invoiceperiod_durationmeasure',
+                                'durationmeasure_unitcode': 'invoiceperiod_durationmeasure_unitcode',
+                                'description': 'invoiceperiod_description'}
+            periodStrategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
+            periodStrategy: TRUBLCommonElement = TRUBLPeriod()
+            periodStrategyContext.set_strategy(periodStrategy)
+            period = periodStrategyContext.return_element_data(invoiceperiod, cbcnamespace, cacnamespace)
+            for key in period.keys():
+                if period.get(key) is not None:
+                    self._product.add({
+                        conversion.get(key): period.get(key)
+                    })
 
     def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         orderreference = ET.parse(filepath).getroot().find(
