@@ -1,6 +1,8 @@
 # from __future__ import annotations
 import xml.etree.ElementTree as ET
 
+from trebelge.XMLFileState.TaxScheme import TaxScheme
+
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 from trebelge.XMLFileState.Address import Address
 from trebelge.XMLFileState.Contact import Contact
@@ -9,7 +11,6 @@ from trebelge.XMLFileState.PartyIdentification import PartyIdentification
 from trebelge.XMLFileState.PartyLegalEntity import PartyLegalEntity
 from trebelge.XMLFileState.PartyName import PartyName
 from trebelge.XMLFileState.Person import Person
-from trebelge.XMLFileState.TaxScheme import TaxScheme
 
 
 class Party(AbstractXMLFileState):
