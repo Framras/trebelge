@@ -146,182 +146,182 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_orderreferences(self) -> None:
+    def build_orderreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
 
         """
         pass
 
     @abstractmethod
-    def build_billingreferences(self) -> None:
+    def build_billingreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)')
         """
         pass
 
     @abstractmethod
-    def build_despatchdocumentreferences(self) -> None:
+    def build_despatchdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['DespatchDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
         """
         pass
 
     @abstractmethod
-    def build_receiptdocumentreferences(self) -> None:
+    def build_receiptdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['ReceiptDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
         """
         pass
 
     @abstractmethod
-    def build_originatordocumentreferences(self) -> None:
+    def build_originatordocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['OriginatorDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
         """
         pass
 
     @abstractmethod
-    def build_contractdocumentreferences(self) -> None:
+    def build_contractdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['ContractDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
         """
         pass
 
     @abstractmethod
-    def build_additionaldocumentreferences(self) -> None:
+    def build_additionaldocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['AdditionalDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', True, False, False, '')
         """
         pass
 
     @abstractmethod
-    def build_accountingsupplierparty(self) -> None:
+    def build_accountingsupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)')
         """
         pass
 
     @abstractmethod
-    def build_despatchsupplierparty(self) -> None:
+    def build_despatchsupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
 
         """
         pass
 
     @abstractmethod
-    def build_accountingcustomerparty(self) -> None:
+    def build_accountingcustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)')
         """
         pass
 
     @abstractmethod
-    def build_deliverycustomerparty(self) -> None:
+    def build_deliverycustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
 
         """
         pass
 
     @abstractmethod
-    def build_buyercustomerparty(self) -> None:
+    def build_buyercustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)')
         """
         pass
 
     @abstractmethod
-    def build_originatorcustomerparty(self) -> None:
+    def build_originatorcustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
 
         """
         pass
 
     @abstractmethod
-    def build_sellersupplierparty(self) -> None:
+    def build_sellersupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)')
         """
         pass
 
     @abstractmethod
-    def build_taxrepresentativeparty(self) -> None:
+    def build_taxrepresentativeparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['TaxRepresentativeParty'] = ('cac', Party(), 'Seçimli (0..1)')
         """
         pass
 
     @abstractmethod
-    def build_deliveries(self) -> None:
+    def build_deliveries(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)')
         """
         pass
 
     @abstractmethod
-    def build_shipment(self) -> None:
+    def build_shipment(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
 
         """
         pass
 
     @abstractmethod
-    def build_paymentmeans(self) -> None:
+    def build_paymentmeans(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)')
         """
         pass
 
     @abstractmethod
-    def build_paymentterm(self) -> None:
+    def build_paymentterm(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
         """
         pass
 
     @abstractmethod
-    def build_allowancecharges(self) -> None:
+    def build_allowancecharges(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)')
         """
         pass
 
     @abstractmethod
-    def build_taxexchangerate(self) -> None:
+    def build_taxexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)')
         """
         pass
 
     @abstractmethod
-    def build_pricingexchangerate(self) -> None:
+    def build_pricingexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)')
         """
         pass
 
     @abstractmethod
-    def build_paymentexchangerate(self) -> None:
+    def build_paymentexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)')
         """
         pass
 
     @abstractmethod
-    def build_paymentalternativeexchangerate(self) -> None:
+    def build_paymentalternativeexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['PaymentAlternativeExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)')
         """
         pass
 
     @abstractmethod
-    def build_taxtotals(self) -> None:
+    def build_taxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)')
         """
         pass
 
     @abstractmethod
-    def build_withholdingtaxtotals(self) -> None:
+    def build_withholdingtaxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)')
         """
@@ -335,14 +335,14 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_invoicelines(self) -> None:
+    def build_invoicelines(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)')
         """
         pass
 
     @abstractmethod
-    def build_despatchlines(self) -> None:
+    def build_despatchlines(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
 
         """

@@ -1,6 +1,7 @@
 # from __future__ import annotations
 import xml.etree.ElementTree as ET
 
+from trebelge.XMLFileState.ExchangeRate import ExchangeRate
 from trebelge.XMLFileState.OrderReference import OrderReference
 from trebelge.XMLFileState.Period import Period
 
@@ -10,7 +11,6 @@ from trebelge.XMLFileState.BillingReference import BillingReference
 from trebelge.XMLFileState.CustomerParty import CustomerParty
 from trebelge.XMLFileState.Delivery import Delivery
 from trebelge.XMLFileState.DocumentReference import DocumentReference
-from trebelge.XMLFileState.ExchangeRate import ExchangeRate
 from trebelge.XMLFileState.InvoiceLine import InvoiceLine
 from trebelge.XMLFileState.MonetaryTotal import MonetaryTotal
 from trebelge.XMLFileState.Party import Party

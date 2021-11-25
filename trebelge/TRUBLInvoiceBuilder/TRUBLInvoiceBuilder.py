@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 
 from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
@@ -169,44 +170,33 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         invoiceperiod = ET.parse(filepath).getroot().find(
             cacnamespace + 'InvoicePeriod')
         if invoiceperiod is not None:
-            # ['StartDate'] = ('cbc', 'invoiceperiod_startdate', 'Seçimli (0...1)')
-            # ['StartTime'] = ('cbc', 'invoiceperiod_starttime', 'Seçimli (0...1)')
-            # ['EndDate'] = ('cbc', 'invoiceperiod_enddate', 'Seçimli (0...1)')
-            # ['EndTime'] = ('cbc', 'invoiceperiod_endtime', 'Seçimli (0...1)')
-            # ['DurationMeasure'] = ('cbc', 'invoiceperiod_durationmeasure', 'Seçimli (0...1)')
-            # ['unitCode'] = ('', 'invoiceperiod_durationmeasure_unitcode', 'Zorunlu (1)')
-            # ['Description'] = ('cbc', 'invoiceperiod_description', 'Seçimli (0...1)')
-            conversion: dict = {'startdate': 'invoiceperiod_startdate',
-                                'starttime': 'invoiceperiod_starttime',
-                                'enddate': 'invoiceperiod_enddate',
-                                'endtime': 'invoiceperiod_endtime',
-                                'durationmeasure': 'invoiceperiod_durationmeasure',
-                                'durationmeasure_unitcode': 'invoiceperiod_durationmeasure_unitcode',
-                                'description': 'invoiceperiod_description'
-                                }
+            mapping: dict = {'startdate': 'invoiceperiod_startdate',
+                             'starttime': 'invoiceperiod_starttime',
+                             'enddate': 'invoiceperiod_enddate',
+                             'endtime': 'invoiceperiod_endtime',
+                             'durationmeasure': 'invoiceperiod_durationmeasure',
+                             'durationmeasure_unitcode': 'invoiceperiod_durationmeasure_unitcode',
+                             'description': 'invoiceperiod_description'
+                             }
             strategy: TRUBLCommonElement = TRUBLPeriod()
             self._strategyContext.set_strategy(strategy)
             period_ = self._strategyContext.return_element_data(invoiceperiod, cbcnamespace, cacnamespace)
             for key in period_.keys():
                 if period_.get(key) is not None:
-                    self._product.add({conversion.get(key): period_.get(key)
+                    self._product.add({mapping.get(key): period_.get(key)
                                        })
 
     def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         orderreference = ET.parse(filepath).getroot().find(
             cacnamespace + 'OrderReference')
         if orderreference is not None:
-            # ['ID'] = ('cbc', 'orderreference_id', 'Zorunlu(1)')
-            # ['SalesOrderID'] = ('cbc', 'orderreference_salesorderid', 'Seçimli (0...1)')
-            # ['IssueDate'] = ('cbc', 'orderreference_issuedate', 'Zorunlu(1)')
-            # ['OrderTypeCode'] = ('cbc', 'orderreference_ordertypecode', 'Seçimli (0...1)')
             # ['DocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
-            conversion: dict = {'id': 'orderreference_id',
-                                'salesorderid': 'orderreference_salesorderid',
-                                'issuedate': 'orderreference_issuedate',
-                                'ordertypecode': 'orderreference_ordertypecode'
-                                # 'documentreferences': 'orderreference_documentreferences'
-                                }
+            mapping: dict = {'id': 'orderreference_id',
+                             'salesorderid': 'orderreference_salesorderid',
+                             'issuedate': 'orderreference_issuedate',
+                             'ordertypecode': 'orderreference_ordertypecode'
+                             # 'documentreferences': 'orderreference_documentreferences'
+                             }
             strategy: TRUBLCommonElement = TRUBLOrderReference()
             self._strategyContext.set_strategy(strategy)
             orderreference_ = self._strategyContext.return_element_data(orderreference, cbcnamespace,
@@ -214,119 +204,169 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for key in orderreference_.keys():
                 if orderreference_.get(key) is not None:
                     self._product.add({
-                        conversion.get(key): orderreference_.get(key)
+                        mapping.get(key): orderreference_.get(key)
                     })
 
-    def build_orderreferences(self) -> None:
+    def build_orderreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_billingreferences(self) -> None:
+    def build_billingreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_despatchdocumentreferences(self) -> None:
+    def build_despatchdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_receiptdocumentreferences(self) -> None:
+    def build_receiptdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_originatordocumentreferences(self) -> None:
+    def build_originatordocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_contractdocumentreferences(self) -> None:
+    def build_contractdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_additionaldocumentreferences(self) -> None:
+    def build_additionaldocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_accountingsupplierparty(self) -> None:
+    def build_accountingsupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_despatchsupplierparty(self) -> None:
+    def build_despatchsupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_accountingcustomerparty(self) -> None:
+    def build_accountingcustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_deliverycustomerparty(self) -> None:
+    def build_deliverycustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_buyercustomerparty(self) -> None:
+    def build_buyercustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_originatorcustomerparty(self) -> None:
+    def build_originatorcustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_sellersupplierparty(self) -> None:
+    def build_sellersupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_taxrepresentativeparty(self) -> None:
+    def build_taxrepresentativeparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_deliveries(self) -> None:
+    def build_deliveries(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_shipment(self) -> None:
+    def build_shipment(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_paymentmeans(self) -> None:
+    def build_paymentmeans(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_paymentterm(self) -> None:
+    def build_paymentterm(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_allowancecharges(self) -> None:
+    def build_allowancecharges(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_taxexchangerate(self) -> None:
+    def build_taxexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        taxexchangerate = ET.parse(filepath).getroot().find(
+            cacnamespace + 'TaxExchangeRate')
+        if taxexchangerate is not None:
+            mapping: dict = {'sourcecurrencycode': 'taxexchangerate_sourcecurrencycode',
+                             'targetcurrencycode': 'taxexchangerate_targetcurrencycode',
+                             'calculationrate': 'taxexchangerate_calculationrate',
+                             'date': 'taxexchangerate_date'
+                             }
+            strategy: TRUBLCommonElement = TRUBLExchangeRate()
+            self._strategyContext.set_strategy(strategy)
+            exchangerate_ = self._strategyContext.return_element_data(taxexchangerate, cbcnamespace,
+                                                                      cacnamespace)
+            for key in exchangerate_.keys():
+                if exchangerate_.get(key) is not None:
+                    self._product.add({
+                        mapping.get(key): exchangerate_.get(key)
+                    })
+
+    def build_pricingexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        pricingexchangerate = ET.parse(filepath).getroot().find(
+            cacnamespace + 'PricingExchangeRate')
+        if pricingexchangerate is not None:
+            mapping: dict = {'sourcecurrencycode': 'pricingexchangerate_sourcecurrencycode',
+                             'targetcurrencycode': 'pricingexchangerate_targetcurrencycode',
+                             'calculationrate': 'pricingexchangerate_calculationrate',
+                             'date': 'pricingexchangerate_date'
+                             }
+            strategy: TRUBLCommonElement = TRUBLExchangeRate()
+            self._strategyContext.set_strategy(strategy)
+            exchangerate_ = self._strategyContext.return_element_data(taxexchangerate, cbcnamespace,
+                                                                      cacnamespace)
+            for key in exchangerate_.keys():
+                if exchangerate_.get(key) is not None:
+                    self._product.add({
+                        mapping.get(key): exchangerate_.get(key)
+                    })
+
+    def build_paymentexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        paymentexchangerate = ET.parse(filepath).getroot().find(
+            cacnamespace + 'PaymentExchangeRate')
+        if paymentexchangerate is not None:
+            mapping: dict = {'sourcecurrencycode': 'paymentexchangerate_sourcecurrencycode',
+                             'targetcurrencycode': 'paymentexchangerate_targetcurrencycode',
+                             'calculationrate': 'paymentexchangerate_calculationrate',
+                             'date': 'paymentexchangerate_date'
+                             }
+            strategy: TRUBLCommonElement = TRUBLExchangeRate()
+            self._strategyContext.set_strategy(strategy)
+            exchangerate_ = self._strategyContext.return_element_data(taxexchangerate, cbcnamespace,
+                                                                      cacnamespace)
+            for key in exchangerate_.keys():
+                if exchangerate_.get(key) is not None:
+                    self._product.add({
+                        mapping.get(key): exchangerate_.get(key)
+                    })
+
+    def build_paymentalternativeexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        paymentalternativeexchangerate = ET.parse(filepath).getroot().find(
+            cacnamespace + 'PaymentAlternativeExchangeRate')
+        if paymentalternativeexchangerate is not None:
+            mapping: dict = {'sourcecurrencycode': 'paymentalternativeexchangerate_sourcecurrencycode',
+                             'targetcurrencycode': 'paymentalternativeexchangerate_targetcurrencycode',
+                             'calculationrate': 'paymentalternativeexchangerate_calculationrate',
+                             'date': 'paymentalternativeexchangerate_date'
+                             }
+            strategy: TRUBLCommonElement = TRUBLExchangeRate()
+            self._strategyContext.set_strategy(strategy)
+            exchangerate_ = self._strategyContext.return_element_data(taxexchangerate, cbcnamespace,
+                                                                      cacnamespace)
+            for key in exchangerate_.keys():
+                if exchangerate_.get(key) is not None:
+                    self._product.add({
+                        mapping.get(key): exchangerate_.get(key)
+                    })
+
+    def build_taxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_pricingexchangerate(self) -> None:
-        pass
-
-    def build_paymentexchangerate(self) -> None:
-        pass
-
-    def build_paymentalternativeexchangerate(self) -> None:
-        pass
-
-    def build_taxtotals(self) -> None:
-        pass
-
-    def build_withholdingtaxtotals(self) -> None:
+    def build_withholdingtaxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         legalmonetarytotal = ET.parse(filepath).getroot().find(
             cacnamespace + 'LegalMonetaryTotal')
-        # ['LineExtensionAmount'] = ('cbc', 'legalmonetarytotal_lineextensionamount', 'Zorunlu(1)')
-        # ['currencyID'] = ('', 'legalmonetarytotal_lineextensionamount_currencyid', 'Zorunlu(1)')
-        # ['TaxExclusiveAmount'] = ('cbc', 'legalmonetarytotal_taxexclusiveamount', 'Zorunlu(1)')
-        # ['currencyID'] = ('', 'legalmonetarytotal_taxexclusiveamount_currencyid', 'Zorunlu(1)')
-        # ['TaxInclusiveAmount'] = ('cbc', 'legalmonetarytotal_taxinclusiveamount', 'Zorunlu(1)')
-        # ['currencyID'] = ('', 'legalmonetarytotal_taxinclusiveamount_currencyid', 'Zorunlu(1)')
-        # ['AllowanceTotalAmount'] = ('cbc', 'legalmonetarytotal_allowancetotalamount', 'Seçimli (0...1)')
-        # ['currencyID'] = ('', 'legalmonetarytotal_allowancetotalamount_currencyid', 'Zorunlu(1)')
-        # ['ChargeTotalAmount'] = ('cbc', 'legalmonetarytotal_chargetotalamount', 'Seçimli (0...1)')
-        # ['currencyID'] = ('', 'legalmonetarytotal_chargetotalamount_currencyid', 'Zorunlu(1)')
-        # ['PayableRoundingAmount'] = ('cbc', 'legalmonetarytotal_payableroundingamount', 'Seçimli (0...1)')
-        # ['currencyID'] = ('', 'legalmonetarytotal_payableroundingamount_currencyid', 'Zorunlu(1)')
-        # ['PayableAmount'] = ('cbc', 'legalmonetarytotal_payableamount', 'Zorunlu(1)')
-        # ['currencyID'] = ('', 'legalmonetarytotal_payableamount_currencyid', 'Zorunlu(1)')
-        conversion: dict = {'lineextensionamount': 'legalmonetarytotal_lineextensionamount',
-                            'lineextensionamount_currencyid': 'legalmonetarytotal_lineextensionamount_currencyid',
-                            'taxexclusiveamount': 'legalmonetarytotal_taxexclusiveamount',
-                            'taxexclusiveamount_currencyid': 'legalmonetarytotal_taxexclusiveamount_currencyid',
-                            'taxinclusiveamount': 'legalmonetarytotal_taxinclusiveamount',
-                            'taxinclusiveamount_currencyid': 'legalmonetarytotal_taxinclusiveamount_currencyid',
-                            'allowancetotalamount': 'legalmonetarytotal_allowancetotalamount',
-                            'allowancetotalamount_currencyid': 'legalmonetarytotal_allowancetotalamount_currencyid',
-                            'chargetotalamount': 'legalmonetarytotal_chargetotalamount',
-                            'chargetotalamount_currencyid': 'legalmonetarytotal_chargetotalamount_currencyid',
-                            'payableroundingamount': 'legalmonetarytotal_payableroundingamount',
-                            'payableroundingamount_currencyid': 'legalmonetarytotal_payableroundingamount_currencyid',
-                            'payableamount': 'legalmonetarytotal_payableamount',
-                            'payableamount_currencyid': 'legalmonetarytotal_payableamount_currencyid'
-                            }
+        mapping: dict = {'lineextensionamount': 'legalmonetarytotal_lineextensionamount',
+                         'lineextensionamount_currencyid': 'legalmonetarytotal_lineextensionamount_currencyid',
+                         'taxexclusiveamount': 'legalmonetarytotal_taxexclusiveamount',
+                         'taxexclusiveamount_currencyid': 'legalmonetarytotal_taxexclusiveamount_currencyid',
+                         'taxinclusiveamount': 'legalmonetarytotal_taxinclusiveamount',
+                         'taxinclusiveamount_currencyid': 'legalmonetarytotal_taxinclusiveamount_currencyid',
+                         'allowancetotalamount': 'legalmonetarytotal_allowancetotalamount',
+                         'allowancetotalamount_currencyid': 'legalmonetarytotal_allowancetotalamount_currencyid',
+                         'chargetotalamount': 'legalmonetarytotal_chargetotalamount',
+                         'chargetotalamount_currencyid': 'legalmonetarytotal_chargetotalamount_currencyid',
+                         'payableroundingamount': 'legalmonetarytotal_payableroundingamount',
+                         'payableroundingamount_currencyid': 'legalmonetarytotal_payableroundingamount_currencyid',
+                         'payableamount': 'legalmonetarytotal_payableamount',
+                         'payableamount_currencyid': 'legalmonetarytotal_payableamount_currencyid'
+                         }
         strategy: TRUBLCommonElement = TRUBLMonetaryTotal()
         self._strategyContext.set_strategy(strategy)
         monetarytotal_ = self._strategyContext.return_element_data(legalmonetarytotal, cbcnamespace,
@@ -334,11 +374,11 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         for key in monetarytotal_.keys():
             if monetarytotal_.get(key) is not None:
                 self._product.add({
-                    conversion.get(key): monetarytotal_.get(key)
+                    mapping.get(key): monetarytotal_.get(key)
                 })
 
-    def build_invoicelines(self) -> None:
+    def build_invoicelines(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_despatchlines(self) -> None:
+    def build_despatchlines(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
