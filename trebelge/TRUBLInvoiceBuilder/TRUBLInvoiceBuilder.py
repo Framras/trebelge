@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 
 from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLInvoiceBuilder.TRUBLInvoice import TRUBLInvoice
@@ -13,6 +14,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
+    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def __init__(self, uuid_: str) -> None:
         """
@@ -180,10 +182,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                 'durationmeasure': 'invoiceperiod_durationmeasure',
                                 'durationmeasure_unitcode': 'invoiceperiod_durationmeasure_unitcode',
                                 'description': 'invoiceperiod_description'}
-            periodStrategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
-            periodStrategy: TRUBLCommonElement = TRUBLPeriod()
-            periodStrategyContext.set_strategy(periodStrategy)
-            period = periodStrategyContext.return_element_data(invoiceperiod, cbcnamespace, cacnamespace)
+
+            strategy: TRUBLCommonElement = TRUBLPeriod()
+            self._strategyContext.set_strategy(strategy)
+            period = self._strategyContext.return_element_data(invoiceperiod, cbcnamespace, cacnamespace)
             for key in period.keys():
                 if period.get(key) is not None:
                     self._product.add({
@@ -191,32 +193,30 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                     })
 
     def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        orderreference = ET.parse(filepath).getroot().find(
+        invoiceorderreference = ET.parse(filepath).getroot().find(
             cacnamespace + 'OrderReference')
-        if orderreference is not None:
+        if invoiceorderreference is not None:
             # ['ID'] = ('cbc', 'orderreference_id', 'Zorunlu(1)')
-            self._product.add({
-                'orderreference_id': orderreference.find(
-                    cbcnamespace + 'ID').text
-            })
             # ['SalesOrderID'] = ('cbc', 'orderreference_salesorderid', 'Seçimli (0...1)')
-            orderreference_salesorderid = orderreference.find(cbcnamespace + 'SalesOrderID')
-            if orderreference_salesorderid is not None:
-                self._product.add({
-                    'orderreference_salesorderid': orderreference_salesorderid.text
-                })
             # ['IssueDate'] = ('cbc', 'orderreference_issuedate', 'Zorunlu(1)')
-            self._product.add({
-                'orderreference_issuedate': orderreference.find(
-                    cbcnamespace + 'IssueDate').text
-            })
             # ['OrderTypeCode'] = ('cbc', 'orderreference_ordertypecode', 'Seçimli (0...1)')
-            orderreference_ordertypecode = orderreference.find(cbcnamespace + 'OrderTypeCode')
-            if orderreference_ordertypecode is not None:
-                self._product.add({
-                    'orderreference_ordertypecode': orderreference_ordertypecode.text
-                })
             # ['DocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
+            conversion: dict = {'id': 'orderreference_id',
+                                'salesorderid': 'orderreference_salesorderid',
+                                'issuedate': 'orderreference_issuedate',
+                                'ordertypecode': 'orderreference_ordertypecode'
+                                # 'documentreferences': 'orderreference_documentreferences'
+                                }
+
+            strategy: TRUBLCommonElement = TRUBLOrderReference()
+            self._strategyContext.set_strategy(strategy)
+            orderreference = self._strategyContext.return_element_data(invoiceorderreference, cbcnamespace,
+                                                                       cacnamespace)
+            for key in orderreference.keys():
+                if orderreference.get(key) is not None:
+                    self._product.add({
+                        conversion.get(key): orderreference.get(key)
+                    })
 
     def build_orderreferences(self) -> None:
         pass
