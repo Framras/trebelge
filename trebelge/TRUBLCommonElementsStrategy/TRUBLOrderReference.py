@@ -21,7 +21,7 @@ class TRUBLOrderReference(TRUBLCommonElement):
         if orderreference_ordertypecode is not None:
             orderreference['ordertypecode'] = orderreference_ordertypecode.text
         orderreference_documentreferences = element.findall(cacnamespace + 'DocumentReference')
-        if len(orderreference_documentreferences) is not None:
+        if len(orderreference_documentreferences) != 0:
             # TODO implement this: process via DocumentReference instance
             pass
 

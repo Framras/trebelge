@@ -181,8 +181,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                 'endtime': 'invoiceperiod_endtime',
                                 'durationmeasure': 'invoiceperiod_durationmeasure',
                                 'durationmeasure_unitcode': 'invoiceperiod_durationmeasure_unitcode',
-                                'description': 'invoiceperiod_description'}
-
+                                'description': 'invoiceperiod_description'
+                                }
             strategy: TRUBLCommonElement = TRUBLPeriod()
             self._strategyContext.set_strategy(strategy)
             period = self._strategyContext.return_element_data(invoiceperiod, cbcnamespace, cacnamespace)
@@ -207,7 +207,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                 'ordertypecode': 'orderreference_ordertypecode'
                                 # 'documentreferences': 'orderreference_documentreferences'
                                 }
-
             strategy: TRUBLCommonElement = TRUBLOrderReference()
             self._strategyContext.set_strategy(strategy)
             orderreference = self._strategyContext.return_element_data(invoiceorderreference, cbcnamespace,
