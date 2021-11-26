@@ -24,7 +24,7 @@ class TRUBLContact(TRUBLCommonElement):
             contact[id_.tag.lower()] = id_.text
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            contact[name_.tag.lower()] = name_.text
+            contact['contact_' + name_.tag.lower()] = name_.text
         telephone_ = element.find(cbcnamespace + 'Telephone')
         if telephone_ is not None:
             contact[telephone_.tag.lower()] = telephone_.text
