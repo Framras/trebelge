@@ -915,11 +915,11 @@
       "fieldname": "vergiler",
       "fieldtype": "Table MultiSelect",
       "label": "Vergiler",
-      "options": "TR UBL Received Invoice Tax Subtotals"
+      "options": "TR UBL Received Invoice Tax Totals"
     }
   ],
   "links": [],
-  "modified": "2021-11-26 08:55:26.318751",
+  "modified": "2021-11-26 12:45:34.949466",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",
