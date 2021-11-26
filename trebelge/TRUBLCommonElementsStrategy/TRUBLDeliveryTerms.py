@@ -18,7 +18,7 @@ class TRUBLDeliveryTerms(TRUBLCommonElement):
         specialterms_ = element.find(cbcnamespace + 'SpecialTerms')
         if specialterms_ is not None:
             deliveryterms['specialterms'] = specialterms_.text
-        amount_ = element.find(cbcnamespace + 'SpecialTerms')
+        amount_ = element.find(cbcnamespace + 'Amount')
         if amount_ is not None:
             deliveryterms['amount'] = amount_.text
             deliveryterms['amount_currencyid'] = amount_.attrib.get('currencyID')

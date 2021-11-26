@@ -5,6 +5,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBL
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
+from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentTerms import TRUBLPaymentTerms
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
 from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
@@ -106,10 +107,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         pass
 
     def build_notes(self, filepath: str, cbcnamespace: str) -> None:
-        if ET.parse(filepath).getroot().find(
-                cbcnamespace + 'Note') is not None:
+        notes_ = ET.parse(filepath).getroot().findall(cbcnamespace + 'Note')
+        if notes_ is not None:
             notes: list = []
-            for note in ET.parse(filepath).getroot().findall(cbcnamespace + 'Note'):
+            for note in notes_:
                 notes.append({'note': note.text})
             self._product.add({
                 'notes': notes
@@ -171,33 +172,21 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         invoiceperiod = ET.parse(filepath).getroot().find(
             cacnamespace + 'InvoicePeriod')
         if invoiceperiod is not None:
-            mapping: dict = {'startdate': 'invoiceperiod_startdate',
-                             'starttime': 'invoiceperiod_starttime',
-                             'enddate': 'invoiceperiod_enddate',
-                             'endtime': 'invoiceperiod_endtime',
-                             'durationmeasure': 'invoiceperiod_durationmeasure',
-                             'durationmeasure_unitcode': 'invoiceperiod_durationmeasure_unitcode',
-                             'description': 'invoiceperiod_description'
-                             }
             strategy: TRUBLCommonElement = TRUBLPeriod()
             self._strategyContext.set_strategy(strategy)
             period_ = self._strategyContext.return_element_data(invoiceperiod, cbcnamespace, cacnamespace)
             for key in period_.keys():
                 if period_.get(key) is not None:
-                    self._product.add({mapping.get(key): period_.get(key)
-                                       })
+                    self._product.add({
+                        'invoiceperiod_' + key: period_.get(key)
+                    })
 
     def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         orderreference = ET.parse(filepath).getroot().find(
             cacnamespace + 'OrderReference')
         if orderreference is not None:
             # ['DocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)')
-            mapping: dict = {'id': 'orderreference_id',
-                             'salesorderid': 'orderreference_salesorderid',
-                             'issuedate': 'orderreference_issuedate',
-                             'ordertypecode': 'orderreference_ordertypecode'
-                             # 'documentreferences': 'orderreference_documentreferences'
-                             }
+            # 'documentreferences': 'orderreference_documentreferences'
             strategy: TRUBLCommonElement = TRUBLOrderReference()
             self._strategyContext.set_strategy(strategy)
             orderreference_ = self._strategyContext.return_element_data(orderreference, cbcnamespace,
@@ -205,7 +194,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for key in orderreference_.keys():
                 if orderreference_.get(key) is not None:
                     self._product.add({
-                        mapping.get(key): orderreference_.get(key)
+                        'orderreference_' + key: orderreference_.get(key)
                     })
 
     def build_orderreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
@@ -262,8 +251,19 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_paymentmeans(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_paymentterm(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        pass
+    def build_paymentterms(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        paymentterms = ET.parse(filepath).getroot().find(
+            cacnamespace + 'PaymentTerms')
+        if paymentterms is not None:
+            strategy: TRUBLCommonElement = TRUBLPaymentTerms()
+            self._strategyContext.set_strategy(strategy)
+            paymentterm_ = self._strategyContext.return_element_data(paymentterms, cbcnamespace,
+                                                                     cacnamespace)
+            for key in paymentterm_.keys():
+                if paymentterm_.get(key) is not None:
+                    self._product.add({
+                        'paymentterms_' + key: paymentterm_.get(key)
+                    })
 
     def build_allowancecharges(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
@@ -272,11 +272,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         taxexchangerate = ET.parse(filepath).getroot().find(
             cacnamespace + 'TaxExchangeRate')
         if taxexchangerate is not None:
-            mapping: dict = {'sourcecurrencycode': 'taxexchangerate_sourcecurrencycode',
-                             'targetcurrencycode': 'taxexchangerate_targetcurrencycode',
-                             'calculationrate': 'taxexchangerate_calculationrate',
-                             'date': 'taxexchangerate_date'
-                             }
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
             exchangerate_ = self._strategyContext.return_element_data(taxexchangerate, cbcnamespace,
@@ -284,18 +279,13 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for key in exchangerate_.keys():
                 if exchangerate_.get(key) is not None:
                     self._product.add({
-                        mapping.get(key): exchangerate_.get(key)
+                        'taxexchangerate_' + key: exchangerate_.get(key)
                     })
 
     def build_pricingexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pricingexchangerate = ET.parse(filepath).getroot().find(
             cacnamespace + 'PricingExchangeRate')
         if pricingexchangerate is not None:
-            mapping: dict = {'sourcecurrencycode': 'pricingexchangerate_sourcecurrencycode',
-                             'targetcurrencycode': 'pricingexchangerate_targetcurrencycode',
-                             'calculationrate': 'pricingexchangerate_calculationrate',
-                             'date': 'pricingexchangerate_date'
-                             }
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
             exchangerate_ = self._strategyContext.return_element_data(pricingexchangerate, cbcnamespace,
@@ -303,18 +293,13 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for key in exchangerate_.keys():
                 if exchangerate_.get(key) is not None:
                     self._product.add({
-                        mapping.get(key): exchangerate_.get(key)
+                        'pricingexchangerate_' + key: exchangerate_.get(key)
                     })
 
     def build_paymentexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         paymentexchangerate = ET.parse(filepath).getroot().find(
             cacnamespace + 'PaymentExchangeRate')
         if paymentexchangerate is not None:
-            mapping: dict = {'sourcecurrencycode': 'paymentexchangerate_sourcecurrencycode',
-                             'targetcurrencycode': 'paymentexchangerate_targetcurrencycode',
-                             'calculationrate': 'paymentexchangerate_calculationrate',
-                             'date': 'paymentexchangerate_date'
-                             }
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
             exchangerate_ = self._strategyContext.return_element_data(paymentexchangerate, cbcnamespace,
@@ -322,18 +307,13 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for key in exchangerate_.keys():
                 if exchangerate_.get(key) is not None:
                     self._product.add({
-                        mapping.get(key): exchangerate_.get(key)
+                        'paymentexchangerate_' + key: exchangerate_.get(key)
                     })
 
     def build_paymentalternativeexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         paymentalternativeexchangerate = ET.parse(filepath).getroot().find(
             cacnamespace + 'PaymentAlternativeExchangeRate')
         if paymentalternativeexchangerate is not None:
-            mapping: dict = {'sourcecurrencycode': 'paymentalternativeexchangerate_sourcecurrencycode',
-                             'targetcurrencycode': 'paymentalternativeexchangerate_targetcurrencycode',
-                             'calculationrate': 'paymentalternativeexchangerate_calculationrate',
-                             'date': 'paymentalternativeexchangerate_date'
-                             }
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
             exchangerate_ = self._strategyContext.return_element_data(paymentalternativeexchangerate, cbcnamespace,
@@ -341,7 +321,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for key in exchangerate_.keys():
                 if exchangerate_.get(key) is not None:
                     self._product.add({
-                        mapping.get(key): exchangerate_.get(key)
+                        'paymentalternativeexchangerate_' + key: exchangerate_.get(key)
                     })
 
     def build_taxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
@@ -373,21 +353,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         legalmonetarytotal = ET.parse(filepath).getroot().find(
             cacnamespace + 'LegalMonetaryTotal')
-        mapping: dict = {'lineextensionamount': 'legalmonetarytotal_lineextensionamount',
-                         'lineextensionamount_currencyid': 'legalmonetarytotal_lineextensionamount_currencyid',
-                         'taxexclusiveamount': 'legalmonetarytotal_taxexclusiveamount',
-                         'taxexclusiveamount_currencyid': 'legalmonetarytotal_taxexclusiveamount_currencyid',
-                         'taxinclusiveamount': 'legalmonetarytotal_taxinclusiveamount',
-                         'taxinclusiveamount_currencyid': 'legalmonetarytotal_taxinclusiveamount_currencyid',
-                         'allowancetotalamount': 'legalmonetarytotal_allowancetotalamount',
-                         'allowancetotalamount_currencyid': 'legalmonetarytotal_allowancetotalamount_currencyid',
-                         'chargetotalamount': 'legalmonetarytotal_chargetotalamount',
-                         'chargetotalamount_currencyid': 'legalmonetarytotal_chargetotalamount_currencyid',
-                         'payableroundingamount': 'legalmonetarytotal_payableroundingamount',
-                         'payableroundingamount_currencyid': 'legalmonetarytotal_payableroundingamount_currencyid',
-                         'payableamount': 'legalmonetarytotal_payableamount',
-                         'payableamount_currencyid': 'legalmonetarytotal_payableamount_currencyid'
-                         }
         strategy: TRUBLCommonElement = TRUBLMonetaryTotal()
         self._strategyContext.set_strategy(strategy)
         monetarytotal_ = self._strategyContext.return_element_data(legalmonetarytotal, cbcnamespace,
@@ -395,7 +360,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         for key in monetarytotal_.keys():
             if monetarytotal_.get(key) is not None:
                 self._product.add({
-                    mapping.get(key): monetarytotal_.get(key)
+                    'legalmonetarytotal_' + key: monetarytotal_.get(key)
                 })
 
     def build_invoicelines(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:

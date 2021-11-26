@@ -155,7 +155,7 @@
       "fieldname": "notes",
       "fieldtype": "Table",
       "label": "Not",
-      "options": "TR UBL Received Invoice Note"
+      "options": "TR UBL Notes Descriptions"
     },
     {
       "fieldname": "currencycode_section",
@@ -363,7 +363,7 @@
     }
   ],
   "links": [],
-  "modified": "2021-11-22 22:37:50.759686",
+  "modified": "2021-11-26 22:33:07.711764",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Despatch Advice",

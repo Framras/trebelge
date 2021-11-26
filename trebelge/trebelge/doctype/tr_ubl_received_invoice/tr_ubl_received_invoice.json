@@ -89,6 +89,22 @@
     "deliveries",
     "paymentmeans",
     "paymentterm",
+    "paymentterms_note",
+    "paymentterms_penaltysurchargepercent",
+    "paymentterms_amount",
+    "paymentterms_amount_currencyid",
+    "paymentterms_penaltyamount",
+    "paymentterms_penaltyamount_currencyid",
+    "paymentterms_paymentduedate",
+    "settlementperiod",
+    "settlementperiod_startdate",
+    "settlementperiod_enddate",
+    "settlementperiod_durationmeasure",
+    "settlementperiod_description",
+    "column_break_95",
+    "settlementperiod_starttime",
+    "settlementperiod_endtime",
+    "settlementperiod_durationmeasure_unitcode",
     "allowancecharges",
     "taxexchangerate",
     "taxexchangerate_sourcecurrencycode",
@@ -588,7 +604,7 @@
       "fieldname": "notes",
       "fieldtype": "Table",
       "label": "Not",
-      "options": "TR UBL Received Invoice Note"
+      "options": "TR UBL Notes Descriptions"
     },
     {
       "description": "Faturan\u0131n ili\u015fkili oldu\u011fu di\u011fer belgelerin bilgileri bu elemana yaz\u0131lacakt\u0131r.",
@@ -856,10 +872,95 @@
       "fieldtype": "Table MultiSelect",
       "label": "Vergiler",
       "options": "TR UBL Received Invoice Tax Totals"
+    },
+    {
+      "description": "\u00d6deme ko\u015fullar\u0131 ile ilgili a\u00e7\u0131klama serbest metin olarak girilir.",
+      "fieldname": "paymentterms_note",
+      "fieldtype": "Small Text",
+      "label": "A\u00e7\u0131klama"
+    },
+    {
+      "description": "\u00d6demenin gecikmesi durumunda uygulanacak ceza oran\u0131 numerik olarak girilir.",
+      "fieldname": "paymentterms_penaltysurchargepercent",
+      "fieldtype": "Percent",
+      "label": "Gecikme Ceza Oran\u0131"
+    },
+    {
+      "description": "\u00d6deme tutar\u0131 numerik olarak girilebilir.",
+      "fieldname": "paymentterms_amount",
+      "fieldtype": "Currency",
+      "label": "\u00d6deme tutar\u0131"
+    },
+    {
+      "fieldname": "paymentterms_amount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
+    },
+    {
+      "description": "\u00d6demenin gecikmesi durumunda uygulanacak ceza tutar\u0131 numerik olarak girilir.",
+      "fieldname": "paymentterms_penaltyamount",
+      "fieldtype": "Currency",
+      "label": "Ceza Tutar\u0131"
+    },
+    {
+      "fieldname": "paymentterms_penaltyamount_currencyid",
+      "fieldtype": "Data",
+      "label": "D\u00f6viz"
+    },
+    {
+      "description": "Son \u00f6deme g\u00fcn\u00fc y\u0131l-ay-g\u00fcn format\u0131nda girilir.",
+      "fieldname": "paymentterms_paymentduedate",
+      "fieldtype": "Date",
+      "label": "Son \u00f6deme g\u00fcn\u00fc"
+    },
+    {
+      "fieldname": "settlementperiod",
+      "fieldtype": "Section Break",
+      "label": "\u00d6deme d\u00f6nemi"
+    },
+    {
+      "fieldname": "settlementperiod_startdate",
+      "fieldtype": "Date",
+      "label": "\u0130lk Tarih"
+    },
+    {
+      "fieldname": "settlementperiod_enddate",
+      "fieldtype": "Date",
+      "label": "Son Tarih"
+    },
+    {
+      "fieldname": "settlementperiod_durationmeasure",
+      "fieldtype": "Data",
+      "label": "S\u00fcre"
+    },
+    {
+      "fieldname": "settlementperiod_description",
+      "fieldtype": "Small Text",
+      "label": "A\u00e7\u0131klama"
+    },
+    {
+      "fieldname": "column_break_95",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "settlementperiod_starttime",
+      "fieldtype": "Time",
+      "label": "Saat"
+    },
+    {
+      "fieldname": "settlementperiod_endtime",
+      "fieldtype": "Time",
+      "label": "Saat"
+    },
+    {
+      "fieldname": "settlementperiod_durationmeasure_unitcode",
+      "fieldtype": "Data",
+      "label": "Birim"
     }
   ],
   "links": [],
-  "modified": "2021-11-26 18:55:47.483858",
+  "modified": "2021-11-26 23:34:58.200405",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",

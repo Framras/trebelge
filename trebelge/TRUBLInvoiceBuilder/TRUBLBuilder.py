@@ -272,7 +272,7 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_paymentterm(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_paymentterms(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
         """

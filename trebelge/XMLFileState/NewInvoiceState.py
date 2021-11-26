@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 
 from trebelge.XMLFileState.ExchangeRate import ExchangeRate
 from trebelge.XMLFileState.OrderReference import OrderReference
+from trebelge.XMLFileState.PaymentTerms import PaymentTerms
 from trebelge.XMLFileState.Period import Period
 from trebelge.XMLFileState.TaxTotal import TaxTotal
 
@@ -16,7 +17,6 @@ from trebelge.XMLFileState.InvoiceLine import InvoiceLine
 from trebelge.XMLFileState.MonetaryTotal import MonetaryTotal
 from trebelge.XMLFileState.Party import Party
 from trebelge.XMLFileState.PaymentMeans import PaymentMeans
-from trebelge.XMLFileState.PaymentTerms import PaymentTerms
 from trebelge.XMLFileState.Signature import Signature
 from trebelge.XMLFileState.SupplierParty import SupplierParty
 
