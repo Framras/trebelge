@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRUBLReceivedInvoiceTaxSubtotal(Document):
+class TRUBLTaxSubtotal(Document):
     pass

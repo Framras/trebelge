@@ -132,7 +132,7 @@
   "modified": "2021-11-26 18:33:58.609750",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "TR UBL Received Invoice Tax Subtotal",
+  "name": "TR UBL Tax Subtotal",
   "owner": "Administrator",
   "permissions": [],
   "sort_field": "modified",
