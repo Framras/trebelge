@@ -1,8 +1,9 @@
 # from __future__ import annotations
 import xml.etree.ElementTree as ET
 
-from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 from trebelge.XMLFileState.TaxSubtotal import TaxSubtotal
+
+from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 
 
 class TaxTotal(AbstractXMLFileState):

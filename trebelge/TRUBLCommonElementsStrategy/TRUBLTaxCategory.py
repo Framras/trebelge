@@ -11,7 +11,7 @@ class TRUBLTaxCategory(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
         ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
-        ['TaxExemptionReasonCode'] = ('cbc', 'taxexemptionreasonCode', 'Seçimli (0...1)')
+        ['TaxExemptionReasonCode'] = ('cbc', 'taxexemptionreasoncode', 'Seçimli (0...1)')
         ['TaxExemptionReason'] = ('cbc', 'taxexemptionreason', 'Seçimli (0...1)')
         ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         """
@@ -21,7 +21,7 @@ class TRUBLTaxCategory(TRUBLCommonElement):
             taxCategory['name'] = name_.text
         taxexemptionreasoncode_ = element.find(cbcnamespace + 'TaxExemptionReasonCode')
         if taxexemptionreasoncode_ is not None:
-            taxCategory['taxexemptionreasonCode'] = taxexemptionreasoncode_.text
+            taxCategory['taxexemptionreasoncode'] = taxexemptionreasoncode_.text
         taxexemptionreason_ = element.find(cbcnamespace + 'TaxExemptionReason')
         if taxexemptionreason_ is not None:
             taxCategory['taxexemptionreason'] = taxexemptionreason_.text
