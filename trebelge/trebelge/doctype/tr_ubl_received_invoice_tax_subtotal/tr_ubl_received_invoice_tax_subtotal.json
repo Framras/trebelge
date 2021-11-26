@@ -22,14 +22,15 @@
     "taxcategory_taxexemptionreasoncode",
     "taxcategory_taxexemptionreason",
     "taxcategory_taxscheme",
-    "taxcategory_taxscheme_id",
-    "taxcategory_taxscheme_name",
-    "taxcategory_taxscheme_taxtypecode"
+    "taxscheme_id",
+    "taxscheme_name",
+    "taxscheme_taxtypecode"
   ],
   "fields": [
     {
       "fieldname": "taxableamount",
       "fieldtype": "Currency",
+      "in_list_view": 1,
       "label": "Matrah"
     },
     {
@@ -46,6 +47,7 @@
     {
       "fieldname": "calculationsequencenumeric",
       "fieldtype": "Data",
+      "in_list_view": 1,
       "label": "S\u0131ra numaras\u0131"
     },
     {
@@ -103,31 +105,31 @@
       "fieldtype": "Section Break"
     },
     {
-      "fieldname": "taxcategory_taxscheme_id",
-      "fieldtype": "Data",
-      "label": "Vergilendirme \u015femas\u0131"
-    },
-    {
-      "fieldname": "taxcategory_taxscheme_name",
-      "fieldtype": "Data",
-      "label": "vergi dairesi/di\u011fer verginin ad\u0131"
-    },
-    {
-      "fieldname": "taxcategory_taxscheme_taxtypecode",
-      "fieldtype": "Data",
-      "label": "Vergi Tipi Kodu"
-    },
-    {
       "fieldname": "taxableamount_currencyid",
       "fieldtype": "Link",
       "label": "D\u00f6viz",
       "options": "Currency"
+    },
+    {
+      "fieldname": "taxscheme_id",
+      "fieldtype": "Data",
+      "label": "Vergilendirme \u015femas\u0131"
+    },
+    {
+      "fieldname": "taxscheme_name",
+      "fieldtype": "Data",
+      "label": "vergi dairesi/di\u011fer verginin ad\u0131"
+    },
+    {
+      "fieldname": "taxscheme_taxtypecode",
+      "fieldtype": "Data",
+      "label": "Vergi Tipi Kodu"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-11-26 09:20:46.237701",
+  "modified": "2021-11-26 18:33:58.609750",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice Tax Subtotal",

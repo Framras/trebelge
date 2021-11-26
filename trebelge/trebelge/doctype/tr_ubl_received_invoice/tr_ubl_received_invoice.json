@@ -114,19 +114,9 @@
     "column_break_alternatif_odeme_doviz_kuru",
     "paymentalternativeexchangerate_targetcurrencycode",
     "paymentalternativeexchangerate_calculationrate",
-    "taxtotals",
     "vergiler",
-    "sum_taxtotal_taxamount",
-    "column_break_109",
-    "taxtotal_taxamount_currencyid",
-    "taxtotal_taxsubtotal",
-    "taxtotal_taxsubtotals",
+    "taxtotals",
     "withholdingtaxtotals",
-    "withholdingtaxtotal_taxamount",
-    "column_break_113",
-    "withholdingtaxtotal_taxamount_currencyid",
-    "withholdingtaxtotal_taxsubtotal",
-    "withholdingtaxtotal_taxsubtotals",
     "legalmonetarytotal",
     "legalmonetarytotal_lineextensionamount",
     "legalmonetarytotal_taxexclusiveamount",
@@ -700,52 +690,6 @@
       "label": "Parasal Toplamlar"
     },
     {
-      "fieldname": "column_break_109",
-      "fieldtype": "Column Break"
-    },
-    {
-      "fieldname": "taxtotal_taxamount_currencyid",
-      "fieldtype": "Link",
-      "label": "D\u00f6viz",
-      "options": "Currency"
-    },
-    {
-      "fieldname": "withholdingtaxtotal_taxamount",
-      "fieldtype": "Currency",
-      "label": "Toplam tevkifat tutar\u0131"
-    },
-    {
-      "fieldname": "column_break_113",
-      "fieldtype": "Column Break"
-    },
-    {
-      "fieldname": "withholdingtaxtotal_taxamount_currencyid",
-      "fieldtype": "Link",
-      "label": "D\u00f6viz",
-      "options": "Currency"
-    },
-    {
-      "fieldname": "withholdingtaxtotal_taxsubtotal",
-      "fieldtype": "Section Break",
-      "label": "Tevkifat kod ve oranlar\u0131"
-    },
-    {
-      "fieldname": "withholdingtaxtotal_taxsubtotals",
-      "fieldtype": "Data",
-      "label": "Tevkifat kodu ve oran\u0131"
-    },
-    {
-      "fieldname": "taxtotal_taxsubtotal",
-      "fieldtype": "Section Break",
-      "label": "Vergi hesaplamas\u0131 ile ilgili bilgiler"
-    },
-    {
-      "fieldname": "taxtotal_taxsubtotals",
-      "fieldtype": "Table",
-      "label": "Vergi hesaplamas\u0131",
-      "options": "TR UBL Received Invoice Tax Subtotal"
-    },
-    {
       "fieldname": "legalmonetarytotal_lineextensionamount",
       "fieldtype": "Currency",
       "label": "LineExtensionAmount"
@@ -881,14 +825,10 @@
       "label": "Iskonto/Art\u0131r\u0131m"
     },
     {
-      "fieldname": "taxtotals",
-      "fieldtype": "Section Break",
-      "label": "Toplam Vergi"
-    },
-    {
       "fieldname": "withholdingtaxtotals",
-      "fieldtype": "Section Break",
-      "label": "Tevkifat Bilgileri"
+      "fieldtype": "Table MultiSelect",
+      "label": "Tevkifat Bilgileri",
+      "options": "TR UBL Received Invoice Withholding Tax Totals"
     },
     {
       "fieldname": "invoicelines",
@@ -907,19 +847,19 @@
       "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
     },
     {
-      "fieldname": "sum_taxtotal_taxamount",
-      "fieldtype": "Currency",
-      "label": "Hesaplanan vergilerin toplam tutar\u0131"
+      "fieldname": "vergiler",
+      "fieldtype": "Section Break",
+      "label": "Vergi Bilgileri"
     },
     {
-      "fieldname": "vergiler",
+      "fieldname": "taxtotals",
       "fieldtype": "Table MultiSelect",
       "label": "Vergiler",
       "options": "TR UBL Received Invoice Tax Totals"
     }
   ],
   "links": [],
-  "modified": "2021-11-26 12:45:34.949466",
+  "modified": "2021-11-26 18:32:05.850644",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",

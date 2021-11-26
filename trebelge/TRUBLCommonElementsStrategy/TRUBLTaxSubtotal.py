@@ -35,9 +35,9 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         mapping: dict = {'name': 'taxcategory_name',
                          'taxexemptionreasoncode': 'taxcategory_taxexemptionreasoncode',
                          'taxexemptionreason': 'taxcategory_taxexemptionreason',
-                         'taxscheme_id': 'taxcategory_taxscheme_id',
-                         'taxscheme_name': 'taxcategory_taxscheme_name',
-                         'taxscheme_taxtypecode': 'taxcategory_taxscheme_taxtypecode'
+                         'taxscheme_id': 'taxscheme_id',
+                         'taxscheme_name': 'taxscheme_name',
+                         'taxscheme_taxtypecode': 'taxscheme_taxtypecode'
                          }
         for key in taxcategory_.keys():
             if taxcategory_.get(key) is not None:

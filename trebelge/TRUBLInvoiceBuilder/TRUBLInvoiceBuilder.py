@@ -6,6 +6,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchange
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
+from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
 from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLInvoiceBuilder.TRUBLInvoice import TRUBLInvoice
 
@@ -344,10 +345,30 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                     })
 
     def build_taxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        pass
+        taxtotals: list = []
+        for taxtotal in ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal'):
+            strategy: TRUBLCommonElement = TRUBLTaxTotal()
+            self._strategyContext.set_strategy(strategy)
+            taxtotal_ = self._strategyContext.return_element_data(taxtotal, cbcnamespace,
+                                                                  cacnamespace)
+            taxtotals.append(taxtotal_)
+        self._product.add({
+            'taxtotals': taxtotals
+        })
 
     def build_withholdingtaxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        pass
+        withholdingtaxtotals = ET.parse(filepath).getroot().findall(cacnamespace + 'WithholdingTaxTotal')
+        if withholdingtaxtotals is not None:
+            withholdingtaxtotals_: list = []
+            for withholdingtaxtotal in withholdingtaxtotals:
+                strategy: TRUBLCommonElement = TRUBLTaxTotal()
+                self._strategyContext.set_strategy(strategy)
+                taxtotal_ = self._strategyContext.return_element_data(withholdingtaxtotal, cbcnamespace,
+                                                                      cacnamespace)
+                withholdingtaxtotals_.append(taxtotal_)
+            self._product.add({
+                'withholdingtaxtotals': withholdingtaxtotals_
+            })
 
     def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         legalmonetarytotal = ET.parse(filepath).getroot().find(

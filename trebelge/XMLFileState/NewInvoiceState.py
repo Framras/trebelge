@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 from trebelge.XMLFileState.ExchangeRate import ExchangeRate
 from trebelge.XMLFileState.OrderReference import OrderReference
 from trebelge.XMLFileState.Period import Period
+from trebelge.XMLFileState.TaxTotal import TaxTotal
 
 from trebelge.XMLFileState.AbstractXMLFileState import AbstractXMLFileState
 from trebelge.XMLFileState.AllowanceCharge import AllowanceCharge
@@ -18,7 +19,6 @@ from trebelge.XMLFileState.PaymentMeans import PaymentMeans
 from trebelge.XMLFileState.PaymentTerms import PaymentTerms
 from trebelge.XMLFileState.Signature import Signature
 from trebelge.XMLFileState.SupplierParty import SupplierParty
-from trebelge.XMLFileState.TaxTotal import TaxTotal
 
 
 class NewInvoiceState(AbstractXMLFileState):

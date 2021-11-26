@@ -14,9 +14,9 @@ class TRUBLInvoice:
     _invoice = None
 
     def __init__(self, uuid_: str):
-        if not frappe.db.exists({"doctype": self._frappeDoctype,
-                                 "uuid": uuid_}):
-            self._invoice = frappe.get_doc(self._frappeDoctype, uuid_)
+        product: dict = {"doctype": self._frappeDoctype, "uuid": uuid_}
+        if not frappe.db.exists(product):
+            self._invoice = frappe.get_doc(product)
         else:
             self._invoice = None
 
