@@ -200,7 +200,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_orderreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_billingreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_billingreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     def build_despatchdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:

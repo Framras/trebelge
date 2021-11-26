@@ -153,7 +153,7 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_billingreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_billingreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)')
         """

@@ -39,7 +39,7 @@
   "modified": "2021-10-19 13:46:19.854923",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "TR GIB eFatura UBL Communication",
+  "name": "TR UBL Communication",
   "owner": "Administrator",
   "permissions": [],
   "sort_field": "modified",

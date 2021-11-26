@@ -56,13 +56,13 @@
       "fieldname": "othercommunication",
       "fieldtype": "Table",
       "label": "Other Communication",
-      "options": "TR GIB eFatura UBL Communication"
+      "options": "TR UBL Communication"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 13:46:00.533643",
+  "modified": "2021-11-27 00:00:41.734796",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Contact",

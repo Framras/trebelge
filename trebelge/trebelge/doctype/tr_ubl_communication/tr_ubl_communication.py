@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRGIBeFaturaUBLTaxScheme(Document):
+class TRUBLCommunication(Document):
     pass
