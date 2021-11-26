@@ -115,7 +115,8 @@
     "paymentalternativeexchangerate_targetcurrencycode",
     "paymentalternativeexchangerate_calculationrate",
     "taxtotals",
-    "taxtotal_taxamount",
+    "vergiler",
+    "sum_taxtotal_taxamount",
     "column_break_109",
     "taxtotal_taxamount_currencyid",
     "taxtotal_taxsubtotal",
@@ -699,11 +700,6 @@
       "label": "Parasal Toplamlar"
     },
     {
-      "fieldname": "taxtotal_taxamount",
-      "fieldtype": "Currency",
-      "label": "Hesaplanan vergilerin toplam tutar\u0131"
-    },
-    {
       "fieldname": "column_break_109",
       "fieldtype": "Column Break"
     },
@@ -909,10 +905,21 @@
       "fieldname": "invoiceperiod_descriptions",
       "fieldtype": "Long Text",
       "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
+    },
+    {
+      "fieldname": "sum_taxtotal_taxamount",
+      "fieldtype": "Currency",
+      "label": "Hesaplanan vergilerin toplam tutar\u0131"
+    },
+    {
+      "fieldname": "vergiler",
+      "fieldtype": "Table MultiSelect",
+      "label": "Vergiler",
+      "options": "TR UBL Received Invoice Tax Subtotals"
     }
   ],
   "links": [],
-  "modified": "2021-11-25 09:46:31.066210",
+  "modified": "2021-11-26 08:55:26.318751",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",

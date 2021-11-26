@@ -7,6 +7,7 @@
   "engine": "InnoDB",
   "field_order": [
     "taxableamount",
+    "taxableamount_currencyid",
     "taxamount",
     "taxamount_currencyid",
     "calculationsequencenumeric",
@@ -28,18 +29,19 @@
   "fields": [
     {
       "fieldname": "taxableamount",
-      "fieldtype": "Data",
+      "fieldtype": "Currency",
       "label": "Matrah"
     },
     {
       "fieldname": "taxamount",
-      "fieldtype": "Data",
+      "fieldtype": "Currency",
       "label": "Hesaplanan Vergi Tutar\u0131"
     },
     {
       "fieldname": "taxamount_currencyid",
-      "fieldtype": "Data",
-      "label": "D\u00f6viz"
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
     },
     {
       "fieldname": "calculationsequencenumeric",
@@ -48,13 +50,14 @@
     },
     {
       "fieldname": "transactioncurrencytaxamount",
-      "fieldtype": "Data",
+      "fieldtype": "Currency",
       "label": "toplam vergi tutar\u0131"
     },
     {
       "fieldname": "transactioncurrencytaxamount_currencyid",
-      "fieldtype": "Data",
-      "label": "D\u00f6viz"
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
     },
     {
       "fieldname": "percent",
@@ -113,12 +116,18 @@
       "fieldname": "taxcategory_taxscheme_taxtypecode",
       "fieldtype": "Data",
       "label": "Vergi Tipi Kodu"
+    },
+    {
+      "fieldname": "taxableamount_currencyid",
+      "fieldtype": "Link",
+      "label": "D\u00f6viz",
+      "options": "Currency"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-11-22 00:38:09.385804",
+  "modified": "2021-11-26 09:20:46.237701",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice Tax Subtotal",
