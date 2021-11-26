@@ -8,7 +8,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxSubtotal import TRUBLTaxSubtot
 
 class TRUBLTaxTotal(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
-    _frappeDoctype: str = 'TR UBL Received Invoice Tax Total'
+    _frappeDoctype: str = 'TR UBL Tax Total'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """

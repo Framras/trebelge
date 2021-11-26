@@ -6,20 +6,20 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "withholdingtaxtotals"
+    "invoice_withholdingtaxtotals"
   ],
   "fields": [
     {
-      "fieldname": "withholdingtaxtotals",
+      "fieldname": "invoice_withholdingtaxtotals",
       "fieldtype": "Link",
-      "label": "withholdingtaxtotals",
-      "options": "TR UBL Received Invoice Tax Total"
+      "label": "Invoice Withholding Tax Totals",
+      "options": "TR UBL Tax Total"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-11-26 18:42:41.448386",
+  "modified": "2021-11-26 18:56:18.261032",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice Withholding Tax Totals",

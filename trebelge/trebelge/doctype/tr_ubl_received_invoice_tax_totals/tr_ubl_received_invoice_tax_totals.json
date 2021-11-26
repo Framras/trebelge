@@ -6,20 +6,20 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "taxtotals"
+    "invoice_taxtotals"
   ],
   "fields": [
     {
-      "fieldname": "taxtotals",
+      "fieldname": "invoice_taxtotals",
       "fieldtype": "Link",
-      "label": "taxtotals",
-      "options": "TR UBL Received Invoice Tax Total"
+      "label": "Invoice Tax Totals",
+      "options": "TR UBL Tax Total"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-11-26 18:27:32.477988",
+  "modified": "2021-11-26 18:56:18.629576",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice Tax Totals",
