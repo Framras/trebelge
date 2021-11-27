@@ -3,6 +3,7 @@ from xml.etree.ElementTree import Element
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyIdentification import TRUBLPartyIdentification
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyLegalEntity import TRUBLPartyLegalEntity
@@ -88,7 +89,22 @@ class TRUBLParty(TRUBLCommonElement):
                 partylegalentities_.append(partylegalentity)
             party['partylegalentities'] = partylegalentities_
         contact_ = element.find(cacnamespace + 'Contact')
+        if contact_ is not None:
+            strategy: TRUBLCommonElement = TRUBLContact()
+            self._strategyContext.set_strategy(strategy)
+            contact = self._strategyContext.return_element_data(contact_, cbcnamespace,
+                                                                cacnamespace)
         person_ = element.find(cacnamespace + 'Person')
+        if person_ is not None:
+            strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
+            self._strategyContext.set_strategy(strategy)
+            person = self._strategyContext.return_element_data(person_, cbcnamespace,
+                                                               cacnamespace)
         agentparty_ = element.find(cacnamespace + 'AgentParty')
+        if agentparty_ is not None:
+            strategy: TRUBLCommonElement = TRUBLParty()
+            self._strategyContext.set_strategy(strategy)
+            agentparty = self._strategyContext.return_element_data(agentparty_, cbcnamespace,
+                                                                   cacnamespace)
 
         return party
