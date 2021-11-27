@@ -2,7 +2,6 @@ from xml.etree.ElementTree import Element
 
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommunication import TRUBLCommunication
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyIdentification import TRUBLPartyIdentification
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyName import TRUBLPartyName
 
@@ -16,7 +15,7 @@ class TRUBLParty(TRUBLCommonElement):
         ['EndpointID'] = ('cbc', 'endpointid', 'Seçimli (0...1)')
         ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
         ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
-        ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)')
+        ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)', partyname)
         ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)')
         ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)')
         ['PartyTaxScheme'] = ('cac', TaxScheme(), 'Seçimli (0...1)')
@@ -29,15 +28,12 @@ class TRUBLParty(TRUBLCommonElement):
         websiteuri_ = element.find(cbcnamespace + 'WebsiteURI')
         if websiteuri_ is not None:
             party[websiteuri_.tag.lower()] = websiteuri_.text
-
         endpointid_ = element.find(cbcnamespace + 'EndpointID')
         if endpointid_ is not None:
             party[endpointid_.tag.lower()] = endpointid_.text
-
         industryclassificationcode_ = element.find(cbcnamespace + 'IndustryClassificationCode')
         if industryclassificationcode_ is not None:
             party[industryclassificationcode_.tag.lower()] = industryclassificationcode_.text
-
         partyidentifications_ = element.findall(cacnamespace + 'PartyIdentification')
         strategy: TRUBLCommonElement = TRUBLPartyIdentification()
         self._strategyContext.set_strategy(strategy)
@@ -46,31 +42,12 @@ class TRUBLParty(TRUBLCommonElement):
             partyidentifications.append(self._strategyContext.return_element_data(partyidentification, cbcnamespace,
                                                                                   cacnamespace))
         party['partyidentifications'] = partyidentifications
-
         partyname_ = element.find(cacnamespace + 'PartyName')
         if partyname_ is not None:
             strategy: TRUBLCommonElement = TRUBLPartyName()
             self._strategyContext.set_strategy(strategy)
-            party['partyname'] = self._strategyContext.return_element_data(partyname_, cbcnamespace,
-                                                                           cacnamespace)
+            partyname = self._strategyContext.return_element_data(partyname_, cbcnamespace,
+                                                                  cacnamespace)
+            party['partyname'] = partyname.get('partyname')
 
-        if partyname_ is not None:
-            contact[partyname_.tag.lower()] = partyname_.text
-        electronicmail_ = element.find(cbcnamespace + 'ElectronicMail')
-        if electronicmail_ is not None:
-            contact[electronicmail_.tag.lower()] = electronicmail_.text
-        note_ = element.find(cbcnamespace + 'Note')
-        if note_ is not None:
-            contact[note_.tag.lower()] = note_.text
-        othercommunications_ = element.findall(cacnamespace + 'OtherCommunication')
-        if othercommunications_ is not None:
-            strategy: TRUBLCommonElement = TRUBLCommunication()
-            self._strategyContext.set_strategy(strategy)
-            communications: list = []
-            for othercommunication in othercommunications_:
-                communication_ = self._strategyContext.return_element_data(othercommunication, cbcnamespace,
-                                                                           cacnamespace)
-                communications.append(communication_)
-            contact['othercommunications'] = communications
-
-        return contact
+        return party

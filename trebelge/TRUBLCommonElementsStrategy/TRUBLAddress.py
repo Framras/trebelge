@@ -32,8 +32,7 @@ class TRUBLAddress(TRUBLCommonElement):
         country = self._strategyContext.return_element_data(country_, cbcnamespace,
                                                             cacnamespace)
         for key in country.keys():
-            if country.get(key) is not None:
-                address['country_' + key] = country.get(key)
+            address['country_' + key] = country.get(key)
         id_ = element.find(cbcnamespace + 'ID')
         if id_ is not None:
             address[id_.tag.lower()] = id_.text

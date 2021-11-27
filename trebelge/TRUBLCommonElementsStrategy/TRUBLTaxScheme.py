@@ -13,12 +13,12 @@ class TRUBLTaxScheme(TRUBLCommonElement):
         taxScheme: dict = {}
         id_ = element.find(cbcnamespace + 'ID')
         if id_ is not None:
-            taxScheme['id'] = id_.text
+            taxScheme[id_.tag.lower()] = id_.text
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            taxScheme['name'] = name_.text
+            taxScheme['taxscheme' + name_.tag.lower()] = name_.text
         taxtypecode_ = element.find(cbcnamespace + 'TaxTypeCode')
         if taxtypecode_ is not None:
-            taxScheme['taxtypecode'] = taxtypecode_.text
+            taxScheme[taxtypecode_.tag.lower()] = taxtypecode_.text
 
         return taxScheme

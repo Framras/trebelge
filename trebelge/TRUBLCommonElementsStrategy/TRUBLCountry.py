@@ -12,6 +12,6 @@ class TRUBLCountry(TRUBLCommonElement):
         country: dict = {'name': element.find(cbcnamespace + 'Name').text}
         identificationcode_ = element.find(cbcnamespace + 'IdentificationCode')
         if identificationcode_ is not None:
-            country['identificationcode'] = identificationcode_.text
+            country[identificationcode_.tag.lower()] = identificationcode_.text
 
         return country

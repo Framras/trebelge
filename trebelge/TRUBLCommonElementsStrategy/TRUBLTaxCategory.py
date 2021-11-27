@@ -18,24 +18,20 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         taxCategory: dict = {}
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            taxCategory['name'] = name_.text
+            taxCategory['taxcategory' + name_.tag.lower()] = name_.text
         taxexemptionreasoncode_ = element.find(cbcnamespace + 'TaxExemptionReasonCode')
         if taxexemptionreasoncode_ is not None:
-            taxCategory['taxexemptionreasoncode'] = taxexemptionreasoncode_.text
+            taxCategory[taxexemptionreasoncode_.tag.lower()] = taxexemptionreasoncode_.text
         taxexemptionreason_ = element.find(cbcnamespace + 'TaxExemptionReason')
         if taxexemptionreason_ is not None:
-            taxCategory['taxexemptionreason'] = taxexemptionreason_.text
+            taxCategory[taxexemptionreason_.tag.lower()] = taxexemptionreason_.text
         taxscheme = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
         taxscheme_ = self._strategyContext.return_element_data(taxscheme, cbcnamespace,
                                                                cacnamespace)
-        mapping: dict = {'id': 'taxscheme_id',
-                         'name': 'taxscheme_name',
-                         'taxtypecode': 'taxscheme_taxtypecode'
-                         }
         for key in taxscheme_.keys():
             if taxscheme_.get(key) is not None:
-                taxCategory[mapping.get(key)] = taxscheme_.get(key)
+                taxCategory['taxscheme_' + key] = taxscheme_.get(key)
 
         return taxCategory

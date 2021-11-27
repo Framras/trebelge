@@ -14,10 +14,10 @@ class TRUBLDeliveryTerms(TRUBLCommonElement):
         deliveryterms: dict = {}
         id_ = element.find(cbcnamespace + 'ID')
         if id_ is not None:
-            deliveryterms['id'] = id_.text
+            deliveryterms[id_.tag.lower()] = id_.text
         specialterms_ = element.find(cbcnamespace + 'SpecialTerms')
         if specialterms_ is not None:
-            deliveryterms['specialterms'] = specialterms_.text
+            deliveryterms[specialterms_.tag.lower()] = specialterms_.text
         amount_ = element.find(cbcnamespace + 'Amount')
         if amount_ is not None:
             deliveryterms['amount'] = amount_.text

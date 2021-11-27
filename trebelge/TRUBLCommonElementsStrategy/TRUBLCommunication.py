@@ -14,6 +14,6 @@ class TRUBLCommunication(TRUBLCommonElement):
                                'channel': element.find(cbcnamespace + 'Channel').text}
         value_ = element.find(cbcnamespace + 'Value')
         if value_ is not None:
-            communication['value'] = value_.text
+            communication[value_.tag.lower()] = value_.text
 
         return communication

@@ -32,16 +32,9 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         self._strategyContext.set_strategy(strategy)
         taxcategory_ = self._strategyContext.return_element_data(taxcategory, cbcnamespace,
                                                                  cacnamespace)
-        mapping: dict = {'name': 'taxcategory_name',
-                         'taxexemptionreasoncode': 'taxcategory_taxexemptionreasoncode',
-                         'taxexemptionreason': 'taxcategory_taxexemptionreason',
-                         'taxscheme_id': 'taxscheme_id',
-                         'taxscheme_name': 'taxscheme_name',
-                         'taxscheme_taxtypecode': 'taxscheme_taxtypecode'
-                         }
         for key in taxcategory_.keys():
             if taxcategory_.get(key) is not None:
-                taxSubtotal[mapping.get(key)] = taxcategory_.get(key)
+                taxSubtotal[key] = taxcategory_.get(key)
 
         taxableamount_ = element.find(cbcnamespace + 'TaxableAmount')
         if taxableamount_ is not None:
@@ -49,7 +42,7 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
             taxSubtotal['taxableamount_currencyid'] = taxableamount_.attrib.get('currencyID')
         calculationsequencenumeric_ = element.find(cbcnamespace + 'CalculationSequenceNumeric')
         if calculationsequencenumeric_ is not None:
-            taxSubtotal['calculationsequencenumeric'] = calculationsequencenumeric_.text
+            taxSubtotal[calculationsequencenumeric_.tag.lower()] = calculationsequencenumeric_.text
         transactioncurrencytaxamount_ = element.find(cbcnamespace + 'TransactionCurrencyTaxAmount')
         if transactioncurrencytaxamount_ is not None:
             taxSubtotal['transactioncurrencytaxamount'] = transactioncurrencytaxamount_.text
@@ -57,7 +50,7 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
                 'currencyID')
         percent_ = element.find(cbcnamespace + 'Percent')
         if percent_ is not None:
-            taxSubtotal['percent'] = percent_.text
+            taxSubtotal[percent_.tag.lower()] = percent_.text
         baseunitmeasure_ = element.find(cbcnamespace + 'BaseUnitMeasure')
         if baseunitmeasure_ is not None:
             taxSubtotal['baseunitmeasure'] = baseunitmeasure_.text

@@ -14,12 +14,12 @@ class TRUBLExchangeRate(TRUBLCommonElement):
         sourcecurrencycode_ = element.find(cbcnamespace + 'SourceCurrencyCode')
         targetcurrencycode_ = element.find(cbcnamespace + 'TargetCurrencyCode')
         calculationrate_ = element.find(cbcnamespace + 'CalculationRate')
-        exchangerate: dict = {'sourcecurrencycode': sourcecurrencycode_.text,
-                              'targetcurrencycode': targetcurrencycode_.text,
-                              'calculationrate': calculationrate_.text
+        exchangerate: dict = {sourcecurrencycode_.tag.lower(): sourcecurrencycode_.text,
+                              targetcurrencycode_.tag.lower(): targetcurrencycode_.text,
+                              calculationrate_.tag.lower(): calculationrate_.text
                               }
         date_ = element.find(cbcnamespace + 'Date')
         if date_ is not None:
-            exchangerate['date'] = date_.text
+            exchangerate['exchangerate' + date_.tag.lower()] = date_.text
 
         return exchangerate

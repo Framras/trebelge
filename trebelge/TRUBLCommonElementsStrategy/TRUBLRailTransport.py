@@ -12,6 +12,6 @@ class TRUBLRailTransport(TRUBLCommonElement):
         railTransport: dict = {'trainid': element.find(cbcnamespace + 'TrainID').text}
         railcarid_ = element.find(cbcnamespace + 'RailCarID')
         if railcarid_ is not None:
-            railTransport['railcarid'] = railcarid_.text
+            railTransport[railcarid_.tag.lower()] = railcarid_.text
 
         return railTransport

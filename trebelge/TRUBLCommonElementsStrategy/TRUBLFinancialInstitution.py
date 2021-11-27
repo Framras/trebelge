@@ -11,6 +11,6 @@ class TRUBLFinancialInstitution(TRUBLCommonElement):
         financialInstitution: dict = {}
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            financialInstitution['name'] = name_.text
+            financialInstitution['financialInstitution' + name_.tag.lower()] = name_.text
 
         return financialInstitution

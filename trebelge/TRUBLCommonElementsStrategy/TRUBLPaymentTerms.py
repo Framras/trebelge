@@ -43,7 +43,6 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
             self._strategyContext.set_strategy(strategy)
             period_ = self._strategyContext.return_element_data(settlementperiod_, cbcnamespace, cacnamespace)
             for key in period_.keys():
-                if period_.get(key) is not None:
-                    paymentterms['settlementperiod_' + key] = period_.get(key)
+                paymentterms['settlementperiod_' + key] = period_.get(key)
 
         return paymentterms
