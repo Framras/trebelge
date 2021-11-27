@@ -4,6 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommunication import TRUBLCommunication
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyIdentification import TRUBLPartyIdentification
+from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyName import TRUBLPartyName
 
 
 class TRUBLParty(TRUBLCommonElement):
@@ -46,9 +47,15 @@ class TRUBLParty(TRUBLCommonElement):
                                                                                   cacnamespace))
         party['partyidentifications'] = partyidentifications
 
-        telefax_ = element.find(cbcnamespace + 'Telefax')
-        if telefax_ is not None:
-            contact[telefax_.tag.lower()] = telefax_.text
+        partyname_ = element.find(cacnamespace + 'PartyName')
+        if partyname_ is not None:
+            strategy: TRUBLCommonElement = TRUBLPartyName()
+            self._strategyContext.set_strategy(strategy)
+            party['partyname'] = self._strategyContext.return_element_data(partyname_, cbcnamespace,
+                                                                           cacnamespace)
+
+        if partyname_ is not None:
+            contact[partyname_.tag.lower()] = partyname_.text
         electronicmail_ = element.find(cbcnamespace + 'ElectronicMail')
         if electronicmail_ is not None:
             contact[electronicmail_.tag.lower()] = electronicmail_.text
