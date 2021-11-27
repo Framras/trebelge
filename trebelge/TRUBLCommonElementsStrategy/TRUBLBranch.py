@@ -11,7 +11,7 @@ class TRUBLBranch(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
         ['Name'] = ('cbc', 'name', 'Seçimli(0..1)')
-        ['FinancialInstitution'] = ('cac', 'FinancialInstitution()', 'Seçimli(0..1)', 'financialinstitution)
+        ['FinancialInstitution'] = ('cac', 'FinancialInstitution()', 'Seçimli(0..1)', 'financialinstitution')
         """
         branch: dict = {}
         name_ = element.find(cbcnamespace + 'Name')

@@ -8,7 +8,6 @@ class TRUBLPartyName(TRUBLCommonElement):
         """
         ['Name'] = ('cbc', 'partyname', 'Zorunlu (1)')
         """
-        partyname: dict = {'partyname': element.find(cbcnamespace + 'Name')
-                           }
+        partyname: dict = {'partyname': element.find(cbcnamespace + 'Name')}
 
         return partyname
