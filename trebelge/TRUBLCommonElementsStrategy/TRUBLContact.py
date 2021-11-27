@@ -2,7 +2,7 @@ from xml.etree.ElementTree import Element
 
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
-from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialInstitution import TRUBLFinancialInstitution
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCommunication import TRUBLCommunication
 
 
 class TRUBLContact(TRUBLCommonElement):
@@ -37,13 +37,15 @@ class TRUBLContact(TRUBLCommonElement):
         note_ = element.find(cbcnamespace + 'Note')
         if note_ is not None:
             contact[note_.tag.lower()] = note_.text
-        othercommunication_ = element.findall(cacnamespace + 'OtherCommunication')
-        if othercommunication_ is not None:
-            strategy: TRUBLCommonElement = TRUBLFinancialInstitution()
+        othercommunications_ = element.findall(cacnamespace + 'OtherCommunication')
+        if othercommunications_ is not None:
+            strategy: TRUBLCommonElement = TRUBLCommunication()
             self._strategyContext.set_strategy(strategy)
-            financialinstitution = self._strategyContext.return_element_data(othercommunication_, cbcnamespace,
-                                                                             cacnamespace)
-            if financialinstitution is not None:
-                branch['financialinstitution_name'] = financialinstitution.get('name')
+            communications: list = []
+            for othercommunication in othercommunications_:
+                communication_ = self._strategyContext.return_element_data(othercommunication, cbcnamespace,
+                                                                           cacnamespace)
+                communications.append(communication_)
+            contact['othercommunications'] = communications
 
-        return branch
+        return contact

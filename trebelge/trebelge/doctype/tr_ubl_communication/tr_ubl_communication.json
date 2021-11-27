@@ -4,6 +4,7 @@
   "creation": "2021-10-19 00:08:59.199396",
   "description": "Her t\u00fcrl\u00fc alternatif ileti\u015fim kanal\u0131n\u0131n tan\u0131mlanmas\u0131nda kullan\u0131lacakt\u0131r.",
   "doctype": "DocType",
+  "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
     "channelcode",
@@ -22,6 +23,7 @@
       "description": "Bu eleman metin olarak kanal ad\u0131 i\u00e7in kullan\u0131lacakt\u0131r.",
       "fieldname": "channel",
       "fieldtype": "Data",
+      "in_list_view": 1,
       "label": "Channel"
     },
     {
@@ -36,7 +38,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 13:46:19.854923",
+  "modified": "2021-11-27 10:20:59.891393",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Communication",

@@ -77,7 +77,7 @@
       "fieldname": "contact",
       "fieldtype": "Table",
       "label": "Contact",
-      "options": "TR GIB eFatura UBL Contact"
+      "options": "TR UBL Contact"
     },
     {
       "description": "Taraf e\u011fer \u015fah\u0131ssa bu eleman kullan\u0131l\u0131r.",
@@ -96,7 +96,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-22 11:53:01.081635",
+  "modified": "2021-11-27 00:21:53.735938",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Party",

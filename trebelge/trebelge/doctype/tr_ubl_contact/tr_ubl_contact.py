@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRGIBeFaturaUBLContact(Document):
+class TRUBLContact(Document):
     pass

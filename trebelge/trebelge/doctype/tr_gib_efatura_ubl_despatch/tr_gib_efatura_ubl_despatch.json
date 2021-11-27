@@ -13,7 +13,7 @@
     "instructions",
     "despatchaddress",
     "despatchparty",
-    "contact",
+    "contacts",
     "estimateddespatchperiod"
   ],
   "fields": [
@@ -56,24 +56,23 @@
       "options": "TR GIB eFatura UBL Party"
     },
     {
-      "description": "Mallar\u0131 sat\u0131c\u0131dan teslim alacak taraf\u0131n ileti\u015fim bilgileri girilir.",
-      "fieldname": "contact",
-      "fieldtype": "Table",
-      "label": "Contact",
-      "options": "TR GIB eFatura UBL Contact"
-    },
-    {
       "description": "Tahmini teslim al\u0131\u015f d\u00f6nemi girilir.",
       "fieldname": "estimateddespatchperiod",
+      "fieldtype": "Data",
+      "label": "Estimated Despatch Period"
+    },
+    {
+      "description": "Mallar\u0131 sat\u0131c\u0131dan teslim alacak taraf\u0131n ileti\u015fim bilgileri girilir.",
+      "fieldname": "contacts",
       "fieldtype": "Table",
-      "label": "Estimated Despatch Period",
-      "options": "TR GIB eFatura UBL Period"
+      "label": "Contact",
+      "options": "TR UBL Contact"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-22 11:53:01.956472",
+  "modified": "2021-11-27 00:22:47.069759",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Despatch",

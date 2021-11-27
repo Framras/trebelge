@@ -23,13 +23,13 @@
       "fieldname": "deliverycontact",
       "fieldtype": "Table",
       "label": "Delivery Contact",
-      "options": "TR GIB eFatura UBL Contact"
+      "options": "TR UBL Contact"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 17:27:04.220314",
+  "modified": "2021-11-27 00:21:53.317049",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Customer Party",
