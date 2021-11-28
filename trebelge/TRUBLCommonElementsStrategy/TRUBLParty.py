@@ -91,12 +91,14 @@ class TRUBLParty(TRUBLCommonElement):
             self._strategyContext.set_strategy(strategy)
             contact = self._strategyContext.return_element_data(contact_, cbcnamespace,
                                                                 cacnamespace)
+
         person_ = element.find(cacnamespace + 'Person')
         if person_ is not None:
             strategy: TRUBLCommonElement = TRUBLPerson()
             self._strategyContext.set_strategy(strategy)
             person = self._strategyContext.return_element_data(person_, cbcnamespace,
                                                                cacnamespace)
+
         agentparty_ = element.find(cacnamespace + 'AgentParty')
         if agentparty_ is not None:
             strategy: TRUBLCommonElement = TRUBLParty()

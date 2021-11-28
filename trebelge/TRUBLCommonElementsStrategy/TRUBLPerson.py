@@ -27,9 +27,6 @@ class TRUBLPerson(TRUBLCommonElement):
             if field_ is not None:
                 person[field_.tag.lower()] = field_.text
 
-        companyid_ = element.find(cbcnamespace + 'CompanyID')
-        if companyid_ is not None:
-            partytaxscheme[companyid_.tag.lower()] = companyid_.text
         taxscheme_ = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
