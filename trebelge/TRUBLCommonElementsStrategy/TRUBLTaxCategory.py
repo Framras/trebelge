@@ -16,15 +16,16 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         """
         taxCategory: dict = {}
+        cbcsecimli01: list = ['TaxExemptionReasonCode', 'TaxExemptionReason']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                taxCategory[field_.tag.lower()] = field_.text
+
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            taxCategory['taxcategory' + name_.tag.lower()] = name_.text
-        taxexemptionreasoncode_ = element.find(cbcnamespace + 'TaxExemptionReasonCode')
-        if taxexemptionreasoncode_ is not None:
-            taxCategory[taxexemptionreasoncode_.tag.lower()] = taxexemptionreasoncode_.text
-        taxexemptionreason_ = element.find(cbcnamespace + 'TaxExemptionReason')
-        if taxexemptionreason_ is not None:
-            taxCategory[taxexemptionreason_.tag.lower()] = taxexemptionreason_.text
+            taxCategory['taxcategoryname'] = name_.text
+
         taxscheme = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)

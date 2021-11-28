@@ -20,12 +20,12 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
         ['SettlementPeriod'] = ('cac', 'settlementperiod', 'Seçimli (0...1)')
         """
         paymentterms: dict = {}
-        note_ = element.find(cbcnamespace + 'Note')
-        if note_ is not None:
-            paymentterms['note'] = note_.text
-        penaltysurchargepercent_ = element.find(cbcnamespace + 'PenaltySurchargePercent')
-        if penaltysurchargepercent_ is not None:
-            paymentterms['penaltysurchargepercent'] = penaltysurchargepercent_.text
+        cbcsecimli01: list = ['Note', 'PenaltySurchargePercent', 'PaymentDueDate']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                paymentterms[field_.tag.lower()] = field_.text
+
         amount_ = element.find(cbcnamespace + 'Amount')
         if amount_ is not None:
             paymentterms['amount'] = amount_.text
@@ -34,9 +34,6 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
         if penaltyamount_ is not None:
             paymentterms['penaltyamount'] = penaltyamount_.text
             paymentterms['penaltyamount_currencyid'] = penaltyamount_.attrib.get('currencyID')
-        paymentduedate_ = element.find(cbcnamespace + 'PaymentDueDate')
-        if paymentduedate_ is not None:
-            paymentterms['paymentduedate'] = paymentduedate_.text
         settlementperiod_ = element.find(cbcnamespace + 'SettlementPeriod')
         if settlementperiod_ is not None:
             strategy: TRUBLCommonElement = TRUBLPeriod()

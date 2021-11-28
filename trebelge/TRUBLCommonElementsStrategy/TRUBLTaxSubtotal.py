@@ -27,6 +27,12 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         taxamount_ = element.find(cbcnamespace + 'TaxAmount')
         taxSubtotal: dict = {'taxamount': taxamount_.text,
                              'taxamount_currencyid': taxamount_.attrib.get('currencyID')}
+        cbcsecimli01: list = ['CalculationSequenceNumeric', 'Percent']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                taxSubtotal[field_.tag.lower()] = field_.text
+
         taxcategory = element.find(cacnamespace + 'TaxCategory')
         strategy: TRUBLCommonElement = TRUBLTaxCategory()
         self._strategyContext.set_strategy(strategy)
@@ -40,17 +46,11 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         if taxableamount_ is not None:
             taxSubtotal['taxableamount'] = taxableamount_.text
             taxSubtotal['taxableamount_currencyid'] = taxableamount_.attrib.get('currencyID')
-        calculationsequencenumeric_ = element.find(cbcnamespace + 'CalculationSequenceNumeric')
-        if calculationsequencenumeric_ is not None:
-            taxSubtotal[calculationsequencenumeric_.tag.lower()] = calculationsequencenumeric_.text
         transactioncurrencytaxamount_ = element.find(cbcnamespace + 'TransactionCurrencyTaxAmount')
         if transactioncurrencytaxamount_ is not None:
             taxSubtotal['transactioncurrencytaxamount'] = transactioncurrencytaxamount_.text
             taxSubtotal['transactioncurrencytaxamount_currencyid'] = transactioncurrencytaxamount_.attrib.get(
                 'currencyID')
-        percent_ = element.find(cbcnamespace + 'Percent')
-        if percent_ is not None:
-            taxSubtotal[percent_.tag.lower()] = percent_.text
         baseunitmeasure_ = element.find(cbcnamespace + 'BaseUnitMeasure')
         if baseunitmeasure_ is not None:
             taxSubtotal['baseunitmeasure'] = baseunitmeasure_.text

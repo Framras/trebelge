@@ -5,22 +5,31 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBL
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
 
 
-class TRUBLPartyTaxScheme(TRUBLCommonElement):
+class TRUBLPerson(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
-        ['RegistrationName'] = ('cbc', 'registrationname', 'Seçimli (0...1)')
-        ['CompanyID'] = ('cbc', 'companyid', 'Seçimli (0...1)')
-        ['TaxScheme'] = ('cac', 'TaxScheme()', 'Zorunlu (1)', 'taxscheme')
+        ['FirstName'] = ('cbc', '', 'Zorunlu(1)')
+        ['FamilyName'] = ('cbc', '', 'Zorunlu(1)')
+        ['Title'] = ('cbc', '', 'Seçimli (0...1)')
+        ['MiddleName'] = ('cbc', '', 'Seçimli (0...1)')
+        ['NameSuffix'] = ('cbc', '', 'Seçimli (0...1)')
+        ['NationalityID'] = ('cbc', '', 'Seçimli (0...1)')
+        ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
+        ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)')
         """
-        partytaxscheme: dict = {}
-        cbcsecimli01: list = ['RegistrationName', 'CompanyID']
+        person: dict = {'FirstName'.lower(): element.find(cbcnamespace + 'FirstName').text,
+                        'FamilyName'.lower(): element.find(cbcnamespace + 'FamilyName').text}
+        cbcsecimli01: list = ['Title', 'MiddleName', 'NameSuffix', 'NationalityID']
         for elementtag_ in cbcsecimli01:
             field_ = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
-                partytaxscheme[field_.tag.lower()] = field_.text
+                person[field_.tag.lower()] = field_.text
 
+        companyid_ = element.find(cbcnamespace + 'CompanyID')
+        if companyid_ is not None:
+            partytaxscheme[companyid_.tag.lower()] = companyid_.text
         taxscheme_ = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
@@ -29,4 +38,4 @@ class TRUBLPartyTaxScheme(TRUBLCommonElement):
         for key in taxscheme.keys():
             partytaxscheme['taxscheme_' + key] = taxscheme.get(key)
 
-        return partytaxscheme
+        return person

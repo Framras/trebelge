@@ -30,15 +30,12 @@ class TRUBLParty(TRUBLCommonElement):
         ['AgentParty'] = ('cac', Party(), 'Seçimli (0...1)', 'agentparty')
         """
         party: dict = {}
-        websiteuri_ = element.find(cbcnamespace + 'WebsiteURI')
-        if websiteuri_ is not None:
-            party[websiteuri_.tag.lower()] = websiteuri_.text
-        endpointid_ = element.find(cbcnamespace + 'EndpointID')
-        if endpointid_ is not None:
-            party[endpointid_.tag.lower()] = endpointid_.text
-        industryclassificationcode_ = element.find(cbcnamespace + 'IndustryClassificationCode')
-        if industryclassificationcode_ is not None:
-            party[industryclassificationcode_.tag.lower()] = industryclassificationcode_.text
+        cbcsecimli01: list = ['WebsiteURI', 'EndpointID', 'IndustryClassificationCode']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                party[field_.tag.lower()] = field_.text
+
         partyidentifications_ = element.findall(cacnamespace + 'PartyIdentification')
         strategy: TRUBLCommonElement = TRUBLPartyIdentification()
         self._strategyContext.set_strategy(strategy)
@@ -96,7 +93,7 @@ class TRUBLParty(TRUBLCommonElement):
                                                                 cacnamespace)
         person_ = element.find(cacnamespace + 'Person')
         if person_ is not None:
-            strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
+            strategy: TRUBLCommonElement = TRUBLPerson()
             self._strategyContext.set_strategy(strategy)
             person = self._strategyContext.return_element_data(person_, cbcnamespace,
                                                                cacnamespace)

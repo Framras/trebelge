@@ -23,26 +23,18 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
         ['HeadOfficeParty'] = ('cac', 'Party()', 'Seçimli (0...1)', 'headofficeparty')
         """
         partylegalentity: dict = {}
-        registrationname_ = element.find(cbcnamespace + 'RegistrationName')
-        if registrationname_ is not None:
-            partylegalentity[registrationname_.tag.lower()] = registrationname_.text
-        companyid_ = element.find(cbcnamespace + 'CompanyID')
-        if companyid_ is not None:
-            partylegalentity[companyid_.tag.lower()] = companyid_.text
-        registrationdate_ = element.find(cbcnamespace + 'RegistrationDate')
-        if registrationdate_ is not None:
-            partylegalentity[registrationdate_.tag.lower()] = registrationdate_.text
-        soleprioprietorshipindicator_ = element.find(cbcnamespace + 'SolePrioprietorshipIndicator')
-        if soleprioprietorshipindicator_ is not None:
-            partylegalentity[soleprioprietorshipindicator_.tag.lower()] = soleprioprietorshipindicator_.text
+        cbcsecimli01: list = ['RegistrationName', 'CompanyID', 'RegistrationDate', 'SolePrioprietorshipIndicator',
+                              'FullyPaidSharesIndicator']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                partylegalentity[field_.tag.lower()] = field_.text
+
         corporatestockamount_ = element.find(cbcnamespace + 'CorporateStockAmount')
         if corporatestockamount_ is not None:
-            partylegalentity[corporatestockamount_.tag.lower()] = corporatestockamount_.text
-            partylegalentity[corporatestockamount_.tag.lower() + '_currencyid'] = corporatestockamount_.attrib.get(
+            partylegalentity['corporatestockamount'] = corporatestockamount_.text
+            partylegalentity['corporatestockamount_currencyid'] = corporatestockamount_.attrib.get(
                 'currencyID')
-        fullypaidsharesindicator_ = element.find(cbcnamespace + 'FullyPaidSharesIndicator')
-        if fullypaidsharesindicator_ is not None:
-            partylegalentity[fullypaidsharesindicator_.tag.lower()] = fullypaidsharesindicator_.text
         corporateregistrationscheme_ = element.find(cacnamespace + 'CorporateRegistrationScheme')
         if corporateregistrationscheme_ is not None:
             strategy: TRUBLCommonElement = TRUBLCorporateRegistrationScheme()

@@ -19,24 +19,18 @@ class TRUBLContact(TRUBLCommonElement):
         ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         """
         contact: dict = {}
+        cbcsecimli01: list = ['Telephone', 'Telefax', 'ElectronicMail', 'Note']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                contact[field_.tag.lower()] = field_.text
+
         id_ = element.find(cbcnamespace + 'ID')
         if id_ is not None:
-            contact[id_.tag.lower()] = id_.text
+            contact[('Contact' + 'ID').lower()] = id_.text
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            contact['contact_' + name_.tag.lower()] = name_.text
-        telephone_ = element.find(cbcnamespace + 'Telephone')
-        if telephone_ is not None:
-            contact[telephone_.tag.lower()] = telephone_.text
-        telefax_ = element.find(cbcnamespace + 'Telefax')
-        if telefax_ is not None:
-            contact[telefax_.tag.lower()] = telefax_.text
-        electronicmail_ = element.find(cbcnamespace + 'ElectronicMail')
-        if electronicmail_ is not None:
-            contact[electronicmail_.tag.lower()] = electronicmail_.text
-        note_ = element.find(cbcnamespace + 'Note')
-        if note_ is not None:
-            contact[note_.tag.lower()] = note_.text
+            contact[('Contact' + 'Name').lower()] = name_.text
         othercommunications_ = element.findall(cacnamespace + 'OtherCommunication')
         if othercommunications_ is not None:
             strategy: TRUBLCommonElement = TRUBLCommunication()

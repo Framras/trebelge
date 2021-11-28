@@ -9,7 +9,7 @@ class TRUBLCountry(TRUBLCommonElement):
         ['IdentificationCode'] = ('cbc', 'identificationcode', 'Seçimli (0...1)')
         ['Name'] = ('cbc', 'name', 'Zorunlu(1)')
         """
-        country: dict = {'name': element.find(cbcnamespace + 'Name').text}
+        country: dict = {('Country' + 'Name').lower(): element.find(cbcnamespace + 'Name').text}
         identificationcode_ = element.find(cbcnamespace + 'IdentificationCode')
         if identificationcode_ is not None:
             country[identificationcode_.tag.lower()] = identificationcode_.text

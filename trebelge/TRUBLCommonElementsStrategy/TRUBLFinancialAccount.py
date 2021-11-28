@@ -16,19 +16,18 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
         ['FinancialInstitutionBranch'] = ('cac', 'Branch()', 'Seçimli (0...1)', 'financialinstitutionbranch')
         """
         financialaccount: dict = {'financialaccountid': element.find(cbcnamespace + 'ID')}
-        currencycode_ = element.find(cbcnamespace + 'CurrencyCode')
-        if currencycode_ is not None:
-            financialaccount[currencycode_.tag.lower()] = currencycode_.text
-        paymentnote_ = element.find(cbcnamespace + 'PaymentNote')
-        if paymentnote_ is not None:
-            financialaccount[paymentnote_.tag.lower()] = paymentnote_.text
+        cbcsecimli01: list = ['CurrencyCode', 'PaymentNote']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                financialaccount[field_.tag.lower()] = field_.text
+
         financialinstitutionbranch_ = element.find(cacnamespace + 'FinancialInstitutionBranch')
         if financialinstitutionbranch_ is not None:
             strategy: TRUBLCommonElement = TRUBLBranch()
             self._strategyContext.set_strategy(strategy)
             financialinstitutionbranch = self._strategyContext.return_element_data(financialinstitutionbranch_,
-                                                                                   cbcnamespace,
-                                                                                   cacnamespace)
+                                                                                   cbcnamespace, cacnamespace)
             for key in financialinstitutionbranch.keys():
                 financialaccount['financialinstitutionbranch_' + key] = financialinstitutionbranch.get(key)
 

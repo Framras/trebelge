@@ -33,24 +33,15 @@ class TRUBLAddress(TRUBLCommonElement):
                                                             cacnamespace)
         for key in country.keys():
             address['country_' + key] = country.get(key)
+        cbcsecimli01: list = ['Postbox', 'Room', 'StreetName', 'BlockName', 'BuildingName', 'PostalZone', 'Region',
+                              'District']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                address[field_.tag.lower()] = field_.text
         id_ = element.find(cbcnamespace + 'ID')
         if id_ is not None:
-            address[id_.tag.lower()] = id_.text
-        postbox_ = element.find(cbcnamespace + 'Postbox')
-        if postbox_ is not None:
-            address[postbox_.tag.lower()] = postbox_.text
-        room_ = element.find(cbcnamespace + 'Room')
-        if room_ is not None:
-            address[room_.tag.lower()] = room_.text
-        streetname_ = element.find(cbcnamespace + 'StreetName')
-        if streetname_ is not None:
-            address[streetname_.tag.lower()] = streetname_.text
-        blockname_ = element.find(cbcnamespace + 'BlockName')
-        if blockname_ is not None:
-            address[blockname_.tag.lower()] = blockname_.text
-        buildingname_ = element.find(cbcnamespace + 'BuildingName')
-        if buildingname_ is not None:
-            address[buildingname_.tag.lower()] = buildingname_.text
+            address['address' + id_.tag.lower()] = id_.text
         # TODO this is not implemented as Frappe doctype
         buildingnumbers_ = element.findall(cbcnamespace + 'BuildingNumber')
         if buildingnumbers_ is not None:
@@ -58,14 +49,5 @@ class TRUBLAddress(TRUBLCommonElement):
             for buildingnumber in buildingnumbers_:
                 buildingnumbers.append(buildingnumber.text)
             address['buildingnumbers'] = buildingnumbers
-        postalzone_ = element.find(cbcnamespace + 'PostalZone')
-        if postalzone_ is not None:
-            address[postalzone_.tag.lower()] = postalzone_.text
-        region_ = element.find(cbcnamespace + 'Region')
-        if region_ is not None:
-            address[region_.tag.lower()] = region_.text
-        district_ = element.find(cbcnamespace + 'District')
-        if district_ is not None:
-            address[district_.tag.lower()] = district_.text
 
         return address

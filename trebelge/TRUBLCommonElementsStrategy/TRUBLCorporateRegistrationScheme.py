@@ -18,10 +18,10 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
         corporateregistrationscheme: dict = {}
         id_ = element.find(cbcnamespace + 'ID')
         if id_ is not None:
-            corporateregistrationscheme[id_.tag.lower()] = id_.text
+            corporateregistrationscheme[('CorporateRegistrationScheme' + 'ID').lower()] = id_.text
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            corporateregistrationscheme[name_.tag.lower()] = name_.text
+            corporateregistrationscheme[('CorporateRegistrationScheme' + 'Name').lower()] = name_.text
         corporateregistrationtypecode_ = element.find(cbcnamespace + 'CorporateRegistrationTypeCode')
         if corporateregistrationtypecode_ is not None:
             corporateregistrationscheme[

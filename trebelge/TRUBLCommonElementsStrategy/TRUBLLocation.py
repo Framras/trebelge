@@ -16,7 +16,7 @@ class TRUBLLocation(TRUBLCommonElement):
         location: dict = {}
         id_ = element.find(cbcnamespace + 'ID')
         if id_ is not None:
-            location[id_.tag.lower()] = id_.text
+            location['locationid'] = id_.text
         address_ = element.find(cacnamespace + 'Address')
         if address_ is not None:
             strategy: TRUBLCommonElement = TRUBLAddress()
