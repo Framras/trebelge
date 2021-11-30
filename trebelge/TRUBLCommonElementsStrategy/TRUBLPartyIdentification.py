@@ -6,7 +6,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 class TRUBLPartyIdentification(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Party Identification'
-    _frappeDoc = None
+    _frappeDocName = None
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
@@ -14,15 +14,14 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
         partyidentification_ = element.find(cbcnamespace + 'ID')
         partyidentification: dict = {'id': partyidentification_.text,
                                      'schemeid': partyidentification_.attrib.get('schemeID')}
-        frappe.get_all(self._frappeDoctype, filters=partyidentification,
-                       fields={"name"})
-        # TODO convert to table multiselect
-        if frappe.db.exists(partyidentification):
-            self._frappeDoc = frappe.get_doc(partyidentification)
+
+        if not frappe.get_all(self._frappeDoctype, filters=partyidentification, fields={"name"}):
+            self._frappeDocName = frappe.get_all(self._frappeDoctype, filters=partyidentification,
+                                                 fields={'name'})[0]['name']
         else:
-            a = {'doctype': self._frappeDoctype}
+            partyidentification['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(partyidentification)
+            _frappeDoc.insert()
+            self._frappeDocName = _frappeDoc.name
 
-            self._frappeDoc = frappe.get_doc(partyidentification)
-            self._frappeDoc.insert()
-
-        return self._frappeDoc.get_value('name')
+        return self._frappeDocName
