@@ -347,9 +347,9 @@
     {
       "description": "E\u011fer faturadaki vergi i\u015flerinden sorumlu olan taraf bilgileri eklenmek istiyorsa bu eleman kullan\u0131lacakt\u0131r.",
       "fieldname": "originatorcustomerparty",
-      "fieldtype": "Table",
+      "fieldtype": "Link",
       "label": "Vergi \u0130\u015fleriyle Sorumlu Taraf",
-      "options": "TR GIB eFatura UBL Party"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "shipment",
@@ -363,7 +363,7 @@
     }
   ],
   "links": [],
-  "modified": "2021-11-26 22:33:07.711764",
+  "modified": "2021-11-30 11:55:04.260024",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Despatch Advice",

@@ -81,23 +81,22 @@
     {
       "description": "Tahmini teslim d\u00f6nemi girilir.",
       "fieldname": "estimateddeliveryperiod",
-      "fieldtype": "Table",
-      "label": "Estimated Delivery Period",
-      "options": "TR GIB eFatura UBL Period"
+      "fieldtype": "Data",
+      "label": "Estimated Delivery Period"
     },
     {
       "description": "Ta\u015f\u0131y\u0131c\u0131 taraf girilir.",
       "fieldname": "carrierparty",
-      "fieldtype": "Table",
+      "fieldtype": "Link",
       "label": "Carrier Party",
-      "options": "TR GIB eFatura UBL Party"
+      "options": "UBL TR Party"
     },
     {
       "description": "Teslimat yap\u0131lacak (\u00fcr\u00fcnleri teslim alacak) taraf girilir.",
       "fieldname": "deliveryparty",
-      "fieldtype": "Table",
+      "fieldtype": "Link",
       "label": "Delivery Party",
-      "options": "TR GIB eFatura UBL Party"
+      "options": "UBL TR Party"
     },
     {
       "description": "G\u00f6nderi bilgisi girilir.",
@@ -124,7 +123,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-22 11:53:02.230947",
+  "modified": "2021-11-30 11:55:05.393139",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Delivery",

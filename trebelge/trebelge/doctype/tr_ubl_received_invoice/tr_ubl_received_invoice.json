@@ -302,9 +302,9 @@
     {
       "description": "E\u011fer faturadaki vergi i\u015flerinden sorumlu olan taraf bilgileri eklenmek istiyorsa bu eleman kullan\u0131lacakt\u0131r.",
       "fieldname": "taxrepresentativeparty",
-      "fieldtype": "Table",
+      "fieldtype": "Link",
       "label": "Vergi \u0130\u015fleriyle Sorumlu Taraf",
-      "options": "TR GIB eFatura UBL Party"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "pricingexchangerate_sourcecurrencycode",
@@ -960,7 +960,7 @@
     }
   ],
   "links": [],
-  "modified": "2021-11-26 23:34:58.200405",
+  "modified": "2021-11-30 11:55:02.704804",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Received Invoice",

@@ -62,15 +62,15 @@
     {
       "description": "Merkez bilgilerini i\u00e7erir.",
       "fieldname": "headofficeparty",
-      "fieldtype": "Table",
+      "fieldtype": "Link",
       "label": "Head Office Party",
-      "options": "TR GIB eFatura UBL Party"
+      "options": "UBL TR Party"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-19 13:44:29.696963",
+  "modified": "2021-11-30 11:55:07.118618",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Party Legal Entity",

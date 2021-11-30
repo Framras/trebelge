@@ -63,22 +63,20 @@
     {
       "description": "\u0130rsaliye yerine ge\u00e7mesi durumunda bilgi fi\u015fi tarihi yaz\u0131lmal\u0131d\u0131r.\n\u0130rsaliye yerine ge\u00e7mesi durumunda bilgi fi\u015fi zaman\u0131 yaz\u0131lmal\u0131d\u0131r.",
       "fieldname": "validityperiod",
-      "fieldtype": "Table",
-      "label": "Validity Period",
-      "options": "TR GIB eFatura UBL Period"
+      "fieldtype": "Data",
+      "label": "Validity Period"
     },
     {
       "description": "EndpointID: \u00d6KC Seri numaras\u0131 yaz\u0131lacakt\u0131r.483 nolu VUK genel tebli\u011fi kapsam\u0131nda EFT-POS i\u00e7in kullanma muaafiyeti alanlar bu alana 483 de\u011ferini yazacaklard\u0131r.",
       "fieldname": "issuerparty",
-      "fieldtype": "Table",
-      "label": "Issuer Party",
-      "options": "TR GIB eFatura UBL Party"
+      "fieldtype": "Data",
+      "label": "Issuer Party"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-22 12:55:38.274861",
+  "modified": "2021-11-30 11:51:05.825208",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Additional Document Reference",

@@ -68,23 +68,20 @@
     {
       "description": "Hava ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi girilir.",
       "fieldname": "airtransport",
-      "fieldtype": "Table",
-      "label": "Air Transport",
-      "options": "TR UBL AirTransport"
+      "fieldtype": "Data",
+      "label": "Air Transport"
     },
     {
       "description": "Karayolu ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi girilir.",
       "fieldname": "roadtransport",
-      "fieldtype": "Table",
-      "label": "Road Transport",
-      "options": "TR GIB eFatura UBL Road Transport"
+      "fieldtype": "Data",
+      "label": "Road Transport"
     },
     {
       "description": "Demiryolu ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi girilir.",
       "fieldname": "railtransport",
-      "fieldtype": "Table",
-      "label": "Rail Transport",
-      "options": "TR GIB eFatura UBL Rail Transport"
+      "fieldtype": "Data",
+      "label": "Rail Transport"
     },
     {
       "description": "Deniz ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi girilir.",
@@ -96,9 +93,8 @@
     {
       "description": "Bu araca sahip olan taraf bilgisi girilir.",
       "fieldname": "ownerparty",
-      "fieldtype": "Table",
-      "label": "Owner Party",
-      "options": "TR GIB eFatura UBL Party"
+      "fieldtype": "Data",
+      "label": "Owner Party"
     },
     {
       "description": "\u00d6l\u00e7\u00fcm bilgileri girilir.",
@@ -111,7 +107,7 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-10-22 11:53:34.682415",
+  "modified": "2021-11-30 11:48:16.057553",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR GIB eFatura UBL Transport Means",

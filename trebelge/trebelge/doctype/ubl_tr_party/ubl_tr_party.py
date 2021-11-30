@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRGIBeFaturaUBLParty(Document):
+class UBLTRParty(Document):
     pass

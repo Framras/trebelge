@@ -12,14 +12,16 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
         # ['schemeID'] = ('', 'schemeid', 'Zorunlu (1)')
         partyidentification_ = element.find(cbcnamespace + 'ID')
-        partyidentification: dict = {'doctype': self._frappeDoctype,
-                                     'id': partyidentification_.text,
-                                     'schemeid': partyidentification_.attrib.get('schemeID')
-                                     }
+        partyidentification: dict = {'id': partyidentification_.text,
+                                     'schemeid': partyidentification_.attrib.get('schemeID')}
+        frappe.get_all(self._frappeDoctype, filters=partyidentification,
+                       fields={"name"})
         # TODO convert to table multiselect
         if frappe.db.exists(partyidentification):
             self._frappeDoc = frappe.get_doc(partyidentification)
         else:
+            'doctype': self._frappeDoctype,
+
             self._frappeDoc = frappe.get_doc(partyidentification)
             self._frappeDoc.insert()
 
