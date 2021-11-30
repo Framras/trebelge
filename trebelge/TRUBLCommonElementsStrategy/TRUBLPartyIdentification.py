@@ -6,7 +6,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 class TRUBLPartyIdentification(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Party Identification'
-    _frappeDocName = None
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
@@ -16,12 +15,11 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
                                      'schemeid': partyidentification_.attrib.get('schemeID')}
 
         if not frappe.get_all(self._frappeDoctype, filters=partyidentification, fields={"name"}):
-            self._frappeDocName = frappe.get_all(self._frappeDoctype, filters=partyidentification,
-                                                 fields={'name'})[0]['name']
+            pass
         else:
-            partyidentification['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(partyidentification)
+            newpartyidentification = partyidentification
+            newpartyidentification['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newpartyidentification)
             _frappeDoc.insert()
-            self._frappeDocName = _frappeDoc.name
 
-        return self._frappeDocName
+        return frappe.get_all(self._frappeDoctype, filters=partyidentification, fields={'name'})
