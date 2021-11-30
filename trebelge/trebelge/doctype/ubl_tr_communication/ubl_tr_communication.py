@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TRUBLCommunication(Document):
+class UBLTRCommunication(Document):
     pass

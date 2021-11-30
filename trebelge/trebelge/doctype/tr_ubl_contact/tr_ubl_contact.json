@@ -56,13 +56,13 @@
       "fieldname": "othercommunications",
       "fieldtype": "Table",
       "label": "Other Communication",
-      "options": "TR UBL Communication"
+      "options": "UBL TR Communication"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-11-27 00:19:18.724489",
+  "modified": "2021-11-30 08:00:10.934785",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL Contact",

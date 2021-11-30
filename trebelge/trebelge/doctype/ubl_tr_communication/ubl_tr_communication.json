@@ -14,10 +14,12 @@
   "fields": [
     {
       "fieldname": "channelcode",
-      "fieldtype": "Data",
+      "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Channel Code",
-      "reqd": 1
+      "options": "UBL TR Communication Channel Code",
+      "reqd": 1,
+      "search_index": 1
     },
     {
       "description": "Bu eleman metin olarak kanal ad\u0131 i\u00e7in kullan\u0131lacakt\u0131r.",
@@ -38,10 +40,10 @@
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-11-27 10:20:59.891393",
+  "modified": "2021-11-30 08:03:08.679732",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "TR UBL Communication",
+  "name": "UBL TR Communication",
   "owner": "Administrator",
   "permissions": [],
   "sort_field": "modified",
