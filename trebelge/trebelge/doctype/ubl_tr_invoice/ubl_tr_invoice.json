@@ -1,37 +1,104 @@
 {
   "actions": [],
   "allow_rename": 1,
+  "autoname": "field:uuid",
   "creation": "2021-12-01 00:20:11.074516",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
     "ublversionid",
-    "customizationid"
+    "customizationid",
+    "profileid",
+    "id",
+    "copyindicator",
+    "uuid",
+    "issuedate",
+    "issuetime",
+    "invoicetypecode"
   ],
   "fields": [
     {
+      "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
       "fieldname": "ublversionid",
       "fieldtype": "Link",
-      "in_list_view": 1,
       "label": "UBLVersionID",
       "options": "UBL TR UBLVersionID",
       "reqd": 1,
       "search_index": 1
     },
     {
+      "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
       "fieldname": "customizationid",
       "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "\u00f6zelle\u015ftirme numaras\u0131",
+      "label": "\u00d6zelle\u015ftirme numaras\u0131",
       "options": "UBL TR CustomizationID",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "description": "Kullan\u0131lan senaryodur.",
+      "fieldname": "profileid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Kullan\u0131lan senaryo",
+      "options": "UBL TR ProfileID",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Fatura Numaras\u0131",
+      "reqd": 1
+    },
+    {
+      "description": "Bu elemanda d\u00fczenlenen faturan\u0131n as\u0131l veya suret oldu\u011fu g\u00f6sterilecektir.",
+      "fieldname": "copyindicator",
+      "fieldtype": "Link",
+      "label": "As\u0131l/Suret",
+      "options": "UBL TR CopyIndicator",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r. Bu numara fatura d\u00fczenleyen taraf\u0131ndan standartlara uygun olarak \u00fcretilip faturalarda kullan\u0131lacakt\u0131r.",
+      "fieldname": "uuid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "UUID",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenleme tarihi yaz\u0131lacakt\u0131r.",
+      "fieldname": "issuedate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "D\u00fczenleme tarihi",
+      "reqd": 1
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
+      "fieldname": "issuetime",
+      "fieldtype": "Time",
+      "label": "D\u00fczenleme saati"
+    },
+    {
+      "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
+      "fieldname": "invoicetypecode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Fatura tipi",
+      "options": "UBL TR InvoiceTypeCode",
       "reqd": 1,
       "search_index": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-01 00:29:22.322562",
+  "modified": "2021-12-01 01:12:28.734322",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Invoice",
