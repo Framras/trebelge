@@ -20,7 +20,7 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
         if frappe.db.exists(partyidentification):
             self._frappeDoc = frappe.get_doc(partyidentification)
         else:
-            'doctype': self._frappeDoctype,
+            a = {'doctype': self._frappeDoctype}
 
             self._frappeDoc = frappe.get_doc(partyidentification)
             self._frappeDoc.insert()
