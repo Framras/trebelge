@@ -51,15 +51,17 @@
     {
       "description": "Taraf\u0131n adresi girilir.",
       "fieldname": "postaladdress",
-      "fieldtype": "Data",
+      "fieldtype": "Link",
       "label": "Adres",
+      "options": "UBL TR Address",
       "reqd": 1
     },
     {
       "description": "Taraf\u0131n var ise depo bilgileri girilir.",
       "fieldname": "physicallocation",
-      "fieldtype": "Data",
-      "label": "Depo"
+      "fieldtype": "Link",
+      "label": "Depo",
+      "options": "UBL TR Location"
     },
     {
       "description": "Taraf\u0131n vergi kimlik numaras\u0131 girilmi\u015fse bu alana vergi dairesi ad\u0131 girilir.",
@@ -95,7 +97,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 00:19:24.204851",
+  "modified": "2021-12-02 01:07:18.556078",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Party",

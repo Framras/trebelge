@@ -1,0 +1,135 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 00:41:44.539342",
+  "description": "Adres: Bu eleman adres bilgilerinin tan\u0131mlanmas\u0131nda kullan\u0131lacakt\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "postbox",
+    "room",
+    "streetname",
+    "blockname",
+    "buildingname",
+    "buildingnumbers",
+    "citysubdivisionname",
+    "cityname",
+    "postalzone",
+    "region",
+    "district",
+    "country"
+  ],
+  "fields": [
+    {
+      "description": "Mahalle, meydan, bulvar, cadde, sokak ve k\u00fcme evlere kar\u015f\u0131l\u0131k gelecek \u015fekilde, standart say\u0131sal e\u015fde\u011fer olarak T\u00dc\u0130K taraf\u0131ndan verilmi\u015f olan \u201csabit tan\u0131mlama numaras\u0131\u201d girilebilecektir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "label": "Sabit tan\u0131mlama numaras\u0131"
+    },
+    {
+      "description": "Posta Kutusu girilecektir.",
+      "fieldname": "postbox",
+      "fieldtype": "Data",
+      "label": "Posta Kutusu"
+    },
+    {
+      "description": "\u0130\u00e7 kap\u0131 numaras\u0131 girilecektir.",
+      "fieldname": "room",
+      "fieldtype": "Data",
+      "label": "\u0130\u00e7 kap\u0131 numaras\u0131"
+    },
+    {
+      "description": "Meydan/bulvar/cadde/sokak/k\u00fcme evler/site ad\u0131 bilgileri girilecektir.",
+      "fieldname": "streetname",
+      "fieldtype": "Data",
+      "label": "Meydan/bulvar/cadde/sokak/k\u00fcme evler/site ad\u0131"
+    },
+    {
+      "description": "Blok ad\u0131 girilebilecektir.",
+      "fieldname": "blockname",
+      "fieldtype": "Data",
+      "label": "Blok ad\u0131"
+    },
+    {
+      "description": "Bina girilebilecektir.",
+      "fieldname": "buildingname",
+      "fieldtype": "Data",
+      "label": "Bina"
+    },
+    {
+      "description": "Bina veya blo\u011fa ait d\u0131\u015f kap\u0131 numaras\u0131 girilecektir.",
+      "fieldname": "buildingnumbers",
+      "fieldtype": "Table MultiSelect",
+      "label": "D\u0131\u015f kap\u0131 numaras\u0131",
+      "options": "UBL TR Address BuildingNumbers"
+    },
+    {
+      "description": "\u0130l\u00e7e/semt ad\u0131 bilgileri girilecektir.",
+      "fieldname": "citysubdivisionname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u0130l\u00e7e/semt",
+      "reqd": 1
+    },
+    {
+      "description": "\u0130l ad\u0131 girilecektir.",
+      "fieldname": "cityname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u0130l",
+      "reqd": 1
+    },
+    {
+      "description": "Posta kod numaras\u0131 girilecektir.",
+      "fieldname": "postalzone",
+      "fieldtype": "Data",
+      "label": "Posta kodu"
+    },
+    {
+      "description": "Kasaba/k\u00f6y/mezra/mevkii bilgileri girilecektir.",
+      "fieldname": "region",
+      "fieldtype": "Data",
+      "label": "Kasaba/k\u00f6y/mezra/mevkii"
+    },
+    {
+      "description": "Mahalle ad\u0131 girilecektir.",
+      "fieldname": "district",
+      "fieldtype": "Data",
+      "label": "Mahalle"
+    },
+    {
+      "fieldname": "country",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u00dclke",
+      "options": "Country",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 01:02:46.326944",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Address",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
