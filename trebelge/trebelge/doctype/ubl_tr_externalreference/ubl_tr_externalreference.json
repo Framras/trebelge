@@ -1,0 +1,47 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-01 23:43:29.901153",
+  "description": "Belgelerde ili\u015fkilendirilmek istenen dok\u00fcmanlar\u0131n referanslar\u0131n\u0131n yer ald\u0131\u011f\u0131 elemand\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "uri"
+  ],
+  "fields": [
+    {
+      "description": "\u0130li\u015fkilendirilmek istenen dokuman\u0131n URI format\u0131nda referans\u0131n\u0131 tutar.",
+      "fieldname": "uri",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "URI",
+      "reqd": 1,
+      "unique": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-01 23:43:29.901153",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR ExternalReference",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

@@ -1,0 +1,100 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-01 22:40:18.047410",
+  "description": "Dok\u00fcman Bilgisi: ",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "issuedate",
+    "documenttypecode",
+    "documenttype",
+    "documentdescriptions",
+    "attachment",
+    "validityperiod",
+    "issuerparty"
+  ],
+  "fields": [
+    {
+      "description": "Referans verilen veya eklenen belgenin s\u0131ra numaras\u0131 girilecektir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "S\u0131ra numaras\u0131",
+      "reqd": 1
+    },
+    {
+      "description": "Belgenin d\u00fczenlenme tarihi girilecektir.",
+      "fieldname": "issuedate",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "D\u00fczenlenme tarihi",
+      "reqd": 1
+    },
+    {
+      "description": "Bu eleman belge seviyesinde kullan\u0131lmayacakt\u0131r. Kullan\u0131m alan\u0131 sistem seviyesinde d\u00f6nen uygulama yan\u0131t\u0131 (ApplicationResponse) belgesinin i\u00e7indedir.",
+      "fieldname": "documenttypecode",
+      "fieldtype": "Data",
+      "label": "Belge tipi kodu"
+    },
+    {
+      "description": "Referans verilen veya eklenen belgenin tipi girilecektir. \u00d6rnek olarak \u201cXSLT\u201d, \u201cREKLAM\u201d, \u201cPROFORMA\u201d, \u201cG\u00d6R\u00dc\u015eME DETAYI\u201d ve benzeri de\u011ferler girilebilir.",
+      "fieldname": "documenttype",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Belge tipi"
+    },
+    {
+      "description": "Referans verilen ya da eklenen belgelere ili\u015fkin serbest metin a\u00e7\u0131klamas\u0131 girilebilir.",
+      "fieldname": "documentdescriptions",
+      "fieldtype": "Table MultiSelect",
+      "label": "A\u00e7\u0131klama",
+      "options": "UBL TR DocumentReference Descriptions"
+    },
+    {
+      "fieldname": "attachment",
+      "fieldtype": "Link",
+      "label": "Belge",
+      "options": "UBL TR Attachment"
+    },
+    {
+      "description": "Referans verilen ya da eklenen belgenin ge\u00e7erlilik s\u00fcresi girilebilir.",
+      "fieldname": "validityperiod",
+      "fieldtype": "Link",
+      "label": "Ge\u00e7erlilik s\u00fcresi",
+      "options": "UBL TR Period"
+    },
+    {
+      "description": "Referans verilen ya da eklenen belgeyi yay\u0131nlayan taraf bilgisi girilebilir.",
+      "fieldname": "issuerparty",
+      "fieldtype": "Data",
+      "label": "Yay\u0131nlayan"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-01 23:45:49.958512",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Document Reference",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

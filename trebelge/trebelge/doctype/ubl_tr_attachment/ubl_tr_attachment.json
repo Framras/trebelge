@@ -1,0 +1,54 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-01 23:44:05.268243",
+  "description": "Belgelerde referans verilmek istenen referanslar\u0131n ya da belgelere eklenmek istenen dok\u00fcmanlar\u0131n yer ald\u0131\u011f\u0131 elemand\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "externalreference",
+    "embeddeddocumentbinaryobject"
+  ],
+  "fields": [
+    {
+      "description": "\u0130li\u015fkilendirilmek istenen dok\u00fcman\u0131n URI format\u0131nda referans\u0131n\u0131 tutar. E\u011fer Attachment eleman\u0131, bir \u201cDigitalSignatureAttachment\u201d ise (di\u011fer bir deyi\u015fle Signature Eleman\u0131n\u0131n i\u00e7erisine yeral\u0131yorsa) External Reference zorunlu bir elemand\u0131r.",
+      "fieldname": "externalreference",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Referans",
+      "options": "UBL TR ExternalReference",
+      "search_index": 1
+    },
+    {
+      "description": "\u0130li\u015fiklendirilmi\u015f dok\u00fcman\u0131 base64Encoded format\u0131nda tutar.",
+      "fieldname": "embeddeddocumentbinaryobject",
+      "fieldtype": "Attach",
+      "label": "Dok\u00fcman"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-01 23:44:05.268243",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Attachment",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

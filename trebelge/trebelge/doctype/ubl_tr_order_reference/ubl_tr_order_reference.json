@@ -1,0 +1,78 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-01 22:27:05.442454",
+  "description": "Sipari\u015f Bilgileri: Sipari\u015fe ait bilgiler girilecektir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "salesorderid",
+    "issuedate",
+    "ordertypecode",
+    "documentreferences"
+  ],
+  "fields": [
+    {
+      "description": "Sipari\u015f numaras\u0131 girilecektir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Sipari\u015f numaras\u0131",
+      "reqd": 1
+    },
+    {
+      "description": "Sat\u0131c\u0131n\u0131n verdi\u011fi sipari\u015f numaras\u0131 girilecektir.",
+      "fieldname": "salesorderid",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Sat\u0131c\u0131n\u0131n sipari\u015f numaras\u0131"
+    },
+    {
+      "description": "Sipari\u015f tarihi girilecektir.",
+      "fieldname": "issuedate",
+      "fieldtype": "Date",
+      "label": "Sipari\u015f tarihi",
+      "reqd": 1
+    },
+    {
+      "description": "Sipari\u015f tipi girilecektir.",
+      "fieldname": "ordertypecode",
+      "fieldtype": "Data",
+      "label": "Sipari\u015f tipi"
+    },
+    {
+      "fieldname": "documentreferences",
+      "fieldtype": "Table MultiSelect",
+      "label": "Belgeler",
+      "options": "UBL TR OrderReference DocumentReference"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-01 22:47:17.195293",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Order Reference",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
