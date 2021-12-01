@@ -10,7 +10,7 @@ class ReceiptAdviceHandler(AbstractXMLFileHandler):
     This Handler has no successor.
     CoR Handler method for checking if the FileType is DespatchAdvice.
     """
-    _eBelgeSettingsDoctype: str = 'TR UBL Namespace Specifications'
+    _eBelgeSettingsDoctype: str = 'UBL TR Namespace Specifications'
     _eBelgeTag: str = 'ReceiptAdvice'
     _successor: AbstractXMLFileHandler = None
 

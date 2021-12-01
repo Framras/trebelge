@@ -12,7 +12,7 @@ class InvoiceHandler(AbstractXMLFileHandler):
     This Handler's successor is for DespatchAdvice FileType.
     CoR Handler method for checking if the FileType is Invoice.
     """
-    _eBelgeSettingsDoctype: str = 'TR UBL Namespace Specifications'
+    _eBelgeSettingsDoctype: str = 'UBL TR Namespace Specifications'
     _eBelgeTag: str = 'Invoice'
     _successor: AbstractXMLFileHandler = DespatchAdviceHandler()
 
