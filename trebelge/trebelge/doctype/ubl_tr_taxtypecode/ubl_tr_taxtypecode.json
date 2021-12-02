@@ -1,30 +1,44 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "autoname": "field:buildingnumber",
-  "creation": "2021-12-02 01:00:08.667244",
+  "autoname": "field:taxtypecode",
+  "creation": "2021-12-02 08:18:40.190695",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "buildingnumber"
+    "taxtypecode",
+    "taxtypename",
+    "taxtypeshortname"
   ],
   "fields": [
     {
-      "fieldname": "buildingnumber",
+      "fieldname": "taxtypecode",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "BuildingNumber",
+      "label": "VERG\u0130 KODU",
       "reqd": 1,
       "unique": 1
+    },
+    {
+      "fieldname": "taxtypename",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "VERG\u0130 ADI"
+    },
+    {
+      "fieldname": "taxtypeshortname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "KISALTMA"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 07:43:46.346114",
+  "modified": "2021-12-02 08:25:53.602503",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR BuildingNumber",
+  "name": "UBL TR TaxTypeCode",
   "owner": "Administrator",
   "permissions": [
     {

@@ -1,0 +1,108 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 08:56:12.238689",
+  "description": "Taraf Sicil Bilgileri: Taraf\u0131n sicil bilgilerini veya merkez bilgilerini i\u00e7erir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "registrationname",
+    "companyid",
+    "registrationdate",
+    "soleprioprietorshipindicator",
+    "corporatestockamount",
+    "corporatestockamount_currencyid",
+    "fullypaidsharesindicator",
+    "corporateregistrationscheme",
+    "headofficeparty"
+  ],
+  "fields": [
+    {
+      "description": "Kay\u0131t ismi girilir.",
+      "fieldname": "registrationname",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Kay\u0131t ismi"
+    },
+    {
+      "description": "Kay\u0131t numaras\u0131 girilir.",
+      "fieldname": "companyid",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Kay\u0131t numaras\u0131"
+    },
+    {
+      "description": "Kay\u0131t tarihi girilir.",
+      "fieldname": "registrationdate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Kay\u0131t tarihi"
+    },
+    {
+      "description": "Tek bir ki\u015fiye ait olup olmad\u0131\u011f\u0131n\u0131 belirtir.",
+      "fieldname": "soleprioprietorshipindicator",
+      "fieldtype": "Data",
+      "label": "Sahiplik bilgisi"
+    },
+    {
+      "description": "\u00d6denmi\u015f sermaye bilgisi girilir.",
+      "fieldname": "corporatestockamount",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u00d6denmi\u015f sermaye"
+    },
+    {
+      "fieldname": "corporatestockamount_currencyid",
+      "fieldtype": "Data",
+      "label": "\u00d6denmi\u015f sermaye d\u00f6viz"
+    },
+    {
+      "description": "\u015eirketin halka a\u00e7\u0131k olup olmad\u0131\u011f\u0131n\u0131n g\u00f6stergesi girilebilir.",
+      "fieldname": "fullypaidsharesindicator",
+      "fieldtype": "Data",
+      "label": "Halka a\u00e7\u0131kl\u0131k"
+    },
+    {
+      "description": "Kay\u0131tl\u0131 oldu\u011fu yerin bilgilerini i\u00e7erir.",
+      "fieldname": "corporateregistrationscheme",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Kay\u0131tl\u0131 oldu\u011fu yer"
+    },
+    {
+      "description": "Merkez bilgilerini i\u00e7erir.",
+      "fieldname": "headofficeparty",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Merkez bilgileri",
+      "options": "UBL TR Party"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 08:56:12.238689",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR PartyLegalEntity",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

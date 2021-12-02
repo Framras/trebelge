@@ -37,8 +37,9 @@
     {
       "description": "Taraf\u0131n vergi kimlik numaras\u0131 veya TC kimlik numaras\u0131 metin olarak girilir.",
       "fieldname": "partyidentifications",
-      "fieldtype": "Data",
+      "fieldtype": "Table MultiSelect",
       "label": "Vergi kimlik numaras\u0131",
+      "options": "UBL TR Party PartyIdentifications",
       "reqd": 1
     },
     {
@@ -66,14 +67,16 @@
     {
       "description": "Taraf\u0131n vergi kimlik numaras\u0131 girilmi\u015fse bu alana vergi dairesi ad\u0131 girilir.",
       "fieldname": "partytaxscheme",
-      "fieldtype": "Data",
-      "label": "Vergi dairesi"
+      "fieldtype": "Link",
+      "label": "Vergi dairesi",
+      "options": "UBL TR PartyTaxScheme"
     },
     {
       "description": "Taraf\u0131n di\u011fer kay\u0131tl\u0131 oldu\u011fu yerlerin bilgileri ve kay\u0131tl\u0131 oldu\u011fu yerlerdeki kay\u0131t numaralar\u0131 detayl\u0131 olarak girilecektir.",
       "fieldname": "partylegalentities",
-      "fieldtype": "Data",
-      "label": "Di\u011fer kay\u0131tlar"
+      "fieldtype": "Table MultiSelect",
+      "label": "Di\u011fer kay\u0131tlar",
+      "options": "UBL TR Party PartyLegalEntity"
     },
     {
       "description": "Taraf\u0131n ileti\u015fim bilgileri girilir.",
@@ -97,7 +100,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 01:07:18.556078",
+  "modified": "2021-12-02 09:04:30.287804",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Party",
