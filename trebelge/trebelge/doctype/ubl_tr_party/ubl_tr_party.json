@@ -81,8 +81,9 @@
     {
       "description": "Taraf\u0131n ileti\u015fim bilgileri girilir.",
       "fieldname": "contact",
-      "fieldtype": "Data",
-      "label": "\u0130leti\u015fim"
+      "fieldtype": "Link",
+      "label": "\u0130leti\u015fim",
+      "options": "UBL TR Contact"
     },
     {
       "description": "Taraf e\u011fer \u015fah\u0131ssa bu eleman kullan\u0131l\u0131r.",
@@ -100,7 +101,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 09:04:30.287804",
+  "modified": "2021-12-02 10:00:22.468801",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Party",

@@ -1,0 +1,95 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 09:59:59.412389",
+  "description": "\u0130rtibat: Bu elemana irtibat bilgileri yaz\u0131labilecektir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "contactname",
+    "telephone",
+    "telefax",
+    "electronicmail",
+    "note",
+    "othercommunication"
+  ],
+  "fields": [
+    {
+      "description": "\u0130rtibat\u0131n numara bilgisi yaz\u0131labilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u0130rtibat\u0131n numaras\u0131"
+    },
+    {
+      "description": "\u0130rtibat\u0131n ismi metin olarak yaz\u0131labilir.",
+      "fieldname": "contactname",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "\u0130sim"
+    },
+    {
+      "description": "Telefon numaras\u0131 metin olarak girilecektir.",
+      "fieldname": "telephone",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Telefon"
+    },
+    {
+      "description": "Fax numaras\u0131 metin olarak girilecektir.",
+      "fieldname": "telefax",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Faks"
+    },
+    {
+      "description": "Elektronik posta adresi metin olarak girilecektir.",
+      "fieldname": "electronicmail",
+      "fieldtype": "Data",
+      "label": "E-posta"
+    },
+    {
+      "description": "Serbest metin a\u00e7\u0131klama girilebilecektir.",
+      "fieldname": "note",
+      "fieldtype": "Small Text",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Not"
+    },
+    {
+      "fieldname": "othercommunication",
+      "fieldtype": "Table MultiSelect",
+      "label": "Di\u011fer ileti\u015fim kanal\u0131",
+      "options": "UBL TR OtherCommunications"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 09:59:59.412389",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Contact",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

@@ -1,0 +1,51 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 09:51:14.474479",
+  "description": "Her t\u00fcrl\u00fc alternatif ileti\u015fim kanal\u0131n\u0131n tan\u0131mlanmas\u0131nda kullan\u0131lacakt\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "channelcode",
+    "channel",
+    "value"
+  ],
+  "fields": [
+    {
+      "description": "Bu eleman i\u00e7in UN/EDIFACT 3155 \u0130leti\u015fim Numaras\u0131 Kod Listesi kullan\u0131lmal\u0131d\u0131r.",
+      "fieldname": "channelcode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u0130leti\u015fim kanal\u0131",
+      "options": "UBL TR Communication Channel Code",
+      "reqd": 1
+    },
+    {
+      "description": "Bu eleman metin olarak kanal ad\u0131 i\u00e7in kullan\u0131lacakt\u0131r.",
+      "fieldname": "channel",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Kanal ad\u0131"
+    },
+    {
+      "description": "Bu eleman ileti\u015fim adresini metin olarak tutar.",
+      "fieldname": "value",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u0130leti\u015fim adresi",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 09:57:03.981969",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Communication",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

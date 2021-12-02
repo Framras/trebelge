@@ -1,0 +1,54 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 10:51:25.192032",
+  "description": "\u015eube bilgisi girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "branchname",
+    "financialinstitution"
+  ],
+  "fields": [
+    {
+      "description": "\u015eube ad\u0131 girilir.",
+      "fieldname": "branchname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u015eube ad\u0131"
+    },
+    {
+      "description": "Banka bilgisi girilir.",
+      "fieldname": "financialinstitution",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Banka bilgisi",
+      "options": "UBL TR FinancialInstitution"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 10:51:25.192032",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Branch",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

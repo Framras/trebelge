@@ -69,13 +69,14 @@
     {
       "description": "Referans verilen ya da eklenen belgeyi yay\u0131nlayan taraf bilgisi girilebilir.",
       "fieldname": "issuerparty",
-      "fieldtype": "Data",
-      "label": "Yay\u0131nlayan"
+      "fieldtype": "Link",
+      "label": "Yay\u0131nlayan",
+      "options": "UBL TR Party"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-01 23:45:49.958512",
+  "modified": "2021-12-02 09:34:43.447485",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Document Reference",
