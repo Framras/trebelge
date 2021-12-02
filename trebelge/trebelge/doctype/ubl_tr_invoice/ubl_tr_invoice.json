@@ -24,7 +24,9 @@
     "paymentalternativecurrencycode",
     "accountingcost",
     "linecountnumeric",
-    "invoiceperiod"
+    "invoiceperiod",
+    "orderreference",
+    "billingreferences"
   ],
   "fields": [
     {
@@ -117,7 +119,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Belge Para Birim Kodu",
-      "options": "Currency",
+      "options": "UBL TR CurrencyCode",
       "reqd": 1,
       "search_index": 1
     },
@@ -127,7 +129,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Vergi Para Birimi Kodu",
-      "options": "Currency",
+      "options": "UBL TR CurrencyCode",
       "search_index": 1
     },
     {
@@ -136,7 +138,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Fiyatland\u0131rma Para Birim Kodu",
-      "options": "Currency",
+      "options": "UBL TR CurrencyCode",
       "search_index": 1
     },
     {
@@ -145,7 +147,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "\u00d6deme Para Birim Kodu",
-      "options": "Currency",
+      "options": "UBL TR CurrencyCode",
       "search_index": 1
     },
     {
@@ -154,7 +156,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Alternatif \u00d6deme Para Birim Kodu",
-      "options": "Currency",
+      "options": "UBL TR CurrencyCode",
       "search_index": 1
     },
     {
@@ -176,11 +178,24 @@
       "fieldtype": "Link",
       "label": "Fatura D\u00f6nemi",
       "options": "UBL TR Period"
+    },
+    {
+      "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
+      "fieldname": "orderreference",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Sipari\u015f Bilgileri",
+      "options": "UBL TR Order Reference"
+    },
+    {
+      "fieldname": "billingreferences",
+      "fieldtype": "Data",
+      "label": "BillingReferences"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-01 21:17:57.680079",
+  "modified": "2021-12-02 13:02:25.123879",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Invoice",

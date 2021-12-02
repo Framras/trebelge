@@ -1,0 +1,108 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 11:24:40.735447",
+  "description": "\u015eah\u0131sla ilgili bilgiler girilecektir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "firstname",
+    "familyname",
+    "persontitle",
+    "middlename",
+    "namesuffix",
+    "nationalityid",
+    "financialaccount",
+    "documentreference"
+  ],
+  "fields": [
+    {
+      "description": "\u015eahs\u0131n ilk ad\u0131 girilecektir.",
+      "fieldname": "firstname",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "\u0130lk ad\u0131",
+      "reqd": 1
+    },
+    {
+      "description": "\u015eahs\u0131n soyad\u0131 girilecektir.",
+      "fieldname": "familyname",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Soyad\u0131",
+      "reqd": 1
+    },
+    {
+      "description": "\u015eahs\u0131n \u00fcnvan\u0131 girilecektir.",
+      "fieldname": "persontitle",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u00dcnvan\u0131"
+    },
+    {
+      "description": "\u015eahs\u0131n di\u011fer isimleri yaz\u0131lacakt\u0131r.",
+      "fieldname": "middlename",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Di\u011fer isimleri"
+    },
+    {
+      "description": "\u015eahs\u0131n ad\u0131n\u0131n \u00f6n eki varsa bu alana girilecektir.",
+      "fieldname": "namesuffix",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Ad\u0131n\u0131n ekleri"
+    },
+    {
+      "description": "\u015eahs\u0131n milliyeti girilecektir.",
+      "fieldname": "nationalityid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Milliyeti"
+    },
+    {
+      "description": "\u015eahs\u0131n hesap bilgileri girilecektir.",
+      "fieldname": "financialaccount",
+      "fieldtype": "Link",
+      "label": "Hesap bilgileri",
+      "options": "UBL TR FinancialAccount"
+    },
+    {
+      "description": "\u015eahs\u0131n kimlik dok\u00fcman\u0131na (\u00d6rne\u011fin pasaport numaras\u0131 buraya yaz\u0131lacakt\u0131r) referans girilebilecektir.",
+      "fieldname": "documentreference",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Kimlik dok\u00fcman\u0131",
+      "options": "UBL TR Document Reference"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 11:24:40.735447",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Person",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

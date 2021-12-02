@@ -88,8 +88,9 @@
     {
       "description": "Taraf e\u011fer \u015fah\u0131ssa bu eleman kullan\u0131l\u0131r.",
       "fieldname": "person",
-      "fieldtype": "Data",
-      "label": "\u015eah\u0131s"
+      "fieldtype": "Link",
+      "label": "\u015eah\u0131s",
+      "options": "UBL TR Person"
     },
     {
       "description": "Taraf\u0131n \u015fubesine ait bilgiler bu elemana girilir. Departman bilgileri AgentParty\u2019nin i\u00e7indeki AgentParty\u2019e yaz\u0131labilir.",
@@ -101,7 +102,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 10:00:22.468801",
+  "modified": "2021-12-02 11:27:50.832208",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Party",
