@@ -1,0 +1,108 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 19:11:14.399965",
+  "description": "\u0130skonto veya art\u0131r\u0131mlar\u0131n tan\u0131mland\u0131\u011f\u0131 elemand\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "chargeindicator",
+    "allowancechargereason",
+    "multiplierfactornumeric",
+    "sequencenumeric",
+    "amount",
+    "amountcurrencyid",
+    "baseamount",
+    "baseamountcurrencyid",
+    "perunitamount"
+  ],
+  "fields": [
+    {
+      "description": "Iskonto ise \u201cfalse\u201d, art\u0131r\u0131m ise \u201ctrue\u201d girilir.",
+      "fieldname": "chargeindicator",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u0130skonto/art\u0131r\u0131m",
+      "options": "UBL TR Indicators",
+      "reqd": 1
+    },
+    {
+      "description": "Iskonto veya art\u0131r\u0131m\u0131n sebebi serbest metin olarak girilir.",
+      "fieldname": "allowancechargereason",
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
+      "label": "\u0130skonto veya art\u0131r\u0131m\u0131n sebebi"
+    },
+    {
+      "description": "\u0130skonto veya art\u0131r\u0131m oran\u0131 numerik olarak girilir.",
+      "fieldname": "multiplierfactornumeric",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u0130skonto veya art\u0131r\u0131m oran\u0131"
+    },
+    {
+      "description": "Birden fazla iskonto veya fiyat art\u0131r\u0131m\u0131 kullan\u0131lmas\u0131 durumunda s\u0131ra numaras\u0131 girilir.",
+      "fieldname": "sequencenumeric",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "S\u0131ra numaras\u0131"
+    },
+    {
+      "description": "\u0130skonto veya art\u0131r\u0131m miktar\u0131 numerik girilir.",
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "\u0130skonto veya art\u0131r\u0131m miktar\u0131"
+    },
+    {
+      "fieldname": "amountcurrencyid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u0130skonto veya art\u0131r\u0131m d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "\u0130skonto veya art\u0131r\u0131m\u0131n uyguland\u0131\u011f\u0131 tutar",
+      "fieldname": "baseamount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Uyguland\u0131\u011f\u0131 tutar"
+    },
+    {
+      "fieldname": "baseamountcurrencyid",
+      "fieldtype": "Link",
+      "label": "Tutar art\u0131r\u0131m d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "\u00dcr\u00fcn adetine g\u00f6re iskonto veya art\u0131r\u0131m\u0131n uyguland\u0131\u011f\u0131 durumlarda uygulanan \u00fcr\u00fcn miktar\u0131n\u0131 g\u00f6sterir",
+      "fieldname": "perunitamount",
+      "fieldtype": "Float",
+      "label": "Uygulanan \u00fcr\u00fcn miktar\u0131"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 19:11:14.399965",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR AllowanceCharge",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

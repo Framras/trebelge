@@ -1,0 +1,68 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 13:59:57.372689",
+  "description": "Fatura ile ilgili belgelerin kalemlerine referans eklemek i\u00e7in kullan\u0131l\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "amount",
+    "amountcurrencyid",
+    "allowancecharge"
+  ],
+  "fields": [
+    {
+      "description": "Kalem numaras\u0131 girilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Kalem numaras\u0131",
+      "reqd": 1
+    },
+    {
+      "description": "Kalemin tutar\u0131 girilir.",
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Kalemin tutar\u0131"
+    },
+    {
+      "fieldname": "amountcurrencyid",
+      "fieldtype": "Link",
+      "label": "Kalemin tutar\u0131 d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "Kaleme e\u011fer indirim veya fiyat art\u0131r\u0131m\u0131 uygulanm\u0131\u015fsa girilir.",
+      "fieldname": "allowancecharge",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130ndirim veya fiyat art\u0131r\u0131m\u0131",
+      "options": "UBL TR AllowanceCharges"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 19:16:57.399520",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR BillingReferenceLine",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

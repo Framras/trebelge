@@ -1,0 +1,101 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 13:55:20.537871",
+  "description": "Fatura s\u00fcrecindeki di\u011fer ilgili fatura dok\u00fcmanlar\u0131na referans vermek i\u00e7in kullan\u0131l\u0131r. \u00d6rne\u011fin iade faturalar\u0131nda iade edilen faturaya ili\u015fkin referans bilgisi bu elman\u0131n alt\u0131ndaki \u201cInvoiceDocumentReference\u201d eleman\u0131na eklenir. Ayr\u0131ca \u201cCreditNote\u201d ve \u201cDebitNote\u201d gibi yurtd\u0131\u015f\u0131 ticarette iade i\u015flemleri i\u00e7in s\u0131k\u00e7a kullan\u0131lan belgelerede bu eleman arac\u0131l\u0131\u011f\u0131 ile referans verilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "invoicedocumentreference",
+    "selfbilledinvoicedocumentreference",
+    "creditnotedocumentreference",
+    "selfbilledcreditnotedocumentreference",
+    "debitnotedocumentreference",
+    "reminderdocumentreference",
+    "additionaldocumentreference",
+    "billingreferenceline"
+  ],
+  "fields": [
+    {
+      "description": "\u00d6nceki ili\u015fkili fatura belgelerine referans bilgisi girilir. \u00d6rne\u011fin iade edilen faturaya referans bu eleman ile verilir.",
+      "fieldname": "invoicedocumentreference",
+      "fieldtype": "Link",
+      "label": "\u00d6nceki ili\u015fkili fatura belgelerine referans",
+      "options": "UBL TR Document Reference"
+    },
+    {
+      "description": "Yurt d\u0131\u015f\u0131nda bir kurum kendine fatura kesebilmektedir. Bu eleman bu belgeye referans i\u00e7in kullan\u0131lmaktad\u0131r.",
+      "fieldname": "selfbilledinvoicedocumentreference",
+      "fieldtype": "Link",
+      "label": "Self Billed Invoice",
+      "options": "UBL TR Document Reference"
+    },
+    {
+      "description": "\u0130lgili CreditNote (Sat\u0131c\u0131 taraf\u0131ndan d\u00fczenlenip al\u0131c\u0131n\u0131n borcunu d\u00fc\u015f\u00fcrmek i\u00e7in kullan\u0131lan belge) dok\u00fcman\u0131na referans bilgisini tutar.",
+      "fieldname": "creditnotedocumentreference",
+      "fieldtype": "Link",
+      "label": "Credit Note",
+      "options": "UBL TR Document Reference"
+    },
+    {
+      "description": "Yurt d\u0131\u015f\u0131nda bir kurum kendine iade faturas\u0131 kesebilmektedir. Bu eleman bu belgeye referans i\u00e7in kullan\u0131lmaktad\u0131r.",
+      "fieldname": "selfbilledcreditnotedocumentreference",
+      "fieldtype": "Link",
+      "label": "Self Billed Credit Note",
+      "options": "UBL TR Document Reference"
+    },
+    {
+      "description": "\u0130lgili DebitNote (Al\u0131c\u0131 taraf\u0131ndan d\u00fczenlenip al\u0131c\u0131n\u0131n borcunu d\u00fc\u015f\u00fcrmek i\u00e7in kullan\u0131lan belge) dok\u00fcman\u0131na referans bilgisini tutar.",
+      "fieldname": "debitnotedocumentreference",
+      "fieldtype": "Link",
+      "label": "Debit Note",
+      "options": "UBL TR Document Reference"
+    },
+    {
+      "description": "\u0130lgili hat\u0131rlatma belgesine referans girilir.",
+      "fieldname": "reminderdocumentreference",
+      "fieldtype": "Link",
+      "label": "Reminder",
+      "options": "UBL TR Document Reference"
+    },
+    {
+      "description": "Di\u011fer ba\u015fka dok\u00fcmanlara referans bilgisi girilebilir.",
+      "fieldname": "additionaldocumentreference",
+      "fieldtype": "Link",
+      "label": "Additional Document",
+      "options": "UBL TR Document Reference"
+    },
+    {
+      "description": "Detayl\u0131 olarak belli bir kaleme referans atmak istenirse kullan\u0131l\u0131r.",
+      "fieldname": "billingreferenceline",
+      "fieldtype": "Table MultiSelect",
+      "label": "Billing Reference Line",
+      "options": "UBL TR BillingReferenceLines"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 18:16:16.785796",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR BillingReference",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

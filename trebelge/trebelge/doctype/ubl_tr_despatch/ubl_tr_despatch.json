@@ -1,0 +1,105 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 20:42:24.503086",
+  "description": "\u0130rsaliye Bilgisi: Mallar\u0131n al\u0131c\u0131ya g\u00f6nderimlesi i\u00e7in sat\u0131c\u0131dan teslim al\u0131nmas\u0131 kapsam\u0131nda zaman ve mekan bilgileri girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "actualdespatchdate",
+    "actualdespatchtime",
+    "instructions",
+    "despatchaddress",
+    "despatchparty",
+    "contact",
+    "estimateddespatchperiod"
+  ],
+  "fields": [
+    {
+      "description": "\u0130lgili g\u00f6nderimi belge i\u00e7erisinde tekil olarak tan\u0131mlar.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "G\u00f6nderim ayrac\u0131"
+    },
+    {
+      "description": "Ger\u00e7ekle\u015fen g\u00f6nderim tarihi girilir. (Fiili Sevk Tarihi)",
+      "fieldname": "actualdespatchdate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Fiili Sevk Tarihi"
+    },
+    {
+      "description": "Ger\u00e7ekle\u015fen g\u00f6nderim zaman\u0131 girilir. (Fiili Sevk Zaman\u0131)",
+      "fieldname": "actualdespatchtime",
+      "fieldtype": "Time",
+      "in_list_view": 1,
+      "label": "Fiili Sevk Zaman\u0131"
+    },
+    {
+      "description": "Serbest metin olarak g\u00f6nderime y\u00f6nelik a\u00e7\u0131klamalar girilir.",
+      "fieldname": "instructions",
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
+      "label": "A\u00e7\u0131klamalar"
+    },
+    {
+      "description": "Mallar\u0131n g\u00f6nderim i\u00e7in al\u0131naca\u011f\u0131 adres girilir.",
+      "fieldname": "despatchaddress",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Al\u0131naca\u011f\u0131 adres",
+      "options": "UBL TR Address"
+    },
+    {
+      "description": "Mallar\u0131 sat\u0131c\u0131dan teslim alacak taraf bilgileri girilir.",
+      "fieldname": "despatchparty",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Teslim alacak",
+      "options": "UBL TR Party"
+    },
+    {
+      "description": "Mallar\u0131 sat\u0131c\u0131dan teslim alacak taraf\u0131n ileti\u015fim bilgileri girilir.",
+      "fieldname": "contact",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Sat\u0131c\u0131dan teslim alacak",
+      "options": "UBL TR Contact"
+    },
+    {
+      "description": "Tahmini teslim al\u0131\u015f d\u00f6nemi girilir.",
+      "fieldname": "estimateddespatchperiod",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": " teslim al\u0131\u015f d\u00f6nemi",
+      "options": "UBL TR Period"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-02 20:42:24.503086",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Despatch",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

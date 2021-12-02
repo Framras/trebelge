@@ -39,12 +39,12 @@
       "fieldname": "juridictionregionaddresses",
       "fieldtype": "Table MultiSelect",
       "label": "Kay\u0131t yeri adresi",
-      "options": "UBL TR JuridictionRegionAddresses"
+      "options": "UBL TR Addresses"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 09:41:52.938671",
+  "modified": "2021-12-02 19:34:35.581090",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR CorporateRegistrationScheme",

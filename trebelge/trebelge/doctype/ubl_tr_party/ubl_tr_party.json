@@ -9,12 +9,12 @@
   "field_order": [
     "websiteuri",
     "industryclassificationcode",
-    "partyidentifications",
+    "partyidentification",
     "partyname",
     "postaladdress",
     "physicallocation",
     "partytaxscheme",
-    "partylegalentities",
+    "partylegalentity",
     "contact",
     "person",
     "agentparty"
@@ -33,14 +33,6 @@
       "fieldtype": "Data",
       "in_list_view": 1,
       "label": "Ana faaliyet (NACE) kodu"
-    },
-    {
-      "description": "Taraf\u0131n vergi kimlik numaras\u0131 veya TC kimlik numaras\u0131 metin olarak girilir.",
-      "fieldname": "partyidentifications",
-      "fieldtype": "Table MultiSelect",
-      "label": "Vergi kimlik numaras\u0131",
-      "options": "UBL TR Party PartyIdentifications",
-      "reqd": 1
     },
     {
       "description": "Taraf e\u011fer kurum ise kurum ismi bu elemana metin olarak girilir.",
@@ -72,13 +64,6 @@
       "options": "UBL TR PartyTaxScheme"
     },
     {
-      "description": "Taraf\u0131n di\u011fer kay\u0131tl\u0131 oldu\u011fu yerlerin bilgileri ve kay\u0131tl\u0131 oldu\u011fu yerlerdeki kay\u0131t numaralar\u0131 detayl\u0131 olarak girilecektir.",
-      "fieldname": "partylegalentities",
-      "fieldtype": "Table MultiSelect",
-      "label": "Di\u011fer kay\u0131tlar",
-      "options": "UBL TR Party PartyLegalEntity"
-    },
-    {
       "description": "Taraf\u0131n ileti\u015fim bilgileri girilir.",
       "fieldname": "contact",
       "fieldtype": "Link",
@@ -98,11 +83,26 @@
       "fieldtype": "Link",
       "label": "\u015eube",
       "options": "UBL TR Party"
+    },
+    {
+      "description": "Taraf\u0131n vergi kimlik numaras\u0131 veya TC kimlik numaras\u0131 metin olarak girilir.",
+      "fieldname": "partyidentification",
+      "fieldtype": "Table MultiSelect",
+      "label": "Vergi kimlik numaras\u0131",
+      "options": "UBL TR PartyIdentifications",
+      "reqd": 1
+    },
+    {
+      "description": "Taraf\u0131n di\u011fer kay\u0131tl\u0131 oldu\u011fu yerlerin bilgileri ve kay\u0131tl\u0131 oldu\u011fu yerlerdeki kay\u0131t numaralar\u0131 detayl\u0131 olarak girilecektir.",
+      "fieldname": "partylegalentity",
+      "fieldtype": "Table MultiSelect",
+      "label": "Di\u011fer kay\u0131tlar",
+      "options": "UBL TR PartyLegalEntities"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 11:27:50.832208",
+  "modified": "2021-12-02 19:36:57.193796",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Party",

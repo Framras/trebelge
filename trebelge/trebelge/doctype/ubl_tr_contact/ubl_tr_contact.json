@@ -65,12 +65,12 @@
       "fieldname": "othercommunication",
       "fieldtype": "Table MultiSelect",
       "label": "Di\u011fer ileti\u015fim kanal\u0131",
-      "options": "UBL TR OtherCommunications"
+      "options": "UBL TR Communications"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 09:59:59.412389",
+  "modified": "2021-12-02 19:36:11.218230",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Contact",

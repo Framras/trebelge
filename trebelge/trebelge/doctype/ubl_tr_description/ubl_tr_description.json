@@ -1,44 +1,28 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "creation": "2021-12-01 21:23:42.834262",
+  "creation": "2021-12-01 19:45:35.002806",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "unitcode",
-    "description",
-    "type"
+    "description"
   ],
   "fields": [
     {
-      "fieldname": "unitcode",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Birim Kodu",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "fieldname": "type",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Tip",
-      "reqd": 1
-    },
-    {
       "fieldname": "description",
-      "fieldtype": "Data",
-      "label": "Tan\u0131m",
-      "translatable": 1
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
+      "label": "Description",
+      "reqd": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 17:04:25.802116",
+  "modified": "2021-12-01 19:45:35.002806",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Unitcodes",
+  "name": "UBL TR Description",
   "owner": "Administrator",
   "permissions": [
     {

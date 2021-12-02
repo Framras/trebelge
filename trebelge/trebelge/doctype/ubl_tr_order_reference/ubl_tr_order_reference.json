@@ -48,12 +48,12 @@
       "fieldname": "documentreferences",
       "fieldtype": "Table MultiSelect",
       "label": "Belgeler",
-      "options": "UBL TR OrderReference DocumentReference"
+      "options": "UBL TR DocumentReferences"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-01 22:47:17.195293",
+  "modified": "2021-12-02 19:39:22.031104",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Order Reference",

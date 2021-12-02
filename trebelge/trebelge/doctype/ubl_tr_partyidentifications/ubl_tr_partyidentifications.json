@@ -1,30 +1,29 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "creation": "2021-12-01 19:58:46.310754",
+  "creation": "2021-12-02 08:01:13.721751",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "note"
+    "partyidentification"
   ],
   "fields": [
     {
-      "fieldname": "note",
+      "fieldname": "partyidentification",
       "fieldtype": "Link",
       "in_list_view": 1,
-      "label": "Note",
-      "options": "UBL TR Note",
-      "search_index": 1
+      "label": "PartyIdentification",
+      "options": "UBL TR PartyIdentification"
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-12-02 19:19:51.051970",
+  "modified": "2021-12-02 08:01:13.721751",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Notes",
+  "name": "UBL TR PartyIdentifications",
   "owner": "Administrator",
   "permissions": [],
   "sort_field": "modified",

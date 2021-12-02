@@ -16,7 +16,7 @@
     "issuedate",
     "issuetime",
     "invoicetypecode",
-    "notes",
+    "note",
     "documentcurrencycode",
     "taxcurrencycode",
     "pricingcurrencycode",
@@ -26,7 +26,18 @@
     "linecountnumeric",
     "invoiceperiod",
     "orderreference",
-    "billingreferences"
+    "billingreference",
+    "despatchdocumentreference",
+    "receiptdocumentreference",
+    "originatordocumentreference",
+    "contractdocumentreference",
+    "additionaldocumentreference",
+    "accountingsupplierparty",
+    "accountingcustomerparty",
+    "buyercustomerparty",
+    "sellersupplierparty",
+    "taxrepresentativeparty",
+    "delivery"
   ],
   "fields": [
     {
@@ -69,7 +80,7 @@
       "fieldname": "copyindicator",
       "fieldtype": "Link",
       "label": "As\u0131l/Suret",
-      "options": "UBL TR CopyIndicator",
+      "options": "UBL TR Indicators",
       "reqd": 1,
       "search_index": 1
     },
@@ -105,13 +116,6 @@
       "options": "UBL TR InvoiceTypeCode",
       "reqd": 1,
       "search_index": 1
-    },
-    {
-      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r. Birden fazla a\u00e7\u0131klama yap\u0131lmak istenmesi halinde eleman\u0131n tekrar kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr.",
-      "fieldname": "notes",
-      "fieldtype": "Table MultiSelect",
-      "label": "Not",
-      "options": "UBL TR Invoice Note"
     },
     {
       "description": "Bu elemana faturan\u0131n d\u00fczenlendi\u011fi paran\u0131n birim kodu yaz\u0131lacakt\u0131r.",
@@ -188,14 +192,90 @@
       "options": "UBL TR Order Reference"
     },
     {
-      "fieldname": "billingreferences",
-      "fieldtype": "Data",
-      "label": "BillingReferences"
+      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r. Birden fazla a\u00e7\u0131klama yap\u0131lmak istenmesi halinde eleman\u0131n tekrar kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr.",
+      "fieldname": "note",
+      "fieldtype": "Table MultiSelect",
+      "label": "Not",
+      "options": "UBL TR Notes"
+    },
+    {
+      "fieldname": "billingreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "BillingReference",
+      "options": "UBL TR BillingReferences"
+    },
+    {
+      "fieldname": "despatchdocumentreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130rsaliye Bilgileri",
+      "options": "UBL TR DocumentReferences"
+    },
+    {
+      "fieldname": "receiptdocumentreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "Al\u0131nd\u0131 Bilgileri",
+      "options": "UBL TR DocumentReferences"
+    },
+    {
+      "fieldname": "originatordocumentreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "Ba\u015flang\u0131\u00e7 Dok\u00fcman\u0131 Bilgileri",
+      "options": "UBL TR DocumentReferences"
+    },
+    {
+      "fieldname": "contractdocumentreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "Kontrat Dok\u00fcman\u0131 Bilgileri",
+      "options": "UBL TR DocumentReferences"
+    },
+    {
+      "fieldname": "additionaldocumentreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130lave Dok\u00fcman",
+      "options": "UBL TR DocumentReferences"
+    },
+    {
+      "fieldname": "accountingsupplierparty",
+      "fieldtype": "Link",
+      "label": "Sat\u0131c\u0131",
+      "options": "UBL TR SupplierParty",
+      "reqd": 1
+    },
+    {
+      "fieldname": "accountingcustomerparty",
+      "fieldtype": "Link",
+      "label": "Al\u0131c\u0131",
+      "options": "UBL TR CustomerParty",
+      "reqd": 1
+    },
+    {
+      "fieldname": "buyercustomerparty",
+      "fieldtype": "Link",
+      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan Taraf",
+      "options": "UBL TR CustomerParty"
+    },
+    {
+      "fieldname": "sellersupplierparty",
+      "fieldtype": "Link",
+      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan Taraf",
+      "options": "UBL TR SupplierParty"
+    },
+    {
+      "fieldname": "taxrepresentativeparty",
+      "fieldtype": "Link",
+      "label": "Vergi \u0130\u015fleriyle Sorumlu Taraf",
+      "options": "UBL TR Party"
+    },
+    {
+      "fieldname": "delivery",
+      "fieldtype": "Table MultiSelect",
+      "label": "G\u00f6nderim, Ta\u015f\u0131ma, Sevkiyat Bilgileri",
+      "options": "UBL TR Deliveries"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 13:02:25.123879",
+  "modified": "2021-12-02 20:48:04.432040",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Invoice",

@@ -63,7 +63,7 @@
       "fieldname": "buildingnumbers",
       "fieldtype": "Table MultiSelect",
       "label": "D\u0131\u015f kap\u0131 numaras\u0131",
-      "options": "UBL TR Address BuildingNumbers"
+      "options": "UBL TR BuildingNumbers"
     },
     {
       "description": "\u0130l\u00e7e/semt ad\u0131 bilgileri girilecektir.",
@@ -110,7 +110,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 01:02:46.326944",
+  "modified": "2021-12-02 19:37:21.215898",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Address",
