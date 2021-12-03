@@ -1,0 +1,84 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 06:01:34.930863",
+  "description": "\u00d6deme \u015eekli: \u00d6deme \u015feklinin girildi\u011fi elemand\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "paymentmeanscode",
+    "paymentduedate",
+    "paymentchannelcode",
+    "instructionnote",
+    "payerfinancialaccount",
+    "payeefinancialaccount"
+  ],
+  "fields": [
+    {
+      "description": "\u00d6deme \u015feklinin kodu girilir. Bu eleman i\u00e7in UN/EDIFACT 4461 \u00d6deme \u00c7e\u015fitleri Kod Listesi kullan\u0131lacakt\u0131r.",
+      "fieldname": "paymentmeanscode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u00d6deme \u015fekli kodu",
+      "options": "UBL TR Paymentmeanscode",
+      "reqd": 1
+    },
+    {
+      "description": "Son \u00f6deme g\u00fcn\u00fc y\u0131l-ay-g\u00fcn format\u0131nda girilir.",
+      "fieldname": "paymentduedate",
+      "fieldtype": "Date",
+      "label": "Son \u00f6deme g\u00fcn\u00fc"
+    },
+    {
+      "description": "\u00d6deme kanal\u0131 kodu girilir. ",
+      "fieldname": "paymentchannelcode",
+      "fieldtype": "Data",
+      "label": "\u00d6deme kanal\u0131 kodu"
+    },
+    {
+      "description": "\u00d6deme ile ilgili a\u00e7\u0131klamalar serbest metin olarak girilir.",
+      "fieldname": "instructionnote",
+      "fieldtype": "Small Text",
+      "label": "A\u00e7\u0131klama"
+    },
+    {
+      "description": "\u00d6deme yapan taraf\u0131n hesap bilgileri girilir.",
+      "fieldname": "payerfinancialaccount",
+      "fieldtype": "Link",
+      "label": "\u00d6deme yapan hesap",
+      "options": "UBL TR FinancialAccount"
+    },
+    {
+      "description": "\u00d6deme yap\u0131lacak hesap girilir.",
+      "fieldname": "payeefinancialaccount",
+      "fieldtype": "Link",
+      "label": "\u00d6deme yap\u0131lacak hesap",
+      "options": "UBL TR FinancialAccount"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 06:34:55.115945",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR PaymentMeans",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

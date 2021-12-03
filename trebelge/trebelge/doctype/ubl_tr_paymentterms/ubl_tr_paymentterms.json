@@ -1,0 +1,94 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 05:49:47.812677",
+  "description": "\u00d6deme Ko\u015fullar\u0131: \u00d6deme ko\u015fullar\u0131n\u0131n girildi\u011fi elemand\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "note",
+    "penaltysurchargepercent",
+    "amount",
+    "amountcurrencyid",
+    "penaltyamount",
+    "penaltyamountcurrencyid",
+    "paymentduedate",
+    "settlementperiod"
+  ],
+  "fields": [
+    {
+      "description": "\u00d6deme ko\u015fullar\u0131 ile ilgili a\u00e7\u0131klama serbest metin olarak girilir.",
+      "fieldname": "note",
+      "fieldtype": "Small Text",
+      "label": "A\u00e7\u0131klama"
+    },
+    {
+      "description": "\u00d6demenin gecikmesi durumunda uygulanacak ceza oran\u0131 numerik olarak girilir.",
+      "fieldname": "penaltysurchargepercent",
+      "fieldtype": "Percent",
+      "label": "Gecikme ceza oran\u0131"
+    },
+    {
+      "description": "\u00d6deme tutar\u0131 numerik olarak girilebilir.",
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "\u00d6deme tutar\u0131"
+    },
+    {
+      "fieldname": "amountcurrencyid",
+      "fieldtype": "Link",
+      "label": "\u00d6deme tutar\u0131 para birimi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "\u00d6demenin gecikmesi durumunda uygulanacak ceza tutar\u0131 numerik olarak girilir.",
+      "fieldname": "penaltyamount",
+      "fieldtype": "Currency",
+      "label": "Gecikme ceza tutar\u0131"
+    },
+    {
+      "fieldname": "penaltyamountcurrencyid",
+      "fieldtype": "Link",
+      "label": "Gecikme ceza tutar\u0131 para birimi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "Son \u00f6deme g\u00fcn\u00fc y\u0131l-ay-g\u00fcn format\u0131nda girilir.",
+      "fieldname": "paymentduedate",
+      "fieldtype": "Date",
+      "label": "Son \u00f6deme g\u00fcn\u00fc"
+    },
+    {
+      "description": "\u00d6deme d\u00f6nemi girilir.",
+      "fieldname": "settlementperiod",
+      "fieldtype": "Link",
+      "label": "\u00d6deme d\u00f6nemi",
+      "options": "UBL TR Period"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 05:49:47.812677",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR PaymentTerms",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
