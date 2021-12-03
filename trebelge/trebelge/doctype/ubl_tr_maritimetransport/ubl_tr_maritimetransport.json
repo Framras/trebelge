@@ -1,0 +1,119 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 21:54:36.123142",
+  "description": "Deniz Ta\u015f\u0131mac\u0131l\u0131\u011f\u0131: Deniz ta\u015f\u0131mac\u0131l\u0131\u011f\u0131ndaki gemi bilgileri girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "vesselid",
+    "vesselname",
+    "radiocallsignid",
+    "shipsrequirements",
+    "grosstonnagemeasure",
+    "grosstonnagemeasureunitcode",
+    "nettonnagemeasure",
+    "nettonnagemeasureunitcode",
+    "registrycertificatedocumentreference",
+    "registryportlocation"
+  ],
+  "fields": [
+    {
+      "description": "Geminin varsa IMO ve MMSI numaras\u0131 girilir. ",
+      "fieldname": "vesselid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "IMO "
+    },
+    {
+      "description": "Geminin ad\u0131 girilir.",
+      "fieldname": "vesselname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Ad"
+    },
+    {
+      "description": "Geminin radyo \u00e7a\u011fr\u0131 ad\u0131 girilir.",
+      "fieldname": "radiocallsignid",
+      "fieldtype": "Data",
+      "label": "\u00c7a\u011fr\u0131 ad\u0131"
+    },
+    {
+      "description": "Geminin ihtiya\u00e7lar\u0131 bu elemana girilir.",
+      "fieldname": "shipsrequirements",
+      "fieldtype": "Table MultiSelect",
+      "label": "Geminin gereksinimleri",
+      "options": "UBL TR Notes"
+    },
+    {
+      "description": "Geminin br\u00fct a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
+      "fieldname": "grosstonnagemeasure",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Geminin br\u00fct a\u011f\u0131rl\u0131\u011f\u0131"
+    },
+    {
+      "fieldname": "grosstonnagemeasureunitcode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Gemi br\u00fct a\u011f\u0131rl\u0131k \u00f6l\u00e7\u00fc birimi",
+      "options": "UBL TR Unitcodes"
+    },
+    {
+      "description": "Geminin net a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
+      "fieldname": "nettonnagemeasure",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Geminin net a\u011f\u0131rl\u0131\u011f\u0131"
+    },
+    {
+      "description": "Geminin net a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
+      "fieldname": "nettonnagemeasureunitcode",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Geminin net a\u011f\u0131rl\u0131k \u00f6l\u00e7\u00fc birimi",
+      "options": "UBL TR Unitcodes"
+    },
+    {
+      "description": "Geminin kay\u0131t dok\u00fcman\u0131 referans\u0131 girilir.",
+      "fieldname": "registrycertificatedocumentreference",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Kay\u0131t dok\u00fcman\u0131 referans\u0131",
+      "options": "UBL TR Document Reference"
+    },
+    {
+      "description": "Geminin kay\u0131t liman\u0131 bilgisi girilir.",
+      "fieldname": "registryportlocation",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Kay\u0131t liman\u0131",
+      "options": "UBL TR Location"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 21:54:36.123142",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR MaritimeTransport",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

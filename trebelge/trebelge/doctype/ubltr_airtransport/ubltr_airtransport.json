@@ -1,51 +1,32 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "creation": "2021-12-01 21:23:42.834262",
+  "autoname": "field:aircraftid",
+  "creation": "2021-12-03 21:28:36.672190",
+  "description": "Hava Ta\u015f\u0131mac\u0131l\u0131\u011f\u0131: ",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "unitcode",
-    "unitcodename",
-    "description",
-    "type"
+    "aircraftid"
   ],
   "fields": [
     {
-      "fieldname": "unitcode",
+      "description": "Kullan\u0131lan hava arac\u0131n\u0131n numaras\u0131n\u0131 tan\u0131mlamak i\u00e7in kullan\u0131l\u0131r.",
+      "fieldname": "aircraftid",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Birim Kodu",
+      "label": "Hava arac\u0131 numaras\u0131",
       "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "fieldname": "type",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Tip",
-      "reqd": 1
-    },
-    {
-      "fieldname": "description",
-      "fieldtype": "Small Text",
-      "label": "Tan\u0131m",
-      "translatable": 1
-    },
-    {
-      "fieldname": "unitcodename",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Birim Ad\u0131"
+      "unique": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 18:50:51.226730",
+  "modified": "2021-12-03 21:32:11.599768",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Unitcodes",
+  "name": "UBLTR AirTransport",
   "owner": "Administrator",
   "permissions": [
     {

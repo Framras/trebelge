@@ -1,0 +1,100 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 18:09:16.586458",
+  "description": "\u00dcr\u00fcn Bilgisi: Parti lot bilgisi, \u00fcr\u00fcn takip numaras\u0131, \u00fcretim zaman\u0131, seri numaras\u0131 ve kay\u0131t numaras\u0131 gibi bilgiler girilebilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "producttraceid",
+    "manufactureddate",
+    "manufacturedtime",
+    "bestbeforedate",
+    "registrationid",
+    "serialid",
+    "additionalitemproperty",
+    "lotidentification"
+  ],
+  "fields": [
+    {
+      "description": "\u00dcr\u00fcn \u0130z Numaras\u0131 girilebilir.",
+      "fieldname": "producttraceid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u00dcr\u00fcn \u0130z Numaras\u0131"
+    },
+    {
+      "description": "\u00dcretim tarihi girilir.",
+      "fieldname": "manufactureddate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "\u00dcretim tarihi"
+    },
+    {
+      "description": "\u00dcretim zaman\u0131 girilir.",
+      "fieldname": "manufacturedtime",
+      "fieldtype": "Time",
+      "label": "\u00dcretim zaman\u0131"
+    },
+    {
+      "description": "Son kullan\u0131m tarihi girilir.",
+      "fieldname": "bestbeforedate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Son kullan\u0131m tarihi"
+    },
+    {
+      "description": "Kay\u0131t numaras\u0131 girilir.",
+      "fieldname": "registrationid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Kay\u0131t numaras\u0131"
+    },
+    {
+      "description": "Seri numaras\u0131 girilir.",
+      "fieldname": "serialid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Seri numaras\u0131"
+    },
+    {
+      "description": "\u00dcr\u00fcn hakk\u0131nda ba\u015fka \u00f6zellikler var ise girilir.",
+      "fieldname": "additionalitemproperty",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Di\u011fer \u00d6zellikler"
+    },
+    {
+      "description": "Lot numaras\u0131 girilir.",
+      "fieldname": "lotidentification",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Lot numaras\u0131"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 18:09:16.586458",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR ItemInstance",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

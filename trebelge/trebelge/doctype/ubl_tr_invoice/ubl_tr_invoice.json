@@ -37,7 +37,18 @@
     "buyercustomerparty",
     "sellersupplierparty",
     "taxrepresentativeparty",
-    "delivery"
+    "delivery",
+    "paymentmeans",
+    "paymentterms",
+    "allowancecharge",
+    "taxexchangerate",
+    "pricingexchangerate",
+    "paymentexchangerate",
+    "paymentalternativeexchangerate",
+    "taxtotal",
+    "withholdingtaxtotal",
+    "legalmonetarytotal",
+    "invoiceline"
   ],
   "fields": [
     {
@@ -189,7 +200,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Sipari\u015f Bilgileri",
-      "options": "UBL TR Order Reference"
+      "options": "UBL TR OrderReference"
     },
     {
       "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r. Birden fazla a\u00e7\u0131klama yap\u0131lmak istenmesi halinde eleman\u0131n tekrar kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr.",
@@ -271,11 +282,89 @@
       "fieldtype": "Table MultiSelect",
       "label": "G\u00f6nderim, Ta\u015f\u0131ma, Sevkiyat Bilgileri",
       "options": "UBL TR Deliveries"
+    },
+    {
+      "description": "Bu elemana \u00f6deme \u015fekli ile ilgili bilgiler yaz\u0131labilecektir.",
+      "fieldname": "paymentmeans",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u00d6deme \u015eekli",
+      "options": "UBL TR Payment Means"
+    },
+    {
+      "description": "Bu elemana \u00f6deme ko\u015fullar\u0131 ve \u00f6demenin yap\u0131lmamas\u0131 halinde uygulanacak m\u00fceyyideler yaz\u0131labilecektir.",
+      "fieldname": "paymentterms",
+      "fieldtype": "Link",
+      "label": "\u00d6deme Ko\u015fullar\u0131",
+      "options": "UBL TR PaymentTerms"
+    },
+    {
+      "description": "Bu eleman fatura b\u00fct\u00fcn\u00fc \u00fczerinden iskonto veya art\u0131r\u0131m yap\u0131lmas\u0131 halinde kullan\u0131lacakt\u0131r.",
+      "fieldname": "allowancecharge",
+      "fieldtype": "Table MultiSelect",
+      "label": "Iskonto / Art\u0131r\u0131m",
+      "options": "UBL TR AllowanceCharges"
+    },
+    {
+      "fieldname": "taxexchangerate",
+      "fieldtype": "Link",
+      "label": "Vergi D\u00f6viz Kuru",
+      "options": "UBL TR ExchangeRate"
+    },
+    {
+      "description": "Bu elemana fatura \u00fczerinde yer alan mal veya hizmet bedellerinin \u201cBelge Para Birimi\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi halinde ilgili d\u00f6viz kuru yaz\u0131lacakt\u0131r.",
+      "fieldname": "pricingexchangerate",
+      "fieldtype": "Link",
+      "label": "Fiyatland\u0131rma D\u00f6viz Kuru",
+      "options": "UBL TR ExchangeRate"
+    },
+    {
+      "fieldname": "paymentexchangerate",
+      "fieldtype": "Link",
+      "label": "\u00d6deme D\u00f6viz Kuru",
+      "options": "UBL TR ExchangeRate"
+    },
+    {
+      "description": "Bu elemana belge para birimi ve \u00f6deme para birimi haricinde faturan\u0131n \u00f6denmesinde kullan\u0131lmas\u0131 istenen alternatif para birimi varsa bu paran\u0131n d\u00f6viz kuru bilgisi yaz\u0131lacakt\u0131r.",
+      "fieldname": "paymentalternativeexchangerate",
+      "fieldtype": "Link",
+      "label": "Alternatif \u00d6deme D\u00f6viz Kuru",
+      "options": "UBL TR ExchangeRate"
+    },
+    {
+      "description": "Bu elemana faturada yer alan vergi ve\tdi\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fckler ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
+      "fieldname": "taxtotal",
+      "fieldtype": "Table MultiSelect",
+      "label": "Toplam Vergi",
+      "options": "UBL TR TaxTotals",
+      "reqd": 1
+    },
+    {
+      "description": "Bu elemana tevkifatl\u0131 faturalarda yer alan tevkifat ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
+      "fieldname": "withholdingtaxtotal",
+      "fieldtype": "Table MultiSelect",
+      "label": "Tevkifat Bilgileri",
+      "options": "UBL TR TaxTotals"
+    },
+    {
+      "description": "Bu elemanda faturadaki \u00e7e\u015fitli tutarlar\u0131n toplamlar\u0131 yer alacakt\u0131r.",
+      "fieldname": "legalmonetarytotal",
+      "fieldtype": "Link",
+      "label": "Parasal Toplamlar",
+      "options": "UBL TR MonetaryTotal",
+      "reqd": 1
+    },
+    {
+      "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
+      "fieldname": "invoiceline",
+      "fieldtype": "Table MultiSelect",
+      "label": "Mal/Hizmet Kalemleri",
+      "options": "UBL TR InvoiceLines",
+      "reqd": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 20:48:04.432040",
+  "modified": "2021-12-03 22:26:22.525366",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Invoice",

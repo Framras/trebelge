@@ -1,0 +1,31 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 13:04:21.132863",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "taxsubtotal"
+  ],
+  "fields": [
+    {
+      "fieldname": "taxsubtotal",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "TaxSubtotal",
+      "options": "UBL TR TaxSubtotal"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-12-03 13:04:21.132863",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TaxSubtotals",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

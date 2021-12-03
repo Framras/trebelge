@@ -1,0 +1,174 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 22:24:35.735254",
+  "description": "Mal/Hizmet Kalemleri: Belgede ge\u00e7en mal/hizmete ili\u015fkin bilgilerin girildi\u011fi elemand\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "note",
+    "invoicedquantity",
+    "invoicedquantityunitcode",
+    "lineextensionamount",
+    "lineextensionamountcurrencyid",
+    "orderlinereference",
+    "despatchlinereference",
+    "receiptlinereference",
+    "delivery",
+    "allowancecharge",
+    "taxtotal",
+    "withholdingtaxtotal",
+    "item",
+    "price",
+    "subinvoiceline"
+  ],
+  "fields": [
+    {
+      "description": "Kalem s\u0131ra numaras\u0131 girilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Kalem s\u0131ra numaras\u0131",
+      "reqd": 1
+    },
+    {
+      "description": "Kalem hakk\u0131nda a\u00e7\u0131klama serbest metin olarak girilir.",
+      "fieldname": "note",
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
+      "label": "A\u00e7\u0131klama"
+    },
+    {
+      "description": "Mal/hizmet miktar\u0131 birimi ile birlikte girilir.",
+      "fieldname": "invoicedquantity",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Mal/hizmet miktar\u0131",
+      "reqd": 1
+    },
+    {
+      "fieldname": "invoicedquantityunitcode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Mal/hizmet birimi",
+      "options": "UBL TR Unitcodes",
+      "reqd": 1
+    },
+    {
+      "description": "Mal/hizmet miktar\u0131 ile Mal/hizmet birim fiyat\u0131n\u0131n \u00e7arp\u0131m\u0131 ile bulunan tutard\u0131r (varsa iskonto d\u00fc\u015f\u00fcl\u00fcr).",
+      "fieldname": "lineextensionamount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Mal/hizmet tutar\u0131",
+      "reqd": 1
+    },
+    {
+      "fieldname": "lineextensionamountcurrencyid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Mal/hizmet tutar\u0131 para birimi",
+      "options": "UBL TR CurrencyCode",
+      "reqd": 1
+    },
+    {
+      "description": "Fatura ile ili\u015fkili sipari\u015f dok\u00fcman\u0131n\u0131n kalemlerine referans atmak i\u00e7in kullan\u0131l\u0131r.",
+      "fieldname": "orderlinereference",
+      "fieldtype": "Table MultiSelect",
+      "label": "Sipari\u015f kalem referans\u0131",
+      "options": "UBL TR OrderLineReferences"
+    },
+    {
+      "description": "Fatura ile ili\u015fkili irsaliye dok\u00fcman\u0131n\u0131n kalemlerine referans atmak i\u00e7in kullan\u0131l\u0131r.",
+      "fieldname": "despatchlinereference",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130rsaliye kalemleri",
+      "options": "UBL TR LineReferences"
+    },
+    {
+      "description": "Fatura ile ili\u015fkili al\u0131nd\u0131 dok\u00fcman\u0131n\u0131n kalemlerine referans atmak i\u00e7in kullan\u0131l\u0131r.",
+      "fieldname": "receiptlinereference",
+      "fieldtype": "Table MultiSelect",
+      "label": "Al\u0131nd\u0131 kalemleri",
+      "options": "UBL TR LineReferences"
+    },
+    {
+      "description": "Kalem bazl\u0131 teslimat olmas\u0131 durumunda bu eleman doldurulur.",
+      "fieldname": "delivery",
+      "fieldtype": "Table MultiSelect",
+      "label": "Teslimat",
+      "options": "UBL TR Deliveries"
+    },
+    {
+      "description": "Kalem bazl\u0131 \u0131skonto/art\u0131r\u0131m tutar\u0131d\u0131r.",
+      "fieldname": "allowancecharge",
+      "fieldtype": "Table MultiSelect",
+      "label": "Kalem iskonto/art\u0131r\u0131m\u0131",
+      "options": "UBL TR AllowanceCharges"
+    },
+    {
+      "description": "Kalem bazl\u0131 vergi bilgilerinin girildi\u011fi elemand\u0131r.",
+      "fieldname": "taxtotal",
+      "fieldtype": "Link",
+      "label": "Kalem vergi bilgileri",
+      "options": "UBL TR TaxTotal"
+    },
+    {
+      "description": "Kalem bazl\u0131 tevkifat uygulanmas\u0131 durumunda bu eleman kullan\u0131l\u0131r.",
+      "fieldname": "withholdingtaxtotal",
+      "fieldtype": "Table MultiSelect",
+      "label": "Kalem tevkifatlar\u0131",
+      "options": "UBL TR TaxTotals"
+    },
+    {
+      "description": "Mal/hizmet hakk\u0131nda bilgiler buraya girilir.",
+      "fieldname": "item",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Mal/hizmet",
+      "options": "UBL TR Item",
+      "reqd": 1
+    },
+    {
+      "description": "Mal/hizmet birim fiyat\u0131 hakk\u0131nda bilgiler buraya girilir.",
+      "fieldname": "price",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Mal/hizmet birim fiyat\u0131",
+      "options": "UBL TR Price",
+      "reqd": 1
+    },
+    {
+      "description": "E\u011fer \u00fcr\u00fcn i\u00e7in ek bir birim kodu kullan\u0131lmas\u0131 gerekiyorsa bu eleman\u0131n i\u00e7indeki InvoicedQuantity eleman\u0131 (di\u011fer opsiyonel elemanlar bo\u015f b\u0131rak\u0131larak) kullan\u0131labilir.",
+      "fieldname": "subinvoiceline",
+      "fieldtype": "Table MultiSelect",
+      "label": "Ek bilgiler",
+      "options": "UBL TR InvoiceLines"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 22:25:23.840776",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR InvoiceLine",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

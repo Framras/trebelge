@@ -1,51 +1,38 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "creation": "2021-12-01 21:23:42.834262",
+  "creation": "2021-12-03 21:39:57.951545",
+  "description": "Demiryolu Ta\u015f\u0131mac\u0131l\u0131\u011f\u0131: Tren bilgisini i\u00e7erir.",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "unitcode",
-    "unitcodename",
-    "description",
-    "type"
+    "trainid",
+    "railcarid"
   ],
   "fields": [
     {
-      "fieldname": "unitcode",
+      "description": "Tren numaras\u0131 girilir. ",
+      "fieldname": "trainid",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Birim Kodu",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "fieldname": "type",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Tip",
+      "label": "Tren numaras\u0131",
       "reqd": 1
     },
     {
-      "fieldname": "description",
-      "fieldtype": "Small Text",
-      "label": "Tan\u0131m",
-      "translatable": 1
-    },
-    {
-      "fieldname": "unitcodename",
+      "description": "Vagon numaras\u0131 girilir.",
+      "fieldname": "railcarid",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Birim Ad\u0131"
+      "label": "Vagon numaras\u0131"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 18:50:51.226730",
+  "modified": "2021-12-03 21:39:57.951545",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Unitcodes",
+  "name": "UBL TR RailTransport",
   "owner": "Administrator",
   "permissions": [
     {

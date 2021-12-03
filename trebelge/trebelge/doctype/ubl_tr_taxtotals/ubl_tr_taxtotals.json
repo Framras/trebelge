@@ -1,0 +1,30 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 13:13:00.627912",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "taxtotal"
+  ],
+  "fields": [
+    {
+      "fieldname": "taxtotal",
+      "fieldtype": "Link",
+      "label": "TaxTotal",
+      "options": "UBL TR TaxTotal"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-12-03 13:13:00.627912",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TaxTotals",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

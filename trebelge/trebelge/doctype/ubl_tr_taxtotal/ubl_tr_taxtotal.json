@@ -1,0 +1,62 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 13:12:28.488052",
+  "description": "Vergi Toplam\u0131: Vergi ve di\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fcklerin hesaplamas\u0131 ile ilgili bilgiler ile belge \u00fczerinde hesaplanan toplam vergi ve yasal y\u00fck\u00fcml\u00fcl\u00fck tutar\u0131 girilecektir.\n\u00dc\u00e7 \u00e7e\u015fit kullan\u0131m\u0131 mevcuttur:\n1.\t\u201cInvoice/TaxTotal\u201d: Hesaplanan vergilerin toplam tutar\u0131 girilir. Bu alan zorunludur.\n\u2022\tTaxAmount: Toplam vergi tutar\u0131 girilir.\n\u2022\tTaxSubtotal: Vergi hesaplamas\u0131 ile ilgili bilgilere yer verilir. Birden fazla vergi t\u00fcr\u00fc veya ayn\u0131 vergi t\u00fcr\u00fc i\u00e7erisinde farkl\u0131 oranlarda yap\u0131lan hesaplamalarla ilgili bilgilere de bu alanda yer verilecektir. Bknz. TaxSubtotal.\n2.\t\u201cInvoice/InvoiceLine/TaxTotal\u201d: Hesaplanan vergilerin kalem bazl\u0131 hesaplanmas\u0131 durumunda bu alan kullan\u0131l\u0131r. Bu alan se\u00e7imlidir.\n\u2022\tTaxAmount: Kalem i\u00e7in hesaplanan toplam vergi tutar\u0131 girilir.\n\u2022\tTaxSubtotal: Kalem baz\u0131nda vergi hesaplamas\u0131 s\u00f6z konusu olmas\u0131 halinde ilgili bilgilere yer verilebilecektir. Bknz. TaxSubtotal.\n3.\t\u201cWithholdingTaxTotal\u201d: Tevkifatl\u0131 faturalarda, uygulanan tevkifat miktarlar\u0131, oranlar\u0131 ve di\u011fer bilgileri girilir.\n\u2022\tTaxAmount: Toplam tevkifat tutar\u0131 girilir.\n\u2022\tTaxSubtotal: Tevkifat kodu ve oran\u0131 bilgisi girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "taxamount",
+    "taxamountcurrencyid",
+    "taxsubtotal"
+  ],
+  "fields": [
+    {
+      "fieldname": "taxamount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Toplam Vergi/Tevkifat",
+      "reqd": 1
+    },
+    {
+      "fieldname": "taxamountcurrencyid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Toplam Vergi/Tevkifat Para Birimi",
+      "options": "UBL TR CurrencyCode",
+      "reqd": 1
+    },
+    {
+      "fieldname": "taxsubtotal",
+      "fieldtype": "Table MultiSelect",
+      "label": "Vergi/Tevkifat kodu ve oran\u0131",
+      "options": "UBL TR TaxSubtotals",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 13:12:28.488052",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TaxTotal",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

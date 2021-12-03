@@ -1,0 +1,105 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 19:30:39.453298",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "description",
+    "itemname",
+    "keyword",
+    "brandname",
+    "modelname",
+    "buyersitemidentification",
+    "sellersitemidentification",
+    "manufacturersitemidentification",
+    "additionalitemidentification",
+    "origincountry",
+    "commodityclassification",
+    "iteminstance"
+  ],
+  "fields": [
+    {
+      "fieldname": "description",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "itemname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "keyword",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "brandname",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "modelname",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "buyersitemidentification",
+      "fieldtype": "Link",
+      "options": "UBL TR ItemIdentification"
+    },
+    {
+      "fieldname": "sellersitemidentification",
+      "fieldtype": "Link",
+      "options": "UBL TR ItemIdentification"
+    },
+    {
+      "fieldname": "manufacturersitemidentification",
+      "fieldtype": "Link",
+      "options": "UBL TR ItemIdentification"
+    },
+    {
+      "fieldname": "additionalitemidentification",
+      "fieldtype": "Link",
+      "options": "UBL TR ItemIdentification"
+    },
+    {
+      "fieldname": "origincountry",
+      "fieldtype": "Link",
+      "options": "Country"
+    },
+    {
+      "fieldname": "commodityclassification",
+      "fieldtype": "Table MultiSelect",
+      "options": "UBL TR CommodityClassifications"
+    },
+    {
+      "fieldname": "iteminstance",
+      "fieldtype": "Table MultiSelect",
+      "options": "UBL TR ItemInstances"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 19:30:39.453298",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Item",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

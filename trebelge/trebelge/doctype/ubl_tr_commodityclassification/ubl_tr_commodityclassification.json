@@ -1,0 +1,58 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 19:24:18.428410",
+  "description": "\u00dcr\u00fcn S\u0131n\u0131fland\u0131r\u0131lmas\u0131 (Standart): ",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "itemclassificationcode",
+    "listagencyid",
+    "listid"
+  ],
+  "fields": [
+    {
+      "description": "\u00dcr\u00fcn hakk\u0131nda uluslararas\u0131 standart veya ulusal kodlar (\u00f6rne\u011fin, Sa\u011fl\u0131k Uygulama Tebli\u011fi) tabanl\u0131 s\u0131n\u0131fland\u0131rma bilgisi vermek istenmesi durumunda girilir.",
+      "fieldname": "itemclassificationcode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Kod bilgisi",
+      "reqd": 1
+    },
+    {
+      "fieldname": "listagencyid",
+      "fieldtype": "Data",
+      "label": "listAgencyID"
+    },
+    {
+      "fieldname": "listid",
+      "fieldtype": "Data",
+      "label": "listID"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 19:24:18.428410",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR CommodityClassification",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

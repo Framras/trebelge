@@ -1,51 +1,41 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "creation": "2021-12-01 21:23:42.834262",
+  "creation": "2021-12-03 22:03:29.742839",
+  "description": "G\u00fcmr\u00fck Kimli\u011fi: \u00dcr\u00fcn hakk\u0131nda g\u00fcmr\u00fck numaraland\u0131rma bilgisi girilir.",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "unitcode",
-    "unitcodename",
-    "description",
-    "type"
+    "id",
+    "issuerparty"
   ],
   "fields": [
     {
-      "fieldname": "unitcode",
+      "description": "\u00dcr\u00fcn\u00fcn ilgili g\u00fcmr\u00fck numaras\u0131 girilir.",
+      "fieldname": "id",
       "fieldtype": "Data",
+      "in_global_search": 1,
       "in_list_view": 1,
-      "label": "Birim Kodu",
+      "label": "Beyanname No",
       "reqd": 1,
       "search_index": 1
     },
     {
-      "fieldname": "type",
-      "fieldtype": "Data",
+      "description": "Numaraland\u0131rmay\u0131 yapan kurum bilgisi girilir.",
+      "fieldname": "issuerparty",
+      "fieldtype": "Link",
       "in_list_view": 1,
-      "label": "Tip",
-      "reqd": 1
-    },
-    {
-      "fieldname": "description",
-      "fieldtype": "Small Text",
-      "label": "Tan\u0131m",
-      "translatable": 1
-    },
-    {
-      "fieldname": "unitcodename",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Birim Ad\u0131"
+      "label": "G\u00fcmr\u00fck",
+      "options": "UBL TR Party"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 18:50:51.226730",
+  "modified": "2021-12-03 22:03:29.742839",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Unitcodes",
+  "name": "UBL TR CustomsDeclaration",
   "owner": "Administrator",
   "permissions": [
     {

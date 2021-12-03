@@ -1,0 +1,147 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-03 12:35:02.331876",
+  "description": "Parasal Toplam: Parasal toplamlar ile genel tutarlar\u0131n girildi\u011fi elemand\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "lineextensionamount",
+    "lineextensionamountcurrencyid",
+    "taxexclusiveamount",
+    "taxexclusiveamountcurrencyid",
+    "taxinclusiveamount",
+    "taxinclusiveamountcurrencyid",
+    "allowancetotalamount",
+    "allowancetotalamountcurrencyid",
+    "chargetotalamount",
+    "chargetotalamountcurrencyid",
+    "payableroundingamount",
+    "payableroundingamountcurrencyid",
+    "payableamount",
+    "payableamountcurrencyid"
+  ],
+  "fields": [
+    {
+      "description": "Mal/hizmet miktar\u0131 ile Mal/hizmet birim fiyat\u0131n\u0131n \u00e7arp\u0131m\u0131 ile bulunan tutard\u0131r.",
+      "fieldname": "lineextensionamount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Mal/Hizmet Toplam Tutar\u0131",
+      "reqd": 1
+    },
+    {
+      "fieldname": "lineextensionamountcurrencyid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Mal/Hizmet Toplam Tutar\u0131 d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode",
+      "reqd": 1
+    },
+    {
+      "description": "Vergiler hari\u00e7, \u0131skonto veya art\u0131r\u0131m dahil toplam tutar girilir.(Vergi Matrah\u0131).",
+      "fieldname": "taxexclusiveamount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Vergi Matrah\u0131",
+      "reqd": 1
+    },
+    {
+      "fieldname": "taxexclusiveamountcurrencyid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Vergi Matrah\u0131 d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode",
+      "reqd": 1
+    },
+    {
+      "description": "Vergiler, \u0131skonto ve art\u0131r\u0131m dahil toplam tutar girilir.",
+      "fieldname": "taxinclusiveamount",
+      "fieldtype": "Currency",
+      "label": "Vergiler Dahil Toplam Tutar",
+      "reqd": 1
+    },
+    {
+      "fieldname": "taxinclusiveamountcurrencyid",
+      "fieldtype": "Link",
+      "label": "Vergiler Dahil Toplam Tutar d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode",
+      "reqd": 1
+    },
+    {
+      "description": "Toplam iskonto tutar\u0131 girilir.",
+      "fieldname": "allowancetotalamount",
+      "fieldtype": "Currency",
+      "label": "Toplam \u0130skonto"
+    },
+    {
+      "fieldname": "allowancetotalamountcurrencyid",
+      "fieldtype": "Link",
+      "label": "Toplam \u0130skonto d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "Toplam fiyat art\u0131r\u0131m\u0131 tutar\u0131 girilir.",
+      "fieldname": "chargetotalamount",
+      "fieldtype": "Currency",
+      "label": "Toplam Art\u0131r\u0131m"
+    },
+    {
+      "fieldname": "chargetotalamountcurrencyid",
+      "fieldtype": "Link",
+      "label": "Toplam Art\u0131r\u0131m d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "Yuvarlama tutar\u0131 girilir.",
+      "fieldname": "payableroundingamount",
+      "fieldtype": "Currency",
+      "label": "Yuvarlama tutar\u0131"
+    },
+    {
+      "fieldname": "payableroundingamountcurrencyid",
+      "fieldtype": "Link",
+      "label": "Yuvarlama tutar\u0131 d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "\u00d6denecek tutar girilir.",
+      "fieldname": "payableamount",
+      "fieldtype": "Currency",
+      "label": "\u00d6denecek tutar",
+      "reqd": 1
+    },
+    {
+      "fieldname": "payableamountcurrencyid",
+      "fieldtype": "Link",
+      "label": "\u00d6denecek tutar d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 12:35:02.331876",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR MonetaryTotal",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

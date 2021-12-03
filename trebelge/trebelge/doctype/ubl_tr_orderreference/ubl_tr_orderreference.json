@@ -56,7 +56,7 @@
   "modified": "2021-12-02 19:39:22.031104",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Order Reference",
+  "name": "UBL TR OrderReference",
   "owner": "Administrator",
   "permissions": [
     {

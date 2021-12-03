@@ -1,51 +1,46 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "creation": "2021-12-01 21:23:42.834262",
+  "creation": "2021-12-03 22:08:59.230219",
+  "description": "Referans Sat\u0131r: Kalem ile ilgili tan\u0131mlay\u0131c\u0131 bilgilere bu elemanda yer verilecektir.",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "unitcode",
-    "unitcodename",
-    "description",
-    "type"
+    "lineid",
+    "linestatuscode",
+    "documentreference"
   ],
   "fields": [
     {
-      "fieldname": "unitcode",
+      "description": "Kalemin s\u0131ra numaras\u0131 girilecektir.",
+      "fieldname": "lineid",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Birim Kodu",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "fieldname": "type",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Tip",
+      "label": "Kalem Numaras\u0131",
       "reqd": 1
     },
     {
-      "fieldname": "description",
-      "fieldtype": "Small Text",
-      "label": "Tan\u0131m",
-      "translatable": 1
-    },
-    {
-      "fieldname": "unitcodename",
+      "description": "Kalemin durum bilgisi girilebilecektir.",
+      "fieldname": "linestatuscode",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Birim Ad\u0131"
+      "label": "Kalem durumu"
+    },
+    {
+      "fieldname": "documentreference",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Referans Belge",
+      "options": "UBL TR Document Reference"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 18:50:51.226730",
+  "modified": "2021-12-03 22:09:11.750272",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Unitcodes",
+  "name": "UBL TR LineReference",
   "owner": "Administrator",
   "permissions": [
     {
