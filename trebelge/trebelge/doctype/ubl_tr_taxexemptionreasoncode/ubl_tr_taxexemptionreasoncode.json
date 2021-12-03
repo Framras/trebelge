@@ -1,45 +1,49 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "autoname": "field:paymentmeanscode",
-  "creation": "2021-12-03 06:34:37.070931",
-  "description": "UN/EDIFACT 4461 \u00d6deme \u00c7e\u015fitleri Kod Listesi",
+  "creation": "2021-12-03 07:05:33.510078",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "paymentmeanscode",
-    "description",
-    "explanation"
+    "id",
+    "taxexemptionreasoncodename",
+    "invoicetypecode",
+    "list"
   ],
   "fields": [
     {
-      "fieldname": "paymentmeanscode",
-      "fieldtype": "Data",
-      "label": "paymentmeanscode",
-      "reqd": 1,
-      "unique": 1
-    },
-    {
-      "fieldname": "description",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "description",
-      "translatable": 1
-    },
-    {
-      "fieldname": "explanation",
+      "fieldname": "taxexemptionreasoncodename",
       "fieldtype": "Small Text",
       "in_list_view": 1,
-      "label": "explanation"
+      "label": "ADI"
+    },
+    {
+      "fieldname": "invoicetypecode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Fatura Tipi",
+      "options": "UBL TR InvoiceTypeCode"
+    },
+    {
+      "fieldname": "list",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "L\u0130STE"
+    },
+    {
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "KODU"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 06:54:24.287168",
+  "modified": "2021-12-03 07:24:06.364673",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Paymentmeanscode",
+  "name": "UBL TR TaxExemptionReasonCode",
   "owner": "Administrator",
   "permissions": [
     {
