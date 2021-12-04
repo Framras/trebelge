@@ -1,0 +1,117 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 15:27:19.768922",
+  "description": "Paket: Ta\u015f\u0131ma s\u0131ras\u0131ndaki paket bilgisi girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "quantity",
+    "quantityunitcode",
+    "returnablematerialindicator",
+    "packagelevelcode",
+    "packagingtypecode",
+    "packagingmaterial",
+    "containedpackage",
+    "goodsitem",
+    "measurementdimension"
+  ],
+  "fields": [
+    {
+      "description": "Paket numaras\u0131 girilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Paket numaras\u0131"
+    },
+    {
+      "description": "Paket adedi girilir.",
+      "fieldname": "quantity",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Paket adedi"
+    },
+    {
+      "fieldname": "quantityunitcode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Paket \u00f6l\u00e7\u00fc birimi",
+      "options": "UBL TR Unitcodes"
+    },
+    {
+      "description": "Paket materyali geri d\u00f6n\u00fc\u015f\u00fcml\u00fc olup olmad\u0131\u011f\u0131n\u0131 belirtir.",
+      "fieldname": "returnablematerialindicator",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Geri d\u00f6n\u00fc\u015f\u00fcm"
+    },
+    {
+      "description": "Paketleme seviyesini belirtir.",
+      "fieldname": "packagelevelcode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Paketleme seviyesi"
+    },
+    {
+      "description": "Paketleme tipini belirtir.",
+      "fieldname": "packagingtypecode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Paketleme tipi"
+    },
+    {
+      "description": "Paketleme materyalini belirtir.",
+      "fieldname": "packagingmaterial",
+      "fieldtype": "Table",
+      "label": "Paketleme materyali",
+      "options": "UBL TR PackagingMaterial"
+    },
+    {
+      "description": "\u0130\u00e7erdi\u011fi di\u011fer paketler girilir.",
+      "fieldname": "containedpackage",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130\u00e7erdi\u011fi di\u011fer paketler",
+      "options": "UBL TR Packages"
+    },
+    {
+      "description": "\u0130\u00e7erdi\u011fi \u00fcr\u00fcnler girilir.",
+      "fieldname": "goodsitem",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130\u00e7erdi\u011fi \u00fcr\u00fcnler",
+      "options": "UBL TR GoodsItems"
+    },
+    {
+      "description": "Paket boyutlar\u0131 girilir.",
+      "fieldname": "measurementdimension",
+      "fieldtype": "Table MultiSelect",
+      "label": "Paket boyutlar\u0131",
+      "options": "UBL TR Dimensions"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-04 17:03:35.316966",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Package",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

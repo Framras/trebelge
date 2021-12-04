@@ -1,0 +1,61 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 10:31:04.627527",
+  "description": "\u0130stif Yeri: \u0130stif yeri bilgisi girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "locationid",
+    "location",
+    "measurementdimension"
+  ],
+  "fields": [
+    {
+      "description": "\u0130stif yeri mekan numaras\u0131 girilir.",
+      "fieldname": "locationid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u0130stif yeri mekan numaras\u0131"
+    },
+    {
+      "description": "Mekan bilgisi detayl\u0131 olarak girilir.",
+      "fieldname": "location",
+      "fieldtype": "Table",
+      "label": "Mekan bilgisi detay\u0131",
+      "options": "UBL TR Stowage Location"
+    },
+    {
+      "description": "\u0130stif yeri \u00f6l\u00e7\u00fcleri girilir.",
+      "fieldname": "measurementdimension",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130stif yeri \u00f6l\u00e7\u00fcleri",
+      "options": "UBL TR Dimensions"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-04 10:31:04.627527",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Stowage",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

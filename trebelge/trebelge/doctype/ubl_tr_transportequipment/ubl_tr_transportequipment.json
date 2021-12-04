@@ -1,0 +1,65 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 13:20:06.597963",
+  "description": "Ta\u015f\u0131ma Ekipman\u0131: Ta\u015f\u0131ma ekipman\u0131 bilgileri girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "schemeid",
+    "transportequipmenttypecode",
+    "description"
+  ],
+  "fields": [
+    {
+      "description": "Tekil numaras\u0131 girilir. \u00d6rne\u011fin Dorse Plaka numaras\u0131.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Tekil numara"
+    },
+    {
+      "fieldname": "schemeid",
+      "fieldtype": "Data",
+      "label": "Tan\u0131m kodu"
+    },
+    {
+      "description": "Ekipman tipi kodu girilir.",
+      "fieldname": "transportequipmenttypecode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Ekipman tipi kodu"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Small Text",
+      "label": "A\u00e7\u0131klama"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-04 13:20:06.597963",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TransportEquipment",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

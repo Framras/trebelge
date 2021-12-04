@@ -1,0 +1,48 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:aircraftid",
+  "creation": "2021-12-03 21:28:36.672190",
+  "description": "Hava Ta\u015f\u0131mac\u0131l\u0131\u011f\u0131: ",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "aircraftid"
+  ],
+  "fields": [
+    {
+      "description": "Kullan\u0131lan hava arac\u0131n\u0131n numaras\u0131n\u0131 tan\u0131mlamak i\u00e7in kullan\u0131l\u0131r.",
+      "fieldname": "aircraftid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Hava arac\u0131 numaras\u0131",
+      "reqd": 1,
+      "unique": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-03 21:32:11.599768",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR AirTransport",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

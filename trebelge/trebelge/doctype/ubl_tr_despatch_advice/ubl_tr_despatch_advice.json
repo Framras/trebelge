@@ -1,0 +1,199 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 22:32:19.071247",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "ublversionid",
+    "customizationid",
+    "profileid",
+    "id",
+    "copyindicator",
+    "uuid",
+    "issuedate",
+    "issuetime",
+    "despatchadvicetypecode",
+    "note",
+    "linecountnumeric",
+    "orderreference",
+    "additionaldocumentreference",
+    "despatchsupplierparty",
+    "deliverycustomerparty",
+    "buyercustomerparty",
+    "sellersupplierparty",
+    "originatorcustomerparty",
+    "shipment",
+    "despatchline"
+  ],
+  "fields": [
+    {
+      "fieldname": "ublversionid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "UBL Versiyon Numaras\u0131",
+      "options": "UBL TR UBLVersionID",
+      "reqd": 1
+    },
+    {
+      "fieldname": "customizationid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u00d6zelle\u015ftirme Numaras\u0131",
+      "options": "UBL TR CustomizationID",
+      "reqd": 1
+    },
+    {
+      "fieldname": "profileid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Senaryo",
+      "options": "UBL TR ProfileID",
+      "reqd": 1
+    },
+    {
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Sevk \u0130rsaliyesi Numaras\u0131",
+      "reqd": 1
+    },
+    {
+      "fieldname": "copyindicator",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "As\u0131l/Suret",
+      "options": "UBL TR Indicators",
+      "reqd": 1
+    },
+    {
+      "fieldname": "uuid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "issuedate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "D\u00fczenleme Tarihi",
+      "reqd": 1
+    },
+    {
+      "fieldname": "issuetime",
+      "fieldtype": "Time",
+      "in_list_view": 1,
+      "label": "D\u00fczenleme Zaman\u0131"
+    },
+    {
+      "fieldname": "despatchadvicetypecode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Tip Kodu",
+      "options": "UBL TR DespatchAdviceTypeCode",
+      "reqd": 1
+    },
+    {
+      "fieldname": "note",
+      "fieldtype": "Table MultiSelect",
+      "label": "Not",
+      "options": "UBL TR Notes"
+    },
+    {
+      "fieldname": "linecountnumeric",
+      "fieldtype": "Int",
+      "label": "Kalem Say\u0131s\u0131"
+    },
+    {
+      "fieldname": "orderreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "Sipari\u015f Bilgileri",
+      "options": "UBL TR OrderReferences"
+    },
+    {
+      "fieldname": "additionaldocumentreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130lave Dok\u00fcman",
+      "options": "UBL TR DocumentReferences"
+    },
+    {
+      "fieldname": "despatchsupplierparty",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Sevkeden",
+      "options": "UBL TR SupplierParty",
+      "reqd": 1
+    },
+    {
+      "fieldname": "deliverycustomerparty",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Teslim Alan",
+      "options": "UBL TR CustomerParty",
+      "reqd": 1
+    },
+    {
+      "fieldname": "buyercustomerparty",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Sat\u0131n Alan",
+      "options": "UBL TR CustomerParty"
+    },
+    {
+      "fieldname": "sellersupplierparty",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Satan",
+      "options": "UBL TR SupplierParty"
+    },
+    {
+      "fieldname": "originatorcustomerparty",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Sevk \u0130rsaliyesindeki Mallar\u0131n Al\u0131nmas\u0131n\u0131 Ba\u015flatan Taraf",
+      "options": "UBL TR CustomerParty"
+    },
+    {
+      "fieldname": "shipment",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "G\u00f6nderi",
+      "options": "UBL TR Shipment",
+      "reqd": 1
+    },
+    {
+      "fieldname": "despatchline",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130rsaliye Kalemleri",
+      "options": "UBL TR DespatchLines",
+      "reqd": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-04 22:35:22.590339",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Despatch Advice",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

@@ -1,0 +1,71 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 13:43:15.556680",
+  "description": "S\u0131cakl\u0131k: S\u0131cakl\u0131k bilgisi girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "attributeid",
+    "measure",
+    "measureunitcode",
+    "description"
+  ],
+  "fields": [
+    {
+      "description": "S\u0131cakl\u0131k nitelik numaras\u0131 girilir.",
+      "fieldname": "attributeid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "S\u0131cakl\u0131k"
+    },
+    {
+      "description": "\u00d6l\u00e7\u00fcm girilir.",
+      "fieldname": "measure",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "\u00d6l\u00e7\u00fcm",
+      "reqd": 1
+    },
+    {
+      "fieldname": "measureunitcode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u00d6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
+      "options": "UBL TR Unitcodes",
+      "reqd": 1
+    },
+    {
+      "description": "A\u00e7\u0131klama girilir.",
+      "fieldname": "description",
+      "fieldtype": "Table MultiSelect",
+      "label": "A\u00e7\u0131klama",
+      "options": "UBL TR Descriptions"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-04 13:43:15.556680",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR Temperature",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

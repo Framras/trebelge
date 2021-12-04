@@ -1,0 +1,29 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 11:30:40.403069",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "registrationnationality"
+  ],
+  "fields": [
+    {
+      "fieldname": "registrationnationality",
+      "fieldtype": "Small Text",
+      "label": "Kay\u0131tl\u0131 oldu\u011fu \u00fclke"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-12-04 11:30:40.403069",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR RegistrationNationality",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

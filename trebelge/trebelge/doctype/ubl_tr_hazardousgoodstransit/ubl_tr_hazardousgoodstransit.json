@@ -1,0 +1,94 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 18:10:17.937795",
+  "description": "Tehlikeli Mal: Ta\u015f\u0131ma s\u0131ras\u0131ndaki tehlikeli mallar\u0131 anlat\u0131r.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "transportemergencycardcode",
+    "packagingcriteriacode",
+    "hazardousregulationcode",
+    "inhalationtoxicityzonecode",
+    "transportauthorizationcode",
+    "maximumtemperature",
+    "minimumtemperature"
+  ],
+  "fields": [
+    {
+      "description": "Ta\u015f\u0131ma s\u0131ras\u0131nda her hangi bir tehlikeli durum olmas\u0131 durumunda nas\u0131l m\u00fcdahale edilece\u011fini anlatan kod girilebilir.",
+      "fieldname": "transportemergencycardcode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Tehlikeli durum m\u00fcdahale kodu"
+    },
+    {
+      "description": "Paketleme kriterleri kodu girilir.",
+      "fieldname": "packagingcriteriacode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Paketleme kriterleri kodu"
+    },
+    {
+      "description": "\u00dcr\u00fcn\u00fcn ta\u015f\u0131mas\u0131na y\u00f6nelik kanun ve kurallar\u0131 belirten kod girilir.",
+      "fieldname": "hazardousregulationcode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u00dcr\u00fcn\u00fcn ta\u015f\u0131mas\u0131na y\u00f6nelik kod"
+    },
+    {
+      "description": "ABD Ula\u015ft\u0131rma Bakanl\u0131\u011f\u0131 taraf\u0131ndan belirlenen Tehlikeli Maddeler i\u00e7in Soluma Toksisitesi Tehlike B\u00f6lgesini belirten kod girilir.",
+      "fieldname": "inhalationtoxicityzonecode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "ABD Soluma Tehlike Kodu"
+    },
+    {
+      "description": "Tehlikeli kargonun ta\u015f\u0131nmas\u0131n\u0131n yetki kodu girilir.",
+      "fieldname": "transportauthorizationcode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Tehlikeli kargo ta\u015f\u0131ma yetki kodu"
+    },
+    {
+      "description": "\u00dcr\u00fcn\u00fc g\u00fcvenle ta\u015f\u0131nmas\u0131 i\u00e7in gerekli maximum s\u0131cakl\u0131k girilir.",
+      "fieldname": "maximumtemperature",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "En y\u00fcksek s\u0131cakl\u0131k",
+      "options": "UBL TR Temperature"
+    },
+    {
+      "description": "\u00dcr\u00fcn\u00fc g\u00fcvenle ta\u015f\u0131nmas\u0131 i\u00e7in gerekli minimum s\u0131cakl\u0131k girilir.",
+      "fieldname": "minimumtemperature",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "En d\u00fc\u015f\u00fck s\u0131cakl\u0131k",
+      "options": "UBL TR Temperature"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-04 18:10:17.937795",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR HazardousGoodsTransit",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

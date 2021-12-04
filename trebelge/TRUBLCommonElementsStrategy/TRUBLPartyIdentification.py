@@ -5,7 +5,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLPartyIdentification(TRUBLCommonElement):
-    _frappeDoctype: str = 'UBL TR Party Identification'
+    _frappeDoctype: str = 'UBL TR PartyIdentification'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')

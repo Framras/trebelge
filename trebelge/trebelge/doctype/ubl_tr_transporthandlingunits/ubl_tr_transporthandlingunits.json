@@ -1,0 +1,31 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 18:39:22.659992",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "transporthandlingunit"
+  ],
+  "fields": [
+    {
+      "fieldname": "transporthandlingunit",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "TransportHandlingUnit",
+      "options": "UBL TR TransportHandlingUnit"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-12-04 18:39:22.659992",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TransportHandlingUnits",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

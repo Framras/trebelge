@@ -1,0 +1,147 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 11:54:06.843771",
+  "description": "Ta\u015f\u0131ma \u015eekli: Ta\u015f\u0131ma \u015fekli bilgileri girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "journeyid",
+    "registrationnationalityid",
+    "registrationnationality",
+    "directioncode",
+    "transportmeanstypecode",
+    "tradeservicecode",
+    "stowage",
+    "airtransport",
+    "roadtransport",
+    "railtransport",
+    "maritimetransport",
+    "ownerparty",
+    "measurementdimension"
+  ],
+  "fields": [
+    {
+      "description": "Seyahat/Sefer numaras\u0131 girilir.",
+      "fieldname": "journeyid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Seyahat/Sefer numaras\u0131"
+    },
+    {
+      "description": "Kay\u0131tl\u0131 oldu\u011fu \u00fclke kodlu olarak girilir.",
+      "fieldname": "registrationnationalityid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Kay\u0131tl\u0131 oldu\u011fu \u00fclke kodu"
+    },
+    {
+      "description": "Kay\u0131tl\u0131 oldu\u011fu \u00fclke serbest metin olarak girilir.",
+      "fieldname": "registrationnationality",
+      "fieldtype": "Table",
+      "label": "Kay\u0131tl\u0131 oldu\u011fu \u00fclke",
+      "options": "UBL TR RegistrationNationality"
+    },
+    {
+      "description": "Y\u00f6n bilgisi kodlu olarak girilir.",
+      "fieldname": "directioncode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Y\u00f6n bilgisi"
+    },
+    {
+      "description": "Ta\u015f\u0131ma \u015fekli kodlu olarak girilir.",
+      "fieldname": "transportmeanstypecode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Ta\u015f\u0131ma \u015fekli"
+    },
+    {
+      "description": "Ticaret servisi kodlu olarak girilir.",
+      "fieldname": "tradeservicecode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Ticaret servisi"
+    },
+    {
+      "description": "\u0130stifleme bilgisi kodlu olarak girilir.",
+      "fieldname": "stowage",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "\u0130stifleme bilgisi",
+      "options": "UBL TR Stowage"
+    },
+    {
+      "description": "Hava ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi girilir.",
+      "fieldname": "airtransport",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Hava ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi",
+      "options": "UBL TR AirTransport"
+    },
+    {
+      "description": "Karayolu ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi girilir.",
+      "fieldname": "roadtransport",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Karayolu ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi",
+      "options": "UBL TR RoadTransport"
+    },
+    {
+      "description": "Demiryolu ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi girilir.",
+      "fieldname": "railtransport",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Demiryolu ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi",
+      "options": "UBL TR RailTransport"
+    },
+    {
+      "description": "Deniz ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi girilir.",
+      "fieldname": "maritimetransport",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Deniz ta\u015f\u0131mac\u0131l\u0131\u011f\u0131 bilgisi",
+      "options": "UBL TR MaritimeTransport"
+    },
+    {
+      "description": "Bu araca sahip olan taraf bilgisi girilir.",
+      "fieldname": "ownerparty",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Araca sahip taraf",
+      "options": "UBL TR Party"
+    },
+    {
+      "description": "\u00d6l\u00e7\u00fcm bilgileri girilir.",
+      "fieldname": "measurementdimension",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u00d6l\u00e7\u00fcm bilgileri",
+      "options": "UBL TR Dimensions"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-04 11:54:06.843771",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TransportMeans",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

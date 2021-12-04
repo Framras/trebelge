@@ -1,0 +1,217 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-04 18:30:02.592869",
+  "description": "Ta\u015f\u0131ma Y\u00fckleme-Bo\u015faltma \u00dcniteleri: Ta\u015f\u0131ma \u00fcnitesi hakk\u0131nda detayl\u0131 bilgi girilir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "transporthandlingunittypecode",
+    "handlingcode",
+    "handlinginstructions",
+    "hazardousriskindicator",
+    "totalgoodsitemquantity",
+    "totalgoodsitemquantityunitcode",
+    "totalpackagequantity",
+    "totalpackagequantityunitcode",
+    "damageremarks",
+    "traceid",
+    "actualpackage",
+    "transportequipment",
+    "transportmeans",
+    "hazardousgoodstransit",
+    "measurementdimension",
+    "minimumtemperature",
+    "maximumtemperature",
+    "floorspacemeasurementdimension",
+    "palletspacemeasurementdimension",
+    "shipmentdocumentreference",
+    "customsdeclaration"
+  ],
+  "fields": [
+    {
+      "description": "Ta\u015f\u0131ma \u00fcnitesi numaras\u0131 girilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Ta\u015f\u0131ma \u00fcnitesi numaras\u0131"
+    },
+    {
+      "description": "Ta\u015f\u0131ma \u00fcnitesi tipi kodlu olarak girilir.",
+      "fieldname": "transporthandlingunittypecode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Ta\u015f\u0131ma \u00fcnitesi tipi"
+    },
+    {
+      "description": "Nas\u0131l paketlenip ta\u015f\u0131naca\u011f\u0131 kodlu olarak tan\u0131mlar.",
+      "fieldname": "handlingcode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Ta\u015f\u0131ma kodu"
+    },
+    {
+      "description": "Nas\u0131l paketlenip ta\u015f\u0131naca\u011f\u0131 serbest metin olarak tan\u0131mlar.",
+      "fieldname": "handlinginstructions",
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
+      "label": "Paketleme/Ta\u015f\u0131ma Y\u00f6nergesi"
+    },
+    {
+      "description": "Tehlikeli madde i\u00e7erip i\u00e7ermedi\u011fini belirtir.",
+      "fieldname": "hazardousriskindicator",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Tehlikeli Madde \u0130\u00e7eri\u011fi"
+    },
+    {
+      "description": "Toplam \u00fcr\u00fcn miktar\u0131 girilir.",
+      "fieldname": "totalgoodsitemquantity",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Toplam \u00fcr\u00fcn miktar\u0131"
+    },
+    {
+      "fieldname": "totalgoodsitemquantityunitcode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Toplam \u00fcr\u00fcn \u00f6l\u00e7\u00fc birimi",
+      "options": "UBL TR Unitcodes"
+    },
+    {
+      "description": "Toplam paket miktar\u0131 girilir.",
+      "fieldname": "totalpackagequantity",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Toplam paket miktar\u0131"
+    },
+    {
+      "fieldname": "totalpackagequantityunitcode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Toplam paket miktar\u0131 \u00f6l\u00e7\u00fc birimi",
+      "options": "UBL TR Unitcodes"
+    },
+    {
+      "description": "Zarar bilgisi girilir.",
+      "fieldname": "damageremarks",
+      "fieldtype": "Table",
+      "label": "Zarar bilgisi",
+      "options": "UBL TR DamageRemarks"
+    },
+    {
+      "description": "Takip numaras\u0131 girilir.",
+      "fieldname": "traceid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Takip numaras\u0131"
+    },
+    {
+      "description": "\u0130\u00e7erdi\u011fi paket bilgileri girilir.",
+      "fieldname": "actualpackage",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130\u00e7erdi\u011fi paketler",
+      "options": "UBL TR Packages"
+    },
+    {
+      "description": "Ekipman bilgisi girilir.",
+      "fieldname": "transportequipment",
+      "fieldtype": "Table MultiSelect",
+      "label": "Ekipman bilgisi",
+      "options": "UBL TR TransportEquipments"
+    },
+    {
+      "description": "Ta\u015f\u0131ma \u015fekli bilgisi girilir.",
+      "fieldname": "transportmeans",
+      "fieldtype": "Table MultiSelect",
+      "label": "Ta\u015f\u0131ma \u015fekli bilgisi",
+      "options": "UBL TR Transport Means"
+    },
+    {
+      "description": "Ta\u015f\u0131ma s\u0131ras\u0131ndaki tehlikeli mallar\u0131n bilgisi girilir.",
+      "fieldname": "hazardousgoodstransit",
+      "fieldtype": "Table MultiSelect",
+      "label": "Tehlikeli mallar\u0131n bilgisi",
+      "options": "UBL TR Hazardous Goods Transit"
+    },
+    {
+      "description": "Ta\u015f\u0131ma \u00fcnitesi \u00f6l\u00e7\u00fcleri girilir.",
+      "fieldname": "measurementdimension",
+      "fieldtype": "Table MultiSelect",
+      "label": "Ta\u015f\u0131ma \u00fcnitesi \u00f6l\u00e7\u00fcleri",
+      "options": "UBL TR Dimensions"
+    },
+    {
+      "description": "Ta\u015f\u0131ma \u00fcnitesi i\u00e7in maksimum s\u0131cakl\u0131k girilir.",
+      "fieldname": "minimumtemperature",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "En d\u00fc\u015f\u00fck s\u0131cakl\u0131k",
+      "options": "UBL TR Temperature"
+    },
+    {
+      "description": "Ta\u015f\u0131ma \u00fcnitesi i\u00e7in maksimum s\u0131cakl\u0131k girilir.",
+      "fieldname": "maximumtemperature",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "En y\u00fcksek s\u0131cakl\u0131k",
+      "options": "UBL TR Temperature"
+    },
+    {
+      "description": "Yerde kaplad\u0131\u011f\u0131 alan bilgisi girilir.",
+      "fieldname": "floorspacemeasurementdimension",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Yerde kaplad\u0131\u011f\u0131 alan",
+      "options": "UBL TR Dimension"
+    },
+    {
+      "description": "Palette kaplad\u0131\u011f\u0131 alan bilgisi girilir.",
+      "fieldname": "palletspacemeasurementdimension",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Palette kaplad\u0131\u011f\u0131 alan",
+      "options": "UBL TR Dimension"
+    },
+    {
+      "description": "\u0130lgili g\u00f6nderi belgesine referans girilir.",
+      "fieldname": "shipmentdocumentreference",
+      "fieldtype": "Table MultiSelect",
+      "label": "\u0130lgili g\u00f6nderi belgesi",
+      "options": "UBL TR DocumentReferences"
+    },
+    {
+      "description": "G\u00fcmr\u00fck numaraland\u0131rma bilgisi girilir.",
+      "fieldname": "customsdeclaration",
+      "fieldtype": "Table MultiSelect",
+      "label": "G\u00fcmr\u00fck numaraland\u0131rma bilgisi",
+      "options": "UBL TR CustomsDeclarations"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-04 18:30:02.592869",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TransportHandlingUnit",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
