@@ -43,7 +43,8 @@ class TRUBLParty(TRUBLCommonElement):
         for partyidentification in partyidentifications_:
             partyidentifications.append(self._strategyContext.return_element_data(partyidentification, cbcnamespace,
                                                                                   cacnamespace))
-        party['partyidentifications'] = partyidentifications
+        party['partyidentification'] = partyidentifications
+
         partyname_ = element.find(cacnamespace + 'PartyName')
         if partyname_ is not None:
             strategy: TRUBLCommonElement = TRUBLPartyName()
