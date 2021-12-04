@@ -54,23 +54,27 @@
       "description": "Kargonun nas\u0131l paketlenip ta\u015f\u0131naca\u011f\u0131 kodlu olarak tan\u0131mlar (\u00f6rne\u011fin k\u0131r\u0131lacak mal).",
       "fieldname": "handlingcode",
       "fieldtype": "Data",
+      "in_list_view": 1,
       "label": "Paketleme ta\u015f\u0131ma kodu"
     },
     {
       "description": "Kargonun nas\u0131l paketlenip ta\u015f\u0131naca\u011f\u0131 serbest metin olarak tan\u0131mlar.",
       "fieldname": "handlinginstructions",
       "fieldtype": "Small Text",
+      "in_list_view": 1,
       "label": "Paketleme ta\u015f\u0131ma y\u00f6nergesi"
     },
     {
       "description": "Br\u00fct a\u011f\u0131rl\u0131k girilir.",
       "fieldname": "grossweightmeasure",
       "fieldtype": "Float",
+      "in_list_view": 1,
       "label": "Br\u00fct a\u011f\u0131rl\u0131k"
     },
     {
       "fieldname": "grossweightmeasureunitcode",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Br\u00fct a\u011f\u0131rl\u0131k birimi",
       "options": "UBL TR Unitcodes"
     },
@@ -78,11 +82,13 @@
       "description": "Net a\u011f\u0131rl\u0131k girilir.",
       "fieldname": "netweightmeasure",
       "fieldtype": "Float",
+      "in_list_view": 1,
       "label": "Net a\u011f\u0131rl\u0131k"
     },
     {
       "fieldname": "netweightmeasureunitcode",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Net a\u011f\u0131rl\u0131k birimi",
       "options": "UBL TR Unitcodes"
     },
@@ -90,11 +96,13 @@
       "description": "Br\u00fct hacim girilir.",
       "fieldname": "grossvolumemeasure",
       "fieldtype": "Float",
+      "in_list_view": 1,
       "label": "Br\u00fct hacim"
     },
     {
       "fieldname": "grossvolumemeasureunitcode",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Br\u00fct hacim birimi",
       "options": "UBL TR Unitcodes"
     },
@@ -102,11 +110,13 @@
       "description": "Net hacim girilir.",
       "fieldname": "netvolumemeasure",
       "fieldtype": "Float",
+      "in_list_view": 1,
       "label": "Net hacim"
     },
     {
       "fieldname": "netvolumemeasureunitcode",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Net hacim birimi",
       "options": "UBL TR Unitcodes"
     },
@@ -114,11 +124,13 @@
       "description": "Toplam mal miktar\u0131 girilir.",
       "fieldname": "totalgoodsitemquantity",
       "fieldtype": "Float",
+      "in_list_view": 1,
       "label": "Toplam mal miktar\u0131"
     },
     {
       "fieldname": "totalgoodsitemquantityunitcode",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Toplam mal miktar\u0131 birimi",
       "options": "UBL TR Unitcodes"
     },
@@ -126,11 +138,13 @@
       "description": "Toplam ta\u015f\u0131ma \u00fcnitesi miktar\u0131 girilir.",
       "fieldname": "totaltransporthandlingunitquantity",
       "fieldtype": "Float",
+      "in_list_view": 1,
       "label": "Toplam ta\u015f\u0131ma \u00fcnitesi miktar\u0131"
     },
     {
       "fieldname": "totaltransporthandlingunitquantityunitcode",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Toplam ta\u015f\u0131ma \u00fcnitesi miktar\u0131 birimi",
       "options": "UBL TR Unitcodes"
     },
@@ -138,11 +152,13 @@
       "description": "Sigorta tutar\u0131 girilir.",
       "fieldname": "insurancevalueamount",
       "fieldtype": "Currency",
+      "in_list_view": 1,
       "label": "Sigorta tutar\u0131"
     },
     {
       "fieldname": "insurancevalueamountcurrencyid",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Sigorta tutar\u0131 d\u00f6viz",
       "options": "UBL TR CurrencyCode"
     },
@@ -150,11 +166,13 @@
       "description": "Beyan edilen g\u00fcmr\u00fck de\u011feri tutar\u0131 girilir.",
       "fieldname": "declaredcustomsvalueamount",
       "fieldtype": "Currency",
+      "in_list_view": 1,
       "label": "Beyan edilen g\u00fcmr\u00fck de\u011feri"
     },
     {
       "fieldname": "declaredcustomsvalueamountcurrencyid",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Beyan edilen g\u00fcmr\u00fck de\u011feri d\u00f6viz",
       "options": "UBL TR CurrencyCode"
     },
@@ -162,11 +180,13 @@
       "description": "Beyan edilen ta\u015f\u0131ma \u00fccreti (navlun) girilir.",
       "fieldname": "declaredforcarriagevalueamount",
       "fieldtype": "Currency",
+      "in_list_view": 1,
       "label": "Beyan edilen ta\u015f\u0131ma \u00fccreti"
     },
     {
       "fieldname": "declaredforcarriagevalueamountcurrencyid",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Beyan edilen ta\u015f\u0131ma \u00fccreti d\u00f6viz",
       "options": "UBL TR CurrencyCode"
     },
@@ -174,11 +194,13 @@
       "description": "\u00dcr\u00fcn\u00fcn GTIP k\u0131ymet de\u011feri girilir.",
       "fieldname": "declaredstatisticsvalueamount",
       "fieldtype": "Currency",
+      "in_list_view": 1,
       "label": "GTIP k\u0131ymet de\u011feri"
     },
     {
       "fieldname": "declaredstatisticsvalueamountcurrencyid",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "GTIP k\u0131ymet de\u011feri d\u00f6viz",
       "options": "UBL TR CurrencyCode"
     },
@@ -186,11 +208,13 @@
       "description": "FOB de\u011feri girilir.",
       "fieldname": "freeonboardvalueamount",
       "fieldtype": "Currency",
+      "in_list_view": 1,
       "label": "FOB de\u011feri"
     },
     {
       "fieldname": "freeonboardvalueamountcurrencyid",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "FOB de\u011feri d\u00f6viz",
       "options": "UBL TR CurrencyCode"
     },
@@ -204,31 +228,37 @@
     {
       "description": "DespatchLine/Shipment eleman\u0131 i\u00e7erisinde kullan\u0131m\u0131nda fiyat bilgileri girilir.",
       "fieldname": "goodsitem",
-      "fieldtype": "Data",
-      "label": "fiyat bilgileri"
+      "fieldtype": "Table MultiSelect",
+      "label": "Fiyat bilgileri",
+      "options": "UBL TR GoodsItems"
     },
     {
       "description": "G\u00f6nderinin hangi a\u015famada oldu\u011fu bilgisi girilir. Ayr\u0131ca ta\u015f\u0131y\u0131c\u0131 (plaka, \u015fof\u00f6r) gibi detay bilgiler girilir. (TransportModeCode eleman\u0131 havayolu, karayolu gibi, g\u00f6nderinin hangi modda g\u00f6nderildi\u011fi bilgisini i\u00e7erir)",
       "fieldname": "shipmentstage",
-      "fieldtype": "Data",
-      "label": "G\u00f6nderi a\u015famas\u0131"
+      "fieldtype": "Table MultiSelect",
+      "label": "G\u00f6nderi a\u015famas\u0131",
+      "options": "UBL TR ShipmentStages"
     },
     {
       "description": "DespatchAdvice dok\u00fcman\u0131 i\u00e7erisinde kullan\u0131m\u0131nda ta\u015f\u0131y\u0131c\u0131 firma, fiili sevk tarihi ve as\u0131l teslim tarihi bilgileri girilir.",
       "fieldname": "delivery",
-      "fieldtype": "Data",
-      "label": "Delivery"
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Delivery",
+      "options": "UBL TR Delivery"
     },
     {
       "description": "Ta\u015f\u0131ma \u00fcniteleri bilgisi girilir.",
       "fieldname": "transporthandlingunit",
-      "fieldtype": "Data",
-      "label": "Ta\u015f\u0131ma \u00fcniteleri"
+      "fieldtype": "Table MultiSelect",
+      "label": "Ta\u015f\u0131ma \u00fcniteleri",
+      "options": "UBL TR TransportHandlingUnits"
     },
     {
       "description": "\u00dcr\u00fcnlerin iade edilece\u011fi adres girilir.",
       "fieldname": "returnaddress",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "\u0130ade adresi",
       "options": "UBL TR Address"
     },
@@ -236,6 +266,7 @@
       "description": "\u0130lk ula\u015f\u0131m liman\u0131 girilir.",
       "fieldname": "firstarrivalportlocation",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "\u0130lk ula\u015f\u0131m liman\u0131",
       "options": "UBL TR Location"
     },
@@ -243,13 +274,14 @@
       "description": "Son \u00e7\u0131k\u0131\u015f liman\u0131 girilir.",
       "fieldname": "lastexitportlocation",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Son \u00e7\u0131k\u0131\u015f liman\u0131",
       "options": "UBL TR Location"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 23:13:54.460790",
+  "modified": "2021-12-04 19:31:41.339481",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Shipment",
