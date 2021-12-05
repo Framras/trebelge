@@ -88,7 +88,7 @@ class TRUBLDirector:
         self.builder.build_issuedate(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_issuetime(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_invoicetypecode(self._get_file_path(), self._get_cbc_namespace())
-        self.builder.build_notes(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_note(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_documentcurrencycode(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_taxcurrencycode(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_pricingcurrencycode(self._get_file_path(), self._get_cbc_namespace())
