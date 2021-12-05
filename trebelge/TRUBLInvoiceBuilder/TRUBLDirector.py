@@ -98,9 +98,44 @@ class TRUBLDirector:
         self.builder.build_linecountnumeric(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_invoiceperiod(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
         self.builder.build_orderreference(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_billingreference(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_despatchdocumentreference(self._get_file_path(), self._get_cbc_namespace(),
+                                                     self._get_cac_namespace())
+        self.builder.build_receiptdocumentreference(self._get_file_path(), self._get_cbc_namespace(),
+                                                    self._get_cac_namespace())
+        self.builder.build_originatordocumentreference(self._get_file_path(), self._get_cbc_namespace(),
+                                                       self._get_cac_namespace())
+        self.builder.build_contractdocumentreference(self._get_file_path(), self._get_cbc_namespace(),
+                                                     self._get_cac_namespace())
+        self.builder.build_additionaldocumentreference(self._get_file_path(), self._get_cbc_namespace(),
+                                                       self._get_cac_namespace())
+        self.builder.build_accountingsupplierparty(self._get_file_path(), self._get_cbc_namespace(),
+                                                   self._get_cac_namespace())
+        self.builder.build_accountingcustomerparty(self._get_file_path(), self._get_cbc_namespace(),
+                                                   self._get_cac_namespace())
+        self.builder.build_buyercustomerparty(self._get_file_path(), self._get_cbc_namespace(),
+                                              self._get_cac_namespace())
+        self.builder.build_sellersupplierparty(self._get_file_path(), self._get_cbc_namespace(),
+                                               self._get_cac_namespace())
+        self.builder.build_taxrepresentativeparty(self._get_file_path(), self._get_cbc_namespace(),
+                                                  self._get_cac_namespace())
+        self.builder.build_delivery(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_paymentmeans(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_paymentterms(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_allowancecharge(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_taxexchangerate(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_pricingexchangerate(self._get_file_path(), self._get_cbc_namespace(),
+                                               self._get_cac_namespace())
+        self.builder.build_paymentexchangerate(self._get_file_path(), self._get_cbc_namespace(),
+                                               self._get_cac_namespace())
+        self.builder.build_paymentalternativeexchangerate(self._get_file_path(), self._get_cbc_namespace(),
+                                                          self._get_cac_namespace())
+        self.builder.build_taxtotal(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_withholdingtaxtotal(self._get_file_path(), self._get_cbc_namespace(),
+                                               self._get_cac_namespace())
         self.builder.build_legalmonetarytotal(self._get_file_path(), self._get_cbc_namespace(),
                                               self._get_cac_namespace())
-        self.builder.get_product().commit_doc()
+        self.builder.build_invoiceline(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
 
     def build_tr_ubl_despatchadvice(self) -> None:
         self.builder.build_ublversionid(self._get_file_path(), self._get_cbc_namespace())
@@ -109,3 +144,22 @@ class TRUBLDirector:
         self.builder.build_id(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_copyindicator(self._get_file_path(), self._get_cbc_namespace())
         self.builder.build_issuedate(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_issuetime(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_despatchadvicetypecode(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_note(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_linecountnumeric(self._get_file_path(), self._get_cbc_namespace())
+        self.builder.build_orderreference(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_additionaldocumentreference(self._get_file_path(), self._get_cbc_namespace(),
+                                                       self._get_cac_namespace())
+        self.builder.build_despatchsupplierparty(self._get_file_path(), self._get_cbc_namespace(),
+                                                 self._get_cac_namespace())
+        self.builder.build_deliverycustomerparty(self._get_file_path(), self._get_cbc_namespace(),
+                                                 self._get_cac_namespace())
+        self.builder.build_buyercustomerparty(self._get_file_path(), self._get_cbc_namespace(),
+                                              self._get_cac_namespace())
+        self.builder.build_sellersupplierparty(self._get_file_path(), self._get_cbc_namespace(),
+                                               self._get_cac_namespace())
+        self.builder.build_originatorcustomerparty(self._get_file_path(), self._get_cbc_namespace(),
+                                                   self._get_cac_namespace())
+        self.builder.build_shipment(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
+        self.builder.build_despatchline(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
