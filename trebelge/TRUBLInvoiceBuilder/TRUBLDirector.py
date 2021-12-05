@@ -100,6 +100,7 @@ class TRUBLDirector:
         self.builder.build_orderreference(self._get_file_path(), self._get_cbc_namespace(), self._get_cac_namespace())
         self.builder.build_legalmonetarytotal(self._get_file_path(), self._get_cbc_namespace(),
                                               self._get_cac_namespace())
+        self.builder.get_product().commit_doc()
 
     def build_tr_ubl_despatchadvice(self) -> None:
         self.builder.build_ublversionid(self._get_file_path(), self._get_cbc_namespace())

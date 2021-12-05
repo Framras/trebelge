@@ -16,15 +16,16 @@ class TRUBLInvoice:
 
     def set_uuid(self, uuid_: str):
         if not frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_}):
-            self._invoice = frappe.new_doc(self._frappeDoctype)
-            self._invoice.uuid = uuid_
+            _invoice: Document = frappe.new_doc(self._frappeDoctype)
+            _invoice.uuid = uuid_
         else:
-            self._invoice = None
+            _invoice = None
+        self._invoice = _invoice
 
-    def add(self, part: dict) -> None:
+    def add(self, part: dict):
         if self._invoice is not None:
             for key in part.keys():
-                self._invoice.set(key, part.get(key))
+                self._invoice.key = part.get(key)
 
     def commit_doc(self):
         self._invoice.insert()

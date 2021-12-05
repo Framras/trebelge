@@ -12,6 +12,10 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def get_product(self) -> None:
+        pass
+
+    @abstractmethod
     def build_ublversionid(self, filepath: str, cbcnamespace: str) -> None:
         """
         ['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)')
