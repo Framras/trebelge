@@ -106,7 +106,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_despatchadvicetypecode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def build_notes(self, filepath: str, cbcnamespace: str) -> None:
+    def build_note(self, filepath: str, cbcnamespace: str) -> None:
         notes_ = ET.parse(filepath).getroot().findall(cbcnamespace + 'Note')
         if notes_ is not None:
             notes: list = []
@@ -197,25 +197,22 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                         'orderreference_' + key: orderreference_.get(key)
                     })
 
-    def build_orderreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        pass
-
     def build_billingreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_despatchdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_despatchdocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_receiptdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_receiptdocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_originatordocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_originatordocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_contractdocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_contractdocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_additionaldocumentreferences(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_additionaldocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     def build_accountingsupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
@@ -242,7 +239,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_taxrepresentativeparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_deliveries(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_delivery(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     def build_shipment(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
@@ -265,7 +262,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                         'paymentterms_' + key: paymentterm_.get(key)
                     })
 
-    def build_allowancecharges(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_allowancecharge(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     def build_taxexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
@@ -324,7 +321,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                         'paymentalternativeexchangerate_' + key: exchangerate_.get(key)
                     })
 
-    def build_taxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_taxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         taxtotals: list = []
         for taxtotal in ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal'):
             strategy: TRUBLCommonElement = TRUBLTaxTotal()
@@ -336,7 +333,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             'taxtotals': taxtotals
         })
 
-    def build_withholdingtaxtotals(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_withholdingtaxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         withholdingtaxtotals = ET.parse(filepath).getroot().findall(cacnamespace + 'WithholdingTaxTotal')
         if withholdingtaxtotals is not None:
             withholdingtaxtotals_: list = []
@@ -363,8 +360,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                     'legalmonetarytotal_' + key: monetarytotal_.get(key)
                 })
 
-    def build_invoicelines(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_invoiceline(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_despatchlines(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_despatchline(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
