@@ -209,13 +209,13 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_buyercustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
-    def build_originatorcustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        pass
-
     def build_sellersupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     def build_taxrepresentativeparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+        pass
+
+    def build_originatorcustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     def build_delivery(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
