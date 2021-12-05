@@ -25,7 +25,7 @@ class TRUBLInvoice:
     def add(self, part: dict):
         if self._invoice is not None:
             for key in part.keys():
-                self._invoice.key = part.get(key)
+                self._invoice.set(key, part.get(key))
 
     def commit_doc(self):
         self._invoice.insert()
