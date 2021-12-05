@@ -22,7 +22,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     _product: TRUBLInvoice = TRUBLInvoice()
 
     def _reset(self) -> None:
-        self._product = None
+        self._product: TRUBLInvoice = TRUBLInvoice()
 
     def set_product(self, uuid_: str):
         self._reset()

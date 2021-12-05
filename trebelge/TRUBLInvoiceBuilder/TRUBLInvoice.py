@@ -1,4 +1,5 @@
 import frappe
+from frappe.model.document import Document
 
 
 class TRUBLInvoice:
@@ -11,7 +12,7 @@ class TRUBLInvoice:
     always follow the same interface.
     """
     _frappeDoctype: str = 'UBL TR Invoice'
-    _invoice = frappe.new_doc(_frappeDoctype)
+    _invoice: Document = frappe.new_doc(_frappeDoctype)
 
     def set_uuid(self, uuid_: str):
         if not frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_}):
@@ -20,9 +21,10 @@ class TRUBLInvoice:
         else:
             self._invoice = None
 
-    def add(self, part) -> None:
+    def add(self, part: dict) -> None:
         if self._invoice is not None:
-            self._invoice.
+            for key in part.keys():
+                self._invoice.set(key, part.get(key))
 
     def commit_doc(self):
         self._invoice.insert()
