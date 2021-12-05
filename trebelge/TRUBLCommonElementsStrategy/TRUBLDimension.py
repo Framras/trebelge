@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLDimension(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
         ['AttributeID'] = ('cbc', 'attributeid', 'Zorunlu(1)')
         ['Measure'] = ('cbc', 'measure', 'Seçimli (0...1)')

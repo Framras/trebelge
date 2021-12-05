@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLAllowanceCharge(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
         ['ChargeIndicator'] = ('cbc', 'chargeindicator', 'Zorunlu (1)')
         ['AllowanceChargeReason'] = ('cbc', 'allowancechargereason', 'Seçimli (0...1)')

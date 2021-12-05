@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLFinancialInstitution(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
         ['Name'] = ('cbc', 'name', 'Seçimli(0..1)')
         """

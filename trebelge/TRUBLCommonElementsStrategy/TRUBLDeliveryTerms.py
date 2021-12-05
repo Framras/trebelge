@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLDeliveryTerms(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
         ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         ['SpecialTerms'] = ('cbc', 'specialterms', 'Seçimli (0...1)')

@@ -8,7 +8,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxCategory import TRUBLTaxCatego
 class TRUBLTaxSubtotal(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
         ['TaxableAmount'] = ('cbc', 'taxableamount', 'Seçimli (0...1)')
         ['currencyID'] = ('', 'taxableamount_currencyid', 'Zorunlu(1)')

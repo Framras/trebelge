@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+import frappe
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
@@ -15,7 +16,7 @@ class TRUBLParty(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Party'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         """
         ['WebsiteURI'] = ('cbc', 'websiteuri', 'Seçimli (0...1)')
         ['EndpointID'] = ('cbc', 'endpointid', 'Seçimli (0...1)')
@@ -42,17 +43,23 @@ class TRUBLParty(TRUBLCommonElement):
         self._strategyContext.set_strategy(strategy)
         partyidentifications: list = []
         for partyidentification in partyidentifications_:
-            partyidentifications.append(self._strategyContext.return_element_data(partyidentification, cbcnamespace,
-                                                                                  cacnamespace))
+            partyidentifications.append(
+                frappe.get_doc(
+                    'UBL TR PartyIdentification',
+                    self._strategyContext.return_element_data(partyidentification,
+                                                              cbcnamespace,
+                                                              cacnamespace)[0]['name']))
         party['partyidentification'] = partyidentifications
 
         partyname_ = element.find(cacnamespace + 'PartyName')
         if partyname_ is not None:
             strategy: TRUBLCommonElement = TRUBLPartyName()
             self._strategyContext.set_strategy(strategy)
-            partyname = self._strategyContext.return_element_data(partyname_, cbcnamespace,
-                                                                  cacnamespace)
-            party['partyname'] = partyname.get('name')
+            partyname = frappe.get_doc(
+                'UBL TR Partyname',
+                self._strategyContext.return_element_data(partyname_, cbcnamespace,
+                                                          cacnamespace)[0]['name'])
+            party['partyname'] = [partyname]
 
         postaladdress_ = element.find(cacnamespace + 'PostalAddress')
         strategy: TRUBLCommonElement = TRUBLAddress()
