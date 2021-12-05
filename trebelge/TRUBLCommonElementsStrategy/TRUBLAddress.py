@@ -34,8 +34,7 @@ class TRUBLAddress(TRUBLCommonElement):
         # ['Region'] = ('cbc', 'region', 'Seçimli (0...1)')
         # ['District'] = ('cbc', 'district', 'Seçimli (0...1)')
         cbcsecimli01: list = ['ID', 'Postbox', 'Room', 'StreetName', 'BlockName', 'BuildingName', 'PostalZone',
-                              'Region',
-                              'District']
+                              'Region', 'District']
         for elementtag_ in cbcsecimli01:
             field_ = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
