@@ -10,7 +10,7 @@ class TRUBLInvoice:
     unrelated products. In other words, results of various builders may not
     always follow the same interface.
     """
-    _frappeDoctype: str = 'TR UBL Received Invoice'
+    _frappeDoctype: str = 'UBL TR Invoice'
     _invoice = None
 
     def __init__(self, uuid_: str):
