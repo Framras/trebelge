@@ -10,7 +10,7 @@ class TRUBLAddress(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Address'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         """
         ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')

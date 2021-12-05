@@ -7,7 +7,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 class TRUBLPartyIdentification(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR PartyIdentification'
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
         # ['schemeID'] = ('', 'schemeid', 'Zorunlu (1)')
         partyidentification_ = element.find(cbcnamespace + 'ID')
@@ -22,4 +22,4 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
             _frappeDoc = frappe.get_doc(newpartyidentification)
             _frappeDoc.insert()
 
-        return frappe.get_all(self._frappeDoctype, filters=partyidentification, fields={'name'})
+        return frappe.get_all(self._frappeDoctype, filters=partyidentification)

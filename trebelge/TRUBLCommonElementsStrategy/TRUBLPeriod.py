@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLPeriod(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         """
         ['StartDate'] = ('cbc', 'startdate', 'Seçimli (0...1)')
         ['StartTime'] = ('cbc', 'starttime', 'Seçimli (0...1)')

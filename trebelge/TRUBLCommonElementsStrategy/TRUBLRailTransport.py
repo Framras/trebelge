@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLRailTransport(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         """
         ['TrainID'] = ('cbc', 'TrainID', 'Zorunlu(1)')
         ['RailCarID'] = ('cbc', 'RailCarID', 'Seçimli (0...1)')

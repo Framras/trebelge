@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLCountry(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         """
         ['IdentificationCode'] = ('cbc', 'identificationcode', 'Seçimli (0...1)')
         ['Name'] = ('cbc', 'name', 'Zorunlu(1)')

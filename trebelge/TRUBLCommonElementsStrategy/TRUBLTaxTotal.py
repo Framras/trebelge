@@ -10,7 +10,7 @@ class TRUBLTaxTotal(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
     _frappeDoctype: str = 'TR UBL Tax Total'
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         """
         ['TaxAmount'] = ('cbc', 'taxamount', 'Zorunlu(1)')
         ['currencyID'] = ('', 'taxamount_currencyid', 'Zorunlu(1)')

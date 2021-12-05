@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLCommunication(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         """
         ['ChannelCode'] = ('cbc', 'channelcode', 'Zorunlu(1)')
         ['Channel'] = ('cbc', 'channel', 'Seçimli (0...1)')

@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLOrderReference(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         """
         ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         ['SalesOrderID'] = ('cbc', 'salesorderid', 'Seçimli (0...1)')

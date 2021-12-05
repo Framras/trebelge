@@ -8,7 +8,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBL
 class TRUBLFinancialAccount(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         """
         ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         ['CurrencyCode'] = ('cbc', 'currencycode', 'Seçimli (0...1)')

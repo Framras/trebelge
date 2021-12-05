@@ -9,7 +9,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 class TRUBLCustomerParty(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str):
         customerparty: dict = {}
         # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'customerparty')
         party_ = element.find(cacnamespace + 'Party')
