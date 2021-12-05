@@ -92,7 +92,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for note in notes_:
                 notes.append({'note': note.text})
             self._product.add({
-                'notes': notes
+                'note': notes
             })
 
     def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
