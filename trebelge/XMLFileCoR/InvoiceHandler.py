@@ -20,7 +20,7 @@ class InvoiceHandler(AbstractXMLFileHandler):
         for namespace in frappe.get_all(
                 self._eBelgeSettingsDoctype, filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
                 fields={"namespace_specification"}):
-            if ET.parse(file_path).getroot().tag == namespace + self._eBelgeTag:
+            if ET.parse(file_path).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
                 director: TRUBLDirector = TRUBLDirector()
                 director.set_file_path(file_path)
                 director.builder = TRUBLInvoiceBuilder(director.get_uuid())
