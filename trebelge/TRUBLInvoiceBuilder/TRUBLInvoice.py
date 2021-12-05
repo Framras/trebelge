@@ -11,18 +11,18 @@ class TRUBLInvoice:
     always follow the same interface.
     """
     _frappeDoctype: str = 'UBL TR Invoice'
-    _invoice = None
+    _invoice = frappe.new_doc(_frappeDoctype)
 
     def set_uuid(self, uuid_: str):
-        product: dict = {'doctype': 'UBL TR Invoice', 'uuid': uuid_}
-        if not frappe.get_all(self._frappeDoctype, filters=product):
+        if not frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_}):
             self._invoice = frappe.new_doc(self._frappeDoctype)
+            self._invoice.uuid = uuid_
         else:
             self._invoice = None
 
     def add(self, part) -> None:
-        if self._invoice[0] is not None:
-            self._invoice.as_dict.append = part
+        if self._invoice is not None:
+            self._invoice.
 
     def commit_doc(self):
         self._invoice.insert()

@@ -24,7 +24,7 @@ class InvoiceHandler(AbstractXMLFileHandler):
                 director: TRUBLDirector = TRUBLDirector()
                 director.set_file_path(file_path)
                 director.builder = TRUBLInvoiceBuilder()
-                director.builder.set_uuid(director.get_uuid())
+                director.builder.set_product(director.get_uuid())
                 director.build_tr_ubl_invoice()
             else:
                 self._successor.handle_xml_file(file_path)

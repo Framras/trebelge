@@ -7,9 +7,8 @@ class TRUBLBuilder(ABC):
     the Product objects.
     """
 
-    @property
     @abstractmethod
-    def product(self) -> None:
+    def set_product(self, uuid_: str) -> None:
         pass
 
     @abstractmethod
