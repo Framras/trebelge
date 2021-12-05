@@ -10,6 +10,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyIdentification import TRUBLP
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyLegalEntity import TRUBLPartyLegalEntity
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyName import TRUBLPartyName
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyTaxScheme import TRUBLPartyTaxScheme
+from trebelge.TRUBLCommonElementsStrategy.TRUBLPerson import TRUBLPerson
 
 
 class TRUBLParty(TRUBLCommonElement):
@@ -17,27 +18,8 @@ class TRUBLParty(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
-        """
-        ['WebsiteURI'] = ('cbc', 'websiteuri', 'Seçimli (0...1)')
-        ['EndpointID'] = ('cbc', 'endpointid', 'Seçimli (0...1)')
-        ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
-        ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
-        ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)', partyname)
-        ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
-        ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)', 'physicallocation')
-        ['PartyTaxScheme'] = ('cac', TaxScheme(), 'Seçimli (0...1)', 'partytaxscheme')
-        ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentities')
-        ['Contact'] = ('cac', Contact(), 'Seçimli (0...1)', 'contact')
-        ['Person'] = ('cac', Person(), 'Seçimli (0...1)', 'person')
-        ['AgentParty'] = ('cac', Party(), 'Seçimli (0...1)', 'agentparty')
-        """
         party: dict = {}
-        cbcsecimli01: list = ['WebsiteURI', 'EndpointID', 'IndustryClassificationCode']
-        for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
-                party[field_.tag.lower()] = field_.text
-
+        # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
         partyidentifications_ = element.findall(cacnamespace + 'PartyIdentification')
         strategy: TRUBLCommonElement = TRUBLPartyIdentification()
         self._strategyContext.set_strategy(strategy)
@@ -51,69 +33,73 @@ class TRUBLParty(TRUBLCommonElement):
                                                               cacnamespace)[0]['name']))
         party['partyidentification'] = partyidentifications
 
-        partyname_ = element.find(cacnamespace + 'PartyName')
-        if partyname_ is not None:
-            strategy: TRUBLCommonElement = TRUBLPartyName()
-            self._strategyContext.set_strategy(strategy)
-            partyname = frappe.get_doc(
-                'UBL TR Partyname',
-                self._strategyContext.return_element_data(partyname_, cbcnamespace,
-                                                          cacnamespace)[0]['name'])
-            party['partyname'] = [partyname]
-
+        # ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
         postaladdress_ = element.find(cacnamespace + 'PostalAddress')
         strategy: TRUBLCommonElement = TRUBLAddress()
         self._strategyContext.set_strategy(strategy)
-        postaladdress = self._strategyContext.return_element_data(postaladdress_, cbcnamespace,
-                                                                  cacnamespace)
-        for key in postaladdress.keys():
-            party['postaladdress_' + key] = postaladdress.get(key)
-        party['partyidentifications'] = partyidentifications
-        physicallocation_ = element.find(cacnamespace + 'PhysicalLocation')
-        if physicallocation_ is not None:
-            strategy: TRUBLCommonElement = TRUBLLocation()
-            self._strategyContext.set_strategy(strategy)
-            location = self._strategyContext.return_element_data(physicallocation_, cbcnamespace,
-                                                                 cacnamespace)
-            for key in location.keys():
-                party['location_' + key] = location.get(key)
-        partytaxscheme_ = element.find(cacnamespace + 'PartyTaxScheme')
-        if partytaxscheme_ is not None:
-            strategy: TRUBLCommonElement = TRUBLPartyTaxScheme()
-            self._strategyContext.set_strategy(strategy)
-            partytaxscheme = self._strategyContext.return_element_data(partytaxscheme_, cbcnamespace,
-                                                                       cacnamespace)
-            for key in partytaxscheme.keys():
-                party['partytaxscheme_' + key] = partytaxscheme.get(key)
+        party['postaladdress'] = [frappe.get_doc(
+            'UBL TR Address',
+            self._strategyContext.return_element_data(postaladdress_, cbcnamespace,
+                                                      cacnamespace)[0]['name'])]
+
+        # ['WebsiteURI'] = ('cbc', 'websiteuri', 'Seçimli (0...1)')
+        # ['EndpointID'] = ('cbc', 'endpointid', 'Seçimli (0...1)')
+        # ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
+        cbcsecimli01: list = ['WebsiteURI', 'EndpointID', 'IndustryClassificationCode']
+        for elementtag_ in cbcsecimli01:
+            field_ = element.find(cbcnamespace + elementtag_)
+            if field_ is not None:
+                party[field_.tag.lower()] = field_.text
+
+        # ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)', partyname)
+        # ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)', 'physicallocation')
+        # ['PartyTaxScheme'] = ('cac', TaxScheme(), 'Seçimli (0...1)', 'partytaxscheme')
+        # ['Contact'] = ('cac', Contact(), 'Seçimli (0...1)', 'contact')
+        # ['Person'] = ('cac', Person(), 'Seçimli (0...1)', 'person')
+        # ['AgentParty'] = ('cac', Party(), 'Seçimli (0...1)', 'agentparty')
+        cacsecimli01: list = \
+            [{'Tag': 'PartyName', 'strategy': TRUBLPartyName(), 'docType': 'UBL TR Party', 'fieldName': 'partyname'},
+             {'Tag': 'PhysicalLocation', 'strategy': TRUBLLocation(), 'docType': 'UBL TR Location',
+              'fieldName': 'physicallocation'},
+             {'Tag': 'PartyTaxScheme', 'strategy': TRUBLPartyTaxScheme(), 'docType': 'UBL TR PartyTaxScheme',
+              'fieldName': 'partytaxscheme'},
+             {'Tag': 'Contact', 'strategy': TRUBLContact(), 'docType': 'UBL TR Contact', 'fieldName': 'contact'},
+             {'Tag': 'Person', 'strategy': TRUBLPerson(), 'docType': 'UBL TR Person',
+              'fieldName': 'person'},
+             {'Tag': 'AgentParty', 'strategy': TRUBLParty(), 'docType': 'UBL TR Party',
+              'fieldName': 'agentparty'}
+             ]
+        for element_ in cacsecimli01:
+            tagelement_ = element.find(cacnamespace + element_.get('Tag'))
+            if tagelement_ is not None:
+                strategy: TRUBLCommonElement = element_.get('strategy')
+                self._strategyContext.set_strategy(strategy)
+                party[element_.get('fieldName')] = [frappe.get_doc(
+                    element_.get('docType'),
+                    self._strategyContext.return_element_data(tagelement_, cbcnamespace,
+                                                              cacnamespace)[0]['name'])]
+
+        # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
         partylegalentity_ = element.find(cacnamespace + 'PartyLegalEntity')
         if partylegalentity_ is not None:
             strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
             self._strategyContext.set_strategy(strategy)
-            partylegalentities = self._strategyContext.return_element_data(partytaxscheme_, cbcnamespace,
-                                                                           cacnamespace)
-            partylegalentities_: list = []
-            for partylegalentity in partylegalentities:
-                partylegalentities_.append(partylegalentity)
-            party['partylegalentities'] = partylegalentities_
-        contact_ = element.find(cacnamespace + 'Contact')
-        if contact_ is not None:
-            strategy: TRUBLCommonElement = TRUBLContact()
-            self._strategyContext.set_strategy(strategy)
-            contact = self._strategyContext.return_element_data(contact_, cbcnamespace,
-                                                                cacnamespace)
+            partylegalentities: list = []
+            for partylegalentity in partylegalentity_:
+                partylegalentities.append(
+                    frappe.get_doc(
+                        'UBL TR PartyLegalEntity',
+                        self._strategyContext.return_element_data(partylegalentity,
+                                                                  cbcnamespace,
+                                                                  cacnamespace)[0]['name']))
+            party['partylegalentity'] = partylegalentities
 
-        person_ = element.find(cacnamespace + 'Person')
-        if person_ is not None:
-            strategy: TRUBLCommonElement = TRUBLPerson()
-            self._strategyContext.set_strategy(strategy)
-            person = self._strategyContext.return_element_data(person_, cbcnamespace,
-                                                               cacnamespace)
+        if not frappe.get_all(self._frappeDoctype, filters=party):
+            pass
+        else:
+            newparty = party
+            newparty['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newparty)
+            _frappeDoc.insert()
 
-        agentparty_ = element.find(cacnamespace + 'AgentParty')
-        if agentparty_ is not None:
-            strategy: TRUBLCommonElement = TRUBLParty()
-            self._strategyContext.set_strategy(strategy)
-            agentparty = self._strategyContext.return_element_data(agentparty_, cbcnamespace,
-                                                                   cacnamespace)
-
-        return party
+        return frappe.get_all(self._frappeDoctype, filters=party)

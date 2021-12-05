@@ -97,7 +97,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "\u00dclke",
-      "options": "Country",
+      "options": "UBL TR Country",
       "reqd": 1
     },
     {
@@ -110,7 +110,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-05 09:45:42.144244",
+  "modified": "2021-12-05 13:47:18.632880",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Address",
