@@ -13,8 +13,8 @@ class TRUBLInvoice:
     _frappeDoctype: str = 'UBL TR Invoice'
     _invoice = None
 
-    def __init__(self, uuid_: str):
-        product: dict = {"doctype": self._frappeDoctype, "uuid": uuid_}
+    def set_uuid(self, uuid_: str):
+        product: dict = {'doctype': 'UBL TR Invoice', 'uuid': uuid_}
         if not frappe.get_all(self._frappeDoctype, filters=product):
             self._invoice = frappe.new_doc(self._frappeDoctype)
         else:

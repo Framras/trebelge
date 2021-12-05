@@ -19,39 +19,18 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     several variations of Builders, implemented differently.
     """
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
-
-    def __init__(self, uuid_: str) -> None:
-        """
-        A fresh builder instance should contain a blank product object, which is
-        used in further assembly.
-        """
-        self._set_product(uuid_)
+    _product: TRUBLInvoice = TRUBLInvoice()
 
     def _reset(self) -> None:
         self._product = None
 
-    def _set_product(self, uuid_: str):
-        self._product = TRUBLInvoice(uuid_)
-
-    @property
-    def product(self) -> TRUBLInvoice:
-        """
-        Concrete Builders are supposed to provide their own methods for
-        retrieving results. That's because various types of builders may create
-        entirely different products that don't follow the same interface.
-        Therefore, such methods cannot be declared in the base Builder interface
-        (at least in a statically typed programming language).
-
-        Usually, after returning the end result to the client, a builder
-        instance is expected to be ready to start producing another product.
-        That's why it's a usual practice to call the reset method at the end of
-        the `getProduct` method body. However, this behavior is not mandatory,
-        and you can make your builders wait for an explicit reset call from the
-        client code before disposing of the previous result.
-        """
-        product = self._product
+    def set_product(self, uuid_: str):
         self._reset()
-        return product
+        self._product: TRUBLInvoice = TRUBLInvoice()
+        self._product.set_uuid(uuid_)
+
+    def get_product(self) -> TRUBLInvoice:
+        return self._product
 
     def build_ublversionid(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
