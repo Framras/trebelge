@@ -53,7 +53,7 @@ def check_all_xml_files():
     for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
         # retrieve file path of xmlFile
-        filePath: str = frappe.get_site_path() + xmlFile.file_url
+        filePath: str = frappe.get_site_path() + xmlFile.get('file_url')
         hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
         hXMLFileHandler.handle_xml_file(filePath)
         # initiate Context of State pattern
