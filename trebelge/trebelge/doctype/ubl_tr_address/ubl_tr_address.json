@@ -13,7 +13,7 @@
     "streetname",
     "blockname",
     "buildingname",
-    "buildingnumbers",
+    "buildingnumber",
     "citysubdivisionname",
     "cityname",
     "postalzone",
@@ -59,13 +59,6 @@
       "label": "Bina"
     },
     {
-      "description": "Bina veya blo\u011fa ait d\u0131\u015f kap\u0131 numaras\u0131 girilecektir.",
-      "fieldname": "buildingnumbers",
-      "fieldtype": "Table MultiSelect",
-      "label": "D\u0131\u015f kap\u0131 numaras\u0131",
-      "options": "UBL TR BuildingNumbers"
-    },
-    {
       "description": "\u0130l\u00e7e/semt ad\u0131 bilgileri girilecektir.",
       "fieldname": "citysubdivisionname",
       "fieldtype": "Data",
@@ -106,11 +99,18 @@
       "label": "\u00dclke",
       "options": "Country",
       "reqd": 1
+    },
+    {
+      "description": "Bina veya blo\u011fa ait d\u0131\u015f kap\u0131 numaras\u0131 girilecektir.",
+      "fieldname": "buildingnumber",
+      "fieldtype": "Table MultiSelect",
+      "label": "D\u0131\u015f kap\u0131 numaras\u0131",
+      "options": "UBL TR BuildingNumbers"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 19:37:21.215898",
+  "modified": "2021-12-05 09:45:42.144244",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Address",

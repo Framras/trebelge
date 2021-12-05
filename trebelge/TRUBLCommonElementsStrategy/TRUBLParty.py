@@ -12,6 +12,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyTaxScheme import TRUBLPartyT
 
 
 class TRUBLParty(TRUBLCommonElement):
+    _frappeDoctype: str = 'UBL TR Party'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
@@ -51,7 +52,8 @@ class TRUBLParty(TRUBLCommonElement):
             self._strategyContext.set_strategy(strategy)
             partyname = self._strategyContext.return_element_data(partyname_, cbcnamespace,
                                                                   cacnamespace)
-            party['partyname'] = partyname.get('partyname')
+            party['partyname'] = partyname.get('name')
+
         postaladdress_ = element.find(cacnamespace + 'PostalAddress')
         strategy: TRUBLCommonElement = TRUBLAddress()
         self._strategyContext.set_strategy(strategy)
