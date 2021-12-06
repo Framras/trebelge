@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+from frappe import frappe
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommunication import TRUBLCommunication
@@ -34,9 +35,19 @@ class TRUBLContact(TRUBLCommonElement):
             self._strategyContext.set_strategy(strategy)
             communications: list = []
             for othercommunication in othercommunications_:
-                communication_ = self._strategyContext.return_element_data(othercommunication, cbcnamespace,
-                                                                           cacnamespace)
-                communications.append(communication_)
-            contact['othercommunications'] = communications
+                communications.append(frappe.get_doc(
+                    'UBL TR Communication',
+                    self._strategyContext.return_element_data(othercommunication,
+                                                              cbcnamespace,
+                                                              cacnamespace)[0]['name']))
+            contact['othercommunication'] = communications
 
-        return contact
+        if not frappe.get_all(self._frappeDoctype, filters=contact):
+            pass
+        else:
+            newcontact = contact
+            newcontact['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newcontact)
+            _frappeDoc.insert()
+
+        return frappe.get_all(self._frappeDoctype, filters=contact)

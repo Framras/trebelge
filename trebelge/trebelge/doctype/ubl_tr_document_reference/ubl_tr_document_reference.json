@@ -11,7 +11,7 @@
     "issuedate",
     "documenttypecode",
     "documenttype",
-    "documentdescriptions",
+    "documentdescription",
     "attachment",
     "validityperiod",
     "issuerparty"
@@ -47,13 +47,6 @@
       "label": "Belge tipi"
     },
     {
-      "description": "Referans verilen ya da eklenen belgelere ili\u015fkin serbest metin a\u00e7\u0131klamas\u0131 girilebilir.",
-      "fieldname": "documentdescriptions",
-      "fieldtype": "Table MultiSelect",
-      "label": "A\u00e7\u0131klama",
-      "options": "UBL TR Descriptions"
-    },
-    {
       "fieldname": "attachment",
       "fieldtype": "Link",
       "label": "Belge",
@@ -72,11 +65,18 @@
       "fieldtype": "Link",
       "label": "Yay\u0131nlayan",
       "options": "UBL TR Party"
+    },
+    {
+      "description": "Referans verilen ya da eklenen belgelere ili\u015fkin serbest metin a\u00e7\u0131klamas\u0131 girilebilir.",
+      "fieldname": "documentdescription",
+      "fieldtype": "Table MultiSelect",
+      "label": "A\u00e7\u0131klama",
+      "options": "UBL TR Descriptions"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 19:35:24.014218",
+  "modified": "2021-12-06 13:43:28.866546",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Document Reference",
