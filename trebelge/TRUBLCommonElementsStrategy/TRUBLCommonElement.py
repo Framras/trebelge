@@ -12,5 +12,5 @@ class TRUBLCommonElement(ABC):
     """
 
     @abstractmethod
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         pass

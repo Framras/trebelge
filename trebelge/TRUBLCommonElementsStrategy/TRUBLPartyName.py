@@ -7,7 +7,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 class TRUBLPartyName(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Partyname'
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         # ['Name'] = ('cbc', 'partyname', 'Zorunlu (1)')
         partyname: dict = {'partyname': element.find(cbcnamespace + 'Name')}
 

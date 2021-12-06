@@ -8,7 +8,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBL
 class TRUBLLocation(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         """
         ['ID'] = ('cbc', '', 'Seçimli (0...1)')
         ['Address'] = ('cac', 'Address()', 'Seçimli (0...1)','address')

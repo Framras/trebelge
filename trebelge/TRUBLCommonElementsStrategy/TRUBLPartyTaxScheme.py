@@ -8,7 +8,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
 class TRUBLPartyTaxScheme(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         """
         ['RegistrationName'] = ('cbc', 'registrationname', 'Seçimli (0...1)')
         ['CompanyID'] = ('cbc', 'companyid', 'Seçimli (0...1)')

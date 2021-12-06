@@ -15,7 +15,8 @@
     "amountcurrencyid",
     "baseamount",
     "baseamountcurrencyid",
-    "perunitamount"
+    "perunitamount",
+    "perunitamountcurrencyid"
   ],
   "fields": [
     {
@@ -53,14 +54,16 @@
       "fieldname": "amount",
       "fieldtype": "Currency",
       "in_list_view": 1,
-      "label": "\u0130skonto veya art\u0131r\u0131m miktar\u0131"
+      "label": "\u0130skonto veya art\u0131r\u0131m miktar\u0131",
+      "reqd": 1
     },
     {
       "fieldname": "amountcurrencyid",
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "\u0130skonto veya art\u0131r\u0131m d\u00f6viz cinsi",
-      "options": "UBL TR CurrencyCode"
+      "options": "UBL TR CurrencyCode",
+      "reqd": 1
     },
     {
       "description": "\u0130skonto veya art\u0131r\u0131m\u0131n uyguland\u0131\u011f\u0131 tutar",
@@ -72,6 +75,7 @@
     {
       "fieldname": "baseamountcurrencyid",
       "fieldtype": "Link",
+      "in_list_view": 1,
       "label": "Tutar art\u0131r\u0131m d\u00f6viz cinsi",
       "options": "UBL TR CurrencyCode"
     },
@@ -79,12 +83,20 @@
       "description": "\u00dcr\u00fcn adetine g\u00f6re iskonto veya art\u0131r\u0131m\u0131n uyguland\u0131\u011f\u0131 durumlarda uygulanan \u00fcr\u00fcn miktar\u0131n\u0131 g\u00f6sterir",
       "fieldname": "perunitamount",
       "fieldtype": "Float",
+      "in_list_view": 1,
       "label": "Uygulanan \u00fcr\u00fcn miktar\u0131"
+    },
+    {
+      "fieldname": "perunitamountcurrencyid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Uygulanan \u00fcr\u00fcn  d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 19:11:14.399965",
+  "modified": "2021-12-06 09:39:47.239490",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR AllowanceCharge",

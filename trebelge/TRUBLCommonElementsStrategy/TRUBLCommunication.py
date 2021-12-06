@@ -4,7 +4,9 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLCommunication(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    _frappeDoctype: str = 'UBL TR Communication'
+
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         """
         ['ChannelCode'] = ('cbc', 'channelcode', 'Zorunlu(1)')
         ['Channel'] = ('cbc', 'channel', 'Seçimli (0...1)')

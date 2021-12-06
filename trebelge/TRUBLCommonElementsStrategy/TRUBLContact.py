@@ -6,31 +6,28 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommunication import TRUBLCommuni
 
 
 class TRUBLContact(TRUBLCommonElement):
+    _frappeDoctype: str = 'UBL TR Contact'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
-        """
-        ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
-        ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
-        ['Telephone'] = ('cbc', 'telephone', 'Seçimli (0...1)')
-        ['Telefax'] = ('cbc', 'telefax', 'Seçimli (0...1)')
-        ['ElectronicMail'] = ('cbc', 'electronicmail', 'Seçimli (0...1)')
-        ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
-        ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
-        """
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         contact: dict = {}
-        cbcsecimli01: list = ['Telephone', 'Telefax', 'ElectronicMail', 'Note']
+        # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
+        # ['Telephone'] = ('cbc', 'telephone', 'Seçimli (0...1)')
+        # ['Telefax'] = ('cbc', 'telefax', 'Seçimli (0...1)')
+        # ['ElectronicMail'] = ('cbc', 'electronicmail', 'Seçimli (0...1)')
+        # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
+        cbcsecimli01: list = ['ID', 'Telephone', 'Telefax', 'ElectronicMail', 'Note']
         for elementtag_ in cbcsecimli01:
             field_ = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 contact[field_.tag.lower()] = field_.text
 
-        id_ = element.find(cbcnamespace + 'ID')
-        if id_ is not None:
-            contact[('Contact' + 'ID').lower()] = id_.text
+        # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            contact[('Contact' + 'Name').lower()] = name_.text
+            contact['contactname'] = name_.text
+
+        # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         othercommunications_ = element.findall(cacnamespace + 'OtherCommunication')
         if othercommunications_ is not None:
             strategy: TRUBLCommonElement = TRUBLCommunication()

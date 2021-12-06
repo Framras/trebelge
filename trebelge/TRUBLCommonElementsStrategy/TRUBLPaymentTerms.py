@@ -8,7 +8,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 class TRUBLPaymentTerms(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         """
         ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
         ['PenaltySurchargePercent'] = ('cbc', 'penaltysurchargepercent', 'Seçimli (0...1)')
