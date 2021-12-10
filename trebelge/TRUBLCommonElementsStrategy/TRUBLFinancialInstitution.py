@@ -5,9 +5,9 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLFinancialInstitution(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
-        _frappeDoctype: str = 'UBL TR FinancialInstitution'
+    _frappeDoctype: str = 'UBL TR FinancialInstitution'
 
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         # ['Name'] = ('cbc', 'name', 'Seçimli(0..1)', 'financialinstitution')
         frappedoc: dict = {}
         name_ = element.find(cbcnamespace + 'Name')
