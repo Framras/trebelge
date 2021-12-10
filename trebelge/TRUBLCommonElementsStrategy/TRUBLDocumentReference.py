@@ -48,26 +48,29 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                                                               cacnamespace)[0]['name'])]
 
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
-        documentdescription_ = element.find(cacnamespace + 'PartyLegalEntity')
-        if documentdescription_ is not None:
-            strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
-            self._strategyContext.set_strategy(strategy)
-            partylegalentities: list = []
-            for partylegalentity in documentdescription_:
-                partylegalentities.append(
-                    frappe.get_doc(
-                        'UBL TR PartyLegalEntity',
-                        self._strategyContext.return_element_data(partylegalentity,
-                                                                  cbcnamespace,
-                                                                  cacnamespace)[0]['name']))
-            documentreference['documentdescription'] = partylegalentities
+        documentdescriptions_ = element.findall(cbcnamespace + 'DocumentDescription')
+        if documentdescriptions_ is not None:
+            documentdescriptions: list = []
+            for documentdescription in documentdescriptions_:
+                if not frappe.get_all('UBL TR Communication',
+                                      filters={'description': documentdescription.get('documentdescription')}):
+                    pass
+                else:
+                    newdocumentdescription = frappe.new_doc('UBL TR Communication')
+                    newdocumentdescription.description = documentdescription.get('documentdescription')
+                    newdocumentdescription.insert()
+
+                documentdescriptions.append(frappe.get_doc(
+                    'UBL TR Communication',
+                    filters={'description': documentdescription.get('documentdescription')}))
+            documentreference['documentdescription'] = documentdescriptions
 
         if not frappe.get_all(self._frappeDoctype, filters=documentreference):
             pass
         else:
             newdocumentreference = documentreference
-            newdocumentreference['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newdocumentreference)
-            _frappeDoc.insert()
+        newdocumentreference['doctype'] = self._frappeDoctype
+        _frappeDoc = frappe.get_doc(newdocumentreference)
+        _frappeDoc.insert()
 
         return frappe.get_all(self._frappeDoctype, filters=documentreference)
