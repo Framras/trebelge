@@ -5,9 +5,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 class TRUBLFinancialInstitution(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
-        """
-        ['Name'] = ('cbc', 'name', 'Seçimli(0..1)')
-        """
+        # ['Name'] = ('cbc', 'name', 'Seçimli(0..1)')
         financialInstitution: dict = {}
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
