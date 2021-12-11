@@ -1,8 +1,7 @@
 from xml.etree.ElementTree import Element
 
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-
 import frappe
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 
 
 class TRUBLCommodityClassification(TRUBLCommonElement):
