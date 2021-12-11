@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+import frappe
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExternalReference import TRUBLExternalReference
@@ -17,7 +18,7 @@ class TRUBLAttachment(TRUBLCommonElement):
         encodingCode: 'Base64'
         mimeCode: 'application/xml'
         """
-        attachment: dict = {}
+        frappedoc: dict = {}
         externalreference_ = element.find(cacnamespace + 'ExternalReference')
         if externalreference_ is not None:
             strategy: TRUBLCommonElement = TRUBLExternalReference()
@@ -25,12 +26,20 @@ class TRUBLAttachment(TRUBLCommonElement):
             externalreference = self._strategyContext.return_element_data(externalreference_, cbcnamespace,
                                                                           cacnamespace)
             for key in externalreference.keys():
-                attachment['externalreference_' + key] = externalreference.get(key)
+                frappedoc['externalreference_' + key] = externalreference.get(key)
         # TODO implement Base64 decoder
         embeddeddocumentbinaryobject_ = element.find(cacnamespace + 'EmbeddedDocumentBinaryObject')
         if embeddeddocumentbinaryobject_ is not None:
             for key in embeddeddocumentbinaryobject_.attrib.keys():
-                attachment[('EmbeddedDocumentBinaryObject_' + key).lower()] = embeddeddocumentbinaryobject_.attrib.get(
+                frappedoc[('EmbeddedDocumentBinaryObject_' + key).lower()] = embeddeddocumentbinaryobject_.attrib.get(
                     key)
 
-        return attachment
+        if not frappe.get_all(self._frappeDoctype, filters=frappedoc):
+            pass
+        else:
+            newfrappedoc = frappedoc
+            newfrappedoc['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newfrappedoc)
+            _frappeDoc.insert()
+
+        return frappe.get_all(self._frappeDoctype, filters=frappedoc)

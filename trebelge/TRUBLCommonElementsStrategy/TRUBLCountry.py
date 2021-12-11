@@ -9,18 +9,18 @@ class TRUBLCountry(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         # ['Name'] = ('cbc', 'name', 'Zorunlu(1)')
-        country: dict = {('Country' + 'Name').lower(): element.find(cbcnamespace + 'Name').text}
+        frappedoc: dict = {('Country' + 'Name').lower(): element.find(cbcnamespace + 'Name').text}
         # ['IdentificationCode'] = ('cbc', 'identificationcode', 'Seçimli (0...1)')
         identificationcode_ = element.find(cbcnamespace + 'IdentificationCode')
         if identificationcode_ is not None:
-            country['identificationcode'] = identificationcode_.text
+            frappedoc['identificationcode'] = identificationcode_.text
 
-        if not frappe.get_all(self._frappeDoctype, filters=country):
+        if not frappe.get_all(self._frappeDoctype, filters=frappedoc):
             pass
         else:
-            newcountry = country
-            newcountry['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newcountry)
+            newfrappedoc = frappedoc
+            newfrappedoc['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newfrappedoc)
             _frappeDoc.insert()
 
-        return frappe.get_all(self._frappeDoctype, filters=country)
+        return frappe.get_all(self._frappeDoctype, filters=frappedoc)

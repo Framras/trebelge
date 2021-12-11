@@ -9,14 +9,14 @@ class TRUBLAirTransport(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         # ['AircraftID'] = ('cbc', '', 'Zorunlu (1)')
-        airTransport: dict = {'aircraftid': element.find(cbcnamespace + 'AircraftID').text}
+        frappedoc: dict = {'aircraftid': element.find(cbcnamespace + 'AircraftID').text}
 
-        if not frappe.get_all(self._frappeDoctype, filters=airTransport):
+        if not frappe.get_all(self._frappeDoctype, filters=frappedoc):
             pass
         else:
-            newairtransport = airTransport
-            newairtransport['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newairtransport)
+            newfrappedoc = frappedoc
+            newfrappedoc['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newfrappedoc)
             _frappeDoc.insert()
 
-        return frappe.get_all(self._frappeDoctype, filters=airTransport)
+        return frappe.get_all(self._frappeDoctype, filters=frappedoc)

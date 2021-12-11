@@ -10,19 +10,19 @@ class TRUBLCommunication(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         # ['ChannelCode'] = ('cbc', 'channelcode', 'Zorunlu(1)')
         # ['Value'] = ('cbc', 'value', 'Zorunlu(1)')
-        communication: dict = {'channelcode': element.find(cbcnamespace + 'ChannelCode').text,
-                               'value': element.find(cbcnamespace + 'Value').text}
+        frappedoc: dict = {'channelcode': element.find(cbcnamespace + 'ChannelCode').text,
+                           'value': element.find(cbcnamespace + 'Value').text}
         # ['Channel'] = ('cbc', 'channel', 'Seçimli (0...1)')
         channel_ = element.find(cbcnamespace + 'Channel')
         if channel_ is not None:
-            communication['channel'] = channel_.text
+            frappedoc['channel'] = channel_.text
 
-        if not frappe.get_all(self._frappeDoctype, filters=communication):
+        if not frappe.get_all(self._frappeDoctype, filters=frappedoc):
             pass
         else:
-            newcommunication = communication
-            newcommunication['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newcommunication)
+            newfrappedoc = frappedoc
+            newfrappedoc['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newfrappedoc)
             _frappeDoc.insert()
 
-        return frappe.get_all(self._frappeDoctype, filters=communication)
+        return frappe.get_all(self._frappeDoctype, filters=frappedoc)

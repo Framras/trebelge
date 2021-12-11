@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import Element
 
-from frappe import frappe
+import frappe
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommunication import TRUBLCommunication
@@ -11,7 +11,7 @@ class TRUBLContact(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
-        contact: dict = {}
+        frappedoc: dict = {}
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Telephone'] = ('cbc', 'telephone', 'Seçimli (0...1)')
         # ['Telefax'] = ('cbc', 'telefax', 'Seçimli (0...1)')
@@ -21,12 +21,12 @@ class TRUBLContact(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_ = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
-                contact[field_.tag.lower()] = field_.text
+                frappedoc[field_.tag.lower()] = field_.text
 
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            contact['contactname'] = name_.text
+            frappedoc['contactname'] = name_.text
 
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         othercommunications_ = element.findall(cacnamespace + 'OtherCommunication')
@@ -40,14 +40,14 @@ class TRUBLContact(TRUBLCommonElement):
                     self._strategyContext.return_element_data(othercommunication,
                                                               cbcnamespace,
                                                               cacnamespace)[0]['name']))
-            contact['othercommunication'] = communications
+            frappedoc['othercommunication'] = communications
 
-        if not frappe.get_all(self._frappeDoctype, filters=contact):
+        if not frappe.get_all(self._frappeDoctype, filters=frappedoc):
             pass
         else:
-            newcontact = contact
-            newcontact['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newcontact)
+            newfrappedoc = frappedoc
+            newfrappedoc['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newfrappedoc)
             _frappeDoc.insert()
 
-        return frappe.get_all(self._frappeDoctype, filters=contact)
+        return frappe.get_all(self._frappeDoctype, filters=frappedoc)

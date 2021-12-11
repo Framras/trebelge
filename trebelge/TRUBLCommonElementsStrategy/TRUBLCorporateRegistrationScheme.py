@@ -4,27 +4,27 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 
+import frappe
+
 
 class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
-        """
-        ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
-        ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
-        ['CorporateRegistrationTypeCode'] = ('cbc', 'corporateregistrationtypecode', 'Seçimli (0...1)')
-        ['JurisdictionRegionAddress'] = ('cac', 'Address()', 'Seçimli(0..n)', 'jurisdictionregionaddresses')
-        """
-        corporateregistrationscheme: dict = {}
+        # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
+        # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
+        # ['CorporateRegistrationTypeCode'] = ('cbc', 'corporateregistrationtypecode', 'Seçimli (0...1)')
+        # ['JurisdictionRegionAddress'] = ('cac', 'Address()', 'Seçimli(0..n)', 'jurisdictionregionaddresses')
+        frappedoc: dict = {}
         id_ = element.find(cbcnamespace + 'ID')
         if id_ is not None:
-            corporateregistrationscheme[('CorporateRegistrationScheme' + 'ID').lower()] = id_.text
+            frappedoc[('CorporateRegistrationScheme' + 'ID').lower()] = id_.text
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            corporateregistrationscheme[('CorporateRegistrationScheme' + 'Name').lower()] = name_.text
+            frappedoc[('CorporateRegistrationScheme' + 'Name').lower()] = name_.text
         corporateregistrationtypecode_ = element.find(cbcnamespace + 'CorporateRegistrationTypeCode')
         if corporateregistrationtypecode_ is not None:
-            corporateregistrationscheme[
+            frappedoc[
                 corporateregistrationtypecode_.tag.lower()] = corporateregistrationtypecode_.text
         jurisdictionregionaddress_ = element.find(cacnamespace + 'JurisdictionRegionAddress')
         if jurisdictionregionaddress_ is not None:
@@ -35,6 +35,14 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
             addresses_: list = []
             for address in addresses:
                 addresses_.append(address)
-            corporateregistrationscheme['jurisdictionregionaddresses'] = addresses_
+            frappedoc['jurisdictionregionaddresses'] = addresses_
 
-        return corporateregistrationscheme
+        if not frappe.get_all(self._frappeDoctype, filters=frappedoc):
+            pass
+        else:
+            newfrappedoc = frappedoc
+            newfrappedoc['doctype'] = self._frappeDoctype
+            _frappeDoc = frappe.get_doc(newfrappedoc)
+            _frappeDoc.insert()
+
+        return frappe.get_all(self._frappeDoctype, filters=frappedoc)
