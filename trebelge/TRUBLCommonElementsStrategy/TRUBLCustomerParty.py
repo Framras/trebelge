@@ -12,13 +12,12 @@ class TRUBLCustomerParty(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         frappedoc: dict = {}
-        # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'customerparty')
+        # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
         party_ = element.find(cacnamespace + 'Party')
         strategy: TRUBLCommonElement = TRUBLParty()
         self._strategyContext.set_strategy(strategy)
         party = self._strategyContext.return_element_data(party_, cbcnamespace, cacnamespace)
-        for key in party.keys():
-            frappedoc['party_' + key] = party.get(key)
+        frappedoc['party'] = party.get(key)
         # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
         deliverycontact_ = element.find(cacnamespace + 'DeliveryContact')
         if deliverycontact_ is not None:
