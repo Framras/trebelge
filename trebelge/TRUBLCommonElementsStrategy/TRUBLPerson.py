@@ -11,20 +11,20 @@ class TRUBLPerson(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         # ['FirstName'] = ('cbc', '', 'Zorunlu(1)')
         # ['FamilyName'] = ('cbc', '', 'Zorunlu(1)')
+        frappedoc: dict = {'FirstName'.lower(): element.find(cbcnamespace + 'FirstName').text,
+                           'FamilyName'.lower(): element.find(cbcnamespace + 'FamilyName').text}
         # ['Title'] = ('cbc', '', 'Seçimli (0...1)')
         # ['MiddleName'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NameSuffix'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NationalityID'] = ('cbc', '', 'Seçimli (0...1)')
-        # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
-        # ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)')
-        frappedoc: dict = {'FirstName'.lower(): element.find(cbcnamespace + 'FirstName').text,
-                           'FamilyName'.lower(): element.find(cbcnamespace + 'FamilyName').text}
         cbcsecimli01: list = ['Title', 'MiddleName', 'NameSuffix', 'NationalityID']
         for elementtag_ in cbcsecimli01:
             field_ = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
+        # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
+        # ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)')
         taxscheme_ = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
