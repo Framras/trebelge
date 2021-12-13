@@ -15,7 +15,7 @@ class TRUBLCommonElement(ABC):
 
     @staticmethod
     def get_frappedoc(frappedoctype: str, frappedoc: dict) -> list:
-        if not frappe.get_all(frappedoctype, filters=frappedoc):
+        if frappe.get_all(frappedoctype, filters=frappedoc):
             pass
         else:
             newfrappedoc = frappedoc

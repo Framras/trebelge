@@ -7,8 +7,8 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxSubtotal import TRUBLTaxSubtot
 
 
 class TRUBLTaxTotal(TRUBLCommonElement):
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
     _frappeDoctype: str = 'TR UBL Tax Total'
+    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
         """

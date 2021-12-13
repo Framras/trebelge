@@ -9,23 +9,21 @@ class TRUBLTaxCategory(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
-        """
-        ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
-        ['TaxExemptionReasonCode'] = ('cbc', 'taxexemptionreasoncode', 'Seçimli (0...1)')
-        ['TaxExemptionReason'] = ('cbc', 'taxexemptionreason', 'Seçimli (0...1)')
-        ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
-        """
-        taxCategory: dict = {}
+        frappedoc: dict = {}
+        # ['TaxExemptionReasonCode'] = ('cbc', 'taxexemptionreasoncode', 'Seçimli (0...1)')
+        # ['TaxExemptionReason'] = ('cbc', 'taxexemptionreason', 'Seçimli (0...1)')
         cbcsecimli01: list = ['TaxExemptionReasonCode', 'TaxExemptionReason']
         for elementtag_ in cbcsecimli01:
             field_ = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
-                taxCategory[field_.tag.lower()] = field_.text
+                frappedoc[field_.tag.lower()] = field_.text
 
+        # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_ = element.find(cbcnamespace + 'Name')
         if name_ is not None:
-            taxCategory['taxcategoryname'] = name_.text
+            frappedoc['taxcategoryname'] = name_.text
 
+        # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
@@ -33,6 +31,6 @@ class TRUBLTaxCategory(TRUBLCommonElement):
                                                                cacnamespace)
         for key in taxscheme_.keys():
             if taxscheme_.get(key) is not None:
-                taxCategory['taxscheme_' + key] = taxscheme_.get(key)
+                frappedoc['taxscheme_' + key] = taxscheme_.get(key)
 
         return self.get_frappedoc(self._frappeDoctype, frappedoc)

@@ -14,17 +14,17 @@ class TRUBLPeriod(TRUBLCommonElement):
         ['unitCode'] = ('', 'durationmeasure_unitcode', 'Zorunlu (1)')
         ['Description'] = ('cbc', 'description', 'Seçimli (0...1)')
         """
-        period: dict = {}
+        frappedoc: dict = {}
         cbcsecimli01: list = ['StartDate', 'StartTime', 'EndDate', 'EndTime', 'Description']
         for elementtag_ in cbcsecimli01:
             field_ = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
-                period[field_.tag.lower()] = field_.text
+                frappedoc[field_.tag.lower()] = field_.text
 
         durationmeasure_ = element.find(cbcnamespace + 'DurationMeasure')
         if durationmeasure_ is not None:
-            period['durationmeasure'] = durationmeasure_.text
-            period['durationmeasure_unitcode'] = durationmeasure_.attrib.get(
+            frappedoc['durationmeasure'] = durationmeasure_.text
+            frappedoc['durationmeasure_unitcode'] = durationmeasure_.attrib.get(
                 'unitCode')
 
         return self.get_frappedoc(self._frappeDoctype, frappedoc)
