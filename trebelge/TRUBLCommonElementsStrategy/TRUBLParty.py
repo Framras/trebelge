@@ -94,12 +94,4 @@ class TRUBLParty(TRUBLCommonElement):
                                                                   cacnamespace)[0]['name']))
             party['partylegalentity'] = partylegalentities
 
-        if not frappe.get_all(self._frappeDoctype, filters=party):
-            pass
-        else:
-            newparty = party
-            newparty['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newparty)
-            _frappeDoc.insert()
-
-        return frappe.get_all(self._frappeDoctype, filters=party)
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

@@ -29,4 +29,4 @@ class TRUBLPartyTaxScheme(TRUBLCommonElement):
         for key in taxscheme.keys():
             partytaxscheme['taxscheme_' + key] = taxscheme.get(key)
 
-        return partytaxscheme
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

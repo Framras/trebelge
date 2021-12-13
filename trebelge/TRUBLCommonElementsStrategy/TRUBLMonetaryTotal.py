@@ -50,4 +50,4 @@ class TRUBLMonetaryTotal(TRUBLCommonElement):
             monetarytotal['payableroundingamount_currencyid'] = payableroundingamount_.attrib.get(
                 'currencyID')
 
-        return monetarytotal
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

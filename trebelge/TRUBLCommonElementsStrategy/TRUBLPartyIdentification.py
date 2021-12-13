@@ -14,12 +14,4 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
         partyidentification: dict = {'id': partyidentification_.text,
                                      'schemeid': partyidentification_.attrib.get('schemeID')}
 
-        if not frappe.get_all(self._frappeDoctype, filters=partyidentification):
-            pass
-        else:
-            newpartyidentification = partyidentification
-            newpartyidentification['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newpartyidentification)
-            _frappeDoc.insert()
-
-        return frappe.get_all(self._frappeDoctype, filters=partyidentification)
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

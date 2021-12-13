@@ -65,12 +65,4 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                     filters={'description': documentdescription.get('documentdescription')}))
             documentreference['documentdescription'] = documentdescriptions
 
-        if not frappe.get_all(self._frappeDoctype, filters=documentreference):
-            pass
-        else:
-            newdocumentreference = documentreference
-        newdocumentreference['doctype'] = self._frappeDoctype
-        _frappeDoc = frappe.get_doc(newdocumentreference)
-        _frappeDoc.insert()
-
-        return frappe.get_all(self._frappeDoctype, filters=documentreference)
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

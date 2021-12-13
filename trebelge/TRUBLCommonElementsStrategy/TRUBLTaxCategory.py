@@ -35,4 +35,4 @@ class TRUBLTaxCategory(TRUBLCommonElement):
             if taxscheme_.get(key) is not None:
                 taxCategory['taxscheme_' + key] = taxscheme_.get(key)
 
-        return taxCategory
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

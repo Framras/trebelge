@@ -27,4 +27,4 @@ class TRUBLPeriod(TRUBLCommonElement):
             period['durationmeasure_unitcode'] = durationmeasure_.attrib.get(
                 'unitCode')
 
-        return period
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

@@ -17,12 +17,4 @@ class TRUBLCommunication(TRUBLCommonElement):
         if channel_ is not None:
             frappedoc['channel'] = channel_.text
 
-        if not frappe.get_all(self._frappeDoctype, filters=frappedoc):
-            pass
-        else:
-            newfrappedoc = frappedoc
-            newfrappedoc['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newfrappedoc)
-            _frappeDoc.insert()
-
-        return frappe.get_all(self._frappeDoctype, filters=frappedoc)
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

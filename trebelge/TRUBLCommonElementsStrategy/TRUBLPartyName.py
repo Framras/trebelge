@@ -11,12 +11,4 @@ class TRUBLPartyName(TRUBLCommonElement):
         # ['Name'] = ('cbc', 'partyname', 'Zorunlu (1)')
         partyname: dict = {'partyname': element.find(cbcnamespace + 'Name')}
 
-        if not frappe.get_all(self._frappeDoctype, filters=partyname):
-            pass
-        else:
-            newpartyname = partyname
-            newpartyname['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newpartyname)
-            _frappeDoc.insert()
-
-        return frappe.get_all(self._frappeDoctype, filters=partyname)
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

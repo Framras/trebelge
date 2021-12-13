@@ -24,4 +24,4 @@ class TRUBLOrderReference(TRUBLCommonElement):
             # TODO implement this: process via DocumentReference instance
             pass
 
-        return orderreference
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

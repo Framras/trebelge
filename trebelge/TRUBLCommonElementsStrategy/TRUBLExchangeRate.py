@@ -18,4 +18,4 @@ class TRUBLExchangeRate(TRUBLCommonElement):
         if date_ is not None:
             exchangerate['exchangeratedate'] = date_.text
 
-        return exchangerate
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

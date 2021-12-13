@@ -16,12 +16,4 @@ class TRUBLRailTransport(TRUBLCommonElement):
         if railcarid_ is not None:
             railTransport[railcarid_.tag.lower()] = railcarid_.text
 
-        if not frappe.get_all(self._frappeDoctype, filters=railTransport):
-            pass
-        else:
-            newrailTransport = railTransport
-            newrailTransport['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newrailTransport)
-            _frappeDoc.insert()
-
-        return frappe.get_all(self._frappeDoctype, filters=railTransport)
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

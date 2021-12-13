@@ -38,4 +38,4 @@ class TRUBLDimension(TRUBLCommonElement):
             dimension['maximummeasure_unitcode'] = maximummeasure_.attrib.get(
                 'unitCode')
 
-        return dimension
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

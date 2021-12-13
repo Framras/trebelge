@@ -23,4 +23,4 @@ class TRUBLDeliveryTerms(TRUBLCommonElement):
             deliveryterms['amount'] = amount_.text
             deliveryterms['amount_currencyid'] = amount_.attrib.get('currencyID')
 
-        return deliveryterms
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

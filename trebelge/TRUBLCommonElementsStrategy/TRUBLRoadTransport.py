@@ -16,12 +16,4 @@ class TRUBLRoadTransport(TRUBLCommonElement):
         if licenseplateid_schemeid is not None:
             roadTransport['licenseplateid_schemeid'] = licenseplateid_schemeid
 
-        if not frappe.get_all(self._frappeDoctype, filters=roadTransport):
-            pass
-        else:
-            newroadTransport = roadTransport
-            newroadTransport['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newroadTransport)
-            _frappeDoc.insert()
-
-        return frappe.get_all(self._frappeDoctype, filters=roadTransport)
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

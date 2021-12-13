@@ -31,4 +31,4 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
             for key in financialinstitutionbranch.keys():
                 financialaccount['financialinstitutionbranch_' + key] = financialinstitutionbranch.get(key)
 
-        return financialaccount
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

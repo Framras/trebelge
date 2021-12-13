@@ -25,12 +25,4 @@ class TRUBLBranch(TRUBLCommonElement):
             for key in financialinstitution.keys():
                 frappedoc['financialinstitution_' + key] = financialinstitution.get(key)
 
-        if not frappe.get_all(self._frappeDoctype, filters=frappedoc):
-            pass
-        else:
-            newfrappedoc = frappedoc
-            newfrappedoc['doctype'] = self._frappeDoctype
-            _frappeDoc = frappe.get_doc(newfrappedoc)
-            _frappeDoc.insert()
-
-        return frappe.get_all(self._frappeDoctype, filters=frappedoc)
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)

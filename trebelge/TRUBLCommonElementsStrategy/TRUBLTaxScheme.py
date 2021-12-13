@@ -21,4 +21,4 @@ class TRUBLTaxScheme(TRUBLCommonElement):
         if taxtypecode_ is not None:
             taxScheme[taxtypecode_.tag.lower()] = taxtypecode_.text
 
-        return taxScheme
+        return self.get_frappedoc(self._frappeDoctype, frappedoc)
