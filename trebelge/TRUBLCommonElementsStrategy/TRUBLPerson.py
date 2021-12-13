@@ -9,10 +9,10 @@ class TRUBLPerson(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
-        # ['FirstName'] = ('cbc', '', 'Zorunlu(1)')
-        # ['FamilyName'] = ('cbc', '', 'Zorunlu(1)')
-        frappedoc: dict = {'FirstName'.lower(): element.find(cbcnamespace + 'FirstName').text,
-                           'FamilyName'.lower(): element.find(cbcnamespace + 'FamilyName').text}
+        # ['FirstName'] = ('cbc', 'firstname', 'Zorunlu(1)')
+        # ['FamilyName'] = ('cbc', 'familyname', 'Zorunlu(1)')
+        frappedoc: dict = {'firstname': element.find(cbcnamespace + 'FirstName').text,
+                           'familyname': element.find(cbcnamespace + 'FamilyName').text}
         # ['Title'] = ('cbc', '', 'Seçimli (0...1)')
         # ['MiddleName'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NameSuffix'] = ('cbc', '', 'Seçimli (0...1)')
