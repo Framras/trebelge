@@ -54,6 +54,6 @@ class TRUBLAddress(TRUBLCommonElement):
                     'UBL TR BuildingNumber',
                     self._strategyContext.return_element_data(buildingnumber, cbcnamespace,
                                                               cacnamespace)[0]['name']))
-                frappedoc['buildingnumber'] = buildingnumbers
+            frappedoc['buildingnumber'] = buildingnumbers
 
         return self.get_frappedoc(self._frappeDoctype, frappedoc)

@@ -1,6 +1,5 @@
 from xml.etree.ElementTree import Element
 
-import frappe
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 
 
