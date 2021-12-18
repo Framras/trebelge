@@ -10,4 +10,4 @@ class TRUBLBuildingNumber(TRUBLCommonElement):
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         frappedoc: dict = {'buildingnumber': element.find(cbcnamespace + 'BuildingNumber').text}
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

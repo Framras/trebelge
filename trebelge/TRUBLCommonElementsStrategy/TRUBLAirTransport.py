@@ -10,4 +10,4 @@ class TRUBLAirTransport(TRUBLCommonElement):
         # ['AircraftID'] = ('cbc', '', 'Zorunlu (1)')
         frappedoc: dict = {'aircraftid': element.find(cbcnamespace + 'AircraftID').text}
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

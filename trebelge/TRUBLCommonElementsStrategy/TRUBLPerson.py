@@ -1,11 +1,9 @@
 from xml.etree.ElementTree import Element
 
-import frappe
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialAccount import TRUBLFinancialAccount
-
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 
 
 class TRUBLPerson(TRUBLCommonElement):
@@ -36,18 +34,16 @@ class TRUBLPerson(TRUBLCommonElement):
         if financialaccount_ is not None:
             strategy: TRUBLCommonElement = TRUBLFinancialAccount()
             self._strategyContext.set_strategy(strategy)
-            frappedoc['financialaccount'] = frappe.get_doc(
-                'UBL TR FinancialAccount',
-                self._strategyContext.return_element_data(financialaccount_, cbcnamespace,
-                                                          cacnamespace)[0]['name'])
+            frappedoc['financialaccount'] = self._strategyContext.return_element_data(financialaccount_,
+                                                                                      cbcnamespace,
+                                                                                      cacnamespace)
         # ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)', 'documentreference')
         documentreference_ = element.find(cacnamespace + 'IdentityDocumentReference')
         if documentreference_ is not None:
             strategy: TRUBLCommonElement = TRUBLDocumentReference()
             self._strategyContext.set_strategy(strategy)
-            frappedoc['documentreference'] = frappe.get_doc(
-                'UBL TR Document Reference',
-                self._strategyContext.return_element_data(documentreference_, cbcnamespace,
-                                                          cacnamespace)[0]['name'])
+            frappedoc['documentreference'] = self._strategyContext.return_element_data(documentreference_,
+                                                                                       cbcnamespace,
+                                                                                       cacnamespace)
 
         return self.get_frappedoc(self._frappeDoctype, frappedoc)

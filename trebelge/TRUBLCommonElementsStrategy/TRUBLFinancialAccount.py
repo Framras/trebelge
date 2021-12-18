@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import Element
 
-import frappe
+from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBranch import TRUBLBranch
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
@@ -10,7 +10,7 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR FinancialAccount'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         frappedoc: dict = {'id': element.find(cbcnamespace + 'ID')}
 
@@ -27,9 +27,9 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
         if financialinstitutionbranch_ is not None:
             strategy: TRUBLCommonElement = TRUBLBranch()
             self._strategyContext.set_strategy(strategy)
-            frappedoc['financialinstitutionbranch'] = frappe.get_doc(
-                'UBL TR Branch',
-                self._strategyContext.return_element_data(financialinstitutionbranch_, cbcnamespace,
-                                                          cacnamespace)[0]['name'])
+            frappedoc['financialinstitutionbranch'] = self._strategyContext.return_element_data(
+                financialinstitutionbranch_,
+                cbcnamespace,
+                cacnamespace)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

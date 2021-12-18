@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from xml.etree.ElementTree import Element
 
 import frappe
+from frappe.model.document import Document
 
 
 class TRUBLCommonElement(ABC):
@@ -14,7 +15,7 @@ class TRUBLCommonElement(ABC):
     """
 
     @staticmethod
-    def get_frappedoc(frappedoctype: str, frappedoc: dict) -> list:
+    def _get_frappedoc(frappedoctype: str, frappedoc: dict) -> Document:
         if frappe.get_all(frappedoctype, filters=frappedoc):
             pass
         else:
@@ -23,7 +24,9 @@ class TRUBLCommonElement(ABC):
             _frappeDoc = frappe.get_doc(newfrappedoc)
             _frappeDoc.insert()
 
-        return frappe.get_all(frappedoctype, filters=frappedoc)
+        return frappe.get_doc(
+            frappedoctype,
+            frappe.get_all(frappedoctype, filters=frappedoc)[0]['name'])
 
     @abstractmethod
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:

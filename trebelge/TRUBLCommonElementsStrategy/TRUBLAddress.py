@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import Element
 
-import frappe
+from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
@@ -11,7 +11,7 @@ class TRUBLAddress(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Address'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
         # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
         frappedoc: dict = {'citysubdivisionname': element.find(cbcnamespace + 'CitySubdivisionName').text,
@@ -21,10 +21,9 @@ class TRUBLAddress(TRUBLCommonElement):
         country_ = element.find(cacnamespace + 'Country')
         strategy: TRUBLCommonElement = TRUBLCountry()
         self._strategyContext.set_strategy(strategy)
-        country = frappe.get_doc(
-            'UBL TR Country',
-            self._strategyContext.return_element_data(country_, cbcnamespace,
-                                                      cacnamespace)[0]['name'])
+        country = self._strategyContext.return_element_data(country_,
+                                                            cbcnamespace,
+                                                            cacnamespace)
         frappedoc['country'] = [country]
 
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
@@ -50,10 +49,9 @@ class TRUBLAddress(TRUBLCommonElement):
             strategy: TRUBLCommonElement = TRUBLBuildingNumber()
             self._strategyContext.set_strategy(strategy)
             for buildingnumber in buildingnumbers_:
-                buildingnumbers.append(frappe.get_doc(
-                    'UBL TR BuildingNumber',
-                    self._strategyContext.return_element_data(buildingnumber, cbcnamespace,
-                                                              cacnamespace)[0]['name']))
+                buildingnumbers.append(self._strategyContext.return_element_data(buildingnumber,
+                                                                                 cbcnamespace,
+                                                                                 cacnamespace))
             frappedoc['buildingnumber'] = buildingnumbers
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)
