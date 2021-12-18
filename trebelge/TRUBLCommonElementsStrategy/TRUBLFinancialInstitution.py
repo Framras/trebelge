@@ -13,4 +13,4 @@ class TRUBLFinancialInstitution(TRUBLCommonElement):
         if name_ is not None:
             frappedoc['financialinstitution'] = name_.text
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

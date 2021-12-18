@@ -46,4 +46,4 @@ class TRUBLPerson(TRUBLCommonElement):
                                                                                        cbcnamespace,
                                                                                        cacnamespace)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

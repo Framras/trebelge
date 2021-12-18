@@ -15,4 +15,4 @@ class TRUBLRoadTransport(TRUBLCommonElement):
         if licenseplateid_schemeid is not None:
             roadTransport['licenseplateid_schemeid'] = licenseplateid_schemeid
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

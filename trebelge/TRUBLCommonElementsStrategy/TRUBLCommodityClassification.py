@@ -14,4 +14,4 @@ class TRUBLCommodityClassification(TRUBLCommonElement):
         for key in itemclassificationcode_.attrib.keys():
             frappedoc[('ItemClassificationCode_' + key).lower()] = itemclassificationcode_.attrib.get(key)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -35,4 +35,4 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
                 addresses_.append(address)
             frappedoc['jurisdictionregionaddresses'] = addresses_
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

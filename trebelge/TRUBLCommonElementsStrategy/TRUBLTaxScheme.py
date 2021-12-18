@@ -22,4 +22,4 @@ class TRUBLTaxScheme(TRUBLCommonElement):
         if name_ is not None:
             frappedoc['taxschemename'] = name_.text
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

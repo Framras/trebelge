@@ -33,4 +33,4 @@ class TRUBLAttachment(TRUBLCommonElement):
                 frappedoc[('EmbeddedDocumentBinaryObject_' + key).lower()] = embeddeddocumentbinaryobject_.attrib.get(
                     key)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -60,4 +60,4 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
             taxSubtotal['perunitamount'] = perunitamount_.text
             taxSubtotal['perunitamount_currencyid'] = perunitamount_.attrib.get('currencyID')
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

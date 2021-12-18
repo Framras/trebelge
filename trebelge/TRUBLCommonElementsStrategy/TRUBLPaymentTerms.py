@@ -42,4 +42,4 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
             for key in period_.keys():
                 paymentterms['settlementperiod_' + key] = period_.get(key)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

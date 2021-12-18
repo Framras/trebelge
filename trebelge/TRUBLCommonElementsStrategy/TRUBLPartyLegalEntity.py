@@ -51,4 +51,4 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
             for key in headofficeparty.keys():
                 partylegalentity['headofficeparty_' + key] = headofficeparty.get(key)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

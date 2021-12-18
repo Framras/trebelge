@@ -16,4 +16,4 @@ class TRUBLCommunication(TRUBLCommonElement):
         if channel_ is not None:
             frappedoc['channel'] = channel_.text
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

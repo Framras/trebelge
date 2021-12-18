@@ -13,4 +13,4 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
         partyidentification: dict = {'id': partyidentification_.text,
                                      'schemeid': partyidentification_.attrib.get('schemeID')}
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

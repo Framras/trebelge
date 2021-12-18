@@ -14,4 +14,4 @@ class TRUBLCountry(TRUBLCommonElement):
         if identificationcode_ is not None:
             frappedoc['identificationcode'] = identificationcode_.text
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

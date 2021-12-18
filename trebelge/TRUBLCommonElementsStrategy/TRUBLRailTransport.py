@@ -15,4 +15,4 @@ class TRUBLRailTransport(TRUBLCommonElement):
         if railcarid_ is not None:
             railTransport[railcarid_.tag.lower()] = railcarid_.text
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

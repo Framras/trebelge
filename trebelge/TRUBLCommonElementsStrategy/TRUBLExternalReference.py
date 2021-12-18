@@ -10,4 +10,4 @@ class TRUBLExternalReference(TRUBLCommonElement):
         """
         externalreference: dict = {'uri': element.find(cbcnamespace + 'URI').text}
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

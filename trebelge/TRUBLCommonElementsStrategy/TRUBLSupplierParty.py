@@ -27,4 +27,4 @@ class TRUBLSupplierParty(TRUBLCommonElement):
             for key in despatchcontact.keys():
                 supplierparty['despatchcontact_' + key] = despatchcontact.get(key)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

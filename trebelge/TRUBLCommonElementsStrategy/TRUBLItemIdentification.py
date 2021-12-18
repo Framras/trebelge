@@ -10,4 +10,4 @@ class TRUBLItemIdentification(TRUBLCommonElement):
         """
         itemidentification: dict = {'itemidentificationid': element.find(cbcnamespace + 'ID').text}
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

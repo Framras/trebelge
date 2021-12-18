@@ -26,4 +26,4 @@ class TRUBLCustomerParty(TRUBLCommonElement):
             for key in deliverycontact.keys():
                 frappedoc['deliverycontact_' + key] = deliverycontact.get(key)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

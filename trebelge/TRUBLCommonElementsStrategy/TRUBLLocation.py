@@ -26,4 +26,4 @@ class TRUBLLocation(TRUBLCommonElement):
             for key in address.keys():
                 location['address_' + key] = address.get(key)
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

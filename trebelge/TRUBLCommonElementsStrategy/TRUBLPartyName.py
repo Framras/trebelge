@@ -10,4 +10,4 @@ class TRUBLPartyName(TRUBLCommonElement):
         # ['Name'] = ('cbc', 'partyname', 'Zorunlu (1)')
         partyname: dict = {'partyname': element.find(cbcnamespace + 'Name')}
 
-        return self.get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)
