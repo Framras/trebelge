@@ -6,7 +6,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 class TRUBLAllowanceCharge(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR AllowanceCharge'
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ChargeIndicator'] = ('cbc', 'chargeindicator', 'Zorunlu (1)')
         # ['Amount'] = ('cbc', 'allowancechargeamount', 'Zorunlu (1)')
         # ['currencyID'] = ('', 'allowancechargeamount_currencyid', 'Zorunlu(1)')

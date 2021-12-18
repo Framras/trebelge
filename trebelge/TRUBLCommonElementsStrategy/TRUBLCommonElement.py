@@ -29,5 +29,5 @@ class TRUBLCommonElement(ABC):
             frappe.get_all(frappedoctype, filters=frappedoc)[0]['name'])
 
     @abstractmethod
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         pass

@@ -4,7 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLMonetaryTotal(TRUBLCommonElement):
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         """
         ['LineExtensionAmount'] = ('cbc', 'lineextensionamount', 'Zorunlu(1)')
         ['currencyID'] = ('', 'lineextensionamount_currencyid', 'Zorunlu(1)')

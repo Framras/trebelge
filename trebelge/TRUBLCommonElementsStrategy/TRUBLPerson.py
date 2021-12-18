@@ -10,7 +10,7 @@ class TRUBLPerson(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR Person'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['FirstName'] = ('cbc', 'firstname', 'Zorunlu(1)')
         # ['FamilyName'] = ('cbc', 'familyname', 'Zorunlu(1)')
         frappedoc: dict = {'firstname': element.find(cbcnamespace + 'FirstName').text,

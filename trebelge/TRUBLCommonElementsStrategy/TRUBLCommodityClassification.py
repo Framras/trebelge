@@ -5,7 +5,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 class TRUBLCommodityClassification(TRUBLCommonElement):
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ItemClassificationCode'] = ('cbc', 'itemclassificationcode', 'Zorunlu(1)')
         # ['listAgencyID'] = ('', 'itemclassificationcode_listagencyid', 'Zorunlu(1)')
         # ['listID'] = ('', 'itemclassificationcode_listid', 'Zorunlu(1)')

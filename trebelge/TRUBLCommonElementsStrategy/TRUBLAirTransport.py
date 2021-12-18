@@ -6,7 +6,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 class TRUBLAirTransport(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR AirTransport'
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['AircraftID'] = ('cbc', '', 'Zorunlu (1)')
         frappedoc: dict = {'aircraftid': element.find(cbcnamespace + 'AircraftID').text}
 

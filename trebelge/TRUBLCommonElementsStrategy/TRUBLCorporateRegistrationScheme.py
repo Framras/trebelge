@@ -8,7 +8,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBL
 class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> list:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         # ['CorporateRegistrationTypeCode'] = ('cbc', 'corporateregistrationtypecode', 'Seçimli (0...1)')
