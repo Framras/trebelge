@@ -14,7 +14,7 @@ class TRUBLCommonElement(ABC):
     """
 
     @staticmethod
-    def get_frappedoc(frappedoctype: str, frappedoc: dict) -> list:
+    def _get_frappedoc(frappedoctype: str, frappedoc: dict) -> list:
         if frappe.get_all(frappedoctype, filters=frappedoc):
             pass
         else:
