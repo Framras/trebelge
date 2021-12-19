@@ -4,6 +4,7 @@ from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
+from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentTerms import TRUBLPaymentTerms
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
@@ -85,14 +86,19 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_despatchadvicetypecode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
-    def build_note(self, filepath: str, cbcnamespace: str) -> None:
+    def build_note(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         notes_ = ET.parse(filepath).getroot().findall(cbcnamespace + 'Note')
         if notes_ is not None:
             notes: list = []
             for note in notes_:
-                notes.append({'note': note.text})
+                strategy: TRUBLCommonElement = TRUBLNote()
+                self._strategyContext.set_strategy(strategy)
+                notes.append(self._strategyContext.return_element_data(
+                    note,
+                    cbcnamespace,
+                    cacnamespace))
             self._product.add({
-                'note': notes
+                'note': [notes]
             })
 
     def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:

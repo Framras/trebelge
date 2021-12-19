@@ -79,7 +79,7 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_note(self, filepath: str, cbcnamespace: str) -> None:
+    def build_note(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         """
         ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         """
