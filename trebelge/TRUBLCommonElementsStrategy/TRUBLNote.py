@@ -1,8 +1,7 @@
 from xml.etree.ElementTree import Element
 
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-
 from frappe.model.document import Document
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 
 
 class TRUBLNote(TRUBLCommonElement):
