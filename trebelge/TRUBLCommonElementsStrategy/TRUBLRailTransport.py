@@ -12,7 +12,7 @@ class TRUBLRailTransport(TRUBLCommonElement):
         frappedoc: dict = {'trainid': element.find(cbcnamespace + 'TrainID').text}
         # ['RailCarID'] = ('cbc', 'RailCarID', 'Seçimli (0...1)')
         railcarid_: Element = element.find(cbcnamespace + 'RailCarID')
-        if railcarid_:
+        if not railcarid_:
             frappedoc['railcarid'] = railcarid_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

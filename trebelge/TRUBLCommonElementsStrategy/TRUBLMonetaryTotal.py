@@ -27,19 +27,19 @@ class TRUBLMonetaryTotal(TRUBLCommonElement):
                            }
         # ['AllowanceTotalAmount'] = ('cbc', 'allowancetotalamount', 'Seçimli (0...1)')
         allowancetotalamount_: Element = element.find(cbcnamespace + 'AllowanceTotalAmount')
-        if allowancetotalamount_:
+        if not allowancetotalamount_:
             frappedoc['allowancetotalamount'] = allowancetotalamount_.text
             frappedoc['allowancetotalamount_currencyid'] = allowancetotalamount_.attrib.get(
                 'currencyID')
         # ['ChargeTotalAmount'] = ('cbc', 'chargetotalamount', 'Seçimli (0...1)')
         chargetotalamount_: Element = element.find(cbcnamespace + 'ChargeTotalAmount')
-        if chargetotalamount_:
+        if not chargetotalamount_:
             frappedoc['chargetotalamount'] = chargetotalamount_.text
             frappedoc['chargetotalamount_currencyid'] = chargetotalamount_.attrib.get(
                 'currencyID')
         # ['PayableRoundingAmount'] = ('cbc', 'payableroundingamount', 'Seçimli (0...1)')
         payableroundingamount_: Element = element.find(cbcnamespace + 'PayableRoundingAmount')
-        if payableroundingamount_:
+        if not payableroundingamount_:
             frappedoc['payableroundingamount'] = payableroundingamount_.text
             frappedoc['payableroundingamount_currencyid'] = payableroundingamount_.attrib.get(
                 'currencyID')

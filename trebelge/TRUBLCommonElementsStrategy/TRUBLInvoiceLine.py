@@ -23,7 +23,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
 
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
         note_: Element = element.find(cbcnamespace + 'Note')
-        if note_:
+        if not note_:
             frappedoc['note'] = note_.text
 
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
@@ -38,5 +38,25 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         # ['WithholdingTaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...n)')
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
         # ['SubInvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli (0...n)')
+        cacsecimli0n: list = \
+            [{'Tag': 'OrderLineReference', 'strategy': TRUBLLocation(), 'fieldName': 'location'},
+             {'Tag': 'DespatchLineReference', 'strategy': TRUBLLocation(), 'fieldName': 'location'},
+             {'Tag': 'ReceiptLineReference', 'strategy': TRUBLLocation(), 'fieldName': 'location'},
+             {'Tag': 'Delivery', 'strategy': TRUBLLocation(), 'fieldName': 'location'},
+             {'Tag': 'WithholdingTaxTotal', 'strategy': TRUBLLocation(), 'fieldName': 'location'},
+             {'Tag': 'AllowanceCharge', 'strategy': TRUBLLocation(), 'fieldName': 'location'},
+             {'Tag': 'SubInvoiceLine', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
+             ]
+        for element_ in cacsecimli0n:
+            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            if not tagelements_ is not None:
+                tagelements: list = []
+                strategy: TRUBLCommonElement = element_.get('strategy')
+                self._strategyContext.set_strategy(strategy)
+                for tagelement in tagelements_:
+                    tagelements.append(self._strategyContext.return_element_data(tagelement,
+                                                                                 cbcnamespace,
+                                                                                 cacnamespace))
+                frappedoc[element_.get('fieldName')] = tagelements
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

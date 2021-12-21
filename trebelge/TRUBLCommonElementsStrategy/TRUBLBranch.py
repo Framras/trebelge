@@ -14,11 +14,11 @@ class TRUBLBranch(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'branchname', 'Seçimli(0..1)')
         name_: Element = element.find(cbcnamespace + 'Name')
-        if name_:
+        if not name_:
             frappedoc['branchname'] = name_.text
         # ['FinancialInstitution'] = ('cac', 'FinancialInstitution()', 'Seçimli(0..1)', 'financialinstitution')
         financialinstitution_: Element = element.find(cacnamespace + 'FinancialInstitution')
-        if financialinstitution_:
+        if not financialinstitution_:
             strategy: TRUBLCommonElement = TRUBLFinancialInstitution()
             self._strategyContext.set_strategy(strategy)
             frappedoc['financialinstitution'] = [self._strategyContext.return_element_data(financialinstitution_,

@@ -15,10 +15,10 @@ class TRUBLLocation(TRUBLCommonElement):
         """
         location: dict = {}
         id_: Element = element.find(cbcnamespace + 'ID')
-        if id_:
+        if not id_:
             location['locationid'] = id_.text
         address_: Element = element.find(cacnamespace + 'Address')
-        if address_:
+        if not address_:
             strategy: TRUBLCommonElement = TRUBLAddress()
             self._strategyContext.set_strategy(strategy)
             address = self._strategyContext.return_element_data(address_, cbcnamespace,

@@ -14,14 +14,14 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_: Element = element.find(cbcnamespace + 'Name')
-        if name_:
+        if not name_:
             frappedoc['taxcategoryname'] = name_.text
         # ['TaxExemptionReasonCode'] = ('cbc', 'taxexemptionreasoncode', 'Seçimli (0...1)')
         # ['TaxExemptionReason'] = ('cbc', 'taxexemptionreason', 'Seçimli (0...1)')
         cbcsecimli01: list = ['TaxExemptionReasonCode', 'TaxExemptionReason']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_:
+            if not field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find(cacnamespace + 'TaxScheme')

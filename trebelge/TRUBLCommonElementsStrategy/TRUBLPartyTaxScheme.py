@@ -18,7 +18,7 @@ class TRUBLPartyTaxScheme(TRUBLCommonElement):
         cbcsecimli01: list = ['RegistrationName', 'CompanyID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_:
+            if not field_:
                 partytaxscheme[field_.tag.lower()] = field_.text
 
         taxscheme_: Element = element.find(cacnamespace + 'TaxScheme')

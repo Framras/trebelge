@@ -39,12 +39,12 @@ class TRUBLAddress(TRUBLCommonElement):
                               'Region', 'District']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_:
+            if not not field_:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         buildingnumbers_: list = element.findall(cbcnamespace + 'BuildingNumber')
-        if buildingnumbers_ is not None:
+        if not not buildingnumbers_ is not None:
             buildingnumbers: list = []
             strategy: TRUBLCommonElement = TRUBLBuildingNumber()
             self._strategyContext.set_strategy(strategy)
