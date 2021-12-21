@@ -16,23 +16,23 @@ class TRUBLDimension(TRUBLCommonElement):
         ['unitCode'] = ('', 'maximummeasure_unitcode', 'Zorunlu(1)')
         """
         dimension: dict = {'attributeid': element.find(cbcnamespace + 'AttributeID').text}
-        measure_ = element.find(cbcnamespace + 'Measure')
+        measure_: Element = element.find(cbcnamespace + 'Measure')
         if measure_ is not None:
             dimension['measure'] = measure_.text
             dimension['measure_unitcode'] = measure_.attrib.get(
                 'unitCode')
-        descriptions_ = element.findall(cbcnamespace + 'Description')
+        descriptions_: list = element.findall(cbcnamespace + 'Description')
         if descriptions_ is not None:
             descriptions: list = []
             for description in descriptions_:
                 descriptions.append({'description': description.text})
             dimension['descriptions'] = descriptions
-        minimummeasure_ = element.find(cbcnamespace + 'MinimumMeasure')
+        minimummeasure_: Element = element.find(cbcnamespace + 'MinimumMeasure')
         if minimummeasure_ is not None:
             dimension['minimummeasure'] = minimummeasure_.text
             dimension['minimummeasure_unitcode'] = minimummeasure_.attrib.get(
                 'unitCode')
-        maximummeasure_ = element.find(cbcnamespace + 'MaximumMeasure')
+        maximummeasure_: Element = element.find(cbcnamespace + 'MaximumMeasure')
         if maximummeasure_ is not None:
             dimension['maximummeasure'] = maximummeasure_.text
             dimension['maximummeasure_unitcode'] = maximummeasure_.attrib.get(

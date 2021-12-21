@@ -12,7 +12,7 @@ class TRUBLCommunication(TRUBLCommonElement):
         frappedoc: dict = {'channelcode': element.find(cbcnamespace + 'ChannelCode').text,
                            'value': element.find(cbcnamespace + 'Value').text}
         # ['Channel'] = ('cbc', 'channel', 'Seçimli (0...1)')
-        channel_ = element.find(cbcnamespace + 'Channel')
+        channel_: Element = element.find(cbcnamespace + 'Channel')
         if channel_ is not None:
             frappedoc['channel'] = channel_.text
 

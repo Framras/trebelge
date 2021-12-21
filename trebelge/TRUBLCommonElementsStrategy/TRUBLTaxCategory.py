@@ -14,23 +14,23 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         # ['TaxExemptionReason'] = ('cbc', 'taxexemptionreason', 'Seçimli (0...1)')
         cbcsecimli01: list = ['TaxExemptionReasonCode', 'TaxExemptionReason']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
-        name_ = element.find(cbcnamespace + 'Name')
+        name_: Element = element.find(cbcnamespace + 'Name')
         if name_ is not None:
             frappedoc['taxcategoryname'] = name_.text
 
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
-        taxscheme = element.find(cacnamespace + 'TaxScheme')
+        taxscheme_: Element = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
-        taxscheme_ = self._strategyContext.return_element_data(taxscheme, cbcnamespace,
-                                                               cacnamespace)
-        for key in taxscheme_.keys():
-            if taxscheme_.get(key) is not None:
-                frappedoc['taxscheme_' + key] = taxscheme_.get(key)
+        taxscheme = self._strategyContext.return_element_data(taxscheme_, cbcnamespace,
+                                                              cacnamespace)
+        for key in taxscheme.keys():
+            if taxscheme.get(key) is not None:
+                frappedoc['taxscheme_' + key] = taxscheme.get(key)
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

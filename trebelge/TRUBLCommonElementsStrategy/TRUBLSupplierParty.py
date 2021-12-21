@@ -10,21 +10,21 @@ class TRUBLSupplierParty(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        supplierparty: dict = {}
+        frappedoc: dict = {}
         # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
-        party_ = element.find(cacnamespace + 'Party')
+        party_: Element = element.find(cacnamespace + 'Party')
         strategy: TRUBLCommonElement = TRUBLParty()
         self._strategyContext.set_strategy(strategy)
         party = self._strategyContext.return_element_data(party_, cbcnamespace, cacnamespace)
         for key in party.keys():
-            supplierparty['party_' + key] = party.get(key)
+            frappedoc['party_' + key] = party.get(key)
         # ['DespatchContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'despatchcontact')
-        despatchcontact_ = element.find(cacnamespace + 'DespatchContact')
+        despatchcontact_: Element = element.find(cacnamespace + 'DespatchContact')
         if despatchcontact_ is not None:
             strategy: TRUBLCommonElement = TRUBLContact()
             self._strategyContext.set_strategy(strategy)
             despatchcontact = self._strategyContext.return_element_data(despatchcontact_, cbcnamespace, cacnamespace)
             for key in despatchcontact.keys():
-                supplierparty['despatchcontact_' + key] = despatchcontact.get(key)
+                frappedoc['despatchcontact_' + key] = despatchcontact.get(key)
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

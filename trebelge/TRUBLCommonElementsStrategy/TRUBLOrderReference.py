@@ -7,16 +7,16 @@ class TRUBLOrderReference(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu(1)')
-        orderreference: dict = {'id': element.find(cbcnamespace + 'ID').text,
-                                'issuedate': element.find(cbcnamespace + 'IssueDate').text}
+        frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text,
+                           'issuedate': element.find(cbcnamespace + 'IssueDate').text}
 
         # ['SalesOrderID'] = ('cbc', 'salesorderid', 'Seçimli (0...1)')
         # ['OrderTypeCode'] = ('cbc', 'ordertypecode', 'Seçimli (0...1)')
         cbcsecimli01: list = ['SalesOrderID', 'OrderTypeCode']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
-                orderreference[field_.tag.lower()] = field_.text
+                frappedoc[field_.tag.lower()] = field_.text
 
         # ['DocumentReference'] = ('cac', 'documentreferences', 'Seçimli(0..n)', 'documentreference')
         documentreferences_ = element.findall(cacnamespace + 'DocumentReference')

@@ -17,11 +17,11 @@ class TRUBLPartyTaxScheme(TRUBLCommonElement):
         partytaxscheme: dict = {}
         cbcsecimli01: list = ['RegistrationName', 'CompanyID']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 partytaxscheme[field_.tag.lower()] = field_.text
 
-        taxscheme_ = element.find(cacnamespace + 'TaxScheme')
+        taxscheme_: Element = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
         taxscheme = self._strategyContext.return_element_data(taxscheme_, cbcnamespace,

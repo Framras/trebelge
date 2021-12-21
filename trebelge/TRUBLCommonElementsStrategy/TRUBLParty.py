@@ -31,7 +31,7 @@ class TRUBLParty(TRUBLCommonElement):
         frappedoc['partyidentification'] = partyidentifications
 
         # ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
-        postaladdress_ = element.find(cacnamespace + 'PostalAddress')
+        postaladdress_: Element = element.find(cacnamespace + 'PostalAddress')
         strategy: TRUBLCommonElement = TRUBLAddress()
         self._strategyContext.set_strategy(strategy)
         frappedoc['postaladdress'] = [self._strategyContext.return_element_data(postaladdress_,
@@ -43,7 +43,7 @@ class TRUBLParty(TRUBLCommonElement):
         # ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
         cbcsecimli01: list = ['WebsiteURI', 'EndpointID', 'IndustryClassificationCode']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
@@ -66,7 +66,7 @@ class TRUBLParty(TRUBLCommonElement):
               'fieldName': 'agentparty'}
              ]
         for element_ in cacsecimli01:
-            tagelement_ = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
             if tagelement_ is not None:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
@@ -75,7 +75,7 @@ class TRUBLParty(TRUBLCommonElement):
                                                                                                   cacnamespace)]
 
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
-        partylegalentity_ = element.find(cacnamespace + 'PartyLegalEntity')
+        partylegalentity_: Element = element.find(cacnamespace + 'PartyLegalEntity')
         if partylegalentity_ is not None:
             strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
             self._strategyContext.set_strategy(strategy)

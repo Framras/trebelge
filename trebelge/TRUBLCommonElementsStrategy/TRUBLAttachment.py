@@ -18,7 +18,7 @@ class TRUBLAttachment(TRUBLCommonElement):
         mimeCode: 'application/xml'
         """
         frappedoc: dict = {}
-        externalreference_ = element.find(cacnamespace + 'ExternalReference')
+        externalreference_: Element = element.find(cacnamespace + 'ExternalReference')
         if externalreference_ is not None:
             strategy: TRUBLCommonElement = TRUBLExternalReference()
             self._strategyContext.set_strategy(strategy)
@@ -27,7 +27,7 @@ class TRUBLAttachment(TRUBLCommonElement):
             for key in externalreference.keys():
                 frappedoc['externalreference_' + key] = externalreference.get(key)
         # TODO implement Base64 decoder
-        embeddeddocumentbinaryobject_ = element.find(cacnamespace + 'EmbeddedDocumentBinaryObject')
+        embeddeddocumentbinaryobject_: Element = element.find(cacnamespace + 'EmbeddedDocumentBinaryObject')
         if embeddeddocumentbinaryobject_ is not None:
             for key in embeddeddocumentbinaryobject_.attrib.keys():
                 frappedoc[('EmbeddedDocumentBinaryObject_' + key).lower()] = embeddeddocumentbinaryobject_.attrib.get(

@@ -10,7 +10,7 @@ class TRUBLAllowanceCharge(TRUBLCommonElement):
         # ['ChargeIndicator'] = ('cbc', 'chargeindicator', 'Zorunlu (1)')
         # ['Amount'] = ('cbc', 'allowancechargeamount', 'Zorunlu (1)')
         # ['currencyID'] = ('', 'allowancechargeamount_currencyid', 'Zorunlu(1)')
-        amount_ = element.find(cbcnamespace + 'Amount')
+        amount_: Element = element.find(cbcnamespace + 'Amount')
         frappedoc: dict = {'chargeindicator': element.find(cbcnamespace + 'ChargeIndicator'),
                            'amount': amount_.text,
                            'amountcurrencyid': amount_.attrib.get('currencyID')}
@@ -20,19 +20,19 @@ class TRUBLAllowanceCharge(TRUBLCommonElement):
         # ['SequenceNumeric'] = ('cbc', 'sequencenumeric', 'Seçimli (0...1)')
         cbcsecimli01: list = ['AllowanceChargeReason', 'MultiplierFactorNumeric', 'SequenceNumeric']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['BaseAmount'] = ('cbc', 'baseamount', 'Seçimli (0...1)')
         # ['currencyID'] = ('', 'baseamount_currencyid', 'Zorunlu(1)')
-        baseamount_ = element.find(cbcnamespace + 'BaseAmount')
+        baseamount_: Element = element.find(cbcnamespace + 'BaseAmount')
         if baseamount_ is not None:
             frappedoc['baseamount'] = baseamount_.text
             frappedoc['baseamountcurrencyid'] = baseamount_.attrib.get('currencyID')
         # ['PerUnitAmount'] = ('cbc', 'perunitamount', 'Seçimli (0...1)')
         # ['currencyID'] = ('', 'perunitamount_currencyid', 'Zorunlu(1)')
-        perunitamount_ = element.find(cbcnamespace + 'PerUnitAmount')
+        perunitamount_: Element = element.find(cbcnamespace + 'PerUnitAmount')
         if perunitamount_ is not None:
             frappedoc['perunitamount'] = perunitamount_.text
             frappedoc['perunitamountcurrencyid'] = perunitamount_.attrib.get('currencyID')

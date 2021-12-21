@@ -18,7 +18,7 @@ class TRUBLAddress(TRUBLCommonElement):
                            'cityname': element.find(cbcnamespace + 'CityName').text}
 
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
-        country_ = element.find(cacnamespace + 'Country')
+        country_: Element = element.find(cacnamespace + 'Country')
         strategy: TRUBLCommonElement = TRUBLCountry()
         self._strategyContext.set_strategy(strategy)
         country = self._strategyContext.return_element_data(country_,
@@ -38,12 +38,12 @@ class TRUBLAddress(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'Postbox', 'Room', 'StreetName', 'BlockName', 'BuildingName', 'PostalZone',
                               'Region', 'District']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
-        buildingnumbers_ = element.findall(cbcnamespace + 'BuildingNumber')
+        buildingnumbers_: Element = element.findall(cbcnamespace + 'BuildingNumber')
         if buildingnumbers_ is not None:
             buildingnumbers: list = []
             strategy: TRUBLCommonElement = TRUBLBuildingNumber()

@@ -12,33 +12,33 @@ class TRUBLMonetaryTotal(TRUBLCommonElement):
         # ['TaxExclusiveAmount'] = ('cbc', 'taxexclusiveamount', 'Zorunlu(1)')
         # ['TaxInclusiveAmount'] = ('cbc', 'taxinclusiveamount', 'Zorunlu(1)')
         # ['PayableAmount'] = ('cbc', 'payableamount', 'Zorunlu(1)')
-        lineextensionamount = element.find(cbcnamespace + 'LineExtensionAmount')
-        taxexclusiveamount = element.find(cbcnamespace + 'TaxExclusiveAmount')
-        taxinclusiveamount = element.find(cbcnamespace + 'TaxInclusiveAmount')
-        payableamount = element.find(cbcnamespace + 'PayableAmount')
-        frappedoc: dict = {'lineextensionamount': lineextensionamount.text,
-                           'lineextensionamountcurrencyid': lineextensionamount.attrib.get('currencyID'),
-                           'taxexclusiveamount': taxexclusiveamount.text,
-                           'taxexclusiveamountcurrencyid': taxexclusiveamount.attrib.get('currencyID'),
-                           'taxinclusiveamount': taxinclusiveamount.text,
-                           'taxinclusiveamountcurrencyid': taxinclusiveamount.attrib.get('currencyID'),
-                           'payableamount': payableamount.text,
-                           'payableamountcurrencyid': payableamount.attrib.get('currencyID')
+        lineextensionamount_: Element = element.find(cbcnamespace + 'LineExtensionAmount')
+        taxexclusiveamount_: Element = element.find(cbcnamespace + 'TaxExclusiveAmount')
+        taxinclusiveamount_: Element = element.find(cbcnamespace + 'TaxInclusiveAmount')
+        payableamount_: Element = element.find(cbcnamespace + 'PayableAmount')
+        frappedoc: dict = {'lineextensionamount': lineextensionamount_.text,
+                           'lineextensionamountcurrencyid': lineextensionamount_.attrib.get('currencyID'),
+                           'taxexclusiveamount': taxexclusiveamount_.text,
+                           'taxexclusiveamountcurrencyid': taxexclusiveamount_.attrib.get('currencyID'),
+                           'taxinclusiveamount': taxinclusiveamount_.text,
+                           'taxinclusiveamountcurrencyid': taxinclusiveamount_.attrib.get('currencyID'),
+                           'payableamount': payableamount_.text,
+                           'payableamountcurrencyid': payableamount_.attrib.get('currencyID')
                            }
         # ['AllowanceTotalAmount'] = ('cbc', 'allowancetotalamount', 'Seçimli (0...1)')
-        allowancetotalamount_ = element.find(cbcnamespace + 'AllowanceTotalAmount')
+        allowancetotalamount_: Element = element.find(cbcnamespace + 'AllowanceTotalAmount')
         if allowancetotalamount_ is not None:
             frappedoc['allowancetotalamount'] = allowancetotalamount_.text
             frappedoc['allowancetotalamount_currencyid'] = allowancetotalamount_.attrib.get(
                 'currencyID')
         # ['ChargeTotalAmount'] = ('cbc', 'chargetotalamount', 'Seçimli (0...1)')
-        chargetotalamount_ = element.find(cbcnamespace + 'ChargeTotalAmount')
+        chargetotalamount_: Element = element.find(cbcnamespace + 'ChargeTotalAmount')
         if chargetotalamount_ is not None:
             frappedoc['chargetotalamount'] = chargetotalamount_.text
             frappedoc['chargetotalamount_currencyid'] = chargetotalamount_.attrib.get(
                 'currencyID')
         # ['PayableRoundingAmount'] = ('cbc', 'payableroundingamount', 'Seçimli (0...1)')
-        payableroundingamount_ = element.find(cbcnamespace + 'PayableRoundingAmount')
+        payableroundingamount_: Element = element.find(cbcnamespace + 'PayableRoundingAmount')
         if payableroundingamount_ is not None:
             frappedoc['payableroundingamount'] = payableroundingamount_.text
             frappedoc['payableroundingamount_currencyid'] = payableroundingamount_.attrib.get(

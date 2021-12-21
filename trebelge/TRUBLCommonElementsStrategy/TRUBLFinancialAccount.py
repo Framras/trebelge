@@ -18,12 +18,12 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
         # ['PaymentNote'] = ('cbc', 'paymentnote', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CurrencyCode', 'PaymentNote']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['FinancialInstitutionBranch'] = ('cac', 'Branch()', 'Seçimli (0...1)', 'financialinstitutionbranch')
-        financialinstitutionbranch_ = element.find(cacnamespace + 'FinancialInstitutionBranch')
+        financialinstitutionbranch_: Element = element.find(cacnamespace + 'FinancialInstitutionBranch')
         if financialinstitutionbranch_ is not None:
             strategy: TRUBLCommonElement = TRUBLBranch()
             self._strategyContext.set_strategy(strategy)

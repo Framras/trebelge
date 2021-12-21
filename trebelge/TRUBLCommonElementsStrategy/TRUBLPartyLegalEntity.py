@@ -26,16 +26,16 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
         cbcsecimli01: list = ['RegistrationName', 'CompanyID', 'RegistrationDate', 'SolePrioprietorshipIndicator',
                               'FullyPaidSharesIndicator']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 partylegalentity[field_.tag.lower()] = field_.text
 
-        corporatestockamount_ = element.find(cbcnamespace + 'CorporateStockAmount')
+        corporatestockamount_: Element = element.find(cbcnamespace + 'CorporateStockAmount')
         if corporatestockamount_ is not None:
             partylegalentity['corporatestockamount'] = corporatestockamount_.text
             partylegalentity['corporatestockamount_currencyid'] = corporatestockamount_.attrib.get(
                 'currencyID')
-        corporateregistrationscheme_ = element.find(cacnamespace + 'CorporateRegistrationScheme')
+        corporateregistrationscheme_: Element = element.find(cacnamespace + 'CorporateRegistrationScheme')
         if corporateregistrationscheme_ is not None:
             strategy: TRUBLCommonElement = TRUBLCorporateRegistrationScheme()
             self._strategyContext.set_strategy(strategy)
@@ -43,7 +43,7 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
                                                                                     cbcnamespace, cacnamespace)
             for key in corporateregistrationscheme.keys():
                 partylegalentity['corporateregistrationscheme_' + key] = corporateregistrationscheme.get(key)
-        headofficeparty_ = element.find(cacnamespace + 'HeadOfficeParty')
+        headofficeparty_: Element = element.find(cacnamespace + 'HeadOfficeParty')
         if headofficeparty_ is not None:
             strategy: TRUBLCommonElement = TRUBLParty()
             self._strategyContext.set_strategy(strategy)

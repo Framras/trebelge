@@ -13,10 +13,10 @@ class TRUBLTemperature(TRUBLCommonElement):
         # ['AttributeID'] = ('cbc', '', 'Zorunlu (1)')
         # ['Measure'] = ('cbc', '', 'Zorunlu (1)')
         # ['unitCode'] = ('', '', 'Zorunlu(1)')
-        measure = element.find(cbcnamespace + 'Measure')
+        measure_: Element = element.find(cbcnamespace + 'Measure')
         frappedoc: dict = {'attributeid': element.find(cbcnamespace + 'AttributeID'),
-                           'measure': measure.text,
-                           'measureunitcode': measure.attrib.get('unitCode')
+                           'measure': measure_.text,
+                           'measureunitcode': measure_.attrib.get('unitCode')
                            }
 
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')

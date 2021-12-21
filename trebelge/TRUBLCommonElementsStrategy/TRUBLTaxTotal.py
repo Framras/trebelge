@@ -16,7 +16,7 @@ class TRUBLTaxTotal(TRUBLCommonElement):
         ['currencyID'] = ('', 'taxamount_currencyid', 'Zorunlu(1)')
         ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
         """
-        taxamount_ = element.find(cbcnamespace + 'TaxAmount')
+        taxamount_: Element = element.find(cbcnamespace + 'TaxAmount')
         taxTotal: dict = {'doctype': self._frappeDoctype,
                           'taxamount': taxamount_.text,
                           'taxamount_currencyid': taxamount_.attrib.get('currencyID')}

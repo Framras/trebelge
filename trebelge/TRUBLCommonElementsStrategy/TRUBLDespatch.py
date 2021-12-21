@@ -21,7 +21,7 @@ class TRUBLDespatch(TRUBLCommonElement):
         # ['Instructions'] = ('cbc', '', 'Seçimli(0..1)')
         cbcsecimli01: list = ['ID', 'ActualDespatchDate', 'ActualDespatchTime', 'Instructions']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['DespatchAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
@@ -38,7 +38,7 @@ class TRUBLDespatch(TRUBLCommonElement):
               'fieldName': 'estimateddespatchperiod'}
              ]
         for element_ in cacsecimli01:
-            tagelement_ = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
             if tagelement_ is not None:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

@@ -21,7 +21,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
         cbcsecimli01: list = ['JourneyID', 'RegistrationNationalityID', 'DirectionCode', 'TransportMeansTypeCode',
                               'TradeServiceCode']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
@@ -37,7 +37,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
 
         # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)', 'financialaccount')
-        financialaccount_ = element.find(cacnamespace + 'FinancialAccount')
+        financialaccount_: Element = element.find(cacnamespace + 'FinancialAccount')
         if financialaccount_ is not None:
             strategy: TRUBLCommonElement = TRUBLFinancialAccount()
             self._strategyContext.set_strategy(strategy)
@@ -45,7 +45,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
                                                                                       cbcnamespace,
                                                                                       cacnamespace)
         # ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)', 'documentreference')
-        documentreference_ = element.find(cacnamespace + 'IdentityDocumentReference')
+        documentreference_: Element = element.find(cacnamespace + 'IdentityDocumentReference')
         if documentreference_ is not None:
             strategy: TRUBLCommonElement = TRUBLDocumentReference()
             self._strategyContext.set_strategy(strategy)

@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 
 
@@ -10,7 +11,7 @@ class TRUBLCountry(TRUBLCommonElement):
         # ['Name'] = ('cbc', 'countryname', 'Zorunlu(1)')
         frappedoc: dict = {'countryname': element.find(cbcnamespace + 'Name').text}
         # ['IdentificationCode'] = ('cbc', 'identificationcode', 'Seçimli (0...1)')
-        identificationcode_ = element.find(cbcnamespace + 'IdentificationCode')
+        identificationcode_: Element = element.find(cbcnamespace + 'IdentificationCode')
         if identificationcode_ is not None:
             frappedoc['identificationcode'] = identificationcode_.text
 

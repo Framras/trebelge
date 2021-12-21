@@ -28,7 +28,7 @@ class TRUBLDelivery(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'Quantity', 'ActualDeliveryDate', 'ActualDeliveryTime', 'LatestDeliveryDate',
                               'LatestDeliveryTime', 'TrackingID']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
@@ -50,7 +50,7 @@ class TRUBLDelivery(TRUBLCommonElement):
              {'Tag': 'Shipment', 'strategy': TRUBLShipment(), 'fieldName': 'shipment'}
              ]
         for element_ in cacsecimli01:
-            tagelement_ = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
             if tagelement_ is not None:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
@@ -59,7 +59,7 @@ class TRUBLDelivery(TRUBLCommonElement):
                                                                                                   cacnamespace)]
 
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
-        partylegalentity_ = element.find(cacnamespace + 'PartyLegalEntity')
+        partylegalentity_: Element = element.find(cacnamespace + 'PartyLegalEntity')
         if partylegalentity_ is not None:
             strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
             self._strategyContext.set_strategy(strategy)

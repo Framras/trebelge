@@ -19,17 +19,17 @@ class TRUBLContact(TRUBLCommonElement):
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
         cbcsecimli01: list = ['ID', 'Telephone', 'Telefax', 'ElectronicMail', 'Note']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
-        name_ = element.find(cbcnamespace + 'Name')
+        name_: Element = element.find(cbcnamespace + 'Name')
         if name_ is not None:
             frappedoc['contactname'] = name_.text
 
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
-        othercommunications_ = element.findall(cacnamespace + 'OtherCommunication')
+        othercommunications_: Element = element.findall(cacnamespace + 'OtherCommunication')
         if othercommunications_ is not None:
             strategy: TRUBLCommonElement = TRUBLCommunication()
             self._strategyContext.set_strategy(strategy)

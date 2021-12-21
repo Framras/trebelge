@@ -13,8 +13,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
         # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
         # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
-        invoicedquantity = element.find(cbcnamespace + 'InvoicedQuantity')
-        lineextensionamount = element.find(cbcnamespace + 'LineExtensionAmount')
+        invoicedquantity: Element = element.find(cbcnamespace + 'InvoicedQuantity')
+        lineextensionamount: Element = element.find(cbcnamespace + 'LineExtensionAmount')
         frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text,
                            'invoicedquantity': invoicedquantity.text,
                            'invoicedquantityunitcode': invoicedquantity.attrib.get('unitCode'),
@@ -22,7 +22,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                            'lineextensionamountcurrencyid': lineextensionamount.attrib.get('currencyID')}
 
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
-        note_ = element.find(cbcnamespace + 'Note')
+        note_: Element = element.find(cbcnamespace + 'Note')
         if note_ is not None:
             frappedoc['note'] = note_.text
 

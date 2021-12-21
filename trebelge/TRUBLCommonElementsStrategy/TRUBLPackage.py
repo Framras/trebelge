@@ -19,14 +19,14 @@ class TRUBLPackage(TRUBLCommonElement):
         # ['PackagingTypeCode'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['ID', 'ReturnableMaterialIndicator', 'PackageLevelCode', 'PackagingTypeCode']
         for elementtag_ in cbcsecimli01:
-            field_ = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
-        quantity = element.find(cbcnamespace + 'Quantity')
-        if quantity is not None:
-            frappedoc['quantity'] = quantity.text
-            frappedoc['quantityunitcode'] = quantity.attrib.get('unitCode')
+        quantity_: Element = element.find(cbcnamespace + 'Quantity')
+        if quantity_ is not None:
+            frappedoc['quantity'] = quantity_.text
+            frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
 
         # ['PackagingMaterial'] = ('cbc', '', 'Seçimli (0...n)')
 
