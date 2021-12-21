@@ -7,7 +7,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 class TRUBLItemIdentification(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR ItemIdentification'
 
-    def process_element(self, element: Element, cbcnamespace: str) -> Document:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text}
 
