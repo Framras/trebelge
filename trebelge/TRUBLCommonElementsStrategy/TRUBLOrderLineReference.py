@@ -2,6 +2,8 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 
 
 class TRUBLOrderLineReference(TRUBLCommonElement):
@@ -20,5 +22,12 @@ class TRUBLOrderLineReference(TRUBLCommonElement):
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['OrderReference'] = ('cac', 'OrderReference', 'Seçimli (0...1)')
+        orderreference_: Element = element.find(cacnamespace + 'OrderReference')
+        if orderreference_:
+            strategy: TRUBLCommonElement = TRUBLOrderReference()
+            self._strategyContext.set_strategy(strategy)
+            frappedoc['orderreference'] = [self._strategyContext.return_element_data(orderreference_,
+                                                                                     cbcnamespace,
+                                                                                     cacnamespace)]
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -7,7 +7,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDoc
 
 
 class TRUBLOrderReference(TRUBLCommonElement):
-    _frappeDoctype: str = 'UBL TR OrderLineReference'
+    _frappeDoctype: str = 'UBL TR OrderReference'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
