@@ -6,7 +6,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBL
 
 
 class TRUBLStowage(TRUBLCommonElement):
-    _frappeDoctype: str = 'TR UBL Tax Total'
+    _frappeDoctype: str = 'UBL TR Stowage'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
