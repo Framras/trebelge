@@ -3,9 +3,11 @@ from xml.etree.ElementTree import Element
 from apps.frappe.frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialAccount import TRUBLFinancialAccount
 
 
 class TRUBLPaymentMeans(TRUBLCommonElement):
+    _frappeDoctype: str = 'UBL TR PaymentMeans'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
@@ -19,8 +21,21 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
             field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
-
         # ['PayerFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
+        payerfinancialaccount_ = element.find(cacnamespace + 'PayerFinancialAccount')
+        if payerfinancialaccount_ is not None:
+            strategy: TRUBLCommonElement = TRUBLFinancialAccount()
+            self._strategyContext.set_strategy(strategy)
+            frappedoc['payerfinancialaccount'] = [self._strategyContext.return_element_data(payerfinancialaccount_,
+                                                                                            cbcnamespace,
+                                                                                            cacnamespace)]
         # ['PayeeFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
+        payeefinancialaccount_ = element.find(cacnamespace + 'PayeeFinancialAccount')
+        if payeefinancialaccount_ is not None:
+            strategy: TRUBLCommonElement = TRUBLFinancialAccount()
+            self._strategyContext.set_strategy(strategy)
+            frappedoc['payeefinancialaccount'] = [self._strategyContext.return_element_data(payeefinancialaccount_,
+                                                                                            cbcnamespace,
+                                                                                            cacnamespace)]
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
