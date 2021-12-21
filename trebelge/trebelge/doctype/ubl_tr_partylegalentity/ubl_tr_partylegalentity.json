@@ -12,7 +12,7 @@
     "registrationdate",
     "soleprioprietorshipindicator",
     "corporatestockamount",
-    "corporatestockamount_currencyid",
+    "corporatestockamountcurrencyid",
     "fullypaidsharesindicator",
     "corporateregistrationscheme",
     "headofficeparty"
@@ -55,11 +55,6 @@
       "label": "\u00d6denmi\u015f sermaye"
     },
     {
-      "fieldname": "corporatestockamount_currencyid",
-      "fieldtype": "Data",
-      "label": "\u00d6denmi\u015f sermaye d\u00f6viz"
-    },
-    {
       "description": "\u015eirketin halka a\u00e7\u0131k olup olmad\u0131\u011f\u0131n\u0131n g\u00f6stergesi girilebilir.",
       "fieldname": "fullypaidsharesindicator",
       "fieldtype": "Data",
@@ -79,11 +74,17 @@
       "in_list_view": 1,
       "label": "Merkez bilgileri",
       "options": "UBL TR Party"
+    },
+    {
+      "fieldname": "corporatestockamountcurrencyid",
+      "fieldtype": "Link",
+      "label": "\u00d6denmi\u015f sermaye d\u00f6viz",
+      "options": "UBL TR CurrencyCode"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 08:56:12.238689",
+  "modified": "2021-12-22 01:16:48.926704",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR PartyLegalEntity",

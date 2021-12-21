@@ -8,6 +8,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 
 
 class TRUBLCustomerParty(TRUBLCommonElement):
+    _frappeDoctype: str = 'UBL TR CustomerParty'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
@@ -16,15 +17,16 @@ class TRUBLCustomerParty(TRUBLCommonElement):
         party_: Element = element.find(cacnamespace + 'Party')
         strategy: TRUBLCommonElement = TRUBLParty()
         self._strategyContext.set_strategy(strategy)
-        party = self._strategyContext.return_element_data(party_, cbcnamespace, cacnamespace)
-        frappedoc['party'] = party.get(key)
+        frappedoc['party'] = self._strategyContext.return_element_data(party_,
+                                                                       cbcnamespace,
+                                                                       cacnamespace)
         # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
         deliverycontact_: Element = element.find(cacnamespace + 'DeliveryContact')
         if deliverycontact_ is not None:
             strategy: TRUBLCommonElement = TRUBLContact()
             self._strategyContext.set_strategy(strategy)
-            deliverycontact = self._strategyContext.return_element_data(deliverycontact_, cbcnamespace, cacnamespace)
-            for key in deliverycontact.keys():
-                frappedoc['deliverycontact_' + key] = deliverycontact.get(key)
+            frappedoc['deliverycontact'] = self._strategyContext.return_element_data(deliverycontact_,
+                                                                                     cbcnamespace,
+                                                                                     cacnamespace)
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
