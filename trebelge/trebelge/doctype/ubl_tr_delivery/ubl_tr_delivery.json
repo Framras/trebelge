@@ -106,7 +106,7 @@
       "fieldname": "deliveryterms",
       "fieldtype": "Table MultiSelect",
       "label": "Teslimat \u015fartlar\u0131",
-      "options": "UBL TR DeliveryTerms"
+      "options": "UBL TR Delivery Terms"
     },
     {
       "description": "Y\u00fck/kargo bilgileri girilir.",
@@ -118,7 +118,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 20:44:44.819527",
+  "modified": "2021-12-22 02:15:15.158031",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Delivery",

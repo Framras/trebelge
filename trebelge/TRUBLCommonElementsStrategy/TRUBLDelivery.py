@@ -4,16 +4,16 @@ from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLDeliveryTerms import TRUBLDeliveryTerms
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDespatch import TRUBLDespatch
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
-from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyLegalEntity import TRUBLPartyLegalEntity
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 
 
 class TRUBLDelivery(TRUBLCommonElement):
-    _frappeDoctype: str = 'UBL TR Party'
+    _frappeDoctype: str = 'UBL TR Delivery'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
@@ -31,7 +31,6 @@ class TRUBLDelivery(TRUBLCommonElement):
             field_: Element = element.find(cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
-
         # ['DeliveryAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
         # ['AlternativeDeliveryLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
         # ['EstimatedDeliveryPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
@@ -57,17 +56,16 @@ class TRUBLDelivery(TRUBLCommonElement):
                 frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
                                                                                                   cbcnamespace,
                                                                                                   cacnamespace)]
-
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
-        partylegalentity_: Element = element.find(cacnamespace + 'PartyLegalEntity')
-        if partylegalentity_:
-            partylegalentities: list = []
-            strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
+        deliveryterms_: Element = element.find(cacnamespace + 'DeliveryTerms')
+        if deliveryterms_:
+            deliveryterms: list = []
+            strategy: TRUBLCommonElement = TRUBLDeliveryTerms()
             self._strategyContext.set_strategy(strategy)
-            for partylegalentity in partylegalentity_:
-                partylegalentities.append(self._strategyContext.return_element_data(partylegalentity,
-                                                                                    cbcnamespace,
-                                                                                    cacnamespace))
-            frappedoc['partylegalentity'] = partylegalentities
+            for deliveryterm_ in deliveryterms_:
+                deliveryterms.append(self._strategyContext.return_element_data(deliveryterm_,
+                                                                               cbcnamespace,
+                                                                               cacnamespace))
+            frappedoc['deliveryterms'] = deliveryterms
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

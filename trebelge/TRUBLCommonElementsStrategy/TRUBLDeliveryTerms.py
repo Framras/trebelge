@@ -5,18 +5,19 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLDeliveryTerms(TRUBLCommonElement):
+    _frappeDoctype: str = 'UBL TR DeliveryTerms'
+
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
-        # ['SpecialTerms'] = ('cbc', 'specialterms', 'Seçimli (0...1)')
-        # ['Amount'] = ('cbc', 'amount', 'Seçimli (0...1)')
-        # ['currencyID'] = ('', 'amountcurrencyid', 'Zorunlu(1)')
         frappedoc: dict = {}
+        # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         id_: Element = element.find(cbcnamespace + 'ID')
         if id_:
             frappedoc['id'] = id_.text
+        # ['SpecialTerms'] = ('cbc', 'specialterms', 'Seçimli (0...1)')
         specialterms_: Element = element.find(cbcnamespace + 'SpecialTerms')
         if specialterms_:
             frappedoc['specialterms'] = specialterms_.text
+        # ['Amount'] = ('cbc', 'amount', 'Seçimli (0...1)')
         amount_: Element = element.find(cbcnamespace + 'Amount')
         if amount_:
             frappedoc['amount'] = amount_.text

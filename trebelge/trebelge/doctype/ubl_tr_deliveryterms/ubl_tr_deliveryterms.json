@@ -1,31 +1,65 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "creation": "2021-12-02 20:31:25.038654",
+  "creation": "2021-12-02 20:30:25.664890",
+  "description": "Teslimat Ko\u015fullar\u0131: Teslimat ko\u015fullar\u0131 girilir.",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "deliveryterms"
+    "id",
+    "specialterms",
+    "amount",
+    "amountcurrencyid"
   ],
   "fields": [
     {
-      "fieldname": "deliveryterms",
+      "description": "Teslim ko\u015fullar\u0131 girilir (\u00f6rne\u011fin CIF, FOB).",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "label": "Teslim ko\u015fullar\u0131"
+    },
+    {
+      "description": "Teslimat ko\u015fullar\u0131 serbest metin olarak girilir.",
+      "fieldname": "specialterms",
+      "fieldtype": "Data",
+      "label": "Teslimat ko\u015fullar\u0131"
+    },
+    {
+      "description": "Teslimat ko\u015fullar\u0131n\u0131n kapsad\u0131\u011f\u0131 tutar girilebilir.",
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Kapsad\u0131\u011f\u0131 tutar"
+    },
+    {
+      "fieldname": "amountcurrencyid",
       "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Teslimat Ko\u015fullar\u0131",
-      "options": "UBL TR Delivery Terms"
+      "label": "Kapsad\u0131\u011f\u0131 tutar d\u00f6viz cinsi",
+      "options": "UBL TR CurrencyCode"
     }
   ],
   "index_web_pages_for_search": 1,
-  "istable": 1,
   "links": [],
-  "modified": "2021-12-02 20:31:25.038654",
+  "modified": "2021-12-02 20:30:25.664890",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR DeliveryTerms",
   "owner": "Administrator",
-  "permissions": [],
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
   "sort_field": "modified",
-  "sort_order": "DESC"
+  "sort_order": "DESC",
+  "track_changes": 1
 }
