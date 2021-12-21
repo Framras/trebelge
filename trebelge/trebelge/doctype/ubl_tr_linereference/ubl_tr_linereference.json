@@ -32,12 +32,12 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Referans Belge",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 22:09:11.750272",
+  "modified": "2021-12-21 21:42:13.045269",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR LineReference",

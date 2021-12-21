@@ -14,14 +14,14 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "DocumentReference",
-      "options": "UBL TR Document Reference",
+      "options": "UBL TR DocumentReference",
       "search_index": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2021-12-01 22:46:50.916780",
+  "modified": "2021-12-21 21:42:11.294078",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR DocumentReferences",

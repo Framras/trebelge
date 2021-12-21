@@ -81,7 +81,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Kay\u0131t dok\u00fcman\u0131 referans\u0131",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     },
     {
       "description": "Geminin kay\u0131t liman\u0131 bilgisi girilir.",
@@ -94,7 +94,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 21:54:36.123142",
+  "modified": "2021-12-21 21:42:09.770852",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR MaritimeTransport",

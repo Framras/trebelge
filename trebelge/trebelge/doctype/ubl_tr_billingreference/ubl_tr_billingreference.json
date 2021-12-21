@@ -22,49 +22,49 @@
       "fieldname": "invoicedocumentreference",
       "fieldtype": "Link",
       "label": "\u00d6nceki ili\u015fkili fatura belgelerine referans",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     },
     {
       "description": "Yurt d\u0131\u015f\u0131nda bir kurum kendine fatura kesebilmektedir. Bu eleman bu belgeye referans i\u00e7in kullan\u0131lmaktad\u0131r.",
       "fieldname": "selfbilledinvoicedocumentreference",
       "fieldtype": "Link",
       "label": "Self Billed Invoice",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     },
     {
       "description": "\u0130lgili CreditNote (Sat\u0131c\u0131 taraf\u0131ndan d\u00fczenlenip al\u0131c\u0131n\u0131n borcunu d\u00fc\u015f\u00fcrmek i\u00e7in kullan\u0131lan belge) dok\u00fcman\u0131na referans bilgisini tutar.",
       "fieldname": "creditnotedocumentreference",
       "fieldtype": "Link",
       "label": "Credit Note",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     },
     {
       "description": "Yurt d\u0131\u015f\u0131nda bir kurum kendine iade faturas\u0131 kesebilmektedir. Bu eleman bu belgeye referans i\u00e7in kullan\u0131lmaktad\u0131r.",
       "fieldname": "selfbilledcreditnotedocumentreference",
       "fieldtype": "Link",
       "label": "Self Billed Credit Note",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     },
     {
       "description": "\u0130lgili DebitNote (Al\u0131c\u0131 taraf\u0131ndan d\u00fczenlenip al\u0131c\u0131n\u0131n borcunu d\u00fc\u015f\u00fcrmek i\u00e7in kullan\u0131lan belge) dok\u00fcman\u0131na referans bilgisini tutar.",
       "fieldname": "debitnotedocumentreference",
       "fieldtype": "Link",
       "label": "Debit Note",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     },
     {
       "description": "\u0130lgili hat\u0131rlatma belgesine referans girilir.",
       "fieldname": "reminderdocumentreference",
       "fieldtype": "Link",
       "label": "Reminder",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     },
     {
       "description": "Di\u011fer ba\u015fka dok\u00fcmanlara referans bilgisi girilebilir.",
       "fieldname": "additionaldocumentreference",
       "fieldtype": "Link",
       "label": "Additional Document",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     },
     {
       "description": "Detayl\u0131 olarak belli bir kaleme referans atmak istenirse kullan\u0131l\u0131r.",
@@ -76,7 +76,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 18:16:16.785796",
+  "modified": "2021-12-21 21:42:10.131883",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR BillingReference",

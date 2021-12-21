@@ -78,12 +78,12 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Kimlik dok\u00fcman\u0131",
-      "options": "UBL TR Document Reference"
+      "options": "UBL TR DocumentReference"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 11:24:40.735447",
+  "modified": "2021-12-21 21:42:12.132807",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Person",
