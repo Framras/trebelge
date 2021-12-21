@@ -31,9 +31,9 @@ class TRUBLContact(TRUBLCommonElement):
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         othercommunications_: list = element.findall(cacnamespace + 'OtherCommunication')
         if othercommunications_ is not None:
+            communications: list = []
             strategy: TRUBLCommonElement = TRUBLCommunication()
             self._strategyContext.set_strategy(strategy)
-            communications: list = []
             for othercommunication in othercommunications_:
                 communications.append(self._strategyContext.return_element_data(othercommunication,
                                                                                 cbcnamespace,

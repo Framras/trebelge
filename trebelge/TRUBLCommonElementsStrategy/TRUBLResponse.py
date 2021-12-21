@@ -20,9 +20,9 @@ class TRUBLResponse(TRUBLCommonElement):
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
         descriptions_: list = element.findall(cacnamespace + 'Description')
         if descriptions_ is not None:
+            descriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
-            descriptions: list = []
             for description_ in descriptions_:
                 descriptions.append(self._strategyContext.return_element_data(description_,
                                                                               cbcnamespace,

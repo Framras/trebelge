@@ -42,7 +42,7 @@
       "fieldname": "description",
       "fieldtype": "Table MultiSelect",
       "label": "A\u00e7\u0131klama",
-      "options": "UBL TR Descriptions"
+      "options": "UBL TR Notes"
     },
     {
       "description": "Minimum \u00f6l\u00e7\u00fcm girilir.",
@@ -75,7 +75,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-04 09:35:17.641102",
+  "modified": "2021-12-21 22:04:03.810784",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Dimension",

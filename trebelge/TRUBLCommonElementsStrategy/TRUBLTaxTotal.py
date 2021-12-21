@@ -16,9 +16,9 @@ class TRUBLTaxTotal(TRUBLCommonElement):
         frappedoc: dict = {'taxamount': taxamount_.text,
                            'taxamountcurrencyid': taxamount_.attrib.get('currencyID')}
         # ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
+        taxsubtotals: list = []
         strategy: TRUBLCommonElement = TRUBLTaxSubtotal()
         self._strategyContext.set_strategy(strategy)
-        taxsubtotals: list = []
         for taxsubtotal_ in element.findall(cacnamespace + 'TaxSubtotal'):
             taxsubtotals.append(self._strategyContext.return_element_data(taxsubtotal_,
                                                                           cbcnamespace,

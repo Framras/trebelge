@@ -21,9 +21,9 @@ class TRUBLParty(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
         partyidentifications_: list = element.findall(cacnamespace + 'PartyIdentification')
+        partyidentifications: list = []
         strategy: TRUBLCommonElement = TRUBLPartyIdentification()
         self._strategyContext.set_strategy(strategy)
-        partyidentifications: list = []
         for partyidentification in partyidentifications_:
             partyidentifications.append(self._strategyContext.return_element_data(partyidentification,
                                                                                   cbcnamespace,
@@ -77,9 +77,9 @@ class TRUBLParty(TRUBLCommonElement):
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
         partylegalentity_: Element = element.find(cacnamespace + 'PartyLegalEntity')
         if partylegalentity_ is not None:
+            partylegalentities: list = []
             strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
             self._strategyContext.set_strategy(strategy)
-            partylegalentities: list = []
             for partylegalentity in partylegalentity_:
                 partylegalentities.append(self._strategyContext.return_element_data(partylegalentity,
                                                                                     cbcnamespace,

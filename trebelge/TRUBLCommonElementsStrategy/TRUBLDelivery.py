@@ -61,9 +61,9 @@ class TRUBLDelivery(TRUBLCommonElement):
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
         partylegalentity_: Element = element.find(cacnamespace + 'PartyLegalEntity')
         if partylegalentity_ is not None:
+            partylegalentities: list = []
             strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
             self._strategyContext.set_strategy(strategy)
-            partylegalentities: list = []
             for partylegalentity in partylegalentity_:
                 partylegalentities.append(self._strategyContext.return_element_data(partylegalentity,
                                                                                     cbcnamespace,

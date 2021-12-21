@@ -44,9 +44,9 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
         documentdescriptions_: list = element.findall(cbcnamespace + 'DocumentDescription')
         if documentdescriptions_ is not None:
+            documentdescriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
-            documentdescriptions: list = []
             for documentdescription_ in documentdescriptions_:
                 documentdescriptions.append(self._strategyContext.return_element_data(documentdescription_,
                                                                                       cbcnamespace,

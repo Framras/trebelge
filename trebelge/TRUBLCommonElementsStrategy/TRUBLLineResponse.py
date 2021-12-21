@@ -21,9 +21,9 @@ class TRUBLLineResponse(TRUBLCommonElement):
                                                                                 cbcnamespace,
                                                                                 cacnamespace)]
         # ['Response'] = ('cac', 'Response', 'Zorunlu(1..n)')
+        responses: list = []
         strategy: TRUBLCommonElement = TRUBLResponse()
         self._strategyContext.set_strategy(strategy)
-        responses: list = []
         for response_ in element.findall(cacnamespace + 'Response'):
             responses.append(self._strategyContext.return_element_data(response_,
                                                                        cbcnamespace,

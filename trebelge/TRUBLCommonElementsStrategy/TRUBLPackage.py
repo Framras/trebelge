@@ -41,9 +41,9 @@ class TRUBLPackage(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
             if tagelements_ is not None:
+                tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
-                tagelements: list = []
                 for tagelement in tagelements_:
                     tagelements.append(self._strategyContext.return_element_data(tagelement,
                                                                                  cbcnamespace,
