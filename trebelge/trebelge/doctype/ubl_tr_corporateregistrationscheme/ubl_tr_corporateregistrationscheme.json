@@ -10,7 +10,7 @@
     "id",
     "corporateregistrationschemename",
     "corporateregistrationtypecode",
-    "juridictionregionaddresses"
+    "jurisdictionregionaddress"
   ],
   "fields": [
     {
@@ -36,7 +36,7 @@
     },
     {
       "description": "Kay\u0131t yeri adresi girilebilir.",
-      "fieldname": "juridictionregionaddresses",
+      "fieldname": "jurisdictionregionaddress",
       "fieldtype": "Table MultiSelect",
       "label": "Kay\u0131t yeri adresi",
       "options": "UBL TR Addresses"
@@ -44,7 +44,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 19:34:35.581090",
+  "modified": "2021-12-21 22:21:37.750472",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR CorporateRegistrationScheme",
