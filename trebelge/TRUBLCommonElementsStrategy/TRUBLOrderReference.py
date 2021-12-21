@@ -15,7 +15,7 @@ class TRUBLOrderReference(TRUBLCommonElement):
         cbcsecimli01: list = ['SalesOrderID', 'OrderTypeCode']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
+            if field_:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['DocumentReference'] = ('cac', 'documentreferences', 'Seçimli(0..n)', 'documentreference')

@@ -27,27 +27,27 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         cbcsecimli01: list = ['CalculationSequenceNumeric', 'Percent']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
+            if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['TaxableAmount'] = ('cbc', 'taxableamount', 'Seçimli (0...1)')
         taxableamount_: Element = element.find(cbcnamespace + 'TaxableAmount')
-        if taxableamount_ is not None:
+        if taxableamount_:
             frappedoc['taxableamount'] = taxableamount_.text
             frappedoc['taxableamountcurrencyid'] = taxableamount_.attrib.get('currencyID')
         # ['TransactionCurrencyTaxAmount'] = ('cbc', 'transactioncurrencytaxamount', 'Seçimli (0...1)')
         transactioncurrencytaxamount_: Element = element.find(cbcnamespace + 'TransactionCurrencyTaxAmount')
-        if transactioncurrencytaxamount_ is not None:
+        if transactioncurrencytaxamount_:
             frappedoc['transactioncurrencytaxamount'] = transactioncurrencytaxamount_.text
             frappedoc['transactioncurrencytaxamountcurrencyid'] = transactioncurrencytaxamount_.attrib.get(
                 'currencyID')
         # ['BaseUnitMeasure'] = ('cbc', 'baseunitmeasure', 'Seçimli (0...1)')
         baseunitmeasure_: Element = element.find(cbcnamespace + 'BaseUnitMeasure')
-        if baseunitmeasure_ is not None:
+        if baseunitmeasure_:
             frappedoc['baseunitmeasure'] = baseunitmeasure_.text
             frappedoc['baseunitmeasureunitcode'] = baseunitmeasure_.attrib.get('unitCode')
         # ['PerUnitAmount'] = ('cbc', 'perunitamount', 'Seçimli (0...1)')
         perunitamount_: Element = element.find(cbcnamespace + 'PerUnitAmount')
-        if perunitamount_ is not None:
+        if perunitamount_:
             frappedoc['perunitamount'] = perunitamount_.text
             frappedoc['perunitamountcurrencyid'] = perunitamount_.attrib.get('currencyID')
 

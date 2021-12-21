@@ -28,7 +28,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         cbcsecimli01: list = ['DeliveredQuantity', 'OutstandingQuantity', 'OversupplyQuantity']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
+            if field_:
                 frappedoc[field_.tag.lower()] = field_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

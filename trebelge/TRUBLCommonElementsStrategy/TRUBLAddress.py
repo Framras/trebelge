@@ -39,7 +39,7 @@ class TRUBLAddress(TRUBLCommonElement):
                               'Region', 'District']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
+            if field_:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')

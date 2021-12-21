@@ -22,7 +22,7 @@ class TRUBLCustomerParty(TRUBLCommonElement):
                                                                        cacnamespace)
         # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
         deliverycontact_: Element = element.find(cacnamespace + 'DeliveryContact')
-        if deliverycontact_ is not None:
+        if deliverycontact_:
             strategy: TRUBLCommonElement = TRUBLContact()
             self._strategyContext.set_strategy(strategy)
             frappedoc['deliverycontact'] = self._strategyContext.return_element_data(deliverycontact_,

@@ -15,7 +15,7 @@ class TRUBLBillingReferenceLine(TRUBLCommonElement):
         # ['Amount'] = ('cbc', '', 'Seçimli (0..1)')
         # ['currencyID'] = ('', '', 'Zorunlu(1)')
         amount_: Element = element.find(cbcnamespace + 'Amount')
-        if amount_ is not None:
+        if amount_:
             frappedoc['amount'] = amount_.text
             frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
         # ['AllowanceCharge.'] = ('cac', 'AllowanceCharge.', 'Seçimli (0...n)', 'allowancecharge')
