@@ -21,8 +21,8 @@ class TRUBLBranch(TRUBLCommonElement):
         if financialinstitution_ is not None:
             strategy: TRUBLCommonElement = TRUBLFinancialInstitution()
             self._strategyContext.set_strategy(strategy)
-            frappedoc['financialinstitution'] = self._strategyContext.return_element_data(financialinstitution_,
-                                                                                          cbcnamespace,
-                                                                                          cacnamespace)
+            frappedoc['financialinstitution'] = [self._strategyContext.return_element_data(financialinstitution_,
+                                                                                           cbcnamespace,
+                                                                                           cacnamespace)]
 
-            return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)
