@@ -5,17 +5,14 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 
 
-class TRUBLDocumentResponse(TRUBLCommonElement):
+class TRUBLSignature(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR TransportEquipment'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        # ['ReferenceID'] = ('cbc', '', 'Zorunlu (1)')
-        frappedoc: dict = {'referenceid': element.find(cbcnamespace + 'ReferenceID').text}
-        # ['ResponseCode'] = ('cbc', '', 'Seçimli (0...1)')
-        responsecode_: Element = element.find(cbcnamespace + 'ResponseCode')
-        if responsecode_ is not None:
-            frappedoc['responsecode'] = responsecode_.text
-        # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
+        frappedoc: dict = {}
+        # ['ID'] = ('cbc', '', 'Zorunlu(1)')
+        # ['SignatoryParty'] = ('cac', 'Party', 'Zorunlu(1)')
+        # ['DigitalSignatureAttachment'] = ('cac', 'Attachment', 'Zorunlu(1)')
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
