@@ -21,7 +21,7 @@ class TRUBLItem(TRUBLCommonElement):
         cbcsecimli01: list = ['Description', 'Keyword', 'BrandName', 'ModelName']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if not field_ is not None:
+            if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['BuyersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)')
@@ -33,7 +33,7 @@ class TRUBLItem(TRUBLCommonElement):
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)')
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)')
         buildingnumbers_: list = element.findall(cbcnamespace + 'BuildingNumber')
-        if not buildingnumbers_ is not None:
+        if buildingnumbers_ is not None:
             buildingnumbers: list = []
             strategy: TRUBLCommonElement = TRUBLBuildingNumber()
             self._strategyContext.set_strategy(strategy)

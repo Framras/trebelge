@@ -20,7 +20,7 @@ class TRUBLSupplierParty(TRUBLCommonElement):
             frappedoc['party_' + key] = party.get(key)
         # ['DespatchContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'despatchcontact')
         despatchcontact_: Element = element.find(cacnamespace + 'DespatchContact')
-        if not despatchcontact_:
+        if despatchcontact_:
             strategy: TRUBLCommonElement = TRUBLContact()
             self._strategyContext.set_strategy(strategy)
             despatchcontact = self._strategyContext.return_element_data(despatchcontact_, cbcnamespace, cacnamespace)

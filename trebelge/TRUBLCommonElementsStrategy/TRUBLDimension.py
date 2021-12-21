@@ -15,12 +15,12 @@ class TRUBLDimension(TRUBLCommonElement):
         frappedoc: dict = {'attributeid': element.find(cbcnamespace + 'AttributeID').text}
         # ['Measure'] = ('cbc', 'measure', 'Seçimli (0...1)')
         measure_: Element = element.find(cbcnamespace + 'Measure')
-        if not not measure_:
+        if not measure_:
             frappedoc['measure'] = measure_.text
             frappedoc['measureunitcode'] = measure_.attrib.get('unitCode')
         # ['Description'] = ('cbc', 'descriptions', 'Seçimli(0..n)', 'description')
         descriptions_: list = element.findall(cbcnamespace + 'Description')
-        if not descriptions_ is not None:
+        if descriptions_ is not None:
             descriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
@@ -31,12 +31,12 @@ class TRUBLDimension(TRUBLCommonElement):
             frappedoc['description'] = descriptions
         # ['MinimumMeasure'] = ('cbc', 'minimummeasure', 'Seçimli(0..1)')
         minimummeasure_: Element = element.find(cbcnamespace + 'MinimumMeasure')
-        if not not minimummeasure_:
+        if not minimummeasure_:
             frappedoc['minimummeasure'] = minimummeasure_.text
             frappedoc['minimummeasureunitcode'] = minimummeasure_.attrib.get('unitCode')
         # ['MaximumMeasure'] = ('cbc', 'maximummeasure', 'Seçimli(0..1)')
         maximummeasure_: Element = element.find(cbcnamespace + 'MaximumMeasure')
-        if not not maximummeasure_:
+        if not maximummeasure_:
             frappedoc['maximummeasure'] = maximummeasure_.text
             frappedoc['maximummeasureunitcode'] = maximummeasure_.attrib.get('unitCode')
 

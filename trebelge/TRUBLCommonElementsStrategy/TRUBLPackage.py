@@ -20,11 +20,11 @@ class TRUBLPackage(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'ReturnableMaterialIndicator', 'PackageLevelCode', 'PackagingTypeCode']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if not field_ is not None:
+            if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         quantity_: Element = element.find(cbcnamespace + 'Quantity')
-        if not quantity_ is not None:
+        if quantity_ is not None:
             frappedoc['quantity'] = quantity_.text
             frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
 
@@ -40,7 +40,7 @@ class TRUBLPackage(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
-            if not tagelements_ is not None:
+            if tagelements_ is not None:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

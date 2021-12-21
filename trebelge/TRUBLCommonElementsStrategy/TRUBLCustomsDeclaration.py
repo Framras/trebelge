@@ -15,7 +15,7 @@ class TRUBLCustomsDeclaration(TRUBLCommonElement):
         frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text}
         # ['IssuerParty'] = ('cac', 'Party', 'Seçimli(0..1)', 'issuerparty')
         issuerparty_: Element = element.find(cacnamespace + 'IssuerParty')
-        if not issuerparty_ is not None:
+        if issuerparty_ is not None:
             strategy: TRUBLCommonElement = TRUBLParty()
             self._strategyContext.set_strategy(strategy)
             frappedoc['issuerparty'] = [self._strategyContext.return_element_data(issuerparty_,

@@ -11,7 +11,7 @@ class TRUBLFinancialInstitution(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'name', 'Seçimli(0..1)', 'financialinstitution')
         name_: Element = element.find(cbcnamespace + 'Name')
-        if not name_:
+        if name_:
             frappedoc['financialinstitution'] = name_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

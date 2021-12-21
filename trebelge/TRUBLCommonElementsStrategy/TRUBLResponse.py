@@ -15,11 +15,11 @@ class TRUBLResponse(TRUBLCommonElement):
         frappedoc: dict = {'referenceid': element.find(cbcnamespace + 'ReferenceID').text}
         # ['ResponseCode'] = ('cbc', '', 'Seçimli (0...1)')
         responsecode_: Element = element.find(cbcnamespace + 'ResponseCode')
-        if not responsecode_:
+        if responsecode_:
             frappedoc['responsecode'] = responsecode_.text
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
         descriptions_: list = element.findall(cacnamespace + 'Description')
-        if not descriptions_ is not None:
+        if descriptions_ is not None:
             descriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)

@@ -12,13 +12,13 @@ class TRUBLDeliveryTerms(TRUBLCommonElement):
         # ['currencyID'] = ('', 'amountcurrencyid', 'Zorunlu(1)')
         frappedoc: dict = {}
         id_: Element = element.find(cbcnamespace + 'ID')
-        if not id_:
+        if id_:
             frappedoc['id'] = id_.text
         specialterms_: Element = element.find(cbcnamespace + 'SpecialTerms')
-        if not specialterms_:
+        if specialterms_:
             frappedoc['specialterms'] = specialterms_.text
         amount_: Element = element.find(cbcnamespace + 'Amount')
-        if not amount_:
+        if amount_:
             frappedoc['amount'] = amount_.text
             frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
 

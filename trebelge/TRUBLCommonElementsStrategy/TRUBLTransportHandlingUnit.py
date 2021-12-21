@@ -29,21 +29,21 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                               'HazardousRiskIndicator', 'TraceID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if not field_ is not None:
+            if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['TotalGoodsItemQuantity'] = ('cbc', '', 'Seçimli (0...1)', 'totalgoodsitemquantityunitcode')
         totalgoodsitemquantity_: Element = element.find(cbcnamespace + 'TotalGoodsItemQuantity')
-        if not totalgoodsitemquantity_ is not None:
+        if totalgoodsitemquantity_ is not None:
             frappedoc['totalgoodsitemquantity'] = totalgoodsitemquantity_.text
             frappedoc['totalgoodsitemquantityunitcode'] = totalgoodsitemquantity_.attrib.get('unitCode')
         # ['TotalPackageQuantity'] = ('cbc', '', 'Seçimli (0...1)', 'totalpackagequantityunitcode')
         totalpackagequantity_: Element = element.find(cbcnamespace + 'TotalPackageQuantity')
-        if not totalpackagequantity_ is not None:
+        if totalpackagequantity_ is not None:
             frappedoc['totalpackagequantity'] = totalpackagequantity_.text
             frappedoc['totalpackagequantityunitcode'] = totalpackagequantity_.attrib.get('unitCode')
         # ['DamageRemarks'] = ('cbc', 'damageremarks', 'Seçimli (0...n)')
         damageremarks_: list = element.findall(cbcnamespace + 'DamageRemarks')
-        if not damageremarks_ is not None:
+        if damageremarks_ is not None:
             damageremarks: list = []
             for damageremark_ in damageremarks_:
                 damageremarks.append(damageremark_.text)
@@ -62,7 +62,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
-            if not tagelement_ is not None:
+            if tagelement_ is not None:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
                 frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
@@ -88,7 +88,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
-            if not tagelements_ is not None:
+            if tagelements_ is not None:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

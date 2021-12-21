@@ -15,7 +15,7 @@ class TRUBLStowage(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['LocationID'] = ('cbc', 'locationid', 'Seçimli (0...1)')
         locationid_: Element = element.find(cbcnamespace + 'LocationID')
-        if not locationid_:
+        if locationid_:
             frappedoc['locationid'] = locationid_.text
         # ['Location'] = ('cac', 'Location', 'Seçimli (0...n)')
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
@@ -25,7 +25,7 @@ class TRUBLStowage(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
-            if not tagelements_ is not None:
+            if tagelements_ is not None:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

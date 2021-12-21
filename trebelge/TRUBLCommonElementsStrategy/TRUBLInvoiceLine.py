@@ -23,7 +23,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
 
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
         note_: Element = element.find(cbcnamespace + 'Note')
-        if not note_:
+        if note_:
             frappedoc['note'] = note_.text
 
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
@@ -49,7 +49,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
-            if not tagelements_ is not None:
+            if tagelements_ is not None:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

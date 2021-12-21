@@ -17,7 +17,7 @@ class TRUBLExchangeRate(TRUBLCommonElement):
                            }
         # ['Date'] = ('cbc', 'date', 'Seçimli (0...1)')
         date_: Element = element.find(cbcnamespace + 'Date')
-        if not date_:
+        if date_:
             frappedoc['exchangeratedate'] = date_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
