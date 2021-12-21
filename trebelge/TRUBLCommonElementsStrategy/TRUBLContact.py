@@ -29,7 +29,7 @@ class TRUBLContact(TRUBLCommonElement):
             frappedoc['contactname'] = name_.text
 
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
-        othercommunications_: Element = element.findall(cacnamespace + 'OtherCommunication')
+        othercommunications_: list = element.findall(cacnamespace + 'OtherCommunication')
         if othercommunications_ is not None:
             strategy: TRUBLCommonElement = TRUBLCommunication()
             self._strategyContext.set_strategy(strategy)

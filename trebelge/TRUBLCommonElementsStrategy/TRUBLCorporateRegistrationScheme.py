@@ -1,10 +1,9 @@
 from xml.etree.ElementTree import Element
 
+from apps.frappe.frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
-
-from apps.frappe.frappe.model.document import Document
 
 
 class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):

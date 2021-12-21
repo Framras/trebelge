@@ -32,7 +32,7 @@ class TRUBLItem(TRUBLCommonElement):
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)')
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)')
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)')
-        buildingnumbers_ = element.findall(cbcnamespace + 'BuildingNumber')
+        buildingnumbers_: list = element.findall(cbcnamespace + 'BuildingNumber')
         if buildingnumbers_ is not None:
             buildingnumbers: list = []
             strategy: TRUBLCommonElement = TRUBLBuildingNumber()

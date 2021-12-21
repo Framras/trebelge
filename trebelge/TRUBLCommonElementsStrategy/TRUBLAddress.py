@@ -43,7 +43,7 @@ class TRUBLAddress(TRUBLCommonElement):
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
-        buildingnumbers_: Element = element.findall(cbcnamespace + 'BuildingNumber')
+        buildingnumbers_: list = element.findall(cbcnamespace + 'BuildingNumber')
         if buildingnumbers_ is not None:
             buildingnumbers: list = []
             strategy: TRUBLCommonElement = TRUBLBuildingNumber()

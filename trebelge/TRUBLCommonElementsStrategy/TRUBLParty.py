@@ -20,7 +20,7 @@ class TRUBLParty(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
-        partyidentifications_ = element.findall(cacnamespace + 'PartyIdentification')
+        partyidentifications_: list = element.findall(cacnamespace + 'PartyIdentification')
         strategy: TRUBLCommonElement = TRUBLPartyIdentification()
         self._strategyContext.set_strategy(strategy)
         partyidentifications: list = []

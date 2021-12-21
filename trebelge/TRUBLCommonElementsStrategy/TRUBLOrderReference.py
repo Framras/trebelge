@@ -19,7 +19,7 @@ class TRUBLOrderReference(TRUBLCommonElement):
                 frappedoc[field_.tag.lower()] = field_.text
 
         # ['DocumentReference'] = ('cac', 'documentreferences', 'Seçimli(0..n)', 'documentreference')
-        documentreferences_ = element.findall(cacnamespace + 'DocumentReference')
+        documentreferences_: list = element.findall(cacnamespace + 'DocumentReference')
         if documentreferences_ is not None:
             # TODO implement this: process via DocumentReference instance
             pass

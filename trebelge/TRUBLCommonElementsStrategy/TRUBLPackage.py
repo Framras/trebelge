@@ -39,7 +39,7 @@ class TRUBLPackage(TRUBLCommonElement):
              {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
              ]
         for element_ in cacsecimli01:
-            tagelements_ = element.findall(cacnamespace + element_.get('Tag'))
+            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
             if tagelements_ is not None:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
