@@ -29,7 +29,6 @@ class TRUBLParty(TRUBLCommonElement):
                                                                                   cbcnamespace,
                                                                                   cacnamespace))
         frappedoc['partyidentification'] = partyidentifications
-
         # ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
         postaladdress_: Element = element.find(cacnamespace + 'PostalAddress')
         strategy: TRUBLCommonElement = TRUBLAddress()
@@ -37,7 +36,6 @@ class TRUBLParty(TRUBLCommonElement):
         frappedoc['postaladdress'] = [self._strategyContext.return_element_data(postaladdress_,
                                                                                 cbcnamespace,
                                                                                 cacnamespace)]
-
         # ['WebsiteURI'] = ('cbc', 'websiteuri', 'Seçimli (0...1)')
         # ['EndpointID'] = ('cbc', 'endpointid', 'Seçimli (0...1)')
         # ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
@@ -46,7 +44,6 @@ class TRUBLParty(TRUBLCommonElement):
             field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
-
         # ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)', partyname)
         # ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)', 'physicallocation')
         # ['PartyTaxScheme'] = ('cac', TaxScheme(), 'Seçimli (0...1)', 'partytaxscheme')
@@ -69,7 +66,6 @@ class TRUBLParty(TRUBLCommonElement):
                 frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
                                                                                                   cbcnamespace,
                                                                                                   cacnamespace)]
-
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
         partylegalentity_: Element = element.find(cacnamespace + 'PartyLegalEntity')
         if partylegalentity_ is not None:
