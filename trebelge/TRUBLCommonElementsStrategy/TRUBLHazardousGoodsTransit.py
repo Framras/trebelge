@@ -11,7 +11,6 @@ class TRUBLHazardousGoodsTransit(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
-
         # ['TransportEmergencyCardCode'] = ('cbc', '', 'Seçimli(0..1)')
         # ['PackagingCriteriaCode'] = ('cbc', '', 'Seçimli(0..1)')
         # ['HazardousRegulationCode'] = ('cbc', '', 'Seçimli(0..1)')
