@@ -17,9 +17,9 @@ class TRUBLAttachment(TRUBLCommonElement):
         if externalreference_ is not None:
             strategy: TRUBLCommonElement = TRUBLExternalReference()
             self._strategyContext.set_strategy(strategy)
-            frappedoc['externalreference'] = self._strategyContext.return_element_data(externalreference_,
-                                                                                       cbcnamespace,
-                                                                                       cacnamespace)
+            frappedoc['externalreference'] = [self._strategyContext.return_element_data(externalreference_,
+                                                                                        cbcnamespace,
+                                                                                        cacnamespace)]
         # TODO implement Base64 decoder
         # ['EmbeddedDocumentBinaryObject'] = ('cbc', 'embeddeddocumentbinaryobject', 'Seçimli (0..1)')
         # characterSetCode: 'UTF-8'

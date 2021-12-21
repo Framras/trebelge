@@ -16,7 +16,6 @@ class TRUBLTaxScheme(TRUBLCommonElement):
             field_: Element = element.find(cbcnamespace + elementtag_)
             if field_ is not None:
                 frappedoc[field_.tag.lower()] = field_.text
-
         # ['Name'] = ('cbc', 'taxschemename', 'Seçimli (0...1)')
         name_: Element = element.find(cbcnamespace + 'Name')
         if name_ is not None:

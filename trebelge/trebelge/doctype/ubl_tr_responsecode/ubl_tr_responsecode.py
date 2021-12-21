@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class UBLTRDescriptions(Document):
+class UBLTRResponseCode(Document):
     pass

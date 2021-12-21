@@ -5,5 +5,5 @@
 import unittest
 
 
-class TestUBLTRDescription(unittest.TestCase):
+class TestUBLTRResponse(unittest.TestCase):
     pass

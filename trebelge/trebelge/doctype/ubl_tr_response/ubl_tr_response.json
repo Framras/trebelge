@@ -1,28 +1,43 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "creation": "2021-12-01 19:45:35.002806",
+  "creation": "2021-12-21 21:03:08.342448",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
+    "referenceid",
+    "responsecode",
     "description"
   ],
   "fields": [
     {
-      "fieldname": "description",
-      "fieldtype": "Small Text",
+      "fieldname": "referenceid",
+      "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Description",
+      "label": "Yan\u0131t Ayrac\u0131",
       "reqd": 1
+    },
+    {
+      "fieldname": "responsecode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Yan\u0131t Kodu",
+      "options": "UBL TR ResponseCode"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Table MultiSelect",
+      "label": "Tan\u0131mlama",
+      "options": "UBL TR Notes"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-01 19:45:35.002806",
+  "modified": "2021-12-21 21:23:10.156738",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR Description",
+  "name": "UBL TR Response",
   "owner": "Administrator",
   "permissions": [
     {
@@ -39,6 +54,5 @@
     }
   ],
   "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+  "sort_order": "DESC"
 }

@@ -12,7 +12,6 @@ class TRUBLTaxTotal(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['TaxAmount'] = ('cbc', 'taxamount', 'Zorunlu(1)')
-        # ['currencyID'] = ('', 'taxamount_currencyid', 'Zorunlu(1)')
         taxamount_: Element = element.find(cbcnamespace + 'TaxAmount')
         frappedoc: dict = {'taxamount': taxamount_.text,
                            'taxamountcurrencyid': taxamount_.attrib.get('currencyID')}
@@ -20,11 +19,10 @@ class TRUBLTaxTotal(TRUBLCommonElement):
         strategy: TRUBLCommonElement = TRUBLTaxSubtotal()
         self._strategyContext.set_strategy(strategy)
         taxsubtotals: list = []
-        for taxsubtotal in element.findall(cacnamespace + 'TaxSubtotal'):
-            taxsubtotal_ = self._strategyContext.return_element_data(taxsubtotal,
-                                                                     cbcnamespace,
-                                                                     cacnamespace)
-            taxsubtotals.append(taxsubtotal_)
-        frappedoc['taxsubtotal'] = taxsubtotals
+        for taxsubtotal_ in element.findall(cacnamespace + 'TaxSubtotal'):
+            taxsubtotals.append(self._strategyContext.return_element_data(taxsubtotal_,
+                                                                          cbcnamespace,
+                                                                          cacnamespace))
+            frappedoc['taxsubtotal'] = taxsubtotals
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
