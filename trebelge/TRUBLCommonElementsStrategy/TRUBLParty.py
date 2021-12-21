@@ -54,16 +54,12 @@ class TRUBLParty(TRUBLCommonElement):
         # ['Person'] = ('cac', Person(), 'Seçimli (0...1)', 'person')
         # ['AgentParty'] = ('cac', Party(), 'Seçimli (0...1)', 'agentparty')
         cacsecimli01: list = \
-            [{'Tag': 'PartyName', 'strategy': TRUBLPartyName(), 'docType': 'UBL TR Party', 'fieldName': 'partyname'},
-             {'Tag': 'PhysicalLocation', 'strategy': TRUBLLocation(), 'docType': 'UBL TR Location',
-              'fieldName': 'physicallocation'},
-             {'Tag': 'PartyTaxScheme', 'strategy': TRUBLPartyTaxScheme(), 'docType': 'UBL TR PartyTaxScheme',
-              'fieldName': 'partytaxscheme'},
-             {'Tag': 'Contact', 'strategy': TRUBLContact(), 'docType': 'UBL TR Contact', 'fieldName': 'contact'},
-             {'Tag': 'Person', 'strategy': TRUBLPerson(), 'docType': 'UBL TR Person',
-              'fieldName': 'person'},
-             {'Tag': 'AgentParty', 'strategy': TRUBLParty(), 'docType': 'UBL TR Party',
-              'fieldName': 'agentparty'}
+            [{'Tag': 'PartyName', 'strategy': TRUBLPartyName(), 'fieldName': 'partyname'},
+             {'Tag': 'PhysicalLocation', 'strategy': TRUBLLocation(), 'fieldName': 'physicallocation'},
+             {'Tag': 'PartyTaxScheme', 'strategy': TRUBLPartyTaxScheme(), 'fieldName': 'partytaxscheme'},
+             {'Tag': 'Contact', 'strategy': TRUBLContact(), 'fieldName': 'contact'},
+             {'Tag': 'Person', 'strategy': TRUBLPerson(), 'fieldName': 'person'},
+             {'Tag': 'AgentParty', 'strategy': TRUBLParty(), 'fieldName': 'agentparty'}
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
