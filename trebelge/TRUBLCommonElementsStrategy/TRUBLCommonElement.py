@@ -19,7 +19,7 @@ class TRUBLCommonElement(ABC):
         if frappe.get_all(frappedoctype, filters=frappedoc):
             pass
         else:
-            newfrappedoc = frappedoc
+            newfrappedoc = dict(frappedoc)
             newfrappedoc['doctype'] = frappedoctype
             _frappeDoc = frappe.get_doc(newfrappedoc)
             _frappeDoc.insert()

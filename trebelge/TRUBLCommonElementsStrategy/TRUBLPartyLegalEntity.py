@@ -1,10 +1,10 @@
 from xml.etree.ElementTree import Element
 
+import trebelge.TRUBLCommonElementsStrategy.TRUBLParty
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCorporateRegistrationScheme import TRUBLCorporateRegistrationScheme
-import trebelge.TRUBLCommonElementsStrategy.TRUBLParty
 
 
 class TRUBLPartyLegalEntity(TRUBLCommonElement):

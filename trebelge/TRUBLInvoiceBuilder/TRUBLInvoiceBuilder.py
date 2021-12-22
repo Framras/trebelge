@@ -90,16 +90,21 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_note(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         notes_: list = ET.parse(filepath).getroot().findall(cbcnamespace + 'Note')
         if notes_:
-            notes: list = []
+            # notes: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
             for note_ in notes_:
-                notes.append(self._strategyContext.return_element_data(note_,
-                                                                       cbcnamespace,
-                                                                       cacnamespace))
-            self._product.add({
-                'note': [notes]
-            })
+                self._product.add({
+                    'note': self._strategyContext.return_element_data(note_,
+                                                                      cbcnamespace,
+                                                                      cacnamespace)
+                })
+                # notes.append(self._strategyContext.return_element_data(note_,
+                #                                                        cbcnamespace,
+                #                                                        cacnamespace))
+            # self._product.add({
+            #     'note': notes
+            # })
 
     def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
@@ -293,16 +298,14 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             })
 
     def build_taxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        taxtotal: list = []
         for taxtotal_ in ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal'):
             strategy: TRUBLCommonElement = TRUBLTaxTotal()
             self._strategyContext.set_strategy(strategy)
-            taxtotal.append(self._strategyContext.return_element_data(taxtotal_,
+            self._product.add({
+                'taxtotal': self._strategyContext.return_element_data(taxtotal_,
                                                                       cbcnamespace,
-                                                                      cacnamespace))
-        self._product.add({
-            'taxtotal': taxtotal
-        })
+                                                                      cacnamespace)
+            })
 
     def build_withholdingtaxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         withholdingtaxtotals_: list = ET.parse(filepath).getroot().findall(cacnamespace + 'WithholdingTaxTotal')

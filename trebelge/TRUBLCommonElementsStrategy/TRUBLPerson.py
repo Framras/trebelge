@@ -1,9 +1,9 @@
 from xml.etree.ElementTree import Element
 
+import trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
-import trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialAccount import TRUBLFinancialAccount
 
 
