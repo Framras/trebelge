@@ -292,16 +292,18 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             })
 
     def build_taxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        taxtotal_: list = ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal')
+        taxtotal_: list = ET.parse(filepath).getroot().findall('./' + cacnamespace + 'TaxTotal')
         if taxtotal_:
+            taxtotal: list = []
             for taxtotal_ in ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal'):
                 strategy: TRUBLCommonElement = TRUBLTaxTotal()
                 self._strategyContext.set_strategy(strategy)
-                self._product.add({
-                    'taxtotal': self._strategyContext.return_element_data(taxtotal_,
+                taxtotal.append(self._strategyContext.return_element_data(taxtotal_,
                                                                           cbcnamespace,
-                                                                          cacnamespace)
-                })
+                                                                          cacnamespace))
+            self._product.add({
+                'taxtotal': taxtotal
+            })
         else:
             frappe.error_log('TaxTotal not present in file' + filepath, 'TR UBL Invoice Builder')
 
