@@ -78,7 +78,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Toplam \u00fcr\u00fcn \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
+      "options": "UBL TR Unitcode"
     },
     {
       "description": "Toplam paket miktar\u0131 girilir.",
@@ -92,7 +92,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Toplam paket miktar\u0131 \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
+      "options": "UBL TR Unitcode"
     },
     {
       "description": "Zarar bilgisi girilir.",
@@ -192,7 +192,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-04 18:30:02.592869",
+  "modified": "2021-12-22 13:55:17.632534",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR TransportHandlingUnit",
