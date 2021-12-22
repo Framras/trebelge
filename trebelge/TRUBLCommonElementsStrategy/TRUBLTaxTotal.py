@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+import frappe
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
@@ -13,8 +14,12 @@ class TRUBLTaxTotal(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['TaxAmount'] = ('cbc', 'taxamount', 'Zorunlu(1)')
         taxamount_: Element = element.find(cbcnamespace + 'TaxAmount')
-        frappedoc: dict = {'taxamount': taxamount_.text,
-                           'taxamountcurrencyid': taxamount_.attrib.get('currencyID')}
+        frappedoc: dict = {}
+        if taxamount_:
+            frappedoc['taxamount'] = taxamount_.text
+            frappedoc['taxamountcurrencyid'] = taxamount_.attrib.get('currencyID')
+        else:
+            frappe.log_error('Taxamount does not exist in document', 'TR UBL TaxTotal')
         # ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
         taxsubtotals: list = []
         strategy: TRUBLCommonElement = TRUBLTaxSubtotal()

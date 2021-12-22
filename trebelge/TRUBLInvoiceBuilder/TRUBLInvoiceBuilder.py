@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
+import frappe
 from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
@@ -90,7 +91,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_note(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         notes_: list = ET.parse(filepath).getroot().findall(cbcnamespace + 'Note')
         if notes_:
-            # notes: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
             for note_ in notes_:
@@ -99,12 +99,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                                       cbcnamespace,
                                                                       cacnamespace)
                 })
-                # notes.append(self._strategyContext.return_element_data(note_,
-                #                                                        cbcnamespace,
-                #                                                        cacnamespace))
-            # self._product.add({
-            #     'note': notes
-            # })
 
     def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
@@ -298,14 +292,18 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             })
 
     def build_taxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        for taxtotal_ in ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal'):
-            strategy: TRUBLCommonElement = TRUBLTaxTotal()
-            self._strategyContext.set_strategy(strategy)
-            self._product.add({
-                'taxtotal': self._strategyContext.return_element_data(taxtotal_,
-                                                                      cbcnamespace,
-                                                                      cacnamespace)
-            })
+        taxtotal_: list = ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal')
+        if taxtotal_:
+            for taxtotal_ in ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal'):
+                strategy: TRUBLCommonElement = TRUBLTaxTotal()
+                self._strategyContext.set_strategy(strategy)
+                self._product.add({
+                    'taxtotal': self._strategyContext.return_element_data(taxtotal_,
+                                                                          cbcnamespace,
+                                                                          cacnamespace)
+                })
+        else:
+            frappe.error_log('TaxTotal not present in file' + filepath, 'TR UBL Invoice Builder')
 
     def build_withholdingtaxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         withholdingtaxtotals_: list = ET.parse(filepath).getroot().findall(cacnamespace + 'WithholdingTaxTotal')
