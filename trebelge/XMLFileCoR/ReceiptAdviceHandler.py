@@ -1,9 +1,8 @@
 import xml.etree.ElementTree as ET
 
-from trebelge.XMLFileState.ReceiptAdviceState import ReceiptAdviceState
-
 import frappe
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
+from trebelge.XMLFileState.ReceiptAdviceState import ReceiptAdviceState
 
 
 class ReceiptAdviceHandler(AbstractXMLFileHandler):
