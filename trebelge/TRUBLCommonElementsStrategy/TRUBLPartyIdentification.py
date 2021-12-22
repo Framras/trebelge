@@ -2,6 +2,8 @@ from xml.etree.ElementTree import Element
 
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 
+from apps.frappe.frappe.model.document import Document
+
 
 class TRUBLPartyIdentification(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR PartyIdentification'
@@ -10,7 +12,7 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
         # ['schemeID'] = ('', 'schemeid', 'Zorunlu (1)')
         partyidentification_ = element.find(cbcnamespace + 'ID')
-        partyidentification: dict = {'id': partyidentification_.text,
-                                     'schemeid': partyidentification_.attrib.get('schemeID')}
+        frappedoc: dict = {'id': partyidentification_.text,
+                           'schemeid': partyidentification_.attrib.get('schemeID')}
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
