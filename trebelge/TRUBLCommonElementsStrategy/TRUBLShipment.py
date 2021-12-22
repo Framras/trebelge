@@ -7,10 +7,9 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBL
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 from trebelge.TRUBLCommonElementsStrategy.TRUBLGoodsItem import TRUBLGoodsItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
+from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipmentStage import TRUBLShipmentStage
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTransportHandlingUnit import TRUBLTransportHandlingUnit
-
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 
 
 class TRUBLShipment(TRUBLCommonElement):
