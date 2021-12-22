@@ -1,8 +1,9 @@
 from xml.etree.ElementTree import Element
 
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
+from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialAccount import TRUBLFinancialAccount
 
 
@@ -15,7 +16,6 @@ class TRUBLPerson(TRUBLCommonElement):
         # ['FamilyName'] = ('cbc', 'familyname', 'Zorunlu(1)')
         frappedoc: dict = {'firstname': element.find(cbcnamespace + 'FirstName').text,
                            'familyname': element.find(cbcnamespace + 'FamilyName').text}
-
         # ['MiddleName'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NameSuffix'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NationalityID'] = ('cbc', '', 'Seçimli (0...1)')
@@ -28,7 +28,6 @@ class TRUBLPerson(TRUBLCommonElement):
         field_: Element = element.find(cbcnamespace + 'Title')
         if field_:
             frappedoc['persontitle'] = field_.text
-
         # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)', 'financialaccount')
         financialaccount_: Element = element.find(cacnamespace + 'FinancialAccount')
         if financialaccount_:
