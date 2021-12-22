@@ -33,7 +33,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "\u00d6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes",
+      "options": "UBL TR Unitcode",
       "reqd": 1
     },
     {
@@ -41,12 +41,12 @@
       "fieldname": "description",
       "fieldtype": "Table MultiSelect",
       "label": "A\u00e7\u0131klama",
-      "options": "UBL TR Descriptions"
+      "options": "UBL TR Notes"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-04 13:43:15.556680",
+  "modified": "2021-12-22 13:56:18.331787",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Temperature",

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class UBLTRDeliveryTerms(Document):
+class UBLTRDeliveryTermLines(Document):
     pass

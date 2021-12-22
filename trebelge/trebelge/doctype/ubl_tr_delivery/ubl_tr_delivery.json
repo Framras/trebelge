@@ -39,7 +39,7 @@
       "fieldname": "quantityunitcode",
       "fieldtype": "Link",
       "label": "\u00dcr\u00fcn miktar\u0131 birimi",
-      "options": "UBL TR Unitcodes"
+      "options": "UBL TR Unitcode"
     },
     {
       "description": "Ger\u00e7ekle\u015fen teslim tarihi yaz\u0131l\u0131r.",
@@ -106,7 +106,7 @@
       "fieldname": "deliveryterms",
       "fieldtype": "Table MultiSelect",
       "label": "Teslimat \u015fartlar\u0131",
-      "options": "UBL TR Delivery Terms"
+      "options": "UBL TR DeliveryTerm Lines"
     },
     {
       "description": "Y\u00fck/kargo bilgileri girilir.",
@@ -118,7 +118,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-22 02:15:15.158031",
+  "modified": "2021-12-22 13:57:54.080440",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Delivery",
