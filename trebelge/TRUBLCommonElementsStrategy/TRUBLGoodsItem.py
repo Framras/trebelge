@@ -88,7 +88,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         # ['InvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli(0..n)')
         # ['Temperature'] = ('cac', 'Temperature', 'Seçimli(0..n)')
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
-        cacsecimli01: list = \
+        cacsecimli0n: list = \
             [{'Tag': 'Item', 'strategy': TRUBLItem(), 'fieldName': 'item'},
              {'Tag': 'FreightAllowanceCharge', 'strategy': TRUBLAllowanceCharge(),
               'fieldName': 'freightallowancecharge'},
@@ -96,7 +96,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
              {'Tag': 'Temperature', 'strategy': TRUBLTemperature(), 'fieldName': 'temperature'},
              {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
              ]
-        for element_ in cacsecimli01:
+        for element_ in cacsecimli0n:
             tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
             if tagelements_ is not None:
                 tagelements: list = []
