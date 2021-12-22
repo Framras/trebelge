@@ -1,0 +1,65 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-22 12:47:09.620468",
+  "description": "Belgelere ili\u015fkin kabul, red ve di\u011fer mesajlar bu elemana girilecektir.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "response",
+    "documentreference",
+    "lineresponse"
+  ],
+  "fields": [
+    {
+      "description": "Uygulama Yan\u0131t\u0131n\u0131n sistem seviyesi yan\u0131t\u0131 m\u0131 yoksa i\u015f seviyesi yan\u0131t m\u0131 oldu\u011funu belirler. \u0130\u015f seviyesinde bu eleman\u0131n i\u00e7erdi\u011fi \u201ccbc:ResponseCode\u201d tekil eleman\u0131n de\u011feri faturan\u0131n kabul edilme durumunda KABUL, faturan\u0131n reddi durumunda RED ve faturan\u0131n iade durumunda ise IADE olacakt\u0131r.",
+      "fieldname": "response",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Yan\u0131t",
+      "options": "UBL TR Response",
+      "reqd": 1
+    },
+    {
+      "description": "Yan\u0131t verilen belgeye referans bilgisi i\u00e7ermektedir.",
+      "fieldname": "documentreference",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Yan\u0131t verilen belge",
+      "options": "UBL TR DocumentReference",
+      "reqd": 1
+    },
+    {
+      "description": "Sat\u0131ra yan\u0131t bilgilerini i\u00e7erir. Dok\u00fcman\u0131n belli bir kalemi ile ilgili red ve d\u00fczeltme talebi olma durumunda cbc:LineID eleman\u0131 ilgili kalem numaras\u0131n\u0131 i\u00e7erecektir.",
+      "fieldname": "lineresponse",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Sat\u0131ra yan\u0131t bilgisi",
+      "options": "UBL TR LineResponse"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2021-12-22 12:47:09.620468",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR DocumentResponse",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

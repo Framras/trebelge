@@ -22,12 +22,10 @@ class TRUBLContact(TRUBLCommonElement):
             field_: Element = element.find(cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
-
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_: Element = element.find(cbcnamespace + 'Name')
         if name_:
             frappedoc['contactname'] = name_.text
-
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         othercommunications_: list = element.findall(cacnamespace + 'OtherCommunication')
         if othercommunications_:
