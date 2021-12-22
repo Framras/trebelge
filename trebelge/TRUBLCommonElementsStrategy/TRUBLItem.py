@@ -1,9 +1,12 @@
 from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
-from trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCommodityClassification import TRUBLCommodityClassification
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCountry import TRUBLCountry
+from trebelge.TRUBLCommonElementsStrategy.TRUBLItemIdentification import TRUBLItemIdentification
+from trebelge.TRUBLCommonElementsStrategy.TRUBLItemInstance import TRUBLItemInstance
 
 
 class TRUBLItem(TRUBLCommonElement):
@@ -13,7 +16,6 @@ class TRUBLItem(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['Name'] = ('cbc', 'itemname', 'Zorunlu (1)')
         frappedoc: dict = {'itemname': element.find(cbcnamespace + 'Name').text}
-
         # ['Description'] = ('cbc', '', 'Seçimli (0...1)')
         # ['Keyword'] = ('cbc', '', 'Seçimli (0...1)')
         # ['BrandName'] = ('cbc', '', 'Seçimli (0...1)')
@@ -23,24 +25,47 @@ class TRUBLItem(TRUBLCommonElement):
             field_: Element = element.find(cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
-
         # ['BuyersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)')
         # ['SellersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)')
         # ['ManufacturersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)')
         # ['OriginCountry'] = ('cac', 'Country', 'Seçimli (0...1)')
-
+        cacsecimli01: list = \
+            [{'Tag': 'BuyersItemIdentification', 'strategy': TRUBLItemIdentification(),
+              'fieldName': 'buyersitemidentification'},
+             {'Tag': 'SellersItemIdentification', 'strategy': TRUBLItemIdentification(),
+              'fieldName': 'sellersitemidentification'},
+             {'Tag': 'ManufacturersItemIdentification', 'strategy': TRUBLItemIdentification(),
+              'fieldName': 'manufacturersitemidentification'},
+             {'Tag': 'OriginCountry', 'strategy': TRUBLCountry(), 'fieldName': 'origincountry'}
+             ]
+        for element_ in cacsecimli01:
+            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
+            if tagelement_:
+                strategy: TRUBLCommonElement = element_.get('strategy')
+                self._strategyContext.set_strategy(strategy)
+                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
+                                                                                                  cbcnamespace,
+                                                                                                  cacnamespace)]
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)')
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)')
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)')
-        buildingnumbers_: list = element.findall(cbcnamespace + 'BuildingNumber')
-        if buildingnumbers_:
-            buildingnumbers: list = []
-            strategy: TRUBLCommonElement = TRUBLBuildingNumber()
-            self._strategyContext.set_strategy(strategy)
-            for buildingnumber in buildingnumbers_:
-                buildingnumbers.append(self._strategyContext.return_element_data(buildingnumber,
+        cacsecimli0n: list = \
+            [{'Tag': 'AdditionalItemIdentification', 'strategy': TRUBLItemIdentification(),
+              'fieldName': 'additionalitemidentification'},
+             {'Tag': 'CommodityClassification', 'strategy': TRUBLCommodityClassification(),
+              'fieldName': 'commodityclassification'},
+             {'Tag': 'ItemInstance', 'strategy': TRUBLItemInstance(), 'fieldName': 'iteminstance'}
+             ]
+        for element_ in cacsecimli0n:
+            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            if tagelements_:
+                tagelements: list = []
+                strategy: TRUBLCommonElement = element_.get('strategy')
+                self._strategyContext.set_strategy(strategy)
+                for tagelement in tagelements_:
+                    tagelements.append(self._strategyContext.return_element_data(tagelement,
                                                                                  cbcnamespace,
                                                                                  cacnamespace))
-            frappedoc['buildingnumber'] = buildingnumbers
+                frappedoc[element_.get('fieldName')] = tagelements
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -22,65 +22,77 @@
   "fields": [
     {
       "fieldname": "description",
-      "fieldtype": "Data"
+      "fieldtype": "Data",
+      "label": "A\u00e7\u0131klama"
     },
     {
       "fieldname": "itemname",
       "fieldtype": "Data",
       "in_list_view": 1,
+      "label": "Mal/hizmet ad\u0131",
       "reqd": 1
     },
     {
       "fieldname": "keyword",
-      "fieldtype": "Data"
+      "fieldtype": "Data",
+      "label": "Anahtar kelimeler"
     },
     {
       "fieldname": "brandname",
-      "fieldtype": "Data"
+      "fieldtype": "Data",
+      "label": "Mal/hizmet marka ad\u0131"
     },
     {
       "fieldname": "modelname",
-      "fieldtype": "Data"
+      "fieldtype": "Data",
+      "label": "Mal/hizmet model ad\u0131"
     },
     {
       "fieldname": "buyersitemidentification",
       "fieldtype": "Link",
+      "label": "Al\u0131c\u0131n\u0131n tan\u0131mlamas\u0131",
       "options": "UBL TR ItemIdentification"
     },
     {
       "fieldname": "sellersitemidentification",
       "fieldtype": "Link",
+      "label": "Sat\u0131c\u0131n\u0131n tan\u0131mlamas\u0131",
       "options": "UBL TR ItemIdentification"
     },
     {
       "fieldname": "manufacturersitemidentification",
       "fieldtype": "Link",
+      "label": "\u00dcreticinin tan\u0131mlamas\u0131",
       "options": "UBL TR ItemIdentification"
     },
     {
       "fieldname": "additionalitemidentification",
       "fieldtype": "Link",
+      "label": "Di\u011fer s\u0131n\u0131fland\u0131rma bilgileri",
       "options": "UBL TR ItemIdentification"
     },
     {
       "fieldname": "origincountry",
       "fieldtype": "Link",
-      "options": "Country"
+      "label": "Men\u015fei bilgisi",
+      "options": "UBL TR Country"
     },
     {
       "fieldname": "commodityclassification",
       "fieldtype": "Table MultiSelect",
+      "label": "Emtia s\u0131n\u0131fland\u0131rma bilgisi",
       "options": "UBL TR CommodityClassifications"
     },
     {
       "fieldname": "iteminstance",
       "fieldtype": "Table MultiSelect",
+      "label": "Ek bilgiler",
       "options": "UBL TR ItemInstances"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 19:30:39.453298",
+  "modified": "2021-12-22 13:12:08.260226",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Item",
