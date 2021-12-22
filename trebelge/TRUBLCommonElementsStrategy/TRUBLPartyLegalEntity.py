@@ -35,7 +35,7 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
         cacsecimli01: list = \
             [{'Tag': 'CorporateRegistrationScheme', 'strategy': TRUBLCorporateRegistrationScheme(),
               'fieldName': 'corporateregistrationscheme'},
-             {'Tag': 'HeadOfficeParty', 'strategy': TRUBLParty(), 'fieldName': 'headofficeparty'}
+             {'Tag': 'HeadOfficeParty', 'strategy': trebelge.TRUBLParty(), 'fieldName': 'headofficeparty'}
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))

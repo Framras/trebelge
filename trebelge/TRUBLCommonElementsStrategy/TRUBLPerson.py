@@ -3,7 +3,7 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
+import trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialAccount import TRUBLFinancialAccount
 
 
@@ -39,7 +39,7 @@ class TRUBLPerson(TRUBLCommonElement):
         # ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)', 'documentreference')
         documentreference_: Element = element.find(cacnamespace + 'IdentityDocumentReference')
         if documentreference_:
-            strategy: TRUBLCommonElement = TRUBLDocumentReference()
+            strategy: TRUBLCommonElement = trebelge.TRUBLDocumentReference()
             self._strategyContext.set_strategy(strategy)
             frappedoc['documentreference'] = self._strategyContext.return_element_data(documentreference_,
                                                                                        cbcnamespace,
