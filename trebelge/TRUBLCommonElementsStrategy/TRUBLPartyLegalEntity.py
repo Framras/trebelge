@@ -6,7 +6,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBL
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCorporateRegistrationScheme import TRUBLCorporateRegistrationScheme
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 
-
 class TRUBLPartyLegalEntity(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR PartyLegalEntity'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
