@@ -16,16 +16,13 @@ class TRUBLAddress(TRUBLCommonElement):
         # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
         frappedoc: dict = {'citysubdivisionname': element.find(cbcnamespace + 'CitySubdivisionName').text,
                            'cityname': element.find(cbcnamespace + 'CityName').text}
-
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find(cacnamespace + 'Country')
         strategy: TRUBLCommonElement = TRUBLCountry()
         self._strategyContext.set_strategy(strategy)
-        country = self._strategyContext.return_element_data(country_,
-                                                            cbcnamespace,
-                                                            cacnamespace)
-        frappedoc['country'] = [country]
-
+        frappedoc['country'] = [self._strategyContext.return_element_data(country_,
+                                                                          cbcnamespace,
+                                                                          cacnamespace)]
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
         # ['Room'] = ('cbc', 'room', 'Seçimli (0...1)')
@@ -41,7 +38,6 @@ class TRUBLAddress(TRUBLCommonElement):
             field_: Element = element.find(cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
-
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         buildingnumbers_: list = element.findall(cbcnamespace + 'BuildingNumber')
         if buildingnumbers_:
