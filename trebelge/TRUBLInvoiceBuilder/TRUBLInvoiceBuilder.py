@@ -38,42 +38,42 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_ublversionid(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'ublversionid': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'UBLVersionID').text
+                './' + cbcnamespace + 'UBLVersionID').text
         })
 
     def build_customizationid(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'customizationid': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'CustomizationID').text
+                './' + cbcnamespace + 'CustomizationID').text
         })
 
     def build_profileid(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'profileid': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'ProfileID').text
+                './' + cbcnamespace + 'ProfileID').text
         })
 
     def build_id(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'id': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'ID').text
+                './' + cbcnamespace + 'ID').text
         })
 
     def build_copyindicator(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'copyindicator': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'CopyIndicator').text
+                './' + cbcnamespace + 'CopyIndicator').text
         })
 
     def build_issuedate(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'issuedate': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'IssueDate').text
+                './' + cbcnamespace + 'IssueDate').text
         })
 
     def build_issuetime(self, filepath: str, cbcnamespace: str) -> None:
         issuetime_: Element = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'IssueTime')
+            './' + cbcnamespace + 'IssueTime')
         if issuetime_:
             self._product.add({
                 'issuetime': issuetime_.text
@@ -82,14 +82,14 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_invoicetypecode(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'invoicetypecode': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'InvoiceTypeCode').text
+                './' + cbcnamespace + 'InvoiceTypeCode').text
         })
 
     def build_despatchadvicetypecode(self, filepath: str, cbcnamespace: str) -> None:
         pass
 
     def build_note(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        notes_: list = ET.parse(filepath).getroot().findall(cbcnamespace + 'Note')
+        notes_: list = ET.parse(filepath).getroot().findall('./' + cbcnamespace + 'Note')
         if notes_:
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
@@ -103,12 +103,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'documentcurrencycode': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'DocumentCurrencyCode').text
+                './' + cbcnamespace + 'DocumentCurrencyCode').text
         })
 
     def build_taxcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         taxcurrencycode_: Element = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'TaxCurrencyCode')
+            './' + cbcnamespace + 'TaxCurrencyCode')
         if taxcurrencycode_:
             self._product.add({
                 'taxcurrencycode': taxcurrencycode_.text
@@ -116,7 +116,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_pricingcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         pricingcurrencycode_: Element = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'PricingCurrencyCode')
+            './' + cbcnamespace + 'PricingCurrencyCode')
         if pricingcurrencycode_:
             self._product.add({
                 'pricingcurrencycode': pricingcurrencycode_.text
@@ -124,7 +124,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_paymentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         paymentcurrencycode_: Element = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'PaymentCurrencyCode')
+            './' + cbcnamespace + 'PaymentCurrencyCode')
         if paymentcurrencycode_:
             self._product.add({
                 'paymentcurrencycode': paymentcurrencycode_.text
@@ -132,7 +132,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_paymentalternativecurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         paymentalternativecurrencycode_: Element = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'PaymentAlternativeCurrencyCode')
+            './' + cbcnamespace + 'PaymentAlternativeCurrencyCode')
         if paymentalternativecurrencycode_:
             self._product.add({
                 'paymentalternativecurrencycode': paymentalternativecurrencycode_.text
@@ -140,7 +140,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_accountingcost(self, filepath: str, cbcnamespace: str) -> None:
         accountingcost_: Element = ET.parse(filepath).getroot().find(
-            cbcnamespace + 'AccountingCost')
+            './' + cbcnamespace + 'AccountingCost')
         if accountingcost_:
             self._product.add({
                 'accountingcost': accountingcost_.text
@@ -149,12 +149,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_linecountnumeric(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({
             'linecountnumeric': ET.parse(filepath).getroot().find(
-                cbcnamespace + 'LineCountNumeric').text
+                './' + cbcnamespace + 'LineCountNumeric').text
         })
 
     def build_invoiceperiod(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         invoiceperiod_: Element = ET.parse(filepath).getroot().find(
-            cacnamespace + 'InvoicePeriod')
+            './' + cacnamespace + 'InvoicePeriod')
         if invoiceperiod_:
             strategy: TRUBLCommonElement = TRUBLPeriod()
             self._strategyContext.set_strategy(strategy)
@@ -166,7 +166,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         orderreference_: Element = ET.parse(filepath).getroot().find(
-            cacnamespace + 'OrderReference')
+            './' + cacnamespace + 'OrderReference')
         if orderreference_:
             strategy: TRUBLCommonElement = TRUBLOrderReference()
             self._strategyContext.set_strategy(strategy)
@@ -229,7 +229,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_paymentterms(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         paymentterms_: Element = ET.parse(filepath).getroot().find(
-            cacnamespace + 'PaymentTerms')
+            './' + cacnamespace + 'PaymentTerms')
         if paymentterms_:
             strategy: TRUBLCommonElement = TRUBLPaymentTerms()
             self._strategyContext.set_strategy(strategy)
@@ -244,7 +244,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_taxexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         taxexchangerate_: Element = ET.parse(filepath).getroot().find(
-            cacnamespace + 'TaxExchangeRate')
+            './' + cacnamespace + 'TaxExchangeRate')
         if taxexchangerate_:
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
@@ -256,7 +256,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_pricingexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pricingexchangerate_: Element = ET.parse(filepath).getroot().find(
-            cacnamespace + 'PricingExchangeRate')
+            './' + cacnamespace + 'PricingExchangeRate')
         if pricingexchangerate_:
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
@@ -268,7 +268,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_paymentexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         paymentexchangerate_: Element = ET.parse(filepath).getroot().find(
-            cacnamespace + 'PaymentExchangeRate')
+            './' + cacnamespace + 'PaymentExchangeRate')
         if paymentexchangerate_:
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
@@ -280,7 +280,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_paymentalternativeexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         paymentalternativeexchangerate_: Element = ET.parse(filepath).getroot().find(
-            cacnamespace + 'PaymentAlternativeExchangeRate')
+            './' + cacnamespace + 'PaymentAlternativeExchangeRate')
         if paymentalternativeexchangerate_:
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
             self._strategyContext.set_strategy(strategy)
@@ -293,22 +293,19 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_taxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         taxtotals_: list = ET.parse(filepath).getroot().findall('./' + cacnamespace + 'TaxTotal')
-        if taxtotals_:
-            taxtotal: list = []
-            for taxtotal_ in taxtotals_:
-                strategy: TRUBLCommonElement = TRUBLTaxTotal()
-                self._strategyContext.set_strategy(strategy)
-                taxtotal.append(self._strategyContext.return_element_data(taxtotal_,
-                                                                          cbcnamespace,
-                                                                          cacnamespace))
-            self._product.add({
-                'taxtotal': taxtotal
-            })
-        else:
-            frappe.error_log('TaxTotal not present in file' + filepath, 'TR UBL Invoice Builder')
+        taxtotal: list = []
+        for taxtotal_ in taxtotals_:
+            strategy: TRUBLCommonElement = TRUBLTaxTotal()
+            self._strategyContext.set_strategy(strategy)
+            taxtotal.append(self._strategyContext.return_element_data(taxtotal_,
+                                                                      cbcnamespace,
+                                                                      cacnamespace))
+        self._product.add({
+            'taxtotal': taxtotal
+        })
 
     def build_withholdingtaxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        withholdingtaxtotals_: list = ET.parse(filepath).getroot().findall(cacnamespace + 'WithholdingTaxTotal')
+        withholdingtaxtotals_: list = ET.parse(filepath).getroot().findall('./' + cacnamespace + 'WithholdingTaxTotal')
         if withholdingtaxtotals_:
             withholdingtaxtotal: list = []
             for withholdingtaxtotal_ in withholdingtaxtotals_:
@@ -323,7 +320,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         legalmonetarytotal_: Element = ET.parse(filepath).getroot().find(
-            cacnamespace + 'LegalMonetaryTotal')
+            './' + cacnamespace + 'LegalMonetaryTotal')
         strategy: TRUBLCommonElement = TRUBLMonetaryTotal()
         self._strategyContext.set_strategy(strategy)
         self._product.add({
