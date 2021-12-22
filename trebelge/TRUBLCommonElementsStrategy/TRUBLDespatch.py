@@ -29,13 +29,10 @@ class TRUBLDespatch(TRUBLCommonElement):
         # ['Contact'] = ('cac', 'Contact', 'Seçimli (0...1)')
         # ['EstimatedDespatchPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
         cacsecimli01: list = \
-            [{'Tag': 'DespatchAddress', 'strategy': TRUBLAddress(), 'docType': 'UBL TR Address',
-              'fieldName': 'despatchaddress'},
-             {'Tag': 'DespatchParty', 'strategy': TRUBLParty(), 'docType': 'UBL TR Party',
-              'fieldName': 'despatchparty'},
-             {'Tag': 'Contact', 'strategy': TRUBLContact(), 'docType': 'UBL TR Contact', 'fieldName': 'contact'},
-             {'Tag': 'EstimatedDespatchPeriod', 'strategy': TRUBLPeriod(), 'docType': 'UBL TR Period',
-              'fieldName': 'estimateddespatchperiod'}
+            [{'Tag': 'DespatchAddress', 'strategy': TRUBLAddress(), 'fieldName': 'despatchaddress'},
+             {'Tag': 'DespatchParty', 'strategy': TRUBLParty(), 'fieldName': 'despatchparty'},
+             {'Tag': 'Contact', 'strategy': TRUBLContact(), 'fieldName': 'contact'},
+             {'Tag': 'EstimatedDespatchPeriod', 'strategy': TRUBLPeriod(), 'fieldName': 'estimateddespatchperiod'}
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
