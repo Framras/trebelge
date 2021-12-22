@@ -27,8 +27,8 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         taxscheme_: Element = element.find(cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
-        frappedoc['taxscheme'] = [self._strategyContext.return_element_data(taxscheme_,
-                                                                            cbcnamespace,
-                                                                            cacnamespace)]
+        frappedoc['taxscheme'] = self._strategyContext.return_element_data(taxscheme_,
+                                                                           cbcnamespace,
+                                                                           cacnamespace)
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
