@@ -19,9 +19,9 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         taxcategory_: Element = element.find(cacnamespace + 'TaxCategory')
         strategy: TRUBLCommonElement = TRUBLTaxCategory()
         self._strategyContext.set_strategy(strategy)
-        frappedoc['taxcategory'] = [self._strategyContext.return_element_data(taxcategory_,
-                                                                              cbcnamespace,
-                                                                              cacnamespace)]
+        frappedoc['taxcategory'] = self._strategyContext.return_element_data(taxcategory_,
+                                                                             cbcnamespace,
+                                                                             cacnamespace)
         # ['CalculationSequenceNumeric'] = ('cbc', 'calculationsequencenumeric', 'Seçimli (0...1)')
         # ['Percent'] = ('cbc', 'percent', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CalculationSequenceNumeric', 'Percent']
