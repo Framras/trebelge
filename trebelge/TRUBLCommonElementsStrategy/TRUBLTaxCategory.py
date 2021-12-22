@@ -3,7 +3,7 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
-from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
+import trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme
 
 
 class TRUBLTaxCategory(TRUBLCommonElement):
@@ -25,7 +25,7 @@ class TRUBLTaxCategory(TRUBLCommonElement):
                 frappedoc[field_.tag.lower()] = field_.text
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find(cacnamespace + 'TaxScheme')
-        strategy: TRUBLCommonElement = TRUBLTaxScheme()
+        strategy: TRUBLCommonElement = trebelge.TRUBLTaxScheme()
         self._strategyContext.set_strategy(strategy)
         frappedoc['taxscheme'] = self._strategyContext.return_element_data(taxscheme_,
                                                                            cbcnamespace,
