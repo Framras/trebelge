@@ -4,6 +4,14 @@ from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 
+from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
+from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
+from trebelge.TRUBLCommonElementsStrategy.TRUBLDimension import TRUBLDimension
+from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
+from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
+from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
+from trebelge.TRUBLCommonElementsStrategy.TRUBLTemperature import TRUBLTemperature
+
 
 class TRUBLGoodsItem(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR GoodsItem'
@@ -57,13 +65,47 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                 frappedoc[field_.tag.lower()] = field_.text
                 frappedoc[field_.tag.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Description'] = ('cbc', '', 'Seçimli(0..n)')
-
+        descriptions_: list = element.findall(cbcnamespace + 'Description')
+        if descriptions_ is not None:
+            descriptions: list = []
+            strategy: TRUBLCommonElement = TRUBLNote()
+            self._strategyContext.set_strategy(strategy)
+            for description_ in descriptions_:
+                descriptions.append(self._strategyContext.return_element_data(description_,
+                                                                              cbcnamespace,
+                                                                              cacnamespace))
+            frappedoc['description'] = descriptions
         # ['OriginAddress'] = ('cac', 'Address', 'Seçimli(0..1)')
-
+        address_: Element = element.find(cacnamespace + 'OriginAddress')
+        if address_:
+            strategy: TRUBLCommonElement = TRUBLAddress()
+            self._strategyContext.set_strategy(strategy)
+            frappedoc['originaddress'] = self._strategyContext.return_element_data(address_,
+                                                                                   cbcnamespace,
+                                                                                   cacnamespace)
         # ['Item'] = ('cac', 'Item', 'Seçimli(0..n)')
         # ['FreightAllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli(0..n)')
         # ['InvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli(0..n)')
         # ['Temperature'] = ('cac', 'Temperature', 'Seçimli(0..n)')
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
+        cacsecimli01: list = \
+            [{'Tag': 'Item', 'strategy': TRUBLItem(), 'fieldName': 'item'},
+             {'Tag': 'FreightAllowanceCharge', 'strategy': TRUBLAllowanceCharge(),
+              'fieldName': 'freightallowancecharge'},
+             {'Tag': 'InvoiceLine', 'strategy': TRUBLInvoiceLine(), 'fieldName': 'invoiceline'},
+             {'Tag': 'Temperature', 'strategy': TRUBLTemperature(), 'fieldName': 'temperature'},
+             {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
+             ]
+        for element_ in cacsecimli01:
+            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            if tagelements_ is not None:
+                tagelements: list = []
+                strategy: TRUBLCommonElement = element_.get('strategy')
+                self._strategyContext.set_strategy(strategy)
+                for tagelement in tagelements_:
+                    tagelements.append(self._strategyContext.return_element_data(tagelement,
+                                                                                 cbcnamespace,
+                                                                                 cacnamespace))
+                frappedoc[element_.get('fieldName')] = tagelements
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
