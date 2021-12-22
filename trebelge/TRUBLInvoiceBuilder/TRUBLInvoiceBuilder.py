@@ -292,10 +292,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             })
 
     def build_taxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        taxtotal_: list = ET.parse(filepath).getroot().findall('./' + cacnamespace + 'TaxTotal')
-        if taxtotal_:
+        taxtotals_: list = ET.parse(filepath).getroot().findall('./' + cacnamespace + 'TaxTotal')
+        if taxtotals_:
             taxtotal: list = []
-            for taxtotal_ in ET.parse(filepath).getroot().findall(cacnamespace + 'TaxTotal'):
+            for taxtotal_ in taxtotals_:
                 strategy: TRUBLCommonElement = TRUBLTaxTotal()
                 self._strategyContext.set_strategy(strategy)
                 taxtotal.append(self._strategyContext.return_element_data(taxtotal_,
