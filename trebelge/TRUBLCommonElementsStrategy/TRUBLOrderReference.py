@@ -24,7 +24,7 @@ class TRUBLOrderReference(TRUBLCommonElement):
                 frappedoc[field_.tag.lower()] = field_.text
         # ['DocumentReference'] = ('cac', '', 'Seçimli(0..n)', 'documentreference')
         documentreferences_: list = element.findall(cacnamespace + 'DocumentReference')
-        if documentreferences_ is not None:
+        if documentreferences_:
             documentreferences: list = []
             strategy: TRUBLCommonElement = TRUBLDocumentReference()
             self._strategyContext.set_strategy(strategy)

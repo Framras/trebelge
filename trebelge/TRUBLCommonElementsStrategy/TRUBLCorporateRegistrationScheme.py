@@ -26,7 +26,7 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
             frappedoc['corporateregistrationtypecode'] = corporateregistrationtypecode_.text
         # ['JurisdictionRegionAddress'] = ('cac', 'Address()', 'Seçimli(0..n)', 'jurisdictionregionaddress')
         jurisdictionregionaddress_: list = element.findall(cacnamespace + 'JurisdictionRegionAddress')
-        if jurisdictionregionaddress_ is not None:
+        if jurisdictionregionaddress_:
             addresses: list = []
             strategy: TRUBLCommonElement = TRUBLAddress()
             self._strategyContext.set_strategy(strategy)

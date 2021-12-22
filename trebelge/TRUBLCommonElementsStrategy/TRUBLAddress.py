@@ -44,7 +44,7 @@ class TRUBLAddress(TRUBLCommonElement):
 
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         buildingnumbers_: list = element.findall(cbcnamespace + 'BuildingNumber')
-        if buildingnumbers_ is not None:
+        if buildingnumbers_:
             buildingnumbers: list = []
             strategy: TRUBLCommonElement = TRUBLBuildingNumber()
             self._strategyContext.set_strategy(strategy)

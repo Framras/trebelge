@@ -23,7 +23,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         cbcsecimli01: list = ['DocumentTypeCode', 'DocumentType']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
+            if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['Attachment'] = ('cac', 'Attachment', 'Seçimli (0...1)', 'attachment')
         # ['ValidityPeriod'] = ('cac', 'Period', 'Seçimli (0...1)', 'validityperiod')
@@ -35,7 +35,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelement_ = element.find(cacnamespace + element_.get('Tag'))
-            if tagelement_ is not None:
+            if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
                 frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
@@ -43,7 +43,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                                                                                                   cacnamespace)]
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
         documentdescriptions_: list = element.findall(cbcnamespace + 'DocumentDescription')
-        if documentdescriptions_ is not None:
+        if documentdescriptions_:
             documentdescriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)

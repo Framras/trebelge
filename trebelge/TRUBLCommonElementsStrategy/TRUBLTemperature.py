@@ -20,7 +20,7 @@ class TRUBLTemperature(TRUBLCommonElement):
                            }
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
         descriptions_: list = element.findall(cbcnamespace + 'Description')
-        if descriptions_ is not None:
+        if descriptions_:
             descriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)

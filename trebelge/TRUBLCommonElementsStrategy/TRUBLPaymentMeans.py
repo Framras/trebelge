@@ -19,11 +19,11 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
         cbcsecimli01: list = ['PaymentDueDate', 'PaymentChannelCode', 'InstructionNote']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
+            if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['PayerFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
         payerfinancialaccount_ = element.find(cacnamespace + 'PayerFinancialAccount')
-        if payerfinancialaccount_ is not None:
+        if payerfinancialaccount_:
             strategy: TRUBLCommonElement = TRUBLFinancialAccount()
             self._strategyContext.set_strategy(strategy)
             frappedoc['payerfinancialaccount'] = [self._strategyContext.return_element_data(payerfinancialaccount_,
@@ -31,7 +31,7 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
                                                                                             cacnamespace)]
         # ['PayeeFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
         payeefinancialaccount_ = element.find(cacnamespace + 'PayeeFinancialAccount')
-        if payeefinancialaccount_ is not None:
+        if payeefinancialaccount_:
             strategy: TRUBLCommonElement = TRUBLFinancialAccount()
             self._strategyContext.set_strategy(strategy)
             frappedoc['payeefinancialaccount'] = [self._strategyContext.return_element_data(payeefinancialaccount_,

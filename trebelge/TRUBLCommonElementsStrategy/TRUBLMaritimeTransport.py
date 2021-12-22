@@ -20,21 +20,21 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
         cbcsecimli01: list = ['VesselID', 'VesselName', 'RadioCallSignID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
+            if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['GrossTonnageMeasure'] = ('cbc', '', 'Seçimli (0...1)')
         grosstonnagemeasure_: Element = element.find(cbcnamespace + 'GrossTonnageMeasure')
-        if grosstonnagemeasure_ is not None:
+        if grosstonnagemeasure_:
             frappedoc['grosstonnagemeasure'] = grosstonnagemeasure_.text
             frappedoc['grosstonnagemeasureunitcode'] = grosstonnagemeasure_.attrib.get('unitCode')
         # ['NetTonnageMeasure'] = ('cbc', '', 'Seçimli (0...1)')
         nettonnagemeasure_: Element = element.find(cbcnamespace + 'NetTonnageMeasure')
-        if nettonnagemeasure_ is not None:
+        if nettonnagemeasure_:
             frappedoc['nettonnagemeasure'] = nettonnagemeasure_.text
             frappedoc['nettonnagemeasureunitcode'] = nettonnagemeasure_.attrib.get('unitCode')
         # ['ShipsRequirements'] = ('cbc', '', 'Seçimli (0...n)')
         shipsrequirements_: list = element.findall(cbcnamespace + 'ShipsRequirements')
-        if shipsrequirements_ is not None:
+        if shipsrequirements_:
             requirements: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
@@ -52,7 +52,7 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
-            if tagelement_ is not None:
+            if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
                 frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,

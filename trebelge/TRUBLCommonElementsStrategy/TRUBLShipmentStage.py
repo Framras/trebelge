@@ -77,13 +77,13 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                 'currencyID')
         # ['DeclaredStatisticsValueAmount'] = ('cbc', '', 'Seçimli (0...1)')
         declaredstatisticsvalueamount_: Element = element.find(cbcnamespace + 'DeclaredStatisticsValueAmount')
-        if declaredstatisticsvalueamount_ is not None:
+        if declaredstatisticsvalueamount_:
             frappedoc['declaredstatisticsvalueamount'] = declaredstatisticsvalueamount_.text
             frappedoc['declaredstatisticsvalueamountcurrencyid'] = declaredstatisticsvalueamount_.attrib.get(
                 'currencyID')
         # ['FreeOnBoardValueAmount'] = ('cbc', '', 'Seçimli (0...1)')
         freeonboardvalueamount_: Element = element.find(cbcnamespace + 'FreeOnBoardValueAmount')
-        if freeonboardvalueamount_ is not None:
+        if freeonboardvalueamount_:
             frappedoc['freeonboardvalueamount'] = freeonboardvalueamount_.text
             frappedoc['freeonboardvalueamountcurrencyid'] = freeonboardvalueamount_.attrib.get('currencyID')
 

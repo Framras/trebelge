@@ -27,11 +27,11 @@ class TRUBLTransportMeans(TRUBLCommonElement):
                               'TradeServiceCode']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
-            if field_ is not None:
+            if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['RegistrationNationality'] = ('cbc', 'registrationnationality', 'Seçimli (0...n)')
         registrationnationality_: list = element.findall(cbcnamespace + 'RegistrationNationality')
-        if registrationnationality_ is not None:
+        if registrationnationality_:
             registrationnationality: list = []
             for nationality_ in registrationnationality_:
                 registrationnationality.append(nationality_.text)
@@ -52,7 +52,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
-            if tagelement_ is not None:
+            if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
                 frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
@@ -60,7 +60,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
                                                                                                   cacnamespace)]
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
         measurementdimension_: list = element.findall(cacnamespace + 'MeasurementDimension')
-        if measurementdimension_ is not None:
+        if measurementdimension_:
             measurementdimension: list = []
             strategy: TRUBLCommonElement = TRUBLDimension()
             self._strategyContext.set_strategy(strategy)
