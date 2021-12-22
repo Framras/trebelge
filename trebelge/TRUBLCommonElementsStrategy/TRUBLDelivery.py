@@ -19,18 +19,24 @@ class TRUBLDelivery(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Seçimli (0...1)')
-        # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         # ['ActualDeliveryDate'] = ('cbc', '', 'Seçimli (0...1)')
         # ['ActualDeliveryTime'] = ('cbc', '', 'Seçimli(0..1)')
         # ['LatestDeliveryDate'] = ('cbc', '', 'Seçimli (0...1)')
         # ['LatestDeliveryTime'] = ('cbc', '', 'Seçimli(0..1)')
         # ['TrackingID'] = ('cbc', '', 'Seçimli(0..1)')
-        cbcsecimli01: list = ['ID', 'Quantity', 'ActualDeliveryDate', 'ActualDeliveryTime', 'LatestDeliveryDate',
+        cbcsecimli01: list = ['ID', 'ActualDeliveryDate', 'ActualDeliveryTime', 'LatestDeliveryDate',
                               'LatestDeliveryTime', 'TrackingID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find(cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
+        # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
+        # unitCode
+        quantity_: Element = element.find(cbcnamespace + 'Quantity')
+        if quantity_:
+            frappedoc['quantity'] = quantity_.text
+            frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
+
         # ['DeliveryAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
         # ['AlternativeDeliveryLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
         # ['EstimatedDeliveryPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
