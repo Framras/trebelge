@@ -10,10 +10,10 @@ class TRUBLCommunication(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ChannelCode'] = ('cbc', 'channelcode', 'Zorunlu(1)')
         # ['Value'] = ('cbc', 'value', 'Zorunlu(1)')
-        frappedoc: dict = {'channelcode': element.find(cbcnamespace + 'ChannelCode').text,
-                           'value': element.find(cbcnamespace + 'Value').text}
+        frappedoc: dict = {'channelcode': element.find('./' + cbcnamespace + 'ChannelCode').text,
+                           'value': element.find('./' + cbcnamespace + 'Value').text}
         # ['Channel'] = ('cbc', 'channel', 'Seçimli (0...1)')
-        channel_: Element = element.find(cbcnamespace + 'Channel')
+        channel_: Element = element.find('./' + cbcnamespace + 'Channel')
         if channel_:
             frappedoc['channel'] = channel_.text
 

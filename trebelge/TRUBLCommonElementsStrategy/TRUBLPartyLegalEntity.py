@@ -21,11 +21,11 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
         cbcsecimli01: list = ['RegistrationName', 'CompanyID', 'RegistrationDate', 'SolePrioprietorshipIndicator',
                               'FullyPaidSharesIndicator']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['CorporateStockAmount'] = ('cbc', 'corporatestockamount', 'Seçimli (0...1)')
-        corporatestockamount_: Element = element.find(cbcnamespace + 'CorporateStockAmount')
+        corporatestockamount_: Element = element.find('./' + cbcnamespace + 'CorporateStockAmount')
         if corporatestockamount_:
             frappedoc['corporatestockamount'] = corporatestockamount_.text
             frappedoc['corporatestockamountcurrencyid'] = corporatestockamount_.attrib.get('currencyID')
@@ -38,7 +38,7 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
              {'Tag': 'HeadOfficeParty', 'strategy': trebelge.TRUBLParty(), 'fieldName': 'headofficeparty'}
              ]
         for element_ in cacsecimli01:
-            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

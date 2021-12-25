@@ -13,13 +13,13 @@ class TRUBLTemperature(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['AttributeID'] = ('cbc', '', 'Zorunlu (1)')
         # ['Measure'] = ('cbc', '', 'Zorunlu (1)')
-        measure_: Element = element.find(cbcnamespace + 'Measure')
-        frappedoc: dict = {'attributeid': element.find(cbcnamespace + 'AttributeID').text,
+        measure_: Element = element.find('./' + cbcnamespace + 'Measure')
+        frappedoc: dict = {'attributeid': element.find('./' + cbcnamespace + 'AttributeID').text,
                            'measure': measure_.text,
                            'measureunitcode': measure_.attrib.get('unitCode')
                            }
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
-        descriptions_: list = element.findall(cbcnamespace + 'Description')
+        descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if descriptions_:
             descriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()

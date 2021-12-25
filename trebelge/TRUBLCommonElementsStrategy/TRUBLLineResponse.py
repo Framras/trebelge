@@ -14,7 +14,7 @@ class TRUBLLineResponse(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['LineReference'] = ('cac', 'LineReference', 'Zorunlu(1)')
-        linereference_: Element = element.find(cacnamespace + 'LineReference')
+        linereference_: Element = element.find('./' + cacnamespace + 'LineReference')
         strategy: TRUBLCommonElement = TRUBLLineReference()
         self._strategyContext.set_strategy(strategy)
         frappedoc['linereference'] = [self._strategyContext.return_element_data(linereference_,
@@ -24,7 +24,7 @@ class TRUBLLineResponse(TRUBLCommonElement):
         responses: list = []
         strategy: TRUBLCommonElement = TRUBLResponse()
         self._strategyContext.set_strategy(strategy)
-        for response_ in element.findall(cacnamespace + 'Response'):
+        for response_ in element.findall('./' + cacnamespace + 'Response'):
             responses.append(self._strategyContext.return_element_data(response_,
                                                                        cbcnamespace,
                                                                        cacnamespace))

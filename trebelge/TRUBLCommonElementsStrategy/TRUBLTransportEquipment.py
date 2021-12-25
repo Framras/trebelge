@@ -13,7 +13,7 @@ class TRUBLTransportEquipment(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Seçimli (0...1)')
         # ['schemeID'] = ('', '', 'Seçimli (0...1)')
-        id_: Element = element.find(cbcnamespace + 'ID')
+        id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_:
             frappedoc['id'] = id_.text
             frappedoc['schemeid'] = id_.attrib.get('schemeID')
@@ -21,7 +21,7 @@ class TRUBLTransportEquipment(TRUBLCommonElement):
         # ['Description'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['TransportEquipmentTypeCode', 'Description']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
 

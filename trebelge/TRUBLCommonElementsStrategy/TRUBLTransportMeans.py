@@ -26,11 +26,11 @@ class TRUBLTransportMeans(TRUBLCommonElement):
         cbcsecimli01: list = ['JourneyID', 'RegistrationNationalityID', 'DirectionCode', 'TransportMeansTypeCode',
                               'TradeServiceCode']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['RegistrationNationality'] = ('cbc', 'registrationnationality', 'Seçimli (0...n)')
-        registrationnationality_: list = element.findall(cbcnamespace + 'RegistrationNationality')
+        registrationnationality_: list = element.findall('./' + cbcnamespace + 'RegistrationNationality')
         if registrationnationality_:
             registrationnationality: list = []
             for nationality_ in registrationnationality_:
@@ -51,7 +51,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
              {'Tag': 'OwnerParty', 'strategy': TRUBLParty(), 'fieldName': 'ownerparty'}
              ]
         for element_ in cacsecimli01:
-            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
@@ -59,7 +59,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
                                                                                                   cbcnamespace,
                                                                                                   cacnamespace)]
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
-        measurementdimension_: list = element.findall(cacnamespace + 'MeasurementDimension')
+        measurementdimension_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if measurementdimension_:
             measurementdimension: list = []
             strategy: TRUBLCommonElement = TRUBLDimension()

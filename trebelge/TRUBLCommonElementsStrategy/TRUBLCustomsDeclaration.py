@@ -12,9 +12,9 @@ class TRUBLCustomsDeclaration(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
-        frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text}
+        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
         # ['IssuerParty'] = ('cac', 'Party', 'Seçimli(0..1)', 'issuerparty')
-        issuerparty_: Element = element.find(cacnamespace + 'IssuerParty')
+        issuerparty_: Element = element.find('./' + cacnamespace + 'IssuerParty')
         if issuerparty_:
             strategy: TRUBLCommonElement = TRUBLParty()
             self._strategyContext.set_strategy(strategy)

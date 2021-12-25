@@ -12,17 +12,17 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['PaymentMeansCode'] = ('cbc', '', 'Zorunlu(1)')
-        frappedoc: dict = {'paymentmeanscode': element.find(cbcnamespace + 'PaymentMeansCode').text}
+        frappedoc: dict = {'paymentmeanscode': element.find('./' + cbcnamespace + 'PaymentMeansCode').text}
         # ['PaymentDueDate'] = ('cbc', '', 'Seçimli (0...1)')
         # ['PaymentChannelCode'] = ('cbc', '', 'Seçimli (0...1)')
         # ['InstructionNote'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['PaymentDueDate', 'PaymentChannelCode', 'InstructionNote']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['PayerFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
-        payerfinancialaccount_ = element.find(cacnamespace + 'PayerFinancialAccount')
+        payerfinancialaccount_ = element.find('./' + cacnamespace + 'PayerFinancialAccount')
         if payerfinancialaccount_:
             strategy: TRUBLCommonElement = TRUBLFinancialAccount()
             self._strategyContext.set_strategy(strategy)
@@ -30,7 +30,7 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
                                                                                             cbcnamespace,
                                                                                             cacnamespace)]
         # ['PayeeFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
-        payeefinancialaccount_ = element.find(cacnamespace + 'PayeeFinancialAccount')
+        payeefinancialaccount_ = element.find('./' + cacnamespace + 'PayeeFinancialAccount')
         if payeefinancialaccount_:
             strategy: TRUBLCommonElement = TRUBLFinancialAccount()
             self._strategyContext.set_strategy(strategy)

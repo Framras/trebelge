@@ -16,16 +16,16 @@ class TRUBLDespatchLine(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
-        frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text}
+        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Zorunlu(1)')
-        orderlinereference_: Element = element.find(cacnamespace + 'OrderLineReference')
+        orderlinereference_: Element = element.find('./' + cacnamespace + 'OrderLineReference')
         strategy: TRUBLCommonElement = TRUBLOrderLineReference()
         self._strategyContext.set_strategy(strategy)
         frappedoc['orderlinereference'] = [self._strategyContext.return_element_data(orderlinereference_,
                                                                                      cbcnamespace,
                                                                                      cacnamespace)]
         # ['Item'] = ('cac', 'Item', 'Zorunlu(1)')
-        item_: Element = element.find(cacnamespace + 'Item')
+        item_: Element = element.find('./' + cacnamespace + 'Item')
         strategy: TRUBLCommonElement = TRUBLItem()
         self._strategyContext.set_strategy(strategy)
         frappedoc['item'] = [self._strategyContext.return_element_data(item_,
@@ -36,12 +36,12 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         # ['OversupplyQuantity'] = ('cbc', '', 'Seçimli(0..1)')
         cbcsecimli01: list = ['DeliveredQuantity', 'OutstandingQuantity', 'OversupplyQuantity']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
                 frappedoc[field_.tag.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Note'] = ('cbc', '', 'Seçimli(0..n)')
-        notes_: list = element.findall(cbcnamespace + 'Note')
+        notes_: list = element.findall('./' + cbcnamespace + 'Note')
         if notes_:
             note: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
@@ -52,7 +52,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                                                                       cacnamespace))
             frappedoc['note'] = note
         # ['OutstandingReason'] = ('cbc', '', 'Seçimli(0..n)')
-        outstandingreasons_: list = element.findall(cbcnamespace + 'Description')
+        outstandingreasons_: list = element.findall('./' + cbcnamespace + 'Description')
         if outstandingreasons_:
             outstandingreason: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
@@ -69,7 +69,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
              {'Tag': 'DocumentReference', 'strategy': TRUBLDocumentReference(), 'fieldName': 'documentreference'}
              ]
         for element_ in cacsecimli0n:
-            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')

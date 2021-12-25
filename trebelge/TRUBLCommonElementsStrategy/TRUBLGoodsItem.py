@@ -27,7 +27,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'HazardousRiskIndicator', 'RequiredCustomsID', 'CustomsStatusCode',
                               'CustomsImportClassifiedIndicator', 'TraceID']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['DeclaredCustomsValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
@@ -40,7 +40,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                                   'DeclaredStatisticsValueAmount', 'FreeOnBoardValueAmount',
                                   'InsuranceValueAmount', 'ValueAmount']
         for elementtag_ in cbcamntsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
                 frappedoc[field_.tag.lower() + 'currencyid'] = field_.attrib.get('currencyID')
@@ -59,12 +59,12 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                                   'CustomsTariffQuantity', 'ChargeableQuantity',
                                   'ReturnableQuantity']
         for elementtag_ in cbcamntsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
                 frappedoc[field_.tag.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Description'] = ('cbc', '', 'Seçimli(0..n)')
-        descriptions_: list = element.findall(cbcnamespace + 'Description')
+        descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if descriptions_:
             descriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
@@ -75,7 +75,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                                                                               cacnamespace))
             frappedoc['description'] = descriptions
         # ['OriginAddress'] = ('cac', 'Address', 'Seçimli(0..1)')
-        address_: Element = element.find(cacnamespace + 'OriginAddress')
+        address_: Element = element.find('./' + cacnamespace + 'OriginAddress')
         if address_:
             strategy: TRUBLCommonElement = TRUBLAddress()
             self._strategyContext.set_strategy(strategy)
@@ -96,7 +96,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
              {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
              ]
         for element_ in cacsecimli0n:
-            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')

@@ -14,10 +14,10 @@ class TRUBLAddress(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
         # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
-        frappedoc: dict = {'citysubdivisionname': element.find(cbcnamespace + 'CitySubdivisionName').text,
-                           'cityname': element.find(cbcnamespace + 'CityName').text}
+        frappedoc: dict = {'citysubdivisionname': element.find('./' + cbcnamespace + 'CitySubdivisionName').text,
+                           'cityname': element.find('./' + cbcnamespace + 'CityName').text}
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
-        country_: Element = element.find(cacnamespace + 'Country')
+        country_: Element = element.find('./' + cacnamespace + 'Country')
         strategy: TRUBLCommonElement = TRUBLCountry()
         self._strategyContext.set_strategy(strategy)
         frappedoc['country'] = [self._strategyContext.return_element_data(country_,
@@ -35,11 +35,11 @@ class TRUBLAddress(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'Postbox', 'Room', 'StreetName', 'BlockName', 'BuildingName', 'PostalZone',
                               'Region', 'District']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
-        buildingnumbers_: list = element.findall(cbcnamespace + 'BuildingNumber')
+        buildingnumbers_: list = element.findall('./' + cbcnamespace + 'BuildingNumber')
         if buildingnumbers_:
             buildingnumbers: list = []
             strategy: TRUBLCommonElement = TRUBLBuildingNumber()

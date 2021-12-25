@@ -13,11 +13,11 @@ class TRUBLLocation(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Seçimli (0...1)')
-        id_: Element = element.find(cbcnamespace + 'ID')
+        id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_:
             frappedoc['locationid'] = id_.text
         # ['Address'] = ('cac', 'Address()', 'Seçimli (0...1)','address')
-        address_: Element = element.find(cacnamespace + 'Address')
+        address_: Element = element.find('./' + cacnamespace + 'Address')
         if address_:
             strategy: TRUBLCommonElement = TRUBLAddress()
             self._strategyContext.set_strategy(strategy)

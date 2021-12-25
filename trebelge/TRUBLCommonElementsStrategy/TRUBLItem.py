@@ -15,14 +15,14 @@ class TRUBLItem(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['Name'] = ('cbc', 'itemname', 'Zorunlu (1)')
-        frappedoc: dict = {'itemname': element.find(cbcnamespace + 'Name').text}
+        frappedoc: dict = {'itemname': element.find('./' + cbcnamespace + 'Name').text}
         # ['Description'] = ('cbc', '', 'Seçimli (0...1)')
         # ['Keyword'] = ('cbc', '', 'Seçimli (0...1)')
         # ['BrandName'] = ('cbc', '', 'Seçimli (0...1)')
         # ['ModelName'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['Description', 'Keyword', 'BrandName', 'ModelName']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['BuyersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)')
@@ -39,7 +39,7 @@ class TRUBLItem(TRUBLCommonElement):
              {'Tag': 'OriginCountry', 'strategy': TRUBLCountry(), 'fieldName': 'origincountry'}
              ]
         for element_ in cacsecimli01:
-            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
@@ -57,7 +57,7 @@ class TRUBLItem(TRUBLCommonElement):
              {'Tag': 'ItemInstance', 'strategy': TRUBLItemInstance(), 'fieldName': 'iteminstance'}
              ]
         for element_ in cacsecimli0n:
-            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')

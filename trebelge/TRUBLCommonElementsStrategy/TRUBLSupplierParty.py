@@ -14,14 +14,14 @@ class TRUBLSupplierParty(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
-        party_: Element = element.find(cacnamespace + 'Party')
+        party_: Element = element.find('./' + cacnamespace + 'Party')
         strategy: TRUBLCommonElement = TRUBLParty()
         self._strategyContext.set_strategy(strategy)
         frappedoc['party'] = self._strategyContext.return_element_data(party_,
                                                                        cbcnamespace,
                                                                        cacnamespace)
         # ['DespatchContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'despatchcontact')
-        despatchcontact_: Element = element.find(cacnamespace + 'DespatchContact')
+        despatchcontact_: Element = element.find('./' + cacnamespace + 'DespatchContact')
         if despatchcontact_:
             strategy: TRUBLCommonElement = TRUBLContact()
             self._strategyContext.set_strategy(strategy)

@@ -9,7 +9,7 @@ class TRUBLRoadTransport(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['LicensePlateID'] = ('cbc', 'licenseplateid', 'Zorunlu (1)')
-        licenseplateid_: Element = element.find(cbcnamespace + 'LicensePlateID')
+        licenseplateid_: Element = element.find('./' + cbcnamespace + 'LicensePlateID')
         frappedoc: dict = {'licenseplateid': licenseplateid_.text}
         # ['schemeID'] = ('', 'licenseplateid_schemeid', 'Seçimli (0...1)')
         schemeid_: str = licenseplateid_.attrib.get('schemeID')

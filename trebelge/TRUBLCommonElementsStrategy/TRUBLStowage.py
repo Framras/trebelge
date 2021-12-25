@@ -14,7 +14,7 @@ class TRUBLStowage(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['LocationID'] = ('cbc', 'locationid', 'Seçimli (0...1)')
-        locationid_: Element = element.find(cbcnamespace + 'LocationID')
+        locationid_: Element = element.find('./' + cbcnamespace + 'LocationID')
         if locationid_:
             frappedoc['locationid'] = locationid_.text
         # ['Location'] = ('cac', 'Location', 'Seçimli (0...n)')
@@ -24,7 +24,7 @@ class TRUBLStowage(TRUBLCommonElement):
              {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
              ]
         for element_ in cacsecimli0n:
-            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')

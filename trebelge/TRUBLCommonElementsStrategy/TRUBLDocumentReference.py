@@ -16,13 +16,13 @@ class TRUBLDocumentReference(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', '', 'Zorunlu (1)', 'id')
         # ['IssueDate'] = ('cbc', '', 'Zorunlu (1)', 'issuedate')
-        frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text,
-                           'issuedate': element.find(cbcnamespace + 'IssueDate').text}
+        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text,
+                           'issuedate': element.find('./' + cbcnamespace + 'IssueDate').text}
         # ['DocumentTypeCode'] = ('cbc', '', 'Seçimli (0...1)', 'documenttypecode')
         # ['DocumentType'] = ('cbc', '', 'Seçimli (0...1)', 'documenttype')
         cbcsecimli01: list = ['DocumentTypeCode', 'DocumentType']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['Attachment'] = ('cac', 'Attachment', 'Seçimli (0...1)', 'attachment')
@@ -34,7 +34,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
              {'Tag': 'IssuerParty', 'strategy': TRUBLParty(), 'fieldName': 'issuerparty'}
              ]
         for element_ in cacsecimli01:
-            tagelement_ = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_ = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
@@ -42,7 +42,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                                                                                                   cbcnamespace,
                                                                                                   cacnamespace)]
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
-        documentdescriptions_: list = element.findall(cbcnamespace + 'DocumentDescription')
+        documentdescriptions_: list = element.findall('./' + cbcnamespace + 'DocumentDescription')
         if documentdescriptions_:
             documentdescriptions: list = []
             strategy: TRUBLCommonElement = TRUBLNote()

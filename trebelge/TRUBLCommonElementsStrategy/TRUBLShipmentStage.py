@@ -20,18 +20,18 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         # ['Instructions'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['ID', 'TransportModeCode', 'TransportMeansTypeCode', 'Instructions']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['TransitDirectionCode'] = ('cbc', '', 'Seçimli (0...n)')
-        transitdirectioncodes_: list = element.findall(cbcnamespace + 'TransitDirectionCode')
+        transitdirectioncodes_: list = element.findall('./' + cbcnamespace + 'TransitDirectionCode')
         if transitdirectioncodes_:
             transitdirectioncode: list = []
             for transitdirectioncode_ in transitdirectioncodes_:
                 transitdirectioncode.append(transitdirectioncode_.text)
             frappedoc['transitdirectioncode'] = transitdirectioncode
         # ['TransitPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
-        transitperiod_: Element = element.find(cbcnamespace + 'TransitPeriod')
+        transitperiod_: Element = element.find('./' + cbcnamespace + 'TransitPeriod')
         if transitperiod_:
             strategy: TRUBLCommonElement = TRUBLPeriod()
             self._strategyContext.set_strategy(strategy)
@@ -39,7 +39,7 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                                                                                     cbcnamespace,
                                                                                     cacnamespace)]
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...1)')
-        transportmeans_: Element = element.find(cbcnamespace + 'TransportMeans')
+        transportmeans_: Element = element.find('./' + cbcnamespace + 'TransportMeans')
         if transportmeans_:
             strategy: TRUBLCommonElement = TRUBLTransportMeans()
             self._strategyContext.set_strategy(strategy)
@@ -47,7 +47,7 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                                                                                      cbcnamespace,
                                                                                      cacnamespace)]
         # ['DriverPerson'] = ('cac', 'Person', 'Seçimli (0...n)')
-        driverpeople_: list = element.findall(cacnamespace + 'DriverPerson')
+        driverpeople_: list = element.findall('./' + cacnamespace + 'DriverPerson')
         if driverpeople_:
             driverpeople: list = []
             strategy: TRUBLCommonElement = TRUBLPerson()

@@ -27,12 +27,12 @@ class TRUBLDelivery(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'ActualDeliveryDate', 'ActualDeliveryTime', 'LatestDeliveryDate',
                               'LatestDeliveryTime', 'TrackingID']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         # unitCode
-        quantity_: Element = element.find(cbcnamespace + 'Quantity')
+        quantity_: Element = element.find('./' + cbcnamespace + 'Quantity')
         if quantity_:
             frappedoc['quantity'] = quantity_.text
             frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
@@ -55,7 +55,7 @@ class TRUBLDelivery(TRUBLCommonElement):
              {'Tag': 'Shipment', 'strategy': TRUBLShipment(), 'fieldName': 'shipment'}
              ]
         for element_ in cacsecimli01:
-            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
@@ -63,7 +63,7 @@ class TRUBLDelivery(TRUBLCommonElement):
                                                                                                   cbcnamespace,
                                                                                                   cacnamespace)]
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
-        deliveryterms_: Element = element.find(cacnamespace + 'DeliveryTerms')
+        deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
         if deliveryterms_:
             deliveryterms: list = []
             strategy: TRUBLCommonElement = TRUBLDeliveryTerms()

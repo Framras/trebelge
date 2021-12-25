@@ -19,21 +19,21 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
         # ['RadioCallSignID'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['VesselID', 'VesselName', 'RadioCallSignID']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['GrossTonnageMeasure'] = ('cbc', '', 'Seçimli (0...1)')
-        grosstonnagemeasure_: Element = element.find(cbcnamespace + 'GrossTonnageMeasure')
+        grosstonnagemeasure_: Element = element.find('./' + cbcnamespace + 'GrossTonnageMeasure')
         if grosstonnagemeasure_:
             frappedoc['grosstonnagemeasure'] = grosstonnagemeasure_.text
             frappedoc['grosstonnagemeasureunitcode'] = grosstonnagemeasure_.attrib.get('unitCode')
         # ['NetTonnageMeasure'] = ('cbc', '', 'Seçimli (0...1)')
-        nettonnagemeasure_: Element = element.find(cbcnamespace + 'NetTonnageMeasure')
+        nettonnagemeasure_: Element = element.find('./' + cbcnamespace + 'NetTonnageMeasure')
         if nettonnagemeasure_:
             frappedoc['nettonnagemeasure'] = nettonnagemeasure_.text
             frappedoc['nettonnagemeasureunitcode'] = nettonnagemeasure_.attrib.get('unitCode')
         # ['ShipsRequirements'] = ('cbc', '', 'Seçimli (0...n)')
-        shipsrequirements_: list = element.findall(cbcnamespace + 'ShipsRequirements')
+        shipsrequirements_: list = element.findall('./' + cbcnamespace + 'ShipsRequirements')
         if shipsrequirements_:
             requirements: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
@@ -51,7 +51,7 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
              {'Tag': 'RegistryPortLocation', 'strategy': TRUBLLocation(), 'fieldName': 'registryportlocation'}
              ]
         for element_ in cacsecimli01:
-            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

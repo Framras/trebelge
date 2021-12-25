@@ -13,11 +13,11 @@ class TRUBLBranch(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'branchname', 'Seçimli(0..1)')
-        name_: Element = element.find(cbcnamespace + 'Name')
+        name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_:
             frappedoc['branchname'] = name_.text
         # ['FinancialInstitution'] = ('cac', 'FinancialInstitution()', 'Seçimli(0..1)', 'financialinstitution')
-        financialinstitution_: Element = element.find(cacnamespace + 'FinancialInstitution')
+        financialinstitution_: Element = element.find('./' + cacnamespace + 'FinancialInstitution')
         if financialinstitution_:
             strategy: TRUBLCommonElement = TRUBLFinancialInstitution()
             self._strategyContext.set_strategy(strategy)

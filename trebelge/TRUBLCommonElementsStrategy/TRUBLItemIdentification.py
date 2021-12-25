@@ -9,6 +9,6 @@ class TRUBLItemIdentification(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
-        frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text}
+        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

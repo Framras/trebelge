@@ -10,7 +10,7 @@ class TRUBLFinancialInstitution(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'name', 'Seçimli(0..1)', 'financialinstitution')
-        name_: Element = element.find(cbcnamespace + 'Name')
+        name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_:
             frappedoc['financialinstitution'] = name_.text
 

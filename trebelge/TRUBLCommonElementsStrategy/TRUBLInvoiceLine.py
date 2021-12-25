@@ -20,33 +20,33 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
         # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
         # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
-        invoicedquantity: Element = element.find(cbcnamespace + 'InvoicedQuantity')
-        lineextensionamount: Element = element.find(cbcnamespace + 'LineExtensionAmount')
-        frappedoc: dict = {'id': element.find(cbcnamespace + 'ID').text,
+        invoicedquantity: Element = element.find('./' + cbcnamespace + 'InvoicedQuantity')
+        lineextensionamount: Element = element.find('./' + cbcnamespace + 'LineExtensionAmount')
+        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text,
                            'invoicedquantity': invoicedquantity.text,
                            'invoicedquantityunitcode': invoicedquantity.attrib.get('unitCode'),
                            'lineextensionamount': lineextensionamount.text,
                            'lineextensionamountcurrencyid': lineextensionamount.attrib.get('currencyID')}
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
-        note_: Element = element.find(cbcnamespace + 'Note')
+        note_: Element = element.find('./' + cbcnamespace + 'Note')
         if note_:
             frappedoc['note'] = note_.text
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
-        item_: Element = element.find(cacnamespace + 'Item')
+        item_: Element = element.find('./' + cacnamespace + 'Item')
         strategy: TRUBLCommonElement = TRUBLItem()
         self._strategyContext.set_strategy(strategy)
         frappedoc['item'] = [self._strategyContext.return_element_data(item_,
                                                                        cbcnamespace,
                                                                        cacnamespace)]
         # ['Price'] = ('cac', 'Price', 'Zorunlu (1)')
-        price_: Element = element.find(cacnamespace + 'Price')
+        price_: Element = element.find('./' + cacnamespace + 'Price')
         strategy: TRUBLCommonElement = TRUBLPrice()
         self._strategyContext.set_strategy(strategy)
         frappedoc['price'] = [self._strategyContext.return_element_data(price_,
                                                                         cbcnamespace,
                                                                         cacnamespace)]
         # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
-        taxtotal_: Element = element.find(cacnamespace + 'TaxTotal')
+        taxtotal_: Element = element.find('./' + cacnamespace + 'TaxTotal')
         if taxtotal_:
             strategy: TRUBLCommonElement = TRUBLTaxTotal()
             self._strategyContext.set_strategy(strategy)
@@ -70,7 +70,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
              {'Tag': 'SubInvoiceLine', 'strategy': TRUBLInvoiceLine(), 'fieldName': 'subinvoiceline'}
              ]
         for element_ in cacsecimli0n:
-            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')

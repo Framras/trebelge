@@ -20,7 +20,7 @@ class TRUBLParty(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
-        partyidentifications_: list = element.findall(cacnamespace + 'PartyIdentification')
+        partyidentifications_: list = element.findall('./' + cacnamespace + 'PartyIdentification')
         partyidentifications: list = []
         strategy: TRUBLCommonElement = TRUBLPartyIdentification()
         self._strategyContext.set_strategy(strategy)
@@ -30,7 +30,7 @@ class TRUBLParty(TRUBLCommonElement):
                                                                                   cacnamespace))
         frappedoc['partyidentification'] = partyidentifications
         # ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
-        postaladdress_: Element = element.find(cacnamespace + 'PostalAddress')
+        postaladdress_: Element = element.find('./' + cacnamespace + 'PostalAddress')
         strategy: TRUBLCommonElement = TRUBLAddress()
         self._strategyContext.set_strategy(strategy)
         frappedoc['postaladdress'] = [self._strategyContext.return_element_data(postaladdress_,
@@ -41,7 +41,7 @@ class TRUBLParty(TRUBLCommonElement):
         # ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
         cbcsecimli01: list = ['WebsiteURI', 'EndpointID', 'IndustryClassificationCode']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)', partyname)
@@ -59,7 +59,7 @@ class TRUBLParty(TRUBLCommonElement):
              {'Tag': 'AgentParty', 'strategy': TRUBLParty(), 'fieldName': 'agentparty'}
              ]
         for element_ in cacsecimli01:
-            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
@@ -67,7 +67,7 @@ class TRUBLParty(TRUBLCommonElement):
                                                                                                   cbcnamespace,
                                                                                                   cacnamespace)]
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
-        partylegalentity_: Element = element.find(cacnamespace + 'PartyLegalEntity')
+        partylegalentity_: Element = element.find('./' + cacnamespace + 'PartyLegalEntity')
         if partylegalentity_:
             partylegalentities: list = []
             strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()

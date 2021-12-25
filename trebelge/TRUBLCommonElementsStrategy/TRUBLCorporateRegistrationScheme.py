@@ -13,19 +13,19 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
-        id_: Element = element.find(cbcnamespace + 'ID')
+        id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_:
             frappedoc['id'] = id_.text
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
-        name_: Element = element.find(cbcnamespace + 'Name')
+        name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_:
             frappedoc['corporateregistrationschemename'] = name_.text
         # ['CorporateRegistrationTypeCode'] = ('cbc', 'corporateregistrationtypecode', 'Seçimli (0...1)')
-        corporateregistrationtypecode_: Element = element.find(cbcnamespace + 'CorporateRegistrationTypeCode')
+        corporateregistrationtypecode_: Element = element.find('./' + cbcnamespace + 'CorporateRegistrationTypeCode')
         if corporateregistrationtypecode_:
             frappedoc['corporateregistrationtypecode'] = corporateregistrationtypecode_.text
         # ['JurisdictionRegionAddress'] = ('cac', 'Address()', 'Seçimli(0..n)', 'jurisdictionregionaddress')
-        jurisdictionregionaddress_: list = element.findall(cacnamespace + 'JurisdictionRegionAddress')
+        jurisdictionregionaddress_: list = element.findall('./' + cacnamespace + 'JurisdictionRegionAddress')
         if jurisdictionregionaddress_:
             addresses: list = []
             strategy: TRUBLCommonElement = TRUBLAddress()

@@ -13,7 +13,7 @@ class TRUBLAttachment(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['ExternalReference'] = ('cac', 'ExternalReference()', 'Seçimli (0..1)', 'externalreference')
-        externalreference_: Element = element.find(cacnamespace + 'ExternalReference')
+        externalreference_: Element = element.find('./' + cacnamespace + 'ExternalReference')
         if externalreference_:
             strategy: TRUBLCommonElement = TRUBLExternalReference()
             self._strategyContext.set_strategy(strategy)
@@ -26,7 +26,7 @@ class TRUBLAttachment(TRUBLCommonElement):
         # filename: 'TN22021000283169.xslt'
         # encodingCode: 'Base64'
         # mimeCode: 'application/xml'
-        embeddeddocumentbinaryobject_: Element = element.find(cacnamespace + 'EmbeddedDocumentBinaryObject')
+        embeddeddocumentbinaryobject_: Element = element.find('./' + cacnamespace + 'EmbeddedDocumentBinaryObject')
         if embeddeddocumentbinaryobject_:
             pass
 

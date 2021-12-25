@@ -10,15 +10,15 @@ class TRUBLDeliveryTerms(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
-        id_: Element = element.find(cbcnamespace + 'ID')
+        id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_:
             frappedoc['id'] = id_.text
         # ['SpecialTerms'] = ('cbc', 'specialterms', 'Seçimli (0...1)')
-        specialterms_: Element = element.find(cbcnamespace + 'SpecialTerms')
+        specialterms_: Element = element.find('./' + cbcnamespace + 'SpecialTerms')
         if specialterms_:
             frappedoc['specialterms'] = specialterms_.text
         # ['Amount'] = ('cbc', 'amount', 'Seçimli (0...1)')
-        amount_: Element = element.find(cbcnamespace + 'Amount')
+        amount_: Element = element.find('./' + cbcnamespace + 'Amount')
         if amount_:
             frappedoc['amount'] = amount_.text
             frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')

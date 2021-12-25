@@ -28,21 +28,21 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'TransportHandlingUnitTypeCode', 'HandlingCode', 'HandlingInstructions',
                               'HazardousRiskIndicator', 'TraceID']
         for elementtag_ in cbcsecimli01:
-            field_: Element = element.find(cbcnamespace + elementtag_)
+            field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
                 frappedoc[field_.tag.lower()] = field_.text
         # ['TotalGoodsItemQuantity'] = ('cbc', '', 'Seçimli (0...1)', 'totalgoodsitemquantityunitcode')
-        totalgoodsitemquantity_: Element = element.find(cbcnamespace + 'TotalGoodsItemQuantity')
+        totalgoodsitemquantity_: Element = element.find('./' + cbcnamespace + 'TotalGoodsItemQuantity')
         if totalgoodsitemquantity_:
             frappedoc['totalgoodsitemquantity'] = totalgoodsitemquantity_.text
             frappedoc['totalgoodsitemquantityunitcode'] = totalgoodsitemquantity_.attrib.get('unitCode')
         # ['TotalPackageQuantity'] = ('cbc', '', 'Seçimli (0...1)', 'totalpackagequantityunitcode')
-        totalpackagequantity_: Element = element.find(cbcnamespace + 'TotalPackageQuantity')
+        totalpackagequantity_: Element = element.find('./' + cbcnamespace + 'TotalPackageQuantity')
         if totalpackagequantity_:
             frappedoc['totalpackagequantity'] = totalpackagequantity_.text
             frappedoc['totalpackagequantityunitcode'] = totalpackagequantity_.attrib.get('unitCode')
         # ['DamageRemarks'] = ('cbc', 'damageremarks', 'Seçimli (0...n)')
-        damageremarks_: list = element.findall(cbcnamespace + 'DamageRemarks')
+        damageremarks_: list = element.findall('./' + cbcnamespace + 'DamageRemarks')
         if damageremarks_:
             damageremarks: list = []
             for damageremark_ in damageremarks_:
@@ -61,7 +61,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
               'fieldName': 'palletspacemeasurementdimension'}
              ]
         for element_ in cacsecimli01:
-            tagelement_: Element = element.find(cacnamespace + element_.get('Tag'))
+            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
@@ -87,7 +87,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
              {'Tag': 'CustomsDeclaration', 'strategy': TRUBLCustomsDeclaration(), 'fieldName': 'customsdeclaration'}
              ]
         for element_ in cacsecimli01:
-            tagelements_: list = element.findall(cacnamespace + element_.get('Tag'))
+            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')
