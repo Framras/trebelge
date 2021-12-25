@@ -29,7 +29,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                            'lineextensionamountcurrencyid': lineextensionamount.attrib.get('currencyID')}
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
         note_: Element = element.find('./' + cbcnamespace + 'Note')
-        if note_:
+        if note_ is not None:
             frappedoc['note'] = note_.text
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
@@ -47,7 +47,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                                                                         cacnamespace)]
         # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
         taxtotal_: Element = element.find('./' + cacnamespace + 'TaxTotal')
-        if taxtotal_:
+        if taxtotal_ is not None:
             strategy: TRUBLCommonElement = TRUBLTaxTotal()
             self._strategyContext.set_strategy(strategy)
             frappedoc['taxtotal'] = [self._strategyContext.return_element_data(taxtotal_,
@@ -71,7 +71,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_:
+            if tagelements_ is not None:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

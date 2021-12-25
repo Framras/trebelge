@@ -23,7 +23,7 @@ class TRUBLItem(TRUBLCommonElement):
         cbcsecimli01: list = ['Description', 'Keyword', 'BrandName', 'ModelName']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['BuyersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)')
         # ['SellersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)')

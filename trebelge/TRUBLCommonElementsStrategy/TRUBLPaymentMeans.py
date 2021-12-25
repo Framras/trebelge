@@ -19,7 +19,7 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
         cbcsecimli01: list = ['PaymentDueDate', 'PaymentChannelCode', 'InstructionNote']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['PayerFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
         payerfinancialaccount_ = element.find('./' + cacnamespace + 'PayerFinancialAccount')

@@ -29,7 +29,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                               'HazardousRiskIndicator', 'TraceID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['TotalGoodsItemQuantity'] = ('cbc', '', 'Seçimli (0...1)', 'totalgoodsitemquantityunitcode')
         totalgoodsitemquantity_: Element = element.find('./' + cbcnamespace + 'TotalGoodsItemQuantity')

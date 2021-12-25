@@ -22,15 +22,15 @@ class TRUBLPerson(TRUBLCommonElement):
         cbcsecimli01: list = ['MiddleName', 'NameSuffix', 'NationalityID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['Title'] = ('cbc', 'persontitle', 'Seçimli (0...1)')
         field_: Element = element.find('./' + cbcnamespace + 'Title')
-        if field_:
+        if field_ is not None:
             frappedoc['persontitle'] = field_.text
         # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)', 'financialaccount')
         financialaccount_: Element = element.find('./' + cacnamespace + 'FinancialAccount')
-        if financialaccount_:
+        if financialaccount_ is not None:
             strategy: TRUBLCommonElement = TRUBLFinancialAccount()
             self._strategyContext.set_strategy(strategy)
             frappedoc['financialaccount'] = self._strategyContext.return_element_data(financialaccount_,
@@ -38,7 +38,7 @@ class TRUBLPerson(TRUBLCommonElement):
                                                                                       cacnamespace)
         # ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)', 'documentreference')
         documentreference_: Element = element.find('./' + cacnamespace + 'IdentityDocumentReference')
-        if documentreference_:
+        if documentreference_ is not None:
             strategy: TRUBLCommonElement = trebelge.TRUBLDocumentReference()
             self._strategyContext.set_strategy(strategy)
             frappedoc['documentreference'] = self._strategyContext.return_element_data(documentreference_,

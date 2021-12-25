@@ -27,27 +27,27 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         cbcsecimli01: list = ['CalculationSequenceNumeric', 'Percent']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['TaxableAmount'] = ('cbc', 'taxableamount', 'Seçimli (0...1)')
         taxableamount_: Element = element.find('./' + cbcnamespace + 'TaxableAmount')
-        if taxableamount_:
+        if taxableamount_ is not None:
             frappedoc['taxableamount'] = taxableamount_.text
             frappedoc['taxableamountcurrencyid'] = taxableamount_.attrib.get('currencyID')
         # ['TransactionCurrencyTaxAmount'] = ('cbc', 'transactioncurrencytaxamount', 'Seçimli (0...1)')
         transactioncurrencytaxamount_: Element = element.find('./' + cbcnamespace + 'TransactionCurrencyTaxAmount')
-        if transactioncurrencytaxamount_:
+        if transactioncurrencytaxamount_ is not None:
             frappedoc['transactioncurrencytaxamount'] = transactioncurrencytaxamount_.text
             frappedoc['transactioncurrencytaxamountcurrencyid'] = transactioncurrencytaxamount_.attrib.get(
                 'currencyID')
         # ['BaseUnitMeasure'] = ('cbc', 'baseunitmeasure', 'Seçimli (0...1)')
         baseunitmeasure_: Element = element.find('./' + cbcnamespace + 'BaseUnitMeasure')
-        if baseunitmeasure_:
+        if baseunitmeasure_ is not None:
             frappedoc['baseunitmeasure'] = baseunitmeasure_.text
             frappedoc['baseunitmeasureunitcode'] = baseunitmeasure_.attrib.get('unitCode')
         # ['PerUnitAmount'] = ('cbc', 'perunitamount', 'Seçimli (0...1)')
         perunitamount_: Element = element.find('./' + cbcnamespace + 'PerUnitAmount')
-        if perunitamount_:
+        if perunitamount_ is not None:
             frappedoc['perunitamount'] = perunitamount_.text
             frappedoc['perunitamountcurrencyid'] = perunitamount_.attrib.get('currencyID')
 

@@ -19,11 +19,11 @@ class TRUBLOrderLineReference(TRUBLCommonElement):
         cbcsecimli01: list = ['SalesOrderLineID', 'UUID', 'LineStatusCode']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['OrderReference'] = ('cac', 'OrderReference', 'Seçimli (0...1)')
         orderreference_: Element = element.find('./' + cacnamespace + 'OrderReference')
-        if orderreference_:
+        if orderreference_ is not None:
             strategy: TRUBLCommonElement = TRUBLOrderReference()
             self._strategyContext.set_strategy(strategy)
             frappedoc['orderreference'] = [self._strategyContext.return_element_data(orderreference_,

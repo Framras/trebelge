@@ -14,11 +14,11 @@ class TRUBLLocation(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Seçimli (0...1)')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
-        if id_:
+        if id_ is not None:
             frappedoc['locationid'] = id_.text
         # ['Address'] = ('cac', 'Address()', 'Seçimli (0...1)','address')
         address_: Element = element.find('./' + cacnamespace + 'Address')
-        if address_:
+        if address_ is not None:
             strategy: TRUBLCommonElement = TRUBLAddress()
             self._strategyContext.set_strategy(strategy)
             frappedoc['address'] = self._strategyContext.return_element_data(address_,

@@ -21,7 +21,7 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'TransportModeCode', 'TransportMeansTypeCode', 'Instructions']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['TransitDirectionCode'] = ('cbc', '', 'Seçimli (0...n)')
         transitdirectioncodes_: list = element.findall('./' + cbcnamespace + 'TransitDirectionCode')

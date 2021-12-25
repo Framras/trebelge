@@ -16,10 +16,10 @@ class TRUBLCommonElement(ABC):
 
     @staticmethod
     def _get_frappedoc(frappedoctype: str, frappedoc: dict) -> Document:
-        if frappedoc:
+        if frappedoc is not None:
             frappe.log_error('Not enough data for Doctype' + frappedoctype, 'TRUBLCommonElement')
         else:
-            if frappe.get_all(frappedoctype, filters=frappedoc):
+            if frappe.get_all(frappedoctype, filters=frappedoc) is not None:
                 pass
             else:
                 newfrappedoc = dict(frappedoc)

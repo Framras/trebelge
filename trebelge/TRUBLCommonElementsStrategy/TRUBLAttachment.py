@@ -14,7 +14,7 @@ class TRUBLAttachment(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['ExternalReference'] = ('cac', 'ExternalReference()', 'Seçimli (0..1)', 'externalreference')
         externalreference_: Element = element.find('./' + cacnamespace + 'ExternalReference')
-        if externalreference_:
+        if externalreference_ is not None:
             strategy: TRUBLCommonElement = TRUBLExternalReference()
             self._strategyContext.set_strategy(strategy)
             frappedoc['externalreference'] = [self._strategyContext.return_element_data(externalreference_,
@@ -27,7 +27,7 @@ class TRUBLAttachment(TRUBLCommonElement):
         # encodingCode: 'Base64'
         # mimeCode: 'application/xml'
         embeddeddocumentbinaryobject_: Element = element.find('./' + cacnamespace + 'EmbeddedDocumentBinaryObject')
-        if embeddeddocumentbinaryobject_:
+        if embeddeddocumentbinaryobject_ is not None:
             pass
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -27,7 +27,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
                               'TradeServiceCode']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['RegistrationNationality'] = ('cbc', 'registrationnationality', 'Seçimli (0...n)')
         registrationnationality_: list = element.findall('./' + cbcnamespace + 'RegistrationNationality')

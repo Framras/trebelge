@@ -28,12 +28,12 @@ class TRUBLDelivery(TRUBLCommonElement):
                               'LatestDeliveryTime', 'TrackingID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         # unitCode
         quantity_: Element = element.find('./' + cbcnamespace + 'Quantity')
-        if quantity_:
+        if quantity_ is not None:
             frappedoc['quantity'] = quantity_.text
             frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
 
@@ -56,7 +56,7 @@ class TRUBLDelivery(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_:
+            if tagelement_ is not None:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
                 frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
@@ -64,7 +64,7 @@ class TRUBLDelivery(TRUBLCommonElement):
                                                                                                   cacnamespace)]
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
         deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
-        if deliveryterms_:
+        if deliveryterms_ is not None:
             deliveryterms: list = []
             strategy: TRUBLCommonElement = TRUBLDeliveryTerms()
             self._strategyContext.set_strategy(strategy)

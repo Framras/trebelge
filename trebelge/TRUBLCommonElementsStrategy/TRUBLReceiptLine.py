@@ -25,7 +25,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         cbcsecimli01: list = ['RejectReasonCode', 'ReceivedDate', 'TimingComplaintCode', 'TimingComplaint']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['ReceivedQuantity'] = ('cbc', '', 'Seçimli (0...1)')
         # ['ShortQuantity'] = ('cbc', '', 'Seçimli (0...1)')
@@ -34,12 +34,12 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         cbcqtysecimli01: list = ['ReceivedQuantity', 'ShortQuantity', 'RejectedQuantity', 'OversupplyQuantity']
         for elementtag_ in cbcqtysecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
                 frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Note'] = ('cbc', '', 'Seçimli (0...n)')
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
-        if notes_:
+        if notes_ is not None:
             note: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
@@ -50,7 +50,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
             frappedoc['note'] = note
         # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
         rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
-        if rejectreasons_:
+        if rejectreasons_ is not None:
             rejectreason: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
@@ -88,7 +88,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_:
+            if tagelements_ is not None:
                 tagelements: list = []
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)

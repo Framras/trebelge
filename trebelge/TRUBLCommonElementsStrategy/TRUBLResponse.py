@@ -15,7 +15,7 @@ class TRUBLResponse(TRUBLCommonElement):
         frappedoc: dict = {'referenceid': element.find('./' + cbcnamespace + 'ReferenceID').text}
         # ['ResponseCode'] = ('cbc', '', 'Seçimli (0...1)')
         responsecode_: Element = element.find('./' + cbcnamespace + 'ResponseCode')
-        if responsecode_:
+        if responsecode_ is not None:
             frappedoc['responsecode'] = responsecode_.text
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
         descriptions_: list = element.findall('./' + cacnamespace + 'Description')

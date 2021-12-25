@@ -21,7 +21,7 @@ class TRUBLItemInstance(TRUBLCommonElement):
                               'RegistrationID', 'SerialID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
 
         # ['AdditionalItemProperty'] = ('cac', 'AdditionalItemProperty', 'Seçimli (0...1)')

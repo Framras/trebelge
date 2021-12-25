@@ -20,16 +20,16 @@ class TRUBLAllowanceCharge(TRUBLCommonElement):
         cbcsecimli01: list = ['AllowanceChargeReason', 'MultiplierFactorNumeric', 'SequenceNumeric']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['BaseAmount'] = ('cbc', 'baseamount', 'Seçimli (0...1)')
         baseamount_: Element = element.find('./' + cbcnamespace + 'BaseAmount')
-        if baseamount_:
+        if baseamount_ is not None:
             frappedoc['baseamount'] = baseamount_.text
             frappedoc['baseamountcurrencyid'] = baseamount_.attrib.get('currencyID')
         # ['PerUnitAmount'] = ('cbc', 'perunitamount', 'Seçimli (0...1)')
         perunitamount_: Element = element.find('./' + cbcnamespace + 'PerUnitAmount')
-        if perunitamount_:
+        if perunitamount_ is not None:
             frappedoc['perunitamount'] = perunitamount_.text
             frappedoc['perunitamountcurrencyid'] = perunitamount_.attrib.get('currencyID')
 

@@ -22,7 +22,7 @@ class TRUBLTransportEquipment(TRUBLCommonElement):
         cbcsecimli01: list = ['TransportEquipmentTypeCode', 'Description']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

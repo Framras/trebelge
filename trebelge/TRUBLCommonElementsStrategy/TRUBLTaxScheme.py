@@ -14,11 +14,11 @@ class TRUBLTaxScheme(TRUBLCommonElement):
         cbcsecimli01: list = ['ID', 'TaxTypeCode']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['Name'] = ('cbc', 'taxschemename', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
-        if name_:
+        if name_ is not None:
             frappedoc['taxschemename'] = name_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -11,15 +11,15 @@ class TRUBLDeliveryTerms(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
-        if id_:
+        if id_ is not None:
             frappedoc['id'] = id_.text
         # ['SpecialTerms'] = ('cbc', 'specialterms', 'Seçimli (0...1)')
         specialterms_: Element = element.find('./' + cbcnamespace + 'SpecialTerms')
-        if specialterms_:
+        if specialterms_ is not None:
             frappedoc['specialterms'] = specialterms_.text
         # ['Amount'] = ('cbc', 'amount', 'Seçimli (0...1)')
         amount_: Element = element.find('./' + cbcnamespace + 'Amount')
-        if amount_:
+        if amount_ is not None:
             frappedoc['amount'] = amount_.text
             frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
 

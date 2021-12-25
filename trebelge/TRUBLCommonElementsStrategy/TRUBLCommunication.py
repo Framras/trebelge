@@ -14,7 +14,7 @@ class TRUBLCommunication(TRUBLCommonElement):
                            'value': element.find('./' + cbcnamespace + 'Value').text}
         # ['Channel'] = ('cbc', 'channel', 'Seçimli (0...1)')
         channel_: Element = element.find('./' + cbcnamespace + 'Channel')
-        if channel_:
+        if channel_ is not None:
             frappedoc['channel'] = channel_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

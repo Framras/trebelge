@@ -14,19 +14,19 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
-        if id_:
+        if id_ is not None:
             frappedoc['id'] = id_.text
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
-        if name_:
+        if name_ is not None:
             frappedoc['corporateregistrationschemename'] = name_.text
         # ['CorporateRegistrationTypeCode'] = ('cbc', 'corporateregistrationtypecode', 'Seçimli (0...1)')
         corporateregistrationtypecode_: Element = element.find('./' + cbcnamespace + 'CorporateRegistrationTypeCode')
-        if corporateregistrationtypecode_:
+        if corporateregistrationtypecode_ is not None:
             frappedoc['corporateregistrationtypecode'] = corporateregistrationtypecode_.text
         # ['JurisdictionRegionAddress'] = ('cac', 'Address()', 'Seçimli(0..n)', 'jurisdictionregionaddress')
         jurisdictionregionaddress_: list = element.findall('./' + cacnamespace + 'JurisdictionRegionAddress')
-        if jurisdictionregionaddress_:
+        if jurisdictionregionaddress_ is not None:
             addresses: list = []
             strategy: TRUBLCommonElement = TRUBLAddress()
             self._strategyContext.set_strategy(strategy)

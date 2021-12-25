@@ -28,7 +28,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                               'CustomsImportClassifiedIndicator', 'TraceID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['DeclaredCustomsValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
         # ['DeclaredForCarriageValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
@@ -41,7 +41,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                                   'InsuranceValueAmount', 'ValueAmount']
         for elementtag_ in cbcamntsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
                 frappedoc[elementtag_.lower() + 'currencyid'] = field_.attrib.get('currencyID')
         # ['GrossWeightMeasure'] = ('cbc', '', 'Seçimli(0..1)')
@@ -60,7 +60,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                                   'ReturnableQuantity']
         for elementtag_ in cbcamntsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
                 frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Description'] = ('cbc', '', 'Seçimli(0..n)')

@@ -12,7 +12,7 @@ class TRUBLCountry(TRUBLCommonElement):
         frappedoc: dict = {'countryname': element.find('./' + cbcnamespace + 'Name').text}
         # ['IdentificationCode'] = ('cbc', 'identificationcode', 'Seçimli (0...1)')
         identificationcode_: Element = element.find('./' + cbcnamespace + 'IdentificationCode')
-        if identificationcode_:
+        if identificationcode_ is not None:
             frappedoc['identificationcode'] = identificationcode_.text
         # TODO connection to ERPNext Country is pending
 

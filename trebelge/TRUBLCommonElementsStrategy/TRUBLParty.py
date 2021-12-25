@@ -42,7 +42,7 @@ class TRUBLParty(TRUBLCommonElement):
         cbcsecimli01: list = ['WebsiteURI', 'EndpointID', 'IndustryClassificationCode']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_:
+            if field_ is not None:
                 frappedoc[elementtag_.lower()] = field_.text
         # ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)', partyname)
         # ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)', 'physicallocation')
@@ -60,7 +60,7 @@ class TRUBLParty(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_:
+            if tagelement_ is not None:
                 strategy: TRUBLCommonElement = element_.get('strategy')
                 self._strategyContext.set_strategy(strategy)
                 frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
@@ -68,7 +68,7 @@ class TRUBLParty(TRUBLCommonElement):
                                                                                                   cacnamespace)]
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
         partylegalentity_: Element = element.find('./' + cacnamespace + 'PartyLegalEntity')
-        if partylegalentity_:
+        if partylegalentity_ is not None:
             partylegalentities: list = []
             strategy: TRUBLCommonElement = TRUBLPartyLegalEntity()
             self._strategyContext.set_strategy(strategy)
