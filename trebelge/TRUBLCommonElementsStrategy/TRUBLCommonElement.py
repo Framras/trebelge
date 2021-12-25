@@ -16,7 +16,9 @@ class TRUBLCommonElement(ABC):
 
     @staticmethod
     def _get_frappedoc(frappedoctype: str, frappedoc: dict) -> Document:
-        if frappedoc is not None:
+        if frappedoc:
+            frappe.log_error('Not enough data for Doctype' + frappedoctype, 'TRUBLCommonElement')
+        else:
             if frappe.get_all(frappedoctype, filters=frappedoc) is not None:
                 pass
             else:
@@ -28,8 +30,6 @@ class TRUBLCommonElement(ABC):
             return frappe.get_doc(
                 frappedoctype,
                 frappe.get_all(frappedoctype, filters=frappedoc)[0]['name'])
-        else:
-            frappe.log_error('Not enough data for Doctype' + frappedoctype, 'TRUBLCommonElement')
 
     @abstractmethod
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
