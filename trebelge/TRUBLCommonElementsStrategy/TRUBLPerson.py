@@ -23,7 +23,7 @@ class TRUBLPerson(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['Title'] = ('cbc', 'persontitle', 'Seçimli (0...1)')
         field_: Element = element.find('./' + cbcnamespace + 'Title')
         if field_:

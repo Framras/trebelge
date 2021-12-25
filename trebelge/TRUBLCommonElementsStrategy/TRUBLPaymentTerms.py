@@ -19,7 +19,7 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['Amount'] = ('cbc', 'amount', 'Seçimli (0...1)')
         amount_: Element = element.find('./' + cbcnamespace + 'Amount')
         if amount_:

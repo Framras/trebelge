@@ -26,7 +26,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['ReceivedQuantity'] = ('cbc', '', 'Seçimli (0...1)')
         # ['ShortQuantity'] = ('cbc', '', 'Seçimli (0...1)')
         # ['RejectedQuantity'] = ('cbc', '', 'Seçimli (0...1)')
@@ -35,8 +35,8 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         for elementtag_ in cbcqtysecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
-                frappedoc[field_.tag.lower() + 'unitcode'] = field_.attrib.get('unitCode')
+                frappedoc[elementtag_.lower()] = field_.text
+                frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Note'] = ('cbc', '', 'Seçimli (0...n)')
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
         if notes_:

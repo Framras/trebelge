@@ -22,7 +22,7 @@ class TRUBLHazardousGoodsTransit(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['MaximumTemperature'] = ('cac', 'Temperature', 'Seçimli(0..1)')
         # ['MinimumTemperature'] = ('cac', 'Temperature', 'Seçimli(0..1)')
         cacsecimli01: list = \

@@ -23,7 +23,7 @@ class TRUBLDespatch(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['DespatchAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
         # ['DespatchParty'] = ('cac', 'Party', 'Seçimli (0...1)')
         # ['Contact'] = ('cac', 'Contact', 'Seçimli (0...1)')

@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
-import frappe
 from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate

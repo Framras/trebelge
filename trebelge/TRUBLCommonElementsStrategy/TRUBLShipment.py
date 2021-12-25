@@ -25,7 +25,7 @@ class TRUBLShipment(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['GrossWeightMeasure'] = ('cbc', '', 'Seçimli (0...1)')
         grossweightmeasure_: Element = element.find('./' + cbcnamespace + 'GrossWeightMeasure')
         if grossweightmeasure_:

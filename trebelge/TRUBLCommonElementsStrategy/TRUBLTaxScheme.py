@@ -15,7 +15,7 @@ class TRUBLTaxScheme(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['Name'] = ('cbc', 'taxschemename', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_:

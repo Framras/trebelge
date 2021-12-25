@@ -21,7 +21,7 @@ class TRUBLOrderReference(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['DocumentReference'] = ('cac', '', 'Seçimli(0..n)', 'documentreference')
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if documentreferences_:

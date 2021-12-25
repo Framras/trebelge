@@ -16,17 +16,20 @@ class TRUBLCommonElement(ABC):
 
     @staticmethod
     def _get_frappedoc(frappedoctype: str, frappedoc: dict) -> Document:
-        if frappe.get_all(frappedoctype, filters=frappedoc):
-            pass
+        if frappedoc:
+            frappe.log_error('Not enough data for Doctype' + frappedoctype, 'TRUBLCommonElement')
         else:
-            newfrappedoc = dict(frappedoc)
-            newfrappedoc['doctype'] = frappedoctype
-            _frappeDoc = frappe.get_doc(newfrappedoc)
-            _frappeDoc.insert()
+            if frappe.get_all(frappedoctype, filters=frappedoc):
+                pass
+            else:
+                newfrappedoc = dict(frappedoc)
+                newfrappedoc['doctype'] = frappedoctype
+                _frappeDoc = frappe.get_doc(newfrappedoc)
+                _frappeDoc.insert()
 
-        return frappe.get_doc(
-            frappedoctype,
-            frappe.get_all(frappedoctype, filters=frappedoc)[0]['name'])
+            return frappe.get_doc(
+                frappedoctype,
+                frappe.get_all(frappedoctype, filters=frappedoc)[0]['name'])
 
     @abstractmethod
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:

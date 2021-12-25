@@ -22,7 +22,7 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
         strategy: TRUBLCommonElement = TRUBLTaxScheme()

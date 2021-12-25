@@ -28,7 +28,7 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_:
-                frappedoc[field_.tag.lower()] = field_.text
+                frappedoc[elementtag_.lower()] = field_.text
         # ['TaxableAmount'] = ('cbc', 'taxableamount', 'Seçimli (0...1)')
         taxableamount_: Element = element.find('./' + cbcnamespace + 'TaxableAmount')
         if taxableamount_:
