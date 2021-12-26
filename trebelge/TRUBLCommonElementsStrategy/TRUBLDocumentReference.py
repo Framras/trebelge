@@ -28,19 +28,27 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         # ['Attachment'] = ('cac', 'Attachment', 'Seçimli (0...1)', 'attachment')
         # ['ValidityPeriod'] = ('cac', 'Period', 'Seçimli (0...1)', 'validityperiod')
         # ['IssuerParty'] = ('cac', 'Party', 'Seçimli (0...1)', 'issuerparty')
-        cacsecimli01: list = \
-            [{'Tag': 'Attachment', 'strategy': TRUBLAttachment(), 'fieldName': 'attachment'},
-             {'Tag': 'ValidityPeriod', 'strategy': TRUBLPeriod(), 'fieldName': 'validityperiod'},
-             {'Tag': 'IssuerParty', 'strategy': TRUBLParty(), 'fieldName': 'issuerparty'}
-             ]
-        for element_ in cacsecimli01:
-            tagelement_ = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_:
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
-                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
-                                                                                                  cbcnamespace,
-                                                                                                  cacnamespace)]
+        attachment_ = element.find('./' + cacnamespace + 'Attachment')
+        if attachment_:
+            strategy: TRUBLCommonElement = TRUBLAttachment()
+            self._strategyContext.set_strategy(strategy)
+            frappedoc['attachment'] = [self._strategyContext.return_element_data(attachment_,
+                                                                                 cbcnamespace,
+                                                                                 cacnamespace)]
+        validityperiod_ = element.find('./' + cacnamespace + 'ValidityPeriod')
+        if validityperiod_:
+            strategy: TRUBLCommonElement = TRUBLPeriod()
+            self._strategyContext.set_strategy(strategy)
+            frappedoc['validityperiod'] = [self._strategyContext.return_element_data(validityperiod_,
+                                                                                     cbcnamespace,
+                                                                                     cacnamespace)]
+        issuerparty_ = element.find('./' + cacnamespace + 'IssuerParty')
+        if issuerparty_:
+            strategy: TRUBLCommonElement = TRUBLParty()
+            self._strategyContext.set_strategy(strategy)
+            frappedoc['issuerparty'] = [self._strategyContext.return_element_data(issuerparty_,
+                                                                                  cbcnamespace,
+                                                                                  cacnamespace)]
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
         documentdescriptions_: list = element.findall('./' + cbcnamespace + 'DocumentDescription')
         if documentdescriptions_:

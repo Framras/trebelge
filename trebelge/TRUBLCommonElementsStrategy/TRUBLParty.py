@@ -46,7 +46,7 @@ class TRUBLParty(TRUBLCommonElement):
                 frappedoc[elementtag_.lower()] = field_.text
         # ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)', partyname)
         # ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)', 'physicallocation')
-        # ['PartyTaxScheme'] = ('cac', TaxScheme(), 'Seçimli (0...1)', 'partytaxscheme')
+        # ['PartyTaxScheme'] = ('cac', PartyTaxScheme(), 'Seçimli (0...1)', 'partytaxscheme')
         # ['Contact'] = ('cac', Contact(), 'Seçimli (0...1)', 'contact')
         # ['Person'] = ('cac', Person(), 'Seçimli (0...1)', 'person')
         # ['AgentParty'] = ('cac', Party(), 'Seçimli (0...1)', 'agentparty')
