@@ -23,7 +23,7 @@ class TRUBLTaxTotal(TRUBLCommonElement):
         for taxsubtotal_ in element.findall('./' + cacnamespace + 'TaxSubtotal'):
             taxsubtotals.append(self._strategyContext.return_element_data(taxsubtotal_,
                                                                           cbcnamespace,
-                                                                          cacnamespace))
+                                                                          cacnamespace).name)
         frappedoc['taxsubtotal'] = taxsubtotals
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
