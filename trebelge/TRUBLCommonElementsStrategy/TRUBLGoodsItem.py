@@ -6,7 +6,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllow
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDimension import TRUBLDimension
-from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTemperature import TRUBLTemperature
@@ -17,6 +16,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
         frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Seçimli(0..1)')
         # ['HazardousRiskIndicator'] = ('cbc', '', 'Seçimli(0..1)')

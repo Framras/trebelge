@@ -95,14 +95,16 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_note(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         notes_: list = ET.parse(filepath).getroot().findall('./' + cbcnamespace + 'Note')
         if notes_:
+            note: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
             self._strategyContext.set_strategy(strategy)
             for note_ in notes_:
-                self._product.add({
-                    'note': self._strategyContext.return_element_data(note_,
+                note.append(self._strategyContext.return_element_data(note_,
                                                                       cbcnamespace,
-                                                                      cacnamespace)
-                })
+                                                                      cacnamespace))
+            self._product.add({
+                'note': note
+            })
 
     def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
         self._product.add({

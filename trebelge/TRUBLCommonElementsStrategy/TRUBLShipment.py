@@ -4,7 +4,6 @@ from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 from trebelge.TRUBLCommonElementsStrategy.TRUBLGoodsItem import TRUBLGoodsItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
@@ -17,6 +16,7 @@ class TRUBLShipment(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
         frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
         # ['HandlingCode'] = ('cbc', '', 'Seçimli (0...1)')

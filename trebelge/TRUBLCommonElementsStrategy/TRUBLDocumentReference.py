@@ -5,7 +5,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLAttachment import TRUBLAttachment
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
-from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 
 
@@ -14,6 +13,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
         # ['ID'] = ('cbc', '', 'Zorunlu (1)', 'id')
         # ['IssueDate'] = ('cbc', '', 'Zorunlu (1)', 'issuedate')
         frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text,

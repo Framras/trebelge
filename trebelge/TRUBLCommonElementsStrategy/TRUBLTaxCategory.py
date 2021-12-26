@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
-from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
 
 
 class TRUBLTaxCategory(TRUBLCommonElement):
@@ -11,6 +10,7 @@ class TRUBLTaxCategory(TRUBLCommonElement):
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
