@@ -7,6 +7,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
 
 
 class TRUBLPartyTaxScheme(TRUBLCommonElement):
+    _frappeDoctype: str = 'UBL TR PartyTaxScheme'
     _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
