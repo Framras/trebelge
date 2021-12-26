@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
+from trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
 
 
 class TRUBLDirector:

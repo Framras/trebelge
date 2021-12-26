@@ -15,7 +15,7 @@ class TRUBLInvoice:
     _invoice: Document = frappe.new_doc(_frappeDoctype)
 
     def set_uuid(self, uuid_: str):
-        if not frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_}):
+        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
             _invoice: Document = frappe.new_doc(self._frappeDoctype)
             _invoice.uuid = uuid_
         else:

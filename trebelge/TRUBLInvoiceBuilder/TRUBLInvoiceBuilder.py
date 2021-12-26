@@ -4,6 +4,7 @@ from xml.etree.ElementTree import Element
 from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
+from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
@@ -76,6 +77,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if issuetime_:
             self._product.add({
                 'issuetime': issuetime_.text
+            })
+        else:
+            self._product.add({
+                'issuetime': ''
             })
 
     def build_invoicetypecode(self, filepath: str, cbcnamespace: str) -> None:
@@ -329,7 +334,17 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         })
 
     def build_invoiceline(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
-        pass
+        invoicelines_: list = ET.parse(filepath).getroot().findall('./' + cacnamespace + 'InvoiceLine')
+        invoiceline: list = []
+        for invoiceline_ in invoicelines_:
+            strategy: TRUBLCommonElement = TRUBLInvoiceLine()
+            self._strategyContext.set_strategy(strategy)
+            invoiceline.append(self._strategyContext.return_element_data(invoiceline_,
+                                                                         cbcnamespace,
+                                                                         cacnamespace))
+        self._product.add({
+            'invoiceline': invoiceline
+        })
 
     def build_despatchline(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         pass
