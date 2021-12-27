@@ -15,14 +15,19 @@ class TRUBLCommonElement(ABC):
     """
 
     @staticmethod
-    def _get_frappedoc(frappedoctype: str, frappedoc: dict) -> Document:
-        if len(frappe.get_all(frappedoctype, filters=frappedoc)) == 0:
+    def _get_frappedoc(leaf: bool, frappedoctype: str, frappedoc: dict) -> Document:
+        if leaf:
+            if len(frappe.get_all(frappedoctype, filters=frappedoc)) == 0:
+                newfrappedoc = dict(frappedoc)
+                newfrappedoc['doctype'] = frappedoctype
+                _frappeDoc = frappe.get_doc(newfrappedoc)
+                _frappeDoc.insert()
+        else:
             newfrappedoc = dict(frappedoc)
             newfrappedoc['doctype'] = frappedoctype
             _frappeDoc = frappe.get_doc(newfrappedoc)
             _frappeDoc.insert()
-        else:
-            pass
+
         return frappe.get_doc(
             frappedoctype,
             frappe.get_all(frappedoctype, filters=frappedoc)[0]['name'])
