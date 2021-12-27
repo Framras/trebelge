@@ -15,7 +15,7 @@ class TRUBLCommonElement(ABC):
     """
 
     @staticmethod
-    def _get_frappedoc(leaf: bool, frappedoctype: str, frappedoc: dict) -> Document:
+    def _get_frappedoc(frappedoctype: str, frappedoc: dict, leaf: bool = True) -> Document:
         if leaf:
             if len(frappe.get_all(frappedoctype, filters=frappedoc)) == 0:
                 newfrappedoc = dict(frappedoc)

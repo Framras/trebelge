@@ -26,4 +26,4 @@ class TRUBLTaxTotal(TRUBLCommonElement):
                                                                           cacnamespace))
         frappedoc['taxsubtotal'] = taxsubtotals
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc, False)
