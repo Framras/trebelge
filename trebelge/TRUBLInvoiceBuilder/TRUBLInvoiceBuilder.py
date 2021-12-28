@@ -97,7 +97,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for note_ in notes_:
                 note.append(TRUBLNote.process_element(note_,
                                                       cbcnamespace,
-                                                      cacnamespace))
+                                                      cacnamespace)
+                            )
             self._product.add({
                 'note': note
             })
