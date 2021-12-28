@@ -11,8 +11,8 @@ class TRUBLDirector:
     optional, since the client can control builders directly.
     """
 
-    def __init__(self) -> None:
-        self._builder = None
+    def __init__(self, builder) -> None:
+        self._builder = builder
 
     @property
     def builder(self) -> TRUBLBuilder:

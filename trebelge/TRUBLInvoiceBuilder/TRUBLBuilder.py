@@ -14,189 +14,189 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_ublversionid(self, filepath: str, cbcnamespace: str) -> None:
+    def build_ublversionid(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_customizationid(self, filepath: str, cbcnamespace: str) -> None:
+    def build_customizationid(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_profileid(self, filepath: str, cbcnamespace: str) -> None:
+    def build_profileid(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_id(self, filepath: str, cbcnamespace: str) -> None:
+    def build_id(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_copyindicator(self, filepath: str, cbcnamespace: str) -> None:
+    def build_copyindicator(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_issuedate(self, filepath: str, cbcnamespace: str) -> None:
+    def build_issuedate(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_issuetime(self, filepath: str, cbcnamespace: str) -> None:
+    def build_issuetime(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_invoicetypecode(self, filepath: str, cbcnamespace: str) -> None:
+    def build_invoicetypecode(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_despatchadvicetypecode(self, filepath: str, cbcnamespace: str) -> None:
+    def build_despatchadvicetypecode(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_note(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_note(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_documentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+    def build_documentcurrencycode(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_taxcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+    def build_taxcurrencycode(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_pricingcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+    def build_pricingcurrencycode(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_paymentcurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+    def build_paymentcurrencycode(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_paymentalternativecurrencycode(self, filepath: str, cbcnamespace: str) -> None:
+    def build_paymentalternativecurrencycode(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_accountingcost(self, filepath: str, cbcnamespace: str) -> None:
+    def build_accountingcost(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_linecountnumeric(self, filepath: str, cbcnamespace: str) -> None:
+    def build_linecountnumeric(self, cbcnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_invoiceperiod(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_invoiceperiod(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_orderreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_orderreference(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_billingreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_billingreference(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_despatchdocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_despatchdocumentreference(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_receiptdocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_receiptdocumentreference(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_originatordocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_originatordocumentreference(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_contractdocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_contractdocumentreference(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_additionaldocumentreference(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_additionaldocumentreference(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_accountingsupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_accountingsupplierparty(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_despatchsupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_despatchsupplierparty(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_accountingcustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_accountingcustomerparty(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_deliverycustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_deliverycustomerparty(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_buyercustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_buyercustomerparty(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_sellersupplierparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_sellersupplierparty(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_originatorcustomerparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_originatorcustomerparty(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_taxrepresentativeparty(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_taxrepresentativeparty(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_delivery(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_delivery(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_shipment(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_shipment(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_paymentmeans(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_paymentmeans(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_paymentterms(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_paymentterms(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_allowancecharge(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_allowancecharge(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_taxexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_taxexchangerate(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_pricingexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_pricingexchangerate(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_paymentexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_paymentexchangerate(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_paymentalternativeexchangerate(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_paymentalternativeexchangerate(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_taxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_taxtotal(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_withholdingtaxtotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_withholdingtaxtotal(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_legalmonetarytotal(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_legalmonetarytotal(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_invoiceline(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_invoiceline(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass
 
     @abstractmethod
-    def build_despatchline(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
+    def build_despatchline(self, cbcnamespace: str, cacnamespace: str) -> None:
         pass

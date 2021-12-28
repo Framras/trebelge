@@ -22,13 +22,8 @@ class InvoiceHandler(AbstractXMLFileHandler):
                 self._eBelgeSettingsDoctype, filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
                 fields={"namespace_specification"}):
             if ET.parse(file_path).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
-                builder: TRUBLBuilder = TRUBLInvoiceBuilder()
+                builder: TRUBLBuilder = TRUBLInvoiceBuilder(file_path)
                 director = TRUBLDirector(builder)
                 director.make_tr_ubl_invoice()
-
-                director.set_file_path(file_path)
-                director.builder = TRUBLInvoiceBuilder()
-                director.builder.set_product(director.get_uuid())
-
             else:
                 self._successor.handle_xml_file(file_path)
