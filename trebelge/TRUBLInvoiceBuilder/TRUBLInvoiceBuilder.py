@@ -100,6 +100,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         })
 
     def build_despatchadvicetypecode(self, filepath: str, cbcnamespace: str) -> None:
+        # ['DespatchAdviceTypeCode'] = ('cbc', 'despatchadvicetypecode', 'Zorunlu (1)')
         pass
 
     def build_note(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
@@ -377,4 +378,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_despatchline(self, filepath: str, cbcnamespace: str, cacnamespace: str) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
+        pass
+
+    def get_result(self):
         pass

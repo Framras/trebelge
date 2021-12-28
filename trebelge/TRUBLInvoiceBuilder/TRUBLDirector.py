@@ -10,7 +10,23 @@ class TRUBLDirector:
     specific order or configuration. Strictly speaking, the Director class is
     optional, since the client can control builders directly.
     """
-    _builder: TRUBLBuilder = None
+
+    def __init__(self) -> None:
+        self._builder = None
+
+    @property
+    def builder(self) -> TRUBLBuilder:
+        return self._builder
+
+    @builder.setter
+    def builder(self, builder: TRUBLBuilder) -> None:
+        """
+        The Director works with any builder instance that the client code passes
+        to it. This way, the client code may alter the final type of the newly
+        assembled product.
+        """
+        self._builder = builder
+
     _file_path: str = ''
     _namespaces = dict()
     _default_namespace: str = ''
@@ -36,12 +52,6 @@ class TRUBLDirector:
 
     def _set_default_namespace(self):
         self._default_namespace = '{' + self._get_namespaces().get('') + '}'
-
-    def _get_default_namespace(self):
-        return self._default_namespace
-
-    def _set_cac_namespace(self):
-        self._cac_namespace = '{' + self._get_namespaces().get('cac') + '}'
 
     def _set_cac_namespace(self):
         self._cac_namespace = '{' + self._get_namespaces().get('cac') + '}'
@@ -82,6 +92,7 @@ class TRUBLDirector:
         self.builder.build_issuedate(self._file_path, self._cbc_namespace)
         self.builder.build_issuetime(self._file_path, self._cbc_namespace)
         self.builder.build_invoicetypecode(self._file_path, self._cbc_namespace)
+        self.builder.build_note(self._file_path, self._cbc_namespace, self._cac_namespace)
         self.builder.build_documentcurrencycode(self._file_path, self._cbc_namespace)
         self.builder.build_taxcurrencycode(self._file_path, self._cbc_namespace)
         self.builder.build_pricingcurrencycode(self._file_path, self._cbc_namespace)
@@ -89,8 +100,6 @@ class TRUBLDirector:
         self.builder.build_paymentalternativecurrencycode(self._file_path, self._cbc_namespace)
         self.builder.build_accountingcost(self._file_path, self._cbc_namespace)
         self.builder.build_linecountnumeric(self._file_path, self._cbc_namespace)
-
-        self.builder.build_note(self._file_path, self._cbc_namespace, self._cac_namespace)
         self.builder.build_invoiceperiod(self._file_path, self._cbc_namespace,
                                          self._cac_namespace)
         self.builder.build_orderreference(self._file_path, self._cbc_namespace,

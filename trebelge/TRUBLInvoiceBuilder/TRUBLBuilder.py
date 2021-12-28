@@ -47,7 +47,6 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_despatchadvicetypecode(self, filepath: str, cbcnamespace: str) -> None:
-        # ['DespatchAdviceTypeCode'] = ('cbc', 'despatchadvicetypecode', 'Zorunlu (1)')
         pass
 
     @abstractmethod

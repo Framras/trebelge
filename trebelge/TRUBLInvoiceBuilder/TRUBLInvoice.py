@@ -11,8 +11,11 @@ class TRUBLInvoice:
     unrelated products. In other words, results of various builders may not
     always follow the same interface.
     """
-    _frappeDoctype: str = 'UBL TR Invoice'
-    _invoice: Document = frappe.new_doc(_frappeDoctype)
+
+    def __init__(self) -> None:
+        self._invoice = None
+        self._frappeDoctype: str = 'UBL TR Invoice'
+        _invoice: Document = frappe.new_doc(self._frappeDoctype)
 
     def set_uuid(self, uuid_: str):
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
