@@ -2,23 +2,19 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
 
 
 class TRUBLPartyTaxScheme(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR PartyTaxScheme'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['TaxScheme'] = ('cac', 'TaxScheme()', 'Zorunlu (1)', 'taxscheme')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
-        strategy: TRUBLCommonElement = TRUBLTaxScheme()
-        self._strategyContext.set_strategy(strategy)
-        frappedoc['taxscheme'] = self._strategyContext.return_element_data(taxscheme_,
-                                                                           cbcnamespace,
-                                                                           cacnamespace)
+        frappedoc['taxscheme'] = TRUBLTaxScheme.process_element(taxscheme_,
+                                                                cbcnamespace,
+                                                                cacnamespace)
         # ['RegistrationName'] = ('cbc', 'registrationname', 'Seçimli (0...1)')
         # ['CompanyID'] = ('cbc', 'companyid', 'Seçimli (0...1)')
         cbcsecimli01: list = ['RegistrationName', 'CompanyID']

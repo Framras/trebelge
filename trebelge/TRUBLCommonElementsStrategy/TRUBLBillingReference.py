@@ -3,13 +3,11 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReferenceLine import TRUBLBillingReferenceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 
 
 class TRUBLBillingReference(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR BillingReference'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -39,11 +37,9 @@ class TRUBLBillingReference(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
-                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
-                                                                                                  cbcnamespace,
-                                                                                                  cacnamespace)]
+                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
+                                                                                                 cbcnamespace,
+                                                                                                 cacnamespace)]
         # ['BillingReferenceLine'] = ('cac', 'BillingReferenceLine', 'Seçimli (0...n)')
         cacsecimli0n: list = \
             [{'Tag': 'BillingReferenceLine', 'strategy': TRUBLBillingReferenceLine(),
@@ -53,12 +49,10 @@ class TRUBLBillingReference(TRUBLCommonElement):
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_:
                 tagelements: list = []
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
                 for tagelement in tagelements_:
-                    tagelements.append(self._strategyContext.return_element_data(tagelement,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace))
+                    tagelements.append(element_.get('strategy').process_element(tagelement,
+                                                                                cbcnamespace,
+                                                                                cacnamespace))
                 frappedoc[element_.get('fieldName')] = tagelements
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

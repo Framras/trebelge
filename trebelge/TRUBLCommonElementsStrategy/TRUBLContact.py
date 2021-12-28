@@ -2,13 +2,11 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommunication import TRUBLCommunication
 
 
 class TRUBLContact(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Contact'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -30,12 +28,10 @@ class TRUBLContact(TRUBLCommonElement):
         othercommunications_: list = element.findall('./' + cacnamespace + 'OtherCommunication')
         if othercommunications_ is not None:
             communications: list = []
-            strategy: TRUBLCommonElement = TRUBLCommunication()
-            self._strategyContext.set_strategy(strategy)
             for othercommunication in othercommunications_:
-                communications.append(self._strategyContext.return_element_data(othercommunication,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
+                communications.append(TRUBLCommunication.process_element(othercommunication,
+                                                                         cbcnamespace,
+                                                                         cacnamespace))
             frappedoc['othercommunication'] = communications
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

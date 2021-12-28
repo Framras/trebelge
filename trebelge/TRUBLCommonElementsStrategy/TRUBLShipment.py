@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLGoodsItem import TRUBLGoodsItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
@@ -13,7 +12,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLTransportHandlingUnit import TRUB
 
 class TRUBLShipment(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Shipment'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
@@ -89,12 +87,10 @@ class TRUBLShipment(TRUBLCommonElement):
         descriptions_: list = element.findall('./' + cbcnamespace + 'SpecialInstructions')
         if descriptions_ is not None:
             descriptions: list = []
-            strategy: TRUBLCommonElement = TRUBLNote()
-            self._strategyContext.set_strategy(strategy)
             for description_ in descriptions_:
-                descriptions.append(self._strategyContext.return_element_data(description_,
-                                                                              cbcnamespace,
-                                                                              cacnamespace))
+                descriptions.append(TRUBLNote.process_element(description_,
+                                                              cbcnamespace,
+                                                              cacnamespace))
             frappedoc['specialinstructions'] = descriptions
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...1)')
         # ['ReturnAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
@@ -109,11 +105,9 @@ class TRUBLShipment(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_ is not None:
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
-                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
-                                                                                                  cbcnamespace,
-                                                                                                  cacnamespace)]
+                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
+                                                                                                 cbcnamespace,
+                                                                                                 cacnamespace)]
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
         # ['ShipmentStage'] = ('cac', 'ShipmentStage', 'Seçimli (0...n)')
         # ['TransportHandlingUnit'] = ('cac', 'TransportHandlingUnit', 'Seçimli (0...n)')
@@ -127,12 +121,10 @@ class TRUBLShipment(TRUBLCommonElement):
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_ is not None:
                 tagelements: list = []
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
                 for tagelement in tagelements_:
-                    tagelements.append(self._strategyContext.return_element_data(tagelement,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace))
+                    tagelements.append(element_.get('strategy').process_element(tagelement,
+                                                                                cbcnamespace,
+                                                                                cacnamespace))
                 frappedoc[element_.get('fieldName')] = tagelements
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

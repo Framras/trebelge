@@ -2,13 +2,11 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 
 
 class TRUBLOrderReference(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR OrderReference'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
@@ -26,12 +24,10 @@ class TRUBLOrderReference(TRUBLCommonElement):
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if documentreferences_ is not None:
             documentreferences: list = []
-            strategy: TRUBLCommonElement = TRUBLDocumentReference()
-            self._strategyContext.set_strategy(strategy)
             for documentreference_ in documentreferences_:
-                documentreferences.append(self._strategyContext.return_element_data(documentreference_,
-                                                                                    cbcnamespace,
-                                                                                    cacnamespace))
+                documentreferences.append(TRUBLDocumentReference.process_element(documentreference_,
+                                                                                 cbcnamespace,
+                                                                                 cacnamespace))
             frappedoc['documentreference'] = documentreferences
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

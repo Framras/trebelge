@@ -2,13 +2,11 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialInstitution import TRUBLFinancialInstitution
 
 
 class TRUBLBranch(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR Branch'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -19,9 +17,7 @@ class TRUBLBranch(TRUBLCommonElement):
         # ['FinancialInstitution'] = ('cac', 'FinancialInstitution()', 'Seçimli(0..1)', 'financialinstitution')
         financialinstitution_: Element = element.find('./' + cacnamespace + 'FinancialInstitution')
         if financialinstitution_ is not None:
-            strategy: TRUBLCommonElement = TRUBLFinancialInstitution()
-            self._strategyContext.set_strategy(strategy)
-            frappedoc['financialinstitution'] = [self._strategyContext.return_element_data(financialinstitution_,
+            frappedoc['financialinstitution'] = [TRUBLFinancialInstitution.process_element(financialinstitution_,
                                                                                            cbcnamespace,
                                                                                            cacnamespace)]
 

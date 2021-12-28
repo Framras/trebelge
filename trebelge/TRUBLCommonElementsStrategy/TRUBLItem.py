@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommodityClassification import TRUBLCommodityClassification
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCountry import TRUBLCountry
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItemIdentification import TRUBLItemIdentification
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItemInstance import TRUBLItemInstance
@@ -11,7 +10,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLItemInstance import TRUBLItemInst
 
 class TRUBLItem(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Item'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['Name'] = ('cbc', 'itemname', 'Zorunlu (1)')
@@ -41,11 +39,9 @@ class TRUBLItem(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
-                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
-                                                                                                  cbcnamespace,
-                                                                                                  cacnamespace)]
+                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
+                                                                                                 cbcnamespace,
+                                                                                                 cacnamespace)]
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)')
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)')
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)')
@@ -60,12 +56,10 @@ class TRUBLItem(TRUBLCommonElement):
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_:
                 tagelements: list = []
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
                 for tagelement in tagelements_:
-                    tagelements.append(self._strategyContext.return_element_data(tagelement,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace))
+                    tagelements.append(element_.get('strategy').process_element(tagelement,
+                                                                                cbcnamespace,
+                                                                                cacnamespace))
                 frappedoc[element_.get('fieldName')] = tagelements
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

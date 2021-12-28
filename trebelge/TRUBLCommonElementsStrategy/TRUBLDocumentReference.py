@@ -3,14 +3,12 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAttachment import TRUBLAttachment
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 
 
 class TRUBLDocumentReference(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR DocumentReference'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
@@ -30,35 +28,27 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         # ['IssuerParty'] = ('cac', 'Party', 'Seçimli (0...1)', 'issuerparty')
         attachment_ = element.find('./' + cacnamespace + 'Attachment')
         if attachment_:
-            strategy: TRUBLCommonElement = TRUBLAttachment()
-            self._strategyContext.set_strategy(strategy)
-            frappedoc['attachment'] = [self._strategyContext.return_element_data(attachment_,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace)]
+            frappedoc['attachment'] = [TRUBLAttachment.process_element(attachment_,
+                                                                       cbcnamespace,
+                                                                       cacnamespace)]
         validityperiod_ = element.find('./' + cacnamespace + 'ValidityPeriod')
         if validityperiod_:
-            strategy: TRUBLCommonElement = TRUBLPeriod()
-            self._strategyContext.set_strategy(strategy)
-            frappedoc['validityperiod'] = [self._strategyContext.return_element_data(validityperiod_,
-                                                                                     cbcnamespace,
-                                                                                     cacnamespace)]
+            frappedoc['validityperiod'] = [TRUBLPeriod.process_element(validityperiod_,
+                                                                       cbcnamespace,
+                                                                       cacnamespace)]
         issuerparty_ = element.find('./' + cacnamespace + 'IssuerParty')
         if issuerparty_:
-            strategy: TRUBLCommonElement = TRUBLParty()
-            self._strategyContext.set_strategy(strategy)
-            frappedoc['issuerparty'] = [self._strategyContext.return_element_data(issuerparty_,
-                                                                                  cbcnamespace,
-                                                                                  cacnamespace)]
+            frappedoc['issuerparty'] = [TRUBLParty.process_element(issuerparty_,
+                                                                   cbcnamespace,
+                                                                   cacnamespace)]
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
         documentdescriptions_: list = element.findall('./' + cbcnamespace + 'DocumentDescription')
         if documentdescriptions_:
             documentdescriptions: list = []
-            strategy: TRUBLCommonElement = TRUBLNote()
-            self._strategyContext.set_strategy(strategy)
             for documentdescription_ in documentdescriptions_:
-                documentdescriptions.append(self._strategyContext.return_element_data(documentdescription_,
-                                                                                      cbcnamespace,
-                                                                                      cacnamespace))
+                documentdescriptions.append(TRUBLNote.process_element(documentdescription_,
+                                                                      cbcnamespace,
+                                                                      cacnamespace))
             frappedoc['documentdescription'] = documentdescriptions
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

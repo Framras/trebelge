@@ -2,13 +2,11 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxSubtotal import TRUBLTaxSubtotal
 
 
 class TRUBLTaxTotal(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR TaxTotal'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['TaxAmount'] = ('cbc', 'taxamount', 'Zorunlu(1)')
@@ -18,12 +16,10 @@ class TRUBLTaxTotal(TRUBLCommonElement):
                            }
         # ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
         taxsubtotals: list = []
-        strategy: TRUBLCommonElement = TRUBLTaxSubtotal()
-        self._strategyContext.set_strategy(strategy)
         for taxsubtotal_ in element.findall('./' + cacnamespace + 'TaxSubtotal'):
-            taxsubtotals.append(self._strategyContext.return_element_data(taxsubtotal_,
-                                                                          cbcnamespace,
-                                                                          cacnamespace))
+            taxsubtotals.append(TRUBLTaxSubtotal.process_element(taxsubtotal_,
+                                                                 cbcnamespace,
+                                                                 cacnamespace))
         frappedoc['taxsubtotal'] = taxsubtotals
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc, False)

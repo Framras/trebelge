@@ -2,13 +2,11 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTemperature import TRUBLTemperature
 
 
 class TRUBLHazardousGoodsTransit(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR HazardousGoodsTransit'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -32,10 +30,8 @@ class TRUBLHazardousGoodsTransit(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
-                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
-                                                                                                  cbcnamespace,
-                                                                                                  cacnamespace)]
+                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
+                                                                                                 cbcnamespace,
+                                                                                                 cacnamespace)]
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

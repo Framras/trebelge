@@ -1,15 +1,13 @@
 from xml.etree.ElementTree import Element
 
-import trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialAccount import TRUBLFinancialAccount
 
 
 class TRUBLPerson(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR Person'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['FirstName'] = ('cbc', 'firstname', 'Zorunlu(1)')
@@ -31,18 +29,14 @@ class TRUBLPerson(TRUBLCommonElement):
         # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)', 'financialaccount')
         financialaccount_: Element = element.find('./' + cacnamespace + 'FinancialAccount')
         if financialaccount_ is not None:
-            strategy: TRUBLCommonElement = TRUBLFinancialAccount()
-            self._strategyContext.set_strategy(strategy)
-            frappedoc['financialaccount'] = self._strategyContext.return_element_data(financialaccount_,
-                                                                                      cbcnamespace,
-                                                                                      cacnamespace)
+            frappedoc['financialaccount'] = TRUBLFinancialAccount.process_element(financialaccount_,
+                                                                                  cbcnamespace,
+                                                                                  cacnamespace)
         # ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)', 'documentreference')
         documentreference_: Element = element.find('./' + cacnamespace + 'IdentityDocumentReference')
         if documentreference_ is not None:
-            strategy: TRUBLCommonElement = trebelge.TRUBLDocumentReference()
-            self._strategyContext.set_strategy(strategy)
-            frappedoc['documentreference'] = self._strategyContext.return_element_data(documentreference_,
-                                                                                       cbcnamespace,
-                                                                                       cacnamespace)
+            frappedoc['documentreference'] = TRUBLDocumentReference.process_element(documentreference_,
+                                                                                    cbcnamespace,
+                                                                                    cacnamespace)
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

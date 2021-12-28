@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAirTransport import TRUBLAirTransport
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDimension import TRUBLDimension
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMaritimeTransport import TRUBLMaritimeTransport
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
@@ -14,7 +13,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLStowage import TRUBLStowage
 
 class TRUBLTransportMeans(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR TransportMeans'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -53,21 +51,17 @@ class TRUBLTransportMeans(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
-                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
-                                                                                                  cbcnamespace,
-                                                                                                  cacnamespace)]
+                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
+                                                                                                 cbcnamespace,
+                                                                                                 cacnamespace)]
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
         measurementdimension_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if measurementdimension_:
             measurementdimension: list = []
-            strategy: TRUBLCommonElement = TRUBLDimension()
-            self._strategyContext.set_strategy(strategy)
             for dimension_ in measurementdimension_:
-                measurementdimension.append(self._strategyContext.return_element_data(dimension_,
-                                                                                      cbcnamespace,
-                                                                                      cacnamespace))
+                measurementdimension.append(TRUBLDimension.process_element(dimension_,
+                                                                           cbcnamespace,
+                                                                           cacnamespace))
             frappedoc['measurementdimension'] = measurementdimension
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -2,15 +2,13 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
+from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
 
 
 class TRUBLTaxCategory(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR TaxCategory'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
@@ -25,10 +23,8 @@ class TRUBLTaxCategory(TRUBLCommonElement):
                 frappedoc[elementtag_.lower()] = field_.text
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
-        strategy: TRUBLCommonElement = TRUBLTaxScheme()
-        self._strategyContext.set_strategy(strategy)
-        frappedoc['taxscheme'] = self._strategyContext.return_element_data(taxscheme_,
-                                                                           cbcnamespace,
-                                                                           cacnamespace).name
+        frappedoc['taxscheme'] = TRUBLTaxScheme.process_element(taxscheme_,
+                                                                cbcnamespace,
+                                                                cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

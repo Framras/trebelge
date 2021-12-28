@@ -1,15 +1,13 @@
 from xml.etree.ElementTree import Element
 
-import trebelge.TRUBLCommonElementsStrategy.TRUBLParty
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCorporateRegistrationScheme import TRUBLCorporateRegistrationScheme
+from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 
 
 class TRUBLPartyLegalEntity(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR PartyLegalEntity'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -35,15 +33,13 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
         cacsecimli01: list = \
             [{'Tag': 'CorporateRegistrationScheme', 'strategy': TRUBLCorporateRegistrationScheme(),
               'fieldName': 'corporateregistrationscheme'},
-             {'Tag': 'HeadOfficeParty', 'strategy': trebelge.TRUBLParty(), 'fieldName': 'headofficeparty'}
+             {'Tag': 'HeadOfficeParty', 'strategy': TRUBLParty(), 'fieldName': 'headofficeparty'}
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_ is not None:
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
-                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
-                                                                                                  cbcnamespace,
-                                                                                                  cacnamespace)]
+                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
+                                                                                                 cbcnamespace,
+                                                                                                 cacnamespace)]
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

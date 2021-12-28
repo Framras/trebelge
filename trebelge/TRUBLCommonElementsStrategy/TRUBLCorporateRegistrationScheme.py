@@ -3,12 +3,10 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 
 
 class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR CorporateRegistrationScheme'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -28,12 +26,10 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
         jurisdictionregionaddress_: list = element.findall('./' + cacnamespace + 'JurisdictionRegionAddress')
         if jurisdictionregionaddress_ is not None:
             addresses: list = []
-            strategy: TRUBLCommonElement = TRUBLAddress()
-            self._strategyContext.set_strategy(strategy)
             for address_ in jurisdictionregionaddress_:
-                addresses.append(self._strategyContext.return_element_data(address_,
-                                                                           cbcnamespace,
-                                                                           cacnamespace))
+                addresses.append(TRUBLAddress.process_element(address_,
+                                                              cbcnamespace,
+                                                              cacnamespace))
             frappedoc['jurisdictionregionaddress'] = addresses
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

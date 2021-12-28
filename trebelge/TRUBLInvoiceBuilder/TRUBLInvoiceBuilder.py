@@ -2,7 +2,6 @@ import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
 from trebelge.TRUBLCommonElementsStrategy import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
@@ -21,7 +20,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
+
     _product: TRUBLInvoice = TRUBLInvoice()
 
     def _reset(self) -> None:
@@ -97,7 +96,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if notes_:
             note: list = []
             strategy: TRUBLCommonElement = TRUBLNote()
-            self._strategyContext.set_strategy(strategy)
+
             for note_ in notes_:
                 note.append(self._strategyContext.return_element_data(note_,
                                                                       cbcnamespace,
@@ -163,7 +162,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             './' + cacnamespace + 'InvoicePeriod')
         if invoiceperiod_:
             strategy: TRUBLCommonElement = TRUBLPeriod()
-            self._strategyContext.set_strategy(strategy)
+
             self._product.add({
                 'invoiceperiod': self._strategyContext.return_element_data(invoiceperiod_,
                                                                            cbcnamespace,
@@ -175,7 +174,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             './' + cacnamespace + 'OrderReference')
         if orderreference_:
             strategy: TRUBLCommonElement = TRUBLOrderReference()
-            self._strategyContext.set_strategy(strategy)
+
             self._product.add({
                 'orderreference': self._strategyContext.return_element_data(orderreference_,
                                                                             cbcnamespace,
@@ -238,7 +237,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             './' + cacnamespace + 'PaymentTerms')
         if paymentterms_:
             strategy: TRUBLCommonElement = TRUBLPaymentTerms()
-            self._strategyContext.set_strategy(strategy)
+
             self._product.add({
                 'paymentterms': self._strategyContext.return_element_data(paymentterms_,
                                                                           cbcnamespace,
@@ -253,7 +252,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             './' + cacnamespace + 'TaxExchangeRate')
         if taxexchangerate_:
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
-            self._strategyContext.set_strategy(strategy)
+
             self._product.add({
                 'taxexchangerate': self._strategyContext.return_element_data(taxexchangerate_,
                                                                              cbcnamespace,
@@ -265,7 +264,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             './' + cacnamespace + 'PricingExchangeRate')
         if pricingexchangerate_:
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
-            self._strategyContext.set_strategy(strategy)
+
             self._product.add({
                 'pricingexchangerate': self._strategyContext.return_element_data(pricingexchangerate_,
                                                                                  cbcnamespace,
@@ -277,7 +276,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             './' + cacnamespace + 'PaymentExchangeRate')
         if paymentexchangerate_:
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
-            self._strategyContext.set_strategy(strategy)
+
             self._product.add({
                 'paymentexchangerate': self._strategyContext.return_element_data(paymentexchangerate_,
                                                                                  cbcnamespace,
@@ -289,7 +288,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             './' + cacnamespace + 'PaymentAlternativeExchangeRate')
         if paymentalternativeexchangerate_:
             strategy: TRUBLCommonElement = TRUBLExchangeRate()
-            self._strategyContext.set_strategy(strategy)
+
             self._product.add({
                 'paymentalternativeexchangerate': self._strategyContext.return_element_data(
                     paymentalternativeexchangerate_,
@@ -302,7 +301,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         taxtotal: list = []
         for taxtotal_ in taxtotals_:
             strategy: TRUBLCommonElement = TRUBLTaxTotal()
-            self._strategyContext.set_strategy(strategy)
+
             taxtotal.append(self._strategyContext.return_element_data(taxtotal_,
                                                                       cbcnamespace,
                                                                       cacnamespace))
@@ -316,7 +315,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             withholdingtaxtotal: list = []
             for withholdingtaxtotal_ in withholdingtaxtotals_:
                 strategy: TRUBLCommonElement = TRUBLTaxTotal()
-                self._strategyContext.set_strategy(strategy)
+
                 withholdingtaxtotal.append(self._strategyContext.return_element_data(withholdingtaxtotal_,
                                                                                      cbcnamespace,
                                                                                      cacnamespace))
@@ -328,7 +327,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         legalmonetarytotal_: Element = ET.parse(filepath).getroot().find(
             './' + cacnamespace + 'LegalMonetaryTotal')
         strategy: TRUBLCommonElement = TRUBLMonetaryTotal()
-        self._strategyContext.set_strategy(strategy)
+
         self._product.add({
             'legalmonetarytotal': self._strategyContext.return_element_data(legalmonetarytotal_,
                                                                             cbcnamespace,
@@ -340,7 +339,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         invoiceline: list = []
         for invoiceline_ in invoicelines_:
             strategy: TRUBLCommonElement = TRUBLInvoiceLine()
-            self._strategyContext.set_strategy(strategy)
+
             invoiceline.append(self._strategyContext.return_element_data(invoiceline_,
                                                                          cbcnamespace,
                                                                          cacnamespace))

@@ -2,13 +2,11 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxCategory import TRUBLTaxCategory
 
 
 class TRUBLTaxSubtotal(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR TaxSubtotal'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['TaxAmount'] = ('cbc', 'taxamount', 'Zorunlu(1)')
@@ -17,11 +15,9 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
                            'taxamountcurrencyid': taxamount_.attrib.get('currencyID')}
         # ['TaxCategory'] = ('cac', 'taxcategory', 'Zorunlu(1)')
         taxcategory_: Element = element.find('./' + cacnamespace + 'TaxCategory')
-        strategy: TRUBLCommonElement = TRUBLTaxCategory()
-        self._strategyContext.set_strategy(strategy)
-        frappedoc['taxcategory'] = self._strategyContext.return_element_data(taxcategory_,
-                                                                             cbcnamespace,
-                                                                             cacnamespace).name
+        frappedoc['taxcategory'] = TRUBLTaxCategory.process_element(taxcategory_,
+                                                                    cbcnamespace,
+                                                                    cacnamespace).name
         # ['CalculationSequenceNumeric'] = ('cbc', 'calculationsequencenumeric', 'Seçimli (0...1)')
         # ['Percent'] = ('cbc', 'percent', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CalculationSequenceNumeric', 'Percent']

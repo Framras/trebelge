@@ -2,7 +2,6 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLineReference import TRUBLLineReference
@@ -13,7 +12,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 
 class TRUBLReceiptLine(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR TransportEquipment'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', '', 'Zorunlu (1)')
@@ -41,45 +39,35 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
         if notes_ is not None:
             note: list = []
-            strategy: TRUBLCommonElement = TRUBLNote()
-            self._strategyContext.set_strategy(strategy)
             for note_ in notes_:
-                note.append(self._strategyContext.return_element_data(note_,
-                                                                      cbcnamespace,
-                                                                      cacnamespace))
+                note.append(TRUBLNote.process_element(note_,
+                                                      cbcnamespace,
+                                                      cacnamespace))
             frappedoc['note'] = note
         # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
         rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
         if rejectreasons_ is not None:
             rejectreason: list = []
-            strategy: TRUBLCommonElement = TRUBLNote()
-            self._strategyContext.set_strategy(strategy)
             for rejectreason_ in rejectreasons_:
-                rejectreason.append(self._strategyContext.return_element_data(rejectreason_,
-                                                                              cbcnamespace,
-                                                                              cacnamespace))
+                rejectreason.append(TRUBLNote.process_element(rejectreason_,
+                                                              cbcnamespace,
+                                                              cacnamespace))
             frappedoc['rejectreason'] = rejectreason
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
-        strategy: TRUBLCommonElement = TRUBLItem()
-        self._strategyContext.set_strategy(strategy)
-        frappedoc['item'] = [self._strategyContext.return_element_data(item_,
-                                                                       cbcnamespace,
-                                                                       cacnamespace)]
+        frappedoc['item'] = [TRUBLItem.process_element(item_,
+                                                       cbcnamespace,
+                                                       cacnamespace)]
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...1)')
         orderlinereference_: Element = element.find('./' + cacnamespace + 'OrderLineReference')
-        strategy: TRUBLCommonElement = TRUBLOrderLineReference()
-        self._strategyContext.set_strategy(strategy)
-        frappedoc['orderlinereference'] = [self._strategyContext.return_element_data(orderlinereference_,
-                                                                                     cbcnamespace,
-                                                                                     cacnamespace)]
+        frappedoc['orderlinereference'] = [TRUBLOrderLineReference.process_element(orderlinereference_,
+                                                                                   cbcnamespace,
+                                                                                   cacnamespace)]
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...1)')
         linereference_: Element = element.find('./' + cacnamespace + 'DespatchLineReference')
-        strategy: TRUBLCommonElement = TRUBLLineReference()
-        self._strategyContext.set_strategy(strategy)
-        frappedoc['linereference'] = [self._strategyContext.return_element_data(linereference_,
-                                                                                cbcnamespace,
-                                                                                cacnamespace)]
+        frappedoc['linereference'] = [TRUBLLineReference.process_element(linereference_,
+                                                                         cbcnamespace,
+                                                                         cacnamespace)]
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)')
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli (0...n)')
         cacsecimli0n: list = \
@@ -90,12 +78,10 @@ class TRUBLReceiptLine(TRUBLCommonElement):
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if tagelements_ is not None:
                 tagelements: list = []
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
                 for tagelement in tagelements_:
-                    tagelements.append(self._strategyContext.return_element_data(tagelement,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace))
+                    tagelements.append(element_.get('strategy').process_element(tagelement,
+                                                                                cbcnamespace,
+                                                                                cacnamespace))
                 frappedoc[element_.get('fieldName')] = tagelements
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -2,24 +2,20 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExternalReference import TRUBLExternalReference
 
 
 class TRUBLAttachment(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Attachment'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['ExternalReference'] = ('cac', 'ExternalReference()', 'Seçimli (0..1)', 'externalreference')
         externalreference_: Element = element.find('./' + cacnamespace + 'ExternalReference')
         if externalreference_ is not None:
-            strategy: TRUBLCommonElement = TRUBLExternalReference()
-            self._strategyContext.set_strategy(strategy)
-            frappedoc['externalreference'] = [self._strategyContext.return_element_data(externalreference_,
-                                                                                        cbcnamespace,
-                                                                                        cacnamespace)]
+            frappedoc['externalreference'] = [TRUBLExternalReference.process_element(externalreference_,
+                                                                                     cbcnamespace,
+                                                                                     cacnamespace)]
         # TODO implement Base64 decoder
         # ['EmbeddedDocumentBinaryObject'] = ('cbc', 'embeddeddocumentbinaryobject', 'Seçimli (0..1)')
         # characterSetCode: 'UTF-8'

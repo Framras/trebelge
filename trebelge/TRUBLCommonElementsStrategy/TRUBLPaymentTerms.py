@@ -2,13 +2,11 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 
 
 class TRUBLPaymentTerms(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR PaymentTerms'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -33,10 +31,8 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
         # ['SettlementPeriod'] = ('cac', 'settlementperiod', 'Seçimli (0...1)')
         settlementperiod_: Element = element.find('./' + cbcnamespace + 'SettlementPeriod')
         if settlementperiod_ is not None:
-            strategy: TRUBLCommonElement = TRUBLPeriod()
-            self._strategyContext.set_strategy(strategy)
-            frappedoc['settlementperiod'] = [self._strategyContext.return_element_data(settlementperiod_,
-                                                                                       cbcnamespace,
-                                                                                       cacnamespace)]
+            frappedoc['settlementperiod'] = [TRUBLPeriod.process_element(settlementperiod_,
+                                                                         cbcnamespace,
+                                                                         cacnamespace)]
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

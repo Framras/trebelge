@@ -3,13 +3,11 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCountry import TRUBLCountry
 
 
 class TRUBLAddress(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Address'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
@@ -18,11 +16,9 @@ class TRUBLAddress(TRUBLCommonElement):
                            'cityname': element.find('./' + cbcnamespace + 'CityName').text}
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
-        strategy: TRUBLCommonElement = TRUBLCountry()
-        self._strategyContext.set_strategy(strategy)
-        frappedoc['country'] = [self._strategyContext.return_element_data(country_,
-                                                                          cbcnamespace,
-                                                                          cacnamespace)]
+        frappedoc['country'] = [TRUBLCountry.process_element(country_,
+                                                             cbcnamespace,
+                                                             cacnamespace)]
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
         # ['Room'] = ('cbc', 'room', 'Seçimli (0...1)')
@@ -42,12 +38,10 @@ class TRUBLAddress(TRUBLCommonElement):
         buildingnumbers_: list = element.findall('./' + cbcnamespace + 'BuildingNumber')
         if buildingnumbers_ is not None:
             buildingnumbers: list = []
-            strategy: TRUBLCommonElement = TRUBLBuildingNumber()
-            self._strategyContext.set_strategy(strategy)
             for buildingnumber in buildingnumbers_:
-                buildingnumbers.append(self._strategyContext.return_element_data(buildingnumber,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace))
+                buildingnumbers.append(TRUBLBuildingNumber.process_element(buildingnumber,
+                                                                           cbcnamespace,
+                                                                           cacnamespace))
             frappedoc['buildingnumber'] = buildingnumbers
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

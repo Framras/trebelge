@@ -2,7 +2,6 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElementContext import TRUBLCommonElementContext
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
@@ -10,7 +9,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 
 class TRUBLMaritimeTransport(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR MaritimeTransport'
-    _strategyContext: TRUBLCommonElementContext = TRUBLCommonElementContext()
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
@@ -36,12 +34,10 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
         shipsrequirements_: list = element.findall('./' + cbcnamespace + 'ShipsRequirements')
         if shipsrequirements_:
             requirements: list = []
-            strategy: TRUBLCommonElement = TRUBLNote()
-            self._strategyContext.set_strategy(strategy)
             for shipsrequirement_ in shipsrequirements_:
-                requirements.append(self._strategyContext.return_element_data(shipsrequirement_,
-                                                                              cbcnamespace,
-                                                                              cacnamespace))
+                requirements.append(TRUBLNote.process_element(shipsrequirement_,
+                                                              cbcnamespace,
+                                                              cacnamespace))
             frappedoc['shipsrequirements'] = requirements
         # ['RegistryCertificateDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)')
         # ['RegistryPortLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
@@ -53,10 +49,8 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
-                strategy: TRUBLCommonElement = element_.get('strategy')
-                self._strategyContext.set_strategy(strategy)
-                frappedoc[element_.get('fieldName')] = [self._strategyContext.return_element_data(tagelement_,
-                                                                                                  cbcnamespace,
-                                                                                                  cacnamespace)]
+                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
+                                                                                                 cbcnamespace,
+                                                                                                 cacnamespace)]
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
