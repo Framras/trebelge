@@ -19,7 +19,7 @@ class TRUBLInvoice:
             _invoice: Document = frappe.new_doc(self._frappeDoctype)
             _invoice.uuid = uuid_
         else:
-            _invoice = None
+            _invoice = frappe.new_doc(self._frappeDoctype)
         self._invoice = _invoice
 
     def add(self, part: dict):

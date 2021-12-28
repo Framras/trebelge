@@ -27,7 +27,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def set_product(self, uuid_: str):
         self._reset()
-        self._product: TRUBLInvoice = TRUBLInvoice()
         self._product.set_uuid(uuid_)
 
     def get_product(self) -> TRUBLInvoice:
@@ -95,9 +94,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if notes_:
             note: list = []
             for note_ in notes_:
-                note.append(TRUBLNote.process_element(note_,
-                                                      cbcnamespace,
-                                                      cacnamespace)
+                note.append(TRUBLNote().process_element(note_,
+                                                        cbcnamespace,
+                                                        cacnamespace).name
                             )
             self._product.add({
                 'note': note

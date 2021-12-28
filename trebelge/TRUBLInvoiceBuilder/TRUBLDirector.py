@@ -43,6 +43,9 @@ class TRUBLDirector:
     def _set_cac_namespace(self):
         self._cac_namespace = '{' + self._get_namespaces().get('cac') + '}'
 
+    def _set_cac_namespace(self):
+        self._cac_namespace = '{' + self._get_namespaces().get('cac') + '}'
+
     def _set_cbc_namespace(self):
         self._cbc_namespace = '{' + self._get_namespaces().get('cbc') + '}'
 
@@ -79,8 +82,7 @@ class TRUBLDirector:
         self.builder.build_issuedate(self._file_path, self._cbc_namespace)
         self.builder.build_issuetime(self._file_path, self._cbc_namespace)
         self.builder.build_invoicetypecode(self._file_path, self._cbc_namespace)
-        self.builder.build_note(self._file_path, self._cbc_namespace,
-                                self._cac_namespace)
+        self.builder.build_note(self._file_path, self._cbc_namespace, self._cac_namespace)
         self.builder.build_documentcurrencycode(self._file_path, self._cbc_namespace)
         self.builder.build_taxcurrencycode(self._file_path, self._cbc_namespace)
         self.builder.build_pricingcurrencycode(self._file_path, self._cbc_namespace)
