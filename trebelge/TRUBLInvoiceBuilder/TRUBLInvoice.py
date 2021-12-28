@@ -16,11 +16,11 @@ class TRUBLInvoice:
 
     def set_uuid(self, uuid_: str):
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
-            _invoice: Document = frappe.new_doc(self._frappeDoctype)
-            _invoice.uuid = uuid_
-        else:
-            _invoice = frappe.new_doc(self._frappeDoctype)
-        self._invoice = _invoice
+            invoice_: Document = frappe.new_doc(self._frappeDoctype)
+            invoice_.uuid = uuid_
+            self._invoice.insert()
+        invoice = frappe.get_doc(self._frappeDoctype, uuid_)
+        self._invoice = invoice
 
     def add(self, part: dict):
         if self._invoice is not None:
@@ -28,4 +28,4 @@ class TRUBLInvoice:
                 self._invoice.set(key, part.get(key))
 
     def commit_doc(self):
-        self._invoice.insert()
+        self._invoice.save()

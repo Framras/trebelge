@@ -73,7 +73,7 @@ class TRUBLDirector:
     building steps.
     """
 
-    def build_tr_ubl_invoice(self) -> None:
+    def make_tr_ubl_invoice(self) -> None:
         self.builder.build_ublversionid(self._file_path, self._cbc_namespace)
         self.builder.build_customizationid(self._file_path, self._cbc_namespace)
         self.builder.build_profileid(self._file_path, self._cbc_namespace)
@@ -82,7 +82,6 @@ class TRUBLDirector:
         self.builder.build_issuedate(self._file_path, self._cbc_namespace)
         self.builder.build_issuetime(self._file_path, self._cbc_namespace)
         self.builder.build_invoicetypecode(self._file_path, self._cbc_namespace)
-        self.builder.build_note(self._file_path, self._cbc_namespace, self._cac_namespace)
         self.builder.build_documentcurrencycode(self._file_path, self._cbc_namespace)
         self.builder.build_taxcurrencycode(self._file_path, self._cbc_namespace)
         self.builder.build_pricingcurrencycode(self._file_path, self._cbc_namespace)
@@ -90,6 +89,8 @@ class TRUBLDirector:
         self.builder.build_paymentalternativecurrencycode(self._file_path, self._cbc_namespace)
         self.builder.build_accountingcost(self._file_path, self._cbc_namespace)
         self.builder.build_linecountnumeric(self._file_path, self._cbc_namespace)
+
+        self.builder.build_note(self._file_path, self._cbc_namespace, self._cac_namespace)
         self.builder.build_invoiceperiod(self._file_path, self._cbc_namespace,
                                          self._cac_namespace)
         self.builder.build_orderreference(self._file_path, self._cbc_namespace,
@@ -141,7 +142,7 @@ class TRUBLDirector:
         self.builder.build_invoiceline(self._file_path, self._cbc_namespace,
                                        self._cac_namespace)
 
-    def build_tr_ubl_despatchadvice(self) -> None:
+    def make_tr_ubl_despatchadvice(self) -> None:
         self.builder.build_ublversionid(self._file_path, self._cbc_namespace)
         self.builder.build_customizationid(self._file_path, self._cbc_namespace)
         self.builder.build_profileid(self._file_path, self._cbc_namespace)
