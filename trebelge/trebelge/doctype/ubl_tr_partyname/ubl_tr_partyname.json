@@ -1,7 +1,6 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "autoname": "field:partyname",
   "creation": "2021-12-02 00:04:47.244027",
   "description": "Taraf e\u011fer kurum ise kurum ismi bu elemana metin olarak girilir.",
   "doctype": "DocType",
@@ -22,7 +21,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-30 00:48:31.657175",
+  "modified": "2021-12-30 01:18:26.016733",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Partyname",
