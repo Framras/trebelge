@@ -12,7 +12,6 @@ from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentTerms import
 from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
 from apps.trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
-from apps.trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLInvoice import TRUBLInvoice
 
 
 class TRUBLInvoiceBuilder(TRUBLBuilder):
@@ -49,7 +48,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._product = invoice
 
     @property
-    def product(self) -> TRUBLInvoice:
+    def product(self) -> Document:
         product: Document = self._product.save()
         self.reset()
         return product

@@ -1,4 +1,5 @@
-from trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
+from apps.frappe.frappe.model.document import Document
+from apps.trebelge.trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
 
 
 class TRUBLDirector:
@@ -10,7 +11,7 @@ class TRUBLDirector:
     """
 
     def __init__(self, builder) -> None:
-        self._builder = builder
+        self._builder: TRUBLBuilder = builder
 
     @property
     def builder(self) -> TRUBLBuilder:
@@ -30,100 +31,68 @@ class TRUBLDirector:
     building steps.
     """
 
-    def make_tr_ubl_invoice(self) -> None:
-        self.builder.build_ublversionid(self._file_path, self._cbc_namespace)
-        self.builder.build_customizationid(self._file_path, self._cbc_namespace)
-        self.builder.build_profileid(self._file_path, self._cbc_namespace)
-        self.builder.build_id(self._file_path, self._cbc_namespace)
-        self.builder.build_copyindicator(self._file_path, self._cbc_namespace)
-        self.builder.build_issuedate(self._file_path, self._cbc_namespace)
-        self.builder.build_issuetime(self._file_path, self._cbc_namespace)
-        self.builder.build_invoicetypecode(self._file_path, self._cbc_namespace)
-        self.builder.build_note(self._file_path, self._cbc_namespace, self._cac_namespace)
-        self.builder.build_documentcurrencycode(self._file_path, self._cbc_namespace)
-        self.builder.build_taxcurrencycode(self._file_path, self._cbc_namespace)
-        self.builder.build_pricingcurrencycode(self._file_path, self._cbc_namespace)
-        self.builder.build_paymentcurrencycode(self._file_path, self._cbc_namespace)
-        self.builder.build_paymentalternativecurrencycode(self._file_path, self._cbc_namespace)
-        self.builder.build_accountingcost(self._file_path, self._cbc_namespace)
-        self.builder.build_linecountnumeric(self._file_path, self._cbc_namespace)
-        self.builder.build_invoiceperiod(self._file_path, self._cbc_namespace,
-                                         self._cac_namespace)
-        self.builder.build_orderreference(self._file_path, self._cbc_namespace,
-                                          self._cac_namespace)
-        self.builder.build_billingreference(self._file_path, self._cbc_namespace,
-                                            self._cac_namespace)
-        self.builder.build_despatchdocumentreference(self._file_path, self._cbc_namespace,
-                                                     self._cac_namespace)
-        self.builder.build_receiptdocumentreference(self._file_path, self._cbc_namespace,
-                                                    self._cac_namespace)
-        self.builder.build_originatordocumentreference(self._file_path, self._cbc_namespace,
-                                                       self._cac_namespace)
-        self.builder.build_contractdocumentreference(self._file_path, self._cbc_namespace,
-                                                     self._cac_namespace)
-        self.builder.build_additionaldocumentreference(self._file_path, self._cbc_namespace,
-                                                       self._cac_namespace)
-        self.builder.build_accountingsupplierparty(self._file_path, self._cbc_namespace,
-                                                   self._cac_namespace)
-        self.builder.build_accountingcustomerparty(self._file_path, self._cbc_namespace,
-                                                   self._cac_namespace)
-        self.builder.build_buyercustomerparty(self._file_path, self._cbc_namespace,
-                                              self._cac_namespace)
-        self.builder.build_sellersupplierparty(self._file_path, self._cbc_namespace,
-                                               self._cac_namespace)
-        self.builder.build_taxrepresentativeparty(self._file_path, self._cbc_namespace,
-                                                  self._cac_namespace)
-        self.builder.build_delivery(self._file_path, self._cbc_namespace,
-                                    self._cac_namespace)
-        self.builder.build_paymentmeans(self._file_path, self._cbc_namespace,
-                                        self._cac_namespace)
-        self.builder.build_paymentterms(self._file_path, self._cbc_namespace,
-                                        self._cac_namespace)
-        self.builder.build_allowancecharge(self._file_path, self._cbc_namespace,
-                                           self._cac_namespace)
-        self.builder.build_taxexchangerate(self._file_path, self._cbc_namespace,
-                                           self._cac_namespace)
-        self.builder.build_pricingexchangerate(self._file_path, self._cbc_namespace,
-                                               self._cac_namespace)
-        self.builder.build_paymentexchangerate(self._file_path, self._cbc_namespace,
-                                               self._cac_namespace)
-        self.builder.build_paymentalternativeexchangerate(self._file_path, self._cbc_namespace,
-                                                          self._cac_namespace)
-        self.builder.build_taxtotal(self._file_path, self._cbc_namespace,
-                                    self._cac_namespace)
-        self.builder.build_withholdingtaxtotal(self._file_path, self._cbc_namespace,
-                                               self._cac_namespace)
-        self.builder.build_legalmonetarytotal(self._file_path, self._cbc_namespace,
-                                              self._cac_namespace)
-        self.builder.build_invoiceline(self._file_path, self._cbc_namespace,
-                                       self._cac_namespace)
+    def make_tr_ubl_invoice(self) -> Document:
+        self.builder.build_ublversionid(self)
+        self.builder.build_customizationid(self)
+        self.builder.build_profileid(self)
+        self.builder.build_id(self)
+        self.builder.build_copyindicator(self)
+        self.builder.build_issuedate(self)
+        self.builder.build_issuetime(self)
+        self.builder.build_invoicetypecode(self)
+        self.builder.build_note(self)
+        self.builder.build_documentcurrencycode(self)
+        self.builder.build_taxcurrencycode(self)
+        self.builder.build_pricingcurrencycode(self)
+        self.builder.build_paymentcurrencycode(self)
+        self.builder.build_paymentalternativecurrencycode(self)
+        self.builder.build_accountingcost(self)
+        self.builder.build_linecountnumeric(self)
+        self.builder.build_invoiceperiod(self)
+        self.builder.build_orderreference(self)
+        self.builder.build_billingreference(self)
+        self.builder.build_despatchdocumentreference(self)
+        self.builder.build_receiptdocumentreference(self)
+        self.builder.build_originatordocumentreference(self)
+        self.builder.build_contractdocumentreference(self)
+        self.builder.build_additionaldocumentreference(self)
+        self.builder.build_accountingsupplierparty(self)
+        self.builder.build_accountingcustomerparty(self)
+        self.builder.build_buyercustomerparty(self)
+        self.builder.build_sellersupplierparty(self)
+        self.builder.build_taxrepresentativeparty(self)
+        self.builder.build_delivery(self)
+        self.builder.build_paymentmeans(self)
+        self.builder.build_paymentterms(self)
+        self.builder.build_allowancecharge(self)
+        self.builder.build_taxexchangerate(self)
+        self.builder.build_pricingexchangerate(self)
+        self.builder.build_paymentexchangerate(self)
+        self.builder.build_paymentalternativeexchangerate(self)
+        self.builder.build_taxtotal(self)
+        self.builder.build_withholdingtaxtotal(self)
+        self.builder.build_legalmonetarytotal(self)
+        self.builder.build_invoiceline(self)
+        return self.builder.product()
 
-    def make_tr_ubl_despatchadvice(self) -> None:
-        self.builder.build_ublversionid(self._file_path, self._cbc_namespace)
-        self.builder.build_customizationid(self._file_path, self._cbc_namespace)
-        self.builder.build_profileid(self._file_path, self._cbc_namespace)
-        self.builder.build_id(self._file_path, self._cbc_namespace)
-        self.builder.build_copyindicator(self._file_path, self._cbc_namespace)
-        self.builder.build_issuedate(self._file_path, self._cbc_namespace)
-        self.builder.build_issuetime(self._file_path, self._cbc_namespace)
-        self.builder.build_despatchadvicetypecode(self._file_path, self._cbc_namespace)
-        self.builder.build_note(self._file_path, self._cbc_namespace)
-        self.builder.build_linecountnumeric(self._file_path, self._cbc_namespace)
-        self.builder.build_orderreference(self._file_path, self._cbc_namespace,
-                                          self._cac_namespace)
-        self.builder.build_additionaldocumentreference(self._file_path, self._cbc_namespace,
-                                                       self._cac_namespace)
-        self.builder.build_despatchsupplierparty(self._file_path, self._cbc_namespace,
-                                                 self._cac_namespace)
-        self.builder.build_deliverycustomerparty(self._file_path, self._cbc_namespace,
-                                                 self._cac_namespace)
-        self.builder.build_buyercustomerparty(self._file_path, self._cbc_namespace,
-                                              self._cac_namespace)
-        self.builder.build_sellersupplierparty(self._file_path, self._cbc_namespace,
-                                               self._cac_namespace)
-        self.builder.build_originatorcustomerparty(self._file_path, self._cbc_namespace,
-                                                   self._cac_namespace)
-        self.builder.build_shipment(self._file_path, self._cbc_namespace,
-                                    self._cac_namespace)
-        self.builder.build_despatchline(self._file_path, self._cbc_namespace,
-                                        self._cac_namespace)
+    def make_tr_ubl_despatchadvice(self) -> Document:
+        self.builder.build_ublversionid(self)
+        self.builder.build_customizationid(self)
+        self.builder.build_profileid(self)
+        self.builder.build_id(self)
+        self.builder.build_copyindicator(self)
+        self.builder.build_issuedate(self)
+        self.builder.build_issuetime(self)
+        self.builder.build_despatchadvicetypecode(self)
+        self.builder.build_note(self)
+        self.builder.build_linecountnumeric(self)
+        self.builder.build_orderreference(self)
+        self.builder.build_additionaldocumentreference(self)
+        self.builder.build_despatchsupplierparty(self)
+        self.builder.build_deliverycustomerparty(self)
+        self.builder.build_buyercustomerparty(self)
+        self.builder.build_sellersupplierparty(self)
+        self.builder.build_originatorcustomerparty(self)
+        self.builder.build_shipment(self)
+        self.builder.build_despatchline(self)
+        return self.builder.product()
