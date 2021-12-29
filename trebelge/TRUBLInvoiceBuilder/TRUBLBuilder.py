@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import Any
 
 
 class TRUBLBuilder(ABC):
@@ -7,11 +6,6 @@ class TRUBLBuilder(ABC):
     The Builder interface specifies methods for creating the different parts of
     the Product objects.
     """
-
-    @property
-    @abstractmethod
-    def product(self) -> Any:
-        pass
 
     @abstractmethod
     def build_ublversionid(self) -> None:
@@ -199,4 +193,8 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_despatchline(self) -> None:
+        pass
+
+    @abstractmethod
+    def get_document(self) -> None:
         pass
