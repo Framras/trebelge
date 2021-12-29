@@ -20,26 +20,22 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
+    _frappeDoctype: str = 'UBL TR Invoice'
 
     def __init__(self, filepath: str) -> None:
         """
         A fresh builder instance should contain a blank product object, which is
         used in further assembly.
         """
-        self._file_path: str = filepath
-        self._namespaces = dict()
-        self._cac_ns = str()
-        self._cbc_ns = str()
-        self._frappeDoctype: str = 'UBL TR Invoice'
-        self._product = Document()
-        self.root: Element = ET.parse(filepath).getroot()
+        self._namespaces = dict([node for _, node in ET.iterparse(filepath, events=['start-ns'])])
+        self._cac_ns = str('{' + self._namespaces.get('cac') + '}')
+        self._cbc_ns = str('{' + self._namespaces.get('cbc') + '}')
+        self._product = None
+        self.root = ET.parse(filepath).getroot()
         self.reset()
 
     def reset(self) -> None:
-        self._namespaces = dict([node for _, node in ET.iterparse(self._file_path, events=['start-ns'])])
-        self._cac_ns = '{' + self._namespaces.get('cbc') + '}'
-        self._cbc_ns = '{' + self._namespaces.get('cac') + '}'
-        uuid_: str = self.root.find(self._cbc_ns + 'UUID').text
+        uuid_ = self.root.find('./' + self._cbc_ns + 'UUID').text
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
             invoice_: Document = frappe.new_doc(self._frappeDoctype)
             invoice_.uuid = uuid_
