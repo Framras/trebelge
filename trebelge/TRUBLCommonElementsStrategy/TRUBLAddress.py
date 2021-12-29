@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import Element
 
-from apps.frappe.frappe.model.document import Document
+from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCountry import TRUBLCountry
