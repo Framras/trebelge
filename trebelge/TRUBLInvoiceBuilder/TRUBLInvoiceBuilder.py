@@ -50,7 +50,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     @property
     def product(self) -> TRUBLInvoice:
-        product = self._product
+        product: Document = self._product.save()
         self.reset()
         return product
 
