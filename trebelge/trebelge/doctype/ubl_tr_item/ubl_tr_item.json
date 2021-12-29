@@ -16,7 +16,7 @@
     "manufacturersitemid",
     "additionalitemid",
     "origincountry",
-    "commodityclassification",
+    "commodityclass",
     "iteminstance"
   ],
   "fields": [
@@ -54,12 +54,6 @@
       "options": "UBL TR Country"
     },
     {
-      "fieldname": "commodityclassification",
-      "fieldtype": "Table MultiSelect",
-      "label": "Emtia s\u0131n\u0131fland\u0131rma bilgisi",
-      "options": "UBL TR CommodityClassifications"
-    },
-    {
       "fieldname": "iteminstance",
       "fieldtype": "Table MultiSelect",
       "label": "Ek bilgiler",
@@ -88,11 +82,17 @@
       "fieldtype": "Table MultiSelect",
       "label": "Di\u011fer s\u0131n\u0131fland\u0131rma bilgileri",
       "options": "UBL TR ItemIdentifications"
+    },
+    {
+      "fieldname": "commodityclass",
+      "fieldtype": "Table MultiSelect",
+      "label": "Emtia s\u0131n\u0131fland\u0131rma bilgisi",
+      "options": "UBL TR CommodityClassifications"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-29 17:51:41.375526",
+  "modified": "2021-12-29 19:16:15.265469",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Item",

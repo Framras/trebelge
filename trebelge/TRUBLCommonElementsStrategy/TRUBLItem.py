@@ -61,12 +61,12 @@ class TRUBLItem(TRUBLCommonElement):
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)', 'commodityclassification')
         commodityclassifications_: list = element.findall('./' + cacnamespace + 'CommodityClassification')
         if commodityclassifications_:
-            commodityclassification: list = []
+            commodityclass: list = []
             for commodityclassification_ in commodityclassifications_:
-                commodityclassification.append(TRUBLCommodityClassification().process_element(commodityclassification_,
-                                                                                              cbcnamespace,
-                                                                                              cacnamespace))
-            document.db_set('commodityclassification', commodityclassification)
+                commodityclass.append(TRUBLCommodityClassification().process_element(commodityclassification_,
+                                                                                     cbcnamespace,
+                                                                                     cacnamespace))
+            document.db_set('commodityclass', commodityclass)
             document.save()
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)', 'iteminstance')
         iteminstances_: list = element.findall('./' + cacnamespace + 'ItemInstance')
