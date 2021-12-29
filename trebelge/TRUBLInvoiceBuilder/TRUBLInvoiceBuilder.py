@@ -3,6 +3,7 @@ from xml.etree.ElementTree import Element
 
 import frappe
 from frappe.model.document import Document
+from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
@@ -12,6 +13,16 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentTerms import TRUBLPaymentT
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
 from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
+
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLCustomerParty import TRUBLCustomerParty
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLDespatchLine import TRUBLDespatchLine
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentMeans import TRUBLPaymentMeans
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
+from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLSupplierParty import TRUBLSupplierParty
 
 
 class TRUBLInvoiceBuilder(TRUBLBuilder):
@@ -40,7 +51,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self.root: Element = ET.parse(self.filepath).getroot()
         uuid_ = self.root.find('./' + self._cbc_ns + 'UUID').text
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
-            invoice_: Document = frappe.new_doc(self._frappeDoctype)
+            invoice_ = frappe.new_doc(self._frappeDoctype)
             invoice_.uuid = uuid_
             invoice_.insert()
         invoice: Document = frappe.get_doc(self._frappeDoctype, uuid_)
@@ -152,73 +163,164 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_billingreference(self) -> None:
         # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', 'billingreference')
-        pass
+        billingreferences_: list = self.root.findall('./' + self._cac_ns + 'BillingReference')
+        if len(billingreferences_) != 0:
+            billingreference: list = []
+            for billingreference_ in billingreferences_:
+                billingreference.append(TRUBLBillingReference().process_element(billingreference_,
+                                                                                self._cbc_ns,
+                                                                                self._cac_ns))
+            self._product.billingreference = billingreference
 
     def build_despatchdocumentreference(self) -> None:
         # ['DespatchDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'despatchdocumentreference')
-        pass
+        documentreferences_: list = self.root.findall('./' + self._cac_ns + 'DespatchDocumentReference')
+        if len(documentreferences_) != 0:
+            documentreference: list = []
+            for documentreference_ in documentreferences_:
+                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
+                                                                                  self._cbc_ns,
+                                                                                  self._cac_ns))
+            self._product.despatchdocumentreference = documentreference
 
     def build_receiptdocumentreference(self) -> None:
         # ['ReceiptDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'receiptdocumentreference')
-        pass
+        documentreferences_: list = self.root.findall('./' + self._cac_ns + 'ReceiptDocumentReference')
+        if len(documentreferences_) != 0:
+            documentreference: list = []
+            for documentreference_ in documentreferences_:
+                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
+                                                                                  self._cbc_ns,
+                                                                                  self._cac_ns))
+            self._product.receiptdocumentreference = documentreference
 
     def build_originatordocumentreference(self) -> None:
         # ['OriginatorDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
         # 'originatordocumentreference')
-        pass
+        documentreferences_: list = self.root.findall('./' + self._cac_ns + 'OriginatorDocumentReference')
+        if len(documentreferences_) != 0:
+            documentreference: list = []
+            for documentreference_ in documentreferences_:
+                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
+                                                                                  self._cbc_ns,
+                                                                                  self._cac_ns))
+            self._product.originatordocumentreference = documentreference
 
     def build_contractdocumentreference(self) -> None:
         # ['ContractDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'contractdocumentreference')
-        pass
+        documentreferences_: list = self.root.findall('./' + self._cac_ns + 'ContractDocumentReference')
+        if len(documentreferences_) != 0:
+            documentreference: list = []
+            for documentreference_ in documentreferences_:
+                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
+                                                                                  self._cbc_ns,
+                                                                                  self._cac_ns))
+            self._product.contractdocumentreference = documentreference
 
     def build_additionaldocumentreference(self) -> None:
         # ['AdditionalDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
         # 'additionaldocumentreference')
-        pass
+        documentreferences_: list = self.root.findall('./' + self._cac_ns + 'AdditionalDocumentReference')
+        if len(documentreferences_) != 0:
+            documentreference: list = []
+            for documentreference_ in documentreferences_:
+                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
+                                                                                  self._cbc_ns,
+                                                                                  self._cac_ns))
+            self._product.additionaldocumentreference = documentreference
 
     def build_accountingsupplierparty(self) -> None:
         # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'accountingsupplierparty')
-        pass
+        accountingsupplierparty_: Element = self.root.find('./' + self._cac_ns + 'AccountingSupplierParty')
+        self._product.accountingsupplierparty = TRUBLSupplierParty().process_element(accountingsupplierparty_,
+                                                                                     self._cbc_ns,
+                                                                                     self._cac_ns).name
 
     def build_despatchsupplierparty(self) -> None:
         # ['DespatchSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'despatchsupplierparty')
-        pass
+        despatchsupplierparty_: Element = self.root.find('./' + self._cac_ns + 'DespatchSupplierParty')
+        self._product.despatchsupplierparty = TRUBLSupplierParty().process_element(despatchsupplierparty_,
+                                                                                   self._cbc_ns,
+                                                                                   self._cac_ns).name
 
     def build_accountingcustomerparty(self) -> None:
         # ['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'accountingcustomerparty')
-        pass
+        accountingcustomerparty_: Element = self.root.find('./' + self._cac_ns + 'AccountingCustomerParty')
+        self._product.accountingcustomerparty = TRUBLCustomerParty().process_element(accountingcustomerparty_,
+                                                                                     self._cbc_ns,
+                                                                                     self._cac_ns).name
 
     def build_deliverycustomerparty(self) -> None:
         # ['DeliveryCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'deliverycustomerparty')
-        pass
+        deliverycustomerparty_: Element = self.root.find('./' + self._cac_ns + 'DeliveryCustomerParty')
+        self._product.deliverycustomerparty = TRUBLCustomerParty().process_element(deliverycustomerparty_,
+                                                                                   self._cbc_ns,
+                                                                                   self._cac_ns).name
 
     def build_buyercustomerparty(self) -> None:
         # ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'buyercustomerparty')
-        pass
+        buyercustomerparty_: Element = self.root.find('./' + self._cac_ns + 'BuyerCustomerParty')
+        if buyercustomerparty_:
+            self._product.buyercustomerparty = TRUBLCustomerParty().process_element(buyercustomerparty_,
+                                                                                    self._cbc_ns,
+                                                                                    self._cac_ns).name
 
     def build_sellersupplierparty(self) -> None:
         # ['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)', 'sellersupplierparty')
-        pass
+        sellersupplierparty_: Element = self.root.find('./' + self._cac_ns + 'SellerSupplierParty')
+        if sellersupplierparty_:
+            self._product.sellersupplierparty = TRUBLSupplierParty().process_element(sellersupplierparty_,
+                                                                                     self._cbc_ns,
+                                                                                     self._cac_ns).name
 
     def build_originatorcustomerparty(self) -> None:
         # ['OriginatorCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'originatorcustomerparty')
-        pass
+        originatorcustomerparty_: Element = self.root.find('./' + self._cac_ns + 'OriginatorCustomerParty')
+        if originatorcustomerparty_:
+            self._product.originatorcustomerparty = TRUBLCustomerParty().process_element(originatorcustomerparty_,
+                                                                                         self._cbc_ns,
+                                                                                         self._cac_ns).name
 
     def build_taxrepresentativeparty(self) -> None:
         # ['TaxRepresentativeParty'] = ('cac', Party(), 'Seçimli (0..1)', 'taxrepresentativeparty')
-        pass
+        taxrepresentativeparty_: Element = self.root.find('./' + self._cac_ns + 'TaxRepresentativeParty')
+        if taxrepresentativeparty_:
+            self._product.taxrepresentativeparty = TRUBLParty().process_element(taxrepresentativeparty_,
+                                                                                self._cbc_ns,
+                                                                                self._cac_ns).name
 
     def build_delivery(self) -> None:
         # ['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)', 'delivery')
-        pass
+        deliveries_: list = self.root.findall('./' + self._cac_ns + 'Delivery')
+        if len(deliveries_) != 0:
+            delivery: list = []
+            for delivery_ in deliveries_:
+                delivery.append(TRUBLDelivery().process_element(delivery_,
+                                                                self._cbc_ns,
+                                                                self._cac_ns))
+            self._product.delivery = delivery
 
     def build_shipment(self) -> None:
         # ['Shipment'] = ('cac', Shipment(), 'Seçimli (0...n)', 'shipment')
-        pass
+        shipments_: list = self.root.findall('./' + self._cac_ns + 'Shipment')
+        if len(shipments_) != 0:
+            shipment: list = []
+            for shipment_ in shipments_:
+                shipment.append(TRUBLShipment().process_element(shipment_,
+                                                                self._cbc_ns,
+                                                                self._cac_ns))
+            self._product.shipment = shipment
 
     def build_paymentmeans(self) -> None:
-        # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)')
-        pass
+        # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
+        paymentmeans_: list = self.root.findall('./' + self._cac_ns + 'PaymentMeans')
+        if len(paymentmeans_) != 0:
+            paymentmeans: list = []
+            for payment_means_ in paymentmeans_:
+                paymentmeans.append(TRUBLPaymentMeans().process_element(payment_means_,
+                                                                        self._cbc_ns,
+                                                                        self._cac_ns))
+            self._product.paymentmeans = paymentmeans
 
     def build_paymentterms(self) -> None:
         # ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
@@ -230,7 +332,14 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_allowancecharge(self) -> None:
         # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
-        pass
+        allowancecharges_: list = self.root.findall('./' + self._cac_ns + 'AllowanceCharge')
+        if len(allowancecharges_) != 0:
+            allowancecharge: list = []
+            for allowancecharge_ in allowancecharges_:
+                allowancecharge.append(TRUBLAllowanceCharge().process_element(allowancecharge_,
+                                                                              self._cbc_ns,
+                                                                              self._cac_ns))
+            self._product.allowancecharge = allowancecharge
 
     def build_taxexchangerate(self) -> None:
         # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
@@ -307,7 +416,13 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_despatchline(self) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
-        pass
+        despatchlines_: list = self.root.findall('./' + self._cac_ns + 'DespatchLine')
+        despatchline: list = []
+        for despatchline_ in despatchlines_:
+            despatchline.append(TRUBLDespatchLine().process_element(despatchline_,
+                                                                    self._cbc_ns,
+                                                                    self._cac_ns))
+        self._product.despatchline = despatchline
 
     def get_document(self) -> None:
         product: Document = self._product.save()
