@@ -17,7 +17,7 @@ class TRUBLResponse(TRUBLCommonElement):
             frappedoc['responsecode'] = responsecode_.text
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
         descriptions_: list = element.findall('./' + cacnamespace + 'Description')
-        if descriptions_:
+        if len(descriptions_) != 0:
             descriptions: list = []
             for description_ in descriptions_:
                 descriptions.append(TRUBLNote.process_element(description_,

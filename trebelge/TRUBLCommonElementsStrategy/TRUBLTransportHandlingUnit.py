@@ -41,7 +41,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
             frappedoc['totalpackagequantityunitcode'] = totalpackagequantity_.attrib.get('unitCode')
         # ['DamageRemarks'] = ('cbc', 'damageremarks', 'Seçimli (0...n)')
         damageremarks_: list = element.findall('./' + cbcnamespace + 'DamageRemarks')
-        if damageremarks_:
+        if len(damageremarks_) != 0:
             damageremarks: list = []
             for damageremark_ in damageremarks_:
                 damageremarks.append(damageremark_.text)
@@ -84,7 +84,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_:
+            if len(tagelements_) != 0:
                 tagelements: list = []
                 for tagelement in tagelements_:
                     tagelements.append(element_.get('strategy').process_element(tagelement,

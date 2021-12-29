@@ -18,7 +18,7 @@ class TRUBLBillingReferenceLine(TRUBLCommonElement):
             frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge.', 'Seçimli (0...n)', 'allowancecharge')
         allowancecharges_: list = element.findall('./' + cacnamespace + 'AllowanceCharge')
-        if allowancecharges_:
+        if len(allowancecharges_) != 0:
             allowancecharge: list = []
             for allowancecharge_ in allowancecharges_:
                 allowancecharge.append(TRUBLAllowanceCharge.process_element(allowancecharge_,

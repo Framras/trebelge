@@ -22,7 +22,7 @@ class TRUBLOrderReference(TRUBLCommonElement):
                 frappedoc[elementtag_.lower()] = field_.text
         # ['DocumentReference'] = ('cac', '', 'Seçimli(0..n)', 'documentreference')
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
-        if documentreferences_ is not None:
+        if len(documentreferences_) != 0:
             documentreferences: list = []
             for documentreference_ in documentreferences_:
                 documentreferences.append(TRUBLDocumentReference.process_element(documentreference_,

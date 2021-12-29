@@ -23,7 +23,7 @@ class TRUBLStowage(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_:
+            if len(tagelements_) != 0:
                 tagelements: list = []
                 for tagelement in tagelements_:
                     tagelements.append(element_.get('strategy').process_element(tagelement,

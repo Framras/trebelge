@@ -26,7 +26,7 @@ class TRUBLContact(TRUBLCommonElement):
             frappedoc['contactname'] = name_.text
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         othercommunications_: list = element.findall('./' + cacnamespace + 'OtherCommunication')
-        if othercommunications_ is not None:
+        if len(othercommunications_) != 0:
             communications: list = []
             for othercommunication in othercommunications_:
                 communications.append(TRUBLCommunication.process_element(othercommunication,

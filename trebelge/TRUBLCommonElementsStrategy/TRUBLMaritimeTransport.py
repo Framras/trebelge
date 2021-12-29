@@ -32,7 +32,7 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
             frappedoc['nettonnagemeasureunitcode'] = nettonnagemeasure_.attrib.get('unitCode')
         # ['ShipsRequirements'] = ('cbc', '', 'Seçimli (0...n)')
         shipsrequirements_: list = element.findall('./' + cbcnamespace + 'ShipsRequirements')
-        if shipsrequirements_:
+        if len(shipsrequirements_) != 0:
             requirements: list = []
             for shipsrequirement_ in shipsrequirements_:
                 requirements.append(TRUBLNote.process_element(shipsrequirement_,

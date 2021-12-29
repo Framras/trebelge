@@ -85,7 +85,7 @@ class TRUBLShipment(TRUBLCommonElement):
             frappedoc['freeonboardvalueamountcurrencyid'] = freeonboardvalueamount_.attrib.get('currencyID')
         # ['SpecialInstructions'] = ('cbc', '', 'Seçimli (0...n)')
         descriptions_: list = element.findall('./' + cbcnamespace + 'SpecialInstructions')
-        if descriptions_ is not None:
+        if len(descriptions_) != 0:
             descriptions: list = []
             for description_ in descriptions_:
                 descriptions.append(TRUBLNote.process_element(description_,
@@ -119,7 +119,7 @@ class TRUBLShipment(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_ is not None:
+            if len(tagelements_) != 0:
                 tagelements: list = []
                 for tagelement in tagelements_:
                     tagelements.append(element_.get('strategy').process_element(tagelement,

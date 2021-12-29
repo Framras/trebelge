@@ -43,7 +43,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                                                                    cacnamespace)]
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
         documentdescriptions_: list = element.findall('./' + cbcnamespace + 'DocumentDescription')
-        if documentdescriptions_:
+        if len(documentdescriptions_) != 0:
             documentdescriptions: list = []
             for documentdescription_ in documentdescriptions_:
                 documentdescriptions.append(TRUBLNote.process_element(documentdescription_,

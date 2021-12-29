@@ -36,7 +36,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                 frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Note'] = ('cbc', '', 'Seçimli(0..n)')
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
-        if notes_:
+        if len(notes_) != 0:
             note: list = []
             for note_ in notes_:
                 note.append(TRUBLNote.process_element(note_,
@@ -45,7 +45,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
             frappedoc['note'] = note
         # ['OutstandingReason'] = ('cbc', '', 'Seçimli(0..n)')
         outstandingreasons_: list = element.findall('./' + cbcnamespace + 'Description')
-        if outstandingreasons_:
+        if len(outstandingreasons_) != 0:
             outstandingreason: list = []
             for outstandingreason_ in outstandingreasons_:
                 outstandingreason.append(TRUBLNote.process_element(outstandingreason_,
@@ -60,7 +60,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_:
+            if len(tagelements_) != 0:
                 tagelements: list = []
                 for tagelement in tagelements_:
                     tagelements.append(element_.get('strategy').process_element(tagelement,

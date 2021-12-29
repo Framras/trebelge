@@ -18,7 +18,7 @@ class TRUBLDimension(TRUBLCommonElement):
             frappedoc['measureunitcode'] = measure_.attrib.get('unitCode')
         # ['Description'] = ('cbc', 'descriptions', 'Seçimli(0..n)', 'description')
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
-        if descriptions_ is not None:
+        if len(descriptions_) != 0:
             descriptions: list = []
             for description_ in descriptions_:
                 descriptions.append(TRUBLNote.process_element(description_,

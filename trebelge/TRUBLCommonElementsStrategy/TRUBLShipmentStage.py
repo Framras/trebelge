@@ -23,7 +23,7 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                 frappedoc[elementtag_.lower()] = field_.text
         # ['TransitDirectionCode'] = ('cbc', '', 'Seçimli (0...n)')
         transitdirectioncodes_: list = element.findall('./' + cbcnamespace + 'TransitDirectionCode')
-        if transitdirectioncodes_:
+        if len(transitdirectioncodes_) != 0:
             transitdirectioncode: list = []
             for transitdirectioncode_ in transitdirectioncodes_:
                 transitdirectioncode.append(transitdirectioncode_.text)
@@ -42,7 +42,7 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                                                                                cacnamespace)]
         # ['DriverPerson'] = ('cac', 'Person', 'Seçimli (0...n)')
         driverpeople_: list = element.findall('./' + cacnamespace + 'DriverPerson')
-        if driverpeople_:
+        if len(driverpeople_) != 0:
             driverpeople: list = []
             for driverperson_ in driverpeople_:
                 driverpeople.append(TRUBLPerson.process_element(driverperson_,

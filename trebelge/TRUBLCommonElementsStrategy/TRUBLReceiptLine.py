@@ -37,7 +37,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
                 frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Note'] = ('cbc', '', 'Seçimli (0...n)')
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
-        if notes_ is not None:
+        if len(notes_) != 0:
             note: list = []
             for note_ in notes_:
                 note.append(TRUBLNote.process_element(note_,
@@ -46,7 +46,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
             frappedoc['note'] = note
         # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
         rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
-        if rejectreasons_ is not None:
+        if len(rejectreasons_) != 0:
             rejectreason: list = []
             for rejectreason_ in rejectreasons_:
                 rejectreason.append(TRUBLNote.process_element(rejectreason_,
@@ -76,7 +76,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
              ]
         for element_ in cacsecimli0n:
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_ is not None:
+            if len(tagelements_) != 0:
                 tagelements: list = []
                 for tagelement in tagelements_:
                     tagelements.append(element_.get('strategy').process_element(tagelement,

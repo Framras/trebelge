@@ -18,7 +18,7 @@ class TRUBLTemperature(TRUBLCommonElement):
                            }
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
-        if descriptions_ is not None:
+        if len(descriptions_) != 0:
             descriptions: list = []
             for description_ in descriptions_:
                 descriptions.append(TRUBLNote.process_element(description_,
