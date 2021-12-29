@@ -90,7 +90,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_note(self) -> None:
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         notes_: list = self.root.findall('./' + self._cbc_ns + 'Note')
-        if notes_:
+        if len(notes_) != 0:
             note: list = []
             for note_ in notes_:
                 note.append(TRUBLNote().process_element(note_,
@@ -283,7 +283,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_withholdingtaxtotal(self) -> None:
         # ['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', 'withholdingtaxtotal')
         withholdingtaxtotals_: list = self.root.findall('./' + self._cac_ns + 'WithholdingTaxTotal')
-        if withholdingtaxtotals_:
+        if len(withholdingtaxtotals_) != 0:
             withholdingtaxtotal: list = []
             for withholdingtaxtotal_ in withholdingtaxtotals_:
                 withholdingtaxtotal.append(TRUBLTaxTotal().process_element(withholdingtaxtotal_,
