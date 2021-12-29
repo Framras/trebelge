@@ -27,14 +27,17 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         A fresh builder instance should contain a blank product object, which is
         used in further assembly.
         """
-        self._namespaces = dict([node for _, node in ET.iterparse(filepath, events=['start-ns'])])
-        self._cac_ns = str('{' + self._namespaces.get('cac') + '}')
-        self._cbc_ns = str('{' + self._namespaces.get('cbc') + '}')
-        self._product: Document = None
-        self.root: Element = ET.parse(filepath).getroot()
-        self.reset()
+        self.filepath = filepath
+        self._cbc_ns = None
+        self._cac_ns = None
+        self.root = None
+        self._product = None
 
     def reset(self) -> None:
+        _namespaces = dict([node for _, node in ET.iterparse(self.filepath, events=['start-ns'])])
+        self._cac_ns = str('{' + _namespaces.get('cac') + '}')
+        self._cbc_ns = str('{' + _namespaces.get('cbc') + '}')
+        self.root: Element = ET.parse(self.filepath).getroot()
         uuid_ = self.root.find('./' + self._cbc_ns + 'UUID').text
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
             invoice_: Document = frappe.new_doc(self._frappeDoctype)
@@ -42,12 +45,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             invoice_.insert()
         invoice: Document = frappe.get_doc(self._frappeDoctype, uuid_)
         self._product = invoice
-
-    @property
-    def product(self) -> Document:
-        product: Document = self._product.save()
-        self.reset()
-        return product
 
     def build_ublversionid(self) -> None:
         # ['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)')
@@ -311,3 +308,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_despatchline(self) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
         pass
+
+    def get_document(self) -> None:
+        product: Document = self._product.save()
+        self.reset()
+        return product

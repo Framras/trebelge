@@ -10,7 +10,7 @@ class TRUBLDirector:
     """
 
     def __init__(self, builder) -> None:
-        self._builder: TRUBLBuilder = builder
+        self._builder = builder
 
     @property
     def builder(self) -> TRUBLBuilder:
@@ -31,6 +31,7 @@ class TRUBLDirector:
     """
 
     def make_tr_ubl_invoice(self) -> None:
+        self.builder.reset()
         self.builder.build_ublversionid()
         self.builder.build_customizationid()
         self.builder.build_profileid()
@@ -74,6 +75,7 @@ class TRUBLDirector:
         self.builder.build_invoiceline()
 
     def make_tr_ubl_despatchadvice(self) -> None:
+        self.builder.reset()
         self.builder.build_ublversionid()
         self.builder.build_customizationid()
         self.builder.build_profileid()

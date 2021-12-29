@@ -22,10 +22,9 @@ class InvoiceHandler(AbstractXMLFileHandler):
                 self._eBelgeSettingsDoctype, filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
                 fields={"namespace_specification"}):
             if ET.parse(file_path).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
-                builder: TRUBLBuilder = TRUBLInvoiceBuilder(file_path)
+                builder = TRUBLInvoiceBuilder(file_path)
                 director = TRUBLDirector(builder)
                 director.make_tr_ubl_invoice()
-                if builder.product:
-                    pass
+                builder.get_document()
             else:
                 self._successor.handle_xml_file(file_path)
