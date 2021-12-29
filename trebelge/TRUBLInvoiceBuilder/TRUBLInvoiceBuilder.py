@@ -13,6 +13,8 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
 from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLInvoiceBuilder.TRUBLInvoice import TRUBLInvoice
 
+from apps.frappe import frappe
+
 
 class TRUBLInvoiceBuilder(TRUBLBuilder):
     """
@@ -30,9 +32,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._namespaces = None
         self._cac_namespace = None
         self._cbc_namespace = None
-        self._uuid = None
         self._frappeDoctype: str = 'UBL TR Invoice'
-        self._product = None
+        self._product = Document()
         self.root: Element = ET.parse(filepath).getroot()
         self.reset()
 
@@ -40,19 +41,13 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._namespaces = dict([node for _, node in ET.iterparse(self._file_path, events=['start-ns'])])
         self._cbc_namespace = '{' + self._namespaces.get('cbc') + '}'
         self._cac_namespace = '{' + self._namespaces.get('cac') + '}'
-        self._uuid = self.root.find(self._cbc_namespace + 'UUID').text
-        self._product: Document = frappe.new_doc(self._frappeDoctype)
-
-    def get_uuid(self):
-        return self._uuid
-
-    def set_uuid(self, uuid_: str):
+        uuid_: str = self.root.find(self._cbc_namespace + 'UUID').text
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
             invoice_: Document = frappe.new_doc(self._frappeDoctype)
             invoice_.uuid = uuid_
-            self._invoice.insert()
-        invoice = frappe.get_doc(self._frappeDoctype, uuid_)
-        self._invoice = invoice
+            invoice_.insert()
+        invoice: Document = frappe.get_doc(self._frappeDoctype, uuid_)
+        self._product = invoice
 
     @property
     def product(self) -> TRUBLInvoice:
@@ -60,32 +55,33 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self.reset()
         return product
 
-    def build_ublversionid(self, cbcnamespace: str) -> None:
+    def build_ublversionid(self) -> None:
         # ['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)')
+
         self._product.add({
             'ublversionid': self.root.find('./' + cbcnamespace + 'UBLVersionID').text})
 
-    def build_customizationid(self, cbcnamespace: str) -> None:
+    def build_customizationid(self) -> None:
         # ['CustomizationID'] = ('cbc', 'customizationid', 'Zorunlu (1)')
         self._product.add({'customizationid': self.root.find('./' + cbcnamespace + 'CustomizationID').text})
 
-    def build_profileid(self, cbcnamespace: str) -> None:
+    def build_profileid(self) -> None:
         # ['ProfileID'] = ('cbc', 'profileid', 'Zorunlu (1)')
         self._product.add({'profileid': self.root.find('./' + cbcnamespace + 'ProfileID').text})
 
-    def build_id(self, cbcnamespace: str) -> None:
+    def build_id(self) -> None:
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
         self._product.add({'id': self.root.find('./' + cbcnamespace + 'ID').text})
 
-    def build_copyindicator(self, cbcnamespace: str) -> None:
+    def build_copyindicator(self) -> None:
         # ['CopyIndicator'] = ('cbc', 'copyindicator', 'Zorunlu (1)')
         self._product.add({'copyindicator': self.root.find('./' + cbcnamespace + 'CopyIndicator').text})
 
-    def build_issuedate(self, cbcnamespace: str) -> None:
+    def build_issuedate(self) -> None:
         # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu (1)')
         self._product.add({'issuedate': self.root.find('./' + cbcnamespace + 'IssueDate').text})
 
-    def build_issuetime(self, cbcnamespace: str) -> None:
+    def build_issuetime(self) -> None:
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
         issuetime_: Element = self.root.find('./' + cbcnamespace + 'IssueTime')
         if issuetime_:
@@ -93,11 +89,11 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         else:
             self._product.add({'issuetime': ''})
 
-    def build_invoicetypecode(self, cbcnamespace: str) -> None:
+    def build_invoicetypecode(self) -> None:
         # ['InvoiceTypeCode'] = ('cbc', 'invoicetypecode', 'Zorunlu (1)')
         self._product.add({'invoicetypecode': self.root.find('./' + cbcnamespace + 'InvoiceTypeCode').text})
 
-    def build_despatchadvicetypecode(self, cbcnamespace: str) -> None:
+    def build_despatchadvicetypecode(self) -> None:
         # ['DespatchAdviceTypeCode'] = ('cbc', 'despatchadvicetypecode', 'Zorunlu (1)')
         pass
 
@@ -112,42 +108,42 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                         cacnamespace).name)
             self._product.add({'note': note})
 
-    def build_documentcurrencycode(self, cbcnamespace: str) -> None:
+    def build_documentcurrencycode(self) -> None:
         # ['DocumentCurrencyCode'] = ('cbc', 'documentcurrencycode', 'Zorunlu (1)')
         self._product.add({'documentcurrencycode': self.root.find('./' + cbcnamespace + 'DocumentCurrencyCode').text})
 
-    def build_taxcurrencycode(self, cbcnamespace: str) -> None:
+    def build_taxcurrencycode(self) -> None:
         # ['TaxCurrencyCode'] = ('cbc', 'taxcurrencycode', 'Seçimli (0...1)')
         taxcurrencycode_: Element = self.root.find('./' + cbcnamespace + 'TaxCurrencyCode')
         if taxcurrencycode_:
             self._product.add({'taxcurrencycode': taxcurrencycode_.text})
 
-    def build_pricingcurrencycode(self, cbcnamespace: str) -> None:
+    def build_pricingcurrencycode(self) -> None:
         # ['PricingCurrencyCode'] = ('cbc', 'pricingcurrencycode', 'Seçimli (0...1)')
         pricingcurrencycode_: Element = self.root.find('./' + cbcnamespace + 'PricingCurrencyCode')
         if pricingcurrencycode_:
             self._product.add({'pricingcurrencycode': pricingcurrencycode_.text})
 
-    def build_paymentcurrencycode(self, cbcnamespace: str) -> None:
+    def build_paymentcurrencycode(self) -> None:
         # ['PaymentCurrencyCode'] = ('cbc', 'paymentcurrencycode', 'Seçimli (0...1)')
         paymentcurrencycode_: Element = self.root.find('./' + cbcnamespace + 'PaymentCurrencyCode')
         if paymentcurrencycode_:
             self._product.add({'paymentcurrencycode': paymentcurrencycode_.text})
 
-    def build_paymentalternativecurrencycode(self, cbcnamespace: str) -> None:
+    def build_paymentalternativecurrencycode(self) -> None:
         # ['PaymentAlternativeCurrencyCode'] = ('cbc', 'paymentalternativecurrencycode', 'Seçimli (0...1)')
         paymentalternativecurrencycode_: Element = self.root.find(
             './' + cbcnamespace + 'PaymentAlternativeCurrencyCode')
         if paymentalternativecurrencycode_:
             self._product.add({'paymentalternativecurrencycode': paymentalternativecurrencycode_.text})
 
-    def build_accountingcost(self, cbcnamespace: str) -> None:
+    def build_accountingcost(self) -> None:
         # ['AccountingCost'] = ('cbc', 'accountingcost', 'Seçimli (0...1)')
         accountingcost_: Element = self.root.find('./' + cbcnamespace + 'AccountingCost')
         if accountingcost_:
             self._product.add({'accountingcost': accountingcost_.text})
 
-    def build_linecountnumeric(self, cbcnamespace: str) -> None:
+    def build_linecountnumeric(self) -> None:
         # ['LineCountNumeric'] = ('cbc', 'linecountnumeric', 'Zorunlu (1)')
         self._product.add({'linecountnumeric': self.root.find('./' + cbcnamespace + 'LineCountNumeric').text})
 

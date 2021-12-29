@@ -14,39 +14,39 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_ublversionid(self, cbcnamespace: str) -> None:
+    def build_ublversionid(self) -> None:
         pass
 
     @abstractmethod
-    def build_customizationid(self, cbcnamespace: str) -> None:
+    def build_customizationid(self) -> None:
         pass
 
     @abstractmethod
-    def build_profileid(self, cbcnamespace: str) -> None:
+    def build_profileid(self) -> None:
         pass
 
     @abstractmethod
-    def build_id(self, cbcnamespace: str) -> None:
+    def build_id(self) -> None:
         pass
 
     @abstractmethod
-    def build_copyindicator(self, cbcnamespace: str) -> None:
+    def build_copyindicator(self) -> None:
         pass
 
     @abstractmethod
-    def build_issuedate(self, cbcnamespace: str) -> None:
+    def build_issuedate(self) -> None:
         pass
 
     @abstractmethod
-    def build_issuetime(self, cbcnamespace: str) -> None:
+    def build_issuetime(self) -> None:
         pass
 
     @abstractmethod
-    def build_invoicetypecode(self, cbcnamespace: str) -> None:
+    def build_invoicetypecode(self) -> None:
         pass
 
     @abstractmethod
-    def build_despatchadvicetypecode(self, cbcnamespace: str) -> None:
+    def build_despatchadvicetypecode(self) -> None:
         pass
 
     @abstractmethod
@@ -54,31 +54,31 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_documentcurrencycode(self, cbcnamespace: str) -> None:
+    def build_documentcurrencycode(self) -> None:
         pass
 
     @abstractmethod
-    def build_taxcurrencycode(self, cbcnamespace: str) -> None:
+    def build_taxcurrencycode(self) -> None:
         pass
 
     @abstractmethod
-    def build_pricingcurrencycode(self, cbcnamespace: str) -> None:
+    def build_pricingcurrencycode(self) -> None:
         pass
 
     @abstractmethod
-    def build_paymentcurrencycode(self, cbcnamespace: str) -> None:
+    def build_paymentcurrencycode(self) -> None:
         pass
 
     @abstractmethod
-    def build_paymentalternativecurrencycode(self, cbcnamespace: str) -> None:
+    def build_paymentalternativecurrencycode(self) -> None:
         pass
 
     @abstractmethod
-    def build_accountingcost(self, cbcnamespace: str) -> None:
+    def build_accountingcost(self) -> None:
         pass
 
     @abstractmethod
-    def build_linecountnumeric(self, cbcnamespace: str) -> None:
+    def build_linecountnumeric(self) -> None:
         pass
 
     @abstractmethod
