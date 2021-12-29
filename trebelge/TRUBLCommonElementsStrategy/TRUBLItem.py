@@ -28,26 +28,26 @@ class TRUBLItem(TRUBLCommonElement):
         if buyersitemid_:
             frappedoc['buyersitemid'] = TRUBLItemIdentification().process_element(buyersitemid_,
                                                                                   cbcnamespace,
-                                                                                  cacnamespace)
+                                                                                  cacnamespace).name
         # ['SellersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)', 'sellersitemid')
         sellersitemid_: Element = element.find('./' + cacnamespace + 'SellersItemIdentification')
         if sellersitemid_:
             frappedoc['sellersitemid'] = TRUBLItemIdentification().process_element(sellersitemid_,
                                                                                    cbcnamespace,
-                                                                                   cacnamespace)
+                                                                                   cacnamespace).name
         # ['ManufacturersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)', 'manufacturersitemid')
         manufacturersitemid_: Element = element.find('./' + cacnamespace + 'ManufacturersItemIdentification')
         if manufacturersitemid_:
             frappedoc['manufacturersitemid'] = TRUBLItemIdentification().process_element(manufacturersitemid_,
                                                                                          cbcnamespace,
-                                                                                         cacnamespace)
+                                                                                         cacnamespace).name
         # ['OriginCountry'] = ('cac', 'Country', 'Seçimli (0...1)', 'origincountry')
         origincountry_: Element = element.find('./' + cacnamespace + 'OriginCountry')
         if origincountry_:
             frappedoc['origincountry'] = TRUBLCountry().process_element(origincountry_,
                                                                         cbcnamespace,
-                                                                        cacnamespace)
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+                                                                        cacnamespace).name
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)', 'additionalitemid')
         additionalitemids_: list = element.findall('./' + cacnamespace + 'AdditionalItemIdentification')
         if additionalitemids_:
