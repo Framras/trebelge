@@ -30,7 +30,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._namespaces = dict([node for _, node in ET.iterparse(filepath, events=['start-ns'])])
         self._cac_ns = str('{' + self._namespaces.get('cac') + '}')
         self._cbc_ns = str('{' + self._namespaces.get('cbc') + '}')
-        self._product = None
+        self._product: Document = None
         self.root: Element = ET.parse(filepath).getroot()
         self.reset()
 
