@@ -23,8 +23,8 @@ class TRUBLTaxCategory(TRUBLCommonElement):
                 frappedoc[elementtag_.lower()] = field_.text
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
-        frappedoc['taxscheme'] = TRUBLTaxScheme.process_element(taxscheme_,
-                                                                cbcnamespace,
-                                                                cacnamespace).name
+        frappedoc['taxscheme'] = TRUBLTaxScheme().process_element(taxscheme_,
+                                                                  cbcnamespace,
+                                                                  cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

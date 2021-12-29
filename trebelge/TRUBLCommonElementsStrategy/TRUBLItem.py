@@ -62,4 +62,4 @@ class TRUBLItem(TRUBLCommonElement):
                                                                                 cacnamespace))
                 frappedoc[element_.get('fieldName')] = tagelements
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc, False)

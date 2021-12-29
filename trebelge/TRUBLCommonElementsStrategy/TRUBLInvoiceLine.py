@@ -1,6 +1,5 @@
 from xml.etree.ElementTree import Element
 
-from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
@@ -9,6 +8,8 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLLineReference import TRUBLLineRef
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderLineReference import TRUBLOrderLineReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPrice import TRUBLPrice
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
+
+from frappe.model.document import Document
 
 
 class TRUBLInvoiceLine(TRUBLCommonElement):
@@ -31,20 +32,21 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             frappedoc['note'] = note_.text
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
-        frappedoc['item'] = [TRUBLItem.process_element(item_,
-                                                       cbcnamespace,
-                                                       cacnamespace)]
-        # ['Price'] = ('cac', 'Price', 'Zorunlu (1)')
-        price_: Element = element.find('./' + cacnamespace + 'Price')
-        frappedoc['price'] = [TRUBLPrice.process_element(price_,
+        frappedoc['item'] = [TRUBLItem().process_element(item_,
                                                          cbcnamespace,
                                                          cacnamespace)]
+        # ['Price'] = ('cac', 'Price', 'Zorunlu (1)')
+        price_: Element = element.find('./' + cacnamespace + 'Price')
+        frappedoc['price'] = [TRUBLPrice().process_element(price_,
+                                                           cbcnamespace,
+                                                           cacnamespace)]
         # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
         taxtotal_: Element = element.find('./' + cacnamespace + 'TaxTotal')
         if taxtotal_ is not None:
             frappedoc['taxtotal'] = [TRUBLTaxTotal().process_element(taxtotal_,
                                                                      cbcnamespace,
                                                                      cacnamespace)]
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...n)')
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
         # ['ReceiptLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
@@ -69,6 +71,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                     tagelements.append(element_.get('strategy').process_element(tagelement,
                                                                                 cbcnamespace,
                                                                                 cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
+                document.db_set(element_.get('fieldName'), tagelements)
+            document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document

@@ -14,12 +14,14 @@ class TRUBLTaxTotal(TRUBLCommonElement):
         frappedoc: dict = {'taxamount': taxamount_.text,
                            'taxamountcurrencyid': taxamount_.attrib.get('currencyID')
                            }
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
         taxsubtotals: list = []
         for taxsubtotal_ in element.findall('./' + cacnamespace + 'TaxSubtotal'):
             taxsubtotals.append(TRUBLTaxSubtotal().process_element(taxsubtotal_,
                                                                    cbcnamespace,
                                                                    cacnamespace))
-        frappedoc['taxsubtotal'] = taxsubtotals
+        document.taxsubtotal = taxsubtotals
+        document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+        return document

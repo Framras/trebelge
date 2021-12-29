@@ -31,13 +31,12 @@
       "fieldname": "taxsubtotal",
       "fieldtype": "Table MultiSelect",
       "label": "Vergi/Tevkifat kodu ve oran\u0131",
-      "options": "UBL TR TaxSubtotals",
-      "reqd": 1
+      "options": "UBL TR TaxSubtotals"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 13:12:28.488052",
+  "modified": "2021-12-29 16:29:30.718753",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR TaxTotal",
