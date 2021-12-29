@@ -17,13 +17,6 @@ class TRUBLInvoice:
         self._frappeDoctype: str = 'UBL TR Invoice'
         _invoice: Document = frappe.new_doc(self._frappeDoctype)
 
-    def set_uuid(self, uuid_: str):
-        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
-            invoice_: Document = frappe.new_doc(self._frappeDoctype)
-            invoice_.uuid = uuid_
-            self._invoice.insert()
-        invoice = frappe.get_doc(self._frappeDoctype, uuid_)
-        self._invoice = invoice
 
     def add(self, part: dict):
         if self._invoice is not None:

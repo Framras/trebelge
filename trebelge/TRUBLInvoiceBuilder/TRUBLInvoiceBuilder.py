@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
+from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
@@ -25,12 +26,33 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         A fresh builder instance should contain a blank product object, which is
         used in further assembly.
         """
+        self._file_path: str = filepath
+        self._namespaces = None
+        self._cac_namespace = None
+        self._cbc_namespace = None
+        self._uuid = None
+        self._frappeDoctype: str = 'UBL TR Invoice'
         self._product = None
         self.root: Element = ET.parse(filepath).getroot()
         self.reset()
 
     def reset(self) -> None:
-        self._product = TRUBLInvoice()
+        self._namespaces = dict([node for _, node in ET.iterparse(self._file_path, events=['start-ns'])])
+        self._cbc_namespace = '{' + self._namespaces.get('cbc') + '}'
+        self._cac_namespace = '{' + self._namespaces.get('cac') + '}'
+        self._uuid = self.root.find(self._cbc_namespace + 'UUID').text
+        self._product: Document = frappe.new_doc(self._frappeDoctype)
+
+    def get_uuid(self):
+        return self._uuid
+
+    def set_uuid(self, uuid_: str):
+        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
+            invoice_: Document = frappe.new_doc(self._frappeDoctype)
+            invoice_.uuid = uuid_
+            self._invoice.insert()
+        invoice = frappe.get_doc(self._frappeDoctype, uuid_)
+        self._invoice = invoice
 
     @property
     def product(self) -> TRUBLInvoice:
