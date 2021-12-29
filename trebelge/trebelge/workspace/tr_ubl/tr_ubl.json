@@ -30,9 +30,18 @@
       "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "E-Faturalar\u0131m",
+      "link_to": "UBL TR Invoice",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
     }
   ],
-  "modified": "2021-12-29 13:45:23.290545",
+  "modified": "2021-12-29 15:13:29.637035",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL",

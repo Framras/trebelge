@@ -15,9 +15,9 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
                            'taxamountcurrencyid': taxamount_.attrib.get('currencyID')}
         # ['TaxCategory'] = ('cac', 'taxcategory', 'Zorunlu(1)')
         taxcategory_: Element = element.find('./' + cacnamespace + 'TaxCategory')
-        frappedoc['taxcategory'] = TRUBLTaxCategory.process_element(taxcategory_,
-                                                                    cbcnamespace,
-                                                                    cacnamespace).name
+        frappedoc['taxcategory'] = TRUBLTaxCategory().process_element(taxcategory_,
+                                                                      cbcnamespace,
+                                                                      cacnamespace).name
         # ['CalculationSequenceNumeric'] = ('cbc', 'calculationsequencenumeric', 'Seçimli (0...1)')
         # ['Percent'] = ('cbc', 'percent', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CalculationSequenceNumeric', 'Percent']

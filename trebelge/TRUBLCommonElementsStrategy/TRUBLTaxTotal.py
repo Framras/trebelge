@@ -17,9 +17,9 @@ class TRUBLTaxTotal(TRUBLCommonElement):
         # ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
         taxsubtotals: list = []
         for taxsubtotal_ in element.findall('./' + cacnamespace + 'TaxSubtotal'):
-            taxsubtotals.append(TRUBLTaxSubtotal.process_element(taxsubtotal_,
-                                                                 cbcnamespace,
-                                                                 cacnamespace))
+            taxsubtotals.append(TRUBLTaxSubtotal().process_element(taxsubtotal_,
+                                                                   cbcnamespace,
+                                                                   cacnamespace))
         frappedoc['taxsubtotal'] = taxsubtotals
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc, False)

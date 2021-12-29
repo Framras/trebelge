@@ -143,7 +143,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if invoiceperiod_:
             self._product.invoiceperiod = TRUBLPeriod().process_element(invoiceperiod_,
                                                                         self._cbc_ns,
-                                                                        self._cbc_ns)
+                                                                        self._cac_ns)
 
     def build_orderreference(self) -> None:
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...1)', 'orderreference')
@@ -151,7 +151,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if orderreference_:
             self._product.orderreference = TRUBLOrderReference().process_element(orderreference_,
                                                                                  self._cbc_ns,
-                                                                                 self._cbc_ns)
+                                                                                 self._cac_ns)
 
     def build_billingreference(self) -> None:
         # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', 'billingreference')
@@ -229,7 +229,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if paymentterms_:
             self._product.paymentterms = TRUBLPaymentTerms().process_element(paymentterms_,
                                                                              self._cbc_ns,
-                                                                             self._cbc_ns)
+                                                                             self._cac_ns)
 
     def build_allowancecharge(self) -> None:
         # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
@@ -241,7 +241,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if taxexchangerate_:
             self._product.taxexchangerate = TRUBLExchangeRate().process_element(taxexchangerate_,
                                                                                 self._cbc_ns,
-                                                                                self._cbc_ns)
+                                                                                self._cac_ns)
 
     def build_pricingexchangerate(self) -> None:
         # ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'pricingexchangerate')
@@ -249,7 +249,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if pricingexchangerate_:
             self._product.pricingexchangerate = TRUBLExchangeRate().process_element(pricingexchangerate_,
                                                                                     self._cbc_ns,
-                                                                                    self._cbc_ns)
+                                                                                    self._cac_ns)
 
     def build_paymentexchangerate(self) -> None:
         # ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'paymentexchangerate')
@@ -257,7 +257,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if paymentexchangerate_:
             self._product.paymentexchangerate = TRUBLExchangeRate().process_element(paymentexchangerate_,
                                                                                     self._cbc_ns,
-                                                                                    self._cbc_ns)
+                                                                                    self._cac_ns)
 
     def build_paymentalternativeexchangerate(self) -> None:
         # ['PaymentAlternativeExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)',
@@ -268,7 +268,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             self._product.paymentalternativeexchangerate = TRUBLExchangeRate().process_element(
                 paymentalternativeexchangerate_,
                 self._cbc_ns,
-                self._cbc_ns)
+                self._cac_ns)
 
     def build_taxtotal(self) -> None:
         # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', 'taxtotal')
@@ -277,7 +277,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         for taxtotal_ in taxtotals_:
             taxtotal.append(TRUBLTaxTotal().process_element(taxtotal_,
                                                             self._cbc_ns,
-                                                            self._cbc_ns))
+                                                            self._cac_ns))
         self._product.taxtotal = taxtotal
 
     def build_withholdingtaxtotal(self) -> None:
@@ -288,7 +288,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for withholdingtaxtotal_ in withholdingtaxtotals_:
                 withholdingtaxtotal.append(TRUBLTaxTotal().process_element(withholdingtaxtotal_,
                                                                            self._cbc_ns,
-                                                                           self._cbc_ns))
+                                                                           self._cac_ns))
             self._product.withholdingtaxtotal = withholdingtaxtotal
 
     def build_legalmonetarytotal(self) -> None:
@@ -296,7 +296,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         legalmonetarytotal_: Element = self.root.find('./' + self._cac_ns + 'LegalMonetaryTotal')
         self._product.legalmonetarytotal = TRUBLMonetaryTotal().process_element(legalmonetarytotal_,
                                                                                 self._cbc_ns,
-                                                                                self._cbc_ns)
+                                                                                self._cac_ns)
 
     def build_invoiceline(self) -> None:
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
@@ -305,7 +305,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         for invoiceline_ in invoicelines_:
             invoiceline.append(TRUBLInvoiceLine().process_element(invoiceline_,
                                                                   self._cbc_ns,
-                                                                  self._cbc_ns))
+                                                                  self._cac_ns))
         self._product.invoiceline = invoiceline
 
     def build_despatchline(self) -> None:
