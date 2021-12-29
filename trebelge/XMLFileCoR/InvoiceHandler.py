@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as ET
 
 import frappe
-from trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
 from trebelge.TRUBLInvoiceBuilder.TRUBLDirector import TRUBLDirector
 from trebelge.TRUBLInvoiceBuilder.TRUBLInvoiceBuilder import TRUBLInvoiceBuilder
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
