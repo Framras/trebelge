@@ -50,33 +50,33 @@ class TRUBLItem(TRUBLCommonElement):
         document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)', 'additionalitemid')
         additionalitemids_: list = element.findall('./' + cacnamespace + 'AdditionalItemIdentification')
-        if additionalitemids_:
+        if additionalitemids_ is not None:
             additionalitemid: list = []
             for additionalitemid_ in additionalitemids_:
                 additionalitemid.append(TRUBLItemIdentification().process_element(additionalitemid_,
                                                                                   cbcnamespace,
                                                                                   cacnamespace))
-            document.db_set('additionalitemid', additionalitemid)
+            document.additionalitemid = additionalitemid
             document.save()
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)', 'commodityclassification')
         commodityclassifications_: list = element.findall('./' + cacnamespace + 'CommodityClassification')
-        if commodityclassifications_:
+        if commodityclassifications_ is not None:
             commodityclass: list = []
             for commodityclassification_ in commodityclassifications_:
                 commodityclass.append(TRUBLCommodityClassification().process_element(commodityclassification_,
                                                                                      cbcnamespace,
                                                                                      cacnamespace))
-            document.db_set('commodityclass', commodityclass)
+            document.commodityclass = commodityclass
             document.save()
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)', 'iteminstance')
         iteminstances_: list = element.findall('./' + cacnamespace + 'ItemInstance')
-        if iteminstances_:
+        if iteminstances_ is not None:
             iteminstance: list = []
             for iteminstance_ in iteminstances_:
                 iteminstance.append(TRUBLItemInstance().process_element(iteminstance_,
                                                                         cbcnamespace,
                                                                         cacnamespace))
-            document.db_set('iteminstance', iteminstance)
+            document.iteminstance = iteminstance
             document.save()
 
         return document
