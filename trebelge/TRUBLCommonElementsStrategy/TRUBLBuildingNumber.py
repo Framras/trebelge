@@ -9,7 +9,7 @@ class TRUBLBuildingNumber(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
-        # ['Name'] = ('cbc', 'name', 'Seçimli(0..1)', 'financialinstitution')
+        # ['Name'] = ('cbc', 'name', 'Seçimli(0..1)', '')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_ is not None:
             frappedoc['buildingnumber'] = name_.text
