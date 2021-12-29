@@ -18,8 +18,8 @@ class TRUBLLineReference(TRUBLCommonElement):
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)')
         documentreference_: Element = element.find('./' + cacnamespace + 'DocumentReference')
         if documentreference_:
-            frappedoc['documentreference'] = [TRUBLDocumentReference.process_element(documentreference_,
-                                                                                     cbcnamespace,
-                                                                                     cacnamespace)]
+            frappedoc['documentreference'] = TRUBLDocumentReference().process_element(documentreference_,
+                                                                                      cbcnamespace,
+                                                                                      cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

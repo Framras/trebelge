@@ -13,9 +13,9 @@ class TRUBLAttachment(TRUBLCommonElement):
         # ['ExternalReference'] = ('cac', 'ExternalReference()', 'Seçimli (0..1)', 'externalreference')
         externalreference_: Element = element.find('./' + cacnamespace + 'ExternalReference')
         if externalreference_ is not None:
-            frappedoc['externalreference'] = [TRUBLExternalReference.process_element(externalreference_,
-                                                                                     cbcnamespace,
-                                                                                     cacnamespace)]
+            frappedoc['externalreference'] = TRUBLExternalReference().process_element(externalreference_,
+                                                                                      cbcnamespace,
+                                                                                      cacnamespace).name
         # TODO implement Base64 decoder
         # ['EmbeddedDocumentBinaryObject'] = ('cbc', 'embeddeddocumentbinaryobject', 'Seçimli (0..1)')
         # characterSetCode: 'UTF-8'

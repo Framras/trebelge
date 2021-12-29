@@ -54,17 +54,17 @@ class TRUBLDelivery(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_ is not None:
-                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
-                                                                                                 cbcnamespace,
-                                                                                                 cacnamespace)]
+                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
+                                                                                                cbcnamespace,
+                                                                                                cacnamespace).name
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
         deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
         if deliveryterms_ is not None:
             deliveryterms: list = []
             for deliveryterm_ in deliveryterms_:
-                deliveryterms.append(TRUBLDeliveryTerms.process_element(deliveryterm_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace))
+                deliveryterms.append(TRUBLDeliveryTerms().process_element(deliveryterm_,
+                                                                          cbcnamespace,
+                                                                          cacnamespace))
             frappedoc['deliveryterms'] = deliveryterms
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

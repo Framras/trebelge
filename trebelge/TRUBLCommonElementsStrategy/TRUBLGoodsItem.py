@@ -73,9 +73,9 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         # ['OriginAddress'] = ('cac', 'Address', 'Seçimli(0..1)')
         address_: Element = element.find('./' + cacnamespace + 'OriginAddress')
         if address_:
-            frappedoc['originaddress'] = TRUBLAddress.process_element(address_,
-                                                                      cbcnamespace,
-                                                                      cacnamespace)
+            frappedoc['originaddress'] = TRUBLAddress().process_element(address_,
+                                                                        cbcnamespace,
+                                                                        cacnamespace).name
         # ['Item'] = ('cac', 'Item', 'Seçimli(0..n)')
         # ['FreightAllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli(0..n)')
         # ['InvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli(0..n)')

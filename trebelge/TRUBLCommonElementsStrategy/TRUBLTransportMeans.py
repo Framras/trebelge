@@ -51,17 +51,17 @@ class TRUBLTransportMeans(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
-                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
-                                                                                                 cbcnamespace,
-                                                                                                 cacnamespace)]
+                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
+                                                                                                cbcnamespace,
+                                                                                                cacnamespace).name
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
         measurementdimension_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if measurementdimension_:
             measurementdimension: list = []
             for dimension_ in measurementdimension_:
-                measurementdimension.append(TRUBLDimension.process_element(dimension_,
-                                                                           cbcnamespace,
-                                                                           cacnamespace))
+                measurementdimension.append(TRUBLDimension().process_element(dimension_,
+                                                                             cbcnamespace,
+                                                                             cacnamespace))
             frappedoc['measurementdimension'] = measurementdimension
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

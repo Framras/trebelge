@@ -12,9 +12,9 @@ class TRUBLPartyTaxScheme(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['TaxScheme'] = ('cac', 'TaxScheme()', 'Zorunlu (1)', 'taxscheme')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
-        frappedoc['taxscheme'] = TRUBLTaxScheme.process_element(taxscheme_,
-                                                                cbcnamespace,
-                                                                cacnamespace)
+        frappedoc['taxscheme'] = TRUBLTaxScheme().process_element(taxscheme_,
+                                                                  cbcnamespace,
+                                                                  cacnamespace).name
         # ['RegistrationName'] = ('cbc', 'registrationname', 'Seçimli (0...1)')
         # ['CompanyID'] = ('cbc', 'companyid', 'Seçimli (0...1)')
         cbcsecimli01: list = ['RegistrationName', 'CompanyID']

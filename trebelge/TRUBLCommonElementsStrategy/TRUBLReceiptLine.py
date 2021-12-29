@@ -55,19 +55,19 @@ class TRUBLReceiptLine(TRUBLCommonElement):
             frappedoc['rejectreason'] = rejectreason
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
-        frappedoc['item'] = [TRUBLItem.process_element(item_,
-                                                       cbcnamespace,
-                                                       cacnamespace)]
+        frappedoc['item'] = TRUBLItem().process_element(item_,
+                                                        cbcnamespace,
+                                                        cacnamespace).name
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...1)')
         orderlinereference_: Element = element.find('./' + cacnamespace + 'OrderLineReference')
-        frappedoc['orderlinereference'] = [TRUBLOrderLineReference.process_element(orderlinereference_,
-                                                                                   cbcnamespace,
-                                                                                   cacnamespace)]
+        frappedoc['orderlinereference'] = TRUBLOrderLineReference().process_element(orderlinereference_,
+                                                                                    cbcnamespace,
+                                                                                    cacnamespace).name
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...1)')
         linereference_: Element = element.find('./' + cacnamespace + 'DespatchLineReference')
-        frappedoc['linereference'] = [TRUBLLineReference.process_element(linereference_,
-                                                                         cbcnamespace,
-                                                                         cacnamespace)]
+        frappedoc['linereference'] = TRUBLLineReference().process_element(linereference_,
+                                                                          cbcnamespace,
+                                                                          cacnamespace).name
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)')
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli (0...n)')
         cacsecimli0n: list = \

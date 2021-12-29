@@ -25,9 +25,9 @@ class TRUBLOrderReference(TRUBLCommonElement):
         if len(documentreferences_) != 0:
             documentreferences: list = []
             for documentreference_ in documentreferences_:
-                documentreferences.append(TRUBLDocumentReference.process_element(documentreference_,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace))
+                documentreferences.append(TRUBLDocumentReference().process_element(documentreference_,
+                                                                                   cbcnamespace,
+                                                                                   cacnamespace))
             frappedoc['documentreference'] = documentreferences
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

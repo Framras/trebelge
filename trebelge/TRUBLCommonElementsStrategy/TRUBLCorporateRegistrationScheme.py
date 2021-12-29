@@ -27,9 +27,9 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
         if len(jurisdictionregionaddress_) != 0:
             addresses: list = []
             for address_ in jurisdictionregionaddress_:
-                addresses.append(TRUBLAddress.process_element(address_,
-                                                              cbcnamespace,
-                                                              cacnamespace))
+                addresses.append(TRUBLAddress().process_element(address_,
+                                                                cbcnamespace,
+                                                                cacnamespace))
             frappedoc['jurisdictionregionaddress'] = addresses
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

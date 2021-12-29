@@ -61,9 +61,9 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
-                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
-                                                                                                 cbcnamespace,
-                                                                                                 cacnamespace)]
+                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
+                                                                                                cbcnamespace,
+                                                                                                cacnamespace).name
         # ['ActualPackage'] = ('cac', 'Package', 'Seçimli (0...n)')
         # ['TransportEquipment'] = ('cac', 'TransportEquipment', 'Seçimli (0...n)')
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...n)')

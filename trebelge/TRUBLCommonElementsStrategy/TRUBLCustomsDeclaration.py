@@ -14,8 +14,8 @@ class TRUBLCustomsDeclaration(TRUBLCommonElement):
         # ['IssuerParty'] = ('cac', 'Party', 'Seçimli(0..1)', 'issuerparty')
         issuerparty_: Element = element.find('./' + cacnamespace + 'IssuerParty')
         if issuerparty_:
-            frappedoc['issuerparty'] = [TRUBLParty.process_element(issuerparty_,
-                                                                   cbcnamespace,
-                                                                   cacnamespace)]
+            frappedoc['issuerparty'] = TRUBLParty().process_element(issuerparty_,
+                                                                    cbcnamespace,
+                                                                    cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

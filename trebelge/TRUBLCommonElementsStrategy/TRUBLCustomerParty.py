@@ -13,14 +13,14 @@ class TRUBLCustomerParty(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
         party_: Element = element.find('./' + cacnamespace + 'Party')
-        frappedoc['party'] = TRUBLParty.process_element(party_,
-                                                        cbcnamespace,
-                                                        cacnamespace)
+        frappedoc['party'] = TRUBLParty().process_element(party_,
+                                                          cbcnamespace,
+                                                          cacnamespace).name
         # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
         deliverycontact_: Element = element.find('./' + cacnamespace + 'DeliveryContact')
         if deliverycontact_ is not None:
-            frappedoc['deliverycontact'] = TRUBLContact.process_element(deliverycontact_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace)
+            frappedoc['deliverycontact'] = TRUBLContact().process_element(deliverycontact_,
+                                                                          cbcnamespace,
+                                                                          cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

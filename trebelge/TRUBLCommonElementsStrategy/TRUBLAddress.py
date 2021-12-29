@@ -16,9 +16,9 @@ class TRUBLAddress(TRUBLCommonElement):
                            'cityname': element.find('./' + cbcnamespace + 'CityName').text}
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
-        frappedoc['country'] = [TRUBLCountry.process_element(country_,
-                                                             cbcnamespace,
-                                                             cacnamespace)]
+        frappedoc['country'] = TRUBLCountry().process_element(country_,
+                                                              cbcnamespace,
+                                                              cacnamespace).name
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
         # ['Room'] = ('cbc', 'room', 'Seçimli (0...1)')
@@ -39,9 +39,9 @@ class TRUBLAddress(TRUBLCommonElement):
         if len(buildingnumbers_) != 0:
             buildingnumbers: list = []
             for buildingnumber in buildingnumbers_:
-                buildingnumbers.append(TRUBLBuildingNumber.process_element(buildingnumber,
-                                                                           cbcnamespace,
-                                                                           cacnamespace))
+                buildingnumbers.append(TRUBLBuildingNumber().process_element(buildingnumber,
+                                                                             cbcnamespace,
+                                                                             cacnamespace))
             frappedoc['buildingnumber'] = buildingnumbers
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

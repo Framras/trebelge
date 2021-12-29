@@ -13,9 +13,9 @@ class TRUBLLineResponse(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['LineReference'] = ('cac', 'LineReference', 'Zorunlu(1)')
         linereference_: Element = element.find('./' + cacnamespace + 'LineReference')
-        frappedoc['linereference'] = [TRUBLLineReference.process_element(linereference_,
-                                                                         cbcnamespace,
-                                                                         cacnamespace)]
+        frappedoc['linereference'] = TRUBLLineReference().process_element(linereference_,
+                                                                          cbcnamespace,
+                                                                          cacnamespace).name
         # ['Response'] = ('cac', 'Response', 'Zorunlu(1..n)')
         responses: list = []
         for response_ in element.findall('./' + cacnamespace + 'Response'):

@@ -22,14 +22,14 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
         # ['PayerFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
         payerfinancialaccount_ = element.find('./' + cacnamespace + 'PayerFinancialAccount')
         if payerfinancialaccount_:
-            frappedoc['payerfinancialaccount'] = [TRUBLFinancialAccount.process_element(payerfinancialaccount_,
-                                                                                        cbcnamespace,
-                                                                                        cacnamespace)]
+            frappedoc['payerfinancialaccount'] = TRUBLFinancialAccount().process_element(payerfinancialaccount_,
+                                                                                         cbcnamespace,
+                                                                                         cacnamespace).name
         # ['PayeeFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
         payeefinancialaccount_ = element.find('./' + cacnamespace + 'PayeeFinancialAccount')
         if payeefinancialaccount_:
-            frappedoc['payeefinancialaccount'] = [TRUBLFinancialAccount.process_element(payeefinancialaccount_,
-                                                                                        cbcnamespace,
-                                                                                        cacnamespace)]
+            frappedoc['payeefinancialaccount'] = TRUBLFinancialAccount().process_element(payeefinancialaccount_,
+                                                                                         cbcnamespace,
+                                                                                         cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

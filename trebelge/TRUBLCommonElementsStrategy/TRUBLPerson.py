@@ -29,14 +29,14 @@ class TRUBLPerson(TRUBLCommonElement):
         # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)', 'financialaccount')
         financialaccount_: Element = element.find('./' + cacnamespace + 'FinancialAccount')
         if financialaccount_ is not None:
-            frappedoc['financialaccount'] = TRUBLFinancialAccount.process_element(financialaccount_,
-                                                                                  cbcnamespace,
-                                                                                  cacnamespace)
+            frappedoc['financialaccount'] = TRUBLFinancialAccount().process_element(financialaccount_,
+                                                                                    cbcnamespace,
+                                                                                    cacnamespace).name
         # ['IdentityDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)', 'documentreference')
         documentreference_: Element = element.find('./' + cacnamespace + 'IdentityDocumentReference')
         if documentreference_ is not None:
-            frappedoc['documentreference'] = TRUBLDocumentReference.process_element(documentreference_,
-                                                                                    cbcnamespace,
-                                                                                    cacnamespace)
+            frappedoc['documentreference'] = TRUBLDocumentReference().process_element(documentreference_,
+                                                                                      cbcnamespace,
+                                                                                      cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

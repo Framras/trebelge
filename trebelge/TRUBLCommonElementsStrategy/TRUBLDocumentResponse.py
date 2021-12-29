@@ -14,19 +14,19 @@ class TRUBLDocumentResponse(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['Response'] = ('cac', 'Response', 'Zorunlu(1)')
         response_: Element = element.find('./' + cacnamespace + 'Response')
-        frappedoc['response'] = TRUBLResponse.process_element(response_,
-                                                              cbcnamespace,
-                                                              cacnamespace)
+        frappedoc['response'] = TRUBLResponse().process_element(response_,
+                                                                cbcnamespace,
+                                                                cacnamespace).name
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Zorunlu(1)')
         documentreference_: Element = element.find('./' + cacnamespace + 'DocumentReference')
-        frappedoc['documentreference'] = TRUBLDocumentReference.process_element(documentreference_,
-                                                                                cbcnamespace,
-                                                                                cacnamespace)
+        frappedoc['documentreference'] = TRUBLDocumentReference().process_element(documentreference_,
+                                                                                  cbcnamespace,
+                                                                                  cacnamespace).name
         # ['LineResponse'] = ('cac', 'LineResponse', 'Seçimli (0...1)')
         lineresponse_: Element = element.find('./' + cacnamespace + 'LineResponse')
         if lineresponse_:
-            frappedoc['lineresponse'] = TRUBLLineResponse.process_element(lineresponse_,
-                                                                          cbcnamespace,
-                                                                          cacnamespace)
+            frappedoc['lineresponse'] = TRUBLLineResponse().process_element(lineresponse_,
+                                                                            cbcnamespace,
+                                                                            cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

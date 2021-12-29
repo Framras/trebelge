@@ -17,14 +17,14 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Zorunlu(1)')
         orderlinereference_: Element = element.find('./' + cacnamespace + 'OrderLineReference')
-        frappedoc['orderlinereference'] = [TRUBLOrderLineReference.process_element(orderlinereference_,
-                                                                                   cbcnamespace,
-                                                                                   cacnamespace)]
+        frappedoc['orderlinereference'] = TRUBLOrderLineReference().process_element(orderlinereference_,
+                                                                                    cbcnamespace,
+                                                                                    cacnamespace).name
         # ['Item'] = ('cac', 'Item', 'Zorunlu(1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
-        frappedoc['item'] = [TRUBLItem.process_element(item_,
-                                                       cbcnamespace,
-                                                       cacnamespace)]
+        frappedoc['item'] = TRUBLItem().process_element(item_,
+                                                        cbcnamespace,
+                                                        cacnamespace).name
         # ['DeliveredQuantity'] = ('cbc', '', 'Seçimli (0...1)')
         # ['OutstandingQuantity'] = ('cbc', '', 'Seçimli(0..1)')
         # ['OversupplyQuantity'] = ('cbc', '', 'Seçimli(0..1)')

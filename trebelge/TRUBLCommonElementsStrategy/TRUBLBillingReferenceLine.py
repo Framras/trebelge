@@ -21,9 +21,9 @@ class TRUBLBillingReferenceLine(TRUBLCommonElement):
         if len(allowancecharges_) != 0:
             allowancecharge: list = []
             for allowancecharge_ in allowancecharges_:
-                allowancecharge.append(TRUBLAllowanceCharge.process_element(allowancecharge_,
-                                                                            cbcnamespace,
-                                                                            cacnamespace))
+                allowancecharge.append(TRUBLAllowanceCharge().process_element(allowancecharge_,
+                                                                              cbcnamespace,
+                                                                              cacnamespace))
             frappedoc['allowancecharge'] = allowancecharge
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

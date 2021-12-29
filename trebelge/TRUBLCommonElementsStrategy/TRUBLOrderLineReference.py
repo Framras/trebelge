@@ -22,8 +22,8 @@ class TRUBLOrderLineReference(TRUBLCommonElement):
         # ['OrderReference'] = ('cac', 'OrderReference', 'Seçimli (0...1)')
         orderreference_: Element = element.find('./' + cacnamespace + 'OrderReference')
         if orderreference_ is not None:
-            frappedoc['orderreference'] = [TRUBLOrderReference.process_element(orderreference_,
-                                                                               cbcnamespace,
-                                                                               cacnamespace)]
+            frappedoc['orderreference'] = TRUBLOrderReference().process_element(orderreference_,
+                                                                                cbcnamespace,
+                                                                                cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

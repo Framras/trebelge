@@ -29,9 +29,9 @@ class TRUBLContact(TRUBLCommonElement):
         if len(othercommunications_) != 0:
             communications: list = []
             for othercommunication in othercommunications_:
-                communications.append(TRUBLCommunication.process_element(othercommunication,
-                                                                         cbcnamespace,
-                                                                         cacnamespace))
+                communications.append(TRUBLCommunication().process_element(othercommunication,
+                                                                           cbcnamespace,
+                                                                           cacnamespace))
             frappedoc['othercommunication'] = communications
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -17,8 +17,8 @@ class TRUBLLocation(TRUBLCommonElement):
         # ['Address'] = ('cac', 'Address()', 'Seçimli (0...1)','address')
         address_: Element = element.find('./' + cacnamespace + 'Address')
         if address_ is not None:
-            frappedoc['address'] = TRUBLAddress.process_element(address_,
-                                                                cbcnamespace,
-                                                                cacnamespace)
+            frappedoc['address'] = TRUBLAddress().process_element(address_,
+                                                                  cbcnamespace,
+                                                                  cacnamespace).name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -45,9 +45,9 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         if len(driverpeople_) != 0:
             driverpeople: list = []
             for driverperson_ in driverpeople_:
-                driverpeople.append(TRUBLPerson.process_element(driverperson_,
-                                                                cbcnamespace,
-                                                                cacnamespace))
+                driverpeople.append(TRUBLPerson().process_element(driverperson_,
+                                                                  cbcnamespace,
+                                                                  cacnamespace))
             frappedoc['driverperson'] = driverpeople
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
