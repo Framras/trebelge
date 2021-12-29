@@ -21,15 +21,15 @@ class TRUBLParty(TRUBLCommonElement):
         partyidentifications_: list = element.findall('./' + cacnamespace + 'PartyIdentification')
         partyidentifications: list = []
         for partyidentification in partyidentifications_:
-            partyidentifications.append(TRUBLPartyIdentification.process_element(partyidentification,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace))
+            partyidentifications.append(TRUBLPartyIdentification().process_element(partyidentification,
+                                                                                   cbcnamespace,
+                                                                                   cacnamespace))
         frappedoc['partyidentification'] = partyidentifications
         # ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
         postaladdress_: Element = element.find('./' + cacnamespace + 'PostalAddress')
-        frappedoc['postaladdress'] = [TRUBLAddress.process_element(postaladdress_,
-                                                                   cbcnamespace,
-                                                                   cacnamespace)]
+        frappedoc['postaladdress'] = TRUBLAddress().process_element(postaladdress_,
+                                                                    cbcnamespace,
+                                                                    cacnamespace).name
         # ['WebsiteURI'] = ('cbc', 'websiteuri', 'Seçimli (0...1)')
         # ['EndpointID'] = ('cbc', 'endpointid', 'Seçimli (0...1)')
         # ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
@@ -55,17 +55,17 @@ class TRUBLParty(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_ is not None:
-                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
-                                                                                                 cbcnamespace,
-                                                                                                 cacnamespace)]
+                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
+                                                                                                cbcnamespace,
+                                                                                                cacnamespace).name
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
         partylegalentity_: Element = element.find('./' + cacnamespace + 'PartyLegalEntity')
         if partylegalentity_ is not None:
             partylegalentities: list = []
             for partylegalentity in partylegalentity_:
-                partylegalentities.append(TRUBLPartyLegalEntity.process_element(partylegalentity,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
+                partylegalentities.append(TRUBLPartyLegalEntity().process_element(partylegalentity,
+                                                                                  cbcnamespace,
+                                                                                  cacnamespace))
             frappedoc['partylegalentity'] = partylegalentities
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
