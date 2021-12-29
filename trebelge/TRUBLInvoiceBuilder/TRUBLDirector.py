@@ -1,4 +1,3 @@
-from apps.frappe.frappe.model.document import Document
 from apps.trebelge.trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
 
 
@@ -31,7 +30,7 @@ class TRUBLDirector:
     building steps.
     """
 
-    def make_tr_ubl_invoice(self) -> Document:
+    def make_tr_ubl_invoice(self) -> None:
         self.builder.build_ublversionid(self)
         self.builder.build_customizationid(self)
         self.builder.build_profileid(self)
@@ -73,9 +72,8 @@ class TRUBLDirector:
         self.builder.build_withholdingtaxtotal(self)
         self.builder.build_legalmonetarytotal(self)
         self.builder.build_invoiceline(self)
-        return self.builder.product()
 
-    def make_tr_ubl_despatchadvice(self) -> Document:
+    def make_tr_ubl_despatchadvice(self) -> None:
         self.builder.build_ublversionid(self)
         self.builder.build_customizationid(self)
         self.builder.build_profileid(self)
@@ -95,4 +93,3 @@ class TRUBLDirector:
         self.builder.build_originatorcustomerparty(self)
         self.builder.build_shipment(self)
         self.builder.build_despatchline(self)
-        return self.builder.product()

@@ -1,11 +1,11 @@
 import xml.etree.ElementTree as ET
 
-import frappe
-from trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
-from trebelge.TRUBLInvoiceBuilder.TRUBLDirector import TRUBLDirector
-from trebelge.TRUBLInvoiceBuilder.TRUBLInvoiceBuilder import TRUBLInvoiceBuilder
-from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
-from trebelge.XMLFileCoR.DespatchAdviceHandler import DespatchAdviceHandler
+from apps.frappe import frappe
+from apps.trebelge.trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
+from apps.trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLDirector import TRUBLDirector
+from apps.trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLInvoiceBuilder import TRUBLInvoiceBuilder
+from apps.trebelge.trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
+from apps.trebelge.trebelge.XMLFileCoR.DespatchAdviceHandler import DespatchAdviceHandler
 
 
 class InvoiceHandler(AbstractXMLFileHandler):
@@ -25,5 +25,7 @@ class InvoiceHandler(AbstractXMLFileHandler):
                 builder: TRUBLBuilder = TRUBLInvoiceBuilder(file_path)
                 director = TRUBLDirector(builder)
                 director.make_tr_ubl_invoice()
+                if builder.product:
+                    pass
             else:
                 self._successor.handle_xml_file(file_path)
