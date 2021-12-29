@@ -31,7 +31,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._cac_ns = str('{' + self._namespaces.get('cac') + '}')
         self._cbc_ns = str('{' + self._namespaces.get('cbc') + '}')
         self._product = None
-        self.root = ET.parse(filepath).getroot()
+        self.root: Element = ET.parse(filepath).getroot()
         self.reset()
 
     def reset(self) -> None:
@@ -139,7 +139,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_invoiceperiod(self) -> None:
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
-        invoiceperiod_: Element = self.root.find('./' + self._cbc_ns + 'InvoicePeriod')
+        invoiceperiod_: Element = self.root.find('./' + self._cac_ns + 'InvoicePeriod')
         if invoiceperiod_:
             self._product.invoiceperiod = TRUBLPeriod().process_element(invoiceperiod_,
                                                                         self._cbc_ns,
@@ -147,7 +147,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_orderreference(self) -> None:
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...1)', 'orderreference')
-        orderreference_: Element = self.root.find('./' + self._cbc_ns + 'OrderReference')
+        orderreference_: Element = self.root.find('./' + self._cac_ns + 'OrderReference')
         if orderreference_:
             self._product.orderreference = TRUBLOrderReference().process_element(orderreference_,
                                                                                  self._cbc_ns,
@@ -225,7 +225,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_paymentterms(self) -> None:
         # ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
-        paymentterms_: Element = self.root.find('./' + self._cbc_ns + 'PaymentTerms')
+        paymentterms_: Element = self.root.find('./' + self._cac_ns + 'PaymentTerms')
         if paymentterms_:
             self._product.paymentterms = TRUBLPaymentTerms().process_element(paymentterms_,
                                                                              self._cbc_ns,
@@ -237,7 +237,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_taxexchangerate(self) -> None:
         # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
-        taxexchangerate_: Element = self.root.find('./' + self._cbc_ns + 'TaxExchangeRate')
+        taxexchangerate_: Element = self.root.find('./' + self._cac_ns + 'TaxExchangeRate')
         if taxexchangerate_:
             self._product.taxexchangerate = TRUBLExchangeRate().process_element(taxexchangerate_,
                                                                                 self._cbc_ns,
@@ -245,7 +245,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_pricingexchangerate(self) -> None:
         # ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'pricingexchangerate')
-        pricingexchangerate_: Element = self.root.find('./' + self._cbc_ns + 'PricingExchangeRate')
+        pricingexchangerate_: Element = self.root.find('./' + self._cac_ns + 'PricingExchangeRate')
         if pricingexchangerate_:
             self._product.pricingexchangerate = TRUBLExchangeRate().process_element(pricingexchangerate_,
                                                                                     self._cbc_ns,
@@ -253,7 +253,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_paymentexchangerate(self) -> None:
         # ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'paymentexchangerate')
-        paymentexchangerate_: Element = self.root.find('./' + self._cbc_ns + 'PaymentExchangeRate')
+        paymentexchangerate_: Element = self.root.find('./' + self._cac_ns + 'PaymentExchangeRate')
         if paymentexchangerate_:
             self._product.paymentexchangerate = TRUBLExchangeRate().process_element(paymentexchangerate_,
                                                                                     self._cbc_ns,
@@ -263,7 +263,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['PaymentAlternativeExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)',
         # 'paymentalternativeexchangerate')
         paymentalternativeexchangerate_: Element = self.root.find(
-            './' + self._cbc_ns + 'PaymentAlternativeExchangeRate')
+            './' + self._cac_ns + 'PaymentAlternativeExchangeRate')
         if paymentalternativeexchangerate_:
             self._product.paymentalternativeexchangerate = TRUBLExchangeRate().process_element(
                 paymentalternativeexchangerate_,
@@ -272,7 +272,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_taxtotal(self) -> None:
         # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', 'taxtotal')
-        taxtotals_: list = self.root.findall('./' + self._cbc_ns + 'TaxTotal')
+        taxtotals_: list = self.root.findall('./' + self._cac_ns + 'TaxTotal')
         taxtotal: list = []
         for taxtotal_ in taxtotals_:
             taxtotal.append(TRUBLTaxTotal().process_element(taxtotal_,
@@ -282,7 +282,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_withholdingtaxtotal(self) -> None:
         # ['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', 'withholdingtaxtotal')
-        withholdingtaxtotals_: list = self.root.findall('./' + self._cbc_ns + 'WithholdingTaxTotal')
+        withholdingtaxtotals_: list = self.root.findall('./' + self._cac_ns + 'WithholdingTaxTotal')
         if withholdingtaxtotals_:
             withholdingtaxtotal: list = []
             for withholdingtaxtotal_ in withholdingtaxtotals_:
@@ -293,14 +293,14 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_legalmonetarytotal(self) -> None:
         # ['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)', 'legalmonetarytotal')
-        legalmonetarytotal_: Element = self.root.find('./' + self._cbc_ns + 'LegalMonetaryTotal')
+        legalmonetarytotal_: Element = self.root.find('./' + self._cac_ns + 'LegalMonetaryTotal')
         self._product.legalmonetarytotal = TRUBLMonetaryTotal().process_element(legalmonetarytotal_,
                                                                                 self._cbc_ns,
                                                                                 self._cbc_ns)
 
     def build_invoiceline(self) -> None:
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
-        invoicelines_: list = self.root.findall('./' + self._cbc_ns + 'InvoiceLine')
+        invoicelines_: list = self.root.findall('./' + self._cac_ns + 'InvoiceLine')
         invoiceline: list = []
         for invoiceline_ in invoicelines_:
             invoiceline.append(TRUBLInvoiceLine().process_element(invoiceline_,
