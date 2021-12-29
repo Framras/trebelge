@@ -11,10 +11,10 @@
     "keyword",
     "brandname",
     "modelname",
-    "buyersitemidentification",
-    "sellersitemidentification",
-    "manufacturersitemidentification",
-    "additionalitemidentification",
+    "buyersitemid",
+    "sellersitemid",
+    "manufacturersitemid",
+    "additionalitemid",
     "origincountry",
     "commodityclassification",
     "iteminstance"
@@ -48,30 +48,6 @@
       "label": "Mal/hizmet model ad\u0131"
     },
     {
-      "fieldname": "buyersitemidentification",
-      "fieldtype": "Link",
-      "label": "Al\u0131c\u0131n\u0131n tan\u0131mlamas\u0131",
-      "options": "UBL TR ItemIdentification"
-    },
-    {
-      "fieldname": "sellersitemidentification",
-      "fieldtype": "Link",
-      "label": "Sat\u0131c\u0131n\u0131n tan\u0131mlamas\u0131",
-      "options": "UBL TR ItemIdentification"
-    },
-    {
-      "fieldname": "manufacturersitemidentification",
-      "fieldtype": "Link",
-      "label": "\u00dcreticinin tan\u0131mlamas\u0131",
-      "options": "UBL TR ItemIdentification"
-    },
-    {
-      "fieldname": "additionalitemidentification",
-      "fieldtype": "Link",
-      "label": "Di\u011fer s\u0131n\u0131fland\u0131rma bilgileri",
-      "options": "UBL TR ItemIdentification"
-    },
-    {
       "fieldname": "origincountry",
       "fieldtype": "Link",
       "label": "Men\u015fei bilgisi",
@@ -88,11 +64,35 @@
       "fieldtype": "Table MultiSelect",
       "label": "Ek bilgiler",
       "options": "UBL TR ItemInstances"
+    },
+    {
+      "fieldname": "buyersitemid",
+      "fieldtype": "Link",
+      "label": "Al\u0131c\u0131n\u0131n tan\u0131mlamas\u0131",
+      "options": "UBL TR ItemIdentification"
+    },
+    {
+      "fieldname": "sellersitemid",
+      "fieldtype": "Link",
+      "label": "Sat\u0131c\u0131n\u0131n tan\u0131mlamas\u0131",
+      "options": "UBL TR ItemIdentification"
+    },
+    {
+      "fieldname": "manufacturersitemid",
+      "fieldtype": "Link",
+      "label": "\u00dcreticinin tan\u0131mlamas\u0131",
+      "options": "UBL TR ItemIdentification"
+    },
+    {
+      "fieldname": "additionalitemid",
+      "fieldtype": "Table MultiSelect",
+      "label": "Di\u011fer s\u0131n\u0131fland\u0131rma bilgileri",
+      "options": "UBL TR ItemIdentifications"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-22 13:12:08.260226",
+  "modified": "2021-12-29 17:51:41.375526",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Item",

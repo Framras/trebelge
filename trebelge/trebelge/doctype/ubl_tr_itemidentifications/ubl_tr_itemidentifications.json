@@ -1,0 +1,30 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-29 17:29:46.609029",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "itemidentification"
+  ],
+  "fields": [
+    {
+      "fieldname": "itemidentification",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "ItemIdentification",
+      "options": "UBL TR ItemIdentification"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2021-12-29 17:29:46.609029",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR ItemIdentifications",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

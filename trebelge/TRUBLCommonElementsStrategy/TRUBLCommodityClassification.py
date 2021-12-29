@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+import frappe
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 
@@ -12,8 +13,11 @@ class TRUBLCommodityClassification(TRUBLCommonElement):
         # ['ItemClassificationCode'] = ('cbc', 'itemclassificationcode', 'Zorunlu(1)')
         # ['listAgencyID'] = ('', 'itemclassificationcode_listagencyid', 'Zorunlu(1)')
         # ['listID'] = ('', 'itemclassificationcode_listid', 'Zorunlu(1)')
-        frappedoc: dict = {'itemclassificationcode': itemclassificationcode_.text,
-                           'listagencyid': itemclassificationcode_.attrib.get('listAgencyID'),
-                           'listid': itemclassificationcode_.attrib.get('listID')}
-
+        frappedoc: dict = {'itemclassificationcode': itemclassificationcode_.text}
+        for key in itemclassificationcode_.attrib.keys():
+            meta = frappe.get_meta(self._frappeDoctype)
+            if meta.has_field(key.lower()):
+                frappedoc[key.lower()] = itemclassificationcode_.attrib.get(key)
+            else:
+                frappe.log_error(key + ' not found as field in ' + self._frappeDoctype)
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

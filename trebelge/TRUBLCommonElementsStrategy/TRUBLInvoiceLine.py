@@ -72,6 +72,6 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                                                                                 cbcnamespace,
                                                                                 cacnamespace))
                 document.db_set(element_.get('fieldName'), tagelements)
-            document.save()
+                document.save()
 
         return document

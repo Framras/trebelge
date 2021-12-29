@@ -29,19 +29,20 @@ class TRUBLItem(TRUBLCommonElement):
         # ['OriginCountry'] = ('cac', 'Country', 'Seçimli (0...1)')
         cacsecimli01: list = \
             [{'Tag': 'BuyersItemIdentification', 'strategy': TRUBLItemIdentification(),
-              'fieldName': 'buyersitemidentification'},
+              'fieldName': 'buyersitemid'},
              {'Tag': 'SellersItemIdentification', 'strategy': TRUBLItemIdentification(),
-              'fieldName': 'sellersitemidentification'},
+              'fieldName': 'sellersitemid'},
              {'Tag': 'ManufacturersItemIdentification', 'strategy': TRUBLItemIdentification(),
-              'fieldName': 'manufacturersitemidentification'},
+              'fieldName': 'manufacturersitemid'},
              {'Tag': 'OriginCountry', 'strategy': TRUBLCountry(), 'fieldName': 'origincountry'}
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_:
-                frappedoc[element_.get('fieldName')] = [element_.get('strategy').process_element(tagelement_,
-                                                                                                 cbcnamespace,
-                                                                                                 cacnamespace)]
+                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
+                                                                                                cbcnamespace,
+                                                                                                cacnamespace)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)')
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)')
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)')
@@ -60,6 +61,7 @@ class TRUBLItem(TRUBLCommonElement):
                     tagelements.append(element_.get('strategy').process_element(tagelement,
                                                                                 cbcnamespace,
                                                                                 cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
+                document.db_set(element_.get('fieldName'), tagelements)
+                document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+        return document

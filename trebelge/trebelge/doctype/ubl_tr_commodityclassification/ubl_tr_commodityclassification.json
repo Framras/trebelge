@@ -9,7 +9,9 @@
   "field_order": [
     "itemclassificationcode",
     "listagencyid",
-    "listid"
+    "listid",
+    "listname",
+    "listversionid"
   ],
   "fields": [
     {
@@ -29,11 +31,21 @@
       "fieldname": "listid",
       "fieldtype": "Data",
       "label": "listID"
+    },
+    {
+      "fieldname": "listname",
+      "fieldtype": "Data",
+      "label": "listName"
+    },
+    {
+      "fieldname": "listversionid",
+      "fieldtype": "Data",
+      "label": "listVersionID"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 19:24:18.428410",
+  "modified": "2021-12-29 16:53:31.387390",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR CommodityClassification",
