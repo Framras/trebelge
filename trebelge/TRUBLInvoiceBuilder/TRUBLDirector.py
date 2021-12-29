@@ -1,4 +1,4 @@
-from apps.trebelge.trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
+from trebelge.TRUBLInvoiceBuilder import TRUBLBuilder
 
 
 class TRUBLDirector:

@@ -1,17 +1,17 @@
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
-from apps.frappe import frappe
-from apps.frappe.frappe.model.document import Document
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentTerms import TRUBLPaymentTerms
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
-from apps.trebelge.trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
+import frappe
+from frappe.model.document import Document
+from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
+from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
+from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
+from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
+from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
+from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentTerms import TRUBLPaymentTerms
+from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
+from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
+from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
 
 
 class TRUBLInvoiceBuilder(TRUBLBuilder):

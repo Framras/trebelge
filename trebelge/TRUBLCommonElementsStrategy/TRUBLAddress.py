@@ -1,9 +1,9 @@
 from xml.etree.ElementTree import Element
 
 from apps.frappe.frappe.model.document import Document
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from apps.trebelge.trebelge.TRUBLCommonElementsStrategy.TRUBLCountry import TRUBLCountry
+from trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
+from trebelge.TRUBLCommonElementsStrategy.TRUBLCountry import TRUBLCountry
 
 
 class TRUBLAddress(TRUBLCommonElement):
