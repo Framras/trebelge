@@ -8,7 +8,10 @@ class TRUBLBuildingNumber(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR BuildingNumber'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
-        frappedoc: dict = {'buildingnumber': element.find('./' + cbcnamespace + 'BuildingNumber').text}
+        frappedoc: dict = {}
+        # ['Name'] = ('cbc', 'name', 'Seçimli(0..1)', 'financialinstitution')
+        name_: Element = element.find('./' + cbcnamespace + 'Name')
+        if name_ is not None:
+            frappedoc['buildingnumber'] = name_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
