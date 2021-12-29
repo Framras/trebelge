@@ -73,7 +73,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_issuetime(self) -> None:
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
-        if issuetime_:
+        if issuetime_ is not None:
             self._product.issuetime = issuetime_.text
 
     def build_invoicetypecode(self) -> None:
