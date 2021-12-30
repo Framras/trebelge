@@ -16,7 +16,7 @@ class TRUBLCountry(TRUBLCommonElement):
             frappedoc['countryname'] = countryname.text
         else:
             frappe.log_error('countryname not provided for ' + element.tag, 'TRUBLCountry')
-            frappedoc['countryname'] = str('')
+            frappedoc['countryname'] = str(' ')
 
         # ['IdentificationCode'] = ('cbc', 'identificationcode', 'Seçimli (0...1)')
         identificationcode_: Element = element.find('./' + cbcnamespace + 'IdentificationCode')
