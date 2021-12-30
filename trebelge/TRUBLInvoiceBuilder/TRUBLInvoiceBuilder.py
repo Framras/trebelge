@@ -2,7 +2,6 @@ import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
 import frappe
-from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCustomerParty import TRUBLCustomerParty
@@ -424,6 +423,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._product.despatchline = despatchline
 
     def get_document(self) -> None:
-        product: Document = self._product.save()
+        product = self._product.save()
         self.reset()
         return product
