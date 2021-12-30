@@ -55,15 +55,5 @@ def check_all_xml_files():
         filePath: str = frappe.get_site_path() + xmlFile.get('file_url')
         hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
         hXMLFileHandler.handle_xml_file(filePath)
-        # initiate Context of State pattern
-        # stateContext = XMLFileStateContext()
-        # handle file by CoR to determine State
-        # stateContext.set_state(hXMLFileHandler.handle_xml_file(filePath))
-        # initiate Context of State pattern for FileType
-        # stateContext.set_file_path(filePath)
-        # check on State if file is previously processed and recorded
-        # stateContext.find_ebelge_status()
-        # process xml file
-        # stateContext.read_xml_file()
 
     return frappe.utils.now_datetime()
