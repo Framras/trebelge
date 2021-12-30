@@ -10,7 +10,7 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
-        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID')}
+        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
         # ['CurrencyCode'] = ('cbc', 'currencycode', 'Seçimli (0...1)')
         # ['PaymentNote'] = ('cbc', 'paymentnote', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CurrencyCode', 'PaymentNote']
