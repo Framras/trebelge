@@ -95,8 +95,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "\u00dclke",
-      "options": "UBL TR Country",
-      "reqd": 1
+      "options": "UBL TR Country"
     },
     {
       "description": "Bina veya blo\u011fa ait d\u0131\u015f kap\u0131 numaras\u0131 girilecektir.",
@@ -108,7 +107,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-30 18:00:15.188386",
+  "modified": "2021-12-30 18:13:34.845943",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Address",
