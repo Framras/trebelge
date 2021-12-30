@@ -54,40 +54,41 @@
     {
       "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
       "fieldname": "ublversionid",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "label": "UBL Versiyon Numaras\u0131",
-      "options": "UBL TR UBLVersionID",
+      "reqd": 1,
       "search_index": 1
     },
     {
       "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
       "fieldname": "customizationid",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "label": "\u00d6zelle\u015ftirme Numaras\u0131",
-      "options": "UBL TR CustomizationID",
+      "reqd": 1,
       "search_index": 1
     },
     {
       "description": "Kullan\u0131lan senaryodur.",
       "fieldname": "profileid",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "in_list_view": 1,
       "label": "Senaryo",
-      "options": "UBL TR ProfileID",
+      "reqd": 1,
       "search_index": 1
     },
     {
       "fieldname": "id",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Fatura Numaras\u0131"
+      "label": "Fatura Numaras\u0131",
+      "reqd": 1
     },
     {
       "description": "Bu elemanda d\u00fczenlenen faturan\u0131n as\u0131l veya suret oldu\u011fu g\u00f6sterilecektir.",
       "fieldname": "copyindicator",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "label": "As\u0131l/Suret",
-      "options": "UBL TR Indicators",
+      "reqd": 1,
       "search_index": 1
     },
     {
@@ -104,7 +105,8 @@
       "fieldname": "issuedate",
       "fieldtype": "Date",
       "in_list_view": 1,
-      "label": "D\u00fczenleme Tarihi"
+      "label": "D\u00fczenleme Tarihi",
+      "reqd": 1
     },
     {
       "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
@@ -115,10 +117,10 @@
     {
       "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
       "fieldname": "invoicetypecode",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "in_list_view": 1,
       "label": "Fatura Tip Kodu",
-      "options": "UBL TR InvoiceTypeCode",
+      "reqd": 1,
       "search_index": 1
     },
     {
@@ -128,6 +130,7 @@
       "in_list_view": 1,
       "label": "Belge Para Birim Kodu",
       "options": "UBL TR CurrencyCode",
+      "reqd": 1,
       "search_index": 1
     },
     {
@@ -350,7 +353,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-28 20:13:03.901191",
+  "modified": "2021-12-31 00:07:53.779930",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Invoice",

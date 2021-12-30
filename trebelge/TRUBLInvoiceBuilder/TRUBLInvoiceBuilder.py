@@ -46,52 +46,37 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         _namespaces = dict([node for _, node in ET.iterparse(self.filepath, events=['start-ns'])])
         self._cac_ns = str('{' + _namespaces.get('cac') + '}')
         self._cbc_ns = str('{' + _namespaces.get('cbc') + '}')
-        self.root: Element = ET.parse(self.filepath).getroot()
-        uuid_ = self.root.find('./' + self._cbc_ns + 'UUID').text
+        root_: Element = ET.parse(self.filepath).getroot()
+        uuid_ = root_.find('./' + self._cbc_ns + 'UUID').text
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
             invoice_ = frappe.new_doc(self._frappeDoctype)
             invoice_.uuid = uuid_
+            invoice_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
+            invoice_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
+            invoice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
+            invoice_.id = root_.find('./' + self._cbc_ns + 'ID').text
+            invoice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
+            invoice_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
+            invoice_.invoicetypecode = root_.find('./' + self._cbc_ns + 'InvoiceTypeCode').text
+            invoice_.documentcurrencycode = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode').text
+            taxcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'TaxCurrencyCode')
+            if taxcurrencycode_:
+                invoice_.taxcurrencycode = taxcurrencycode_.text
+            pricingcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'PricingCurrencyCode')
+            if pricingcurrencycode_:
+                invoice_.pricingcurrencycode = pricingcurrencycode_.text
+            paymentcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'PaymentCurrencyCode')
+            if paymentcurrencycode_:
+                invoice_.paymentcurrencycode = paymentcurrencycode_.text
+            paymentalternativecurrencycode_: Element = root_.find(
+                './' + self._cbc_ns + 'PaymentAlternativeCurrencyCode')
+            if paymentalternativecurrencycode_:
+                invoice_.paymentalternativecurrencycode = paymentalternativecurrencycode_.text
+            invoice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
+
             invoice_.insert()
-        invoice = frappe.get_doc(self._frappeDoctype, uuid_)
-        self._product = invoice
-
-    def build_ublversionid(self) -> None:
-        # ['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)')
-        self._product.ublversionid = self.root.find('./' + self._cbc_ns + 'UBLVersionID').text
-
-    def build_customizationid(self) -> None:
-        # ['CustomizationID'] = ('cbc', 'customizationid', 'Zorunlu (1)')
-        self._product.customizationid = self.root.find('./' + self._cbc_ns + 'CustomizationID').text
-
-    def build_profileid(self) -> None:
-        doctype: str = 'UBL TR ProfileID'
-        ebelge_type: str = 'Invoice'
-        # ['ProfileID'] = ('cbc', 'profileid', 'Zorunlu (1)')
-        profileid: Element = self.root.find('./' + self._cbc_ns + 'ProfileID')
-        self._product.profileid = frappe.db.get_list(doctype,
-                                                     filters={
-                                                         'ebelge_type': ebelge_type,
-                                                         'profileid': profileid.text
-                                                     }, fields={"name"})[0]['name']
-
-    def build_id(self) -> None:
-        # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
-        self._product.id = self.root.find('./' + self._cbc_ns + 'ID').text
-
-    def build_copyindicator(self) -> None:
-        doctype: str = 'UBL TR Indicators'
-        type_: str = 'CopyIndicator'
-        # ['CopyIndicator'] = ('cbc', 'copyindicator', 'Zorunlu (1)')
-        copyindicator: Element = self.root.find('./' + self._cbc_ns + 'CopyIndicator')
-        self._product.copyindicator = frappe.db.get_list(doctype,
-                                                         filters={
-                                                             "type": type_,
-                                                             "indicator": copyindicator.text
-                                                         }, fields=["name"])[0]['name']
-
-    def build_issuedate(self) -> None:
-        # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu (1)')
-        self._product.issuedate = self.root.find('./' + self._cbc_ns + 'IssueDate').text
+        self.root = root_
+        self._product = frappe.get_doc(self._frappeDoctype, uuid_)
 
     def build_issuetime(self) -> None:
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
@@ -100,10 +85,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             self._product.issuetime = issuetime_.text
         else:
             self._product.issuetime = ""
-
-    def build_invoicetypecode(self) -> None:
-        # ['InvoiceTypeCode'] = ('cbc', 'invoicetypecode', 'Zorunlu (1)')
-        self._product.invoicetypecode = self.root.find('./' + self._cbc_ns + 'InvoiceTypeCode').text
 
     def build_despatchadvicetypecode(self) -> None:
         # ['DespatchAdviceTypeCode'] = ('cbc', 'despatchadvicetypecode', 'Zorunlu (1)')
@@ -120,44 +101,15 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                         self._cbc_ns))
             self._product.note = note
 
-    def build_documentcurrencycode(self) -> None:
-        # ['DocumentCurrencyCode'] = ('cbc', 'documentcurrencycode', 'Zorunlu (1)')
-        self._product.documentcurrencycode = self.root.find('./' + self._cbc_ns + 'DocumentCurrencyCode').text
-
-    def build_taxcurrencycode(self) -> None:
-        # ['TaxCurrencyCode'] = ('cbc', 'taxcurrencycode', 'Seçimli (0...1)')
-        taxcurrencycode_: Element = self.root.find('./' + self._cbc_ns + 'TaxCurrencyCode')
-        if taxcurrencycode_:
-            self._product.taxcurrencycode = taxcurrencycode_.text
-
-    def build_pricingcurrencycode(self) -> None:
-        # ['PricingCurrencyCode'] = ('cbc', 'pricingcurrencycode', 'Seçimli (0...1)')
-        pricingcurrencycode_: Element = self.root.find('./' + self._cbc_ns + 'PricingCurrencyCode')
-        if pricingcurrencycode_:
-            self._product.pricingcurrencycode = pricingcurrencycode_.text
-
-    def build_paymentcurrencycode(self) -> None:
-        # ['PaymentCurrencyCode'] = ('cbc', 'paymentcurrencycode', 'Seçimli (0...1)')
-        paymentcurrencycode_: Element = self.root.find('./' + self._cbc_ns + 'PaymentCurrencyCode')
-        if paymentcurrencycode_:
-            self._product.paymentcurrencycode = paymentcurrencycode_.text
-
     def build_paymentalternativecurrencycode(self) -> None:
-        # ['PaymentAlternativeCurrencyCode'] = ('cbc', 'paymentalternativecurrencycode', 'Seçimli (0...1)')
-        paymentalternativecurrencycode_: Element = self.root.find(
-            './' + self._cbc_ns + 'PaymentAlternativeCurrencyCode')
-        if paymentalternativecurrencycode_:
-            self._product.paymentalternativecurrencycode = paymentalternativecurrencycode_.text
+
+    # ['PaymentAlternativeCurrencyCode'] = ('cbc', 'paymentalternativecurrencycode', 'Seçimli (0...1)')
 
     def build_accountingcost(self) -> None:
         # ['AccountingCost'] = ('cbc', 'accountingcost', 'Seçimli (0...1)')
         accountingcost_: Element = self.root.find('./' + self._cbc_ns + 'AccountingCost')
         if accountingcost_:
             self._product.accountingcost = accountingcost_.text
-
-    def build_linecountnumeric(self) -> None:
-        # ['LineCountNumeric'] = ('cbc', 'linecountnumeric', 'Zorunlu (1)')
-        self._product.linecountnumeric = self.root.find('./' + self._cbc_ns + 'LineCountNumeric').text
 
     def build_invoiceperiod(self) -> None:
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')

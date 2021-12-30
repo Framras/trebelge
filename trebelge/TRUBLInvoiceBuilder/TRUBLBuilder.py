@@ -13,35 +13,7 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_ublversionid(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_customizationid(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_profileid(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_id(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_copyindicator(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_issuedate(self) -> None:
-        pass
-
-    @abstractmethod
     def build_issuetime(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_invoicetypecode(self) -> None:
         pass
 
     @abstractmethod
@@ -50,10 +22,6 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_note(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_documentcurrencycode(self) -> None:
         pass
 
     @abstractmethod
@@ -74,10 +42,6 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_accountingcost(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_linecountnumeric(self) -> None:
         pass
 
     @abstractmethod
