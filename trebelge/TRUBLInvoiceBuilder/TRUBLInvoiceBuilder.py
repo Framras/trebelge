@@ -59,7 +59,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_ublversionid(self) -> None:
         # ['UBLVersionID'] = ('cbc', 'ublversionid', 'Zorunlu (1)')
         self._product.ublversionid = self.root.find('./' + self._cbc_ns + 'UBLVersionID').text
-        self._product.save()
 
     def build_customizationid(self) -> None:
         # ['CustomizationID'] = ('cbc', 'customizationid', 'Zorunlu (1)')
