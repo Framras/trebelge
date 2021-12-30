@@ -72,7 +72,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                      filters={
                                                          'ebelge_type': ebelge_type,
                                                          'profileid': profileid.text
-                                                     })[0]['name']
+                                                     }, fields={"name"})[0]
 
     def build_id(self) -> None:
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
