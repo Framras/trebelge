@@ -86,7 +86,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._product.copyindicator = frappe.db.get_list(doctype,
                                                          filters={
                                                              "type": type_,
-                                                             "copyindicator": copyindicator.text
+                                                             "indicator": copyindicator.text
                                                          }, fields=["name"])[0]
 
     def build_issuedate(self) -> None:
