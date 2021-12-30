@@ -25,26 +25,6 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_taxcurrencycode(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_pricingcurrencycode(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_paymentcurrencycode(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_paymentalternativecurrencycode(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_accountingcost(self) -> None:
-        pass
-
-    @abstractmethod
     def build_invoiceperiod(self) -> None:
         pass
 

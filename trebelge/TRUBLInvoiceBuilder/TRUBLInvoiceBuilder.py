@@ -73,7 +73,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             if paymentalternativecurrencycode_:
                 invoice_.paymentalternativecurrencycode = paymentalternativecurrencycode_.text
             invoice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
-
+            accountingcost_: Element = root_.find('./' + self._cbc_ns + 'AccountingCost')
+            if accountingcost_:
+                invoice_.accountingcost = accountingcost_.text
             invoice_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
@@ -100,16 +102,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                         self._cbc_ns,
                                                         self._cbc_ns))
             self._product.note = note
-
-    def build_paymentalternativecurrencycode(self) -> None:
-
-    # ['PaymentAlternativeCurrencyCode'] = ('cbc', 'paymentalternativecurrencycode', 'Seçimli (0...1)')
-
-    def build_accountingcost(self) -> None:
-        # ['AccountingCost'] = ('cbc', 'accountingcost', 'Seçimli (0...1)')
-        accountingcost_: Element = self.root.find('./' + self._cbc_ns + 'AccountingCost')
-        if accountingcost_:
-            self._product.accountingcost = accountingcost_.text
 
     def build_invoiceperiod(self) -> None:
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
