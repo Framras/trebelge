@@ -1,19 +1,31 @@
 from xml.etree.ElementTree import Element
 
-from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCountry import TRUBLCountry
+
+from apps.frappe.frappe.model.document import Document
 
 
 class TRUBLAddress(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Address'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        frappedoc: dict = {}
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
         # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
-        frappedoc: dict = {'citysubdivisionname': element.find('./' + cbcnamespace + 'CitySubdivisionName').text,
-                           'cityname': element.find('./' + cbcnamespace + 'CityName').text}
+        citysubdivisionname = element.find('./' + cbcnamespace + 'CitySubdivisionName')
+        if citysubdivisionname:
+            frappedoc['citysubdivisionname'] = citysubdivisionname.text
+        else:
+            frappe.log_error('citysubdivisionname not provided for ' + element.tag, 'TRUBLAddress')
+            frappedoc['citysubdivisionname'] = str('')
+        cityname = element.find('./' + cbcnamespace + 'CityName')
+        if cityname:
+            frappedoc['cityname'] = cityname.text
+        else:
+            frappe.log_error('cityname not provided for ' + element.tag, 'TRUBLAddress')
+            frappedoc['cityname'] = str('')
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
         frappedoc['country'] = TRUBLCountry().process_element(country_,

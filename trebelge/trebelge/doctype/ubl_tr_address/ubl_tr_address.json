@@ -63,16 +63,14 @@
       "fieldname": "citysubdivisionname",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "\u0130l\u00e7e/semt",
-      "reqd": 1
+      "label": "\u0130l\u00e7e/semt"
     },
     {
       "description": "\u0130l ad\u0131 girilecektir.",
       "fieldname": "cityname",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "\u0130l",
-      "reqd": 1
+      "label": "\u0130l"
     },
     {
       "description": "Posta kod numaras\u0131 girilecektir.",
@@ -110,7 +108,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-05 13:47:18.632880",
+  "modified": "2021-12-30 18:00:15.188386",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Address",
