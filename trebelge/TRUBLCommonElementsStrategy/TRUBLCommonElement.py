@@ -30,7 +30,7 @@ class TRUBLCommonElement(ABC):
 
         return frappe.get_doc(
             frappedoctype,
-            frappe.get_all(frappedoctype, filters=frappedoc)[0]['name'])
+            frappe.get_all(frappedoctype, filters=frappedoc)[0]["name"])
 
     @abstractmethod
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
