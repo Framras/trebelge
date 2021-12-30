@@ -72,7 +72,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                      filters={
                                                          'ebelge_type': ebelge_type,
                                                          'profileid': profileid.text
-                                                     }, fields={"name"})[0]
+                                                     }, fields={"name"})[0]['name']
 
     def build_id(self) -> None:
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
@@ -87,7 +87,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                          filters={
                                                              "type": type_,
                                                              "indicator": copyindicator.text
-                                                         }, fields=["name"])[0]
+                                                         }, fields=["name"])[0]['name']
 
     def build_issuedate(self) -> None:
         # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu (1)')
