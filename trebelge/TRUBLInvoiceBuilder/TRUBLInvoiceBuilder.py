@@ -65,7 +65,14 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_profileid(self) -> None:
         # ['ProfileID'] = ('cbc', 'profileid', 'Zorunlu (1)')
-        self._product.profileid = self.root.find('./' + self._cbc_ns + 'ProfileID').text
+        doctype: str = 'UBL TR ProfileID'
+        ebelge_type: str = 'Invoice'
+        profileid: Element = self.root.find('./' + self._cbc_ns + 'ProfileID').text
+        self._product.profileid = frappe.db.get_list(doctype,
+                                                     filters={
+                                                         'ebelge_type': ebelge_type,
+                                                         'profileid': profileid
+                                                     })[0]['name']
 
     def build_id(self) -> None:
         # ['ID'] = ('cbc', 'id', 'Zorunlu (1)')
