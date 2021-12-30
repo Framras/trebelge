@@ -19,13 +19,13 @@ class TRUBLAddress(TRUBLCommonElement):
             frappedoc['citysubdivisionname'] = citysubdivisionname.text
         else:
             frappe.log_error('citysubdivisionname not provided for ' + element.tag, 'TRUBLAddress')
-            frappedoc['citysubdivisionname'] = str('')
+            frappedoc['citysubdivisionname'] = str(' ')
         cityname = element.find('./' + cbcnamespace + 'CityName')
         if cityname:
             frappedoc['cityname'] = cityname.text
         else:
             frappe.log_error('cityname not provided for ' + element.tag, 'TRUBLAddress')
-            frappedoc['cityname'] = str('')
+            frappedoc['cityname'] = str(' ')
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
         frappedoc['country'] = TRUBLCountry().process_element(country_,
