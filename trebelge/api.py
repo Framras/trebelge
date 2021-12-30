@@ -2,7 +2,6 @@ from xml.etree.ElementTree import XMLParser
 
 import frappe
 from trebelge.EbelgeUsers import EbelgeUsers
-from trebelge.XMLFileCoR import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
 
 
@@ -53,7 +52,7 @@ def check_all_xml_files():
                                   fields={"file_url"}):
         # retrieve file path of xmlFile
         filePath: str = frappe.get_site_path() + xmlFile.get('file_url')
-        hXMLFileHandler: AbstractXMLFileHandler = InvoiceHandler()
+        hXMLFileHandler = InvoiceHandler()
         hXMLFileHandler.handle_xml_file(filePath)
 
     return frappe.utils.now_datetime()
