@@ -64,14 +64,14 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._product.customizationid = self.root.find('./' + self._cbc_ns + 'CustomizationID').text
 
     def build_profileid(self) -> None:
-        # ['ProfileID'] = ('cbc', 'profileid', 'Zorunlu (1)')
         doctype: str = 'UBL TR ProfileID'
         ebelge_type: str = 'Invoice'
-        profileid: Element = self.root.find('./' + self._cbc_ns + 'ProfileID').text
+        # ['ProfileID'] = ('cbc', 'profileid', 'Zorunlu (1)')
+        profileid: Element = self.root.find('./' + self._cbc_ns + 'ProfileID')
         self._product.profileid = frappe.db.get_list(doctype,
                                                      filters={
                                                          'ebelge_type': ebelge_type,
-                                                         'profileid': profileid
+                                                         'profileid': profileid.text
                                                      })[0]['name']
 
     def build_id(self) -> None:
@@ -79,8 +79,15 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._product.id = self.root.find('./' + self._cbc_ns + 'ID').text
 
     def build_copyindicator(self) -> None:
+        doctype: str = 'UBL TR Indicators'
+        type_: str = 'CopyIndicator'
         # ['CopyIndicator'] = ('cbc', 'copyindicator', 'Zorunlu (1)')
-        self._product.copyindicator = self.root.find('./' + self._cbc_ns + 'CopyIndicator').text
+        copyindicator: Element = self.root.find('./' + self._cbc_ns + 'CopyIndicator')
+        self._product.copyindicator = frappe.db.get_list(doctype,
+                                                         filters={
+                                                             'type': type_,
+                                                             'copyindicator': copyindicator.text
+                                                         })[0]['name']
 
     def build_issuedate(self) -> None:
         # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu (1)')
@@ -91,6 +98,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_:
             self._product.issuetime = issuetime_.text
+        else:
+            self._product.issuetime = ""
 
     def build_invoicetypecode(self) -> None:
         # ['InvoiceTypeCode'] = ('cbc', 'invoicetypecode', 'Zorunlu (1)')
