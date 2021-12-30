@@ -101,7 +101,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for note_ in notes_:
                 note.append(TRUBLNote().process_element(note_,
                                                         self._cbc_ns,
-                                                        self._cbc_ns).name)
+                                                        self._cbc_ns))
             self._product.note = note
 
     def build_documentcurrencycode(self) -> None:
