@@ -87,7 +87,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                          filters={
                                                              "type": type_,
                                                              "copyindicator": copyindicator.text
-                                                         }, fields={"name"})[0]
+                                                         }, fields=["name"])[0]
 
     def build_issuedate(self) -> None:
         # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu (1)')
