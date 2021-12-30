@@ -21,8 +21,7 @@
       "fieldname": "countryname",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Name",
-      "reqd": 1
+      "label": "Name"
     },
     {
       "fieldname": "country",
@@ -33,7 +32,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-05 13:47:40.755553",
+  "modified": "2021-12-30 18:16:10.008779",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Country",
