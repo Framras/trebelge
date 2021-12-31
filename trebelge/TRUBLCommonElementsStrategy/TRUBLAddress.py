@@ -13,13 +13,13 @@ class TRUBLAddress(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
-        # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
         citysubdivisionname = element.find('./' + cbcnamespace + 'CitySubdivisionName')
         if citysubdivisionname:
             frappedoc['citysubdivisionname'] = citysubdivisionname.text
         else:
             frappe.log_error('citysubdivisionname not provided for ' + element.tag, 'TRUBLAddress')
             frappedoc['citysubdivisionname'] = str('-')
+        # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
         cityname = element.find('./' + cbcnamespace + 'CityName')
         if cityname:
             frappedoc['cityname'] = cityname.text
