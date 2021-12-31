@@ -40,19 +40,16 @@ class TRUBLBillingReference(TRUBLCommonElement):
                 frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
                                                                                                 cbcnamespace,
                                                                                                 cacnamespace).name
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['BillingReferenceLine'] = ('cac', 'BillingReferenceLine', 'Seçimli (0...n)')
-        cacsecimli0n: list = \
-            [{'Tag': 'BillingReferenceLine', 'strategy': TRUBLBillingReferenceLine(),
-              'fieldName': 'billingreferenceline'}
-             ]
-        for element_ in cacsecimli0n:
-            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if len(tagelements_) != 0:
-                tagelements: list = []
-                for tagelement in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
+        billingreferencelines_: list = element.findall('./' + cacnamespace + 'BillingReferenceLine')
+        if len(billingreferencelines_) != 0:
+            billingreferencelines: list = []
+            for billingreferenceline_ in billingreferencelines_:
+                billingreferencelines.append(TRUBLBillingReferenceLine().process_element(billingreferenceline_,
+                                                                                         cbcnamespace,
+                                                                                         cacnamespace))
+            document.billingreferenceline = billingreferencelines
+            document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document
