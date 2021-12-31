@@ -63,7 +63,6 @@ class TRUBLDirector:
     def make_tr_ubl_despatchadvice(self) -> None:
         self.builder.reset()
         self.builder.build_issuetime()
-        self.builder.build_despatchadvicetypecode()
         self.builder.build_note()
         self.builder.build_orderreference()
         self.builder.build_additionaldocumentreference()
