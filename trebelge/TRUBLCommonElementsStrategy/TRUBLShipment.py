@@ -108,23 +108,35 @@ class TRUBLShipment(TRUBLCommonElement):
                 frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
                                                                                                 cbcnamespace,
                                                                                                 cacnamespace).name
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLGoodsItem().process_element(tagelement,
+                                                                    cbcnamespace,
+                                                                    cacnamespace))
+            document.goodsitem = tagelements
+            document.save()
         # ['ShipmentStage'] = ('cac', 'ShipmentStage', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'ShipmentStage')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLShipmentStage().process_element(tagelement,
+                                                                        cbcnamespace,
+                                                                        cacnamespace))
+            document.shipmentstage = tagelements
+            document.save()
         # ['TransportHandlingUnit'] = ('cac', 'TransportHandlingUnit', 'Seçimli (0...n)')
-        cacsecimli0n: list = \
-            [{'Tag': 'GoodsItem', 'strategy': TRUBLGoodsItem(), 'fieldName': 'goodsitem'},
-             {'Tag': 'ShipmentStage', 'strategy': TRUBLShipmentStage(), 'fieldName': 'shipmentstage'},
-             {'Tag': 'TransportHandlingUnit', 'strategy': TRUBLTransportHandlingUnit(),
-              'fieldName': 'transporthandlingunit'}
-             ]
-        for element_ in cacsecimli0n:
-            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if len(tagelements_) != 0:
-                tagelements: list = []
-                for tagelement in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement,
+        tagelements_: list = element.findall('./' + cacnamespace + 'TransportHandlingUnit')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLTransportHandlingUnit().process_element(tagelement,
                                                                                 cbcnamespace,
                                                                                 cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
-
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+            document.transporthandlingunit = tagelements
+            document.save()
+        return document

@@ -32,22 +32,36 @@ class TRUBLPackage(TRUBLCommonElement):
             for packagingmaterial_ in packagingmaterials_:
                 packagingmaterial.append(packagingmaterial_.text)
             frappedoc['packagingmaterial'] = packagingmaterial
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['ContainedPackage'] = ('cac', 'Package', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'ContainedPackage')
+        if tagelements_:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLPackage().process_element(tagelement,
+                                                                  cbcnamespace,
+                                                                  cacnamespace))
+            document.containedpackage = tagelements
+            document.save()
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')
+        if tagelements_:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLGoodsItem().process_element(tagelement,
+                                                                    cbcnamespace,
+                                                                    cacnamespace))
+            document.goodsitem = tagelements
+            document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)')
-        cacsecimli0n: list = \
-            [{'Tag': 'ContainedPackage', 'strategy': TRUBLPackage(), 'fieldName': 'containedpackage'},
-             {'Tag': 'GoodsItem', 'strategy': TRUBLGoodsItem(), 'fieldName': 'goodsitem'},
-             {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
-             ]
-        for element_ in cacsecimli0n:
-            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_:
-                tagelements: list = []
-                for tagelement in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
+        tagelements_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
+        if tagelements_:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLDimension().process_element(tagelement,
+                                                                    cbcnamespace,
+                                                                    cacnamespace))
+            document.measurementdimension = tagelements
+            document.save()
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

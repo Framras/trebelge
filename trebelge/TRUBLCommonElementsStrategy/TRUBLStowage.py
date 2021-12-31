@@ -16,10 +16,6 @@ class TRUBLStowage(TRUBLCommonElement):
         if locationid_:
             frappedoc['locationid'] = locationid_.text
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-        cacsecimli0n: list = \
-            [{'Tag': 'Location', 'strategy': TRUBLLocation(), 'fieldName': 'location'},
-             {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
-             ]
         # ['Location'] = ('cac', 'Location', 'Seçimli (0...n)')
         locations_: list = element.findall('./' + cacnamespace + 'Location')
         if len(locations_) != 0:

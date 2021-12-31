@@ -76,27 +76,55 @@ class TRUBLGoodsItem(TRUBLCommonElement):
             frappedoc['originaddress'] = TRUBLAddress().process_element(address_,
                                                                         cbcnamespace,
                                                                         cacnamespace).name
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['Item'] = ('cac', 'Item', 'Seçimli(0..n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'Item')
+        if tagelements_:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLItem().process_element(tagelement,
+                                                               cbcnamespace,
+                                                               cacnamespace))
+            document.item = tagelements
+            document.save()
         # ['FreightAllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli(0..n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'FreightAllowanceCharge')
+        if tagelements_:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLAllowanceCharge().process_element(tagelement,
+                                                                          cbcnamespace,
+                                                                          cacnamespace))
+            document.freightallowancecharge = tagelements
+            document.save()
         # ['InvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli(0..n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'InvoiceLine')
+        if tagelements_:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLInvoiceLine().process_element(tagelement,
+                                                                      cbcnamespace,
+                                                                      cacnamespace))
+            document.invoiceline = tagelements
+            document.save()
         # ['Temperature'] = ('cac', 'Temperature', 'Seçimli(0..n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'Temperature')
+        if tagelements_:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLTemperature().process_element(tagelement,
+                                                                      cbcnamespace,
+                                                                      cacnamespace))
+            document.temperature = tagelements
+            document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
-        cacsecimli0n: list = \
-            [{'Tag': 'Item', 'strategy': TRUBLItem(), 'fieldName': 'item'},
-             {'Tag': 'FreightAllowanceCharge', 'strategy': TRUBLAllowanceCharge(),
-              'fieldName': 'freightallowancecharge'},
-             {'Tag': 'InvoiceLine', 'strategy': TRUBLInvoiceLine(), 'fieldName': 'invoiceline'},
-             {'Tag': 'Temperature', 'strategy': TRUBLTemperature(), 'fieldName': 'temperature'},
-             {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
-             ]
-        for element_ in cacsecimli0n:
-            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if tagelements_:
-                tagelements: list = []
-                for tagelement in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
-
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        tagelements_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
+        if tagelements_:
+            tagelements: list = []
+            for tagelement in tagelements_:
+                tagelements.append(TRUBLDimension().process_element(tagelement,
+                                                                    cbcnamespace,
+                                                                    cacnamespace))
+            document.measurementdimension = tagelements
+            document.save()
+        return document
