@@ -47,31 +47,74 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                                                                     cacnamespace).name
         document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'OrderLineReference')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement_ in tagelements_:
+                tagelements.append(TRUBLOrderLineReference().process_element(tagelement_,
+                                                                             cbcnamespace,
+                                                                             cacnamespace))
+            document.orderlinereference = tagelements
+            document.save()
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'DespatchLineReference')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement_ in tagelements_:
+                tagelements.append(TRUBLLineReference().process_element(tagelement_,
+                                                                        cbcnamespace,
+                                                                        cacnamespace))
+            document.despatchlinereference = tagelements
+            document.save()
         # ['ReceiptLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'ReceiptLineReference')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement_ in tagelements_:
+                tagelements.append(TRUBLLineReference().process_element(tagelement_,
+                                                                        cbcnamespace,
+                                                                        cacnamespace))
+            document.receiptlinereference = tagelements
+            document.save()
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'Delivery')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement_ in tagelements_:
+                tagelements.append(TRUBLDelivery().process_element(tagelement_,
+                                                                   cbcnamespace,
+                                                                   cacnamespace))
+            document.delivery = tagelements
+            document.save()
         # ['WithholdingTaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'WithholdingTaxTotal')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement_ in tagelements_:
+                tagelements.append(TRUBLTaxTotal().process_element(tagelement_,
+                                                                   cbcnamespace,
+                                                                   cacnamespace))
+            document.withholdingtaxtotal = tagelements
+            document.save()
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
+        tagelements_: list = element.findall('./' + cacnamespace + 'AllowanceCharge')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement_ in tagelements_:
+                tagelements.append(TRUBLAllowanceCharge().process_element(tagelement_,
+                                                                          cbcnamespace,
+                                                                          cacnamespace))
+            document.allowancecharge = tagelements
+            document.save()
         # ['SubInvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli (0...n)')
-        cacsecimli0n: list = \
-            [{'Tag': 'OrderLineReference', 'strategy': TRUBLOrderLineReference(), 'fieldName': 'orderlinereference'},
-             {'Tag': 'DespatchLineReference', 'strategy': TRUBLLineReference(), 'fieldName': 'despatchlinereference'},
-             {'Tag': 'ReceiptLineReference', 'strategy': TRUBLLineReference(), 'fieldName': 'receiptlinereference'},
-             {'Tag': 'Delivery', 'strategy': TRUBLDelivery(), 'fieldName': 'delivery'},
-             {'Tag': 'WithholdingTaxTotal', 'strategy': TRUBLTaxTotal(), 'fieldName': 'withholdingtaxtotal'},
-             {'Tag': 'AllowanceCharge', 'strategy': TRUBLAllowanceCharge(), 'fieldName': 'allowancecharge'},
-             {'Tag': 'SubInvoiceLine', 'strategy': TRUBLInvoiceLine(), 'fieldName': 'subinvoiceline'}
-             ]
-        for element_ in cacsecimli0n:
-            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if len(tagelements_) != 0:
-                tagelements: list = []
-                for tagelement_ in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement_,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
-                    element_.strategy = TRUBLAllowanceCharge()
-                document.db_set(element_.get('fieldName'), tagelements)
-                document.save()
+        tagelements_: list = element.findall('./' + cacnamespace + 'SubInvoiceLine')
+        if len(tagelements_) != 0:
+            tagelements: list = []
+            for tagelement_ in tagelements_:
+                tagelements.append(TRUBLInvoiceLine().process_element(tagelement_,
+                                                                      cbcnamespace,
+                                                                      cacnamespace))
+            document.subinvoiceline = tagelements
+            document.save()
 
         return document
