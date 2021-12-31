@@ -17,10 +17,6 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_despatchadvicetypecode(self) -> None:
-        pass
-
-    @abstractmethod
     def build_note(self) -> None:
         pass
 

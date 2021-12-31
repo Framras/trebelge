@@ -86,10 +86,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         else:
             self._product.issuetime = ""
 
-    def build_despatchadvicetypecode(self) -> None:
-        # ['DespatchAdviceTypeCode'] = ('cbc', 'despatchadvicetypecode', 'Zorunlu (1)')
-        pass
-
     def build_note(self) -> None:
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         notes_: list = self.root.findall('./' + self._cbc_ns + 'Note')
