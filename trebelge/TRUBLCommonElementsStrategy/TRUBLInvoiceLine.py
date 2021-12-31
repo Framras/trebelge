@@ -45,7 +45,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             frappedoc['taxtotal'] = TRUBLTaxTotal().process_element(taxtotal_,
                                                                     cbcnamespace,
                                                                     cacnamespace).name
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...n)')
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
         # ['ReceiptLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
