@@ -30,26 +30,23 @@
   "fields": [
     {
       "fieldname": "ublversionid",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "in_list_view": 1,
       "label": "UBL Versiyon Numaras\u0131",
-      "options": "UBL TR UBLVersionID",
       "reqd": 1
     },
     {
       "fieldname": "customizationid",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "in_list_view": 1,
       "label": "\u00d6zelle\u015ftirme Numaras\u0131",
-      "options": "UBL TR CustomizationID",
       "reqd": 1
     },
     {
       "fieldname": "profileid",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "in_list_view": 1,
       "label": "Senaryo",
-      "options": "UBL TR ProfileID",
       "reqd": 1
     },
     {
@@ -61,10 +58,9 @@
     },
     {
       "fieldname": "copyindicator",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "in_list_view": 1,
       "label": "As\u0131l/Suret",
-      "options": "UBL TR Indicators",
       "reqd": 1
     },
     {
@@ -90,10 +86,9 @@
     },
     {
       "fieldname": "despatchadvicetypecode",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "in_list_view": 1,
       "label": "Tip Kodu",
-      "options": "UBL TR DespatchAdviceTypeCode",
       "reqd": 1
     },
     {
@@ -174,7 +169,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-04 22:35:22.590339",
+  "modified": "2021-12-31 14:09:38.886950",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Despatch Advice",

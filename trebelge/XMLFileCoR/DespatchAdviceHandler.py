@@ -1,8 +1,11 @@
 import xml.etree.ElementTree as ET
 
 import frappe
+from trebelge.TRUBLInvoiceBuilder.TRUBLDirector import TRUBLDirector
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.ReceiptAdviceHandler import ReceiptAdviceHandler
+
+from trebelge.TRUBLInvoiceBuilder.TRUBLDespatchAdviceBuilder import TRUBLDespatchAdviceBuilder
 
 
 class DespatchAdviceHandler(AbstractXMLFileHandler):
@@ -19,6 +22,9 @@ class DespatchAdviceHandler(AbstractXMLFileHandler):
                 self._eBelgeSettingsDoctype, filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
                 fields={"namespace_specification"}):
             if ET.parse(file_path).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
-                pass
+                builder = TRUBLDespatchAdviceBuilder(file_path)
+                director = TRUBLDirector(builder)
+                director.make_tr_ubl_despatchadvice()
+                builder.get_document()
             else:
                 self._successor.handle_xml_file(file_path)
