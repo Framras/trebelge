@@ -1,6 +1,7 @@
 {
   "actions": [],
   "allow_rename": 1,
+  "autoname": "field:uuid",
   "creation": "2021-12-04 22:32:19.071247",
   "doctype": "DocType",
   "editable_grid": 1,
@@ -165,7 +166,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2022-01-01 00:20:46.156709",
+  "modified": "2022-01-01 00:34:50.058023",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Despatch Advice",
