@@ -18,6 +18,6 @@ class TRUBLExchangeRate(TRUBLCommonElement):
         # ['Date'] = ('cbc', 'date', 'Seçimli (0...1)')
         date_: Element = element.find('./' + cbcnamespace + 'Date')
         if date_ is not None:
-            frappedoc['exchangeratedate'] = date_.text
+            frappedoc['date'] = date_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

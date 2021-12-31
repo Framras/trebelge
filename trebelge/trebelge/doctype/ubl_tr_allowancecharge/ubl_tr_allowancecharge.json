@@ -22,10 +22,9 @@
     {
       "description": "Iskonto ise \u201cfalse\u201d, art\u0131r\u0131m ise \u201ctrue\u201d girilir.",
       "fieldname": "chargeindicator",
-      "fieldtype": "Link",
+      "fieldtype": "Data",
       "in_list_view": 1,
       "label": "\u0130skonto/art\u0131r\u0131m",
-      "options": "UBL TR Indicators",
       "reqd": 1
     },
     {
@@ -96,7 +95,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-06 09:39:47.239490",
+  "modified": "2021-12-31 10:58:59.592026",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR AllowanceCharge",

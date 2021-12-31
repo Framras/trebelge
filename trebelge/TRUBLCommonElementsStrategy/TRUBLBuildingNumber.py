@@ -17,4 +17,4 @@ class TRUBLBuildingNumber(TRUBLCommonElement):
             frappe.log_error('buildingnumber not provided for ' + element.tag, 'TRUBLBuildingNumber')
             frappedoc['buildingnumber'] = str('-')
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc, True)
+        return self._get_frappedoc(self._frappeDoctype, frappedoc)

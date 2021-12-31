@@ -11,7 +11,7 @@ class TRUBLAllowanceCharge(TRUBLCommonElement):
         # ['ChargeIndicator'] = ('cbc', 'chargeindicator', 'Zorunlu (1)')
         # ['Amount'] = ('cbc', 'allowancechargeamount', 'Zorunlu (1)')
         amount_: Element = element.find('./' + cbcnamespace + 'Amount')
-        frappedoc: dict = {'chargeindicator': element.find('./' + cbcnamespace + 'ChargeIndicator'),
+        frappedoc: dict = {'chargeindicator': element.find('./' + cbcnamespace + 'ChargeIndicator').text,
                            'amount': amount_.text,
                            'amountcurrencyid': amount_.attrib.get('currencyID')}
         # ['AllowanceChargeReason'] = ('cbc', 'allowancechargereason', 'Seçimli (0...1)')
