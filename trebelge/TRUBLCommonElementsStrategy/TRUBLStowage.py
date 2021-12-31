@@ -15,20 +15,30 @@ class TRUBLStowage(TRUBLCommonElement):
         locationid_: Element = element.find('./' + cbcnamespace + 'LocationID')
         if locationid_:
             frappedoc['locationid'] = locationid_.text
-        # ['Location'] = ('cac', 'Location', 'Seçimli (0...n)')
-        # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         cacsecimli0n: list = \
             [{'Tag': 'Location', 'strategy': TRUBLLocation(), 'fieldName': 'location'},
              {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'}
              ]
-        for element_ in cacsecimli0n:
-            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if len(tagelements_) != 0:
-                tagelements: list = []
-                for tagelement in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
+        # ['Location'] = ('cac', 'Location', 'Seçimli (0...n)')
+        locations_: list = element.findall('./' + cacnamespace + 'Location')
+        if len(locations_) != 0:
+            locations: list = []
+            for location_ in locations_:
+                locations.append(TRUBLLocation().process_element(location_,
+                                                                 cbcnamespace,
+                                                                 cacnamespace))
+            document.location = locations
+            document.save()
+        # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
+        measurementdimensions_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
+        if len(measurementdimensions_) != 0:
+            measurementdimensions: list = []
+            for measurementdimension_ in measurementdimensions_:
+                measurementdimensions.append(TRUBLDimension().process_element(measurementdimension_,
+                                                                              cbcnamespace,
+                                                                              cacnamespace))
+            document.measurementdimension = measurementdimensions
+            document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return
