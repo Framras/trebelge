@@ -52,20 +52,26 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                                                                    cbcnamespace,
                                                                    cacnamespace))
             frappedoc['outstandingreason'] = outstandingreason
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli(0..n)')
+        shipments_: list = element.findall('./' + cacnamespace + 'Shipment')
+        if len(shipments_) != 0:
+            shipments: list = []
+            for shipment_ in shipments_:
+                shipments.append(TRUBLShipment().process_element(shipment_,
+                                                                 cbcnamespace,
+                                                                 cacnamespace))
+            document.shipment = shipments
+            document.save()
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli(0..n)')
-        cacsecimli0n: list = \
-            [{'Tag': 'Shipment', 'strategy': TRUBLShipment(), 'fieldName': 'shipment'},
-             {'Tag': 'DocumentReference', 'strategy': TRUBLDocumentReference(), 'fieldName': 'documentreference'}
-             ]
-        for element_ in cacsecimli0n:
-            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if len(tagelements_) != 0:
-                tagelements: list = []
-                for tagelement in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
+        documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
+        if len(documentreferences_) != 0:
+            documentreferences: list = []
+            for documentreference_ in documentreferences_:
+                documentreferences.append(TRUBLDocumentReference().process_element(documentreference_,
+                                                                                   cbcnamespace,
+                                                                                   cacnamespace))
+            document.documentreference = documentreferences
+            document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document
