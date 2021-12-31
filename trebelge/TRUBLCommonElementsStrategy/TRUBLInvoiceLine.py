@@ -66,8 +66,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
             if len(tagelements_) != 0:
                 tagelements: list = []
-                for tagelement in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement,
+                for tagelement_ in tagelements_:
+                    tagelements.append(element_.get('strategy').process_element(tagelement_,
                                                                                 cbcnamespace,
                                                                                 cacnamespace))
                 document.db_set(element_.get('fieldName'), tagelements)
