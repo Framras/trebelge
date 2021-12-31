@@ -9,7 +9,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDoc
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 from trebelge.TRUBLCommonElementsStrategy.TRUBLSupplierParty import TRUBLSupplierParty
-from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
+from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 
 
 class TRUBLDespatchAdviceBuilder(TRUBLBuilder):

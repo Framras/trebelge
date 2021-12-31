@@ -2,11 +2,11 @@ import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
 import frappe
+from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCustomerParty import TRUBLCustomerParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDespatchLine import TRUBLDespatchLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
@@ -17,10 +17,8 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentMeans import TRUBLPaymentMeans
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentTerms import TRUBLPaymentTerms
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
-from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 from trebelge.TRUBLCommonElementsStrategy.TRUBLSupplierParty import TRUBLSupplierParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
-from trebelge.TRUBLInvoiceBuilder.TRUBLBuilder import TRUBLBuilder
 
 
 class TRUBLInvoiceBuilder(TRUBLBuilder):
