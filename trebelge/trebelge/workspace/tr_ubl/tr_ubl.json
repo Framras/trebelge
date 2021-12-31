@@ -39,9 +39,18 @@
       "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "E-\u0130rsaliyelerim",
+      "link_to": "UBL TR Despatch Advice",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
     }
   ],
-  "modified": "2021-12-29 15:13:29.637035",
+  "modified": "2022-01-01 00:25:21.004983",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL",

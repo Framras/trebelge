@@ -119,16 +119,14 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Sevkeden",
-      "options": "UBL TR SupplierParty",
-      "reqd": 1
+      "options": "UBL TR SupplierParty"
     },
     {
       "fieldname": "deliverycustomerparty",
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Teslim Alan",
-      "options": "UBL TR CustomerParty",
-      "reqd": 1
+      "options": "UBL TR CustomerParty"
     },
     {
       "fieldname": "buyercustomerparty",
@@ -156,20 +154,18 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "G\u00f6nderi",
-      "options": "UBL TR Shipment",
-      "reqd": 1
+      "options": "UBL TR Shipment"
     },
     {
       "fieldname": "despatchline",
       "fieldtype": "Table MultiSelect",
       "label": "\u0130rsaliye Kalemleri",
-      "options": "UBL TR DespatchLines",
-      "reqd": 1
+      "options": "UBL TR DespatchLines"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-31 14:09:38.886950",
+  "modified": "2022-01-01 00:20:46.156709",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Despatch Advice",
