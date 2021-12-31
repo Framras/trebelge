@@ -20,8 +20,8 @@ class TRUBLCommonElement(ABC):
             if len(frappe.get_all(frappedoctype, filters=frappedoc)) == 0:
                 newfrappedoc = dict(frappedoc)
                 newfrappedoc['doctype'] = frappedoctype
-                _frappeDoc = frappe.get_doc(newfrappedoc)
-                return _frappeDoc.insert()
+                frappedoc_ = frappe.get_doc(newfrappedoc)
+                return frappedoc_.insert()
             else:
                 return frappe.get_doc(
                     frappedoctype,
@@ -29,8 +29,8 @@ class TRUBLCommonElement(ABC):
         else:
             newfrappedoc = dict(frappedoc)
             newfrappedoc['doctype'] = frappedoctype
-            _frappeDoc = frappe.get_doc(newfrappedoc)
-            return _frappeDoc.insert()
+            frappedoc_ = frappe.get_doc(newfrappedoc)
+            return frappedoc_.insert()
 
     @abstractmethod
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:

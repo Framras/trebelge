@@ -35,13 +35,6 @@
       "label": "\u0130skonto veya art\u0131r\u0131m\u0131n sebebi"
     },
     {
-      "description": "\u0130skonto veya art\u0131r\u0131m oran\u0131 numerik olarak girilir.",
-      "fieldname": "multiplierfactornumeric",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "\u0130skonto veya art\u0131r\u0131m oran\u0131"
-    },
-    {
       "description": "Birden fazla iskonto veya fiyat art\u0131r\u0131m\u0131 kullan\u0131lmas\u0131 durumunda s\u0131ra numaras\u0131 girilir.",
       "fieldname": "sequencenumeric",
       "fieldtype": "Int",
@@ -91,11 +84,18 @@
       "in_list_view": 1,
       "label": "Uygulanan \u00fcr\u00fcn  d\u00f6viz cinsi",
       "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "\u0130skonto veya art\u0131r\u0131m oran\u0131 numerik olarak girilir.",
+      "fieldname": "multiplierfactornumeric",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "\u0130skonto veya art\u0131r\u0131m oran\u0131"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-31 10:58:59.592026",
+  "modified": "2021-12-31 12:22:17.132743",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR AllowanceCharge",
