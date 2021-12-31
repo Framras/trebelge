@@ -1,11 +1,10 @@
 import xml.etree.ElementTree as ET
 
 import frappe
-from trebelge.TRUBLInvoiceBuilder.TRUBLDirector import TRUBLDirector
+from trebelge.TRUBLBuilder.TRUBLDespatchAdviceBuilder import TRUBLDespatchAdviceBuilder
+from trebelge.TRUBLBuilder.TRUBLDirector import TRUBLDirector
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.ReceiptAdviceHandler import ReceiptAdviceHandler
-
-from trebelge.TRUBLInvoiceBuilder.TRUBLDespatchAdviceBuilder import TRUBLDespatchAdviceBuilder
 
 
 class DespatchAdviceHandler(AbstractXMLFileHandler):

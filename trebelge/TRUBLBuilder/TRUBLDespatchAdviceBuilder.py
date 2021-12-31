@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
 import frappe
+from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCustomerParty import TRUBLCustomerParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDespatchLine import TRUBLDespatchLine
@@ -9,7 +10,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDoc
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 from trebelge.TRUBLCommonElementsStrategy.TRUBLSupplierParty import TRUBLSupplierParty
-from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 
 
 class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
