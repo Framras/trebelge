@@ -70,6 +70,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                     tagelements.append(element_.get('strategy').process_element(tagelement_,
                                                                                 cbcnamespace,
                                                                                 cacnamespace))
+                    element_.strategy = TRUBLAllowanceCharge()
                 document.db_set(element_.get('fieldName'), tagelements)
                 document.save()
 
