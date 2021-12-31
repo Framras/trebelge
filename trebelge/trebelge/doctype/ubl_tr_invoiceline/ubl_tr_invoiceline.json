@@ -101,13 +101,6 @@
       "options": "UBL TR Deliveries"
     },
     {
-      "description": "Kalem bazl\u0131 \u0131skonto/art\u0131r\u0131m tutar\u0131d\u0131r.",
-      "fieldname": "allowancecharge",
-      "fieldtype": "Table MultiSelect",
-      "label": "Kalem iskonto/art\u0131r\u0131m\u0131",
-      "options": "UBL TR AllowanceCharges"
-    },
-    {
       "description": "Kalem bazl\u0131 vergi bilgilerinin girildi\u011fi elemand\u0131r.",
       "fieldname": "taxtotal",
       "fieldtype": "Link",
@@ -145,11 +138,18 @@
       "fieldtype": "Table MultiSelect",
       "label": "Ek bilgiler",
       "options": "UBL TR InvoiceLines"
+    },
+    {
+      "description": "Kalem bazl\u0131 \u0131skonto/art\u0131r\u0131m tutar\u0131d\u0131r.",
+      "fieldname": "allowancecharge",
+      "fieldtype": "Table MultiSelect",
+      "label": "Kalem iskonto/art\u0131r\u0131m\u0131",
+      "options": "UBL TR AllowanceCharges"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-29 19:34:35.100688",
+  "modified": "2021-12-31 11:15:08.609218",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR InvoiceLine",
