@@ -179,10 +179,11 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         if len(shipments_) != 0:
             shipment: list = []
             for shipment_ in shipments_:
-                if shipment_.find('./' + self._cbc_ns + 'ID'):
-                    shipment.append(TRUBLShipment().process_element(shipment_,
-                                                                    self._cbc_ns,
-                                                                    self._cac_ns))
+                tmp = TRUBLShipment().process_element(shipment_,
+                                                      self._cbc_ns,
+                                                      self._cac_ns)
+                if tmp is not None:
+                    shipment.append(tmp)
             if len(shipment) != 0:
                 self._product.shipment = shipment
 

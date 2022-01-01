@@ -58,10 +58,11 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         if len(shipments_) != 0:
             shipments: list = []
             for shipment_ in shipments_:
-                if shipment_.find('./' + cbcnamespace + 'ID'):
-                    shipments.append(TRUBLShipment().process_element(shipment_,
-                                                                     cbcnamespace,
-                                                                     cacnamespace))
+                tmp = TRUBLShipment().process_element(shipment_,
+                                                      cbcnamespace,
+                                                      cacnamespace)
+                if tmp is not None:
+                    shipments.append(tmp)
             if len(shipments) != 0:
                 document.shipment = shipments
                 document.save()

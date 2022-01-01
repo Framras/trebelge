@@ -22,8 +22,7 @@ class TRUBLShipment(TRUBLCommonElement):
         if id_:
             frappedoc['id'] = id_.text
         else:
-            frappe.log_error('id not provided for ' + element.tag, 'TRUBLShipment')
-            frappedoc['id'] = str('-')
+            return None
         # ['HandlingCode'] = ('cbc', '', 'Seçimli (0...1)')
         # ['HandlingInstructions'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['HandlingCode', 'HandlingInstructions']

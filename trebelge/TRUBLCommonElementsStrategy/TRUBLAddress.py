@@ -13,24 +13,28 @@ class TRUBLAddress(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
+        # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
+        # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         citysubdivisionname = element.find('./' + cbcnamespace + 'CitySubdivisionName')
+        cityname = element.find('./' + cbcnamespace + 'CityName')
         if citysubdivisionname:
             frappedoc['citysubdivisionname'] = citysubdivisionname.text
         else:
             frappe.log_error('citysubdivisionname not provided for ' + element.tag, 'TRUBLAddress')
-            frappedoc['citysubdivisionname'] = str('-')
-        # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
-        cityname = element.find('./' + cbcnamespace + 'CityName')
+            frappedoc['citysubdivisionname'] = str("")
         if cityname:
             frappedoc['cityname'] = cityname.text
         else:
             frappe.log_error('cityname not provided for ' + element.tag, 'TRUBLAddress')
-            frappedoc['cityname'] = str('-')
-        # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
+            frappedoc['cityname'] = str("")
         country_: Element = element.find('./' + cacnamespace + 'Country')
-        frappedoc['country'] = TRUBLCountry().process_element(country_,
-                                                              cbcnamespace,
-                                                              cacnamespace).name
+        tmp = TRUBLCountry().process_element(country_,
+                                             cbcnamespace,
+                                             cacnamespace).name
+        if tmp is not None:
+            frappedoc['country'] = tmp
+        else:
+            return None
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
         # ['Room'] = ('cbc', 'room', 'Seçimli (0...1)')
