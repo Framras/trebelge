@@ -34,10 +34,16 @@ class TRUBLContact(TRUBLCommonElement):
                                                            cacnamespace)
                 if tmp is not None:
                     communications.append(tmp)
-                if len(communications) != 0:
-                    if frappedoc != {}:
-                        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-                        document.othercommunication = communications
-                        document.save()
-
-        return document
+            if len(communications) != 0:
+                if frappedoc != {}:
+                    document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+                    document.othercommunication = communications
+                    document.save()
+                    return document
+                else:
+                    frappedoc['othercommunication'] = communications
+                    return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        elif frappedoc != {}:
+            return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            return None

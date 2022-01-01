@@ -1,6 +1,5 @@
 from xml.etree.ElementTree import Element
 
-import frappe
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
@@ -13,27 +12,24 @@ class TRUBLAddress(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
-        # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
-        # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         citysubdivisionname = element.find('./' + cbcnamespace + 'CitySubdivisionName')
+        if citysubdivisionname is not None:
+            if citysubdivisionname.text is not None:
+                frappedoc['citysubdivisionname'] = citysubdivisionname.text
+        # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
         cityname = element.find('./' + cbcnamespace + 'CityName')
-        if citysubdivisionname:
-            frappedoc['citysubdivisionname'] = citysubdivisionname.text
-        else:
-            frappe.log_error('citysubdivisionname not provided for ' + element.tag, 'TRUBLAddress')
-            frappedoc['citysubdivisionname'] = str("")
-        if cityname:
-            frappedoc['cityname'] = cityname.text
-        else:
-            frappe.log_error('cityname not provided for ' + element.tag, 'TRUBLAddress')
-            frappedoc['cityname'] = str("")
+        if cityname is not None:
+            if cityname.text is not None:
+                frappedoc['cityname'] = cityname.text
+        # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
-        tmp = TRUBLCountry().process_element(country_,
-                                             cbcnamespace,
-                                             cacnamespace).name
-        if tmp is not None:
-            frappedoc['country'] = tmp
-        else:
+        if country_ is not None:
+            tmp = TRUBLCountry().process_element(country_,
+                                                 cbcnamespace,
+                                                 cacnamespace)
+            if tmp is not None:
+                frappedoc['country'] = tmp.name
+        if frappedoc == {}:
             return None
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
@@ -49,7 +45,8 @@ class TRUBLAddress(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         buildingnumbers_: list = element.findall('./' + cbcnamespace + 'BuildingNumber')

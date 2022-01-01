@@ -43,8 +43,7 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
                     return self._get_frappedoc(self._frappeDoctype, frappedoc)
             else:
                 return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        elif frappedoc != {}:
+            return self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
-            if frappedoc != {}:
-                return None
-            else:
-                return self._get_frappedoc(self._frappeDoctype, frappedoc)
+            return None
