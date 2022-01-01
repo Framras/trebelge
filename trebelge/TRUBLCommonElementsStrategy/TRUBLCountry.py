@@ -11,7 +11,7 @@ class TRUBLCountry(TRUBLCommonElement):
         # ['Name'] = ('cbc', 'countryname', 'Zorunlu(1)')
         frappedoc: dict = {}
         countryname = element.find('./' + cbcnamespace + 'Name')
-        if countryname:
+        if countryname is not None and countryname.text is not None:
             frappedoc['countryname'] = countryname.text
         else:
             return None
