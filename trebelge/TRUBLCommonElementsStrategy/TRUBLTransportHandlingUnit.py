@@ -64,32 +64,76 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
                                                                                                 cbcnamespace,
                                                                                                 cacnamespace).name
-        # ['ActualPackage'] = ('cac', 'Package', 'Seçimli (0...n)')
-        # ['TransportEquipment'] = ('cac', 'TransportEquipment', 'Seçimli (0...n)')
-        # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...n)')
-        # ['HazardousGoodsTransit'] = ('cac', 'HazardousGoodsTransit', 'Seçimli (0...n)')
-        # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)')
-        # ['ShipmentDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)')
-        # ['CustomsDeclaration'] = ('cac', 'CustomsDeclaration', 'Seçimli (0...n)')
-        cacsecimli01: list = \
-            [{'Tag': 'ActualPackage', 'strategy': TRUBLPackage(), 'fieldName': 'actualpackage'},
-             {'Tag': 'TransportEquipment', 'strategy': TRUBLTransportEquipment(), 'fieldName': 'transportequipment'},
-             {'Tag': 'TransportMeans', 'strategy': TRUBLTransportMeans(), 'fieldName': 'transportmeans'},
-             {'Tag': 'HazardousGoodsTransit', 'strategy': TRUBLHazardousGoodsTransit(),
-              'fieldName': 'hazardousgoodstransit'},
-             {'Tag': 'MeasurementDimension', 'strategy': TRUBLDimension(), 'fieldName': 'measurementdimension'},
-             {'Tag': 'ShipmentDocumentReference', 'strategy': TRUBLDocumentReference(),
-              'fieldName': 'shipmentdocumentreference'},
-             {'Tag': 'CustomsDeclaration', 'strategy': TRUBLCustomsDeclaration(), 'fieldName': 'customsdeclaration'}
-             ]
-        for element_ in cacsecimli01:
-            tagelements_: list = element.findall('./' + cacnamespace + element_.get('Tag'))
-            if len(tagelements_) != 0:
-                tagelements: list = []
-                for tagelement in tagelements_:
-                    tagelements.append(element_.get('strategy').process_element(tagelement,
-                                                                                cbcnamespace,
-                                                                                cacnamespace))
-                frappedoc[element_.get('fieldName')] = tagelements
+        product = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        # ['ActualPackage'] = ('cac', 'Package', 'Seçimli (0...n)', 'actualpackage')
+        actualpackages_: list = element.findall('./' + cacnamespace + 'ActualPackage')
+        if len(actualpackages_) != 0:
+            actualpackage: list = []
+            for actualpackage_ in actualpackages_:
+                actualpackage.append(TRUBLPackage().process_element(actualpackage_,
+                                                                    cbcnamespace,
+                                                                    cacnamespace))
+            product.actualpackage = actualpackage
+            product.save()
+        # ['TransportEquipment'] = ('cac', 'TransportEquipment', 'Seçimli (0...n)', 'transportequipment')
+        transportequipment_: list = element.findall('./' + cacnamespace + 'TransportEquipment')
+        if len(transportequipment_) != 0:
+            transportequipment: list = []
+            for equipment_ in transportequipment_:
+                transportequipment.append(TRUBLTransportEquipment().process_element(equipment_,
+                                                                                    cbcnamespace,
+                                                                                    cacnamespace))
+            product.transportequipment = transportequipment
+            product.save()
+        # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...n)', 'transportmeans')
+        transportmeans_: list = element.findall('./' + cacnamespace + 'TransportMeans')
+        if len(transportmeans_) != 0:
+            transportmeans: list = []
+            for means_ in transportmeans_:
+                transportmeans.append(TRUBLTransportMeans().process_element(means_,
+                                                                            cbcnamespace,
+                                                                            cacnamespace))
+            product.transportmeans = transportmeans
+            product.save()
+        # ['HazardousGoodsTransit'] = ('cac', 'HazardousGoodsTransit', 'Seçimli (0...n)', 'hazardousgoodstransit')
+        hazardousgoodstransit_: list = element.findall('./' + cacnamespace + 'HazardousGoodsTransit')
+        if len(hazardousgoodstransit_) != 0:
+            hazardousgoodstransit: list = []
+            for goodstransit_ in hazardousgoodstransit_:
+                hazardousgoodstransit.append(TRUBLHazardousGoodsTransit().process_element(goodstransit_,
+                                                                                          cbcnamespace,
+                                                                                          cacnamespace))
+            product.hazardousgoodstransit = hazardousgoodstransit
+            product.save()
+        # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
+        measurementdimensions_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
+        if len(measurementdimensions_) != 0:
+            measurementdimension: list = []
+            for measurementdimension_ in measurementdimensions_:
+                measurementdimension.append(TRUBLDimension().process_element(measurementdimension_,
+                                                                             cbcnamespace,
+                                                                             cacnamespace))
+            product.measurementdimension = measurementdimension
+            product.save()
+        # ['ShipmentDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)', 'shipmentdocumentreference')
+        shipmentdocumentreferences_: list = element.findall('./' + cacnamespace + 'ShipmentDocumentReference')
+        if len(shipmentdocumentreferences_) != 0:
+            shipmentdocumentreference: list = []
+            for shipmentdocumentreference_ in shipmentdocumentreferences_:
+                shipmentdocumentreference.append(TRUBLDocumentReference().process_element(shipmentdocumentreference_,
+                                                                                          cbcnamespace,
+                                                                                          cacnamespace))
+            product.shipmentdocumentreference = shipmentdocumentreference
+            product.save()
+        # ['CustomsDeclaration'] = ('cac', 'CustomsDeclaration', 'Seçimli (0...n)', 'customsdeclaration')
+        customsdeclarations_: list = element.findall('./' + cacnamespace + 'CustomsDeclaration')
+        if len(customsdeclarations_) != 0:
+            customsdeclaration: list = []
+            for customsdeclaration_ in customsdeclarations_:
+                customsdeclaration.append(TRUBLCustomsDeclaration().process_element(customsdeclaration_,
+                                                                                    cbcnamespace,
+                                                                                    cacnamespace))
+            product.customsdeclaration = customsdeclaration
+            product.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return product

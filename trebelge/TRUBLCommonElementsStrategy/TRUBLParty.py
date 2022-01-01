@@ -19,9 +19,11 @@ class TRUBLParty(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
         postaladdress_: Element = element.find('./' + cacnamespace + 'PostalAddress')
-        frappedoc['postaladdress'] = TRUBLAddress().process_element(postaladdress_,
-                                                                    cbcnamespace,
-                                                                    cacnamespace).name
+        tmp = TRUBLAddress().process_element(postaladdress_,
+                                             cbcnamespace,
+                                             cacnamespace)
+        if tmp is not None:
+            frappedoc['postaladdress'] = tmp.name
         # ['WebsiteURI'] = ('cbc', 'websiteuri', 'Seçimli (0...1)')
         # ['EndpointID'] = ('cbc', 'endpointid', 'Seçimli (0...1)')
         # ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
@@ -47,9 +49,11 @@ class TRUBLParty(TRUBLCommonElement):
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
             if tagelement_ is not None:
-                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
-                                                                                                cbcnamespace,
-                                                                                                cacnamespace).name
+                tmp = element_.get('strategy').process_element(tagelement_,
+                                                               cbcnamespace,
+                                                               cacnamespace)
+                if tmp is not None:
+                    frappedoc[element_.get('fieldName')] = tmp.name
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
         partyidentifications_: list = element.findall('./' + cacnamespace + 'PartyIdentification')
