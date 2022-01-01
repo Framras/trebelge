@@ -4,6 +4,7 @@ from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAttachment import TRUBLAttachment
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
+from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 
 
@@ -11,11 +12,14 @@ class TRUBLDocumentReference(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR DocumentReference'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
         # ['ID'] = ('cbc', '', 'Zorunlu (1)', 'id')
+        id_ = element.find('./' + cbcnamespace + 'ID').text
         # ['IssueDate'] = ('cbc', '', 'Zorunlu (1)', 'issuedate')
-        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text,
-                           'issuedate': element.find('./' + cbcnamespace + 'IssueDate').text}
+        issuedate_ = element.find('./' + cbcnamespace + 'IssueDate').text
+        if id_ is not None and issuedate_ is not None:
+            frappedoc: dict = {'id': id_, 'issuedate': issuedate_}
+        else:
+            return None
         # ['DocumentTypeCode'] = ('cbc', '', 'Seçimli (0...1)', 'documenttypecode')
         # ['DocumentType'] = ('cbc', '', 'Seçimli (0...1)', 'documenttype')
         cbcsecimli01: list = ['DocumentTypeCode', 'DocumentType']
