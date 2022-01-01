@@ -15,8 +15,14 @@ class TRUBLShipment(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
-        # ['ID'] = ('cbc', '', 'Zorunlu(1)')
-        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
+        frappedoc: dict = {}
+        # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
+        id_ = element.find('./' + cbcnamespace + 'ID')
+        if id_:
+            frappedoc['id'] = id_.text
+        else:
+            frappe.log_error('id not provided for ' + element.tag, 'TRUBLShipment')
+            frappedoc['id'] = str('-')
         # ['HandlingCode'] = ('cbc', '', 'Seçimli (0...1)')
         # ['HandlingInstructions'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['HandlingCode', 'HandlingInstructions']
