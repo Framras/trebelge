@@ -179,10 +179,12 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         if len(shipments_) != 0:
             shipment: list = []
             for shipment_ in shipments_:
-                shipment.append(TRUBLShipment().process_element(shipment_,
-                                                                self._cbc_ns,
-                                                                self._cac_ns))
-            self._product.shipment = shipment
+                if shipment_.find('./' + self._cbc_ns + 'ID'):
+                    shipment.append(TRUBLShipment().process_element(shipment_,
+                                                                    self._cbc_ns,
+                                                                    self._cac_ns))
+            if len(shipment) != 0:
+                self._product.shipment = shipment
 
     def build_paymentmeans(self) -> None:
         # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
