@@ -37,9 +37,9 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...1)')
         transportmeans_: Element = element.find('./' + cbcnamespace + 'TransportMeans')
         if transportmeans_:
-            frappedoc['transportmeans'] = [TRUBLTransportMeans.process_element(transportmeans_,
-                                                                               cbcnamespace,
-                                                                               cacnamespace)]
+            frappedoc['transportmeans'] = [TRUBLTransportMeans().process_element(transportmeans_,
+                                                                                 cbcnamespace,
+                                                                                 cacnamespace)]
         # ['DriverPerson'] = ('cac', 'Person', 'Seçimli (0...n)')
         driverpeople_: list = element.findall('./' + cacnamespace + 'DriverPerson')
         if len(driverpeople_) != 0:

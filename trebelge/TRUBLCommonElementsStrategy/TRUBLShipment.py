@@ -95,9 +95,9 @@ class TRUBLShipment(TRUBLCommonElement):
         if len(descriptions_) != 0:
             descriptions: list = []
             for description_ in descriptions_:
-                descriptions.append(TRUBLNote.process_element(description_,
-                                                              cbcnamespace,
-                                                              cacnamespace))
+                descriptions.append(TRUBLNote().process_element(description_,
+                                                                cbcnamespace,
+                                                                cacnamespace))
             frappedoc['specialinstructions'] = descriptions
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...1)')
         # ['ReturnAddress'] = ('cac', 'Address', 'Seçimli (0...1)')

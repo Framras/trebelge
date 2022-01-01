@@ -19,9 +19,9 @@ class TRUBLLineResponse(TRUBLCommonElement):
         # ['Response'] = ('cac', 'Response', 'Zorunlu(1..n)')
         responses: list = []
         for response_ in element.findall('./' + cacnamespace + 'Response'):
-            responses.append(TRUBLResponse.process_element(response_,
-                                                           cbcnamespace,
-                                                           cacnamespace))
+            responses.append(TRUBLResponse().process_element(response_,
+                                                             cbcnamespace,
+                                                             cacnamespace))
         frappedoc['response'] = responses
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

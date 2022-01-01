@@ -40,18 +40,18 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         if len(notes_) != 0:
             note: list = []
             for note_ in notes_:
-                note.append(TRUBLNote.process_element(note_,
-                                                      cbcnamespace,
-                                                      cacnamespace))
+                note.append(TRUBLNote().process_element(note_,
+                                                        cbcnamespace,
+                                                        cacnamespace))
             frappedoc['note'] = note
         # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
         rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
         if len(rejectreasons_) != 0:
             rejectreason: list = []
             for rejectreason_ in rejectreasons_:
-                rejectreason.append(TRUBLNote.process_element(rejectreason_,
-                                                              cbcnamespace,
-                                                              cacnamespace))
+                rejectreason.append(TRUBLNote().process_element(rejectreason_,
+                                                                cbcnamespace,
+                                                                cacnamespace))
             frappedoc['rejectreason'] = rejectreason
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')

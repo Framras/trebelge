@@ -21,9 +21,9 @@ class TRUBLDimension(TRUBLCommonElement):
         if len(descriptions_) != 0:
             descriptions: list = []
             for description_ in descriptions_:
-                descriptions.append(TRUBLNote.process_element(description_,
-                                                              cbcnamespace,
-                                                              cacnamespace))
+                descriptions.append(TRUBLNote().process_element(description_,
+                                                                cbcnamespace,
+                                                                cacnamespace))
             frappedoc['description'] = descriptions
         # ['MinimumMeasure'] = ('cbc', 'minimummeasure', 'Seçimli(0..1)')
         minimummeasure_: Element = element.find('./' + cbcnamespace + 'MinimumMeasure')

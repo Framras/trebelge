@@ -39,18 +39,18 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         if len(notes_) != 0:
             note: list = []
             for note_ in notes_:
-                note.append(TRUBLNote.process_element(note_,
-                                                      cbcnamespace,
-                                                      cacnamespace))
+                note.append(TRUBLNote().process_element(note_,
+                                                        cbcnamespace,
+                                                        cacnamespace))
             frappedoc['note'] = note
         # ['OutstandingReason'] = ('cbc', '', 'Seçimli(0..n)')
         outstandingreasons_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(outstandingreasons_) != 0:
             outstandingreason: list = []
             for outstandingreason_ in outstandingreasons_:
-                outstandingreason.append(TRUBLNote.process_element(outstandingreason_,
-                                                                   cbcnamespace,
-                                                                   cacnamespace))
+                outstandingreason.append(TRUBLNote().process_element(outstandingreason_,
+                                                                     cbcnamespace,
+                                                                     cacnamespace))
             frappedoc['outstandingreason'] = outstandingreason
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli(0..n)')
