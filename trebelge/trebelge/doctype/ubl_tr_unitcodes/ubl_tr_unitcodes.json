@@ -1,6 +1,7 @@
 {
   "actions": [],
   "allow_rename": 1,
+  "autoname": "field:unitcode",
   "creation": "2021-12-01 21:23:42.834262",
   "doctype": "DocType",
   "editable_grid": 1,
@@ -18,7 +19,8 @@
       "in_list_view": 1,
       "label": "Birim Kodu",
       "reqd": 1,
-      "search_index": 1
+      "search_index": 1,
+      "unique": 1
     },
     {
       "fieldname": "type",
@@ -42,7 +44,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-03 18:50:51.226730",
+  "modified": "2022-01-01 12:54:45.180248",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Unitcodes",

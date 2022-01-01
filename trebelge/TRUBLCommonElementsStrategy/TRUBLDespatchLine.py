@@ -58,11 +58,13 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         if len(shipments_) != 0:
             shipments: list = []
             for shipment_ in shipments_:
-                shipments.append(TRUBLShipment().process_element(shipment_,
-                                                                 cbcnamespace,
-                                                                 cacnamespace))
-            document.shipment = shipments
-            document.save()
+                if shipment_.find('./' + cbcnamespace + 'ID')
+                    shipments.append(TRUBLShipment().process_element(shipment_,
+                                                                     cbcnamespace,
+                                                                     cacnamespace))
+            if len(shipments) != 0:
+                document.shipment = shipments
+                document.save()
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli(0..n)')
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if len(documentreferences_) != 0:
