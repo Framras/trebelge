@@ -64,5 +64,6 @@ class TRUBLTransportMeans(TRUBLCommonElement):
                                                                              cbcnamespace,
                                                                              cacnamespace))
             document.measurementdimension = measurementdimension
+            document.save()
 
         return document
