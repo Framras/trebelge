@@ -78,7 +78,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Toplam \u00fcr\u00fcn \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Toplam paket miktar\u0131 girilir.",
@@ -92,7 +92,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Toplam paket miktar\u0131 \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Zarar bilgisi girilir.",

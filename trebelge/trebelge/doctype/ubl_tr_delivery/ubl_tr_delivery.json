@@ -39,7 +39,7 @@
       "fieldname": "quantityunitcode",
       "fieldtype": "Link",
       "label": "\u00dcr\u00fcn miktar\u0131 birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Ger\u00e7ekle\u015fen teslim tarihi yaz\u0131l\u0131r.",
@@ -118,7 +118,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-22 13:57:54.080440",
+  "modified": "2022-01-01 12:25:43.961225",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Delivery",

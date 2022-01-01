@@ -52,7 +52,7 @@
       "fieldname": "unitcode",
       "fieldtype": "Link",
       "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
@@ -63,7 +63,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-22 13:55:18.228960",
+  "modified": "2022-01-01 12:23:58.807353",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Period",

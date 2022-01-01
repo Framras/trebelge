@@ -76,7 +76,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Br\u00fct a\u011f\u0131rl\u0131k birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Net a\u011f\u0131rl\u0131k girilir.",
@@ -90,7 +90,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Net a\u011f\u0131rl\u0131k birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Br\u00fct hacim girilir.",
@@ -104,7 +104,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Br\u00fct hacim birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Net hacim girilir.",
@@ -118,7 +118,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Net hacim birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Toplam mal miktar\u0131 girilir.",
@@ -132,7 +132,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Toplam mal miktar\u0131 birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Toplam ta\u015f\u0131ma \u00fcnitesi miktar\u0131 girilir.",
@@ -146,7 +146,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Toplam ta\u015f\u0131ma \u00fcnitesi miktar\u0131 birimi",
-      "options": "UBL TR Unitcode"
+      "options": "UBL TR Unitcodes"
     },
     {
       "description": "Sigorta tutar\u0131 girilir.",

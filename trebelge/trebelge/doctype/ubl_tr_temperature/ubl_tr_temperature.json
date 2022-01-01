@@ -33,7 +33,7 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "\u00d6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcode",
+      "options": "UBL TR Unitcodes",
       "reqd": 1
     },
     {
