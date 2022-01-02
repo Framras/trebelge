@@ -9,14 +9,13 @@ class TRUBLRoadTransport(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['LicensePlateID'] = ('cbc', 'licenseplateid', 'Zorunlu (1)')
-        licenseplateid_: Element = element.find('./' + cbcnamespace + 'LicensePlateID')
+        licenseplateid_ = element.find('./' + cbcnamespace + 'LicensePlateID')
         if licenseplateid_.text is not None:
             frappedoc: dict = {'licenseplateid': licenseplateid_.text}
-            # ['schemeID'] = ('', 'licenseplateid_schemeid', 'Seçimli (0...1)')
-            schemeid_: str = licenseplateid_.attrib.get('schemeID')
-            if schemeid_ is not None:
-                frappedoc['schemeid'] = schemeid_
         else:
             return None
+        schemeid_: str = licenseplateid_.attrib.get('schemeID')
+        if schemeid_ is not None:
+            frappedoc['schemeid'] = schemeid_
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -9,10 +9,15 @@ class TRUBLRailTransport(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['TrainID'] = ('cbc', 'TrainID', 'Zorunlu(1)')
-        frappedoc: dict = {'trainid': element.find('./' + cbcnamespace + 'TrainID').text}
+        trainid_ = element.find('./' + cbcnamespace + 'TrainID').text
+        if trainid_ is not None:
+            frappedoc: dict = {'trainid': trainid_}
+        else:
+            return None
         # ['RailCarID'] = ('cbc', 'RailCarID', 'Seçimli (0...1)')
         railcarid_: Element = element.find('./' + cbcnamespace + 'RailCarID')
         if railcarid_ is not None:
-            frappedoc['railcarid'] = railcarid_.text
+            if railcarid_.text is not None:
+                frappedoc['railcarid'] = railcarid_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
