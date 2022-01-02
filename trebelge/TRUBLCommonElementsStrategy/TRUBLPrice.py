@@ -10,8 +10,10 @@ class TRUBLPrice(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # self._mapping['PriceAmount'] = ('cbc', '', 'Zorunlu(1)')
         priceamount = element.find('./' + cbcnamespace + 'PriceAmount')
-        frappedoc: dict = {'priceamount': priceamount.text,
-                           'priceamountcurrencyid': priceamount.attrib.get('currencyID')
-                           }
-
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        if priceamount.text is not None:
+            frappedoc: dict = {'priceamount': priceamount.text,
+                               'priceamountcurrencyid': priceamount.attrib.get('currencyID')
+                               }
+            return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            return None
