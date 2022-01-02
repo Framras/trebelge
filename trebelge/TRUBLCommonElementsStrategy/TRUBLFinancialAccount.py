@@ -10,19 +10,24 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
-        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
+        id_ = element.find('./' + cbcnamespace + 'ID').text
+        if id_ is not None:
+            frappedoc: dict = {'id': id_}
+        else:
+            return None
         # ['CurrencyCode'] = ('cbc', 'currencycode', 'Seçimli (0...1)')
         # ['PaymentNote'] = ('cbc', 'paymentnote', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CurrencyCode', 'PaymentNote']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['FinancialInstitutionBranch'] = ('cac', 'Branch()', 'Seçimli (0...1)', 'financialinstitutionbranch')
         financialinstitutionbranch_: Element = element.find('./' + cacnamespace + 'FinancialInstitutionBranch')
         if financialinstitutionbranch_ is not None:
-            frappedoc['financialinstitutionbranch'] = TRUBLBranch().process_element(financialinstitutionbranch_,
-                                                                                    cbcnamespace,
-                                                                                    cacnamespace).name
+            tmp = TRUBLBranch().process_element(financialinstitutionbranch_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['financialinstitutionbranch'] = tmp.name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
