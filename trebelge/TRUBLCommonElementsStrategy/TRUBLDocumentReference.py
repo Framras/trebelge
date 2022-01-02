@@ -26,7 +26,8 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['Attachment'] = ('cac', 'Attachment', 'Seçimli (0...1)', 'attachment')
         # ['ValidityPeriod'] = ('cac', 'Period', 'Seçimli (0...1)', 'validityperiod')
         # ['IssuerParty'] = ('cac', 'Party', 'Seçimli (0...1)', 'issuerparty')

@@ -19,7 +19,8 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['GrossTonnageMeasure'] = ('cbc', '', 'Seçimli (0...1)')
         grosstonnagemeasure_: Element = element.find('./' + cbcnamespace + 'GrossTonnageMeasure')
         if grosstonnagemeasure_:

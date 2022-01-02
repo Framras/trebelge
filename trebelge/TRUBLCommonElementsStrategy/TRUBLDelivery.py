@@ -27,7 +27,8 @@ class TRUBLDelivery(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         # unitCode
         quantity_: Element = element.find('./' + cbcnamespace + 'Quantity')

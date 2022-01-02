@@ -18,7 +18,8 @@ class TRUBLOrderLineReference(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['OrderReference'] = ('cac', 'OrderReference', 'Seçimli (0...1)')
         orderreference_: Element = element.find('./' + cacnamespace + 'OrderReference')
         if orderreference_ is not None:

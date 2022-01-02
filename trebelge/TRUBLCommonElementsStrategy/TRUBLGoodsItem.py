@@ -27,7 +27,8 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['DeclaredCustomsValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
         # ['DeclaredForCarriageValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
         # ['DeclaredStatisticsValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
@@ -40,8 +41,9 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         for elementtag_ in cbcamntsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
-                frappedoc[elementtag_.lower() + 'currencyid'] = field_.attrib.get('currencyID')
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
+                    frappedoc[elementtag_.lower() + 'currencyid'] = field_.attrib.get('currencyID')
         # ['GrossWeightMeasure'] = ('cbc', '', 'Seçimli(0..1)')
         # ['NetWeightMeasure'] = ('cbc', '', 'Seçimli(0..1)')
         # ['ChargeableWeightMeasure'] = ('cbc', '', 'Seçimli(0..1)')
@@ -59,8 +61,9 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         for elementtag_ in cbcamntsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
-                frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
+                    frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Description'] = ('cbc', '', 'Seçimli(0..n)')
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if descriptions_:

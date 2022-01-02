@@ -20,7 +20,8 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
         frappedoc['taxscheme'] = TRUBLTaxScheme().process_element(taxscheme_,

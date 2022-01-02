@@ -21,7 +21,8 @@ class TRUBLAllowanceCharge(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['BaseAmount'] = ('cbc', 'baseamount', 'Seçimli (0...1)')
         baseamount_: Element = element.find('./' + cbcnamespace + 'BaseAmount')
         if baseamount_ is not None:
