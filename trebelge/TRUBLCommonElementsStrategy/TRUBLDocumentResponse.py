@@ -11,22 +11,25 @@ class TRUBLDocumentResponse(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR DocumentResponse'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        frappedoc: dict = {}
         # ['Response'] = ('cac', 'Response', 'Zorunlu(1)')
         response_: Element = element.find('./' + cacnamespace + 'Response')
-        frappedoc['response'] = TRUBLResponse().process_element(response_,
-                                                                cbcnamespace,
-                                                                cacnamespace).name
+        tmp = TRUBLResponse().process_element(response_, cbcnamespace, cacnamespace)
+        if tmp is not None:
+            frappedoc: dict = {'response': tmp.name}
+        else:
+            return None
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Zorunlu(1)')
         documentreference_: Element = element.find('./' + cacnamespace + 'DocumentReference')
-        frappedoc['documentreference'] = TRUBLDocumentReference().process_element(documentreference_,
-                                                                                  cbcnamespace,
-                                                                                  cacnamespace).name
+        tmp = TRUBLDocumentReference().process_element(documentreference_, cbcnamespace, cacnamespace)
+        if tmp is not None:
+            frappedoc['documentreference'] = {'documentreference': tmp.name}
+        else:
+            return None
         # ['LineResponse'] = ('cac', 'LineResponse', 'Seçimli (0...1)')
         lineresponse_: Element = element.find('./' + cacnamespace + 'LineResponse')
-        if lineresponse_:
-            frappedoc['lineresponse'] = TRUBLLineResponse().process_element(lineresponse_,
-                                                                            cbcnamespace,
-                                                                            cacnamespace).name
+        if lineresponse_ is not None:
+            tmp = TRUBLLineResponse().process_element(lineresponse_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['lineresponse'] = tmp.name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

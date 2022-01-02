@@ -57,6 +57,6 @@ class TRUBLAddress(TRUBLCommonElement):
                                                                              cbcnamespace,
                                                                              cacnamespace))
             document.buildingnumber = buildingnumbers
-        document.save()
+            document.save()
 
         return document

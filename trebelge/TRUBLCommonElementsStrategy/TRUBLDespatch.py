@@ -21,22 +21,42 @@ class TRUBLDespatch(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text
         # ['DespatchAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
+        despatchaddress_: Element = element.find('./' + cacnamespace + 'DespatchAddress')
+        if despatchaddress_ is not None:
+            tmp = TRUBLAddress().process_element(despatchaddress_,
+                                                 cbcnamespace,
+                                                 cacnamespace)
+            if tmp is not None:
+                frappedoc['despatchaddress'] = tmp.name
         # ['DespatchParty'] = ('cac', 'Party', 'Seçimli (0...1)')
+        despatchparty_: Element = element.find('./' + cacnamespace + 'DespatchParty')
+        if despatchparty_ is not None:
+            tmp = TRUBLParty().process_element(despatchparty_,
+                                               cbcnamespace,
+                                               cacnamespace)
+            if tmp is not None:
+                frappedoc['despatchparty'] = tmp.name
         # ['Contact'] = ('cac', 'Contact', 'Seçimli (0...1)')
+        contact_: Element = element.find('./' + cacnamespace + 'Contact')
+        if contact_ is not None:
+            tmp = TRUBLContact().process_element(contact_,
+                                                 cbcnamespace,
+                                                 cacnamespace)
+            if tmp is not None:
+                frappedoc['contact'] = tmp.name
         # ['EstimatedDespatchPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
-        cacsecimli01: list = \
-            [{'Tag': 'DespatchAddress', 'strategy': TRUBLAddress(), 'fieldName': 'despatchaddress'},
-             {'Tag': 'DespatchParty', 'strategy': TRUBLParty(), 'fieldName': 'despatchparty'},
-             {'Tag': 'Contact', 'strategy': TRUBLContact(), 'fieldName': 'contact'},
-             {'Tag': 'EstimatedDespatchPeriod', 'strategy': TRUBLPeriod(), 'fieldName': 'estimateddespatchperiod'}
-             ]
-        for element_ in cacsecimli01:
-            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_:
-                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
-                                                                                                cbcnamespace,
-                                                                                                cacnamespace).name
+        estimateddespatchperiod_: Element = element.find('./' + cacnamespace + 'EstimatedDespatchPeriod')
+        if estimateddespatchperiod_ is not None:
+            tmp = TRUBLPeriod().process_element(estimateddespatchperiod_,
+                                                cbcnamespace,
+                                                cacnamespace)
+            if tmp is not None:
+                frappedoc['estimateddespatchperiod'] = tmp.name
+
+        if frappedoc == {}:
+            return None
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
