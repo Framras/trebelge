@@ -18,103 +18,117 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
         # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
         # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
+        id_: Element = element.find('./' + cbcnamespace + 'ID')
         invoicedquantity: Element = element.find('./' + cbcnamespace + 'InvoicedQuantity')
         lineextensionamount: Element = element.find('./' + cbcnamespace + 'LineExtensionAmount')
+        if id_ is None or id_.text is None or \
+                invoicedquantity is None or invoicedquantity.text is None or \
+                lineextensionamount is None or lineextensionamount.text is None:
+            return None
         frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text,
                            'invoicedquantity': invoicedquantity.text,
                            'invoicedquantityunitcode': invoicedquantity.attrib.get('unitCode'),
                            'lineextensionamount': lineextensionamount.text,
                            'lineextensionamountcurrencyid': lineextensionamount.attrib.get('currencyID')}
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
-        note_: Element = element.find('./' + cbcnamespace + 'Note')
+        note_ = element.find('./' + cbcnamespace + 'Note').text
         if note_ is not None:
-            frappedoc['note'] = note_.text
+            frappedoc['note'] = note_
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
-        frappedoc['item'] = TRUBLItem().process_element(item_,
-                                                        cbcnamespace,
-                                                        cacnamespace).name
+        tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)
+        if tmp is None:
+            return None
+        frappedoc['item'] = tmp.name
         # ['Price'] = ('cac', 'Price', 'Zorunlu (1)')
         price_: Element = element.find('./' + cacnamespace + 'Price')
-        frappedoc['price'] = TRUBLPrice().process_element(price_,
-                                                          cbcnamespace,
-                                                          cacnamespace).name
+        tmp = TRUBLPrice().process_element(price_, cbcnamespace, cacnamespace)
+        if tmp is None:
+            return None
+        frappedoc['price'] = tmp.name
         # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
         taxtotal_: Element = element.find('./' + cacnamespace + 'TaxTotal')
         if taxtotal_ is not None:
-            frappedoc['taxtotal'] = TRUBLTaxTotal().process_element(taxtotal_,
-                                                                    cbcnamespace,
-                                                                    cacnamespace).name
+            tmp = TRUBLTaxTotal().process_element(taxtotal_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['taxtotal'] = tmp.name
         document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'OrderLineReference')
         if len(tagelements_) != 0:
             tagelements: list = []
             for tagelement_ in tagelements_:
-                tagelements.append(TRUBLOrderLineReference().process_element(tagelement_,
-                                                                             cbcnamespace,
-                                                                             cacnamespace))
-            document.orderlinereference = tagelements
-            document.save()
+                tmp = TRUBLOrderLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.orderlinereference = tagelements
+                document.save()
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'DespatchLineReference')
         if len(tagelements_) != 0:
             tagelements: list = []
             for tagelement_ in tagelements_:
-                tagelements.append(TRUBLLineReference().process_element(tagelement_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace))
-            document.despatchlinereference = tagelements
-            document.save()
+                tmp = TRUBLLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.despatchlinereference = tagelements
+                document.save()
         # ['ReceiptLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'ReceiptLineReference')
         if len(tagelements_) != 0:
             tagelements: list = []
             for tagelement_ in tagelements_:
-                tagelements.append(TRUBLLineReference().process_element(tagelement_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace))
-            document.receiptlinereference = tagelements
-            document.save()
+                tmp = TRUBLLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.receiptlinereference = tagelements
+                document.save()
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'Delivery')
         if len(tagelements_) != 0:
             tagelements: list = []
             for tagelement_ in tagelements_:
-                tagelements.append(TRUBLDelivery().process_element(tagelement_,
-                                                                   cbcnamespace,
-                                                                   cacnamespace))
-            document.delivery = tagelements
-            document.save()
+                tmp = TRUBLDelivery().process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.delivery = tagelements
+                document.save()
         # ['WithholdingTaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'WithholdingTaxTotal')
         if len(tagelements_) != 0:
             tagelements: list = []
             for tagelement_ in tagelements_:
-                tagelements.append(TRUBLTaxTotal().process_element(tagelement_,
-                                                                   cbcnamespace,
-                                                                   cacnamespace))
-            document.withholdingtaxtotal = tagelements
-            document.save()
+                tmp = TRUBLTaxTotal().process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.withholdingtaxtotal = tagelements
+                document.save()
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'AllowanceCharge')
         if len(tagelements_) != 0:
             tagelements: list = []
             for tagelement_ in tagelements_:
-                tagelements.append(TRUBLAllowanceCharge().process_element(tagelement_,
-                                                                          cbcnamespace,
-                                                                          cacnamespace))
-            document.allowancecharge = tagelements
-            document.save()
+                tmp = TRUBLAllowanceCharge().process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.allowancecharge = tagelements
+                document.save()
         # ['SubInvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'SubInvoiceLine')
         if len(tagelements_) != 0:
             tagelements: list = []
             for tagelement_ in tagelements_:
-                tagelements.append(TRUBLInvoiceLine().process_element(tagelement_,
-                                                                      cbcnamespace,
-                                                                      cacnamespace))
-            document.subinvoiceline = tagelements
-            document.save()
+                tmp = TRUBLInvoiceLine().process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.subinvoiceline = tagelements
+                document.save()
 
         return document

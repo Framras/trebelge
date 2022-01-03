@@ -8,12 +8,9 @@ class TRUBLFinancialInstitution(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR FinancialInstitution'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        frappedoc: dict = {}
         # ['Name'] = ('cbc', 'name', 'Seçimli(0..1)', 'financialinstitution')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_ is not None:
-            if name_.text is not None:
-                frappedoc['financialinstitution'] = name_.text
-            return self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
-            return None
+            if name_.text is None:
+                return None
+        return self._get_frappedoc(self._frappeDoctype, dict(financialinstitution=name_.text))

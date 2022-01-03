@@ -16,10 +16,9 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         id_ = element.find('./' + cbcnamespace + 'ID').text
         # ['IssueDate'] = ('cbc', '', 'Zorunlu (1)', 'issuedate')
         issuedate_ = element.find('./' + cbcnamespace + 'IssueDate').text
-        if id_ is not None and issuedate_ is not None:
-            frappedoc: dict = {'id': id_, 'issuedate': issuedate_}
-        else:
+        if id_ is None or issuedate_ is None:
             return None
+        frappedoc: dict = {'id': id_, 'issuedate': issuedate_}
         # ['DocumentTypeCode'] = ('cbc', '', 'Seçimli (0...1)', 'documenttypecode')
         # ['DocumentType'] = ('cbc', '', 'Seçimli (0...1)', 'documenttype')
         cbcsecimli01: list = ['DocumentTypeCode', 'DocumentType']
@@ -29,31 +28,34 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
         # ['Attachment'] = ('cac', 'Attachment', 'Seçimli (0...1)', 'attachment')
-        # ['ValidityPeriod'] = ('cac', 'Period', 'Seçimli (0...1)', 'validityperiod')
-        # ['IssuerParty'] = ('cac', 'Party', 'Seçimli (0...1)', 'issuerparty')
         attachment_ = element.find('./' + cacnamespace + 'Attachment')
-        if attachment_:
-            frappedoc['attachment'] = TRUBLAttachment().process_element(attachment_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace).name
+        if attachment_ is not None:
+            tmp = TRUBLAttachment().process_element(attachment_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['attachment'] = tmp.name
+        # ['ValidityPeriod'] = ('cac', 'Period', 'Seçimli (0...1)', 'validityperiod')
         validityperiod_ = element.find('./' + cacnamespace + 'ValidityPeriod')
-        if validityperiod_:
-            frappedoc['validityperiod'] = TRUBLPeriod().process_element(validityperiod_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace).name
+        if validityperiod_ is not None:
+            tmp = TRUBLPeriod().process_element(validityperiod_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['validityperiod'] = tmp.name
+        # ['IssuerParty'] = ('cac', 'Party', 'Seçimli (0...1)', 'issuerparty')
         issuerparty_ = element.find('./' + cacnamespace + 'IssuerParty')
-        if issuerparty_:
-            frappedoc['issuerparty'] = TRUBLParty().process_element(issuerparty_,
-                                                                    cbcnamespace,
-                                                                    cacnamespace).name
+        if issuerparty_ is not None:
+            tmp = TRUBLParty().process_element(issuerparty_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['issuerparty'] = tmp.name
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
         documentdescriptions_: list = element.findall('./' + cbcnamespace + 'DocumentDescription')
         if len(documentdescriptions_) != 0:
             documentdescriptions: list = []
             for documentdescription_ in documentdescriptions_:
-                documentdescriptions.append(TRUBLNote().process_element(documentdescription_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace))
-            frappedoc['documentdescription'] = documentdescriptions
+                tmp = TRUBLNote().process_element(documentdescription_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    documentdescriptions.append(tmp)
+            if len(documentdescriptions) != 0:
+                document.documentdescription = documentdescriptions
+                document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document

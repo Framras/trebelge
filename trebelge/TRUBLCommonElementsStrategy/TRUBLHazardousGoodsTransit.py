@@ -23,16 +23,17 @@ class TRUBLHazardousGoodsTransit(TRUBLCommonElement):
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
         # ['MaximumTemperature'] = ('cac', 'Temperature', 'Seçimli(0..1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'MaximumTemperature')
+        if tagelement_ is not None:
+            tmp = TRUBLTemperature().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['maximumtemperature'] = tmp.name
         # ['MinimumTemperature'] = ('cac', 'Temperature', 'Seçimli(0..1)')
-        cacsecimli01: list = \
-            [{'Tag': 'MaximumTemperature', 'strategy': TRUBLTemperature(), 'fieldName': 'maximumtemperature'},
-             {'Tag': 'MinimumTemperature', 'strategy': TRUBLTemperature(), 'fieldName': 'minimumtemperature'}
-             ]
-        for element_ in cacsecimli01:
-            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_:
-                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
-                                                                                                cbcnamespace,
-                                                                                                cacnamespace).name
-
+        tagelement_: Element = element.find('./' + cacnamespace + 'MinimumTemperature')
+        if tagelement_ is not None:
+            tmp = TRUBLTemperature().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['minimumtemperature'] = tmp.name
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

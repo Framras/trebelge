@@ -26,36 +26,27 @@ class TRUBLDespatch(TRUBLCommonElement):
         # ['DespatchAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
         despatchaddress_: Element = element.find('./' + cacnamespace + 'DespatchAddress')
         if despatchaddress_ is not None:
-            tmp = TRUBLAddress().process_element(despatchaddress_,
-                                                 cbcnamespace,
-                                                 cacnamespace)
+            tmp = TRUBLAddress().process_element(despatchaddress_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['despatchaddress'] = tmp.name
         # ['DespatchParty'] = ('cac', 'Party', 'Seçimli (0...1)')
         despatchparty_: Element = element.find('./' + cacnamespace + 'DespatchParty')
         if despatchparty_ is not None:
-            tmp = TRUBLParty().process_element(despatchparty_,
-                                               cbcnamespace,
-                                               cacnamespace)
+            tmp = TRUBLParty().process_element(despatchparty_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['despatchparty'] = tmp.name
         # ['Contact'] = ('cac', 'Contact', 'Seçimli (0...1)')
         contact_: Element = element.find('./' + cacnamespace + 'Contact')
         if contact_ is not None:
-            tmp = TRUBLContact().process_element(contact_,
-                                                 cbcnamespace,
-                                                 cacnamespace)
+            tmp = TRUBLContact().process_element(contact_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['contact'] = tmp.name
         # ['EstimatedDespatchPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
         estimateddespatchperiod_: Element = element.find('./' + cacnamespace + 'EstimatedDespatchPeriod')
         if estimateddespatchperiod_ is not None:
-            tmp = TRUBLPeriod().process_element(estimateddespatchperiod_,
-                                                cbcnamespace,
-                                                cacnamespace)
+            tmp = TRUBLPeriod().process_element(estimateddespatchperiod_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['estimateddespatchperiod'] = tmp.name
-
         if frappedoc == {}:
             return None
 

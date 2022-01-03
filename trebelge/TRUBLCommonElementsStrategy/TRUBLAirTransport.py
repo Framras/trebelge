@@ -9,6 +9,7 @@ class TRUBLAirTransport(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['AircraftID'] = ('cbc', '', 'Zorunlu (1)')
-        frappedoc: dict = {'aircraftid': element.find('./' + cbcnamespace + 'AircraftID').text}
-
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        aircraftid_ = element.find('./' + cbcnamespace + 'AircraftID').text
+        if aircraftid_ is None:
+            return None
+        return self._get_frappedoc(self._frappeDoctype, dict(aircraftid=aircraftid_))

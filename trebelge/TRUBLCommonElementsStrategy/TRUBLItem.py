@@ -13,7 +13,10 @@ class TRUBLItem(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['Name'] = ('cbc', 'itemname', 'Zorunlu (1)')
-        frappedoc: dict = {'itemname': element.find('./' + cbcnamespace + 'Name').text}
+        itemname_ = element.find('./' + cbcnamespace + 'Name').text
+        if itemname_ is None:
+            return None
+        frappedoc: dict = dict(itemname=itemname_)
         # ['Description'] = ('cbc', '', 'Seçimli (0...1)')
         # ['Keyword'] = ('cbc', '', 'Seçimli (0...1)')
         # ['BrandName'] = ('cbc', '', 'Seçimli (0...1)')
@@ -26,58 +29,63 @@ class TRUBLItem(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text
         # ['BuyersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)', 'buyersitemid')
         buyersitemid_: Element = element.find('./' + cacnamespace + 'BuyersItemIdentification')
-        if buyersitemid_:
-            frappedoc['buyersitemid'] = TRUBLItemIdentification().process_element(buyersitemid_,
-                                                                                  cbcnamespace,
-                                                                                  cacnamespace).name
+        if buyersitemid_ is not None:
+            tmp = TRUBLItemIdentification().process_element(buyersitemid_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['buyersitemid'] = tmp.name
         # ['SellersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)', 'sellersitemid')
         sellersitemid_: Element = element.find('./' + cacnamespace + 'SellersItemIdentification')
-        if sellersitemid_:
-            frappedoc['sellersitemid'] = TRUBLItemIdentification().process_element(sellersitemid_,
-                                                                                   cbcnamespace,
-                                                                                   cacnamespace).name
+        if sellersitemid_ is not None:
+            tmp = TRUBLItemIdentification().process_element(sellersitemid_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['sellersitemid'] = tmp.name
         # ['ManufacturersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)', 'manufacturersitemid')
         manufacturersitemid_: Element = element.find('./' + cacnamespace + 'ManufacturersItemIdentification')
-        if manufacturersitemid_:
-            frappedoc['manufacturersitemid'] = TRUBLItemIdentification().process_element(manufacturersitemid_,
-                                                                                         cbcnamespace,
-                                                                                         cacnamespace).name
+        if manufacturersitemid_ is not None:
+            tmp = TRUBLItemIdentification().process_element(manufacturersitemid_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['manufacturersitemid'] = tmp.name
         # ['OriginCountry'] = ('cac', 'Country', 'Seçimli (0...1)', 'origincountry')
         origincountry_: Element = element.find('./' + cacnamespace + 'OriginCountry')
-        if origincountry_:
-            frappedoc['origincountry'] = TRUBLCountry().process_element(origincountry_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace).name
+        if origincountry_ is not None:
+            tmp = TRUBLCountry().process_element(origincountry_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['origincountry'] = tmp.name
         document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)', 'additionalitemid')
         additionalitemids_: list = element.findall('./' + cacnamespace + 'AdditionalItemIdentification')
         if additionalitemids_ is not None:
             additionalitemid: list = []
             for additionalitemid_ in additionalitemids_:
-                additionalitemid.append(TRUBLItemIdentification().process_element(additionalitemid_,
-                                                                                  cbcnamespace,
-                                                                                  cacnamespace))
-            document.additionalitemid = additionalitemid
-            document.save()
+                tmp = TRUBLItemIdentification().process_element(additionalitemid_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    additionalitemid.append(tmp)
+            if len(additionalitemid) != 0:
+                document.additionalitemid = additionalitemid
+                document.save()
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)', 'commodityclassification')
         commodityclassifications_: list = element.findall('./' + cacnamespace + 'CommodityClassification')
         if commodityclassifications_ is not None:
             commodityclass: list = []
             for commodityclassification_ in commodityclassifications_:
-                commodityclass.append(TRUBLCommodityClassification().process_element(commodityclassification_,
-                                                                                     cbcnamespace,
-                                                                                     cacnamespace))
-            document.commodityclass = commodityclass
-            document.save()
+                tmp = TRUBLCommodityClassification().process_element(commodityclassification_,
+                                                                     cbcnamespace,
+                                                                     cacnamespace)
+                if tmp is not None:
+                    commodityclass.append(tmp)
+            if len(commodityclass) != 0:
+                document.commodityclass = commodityclass
+                document.save()
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)', 'iteminstance')
         iteminstances_: list = element.findall('./' + cacnamespace + 'ItemInstance')
         if iteminstances_ is not None:
             iteminstance: list = []
             for iteminstance_ in iteminstances_:
-                iteminstance.append(TRUBLItemInstance().process_element(iteminstance_,
-                                                                        cbcnamespace,
-                                                                        cacnamespace))
-            document.iteminstance = iteminstance
-            document.save()
+                tmp = TRUBLItemInstance().process_element(iteminstance_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    iteminstance.append(tmp)
+            if len(iteminstance) != 0:
+                document.iteminstance = iteminstance
+                document.save()
 
         return document

@@ -12,44 +12,60 @@ class TRUBLBillingReference(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['InvoiceDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'InvoiceDocumentReference')
+        if tagelement_ is not None:
+            tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['invoicedocumentreference'] = tmp.name
         # ['SelfBilledInvoiceDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'SelfBilledInvoiceDocumentReference')
+        if tagelement_ is not None:
+            tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['selfbilledinvoicedocumentreference'] = tmp.name
         # ['CreditNoteDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'CreditNoteDocumentReference')
+        if tagelement_ is not None:
+            tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['creditnotedocumentreference'] = tmp.name
         # ['SelfBilledCreditNoteDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'SelfBilledCreditNoteDocumentReference')
+        if tagelement_ is not None:
+            tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['selfbilledcreditnotedocumentreference'] = tmp.name
         # ['DebitNoteDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'DebitNoteDocumentReference')
+        if tagelement_ is not None:
+            tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['debitnotedocumentreference'] = tmp.name
         # ['ReminderDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'ReminderDocumentReference')
+        if tagelement_ is not None:
+            tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['reminderdocumentreference'] = tmp.name
         # ['AdditionalDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
-        cacsecimli01: list = \
-            [{'Tag': 'InvoiceDocumentReference', 'strategy': TRUBLDocumentReference(),
-              'fieldName': 'invoicedocumentreference'},
-             {'Tag': 'SelfBilledInvoiceDocumentReference', 'strategy': TRUBLDocumentReference(),
-              'fieldName': 'selfbilledinvoicedocumentreference'},
-             {'Tag': 'CreditNoteDocumentReference', 'strategy': TRUBLDocumentReference(),
-              'fieldName': 'creditnotedocumentreference'},
-             {'Tag': 'SelfBilledCreditNoteDocumentReference', 'strategy': TRUBLDocumentReference(),
-              'fieldName': 'selfbilledcreditnotedocumentreference'},
-             {'Tag': 'DebitNoteDocumentReference', 'strategy': TRUBLDocumentReference(),
-              'fieldName': 'debitnotedocumentreference'},
-             {'Tag': 'ReminderDocumentReference', 'strategy': TRUBLDocumentReference(),
-              'fieldName': 'reminderdocumentreference'},
-             {'Tag': 'AdditionalDocumentReference', 'strategy': TRUBLDocumentReference(),
-              'fieldName': 'additionaldocumentreference'}
-             ]
-        for element_ in cacsecimli01:
-            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_:
-                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
-                                                                                                cbcnamespace,
-                                                                                                cacnamespace).name
+        tagelement_: Element = element.find('./' + cacnamespace + 'AdditionalDocumentReference')
+        if tagelement_ is not None:
+            tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['additionaldocumentreference'] = tmp.name
+        if frappedoc == {}:
+            return None
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['BillingReferenceLine'] = ('cac', 'BillingReferenceLine', 'Seçimli (0...n)')
         billingreferencelines_: list = element.findall('./' + cacnamespace + 'BillingReferenceLine')
         if len(billingreferencelines_) != 0:
             billingreferencelines: list = []
             for billingreferenceline_ in billingreferencelines_:
-                billingreferencelines.append(TRUBLBillingReferenceLine().process_element(billingreferenceline_,
-                                                                                         cbcnamespace,
-                                                                                         cacnamespace))
-            document.billingreferenceline = billingreferencelines
-            document.save()
+                tmp = TRUBLBillingReferenceLine().process_element(billingreferenceline_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    billingreferencelines.append(tmp)
+            if len(billingreferencelines) != 0:
+                document.billingreferenceline = billingreferencelines
+                document.save()
 
         return document

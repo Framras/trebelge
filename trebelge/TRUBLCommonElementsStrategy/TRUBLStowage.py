@@ -13,28 +13,33 @@ class TRUBLStowage(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['LocationID'] = ('cbc', 'locationid', 'Seçimli (0...1)')
         locationid_: Element = element.find('./' + cbcnamespace + 'LocationID')
-        if locationid_:
-            frappedoc['locationid'] = locationid_.text
+        if locationid_ is not None:
+            if locationid_.text is not None:
+                frappedoc['locationid'] = locationid_.text
+        if frappedoc == {}:
+            return None
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['Location'] = ('cac', 'Location', 'Seçimli (0...n)')
         locations_: list = element.findall('./' + cacnamespace + 'Location')
         if len(locations_) != 0:
             locations: list = []
             for location_ in locations_:
-                locations.append(TRUBLLocation().process_element(location_,
-                                                                 cbcnamespace,
-                                                                 cacnamespace))
-            document.location = locations
-            document.save()
+                tmp = TRUBLLocation().process_element(location_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    locations.append(tmp)
+            if len(locations) != 0:
+                document.location = locations
+                document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
         measurementdimensions_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if len(measurementdimensions_) != 0:
             measurementdimensions: list = []
             for measurementdimension_ in measurementdimensions_:
-                measurementdimensions.append(TRUBLDimension().process_element(measurementdimension_,
-                                                                              cbcnamespace,
-                                                                              cacnamespace))
-            document.measurementdimension = measurementdimensions
-            document.save()
+                tmp = TRUBLDimension().process_element(measurementdimension_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    measurementdimensions.append(tmp)
+            if len(measurementdimensions) != 0:
+                document.measurementdimension = measurementdimensions
+                document.save()
 
-        return
+        return document

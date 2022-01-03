@@ -23,23 +23,26 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text
         # ['GrossTonnageMeasure'] = ('cbc', '', 'Seçimli (0...1)')
         grosstonnagemeasure_: Element = element.find('./' + cbcnamespace + 'GrossTonnageMeasure')
-        if grosstonnagemeasure_:
-            frappedoc['grosstonnagemeasure'] = grosstonnagemeasure_.text
-            frappedoc['grosstonnagemeasureunitcode'] = grosstonnagemeasure_.attrib.get('unitCode')
+        if grosstonnagemeasure_ is not None:
+            if grosstonnagemeasure_.text is not None:
+                frappedoc['grosstonnagemeasure'] = grosstonnagemeasure_.text
+                frappedoc['grosstonnagemeasureunitcode'] = grosstonnagemeasure_.attrib.get('unitCode')
         # ['NetTonnageMeasure'] = ('cbc', '', 'Seçimli (0...1)')
         nettonnagemeasure_: Element = element.find('./' + cbcnamespace + 'NetTonnageMeasure')
-        if nettonnagemeasure_:
-            frappedoc['nettonnagemeasure'] = nettonnagemeasure_.text
-            frappedoc['nettonnagemeasureunitcode'] = nettonnagemeasure_.attrib.get('unitCode')
+        if nettonnagemeasure_ is not None:
+            if nettonnagemeasure_.text is not None:
+                frappedoc['nettonnagemeasure'] = nettonnagemeasure_.text
+                frappedoc['nettonnagemeasureunitcode'] = nettonnagemeasure_.attrib.get('unitCode')
         # ['ShipsRequirements'] = ('cbc', '', 'Seçimli (0...n)')
         shipsrequirements_: list = element.findall('./' + cbcnamespace + 'ShipsRequirements')
         if len(shipsrequirements_) != 0:
             requirements: list = []
             for shipsrequirement_ in shipsrequirements_:
-                requirements.append(TRUBLNote.process_element(shipsrequirement_,
-                                                              cbcnamespace,
-                                                              cacnamespace))
-            frappedoc['shipsrequirements'] = requirements
+                tmp = TRUBLNote().process_element(shipsrequirement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    requirements.append(tmp)
+            if len(requirements) != 0:
+                frappedoc['shipsrequirements'] = requirements
         # ['RegistryCertificateDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)')
         # ['RegistryPortLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
         cacsecimli01: list = \
@@ -49,9 +52,10 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_:
-                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
-                                                                                                cbcnamespace,
-                                                                                                cacnamespace).name
-
+            if tagelement_ is not None:
+                tmp = element_.get('strategy').process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    frappedoc[element_.get('fieldName')] = tmp.name
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

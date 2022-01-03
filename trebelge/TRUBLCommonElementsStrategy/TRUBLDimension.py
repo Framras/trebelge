@@ -11,10 +11,9 @@ class TRUBLDimension(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         attributeid_ = element.find('./' + cbcnamespace + 'AttributeID')
         # ['AttributeID'] = ('cbc', 'attributeid', 'Zorunlu(1)')
-        if attributeid_.text is not None:
-            frappedoc: dict = {'attributeid': attributeid_.text}
-        else:
+        if attributeid_.text is None:
             return None
+        frappedoc: dict = dict(attributeid=attributeid_.text)
         # ['Measure'] = ('cbc', 'measure', 'Seçimli (0...1)')
         measure_: Element = element.find('./' + cbcnamespace + 'Measure')
         if measure_ is not None:
@@ -39,9 +38,7 @@ class TRUBLDimension(TRUBLCommonElement):
         if len(descriptions_) != 0:
             descriptions: list = []
             for description_ in descriptions_:
-                tmp = TRUBLNote().process_element(description_,
-                                                  cbcnamespace,
-                                                  cacnamespace)
+                tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     descriptions.append(tmp)
             if len(descriptions) != 0:

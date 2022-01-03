@@ -17,10 +17,9 @@ class TRUBLShipment(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         id_ = element.find('./' + cbcnamespace + 'ID').text
-        if id_ is not None:
-            frappedoc: dict = {'id': id_}
-        else:
+        if id_ is None:
             return None
+        frappedoc: dict = {'id': id_}
         # ['HandlingCode'] = ('cbc', '', 'Seçimli (0...1)')
         # ['HandlingInstructions'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['HandlingCode', 'HandlingInstructions']
@@ -111,21 +110,29 @@ class TRUBLShipment(TRUBLCommonElement):
             if len(descriptions) != 0:
                 frappedoc['specialinstructions'] = descriptions
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'Delivery')
+        if tagelement_ is not None:
+            tmp = TRUBLDelivery().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['delivery'] = tmp.name
         # ['ReturnAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'ReturnAddress')
+        if tagelement_ is not None:
+            tmp = TRUBLAddress().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['returnaddress'] = tmp.name
         # ['FirstArrivalPortLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'FirstArrivalPortLocation')
+        if tagelement_ is not None:
+            tmp = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['firstarrivalportlocation'] = tmp.name
         # ['LastExitPortLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
-        cacsecimli01: list = \
-            [{'Tag': 'Delivery', 'strategy': TRUBLDelivery(), 'fieldName': 'delivery'},
-             {'Tag': 'ReturnAddress', 'strategy': TRUBLAddress(), 'fieldName': 'returnaddress'},
-             {'Tag': 'FirstArrivalPortLocation', 'strategy': TRUBLLocation(), 'fieldName': 'firstarrivalportlocation'},
-             {'Tag': 'LastExitPortLocation', 'strategy': TRUBLLocation(), 'fieldName': 'lastexitportlocation'}
-             ]
-        for element_ in cacsecimli01:
-            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_ is not None:
-                tmp = element_.get('strategy').process_element(tagelement_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    frappedoc[element_.get('fieldName')] = tmp.name
+        tagelement_: Element = element.find('./' + cacnamespace + 'LastExitPortLocation')
+        if tagelement_ is not None:
+            tmp = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['lastexitportlocation'] = tmp.name
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')

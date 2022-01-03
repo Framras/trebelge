@@ -11,10 +11,9 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         id_ = element.find('./' + cbcnamespace + 'ID').text
-        if id_ is not None:
-            frappedoc: dict = {'id': id_}
-        else:
+        if id_ is None:
             return None
+        frappedoc: dict = {'id': id_}
         # ['CurrencyCode'] = ('cbc', 'currencycode', 'Seçimli (0...1)')
         # ['PaymentNote'] = ('cbc', 'paymentnote', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CurrencyCode', 'PaymentNote']

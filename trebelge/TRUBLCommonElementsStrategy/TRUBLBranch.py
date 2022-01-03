@@ -13,16 +13,14 @@ class TRUBLBranch(TRUBLCommonElement):
         # ['Name'] = ('cbc', 'branchname', 'Seçimli(0..1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_ is not None:
-            frappedoc['branchname'] = name_.text
+            if name_.text is not None:
+                frappedoc['branchname'] = name_.text
         # ['FinancialInstitution'] = ('cac', 'FinancialInstitution()', 'Seçimli(0..1)', 'financialinstitution')
         financialinstitution_: Element = element.find('./' + cacnamespace + 'FinancialInstitution')
         if financialinstitution_ is not None:
-            tmp = TRUBLFinancialInstitution().process_element(financialinstitution_,
-                                                              cbcnamespace,
-                                                              cacnamespace)
+            tmp = TRUBLFinancialInstitution().process_element(financialinstitution_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['financialinstitution'] = tmp.name
-            elif name_.text is None:
-                return None
-
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

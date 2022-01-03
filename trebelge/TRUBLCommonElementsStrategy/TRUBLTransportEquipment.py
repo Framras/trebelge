@@ -12,9 +12,10 @@ class TRUBLTransportEquipment(TRUBLCommonElement):
         # ['ID'] = ('cbc', '', 'Seçimli (0...1)')
         # ['schemeID'] = ('', '', 'Seçimli (0...1)')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
-        if id_:
-            frappedoc['id'] = id_.text
-            frappedoc['schemeid'] = id_.attrib.get('schemeID')
+        if id_ is not None:
+            if id_.text is not None:
+                frappedoc['id'] = id_.text
+                frappedoc['schemeid'] = id_.attrib.get('schemeID')
         # ['TransportEquipmentTypeCode'] = ('cbc', '', 'Seçimli (0...1)')
         # ['Description'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['TransportEquipmentTypeCode', 'Description']
@@ -23,5 +24,6 @@ class TRUBLTransportEquipment(TRUBLCommonElement):
             if field_ is not None:
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
-
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

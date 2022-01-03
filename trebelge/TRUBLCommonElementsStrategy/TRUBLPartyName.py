@@ -9,6 +9,7 @@ class TRUBLPartyName(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['Name'] = ('cbc', 'partyname', 'Zorunlu (1)')
-        frappedoc: dict = {'partyname': element.find('./' + cbcnamespace + 'Name').text}
-
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        partyname_ = element.find('./' + cbcnamespace + 'Name').text
+        if partyname_ is None:
+            return None
+        return self._get_frappedoc(self._frappeDoctype, dict(partyname=partyname_))

@@ -14,13 +14,12 @@ class TRUBLExchangeRate(TRUBLCommonElement):
         targetcurrencycode_ = element.find('./' + cbcnamespace + 'TargetCurrencyCode').text
         # ['CalculationRate'] = ('cbc', 'calculationrate', 'Zorunlu(1)')
         calculationrate_ = element.find('./' + cbcnamespace + 'CalculationRate').text
-        if sourcecurrencycode_ is not None and targetcurrencycode_ is not None and calculationrate_ is not None:
-            frappedoc: dict = {'sourcecurrencycode': sourcecurrencycode_,
-                               'targetcurrencycode': targetcurrencycode_,
-                               'calculationrate': calculationrate_
-                               }
-        else:
+        if sourcecurrencycode_ is None or targetcurrencycode_ is None or calculationrate_ is None:
             return None
+        frappedoc: dict = dict(sourcecurrencycode=sourcecurrencycode_,
+                               targetcurrencycode=targetcurrencycode_,
+                               calculationrate=calculationrate_
+                               )
         # ['Date'] = ('cbc', 'date', 'Seçimli (0...1)')
         date_: Element = element.find('./' + cbcnamespace + 'Date')
         if date_ is not None:

@@ -20,6 +20,8 @@ class TRUBLTaxScheme(TRUBLCommonElement):
         # ['Name'] = ('cbc', 'taxschemename', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_ is not None:
-            frappedoc['taxschemename'] = name_.text
-
+            if name_.text is not None:
+                frappedoc['taxschemename'] = name_.text
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

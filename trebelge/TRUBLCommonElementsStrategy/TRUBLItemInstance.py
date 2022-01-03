@@ -22,8 +22,8 @@ class TRUBLItemInstance(TRUBLCommonElement):
             if field_ is not None:
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
-
         # ['AdditionalItemProperty'] = ('cac', 'AdditionalItemProperty', 'Seçimli (0...1)')
         # ['LotIdentification'] = ('cac', 'LotIdentification', 'Seçimli (0...1)')
-
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

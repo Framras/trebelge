@@ -14,17 +14,15 @@ class TRUBLDocumentResponse(TRUBLCommonElement):
         # ['Response'] = ('cac', 'Response', 'Zorunlu(1)')
         response_: Element = element.find('./' + cacnamespace + 'Response')
         tmp = TRUBLResponse().process_element(response_, cbcnamespace, cacnamespace)
-        if tmp is not None:
-            frappedoc: dict = {'response': tmp.name}
-        else:
+        if tmp is None:
             return None
+        frappedoc: dict = dict(response=tmp.name)
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Zorunlu(1)')
         documentreference_: Element = element.find('./' + cacnamespace + 'DocumentReference')
         tmp = TRUBLDocumentReference().process_element(documentreference_, cbcnamespace, cacnamespace)
-        if tmp is not None:
-            frappedoc['documentreference'] = {'documentreference': tmp.name}
-        else:
+        if tmp is None:
             return None
+        frappedoc['documentreference'] = tmp.name
         # ['LineResponse'] = ('cac', 'LineResponse', 'Seçimli (0...1)')
         lineresponse_: Element = element.find('./' + cacnamespace + 'LineResponse')
         if lineresponse_ is not None:

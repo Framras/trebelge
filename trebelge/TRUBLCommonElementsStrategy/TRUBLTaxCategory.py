@@ -13,7 +13,8 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_ is not None:
-            frappedoc['taxcategoryname'] = name_.text
+            if name_.text is not None:
+                frappedoc['taxcategoryname'] = name_.text
         # ['TaxExemptionReasonCode'] = ('cbc', 'taxexemptionreasoncode', 'Seçimli (0...1)')
         # ['TaxExemptionReason'] = ('cbc', 'taxexemptionreason', 'Seçimli (0...1)')
         cbcsecimli01: list = ['TaxExemptionReasonCode', 'TaxExemptionReason']
@@ -24,8 +25,9 @@ class TRUBLTaxCategory(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
-        frappedoc['taxscheme'] = TRUBLTaxScheme().process_element(taxscheme_,
-                                                                  cbcnamespace,
-                                                                  cacnamespace).name
-
+        tmp = TRUBLTaxScheme().process_element(taxscheme_, cbcnamespace, cacnamespace)
+        if tmp is not None:
+            frappedoc['taxscheme'] = tmp.name
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

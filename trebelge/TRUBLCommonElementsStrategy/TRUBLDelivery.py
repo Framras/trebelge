@@ -30,42 +30,66 @@ class TRUBLDelivery(TRUBLCommonElement):
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
-        # unitCode
         quantity_: Element = element.find('./' + cbcnamespace + 'Quantity')
         if quantity_ is not None:
-            frappedoc['quantity'] = quantity_.text
-            frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
+            if quantity_.text is not None:
+                frappedoc['quantity'] = quantity_.text
+                frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
         # ['DeliveryAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'DeliveryAddress')
+        if tagelement_ is not None:
+            tmp = TRUBLAddress().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['deliveryaddress'] = tmp.name
         # ['AlternativeDeliveryLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'AlternativeDeliveryLocation')
+        if tagelement_ is not None:
+            tmp = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['alternativedeliverylocation'] = tmp.name
         # ['EstimatedDeliveryPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'EstimatedDeliveryPeriod')
+        if tagelement_ is not None:
+            tmp = TRUBLPeriod().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['estimateddeliveryperiod'] = tmp.name
         # ['CarrierParty'] = ('cac', 'Party', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'CarrierParty')
+        if tagelement_ is not None:
+            tmp = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['carrierparty'] = tmp.name
         # ['DeliveryParty'] = ('cac', 'Party', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'DeliveryParty')
+        if tagelement_ is not None:
+            tmp = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['deliveryparty'] = tmp.name
         # ['Despatch'] = ('cac', 'Despatch', 'Seçimli (0...1)')
+        tagelement_: Element = element.find('./' + cacnamespace + 'Despatch')
+        if tagelement_ is not None:
+            tmp = TRUBLDespatch().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['despatch'] = tmp.name
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli (0...1)')
-        cacsecimli01: list = \
-            [{'Tag': 'DeliveryAddress', 'strategy': TRUBLAddress(), 'fieldName': 'deliveryaddress'},
-             {'Tag': 'AlternativeDeliveryLocation', 'strategy': TRUBLLocation(),
-              'fieldName': 'alternativedeliverylocation'},
-             {'Tag': 'EstimatedDeliveryPeriod', 'strategy': TRUBLPeriod(), 'fieldName': 'estimateddeliveryperiod'},
-             {'Tag': 'CarrierParty', 'strategy': TRUBLParty(), 'fieldName': 'carrierparty'},
-             {'Tag': 'DeliveryParty', 'strategy': TRUBLParty(), 'fieldName': 'deliveryparty'},
-             {'Tag': 'Despatch', 'strategy': TRUBLDespatch(), 'fieldName': 'despatch'},
-             {'Tag': 'Shipment', 'strategy': TRUBLShipment(), 'fieldName': 'shipment'}
-             ]
-        for element_ in cacsecimli01:
-            tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_ is not None:
-                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
-                                                                                                cbcnamespace,
-                                                                                                cacnamespace).name
+        tagelement_: Element = element.find('./' + cacnamespace + 'Shipment')
+        if tagelement_ is not None:
+            tmp = TRUBLShipment().process_element(tagelement_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['shipment'] = tmp.name
+        if frappedoc == {}:
+            return None
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
         deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
         if deliveryterms_ is not None:
             deliveryterms: list = []
             for deliveryterm_ in deliveryterms_:
-                deliveryterms.append(TRUBLDeliveryTerms().process_element(deliveryterm_,
-                                                                          cbcnamespace,
-                                                                          cacnamespace))
-            frappedoc['deliveryterms'] = deliveryterms
+                tmp = TRUBLDeliveryTerms().process_element(deliveryterm_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    deliveryterms.append(tmp)
+            if len(deliveryterms) != 0:
+                document.deliveryterms = deliveryterms
+                document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document

@@ -10,18 +10,18 @@ class TRUBLLineResponse(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR LineResponse'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        frappedoc: dict = {}
         # ['LineReference'] = ('cac', 'LineReference', 'Zorunlu(1)')
         linereference_: Element = element.find('./' + cacnamespace + 'LineReference')
-        frappedoc['linereference'] = TRUBLLineReference().process_element(linereference_,
-                                                                          cbcnamespace,
-                                                                          cacnamespace).name
+        tmp = TRUBLLineReference().process_element(linereference_, cbcnamespace, cacnamespace)
+        if tmp is None:
+            return None
         # ['Response'] = ('cac', 'Response', 'Zorunlu(1..n)')
         responses: list = []
         for response_ in element.findall('./' + cacnamespace + 'Response'):
-            responses.append(TRUBLResponse().process_element(response_,
-                                                             cbcnamespace,
-                                                             cacnamespace))
-        frappedoc['response'] = responses
-
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+            tmp = TRUBLResponse().process_element(response_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                responses.append(tmp)
+        if len(responses) == 0:
+            return None
+        return self._get_frappedoc(self._frappeDoctype, dict(linereference=tmp.name,
+                                                             response=responses))

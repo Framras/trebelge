@@ -11,17 +11,20 @@ class TRUBLTaxTotal(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['TaxAmount'] = ('cbc', 'taxamount', 'Zorunlu(1)')
         taxamount_: Element = element.find('./' + cbcnamespace + 'TaxAmount')
-        frappedoc: dict = {'taxamount': taxamount_.text,
-                           'taxamountcurrencyid': taxamount_.attrib.get('currencyID')
-                           }
+        if taxamount_.text is None:
+            return None
+        frappedoc: dict = dict(taxamount=taxamount_.text,
+                               taxamountcurrencyid=taxamount_.attrib.get('currencyID')
+                               )
         document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
         taxsubtotals: list = []
         for taxsubtotal_ in element.findall('./' + cacnamespace + 'TaxSubtotal'):
-            taxsubtotals.append(TRUBLTaxSubtotal().process_element(taxsubtotal_,
-                                                                   cbcnamespace,
-                                                                   cacnamespace))
-        document.taxsubtotal = taxsubtotals
-        document.save()
+            tmp = TRUBLTaxSubtotal().process_element(taxsubtotal_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                taxsubtotals.append(tmp)
+        if len(taxsubtotals) != 0:
+            document.taxsubtotal = taxsubtotals
+            document.save()
 
         return document

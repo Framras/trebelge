@@ -8,6 +8,7 @@ class TRUBLNote(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Note'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        frappedoc: dict = {'note': element.text}
-
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        element_ = element.text
+        if element_ is None:
+            return None
+        return self._get_frappedoc(self._frappeDoctype, dict(note=element_))

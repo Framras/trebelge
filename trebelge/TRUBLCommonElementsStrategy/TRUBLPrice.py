@@ -11,9 +11,7 @@ class TRUBLPrice(TRUBLCommonElement):
         # self._mapping['PriceAmount'] = ('cbc', '', 'Zorunlu(1)')
         priceamount = element.find('./' + cbcnamespace + 'PriceAmount')
         if priceamount.text is not None:
-            frappedoc: dict = {'priceamount': priceamount.text,
-                               'priceamountcurrencyid': priceamount.attrib.get('currencyID')
-                               }
-            return self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
             return None
+        return self._get_frappedoc(self._frappeDoctype, dict(priceamount=priceamount.text,
+                                                             priceamountcurrencyid=priceamount.attrib.get('currencyID')
+                                                             ))

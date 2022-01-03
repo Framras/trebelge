@@ -22,18 +22,21 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
         # ['Amount'] = ('cbc', 'amount', 'Seçimli (0...1)')
         amount_: Element = element.find('./' + cbcnamespace + 'Amount')
         if amount_ is not None:
-            frappedoc['amount'] = amount_.text
-            frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
+            if amount_.text is not None:
+                frappedoc['amount'] = amount_.text
+                frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
         # ['PenaltyAmount'] = ('cbc', 'penaltyamount', 'Seçimli (0...1)')
         penaltyamount_: Element = element.find('./' + cbcnamespace + 'PenaltyAmount')
         if penaltyamount_ is not None:
-            frappedoc['penaltyamount'] = penaltyamount_.text
-            frappedoc['penaltyamountcurrencyid'] = penaltyamount_.attrib.get('currencyID')
+            if penaltyamount_.text is not None:
+                frappedoc['penaltyamount'] = penaltyamount_.text
+                frappedoc['penaltyamountcurrencyid'] = penaltyamount_.attrib.get('currencyID')
         # ['SettlementPeriod'] = ('cac', 'settlementperiod', 'Seçimli (0...1)')
         settlementperiod_: Element = element.find('./' + cbcnamespace + 'SettlementPeriod')
         if settlementperiod_ is not None:
-            frappedoc['settlementperiod'] = [TRUBLPeriod().process_element(settlementperiod_,
-                                                                           cbcnamespace,
-                                                                           cacnamespace)]
-
+            tmp = TRUBLPeriod().process_element(settlementperiod_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['settlementperiod'] = tmp.name
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

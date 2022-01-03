@@ -10,7 +10,10 @@ class TRUBLOrderLineReference(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['LineID'] = ('cbc', '', 'Zorunlu(1)')
-        frappedoc: dict = {'lineid': element.find('./' + cbcnamespace + 'LineID').text}
+        lineid_ = element.find('./' + cbcnamespace + 'LineID').text
+        if lineid_ is None:
+            return None
+        frappedoc: dict = dict(lineid=lineid_)
         # ['SalesOrderLineID'] = ('cbc', '', 'Seçimli (0...1)')
         # ['UUID'] = ('cbc', '', 'Seçimli (0...1)')
         # ['LineStatusCode'] = ('cbc', '', 'Seçimli (0...1)')
@@ -23,8 +26,8 @@ class TRUBLOrderLineReference(TRUBLCommonElement):
         # ['OrderReference'] = ('cac', 'OrderReference', 'Seçimli (0...1)')
         orderreference_: Element = element.find('./' + cacnamespace + 'OrderReference')
         if orderreference_ is not None:
-            frappedoc['orderreference'] = TRUBLOrderReference().process_element(orderreference_,
-                                                                                cbcnamespace,
-                                                                                cacnamespace).name
+            tmp = TRUBLOrderReference().process_element(orderreference_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['orderreference'] = tmp.name
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -15,7 +15,10 @@ class TRUBLReceiptLine(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', '', 'Zorunlu (1)')
-        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text}
+        id_: Element = element.find('./' + cbcnamespace + 'ID')
+        if id_.text is None:
+            return None
+        frappedoc: dict = {'id': id_.text}
         # ['RejectReasonCode'] = ('cbc', '', 'Seçimli (0...1)')
         # ['ReceivedDate'] = ('cbc', '', 'Seçimli (0...1)')
         # ['TimingComplaintCode'] = ('cbc', '', 'Seçimli (0...1)')
@@ -42,54 +45,59 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         if len(notes_) != 0:
             note: list = []
             for note_ in notes_:
-                note.append(TRUBLNote().process_element(note_,
-                                                        cbcnamespace,
-                                                        cacnamespace))
-            frappedoc['note'] = note
+                tmp = TRUBLNote().process_element(note_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    note.append(tmp)
+            if len(note) != 0:
+                frappedoc['note'] = note
         # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
         rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
         if len(rejectreasons_) != 0:
             rejectreason: list = []
             for rejectreason_ in rejectreasons_:
-                rejectreason.append(TRUBLNote().process_element(rejectreason_,
-                                                                cbcnamespace,
-                                                                cacnamespace))
-            frappedoc['rejectreason'] = rejectreason
+                tmp = TRUBLNote().process_element(rejectreason_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    rejectreason.append(tmp)
+            if len(rejectreason) != 0:
+                frappedoc['rejectreason'] = rejectreason
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
-        frappedoc['item'] = TRUBLItem().process_element(item_,
-                                                        cbcnamespace,
-                                                        cacnamespace).name
+        tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)
+        if tmp is None:
+            return None
+        frappedoc['item'] = tmp.name
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...1)')
         orderlinereference_: Element = element.find('./' + cacnamespace + 'OrderLineReference')
-        frappedoc['orderlinereference'] = TRUBLOrderLineReference().process_element(orderlinereference_,
-                                                                                    cbcnamespace,
-                                                                                    cacnamespace).name
+        tmp = TRUBLOrderLineReference().process_element(orderlinereference_, cbcnamespace, cacnamespace)
+        if tmp is not None:
+            frappedoc['orderlinereference'] = tmp.name
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...1)')
         linereference_: Element = element.find('./' + cacnamespace + 'DespatchLineReference')
-        frappedoc['linereference'] = TRUBLLineReference().process_element(linereference_,
-                                                                          cbcnamespace,
-                                                                          cacnamespace).name
+        tmp = TRUBLLineReference().process_element(linereference_, cbcnamespace, cacnamespace)
+        if tmp is not None:
+            frappedoc['linereference'] = tmp.name
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli (0...n)')
         shipments_: list = element.findall('./' + cacnamespace + 'Shipment')
         if len(shipments_) != 0:
             shipments: list = []
             for shipment_ in shipments_:
-                shipments.append(TRUBLShipment().process_element(shipment_,
-                                                                 cbcnamespace,
-                                                                 cacnamespace))
-            document.shipment = shipments
-            document.save()
+                tmp = TRUBLShipment().process_element(shipment_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    shipments.append(tmp)
+            if len(shipments) != 0:
+                document.shipment = shipments
+                document.save()
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)')
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if len(documentreferences_) != 0:
             documentreferences: list = []
             for documentreference_ in documentreferences_:
-                documentreferences.append(TRUBLDocumentReference().process_element(documentreference_,
-                                                                                   cbcnamespace,
-                                                                                   cacnamespace))
-            document.documentreference = documentreferences
-            document.save()
+                tmp = TRUBLDocumentReference().process_element(documentreference_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    documentreferences.append(tmp)
+            if len(documentreferences) != 0:
+                document.documentreference = documentreferences
+                document.save()
 
         return document

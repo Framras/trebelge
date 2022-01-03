@@ -10,27 +10,20 @@ class TRUBLAddress(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Address'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        frappedoc: dict = {}
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
-        citysubdivisionname = element.find('./' + cbcnamespace + 'CitySubdivisionName')
-        if citysubdivisionname is not None:
-            if citysubdivisionname.text is not None:
-                frappedoc['citysubdivisionname'] = citysubdivisionname.text
+        citysubdivisionname_ = element.find('./' + cbcnamespace + 'CitySubdivisionName').text
         # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
-        cityname = element.find('./' + cbcnamespace + 'CityName')
-        if cityname is not None:
-            if cityname.text is not None:
-                frappedoc['cityname'] = cityname.text
+        cityname_ = element.find('./' + cbcnamespace + 'CityName').text
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
-        if country_ is not None:
-            tmp = TRUBLCountry().process_element(country_,
-                                                 cbcnamespace,
-                                                 cacnamespace)
-            if tmp is not None:
-                frappedoc['country'] = tmp.name
-        if frappedoc == {}:
+        tmp = TRUBLCountry().process_element(country_, cbcnamespace, cacnamespace)
+        if tmp is None:
             return None
+        frappedoc: dict = dict(country=tmp.name)
+        if citysubdivisionname_ is not None:
+            frappedoc['citysubdivisionname'] = citysubdivisionname_
+        if cityname_ is not None:
+            frappedoc['cityname'] = cityname_
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
         # ['Room'] = ('cbc', 'room', 'Seçimli (0...1)')
@@ -53,10 +46,11 @@ class TRUBLAddress(TRUBLCommonElement):
         if len(buildingnumbers_) != 0:
             buildingnumbers: list = []
             for buildingnumber in buildingnumbers_:
-                buildingnumbers.append(TRUBLBuildingNumber().process_element(buildingnumber,
-                                                                             cbcnamespace,
-                                                                             cacnamespace))
-            document.buildingnumber = buildingnumbers
-            document.save()
+                tmp = TRUBLBuildingNumber().process_element(buildingnumber, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    buildingnumbers.append(tmp)
+            if len(buildingnumbers) != 0:
+                document.buildingnumber = buildingnumbers
+                document.save()
 
         return document

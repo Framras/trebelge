@@ -30,11 +30,13 @@ class TRUBLTransportMeans(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text
         # ['RegistrationNationality'] = ('cbc', 'registrationnationality', 'Seçimli (0...n)')
         registrationnationality_: list = element.findall('./' + cbcnamespace + 'RegistrationNationality')
-        if registrationnationality_:
+        if registrationnationality_ is not None:
             registrationnationality: list = []
             for nationality_ in registrationnationality_:
-                registrationnationality.append(nationality_.text)
-            frappedoc['registrationnationality'] = registrationnationality
+                if nationality_.text is not None:
+                    registrationnationality.append(nationality_.text)
+            if len(registrationnationality) != 0:
+                frappedoc['registrationnationality'] = registrationnationality
         # ['Stowage'] = ('cac', 'Stowage', 'Seçimli(0..1)')
         # ['AirTransport'] = ('cac', 'AirTransport', 'Seçimli(0..1)')
         # ['RoadTransport'] = ('cac', 'RoadTransport', 'Seçimli(0..1)')
@@ -51,20 +53,23 @@ class TRUBLTransportMeans(TRUBLCommonElement):
              ]
         for element_ in cacsecimli01:
             tagelement_: Element = element.find('./' + cacnamespace + element_.get('Tag'))
-            if tagelement_:
-                frappedoc[element_.get('fieldName')] = element_.get('strategy').process_element(tagelement_,
-                                                                                                cbcnamespace,
-                                                                                                cacnamespace).name
+            if tagelement_ is not None:
+                tmp = element_.get('strategy').process_element(tagelement_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    frappedoc[element_.get('fieldName')] = tmp.name
+        if frappedoc == {}:
+            return None
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
         measurementdimension_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if measurementdimension_:
             measurementdimension: list = []
             for dimension_ in measurementdimension_:
-                measurementdimension.append(TRUBLDimension().process_element(dimension_,
-                                                                             cbcnamespace,
-                                                                             cacnamespace))
-            document.measurementdimension = measurementdimension
-            document.save()
+                tmp = TRUBLDimension().process_element(dimension_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    measurementdimension.append(tmp)
+            if len(measurementdimension) != 0:
+                document.measurementdimension = measurementdimension
+                document.save()
 
         return document

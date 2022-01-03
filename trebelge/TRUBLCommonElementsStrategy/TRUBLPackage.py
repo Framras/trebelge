@@ -23,46 +23,54 @@ class TRUBLPackage(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         quantity_: Element = element.find('./' + cbcnamespace + 'Quantity')
-        if quantity_:
-            frappedoc['quantity'] = quantity_.text
-            frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
+        if quantity_ is not None:
+            if quantity_.text is not None:
+                frappedoc['quantity'] = quantity_.text
+                frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
         # ['PackagingMaterial'] = ('cbc', '', 'Seçimli (0...n)')
         packagingmaterials_: list = element.findall('./' + cbcnamespace + 'PackagingMaterial')
         if packagingmaterials_:
             packagingmaterial: list = []
             for packagingmaterial_ in packagingmaterials_:
-                packagingmaterial.append(packagingmaterial_.text)
-            frappedoc['packagingmaterial'] = packagingmaterial
+                if packagingmaterial_.text is not None:
+                    packagingmaterial.append(packagingmaterial_.text)
+            if len(packagingmaterial) != 0:
+                frappedoc['packagingmaterial'] = packagingmaterial
+        if frappedoc == {}:
+            return None
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['ContainedPackage'] = ('cac', 'Package', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'ContainedPackage')
         if tagelements_:
             tagelements: list = []
             for tagelement in tagelements_:
-                tagelements.append(TRUBLPackage().process_element(tagelement,
-                                                                  cbcnamespace,
-                                                                  cacnamespace))
-            document.containedpackage = tagelements
-            document.save()
+                tmp = TRUBLPackage().process_element(tagelement, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.containedpackage = tagelements
+                document.save()
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')
         if tagelements_:
             tagelements: list = []
             for tagelement in tagelements_:
-                tagelements.append(TRUBLGoodsItem().process_element(tagelement,
-                                                                    cbcnamespace,
-                                                                    cacnamespace))
-            document.goodsitem = tagelements
-            document.save()
+                tmp = TRUBLGoodsItem().process_element(tagelement, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.goodsitem = tagelements
+                document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if tagelements_:
             tagelements: list = []
             for tagelement in tagelements_:
-                tagelements.append(TRUBLDimension().process_element(tagelement,
-                                                                    cbcnamespace,
-                                                                    cacnamespace))
-            document.measurementdimension = tagelements
-            document.save()
+                tmp = TRUBLDimension().process_element(tagelement, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    tagelements.append(tmp)
+            if len(tagelements) != 0:
+                document.measurementdimension = tagelements
+                document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document

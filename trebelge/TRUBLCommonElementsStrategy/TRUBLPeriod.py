@@ -25,5 +25,6 @@ class TRUBLPeriod(TRUBLCommonElement):
         if durationmeasure_ is not None:
             frappedoc['durationmeasure'] = durationmeasure_.text
             frappedoc['unitcode'] = durationmeasure_.attrib.get('unitCode')
-
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

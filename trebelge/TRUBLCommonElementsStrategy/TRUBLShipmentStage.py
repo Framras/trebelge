@@ -27,28 +27,35 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         if len(transitdirectioncodes_) != 0:
             transitdirectioncode: list = []
             for transitdirectioncode_ in transitdirectioncodes_:
-                transitdirectioncode.append(transitdirectioncode_.text)
-            frappedoc['transitdirectioncode'] = transitdirectioncode
+                if transitdirectioncode_.text is not None:
+                    transitdirectioncode.append(transitdirectioncode_.text)
+            if len(transitdirectioncode) != 0:
+                frappedoc['transitdirectioncode'] = transitdirectioncode
         # ['TransitPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
         transitperiod_: Element = element.find('./' + cbcnamespace + 'TransitPeriod')
-        if transitperiod_:
-            frappedoc['transitperiod'] = [TRUBLPeriod.process_element(transitperiod_,
-                                                                      cbcnamespace,
-                                                                      cacnamespace)]
+        if transitperiod_ is not None:
+            tmp = TRUBLPeriod.process_element(transitperiod_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['transitperiod'] = [tmp]
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...1)')
         transportmeans_: Element = element.find('./' + cbcnamespace + 'TransportMeans')
-        if transportmeans_:
-            frappedoc['transportmeans'] = [TRUBLTransportMeans().process_element(transportmeans_,
-                                                                                 cbcnamespace,
-                                                                                 cacnamespace)]
+        if transportmeans_ is not None:
+            tmp = TRUBLTransportMeans().process_element(transportmeans_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['transportmeans'] = [tmp]
+        if frappedoc == {}:
+            return None
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['DriverPerson'] = ('cac', 'Person', 'Seçimli (0...n)')
         driverpeople_: list = element.findall('./' + cacnamespace + 'DriverPerson')
         if len(driverpeople_) != 0:
             driverpeople: list = []
             for driverperson_ in driverpeople_:
-                driverpeople.append(TRUBLPerson().process_element(driverperson_,
-                                                                  cbcnamespace,
-                                                                  cacnamespace))
-            frappedoc['driverperson'] = driverpeople
+                tmp = TRUBLPerson().process_element(driverperson_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    driverpeople.append(tmp)
+            if len(driverpeople) != 0:
+                document.driverperson = driverpeople
+                document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document

@@ -10,9 +10,13 @@ class TRUBLOrderReference(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
+        id_ = element.find('./' + cbcnamespace + 'ID').text
         # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu(1)')
-        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text,
-                           'issuedate': element.find('./' + cbcnamespace + 'IssueDate').text}
+        issuedate_ = element.find('./' + cbcnamespace + 'IssueDate').text
+        if id_ is None or issuedate_ is None:
+            return None
+        frappedoc: dict = {'id': id_,
+                           'issuedate': issuedate_}
         # ['SalesOrderID'] = ('cbc', 'salesorderid', 'Seçimli (0...1)')
         # ['OrderTypeCode'] = ('cbc', 'ordertypecode', 'Seçimli (0...1)')
         cbcsecimli01: list = ['SalesOrderID', 'OrderTypeCode']
@@ -21,14 +25,17 @@ class TRUBLOrderReference(TRUBLCommonElement):
             if field_ is not None:
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['DocumentReference'] = ('cac', '', 'Seçimli(0..n)', 'documentreference')
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if len(documentreferences_) != 0:
             documentreferences: list = []
             for documentreference_ in documentreferences_:
-                documentreferences.append(TRUBLDocumentReference().process_element(documentreference_,
-                                                                                   cbcnamespace,
-                                                                                   cacnamespace))
-            frappedoc['documentreference'] = documentreferences
+                tmp = TRUBLDocumentReference().process_element(documentreference_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    documentreferences.append(tmp)
+            if len(documentreferences) != 0:
+                document.documentreference = documentreferences
+                document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document
