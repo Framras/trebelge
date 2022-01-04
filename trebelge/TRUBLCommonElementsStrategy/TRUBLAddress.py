@@ -10,6 +10,7 @@ class TRUBLAddress(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Address'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        frappedoc: dict = {}
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
         citysubdivisionname_ = element.find('./' + cbcnamespace + 'CitySubdivisionName').text
         # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
@@ -19,7 +20,8 @@ class TRUBLAddress(TRUBLCommonElement):
         tmp = TRUBLCountry().process_element(country_, cbcnamespace, cacnamespace)
         if tmp is None and citysubdivisionname_ is None and cityname_ is None:
             return None
-        frappedoc: dict = dict(country=tmp.name)
+        if tmp is not None:
+            frappedoc['country'] = tmp.name
         if citysubdivisionname_ is not None:
             frappedoc['citysubdivisionname'] = citysubdivisionname_
         if cityname_ is not None:
