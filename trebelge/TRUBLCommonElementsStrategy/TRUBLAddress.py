@@ -17,7 +17,7 @@ class TRUBLAddress(TRUBLCommonElement):
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
         tmp = TRUBLCountry().process_element(country_, cbcnamespace, cacnamespace)
-        if tmp is None:
+        if tmp is None and citysubdivisionname_ is None and cityname_ is None:
             return None
         frappedoc: dict = dict(country=tmp.name)
         if citysubdivisionname_ is not None:
