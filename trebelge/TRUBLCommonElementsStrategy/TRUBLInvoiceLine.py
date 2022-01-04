@@ -31,9 +31,10 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                            'lineextensionamount': lineextensionamount.text,
                            'lineextensionamountcurrencyid': lineextensionamount.attrib.get('currencyID')}
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
-        note_ = element.find('./' + cbcnamespace + 'Note').text
+        note_ = element.find('./' + cbcnamespace + 'Note')
         if note_ is not None:
-            frappedoc['note'] = note_
+            if note_.text is not None:
+                frappedoc['note'] = note_
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
         tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)
