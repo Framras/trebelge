@@ -2,7 +2,6 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialAccount import TRUBLFinancialAccount
 
 
@@ -10,6 +9,7 @@ class TRUBLPerson(TRUBLCommonElement):
     _frappeDoctype = 'UBL TR Person'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
         # ['FirstName'] = ('cbc', 'firstname', 'Zorunlu(1)')
         firstname_ = element.find('./' + cbcnamespace + 'FirstName').text
         # ['FamilyName'] = ('cbc', 'familyname', 'Zorunlu(1)')
