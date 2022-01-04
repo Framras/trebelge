@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 from trebelge.TRUBLCommonElementsStrategy.TRUBLGoodsItem import TRUBLGoodsItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
@@ -15,6 +14,7 @@ class TRUBLShipment(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Shipment'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         id_ = element.find('./' + cbcnamespace + 'ID').text
         if id_ is None:
