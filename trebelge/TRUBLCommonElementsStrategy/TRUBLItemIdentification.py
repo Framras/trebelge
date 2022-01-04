@@ -12,4 +12,4 @@ class TRUBLItemIdentification(TRUBLCommonElement):
         id_ = element.find('./' + cbcnamespace + 'ID').text
         if id_ is None:
             return None
-        return self._get_frappedoc(self._frappeDoctype, dict={'id': id_})
+        return self._get_frappedoc(self._frappeDoctype, {'id': id_})
