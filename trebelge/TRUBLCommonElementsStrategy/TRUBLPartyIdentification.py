@@ -13,5 +13,5 @@ class TRUBLPartyIdentification(TRUBLCommonElement):
         partyidentification_ = element.find('./' + cbcnamespace + 'ID')
         if partyidentification_.text is None:
             return None
-        return self._get_frappedoc(self._frappeDoctype, dict={'id': partyidentification_.text,
-                                                              'schemeid': partyidentification_.attrib.get('schemeID')})
+        return self._get_frappedoc(self._frappeDoctype, {'id': partyidentification_.text,
+                                                         'schemeid': partyidentification_.attrib.get('schemeID')})
