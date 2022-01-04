@@ -21,6 +21,7 @@ class TRUBLCountry(TRUBLCommonElement):
             if identificationcode_.text is not None:
                 frappedoc['identificationcode'] = identificationcode_.text
         # TODO connection to ERPNext Country is pending
+        # TODO this is weird nonconforming xml files without Name filled
         if frappedoc == {}:
             return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
