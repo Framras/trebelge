@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLineReference import TRUBLLineReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderLineReference import TRUBLOrderLineReference
@@ -15,6 +14,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR InvoiceLine'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
         # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
         # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
