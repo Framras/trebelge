@@ -16,43 +16,43 @@ class TRUBLBillingReference(TRUBLCommonElement):
         if tagelement_ is not None:
             tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['invoicedocumentreference'] = tmp.name
+                frappedoc['invoice'] = tmp.name
         # ['SelfBilledInvoiceDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'SelfBilledInvoiceDocumentReference')
         if tagelement_ is not None:
             tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['selfbilledinvoicedocumentreference'] = tmp.name
+                frappedoc['selfbilledinvoice'] = tmp.name
         # ['CreditNoteDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'CreditNoteDocumentReference')
         if tagelement_ is not None:
             tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['creditnotedocumentreference'] = tmp.name
+                frappedoc['creditnote'] = tmp.name
         # ['SelfBilledCreditNoteDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'SelfBilledCreditNoteDocumentReference')
         if tagelement_ is not None:
             tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['selfbilledcreditnotedocumentreference'] = tmp.name
+                frappedoc['selfbilledcreditnote'] = tmp.name
         # ['DebitNoteDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'DebitNoteDocumentReference')
         if tagelement_ is not None:
             tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['debitnotedocumentreference'] = tmp.name
+                frappedoc['debitnote'] = tmp.name
         # ['ReminderDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'ReminderDocumentReference')
         if tagelement_ is not None:
             tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['reminderdocumentreference'] = tmp.name
+                frappedoc['reminder'] = tmp.name
         # ['AdditionalDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0..1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'AdditionalDocumentReference')
         if tagelement_ is not None:
             tmp = TRUBLDocumentReference().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['additionaldocumentreference'] = tmp.name
+                frappedoc['additionaldocument'] = tmp.name
         if frappedoc == {}:
             return None
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
