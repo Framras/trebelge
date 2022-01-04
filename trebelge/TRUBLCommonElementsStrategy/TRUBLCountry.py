@@ -8,16 +8,19 @@ class TRUBLCountry(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Country'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        frappedoc: dict = {}
         # ['Name'] = ('cbc', 'countryname', 'Zorunlu(1)')
         countryname = element.find('./' + cbcnamespace + 'Name')
-        if countryname is None or countryname.text is None:
+        if countryname is None:
             return None
-        frappedoc: dict = dict(countryname=countryname.text)
+        if countryname.text is not None:
+            frappedoc['countryname'] = countryname.text
         # ['IdentificationCode'] = ('cbc', 'identificationcode', 'Seçimli (0...1)')
         identificationcode_: Element = element.find('./' + cbcnamespace + 'IdentificationCode')
         if identificationcode_ is not None:
             if identificationcode_.text is not None:
                 frappedoc['identificationcode'] = identificationcode_.text
         # TODO connection to ERPNext Country is pending
-
+        if frappedoc == {}:
+            return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
