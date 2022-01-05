@@ -92,26 +92,26 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(notes_) != 0:
             note: list = []
             for note_ in notes_:
-                note.append(TRUBLNote().process_element(note_,
-                                                        self._cbc_ns,
-                                                        self._cbc_ns))
+                tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
+                if tmp is not None:
+                    note.append()
             self._product.note = note
 
     def build_invoiceperiod(self) -> None:
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
         invoiceperiod_: Element = self.root.find('./' + self._cac_ns + 'InvoicePeriod')
         if invoiceperiod_ is not None:
-            self._product.invoiceperiod = TRUBLPeriod().process_element(invoiceperiod_,
-                                                                        self._cbc_ns,
-                                                                        self._cac_ns).name
+            tmp = TRUBLPeriod().process_element(invoiceperiod_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.invoiceperiod = tmp.name
 
     def build_orderreference(self) -> None:
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...1)', 'orderreference')
         orderreference_: Element = self.root.find('./' + self._cac_ns + 'OrderReference')
         if orderreference_ is not None:
-            self._product.orderreference = TRUBLOrderReference().process_element(orderreference_,
-                                                                                 self._cbc_ns,
-                                                                                 self._cac_ns).name
+            tmp = TRUBLOrderReference().process_element(orderreference_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.orderreference = tmp.name
 
     def build_billingreference(self) -> None:
         # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', 'billingreference')
@@ -119,9 +119,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(billingreferences_) != 0:
             billingreference: list = []
             for billingreference_ in billingreferences_:
-                billingreference.append(TRUBLBillingReference().process_element(billingreference_,
-                                                                                self._cbc_ns,
-                                                                                self._cac_ns))
+                tmp = TRUBLBillingReference().process_element(billingreference_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    billingreference.append(tmp)
             self._product.billingreference = billingreference
 
     def build_despatchdocumentreference(self) -> None:
@@ -130,9 +130,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             documentreference: list = []
             for documentreference_ in documentreferences_:
-                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
-                                                                                  self._cbc_ns,
-                                                                                  self._cac_ns))
+                tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    documentreference.append(tmp)
             self._product.despatchdocumentreference = documentreference
 
     def build_receiptdocumentreference(self) -> None:
@@ -141,9 +141,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             documentreference: list = []
             for documentreference_ in documentreferences_:
-                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
-                                                                                  self._cbc_ns,
-                                                                                  self._cac_ns))
+                tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    documentreference.append(tmp)
             self._product.receiptdocumentreference = documentreference
 
     def build_originatordocumentreference(self) -> None:
@@ -153,9 +153,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             documentreference: list = []
             for documentreference_ in documentreferences_:
-                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
-                                                                                  self._cbc_ns,
-                                                                                  self._cac_ns))
+                tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    documentreference.append(tmp)
             self._product.originatordocumentreference = documentreference
 
     def build_contractdocumentreference(self) -> None:
@@ -164,9 +164,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             documentreference: list = []
             for documentreference_ in documentreferences_:
-                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
-                                                                                  self._cbc_ns,
-                                                                                  self._cac_ns))
+                tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    documentreference.append(tmp)
             self._product.contractdocumentreference = documentreference
 
     def build_additionaldocumentreference(self) -> None:
@@ -176,9 +176,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             documentreference: list = []
             for documentreference_ in documentreferences_:
-                documentreference.append(TRUBLDocumentReference().process_element(documentreference_,
-                                                                                  self._cbc_ns,
-                                                                                  self._cac_ns))
+                tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    documentreference.append(tmp)
             self._product.additionaldocumentreference = documentreference
 
     def build_accountingsupplierparty(self) -> None:
@@ -207,17 +207,17 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'buyercustomerparty')
         buyercustomerparty_: Element = self.root.find('./' + self._cac_ns + 'BuyerCustomerParty')
         if buyercustomerparty_ is not None:
-            self._product.buyercustomerparty = TRUBLCustomerParty().process_element(buyercustomerparty_,
-                                                                                    self._cbc_ns,
-                                                                                    self._cac_ns).name
+            tmp = TRUBLCustomerParty().process_element(buyercustomerparty_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.buyercustomerparty = tmp.name
 
     def build_sellersupplierparty(self) -> None:
         # ['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)', 'sellersupplierparty')
         sellersupplierparty_: Element = self.root.find('./' + self._cac_ns + 'SellerSupplierParty')
         if sellersupplierparty_ is not None:
-            self._product.sellersupplierparty = TRUBLSupplierParty().process_element(sellersupplierparty_,
-                                                                                     self._cbc_ns,
-                                                                                     self._cac_ns).name
+            tmp = TRUBLSupplierParty().process_element(sellersupplierparty_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.sellersupplierparty = tmp.name
 
     def build_originatorcustomerparty(self) -> None:
         # ['OriginatorCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'originatorcustomerparty')
@@ -226,10 +226,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_taxrepresentativeparty(self) -> None:
         # ['TaxRepresentativeParty'] = ('cac', Party(), 'Seçimli (0..1)', 'taxrepresentativeparty')
         taxrepresentativeparty_: Element = self.root.find('./' + self._cac_ns + 'TaxRepresentativeParty')
-        if taxrepresentativeparty_:
-            self._product.taxrepresentativeparty = TRUBLParty().process_element(taxrepresentativeparty_,
-                                                                                self._cbc_ns,
-                                                                                self._cac_ns).name
+        if taxrepresentativeparty_ is not None:
+            tmp = TRUBLParty().process_element(taxrepresentativeparty_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.taxrepresentativeparty = tmp.name
 
     def build_delivery(self) -> None:
         # ['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)', 'delivery')
@@ -237,9 +237,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(deliveries_) != 0:
             delivery: list = []
             for delivery_ in deliveries_:
-                delivery.append(TRUBLDelivery().process_element(delivery_,
-                                                                self._cbc_ns,
-                                                                self._cac_ns))
+                tmp = TRUBLDelivery().process_element(delivery_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    delivery.append(tmp)
             self._product.delivery = delivery
 
     def build_shipment(self) -> None:
@@ -252,18 +252,18 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(paymentmeans_) != 0:
             paymentmeans: list = []
             for payment_means_ in paymentmeans_:
-                paymentmeans.append(TRUBLPaymentMeans().process_element(payment_means_,
-                                                                        self._cbc_ns,
-                                                                        self._cac_ns))
+                tmp = TRUBLPaymentMeans().process_element(payment_means_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    paymentmeans.append(tmp)
             self._product.paymentmeans = paymentmeans
 
     def build_paymentterms(self) -> None:
         # ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
         paymentterms_: Element = self.root.find('./' + self._cac_ns + 'PaymentTerms')
         if paymentterms_ is not None:
-            self._product.paymentterms = TRUBLPaymentTerms().process_element(paymentterms_,
-                                                                             self._cbc_ns,
-                                                                             self._cac_ns).name
+            tmp = TRUBLPaymentTerms().process_element(paymentterms_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.paymentterms = tmp.name
 
     def build_allowancecharge(self) -> None:
         # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
@@ -271,34 +271,34 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(allowancecharges_) != 0:
             allowancecharge: list = []
             for allowancecharge_ in allowancecharges_:
-                allowancecharge.append(TRUBLAllowanceCharge().process_element(allowancecharge_,
-                                                                              self._cbc_ns,
-                                                                              self._cac_ns))
+                tmp = TRUBLAllowanceCharge().process_element(allowancecharge_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    allowancecharge.append(tmp)
             self._product.allowancecharge = allowancecharge
 
     def build_taxexchangerate(self) -> None:
         # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
         taxexchangerate_: Element = self.root.find('./' + self._cac_ns + 'TaxExchangeRate')
         if taxexchangerate_ is not None:
-            self._product.taxexchangerate = TRUBLExchangeRate().process_element(taxexchangerate_,
-                                                                                self._cbc_ns,
-                                                                                self._cac_ns).name
+            tmp = TRUBLExchangeRate().process_element(taxexchangerate_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.taxexchangerate = tmp.name
 
     def build_pricingexchangerate(self) -> None:
         # ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'pricingexchangerate')
         pricingexchangerate_: Element = self.root.find('./' + self._cac_ns + 'PricingExchangeRate')
         if pricingexchangerate_ is not None:
-            self._product.pricingexchangerate = TRUBLExchangeRate().process_element(pricingexchangerate_,
-                                                                                    self._cbc_ns,
-                                                                                    self._cac_ns).name
+            tmp = TRUBLExchangeRate().process_element(pricingexchangerate_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.pricingexchangerate = tmp.name
 
     def build_paymentexchangerate(self) -> None:
         # ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'paymentexchangerate')
         paymentexchangerate_: Element = self.root.find('./' + self._cac_ns + 'PaymentExchangeRate')
         if paymentexchangerate_ is not None:
-            self._product.paymentexchangerate = TRUBLExchangeRate().process_element(paymentexchangerate_,
-                                                                                    self._cbc_ns,
-                                                                                    self._cac_ns).name
+            tmp = TRUBLExchangeRate().process_element(paymentexchangerate_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.paymentexchangerate = tmp.name
 
     def build_paymentalternativeexchangerate(self) -> None:
         # ['PaymentAlternativeExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)',
@@ -306,19 +306,18 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         paymentalternativeexchangerate_: Element = self.root.find(
             './' + self._cac_ns + 'PaymentAlternativeExchangeRate')
         if paymentalternativeexchangerate_ is not None:
-            self._product.paymentalternativeexchangerate = TRUBLExchangeRate().process_element(
-                paymentalternativeexchangerate_,
-                self._cbc_ns,
-                self._cac_ns).name
+            tmp = TRUBLExchangeRate().process_element(paymentalternativeexchangerate_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                self._product.paymentalternativeexchangerate = tmp.name
 
     def build_taxtotal(self) -> None:
         # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', 'taxtotal')
         taxtotals_: list = self.root.findall('./' + self._cac_ns + 'TaxTotal')
         taxtotal: list = []
         for taxtotal_ in taxtotals_:
-            taxtotal.append(TRUBLTaxTotal().process_element(taxtotal_,
-                                                            self._cbc_ns,
-                                                            self._cac_ns))
+            tmp = TRUBLTaxTotal().process_element(taxtotal_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                taxtotal.append(tmp)
         self._product.taxtotal = taxtotal
 
     def build_withholdingtaxtotal(self) -> None:
@@ -327,9 +326,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(withholdingtaxtotals_) != 0:
             withholdingtaxtotal: list = []
             for withholdingtaxtotal_ in withholdingtaxtotals_:
-                withholdingtaxtotal.append(TRUBLTaxTotal().process_element(withholdingtaxtotal_,
-                                                                           self._cbc_ns,
-                                                                           self._cac_ns))
+                tmp = TRUBLTaxTotal().process_element(withholdingtaxtotal_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    withholdingtaxtotal.append(tmp)
             self._product.withholdingtaxtotal = withholdingtaxtotal
 
     def build_legalmonetarytotal(self) -> None:
@@ -344,9 +343,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         invoicelines_: list = self.root.findall('./' + self._cac_ns + 'InvoiceLine')
         invoiceline: list = []
         for invoiceline_ in invoicelines_:
-            invoiceline.append(TRUBLInvoiceLine().process_element(invoiceline_,
-                                                                  self._cbc_ns,
-                                                                  self._cac_ns))
+            tmp = TRUBLInvoiceLine().process_element(invoiceline_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                invoiceline.append(tmp)
         self._product.invoiceline = invoiceline
 
     def build_despatchline(self) -> None:
