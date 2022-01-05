@@ -58,20 +58,20 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             invoice_.invoicetypecode = root_.find('./' + self._cbc_ns + 'InvoiceTypeCode').text
             invoice_.documentcurrencycode = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode').text
             taxcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'TaxCurrencyCode')
-            if taxcurrencycode_:
+            if taxcurrencycode_ is not None:
                 invoice_.taxcurrencycode = taxcurrencycode_.text
             pricingcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'PricingCurrencyCode')
-            if pricingcurrencycode_:
+            if pricingcurrencycode_ is not None:
                 invoice_.pricingcurrencycode = pricingcurrencycode_.text
             paymentcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'PaymentCurrencyCode')
-            if paymentcurrencycode_:
+            if paymentcurrencycode_ is not None:
                 invoice_.paymentcurrencycode = paymentcurrencycode_.text
             paymentalternativecurrencycode_: Element = root_.find(
                 './' + self._cbc_ns + 'PaymentAlternativeCurrencyCode')
-            if paymentalternativecurrencycode_:
+            if paymentalternativecurrencycode_ is not None:
                 invoice_.paymentalternativecurrencycode = paymentalternativecurrencycode_.text
             accountingcost_: Element = root_.find('./' + self._cbc_ns + 'AccountingCost')
-            if accountingcost_:
+            if accountingcost_ is not None:
                 invoice_.accountingcost = accountingcost_.text
             invoice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
             invoice_.insert()
@@ -81,7 +81,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_issuetime(self) -> None:
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
-        if issuetime_:
+        if issuetime_ is not None:
             self._product.issuetime = issuetime_.text
         else:
             self._product.issuetime = ""
@@ -100,7 +100,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_invoiceperiod(self) -> None:
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
         invoiceperiod_: Element = self.root.find('./' + self._cac_ns + 'InvoicePeriod')
-        if invoiceperiod_:
+        if invoiceperiod_ is not None:
             self._product.invoiceperiod = TRUBLPeriod().process_element(invoiceperiod_,
                                                                         self._cbc_ns,
                                                                         self._cac_ns).name
@@ -108,7 +108,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_orderreference(self) -> None:
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...1)', 'orderreference')
         orderreference_: Element = self.root.find('./' + self._cac_ns + 'OrderReference')
-        if orderreference_:
+        if orderreference_ is not None:
             self._product.orderreference = TRUBLOrderReference().process_element(orderreference_,
                                                                                  self._cbc_ns,
                                                                                  self._cac_ns).name
@@ -206,7 +206,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_buyercustomerparty(self) -> None:
         # ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'buyercustomerparty')
         buyercustomerparty_: Element = self.root.find('./' + self._cac_ns + 'BuyerCustomerParty')
-        if buyercustomerparty_:
+        if buyercustomerparty_ is not None:
             self._product.buyercustomerparty = TRUBLCustomerParty().process_element(buyercustomerparty_,
                                                                                     self._cbc_ns,
                                                                                     self._cac_ns).name
@@ -214,7 +214,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_sellersupplierparty(self) -> None:
         # ['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)', 'sellersupplierparty')
         sellersupplierparty_: Element = self.root.find('./' + self._cac_ns + 'SellerSupplierParty')
-        if sellersupplierparty_:
+        if sellersupplierparty_ is not None:
             self._product.sellersupplierparty = TRUBLSupplierParty().process_element(sellersupplierparty_,
                                                                                      self._cbc_ns,
                                                                                      self._cac_ns).name
@@ -260,7 +260,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_paymentterms(self) -> None:
         # ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
         paymentterms_: Element = self.root.find('./' + self._cac_ns + 'PaymentTerms')
-        if paymentterms_:
+        if paymentterms_ is not None:
             self._product.paymentterms = TRUBLPaymentTerms().process_element(paymentterms_,
                                                                              self._cbc_ns,
                                                                              self._cac_ns).name
@@ -279,7 +279,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_taxexchangerate(self) -> None:
         # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
         taxexchangerate_: Element = self.root.find('./' + self._cac_ns + 'TaxExchangeRate')
-        if taxexchangerate_:
+        if taxexchangerate_ is not None:
             self._product.taxexchangerate = TRUBLExchangeRate().process_element(taxexchangerate_,
                                                                                 self._cbc_ns,
                                                                                 self._cac_ns).name
@@ -287,7 +287,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_pricingexchangerate(self) -> None:
         # ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'pricingexchangerate')
         pricingexchangerate_: Element = self.root.find('./' + self._cac_ns + 'PricingExchangeRate')
-        if pricingexchangerate_:
+        if pricingexchangerate_ is not None:
             self._product.pricingexchangerate = TRUBLExchangeRate().process_element(pricingexchangerate_,
                                                                                     self._cbc_ns,
                                                                                     self._cac_ns).name
@@ -295,7 +295,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_paymentexchangerate(self) -> None:
         # ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'paymentexchangerate')
         paymentexchangerate_: Element = self.root.find('./' + self._cac_ns + 'PaymentExchangeRate')
-        if paymentexchangerate_:
+        if paymentexchangerate_ is not None:
             self._product.paymentexchangerate = TRUBLExchangeRate().process_element(paymentexchangerate_,
                                                                                     self._cbc_ns,
                                                                                     self._cac_ns).name
@@ -305,7 +305,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # 'paymentalternativeexchangerate')
         paymentalternativeexchangerate_: Element = self.root.find(
             './' + self._cac_ns + 'PaymentAlternativeExchangeRate')
-        if paymentalternativeexchangerate_:
+        if paymentalternativeexchangerate_ is not None:
             self._product.paymentalternativeexchangerate = TRUBLExchangeRate().process_element(
                 paymentalternativeexchangerate_,
                 self._cbc_ns,
