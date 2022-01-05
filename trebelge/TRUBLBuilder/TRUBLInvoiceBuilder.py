@@ -1,3 +1,4 @@
+import time
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
@@ -82,7 +83,11 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
-            self._product.issuetime = issuetime_.text
+            try:
+                time.strptime(issuetime_.text, '%H:%M:%S')
+                self._product.issuetime = issuetime_.text
+            except ValueError:
+                pass
         else:
             self._product.issuetime = ""
 
