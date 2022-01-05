@@ -94,7 +94,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
                 if tmp is not None:
-                    note.append()
+                    note.append(tmp)
             self._product.note = note
 
     def build_invoiceperiod(self) -> None:
