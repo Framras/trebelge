@@ -189,9 +189,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_accountingsupplierparty(self) -> None:
         # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'accountingsupplierparty')
         accountingsupplierparty_: Element = self.root.find('./' + self._cac_ns + 'AccountingSupplierParty')
-        self._product.accountingsupplierparty = TRUBLSupplierParty().process_element(accountingsupplierparty_,
-                                                                                     self._cbc_ns,
-                                                                                     self._cac_ns).name
+        tmp = TRUBLSupplierParty().process_element(accountingsupplierparty_, self._cbc_ns, self._cac_ns)
+        if tmp is not None:
+            self._product.accountingsupplierparty = tmp.name
 
     def build_despatchsupplierparty(self) -> None:
         # ['DespatchSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'despatchsupplierparty')
@@ -200,9 +200,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_accountingcustomerparty(self) -> None:
         # ['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'accountingcustomerparty')
         accountingcustomerparty_: Element = self.root.find('./' + self._cac_ns + 'AccountingCustomerParty')
-        self._product.accountingcustomerparty = TRUBLCustomerParty().process_element(accountingcustomerparty_,
-                                                                                     self._cbc_ns,
-                                                                                     self._cac_ns).name
+        tmp = TRUBLCustomerParty().process_element(accountingcustomerparty_, self._cbc_ns, self._cac_ns)
+        if tmp is not None:
+            self._product.accountingcustomerparty = tmp.name
 
     def build_deliverycustomerparty(self) -> None:
         # ['DeliveryCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'deliverycustomerparty')
