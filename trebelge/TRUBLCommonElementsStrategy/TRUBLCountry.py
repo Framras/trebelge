@@ -10,11 +10,10 @@ class TRUBLCountry(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'countryname', 'Zorunlu(1)')
-        countryname = element.find('./' + cbcnamespace + 'Name')
+        countryname = element.find('./' + cbcnamespace + 'Name').text
         if countryname is None:
             return None
-        if countryname.text is not None:
-            frappedoc['countryname'] = countryname.text
+        frappedoc['countryname'] = countryname
         # ['IdentificationCode'] = ('cbc', 'identificationcode', 'Seçimli (0...1)')
         identificationcode_: Element = element.find('./' + cbcnamespace + 'IdentificationCode')
         if identificationcode_ is not None:
