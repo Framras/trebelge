@@ -66,7 +66,7 @@ class TRUBLParty(TRUBLCommonElement):
         if tagelement_ is not None:
             tmp = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc[TRUBLParty()] = tmp.name
+                frappedoc['agentparty'] = tmp.name
         document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
         partyidentifications_: list = element.findall('./' + cacnamespace + 'PartyIdentification')
