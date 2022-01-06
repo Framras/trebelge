@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
-from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 
 
 class TRUBLSupplierParty(TRUBLCommonElement):
