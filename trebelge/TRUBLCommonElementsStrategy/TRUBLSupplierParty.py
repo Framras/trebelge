@@ -3,13 +3,13 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
+from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 
 
 class TRUBLSupplierParty(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR SupplierParty'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
         # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
         party_: Element = element.find('./' + cacnamespace + 'Party')
         tmp = TRUBLParty().process_element(party_, cbcnamespace, cacnamespace)
