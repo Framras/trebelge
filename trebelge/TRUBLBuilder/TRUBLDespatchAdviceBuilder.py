@@ -126,9 +126,9 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
     def build_despatchsupplierparty(self) -> None:
         # ['DespatchSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'despatchsupplierparty')
         despatchsupplierparty_: Element = self.root.find('./' + self._cac_ns + 'DespatchSupplierParty')
-        self._product.despatchsupplierparty = TRUBLSupplierParty().process_element(despatchsupplierparty_,
-                                                                                   self._cbc_ns,
-                                                                                   self._cac_ns).name
+        tmp = TRUBLSupplierParty().process_element(despatchsupplierparty_, self._cbc_ns, self._cac_ns)
+        if tmp is not None:
+            self._product.despatchsupplierparty = tmp.name
 
     def build_accountingcustomerparty(self) -> None:
         # ['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'accountingcustomerparty')
@@ -137,9 +137,9 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
     def build_deliverycustomerparty(self) -> None:
         # ['DeliveryCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'deliverycustomerparty')
         deliverycustomerparty_: Element = self.root.find('./' + self._cac_ns + 'DeliveryCustomerParty')
-        self._product.deliverycustomerparty = TRUBLCustomerParty().process_element(deliverycustomerparty_,
-                                                                                   self._cbc_ns,
-                                                                                   self._cac_ns).name
+        tmp = TRUBLCustomerParty().process_element(deliverycustomerparty_, self._cbc_ns, self._cac_ns)
+        if tmp is not None:
+            self._product.deliverycustomerparty = tmp.name
 
     def build_buyercustomerparty(self) -> None:
         # ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'buyercustomerparty')
