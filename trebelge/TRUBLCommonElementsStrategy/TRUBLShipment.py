@@ -133,7 +133,7 @@ class TRUBLShipment(TRUBLCommonElement):
             tmp = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['lastexitportlocation'] = tmp.name
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')
         if len(tagelements_) != 0:
@@ -143,6 +143,7 @@ class TRUBLShipment(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['goodsitem'] = tagelements
                 document.goodsitem = tagelements
                 document.save()
         # ['ShipmentStage'] = ('cac', 'ShipmentStage', 'Seçimli (0...n)')
@@ -154,6 +155,7 @@ class TRUBLShipment(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['shipmentstage'] = tagelements
                 document.shipmentstage = tagelements
                 document.save()
         # ['TransportHandlingUnit'] = ('cac', 'TransportHandlingUnit', 'Seçimli (0...n)')
@@ -165,6 +167,8 @@ class TRUBLShipment(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['transporthandlingunit'] = tagelements
                 document.transporthandlingunit = tagelements
                 document.save()
-        return document
+
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

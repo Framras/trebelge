@@ -28,7 +28,7 @@ class TRUBLContact(TRUBLCommonElement):
                 frappedoc['contactname'] = name_.text
         if frappedoc == {}:
             return None
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         othercommunications_: list = element.findall('./' + cacnamespace + 'OtherCommunication')
         if len(othercommunications_) != 0:
@@ -38,6 +38,8 @@ class TRUBLContact(TRUBLCommonElement):
                 if tmp is not None:
                     communications.append(tmp)
             if len(communications) != 0:
+                frappedoc['othercommunication'] = communications
                 document.othercommunication = communications
                 document.save()
-        return document
+
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

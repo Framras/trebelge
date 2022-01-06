@@ -79,7 +79,7 @@ class TRUBLDelivery(TRUBLCommonElement):
                 frappedoc['shipment'] = tmp.name
         if frappedoc == {}:
             return None
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
         deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
         if deliveryterms_ is not None:
@@ -89,7 +89,8 @@ class TRUBLDelivery(TRUBLCommonElement):
                 if tmp is not None:
                     deliveryterms.append(tmp)
             if len(deliveryterms) != 0:
+                frappedoc['deliveryterms'] = deliveryterms
                 document.deliveryterms = deliveryterms
                 document.save()
 
-        return document
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

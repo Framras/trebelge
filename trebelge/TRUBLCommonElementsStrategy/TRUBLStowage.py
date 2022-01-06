@@ -18,7 +18,7 @@ class TRUBLStowage(TRUBLCommonElement):
                 frappedoc['locationid'] = locationid_.text
         if frappedoc == {}:
             return None
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['Location'] = ('cac', 'Location', 'Seçimli (0...n)')
         locations_: list = element.findall('./' + cacnamespace + 'Location')
         if len(locations_) != 0:
@@ -28,6 +28,7 @@ class TRUBLStowage(TRUBLCommonElement):
                 if tmp is not None:
                     locations.append(tmp)
             if len(locations) != 0:
+                frappedoc['location'] = locations
                 document.location = locations
                 document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
@@ -39,7 +40,8 @@ class TRUBLStowage(TRUBLCommonElement):
                 if tmp is not None:
                     measurementdimensions.append(tmp)
             if len(measurementdimensions) != 0:
+                frappedoc['measurementdimension'] = measurementdimensions
                 document.measurementdimension = measurementdimensions
                 document.save()
 
-        return document
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

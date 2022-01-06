@@ -67,7 +67,7 @@ class TRUBLParty(TRUBLCommonElement):
             tmp = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['agentparty'] = tmp.name
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
         partyidentifications_: list = element.findall('./' + cacnamespace + 'PartyIdentification')
         partyidentifications: list = []
@@ -76,6 +76,7 @@ class TRUBLParty(TRUBLCommonElement):
             if tmp is not None:
                 partyidentifications.append(tmp)
         if len(partyidentifications) != 0:
+            frappedoc['partyidentification'] = partyidentifications
             document.partyidentification = partyidentifications
             document.save()
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
@@ -87,7 +88,8 @@ class TRUBLParty(TRUBLCommonElement):
                 if tmp is not None:
                     partylegalentities.append(tmp)
             if len(partylegalentities) != 0:
+                frappedoc['partylegalentity'] = partylegalentities
                 document.partylegalentity = partylegalentities
                 document.save()
 
-        return document
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

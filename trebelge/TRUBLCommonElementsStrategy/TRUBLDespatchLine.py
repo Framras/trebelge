@@ -60,7 +60,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                     outstandingreason.append(tmp)
             if len(outstandingreason) != 0:
                 frappedoc['outstandingreason'] = outstandingreason
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli(0..n)')
         shipments_: list = element.findall('./' + cacnamespace + 'Shipment')
         if len(shipments_) != 0:
@@ -70,6 +70,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                 if tmp is not None:
                     shipments.append(tmp)
             if len(shipments) != 0:
+                frappedoc['shipment'] = shipments
                 document.shipment = shipments
                 document.save()
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli(0..n)')
@@ -81,7 +82,8 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                 if tmp is not None:
                     documentreferences.append(tmp)
             if len(documentreferences) != 0:
+                frappedoc['documentreference'] = documentreferences
                 document.documentreference = documentreferences
                 document.save()
 
-        return document
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

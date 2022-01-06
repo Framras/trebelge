@@ -25,7 +25,7 @@ class TRUBLOrderReference(TRUBLCommonElement):
             if field_ is not None:
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['DocumentReference'] = ('cac', '', 'Seçimli(0..n)', 'documentreference')
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if len(documentreferences_) != 0:
@@ -35,7 +35,8 @@ class TRUBLOrderReference(TRUBLCommonElement):
                 if tmp is not None:
                     documentreferences.append(tmp)
             if len(documentreferences) != 0:
+                frappedoc['documentreference'] = documentreferences
                 document.documentreference = documentreferences
                 document.save()
 
-        return document
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

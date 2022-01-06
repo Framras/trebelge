@@ -26,4 +26,5 @@ class TRUBLTransportEquipment(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text
         if frappedoc == {}:
             return None
+
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

@@ -38,7 +38,7 @@ class TRUBLPackage(TRUBLCommonElement):
                 frappedoc['packagingmaterial'] = packagingmaterial
         if frappedoc == {}:
             return None
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['ContainedPackage'] = ('cac', 'Package', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'ContainedPackage')
         if tagelements_:
@@ -48,6 +48,7 @@ class TRUBLPackage(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['containedpackage'] = tagelements
                 document.containedpackage = tagelements
                 document.save()
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
@@ -59,6 +60,7 @@ class TRUBLPackage(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['goodsitem'] = tagelements
                 document.goodsitem = tagelements
                 document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)')
@@ -70,7 +72,8 @@ class TRUBLPackage(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['measurementdimension'] = tagelements
                 document.measurementdimension = tagelements
                 document.save()
 
-        return document
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

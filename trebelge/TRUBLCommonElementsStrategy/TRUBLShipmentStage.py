@@ -36,16 +36,16 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         if transitperiod_ is not None:
             tmp = TRUBLPeriod.process_element(transitperiod_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['transitperiod'] = [tmp]
+                frappedoc['transitperiod'] = tmp.name
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...1)')
         transportmeans_: Element = element.find('./' + cbcnamespace + 'TransportMeans')
         if transportmeans_ is not None:
             tmp = TRUBLTransportMeans().process_element(transportmeans_, cbcnamespace, cacnamespace)
             if tmp is not None:
-                frappedoc['transportmeans'] = [tmp]
+                frappedoc['transportmeans'] = tmp.name
         if frappedoc == {}:
             return None
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['DriverPerson'] = ('cac', 'Person', 'Seçimli (0...n)')
         driverpeople_: list = element.findall('./' + cacnamespace + 'DriverPerson')
         if len(driverpeople_) != 0:
@@ -55,7 +55,8 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                 if tmp is not None:
                     driverpeople.append(tmp)
             if len(driverpeople) != 0:
+                frappedoc['driverperson'] = driverpeople
                 document.driverperson = driverpeople
                 document.save()
 
-        return document
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

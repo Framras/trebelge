@@ -32,7 +32,7 @@ class TRUBLDimension(TRUBLCommonElement):
             if maximummeasure_.text is not None:
                 frappedoc['maximummeasure'] = maximummeasure_.text
                 frappedoc['maximummeasureunitcode'] = maximummeasure_.attrib.get('unitCode')
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['Description'] = ('cbc', 'descriptions', 'Seçimli(0..n)', 'description')
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(descriptions_) != 0:
@@ -42,7 +42,8 @@ class TRUBLDimension(TRUBLCommonElement):
                 if tmp is not None:
                     descriptions.append(tmp)
             if len(descriptions) != 0:
+                frappedoc['description'] = descriptions
                 document.description = descriptions
                 document.save()
 
-        return document
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

@@ -82,7 +82,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                 frappedoc['originaddress'] = tmp.name
         if frappedoc == {}:
             return None
-        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['Item'] = ('cac', 'Item', 'Seçimli(0..n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'Item')
         if tagelements_ is not None:
@@ -92,6 +92,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['item'] = tagelements
                 document.item = tagelements
                 document.save()
         # ['FreightAllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli(0..n)')
@@ -103,6 +104,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['freightallowancecharge'] = tagelements
                 document.freightallowancecharge = tagelements
                 document.save()
         # ['InvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli(0..n)')
@@ -114,6 +116,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['invoiceline'] = tagelements
                 document.invoiceline = tagelements
                 document.save()
         # ['Temperature'] = ('cac', 'Temperature', 'Seçimli(0..n)')
@@ -125,6 +128,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['temperature'] = tagelements
                 document.temperature = tagelements
                 document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
@@ -136,6 +140,8 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
+                frappedoc['measurementdimension'] = tagelements
                 document.measurementdimension = tagelements
                 document.save()
-        return document
+
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)

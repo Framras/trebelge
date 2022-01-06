@@ -78,7 +78,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 frappedoc['palletspacemeasurementdimension'] = tmp.name
         if frappedoc == {}:
             return None
-        product = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['ActualPackage'] = ('cac', 'Package', 'Seçimli (0...n)', 'actualpackage')
         actualpackages_: list = element.findall('./' + cacnamespace + 'ActualPackage')
         if len(actualpackages_) != 0:
@@ -88,8 +88,9 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     actualpackage.append(tmp)
             if len(actualpackage) != 0:
-                product.actualpackage = actualpackage
-                product.save()
+                frappedoc['actualpackage'] = actualpackage
+                document.actualpackage = actualpackage
+                document.save()
         # ['TransportEquipment'] = ('cac', 'TransportEquipment', 'Seçimli (0...n)', 'transportequipment')
         transportequipment_: list = element.findall('./' + cacnamespace + 'TransportEquipment')
         if len(transportequipment_) != 0:
@@ -99,8 +100,9 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     transportequipment.append(tmp)
             if len(transportequipment) != 0:
-                product.transportequipment = transportequipment
-                product.save()
+                frappedoc['transportequipment'] = transportequipment
+                document.transportequipment = transportequipment
+                document.save()
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...n)', 'transportmeans')
         transportmeans_: list = element.findall('./' + cacnamespace + 'TransportMeans')
         if len(transportmeans_) != 0:
@@ -110,8 +112,9 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     transportmeans.append(tmp)
             if len(transportmeans) != 0:
-                product.transportmeans = transportmeans
-                product.save()
+                frappedoc['transportmeans'] = transportmeans
+                document.transportmeans = transportmeans
+                document.save()
         # ['HazardousGoodsTransit'] = ('cac', 'HazardousGoodsTransit', 'Seçimli (0...n)', 'hazardousgoodstransit')
         hazardousgoodstransit_: list = element.findall('./' + cacnamespace + 'HazardousGoodsTransit')
         if len(hazardousgoodstransit_) != 0:
@@ -121,8 +124,9 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     hazardousgoodstransit.append(tmp)
             if len(hazardousgoodstransit) != 0:
-                product.hazardousgoodstransit = hazardousgoodstransit
-                product.save()
+                frappedoc['hazardousgoodstransit'] = hazardousgoodstransit
+                document.hazardousgoodstransit = hazardousgoodstransit
+                document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
         measurementdimensions_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if len(measurementdimensions_) != 0:
@@ -132,8 +136,9 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     measurementdimension.append(tmp)
             if len(measurementdimension) != 0:
-                product.measurementdimension = measurementdimension
-                product.save()
+                frappedoc['measurementdimension'] = measurementdimension
+                document.measurementdimension = measurementdimension
+                document.save()
         # ['ShipmentDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)', 'shipmentdocumentreference')
         shipmentdocumentreferences_: list = element.findall('./' + cacnamespace + 'ShipmentDocumentReference')
         if len(shipmentdocumentreferences_) != 0:
@@ -143,8 +148,9 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     shipmentdocumentreference.append(tmp)
             if len(shipmentdocumentreference) != 0:
-                product.shipmentdocumentreference = shipmentdocumentreference
-                product.save()
+                frappedoc['shipmentdocumentreference'] = shipmentdocumentreference
+                document.shipmentdocumentreference = shipmentdocumentreference
+                document.save()
         # ['CustomsDeclaration'] = ('cac', 'CustomsDeclaration', 'Seçimli (0...n)', 'customsdeclaration')
         customsdeclarations_: list = element.findall('./' + cacnamespace + 'CustomsDeclaration')
         if len(customsdeclarations_) != 0:
@@ -154,7 +160,8 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     customsdeclaration.append(tmp)
             if len(customsdeclaration) != 0:
-                product.customsdeclaration = customsdeclaration
-                product.save()
+                frappedoc['customsdeclaration'] = customsdeclaration
+                document.customsdeclaration = customsdeclaration
+                document.save()
 
-        return product
+        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
