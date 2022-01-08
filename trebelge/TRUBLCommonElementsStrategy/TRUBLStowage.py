@@ -28,7 +28,6 @@ class TRUBLStowage(TRUBLCommonElement):
                 if tmp is not None:
                     locations.append(tmp)
             if len(locations) != 0:
-                frappedoc['location'] = locations
                 document.location = locations
                 document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
@@ -40,7 +39,6 @@ class TRUBLStowage(TRUBLCommonElement):
                 if tmp is not None:
                     measurementdimensions.append(tmp)
             if len(measurementdimensions) != 0:
-                frappedoc['measurementdimension'] = measurementdimensions
                 document.measurementdimension = measurementdimensions
                 document.save()
 

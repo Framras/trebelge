@@ -35,7 +35,6 @@ class TRUBLOrderReference(TRUBLCommonElement):
                 if tmp is not None:
                     documentreferences.append(tmp)
             if len(documentreferences) != 0:
-                frappedoc['documentreference'] = documentreferences
                 document.documentreference = documentreferences
                 document.save()
 

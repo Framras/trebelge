@@ -61,7 +61,6 @@ class TRUBLItem(TRUBLCommonElement):
                 if tmp is not None:
                     additionalitemid.append(tmp)
             if len(additionalitemid) != 0:
-                frappedoc['additionalitemid'] = additionalitemid
                 document.additionalitemid = additionalitemid
                 document.save()
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)', 'commodityclassification')
@@ -75,7 +74,6 @@ class TRUBLItem(TRUBLCommonElement):
                 if tmp is not None:
                     commodityclass.append(tmp)
             if len(commodityclass) != 0:
-                frappedoc['commodityclass'] = commodityclass
                 document.commodityclass = commodityclass
                 document.save()
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)', 'iteminstance')
@@ -87,7 +85,6 @@ class TRUBLItem(TRUBLCommonElement):
                 if tmp is not None:
                     iteminstance.append(tmp)
             if len(iteminstance) != 0:
-                frappedoc['iteminstance'] = iteminstance
                 document.iteminstance = iteminstance
                 document.save()
 

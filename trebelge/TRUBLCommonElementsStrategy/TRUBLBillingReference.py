@@ -65,7 +65,6 @@ class TRUBLBillingReference(TRUBLCommonElement):
                 if tmp is not None:
                     billingreferencelines.append(tmp)
             if len(billingreferencelines) != 0:
-                frappedoc['billingreferenceline'] = billingreferencelines
                 document.billingreferenceline = billingreferencelines
                 document.save()
 

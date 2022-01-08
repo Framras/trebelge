@@ -48,7 +48,6 @@ class TRUBLPackage(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
-                frappedoc['containedpackage'] = tagelements
                 document.containedpackage = tagelements
                 document.save()
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
@@ -60,7 +59,6 @@ class TRUBLPackage(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
-                frappedoc['goodsitem'] = tagelements
                 document.goodsitem = tagelements
                 document.save()
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)')
@@ -72,7 +70,6 @@ class TRUBLPackage(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
-                frappedoc['measurementdimension'] = tagelements
                 document.measurementdimension = tagelements
                 document.save()
 

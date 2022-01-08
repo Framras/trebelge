@@ -57,7 +57,6 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                 if tmp is not None:
                     documentdescriptions.append(tmp)
             if len(documentdescriptions) != 0:
-                frappedoc['documentdescription'] = documentdescriptions
                 document.documentdescription = documentdescriptions
                 document.save()
 

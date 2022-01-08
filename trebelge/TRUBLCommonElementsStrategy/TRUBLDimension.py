@@ -42,7 +42,6 @@ class TRUBLDimension(TRUBLCommonElement):
                 if tmp is not None:
                     descriptions.append(tmp)
             if len(descriptions) != 0:
-                frappedoc['description'] = descriptions
                 document.description = descriptions
                 document.save()
 

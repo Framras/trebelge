@@ -38,7 +38,6 @@ class TRUBLContact(TRUBLCommonElement):
                 if tmp is not None:
                     communications.append(tmp)
             if len(communications) != 0:
-                frappedoc['othercommunication'] = communications
                 document.othercommunication = communications
                 document.save()
 

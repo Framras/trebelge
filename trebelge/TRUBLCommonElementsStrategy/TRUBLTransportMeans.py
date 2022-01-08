@@ -69,7 +69,6 @@ class TRUBLTransportMeans(TRUBLCommonElement):
                 if tmp is not None:
                     measurementdimension.append(tmp)
             if len(measurementdimension) != 0:
-                frappedoc['measurementdimension'] = measurementdimension
                 document.measurementdimension = measurementdimension
                 document.save()
 

@@ -143,7 +143,6 @@ class TRUBLShipment(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
-                frappedoc['goodsitem'] = tagelements
                 document.goodsitem = tagelements
                 document.save()
         # ['ShipmentStage'] = ('cac', 'ShipmentStage', 'Seçimli (0...n)')
@@ -155,7 +154,6 @@ class TRUBLShipment(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
-                frappedoc['shipmentstage'] = tagelements
                 document.shipmentstage = tagelements
                 document.save()
         # ['TransportHandlingUnit'] = ('cac', 'TransportHandlingUnit', 'Seçimli (0...n)')
@@ -167,7 +165,6 @@ class TRUBLShipment(TRUBLCommonElement):
                 if tmp is not None:
                     tagelements.append(tmp)
             if len(tagelements) != 0:
-                frappedoc['transporthandlingunit'] = tagelements
                 document.transporthandlingunit = tagelements
                 document.save()
 

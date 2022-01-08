@@ -37,7 +37,6 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
                 if tmp is not None:
                     addresses.append(tmp)
             if len(addresses) != 0:
-                frappedoc['jurisdictionregionaddress'] = addresses
                 document.jurisdictionregionaddress = addresses
                 document.save()
 

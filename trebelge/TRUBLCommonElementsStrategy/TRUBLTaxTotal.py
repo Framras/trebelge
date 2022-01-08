@@ -24,7 +24,6 @@ class TRUBLTaxTotal(TRUBLCommonElement):
             if tmp is not None:
                 taxsubtotals.append(tmp)
         if len(taxsubtotals) != 0:
-            frappedoc['taxsubtotal'] = taxsubtotals
             document.taxsubtotal = taxsubtotals
             document.save()
 

@@ -30,7 +30,6 @@ class TRUBLBillingReferenceLine(TRUBLCommonElement):
                 if tmp is not None:
                     allowancecharge.append(tmp)
             if len(allowancecharge) != 0:
-                frappedoc['allowancecharge'] = allowancecharge
                 document.allowancecharge = allowancecharge
                 document.save()
 

@@ -89,7 +89,6 @@ class TRUBLDelivery(TRUBLCommonElement):
                 if tmp is not None:
                     deliveryterms.append(tmp)
             if len(deliveryterms) != 0:
-                frappedoc['deliveryterms'] = deliveryterms
                 document.deliveryterms = deliveryterms
                 document.save()
 

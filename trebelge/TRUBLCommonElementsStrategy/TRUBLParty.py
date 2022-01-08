@@ -76,7 +76,6 @@ class TRUBLParty(TRUBLCommonElement):
             if tmp is not None:
                 partyidentifications.append(tmp)
         if len(partyidentifications) != 0:
-            frappedoc['partyidentification'] = partyidentifications
             document.partyidentification = partyidentifications
             document.save()
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
@@ -88,7 +87,6 @@ class TRUBLParty(TRUBLCommonElement):
                 if tmp is not None:
                     partylegalentities.append(tmp)
             if len(partylegalentities) != 0:
-                frappedoc['partylegalentity'] = partylegalentities
                 document.partylegalentity = partylegalentities
                 document.save()
 

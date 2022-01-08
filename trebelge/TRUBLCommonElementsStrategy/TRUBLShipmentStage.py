@@ -55,7 +55,6 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                 if tmp is not None:
                     driverpeople.append(tmp)
             if len(driverpeople) != 0:
-                frappedoc['driverperson'] = driverpeople
                 document.driverperson = driverpeople
                 document.save()
 

@@ -52,7 +52,6 @@ class TRUBLAddress(TRUBLCommonElement):
                 if tmp is not None:
                     buildingnumbers.append(tmp)
             if len(buildingnumbers) != 0:
-                frappedoc['buildingnumber'] = buildingnumbers
                 document.buildingnumber = buildingnumbers
                 document.save()
 

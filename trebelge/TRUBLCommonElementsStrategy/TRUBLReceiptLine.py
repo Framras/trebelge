@@ -86,7 +86,6 @@ class TRUBLReceiptLine(TRUBLCommonElement):
                 if tmp is not None:
                     shipments.append(tmp)
             if len(shipments) != 0:
-                frappedoc['shipment'] = shipments
                 document.shipment = shipments
                 document.save()
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)')
@@ -98,7 +97,6 @@ class TRUBLReceiptLine(TRUBLCommonElement):
                 if tmp is not None:
                     documentreferences.append(tmp)
             if len(documentreferences) != 0:
-                frappedoc['documentreference'] = documentreferences
                 document.documentreference = documentreferences
                 document.save()
 
