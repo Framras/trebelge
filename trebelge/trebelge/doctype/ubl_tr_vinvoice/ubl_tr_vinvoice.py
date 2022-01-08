@@ -33,8 +33,8 @@ class UBLTRVInvoice(Document):
                     fields={"namespace_specification"}):
                 if ET.parse(filePath).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
                     _namespaces = dict([node for _, node in ET.iterparse(self.filepath, events=['start-ns'])])
-                    self._cac_ns = str('{' + _namespaces.get('cac') + '}')
-                    self._cbc_ns = str('{' + _namespaces.get('cbc') + '}')
+                    _cac_ns = str('{' + _namespaces.get('cac') + '}')
+                    _cbc_ns = str('{' + _namespaces.get('cbc') + '}')
                     root_: Element = ET.parse(self.filepath).getroot()
                     uuid_ = root_.find('./' + self._cbc_ns + 'UUID').text
                     return uuid_
