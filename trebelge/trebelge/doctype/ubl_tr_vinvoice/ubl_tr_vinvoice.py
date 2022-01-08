@@ -3,7 +3,7 @@
 
 # import frappe
 from frappe.model.document import Document
-
+import frappe
 
 class UBLTRVInvoice(Document):
     _eBelgeSettingsDoctype: str = 'UBL TR Namespace Specifications'
