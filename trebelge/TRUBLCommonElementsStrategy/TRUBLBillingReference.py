@@ -68,4 +68,4 @@ class TRUBLBillingReference(TRUBLCommonElement):
                 document.billingreferenceline = billingreferencelines
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document
