@@ -35,6 +35,6 @@ class UBLTRVInvoice(Document):
                     _namespaces = dict([node for _, node in ET.iterparse(self.filepath, events=['start-ns'])])
                     _cac_ns = str('{' + _namespaces.get('cac') + '}')
                     _cbc_ns = str('{' + _namespaces.get('cbc') + '}')
-                    root_: Element = ET.parse(self.filepath).getroot()
-                    uuid_ = root_.find('./' + self._cbc_ns + 'UUID').text
+                    root_: Element = ET.parse(filePath).getroot()
+                    uuid_ = root_.find('./' + _cbc_ns + 'UUID').text
                     return [uuid_]
