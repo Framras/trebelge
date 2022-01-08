@@ -34,7 +34,7 @@ class TRUBLCommonElement(ABC):
 
     @staticmethod
     def _update_frappedoc(frappedoctype: str, frappedoc: dict, document: Document) -> Document:
-        if len(frappe.get_all(frappedoctype, filters=frappedoc)) == 0:
+        if len(frappe.get_all(frappedoctype, filters=frappedoc)) == 1:
             return document
         else:
             frappe.rename_doc(frappedoctype,
