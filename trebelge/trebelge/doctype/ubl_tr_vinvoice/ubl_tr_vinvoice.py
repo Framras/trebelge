@@ -23,6 +23,7 @@ class UBLTRVInvoice(Document):
         pass
 
     def get_list(self, args):
+        uuid_: list = []
         # for all *.xml files
         for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                       fields={"file_url"}):
@@ -36,5 +37,8 @@ class UBLTRVInvoice(Document):
                     _cac_ns = str('{' + _namespaces.get('cac') + '}')
                     _cbc_ns = str('{' + _namespaces.get('cbc') + '}')
                     root_: Element = ET.parse(filePath).getroot()
-                    uuid_ = root_.find('./' + _cbc_ns + 'UUID').text
-                    return [uuid_]
+                    uuid_.append(root_.find('./' + _cbc_ns + 'UUID').text)
+        if len(uuid_) == 0:
+            return None
+
+        return [uuid_]
