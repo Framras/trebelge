@@ -168,4 +168,4 @@ class TRUBLShipment(TRUBLCommonElement):
                 document.transporthandlingunit = tagelements
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

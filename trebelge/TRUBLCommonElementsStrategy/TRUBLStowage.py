@@ -42,4 +42,4 @@ class TRUBLStowage(TRUBLCommonElement):
                 document.measurementdimension = measurementdimensions
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

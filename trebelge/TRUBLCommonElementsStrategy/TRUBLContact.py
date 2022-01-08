@@ -28,10 +28,12 @@ class TRUBLContact(TRUBLCommonElement):
                 frappedoc['contactname'] = name_.text
         if frappedoc == {}:
             return None
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         othercommunications_: list = element.findall('./' + cacnamespace + 'OtherCommunication')
-        if len(othercommunications_) != 0:
+        if len(othercommunications_) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             communications: list = []
             for othercommunication in othercommunications_:
                 tmp = TRUBLCommunication().process_element(othercommunication, cbcnamespace, cacnamespace)

@@ -88,4 +88,4 @@ class TRUBLItem(TRUBLCommonElement):
                 document.iteminstance = iteminstance
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

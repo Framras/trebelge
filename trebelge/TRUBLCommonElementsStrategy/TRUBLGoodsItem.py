@@ -139,4 +139,4 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                 document.measurementdimension = tagelements
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

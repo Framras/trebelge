@@ -27,10 +27,12 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
                 frappedoc['corporateregistrationtypecode'] = corporateregistrationtypecode_.text
         if frappedoc == {}:
             return None
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['JurisdictionRegionAddress'] = ('cac', 'Address()', 'Seçimli(0..n)', 'jurisdictionregionaddress')
         jurisdictionregionaddress_: list = element.findall('./' + cacnamespace + 'JurisdictionRegionAddress')
-        if len(jurisdictionregionaddress_) != 0:
+        if len(jurisdictionregionaddress_) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             addresses: list = []
             for address_ in jurisdictionregionaddress_:
                 tmp = TRUBLAddress().process_element(address_, cbcnamespace, cacnamespace)

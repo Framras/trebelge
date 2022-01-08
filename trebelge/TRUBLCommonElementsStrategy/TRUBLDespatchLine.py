@@ -84,4 +84,4 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                 document.documentreference = documentreferences
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

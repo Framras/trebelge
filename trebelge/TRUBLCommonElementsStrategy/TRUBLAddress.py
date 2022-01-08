@@ -42,10 +42,12 @@ class TRUBLAddress(TRUBLCommonElement):
             if field_ is not None:
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         buildingnumbers_: list = element.findall('./' + cbcnamespace + 'BuildingNumber')
-        if len(buildingnumbers_) != 0:
+        if len(buildingnumbers_) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             buildingnumbers: list = []
             for buildingnumber in buildingnumbers_:
                 tmp = TRUBLBuildingNumber().process_element(buildingnumber, cbcnamespace, cacnamespace)

@@ -45,10 +45,12 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                 frappedoc['transportmeans'] = tmp.name
         if frappedoc == {}:
             return None
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['DriverPerson'] = ('cac', 'Person', 'Seçimli (0...n)')
         driverpeople_: list = element.findall('./' + cacnamespace + 'DriverPerson')
-        if len(driverpeople_) != 0:
+        if len(driverpeople_) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             driverpeople: list = []
             for driverperson_ in driverpeople_:
                 tmp = TRUBLPerson().process_element(driverperson_, cbcnamespace, cacnamespace)
@@ -58,4 +60,4 @@ class TRUBLShipmentStage(TRUBLCommonElement):
                 document.driverperson = driverpeople
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

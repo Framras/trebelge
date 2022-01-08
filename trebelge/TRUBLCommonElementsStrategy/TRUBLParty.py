@@ -90,4 +90,4 @@ class TRUBLParty(TRUBLCommonElement):
                 document.partylegalentity = partylegalentities
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

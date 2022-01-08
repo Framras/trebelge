@@ -20,10 +20,12 @@ class TRUBLBillingReferenceLine(TRUBLCommonElement):
             if amount_.text is not None:
                 frappedoc['amount'] = amount_.text
                 frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge.', 'Seçimli (0...n)', 'allowancecharge')
         allowancecharges_: list = element.findall('./' + cacnamespace + 'AllowanceCharge')
-        if len(allowancecharges_) != 0:
+        if len(allowancecharges_) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             allowancecharge: list = []
             for allowancecharge_ in allowancecharges_:
                 tmp = TRUBLAllowanceCharge().process_element(allowancecharge_, cbcnamespace, cacnamespace)
