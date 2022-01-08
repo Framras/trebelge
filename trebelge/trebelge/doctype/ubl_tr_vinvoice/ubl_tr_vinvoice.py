@@ -29,16 +29,15 @@ class UBLTRVInvoice(Document):
                                       fields={"file_url"}):
             # retrieve file path of xmlFile
             filePath: str = frappe.get_site_path() + xmlFile.get('file_url')
-            for namespace in frappe.get_all(
-                    self._eBelgeSettingsDoctype, filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
-                    fields={"namespace_specification"}):
-                if ET.parse(filePath).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
-                    _namespaces = dict([node for _, node in ET.iterparse(filePath, events=['start-ns'])])
-                    _cac_ns = str('{' + _namespaces.get('cac') + '}')
-                    _cbc_ns = str('{' + _namespaces.get('cbc') + '}')
-                    root_: Element = ET.parse(filePath).getroot()
-                    uuid_.append(root_.find('./' + _cbc_ns + 'UUID').text)
+            namespace = frappe.get_all(self._eBelgeSettingsDoctype,
+                                       filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
+                                       fields={"namespace_specification"})
+            if ET.parse(filePath).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
+                _namespaces = dict([node for _, node in ET.iterparse(filePath, events=['start-ns'])])
+                _cac_ns = str('{' + _namespaces.get('cac') + '}')
+                _cbc_ns = str('{' + _namespaces.get('cbc') + '}')
+                root_: Element = ET.parse(filePath).getroot()
+                uuid_.append(root_.find('./' + _cbc_ns + 'UUID').text)
         if len(uuid_) == 0:
             return None
-
-        return [uuid_]
+        return uuid_
