@@ -39,6 +39,8 @@ class UBLTRVInvoice(Document):
                     _cbc_ns = str('{' + _namespaces.get('cbc') + '}')
                     root_: Element = ET.parse(filePath).getroot()
                     uuid.append(dict(uuid=root_.find('./' + _cbc_ns + 'UUID').text))
+                    if len(uuid) == 20:
+                        return uuid
         if len(uuid) == 0:
             return None
         return uuid
