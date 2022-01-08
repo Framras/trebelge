@@ -41,4 +41,4 @@ class TRUBLContact(TRUBLCommonElement):
                 document.othercommunication = communications
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document
