@@ -1,7 +1,6 @@
 {
   "actions": [],
   "allow_rename": 1,
-  "autoname": "field:uuid",
   "creation": "2022-01-08 21:32:21.526747",
   "doctype": "DocType",
   "editable_grid": 1,
@@ -13,17 +12,13 @@
     {
       "fieldname": "uuid",
       "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "uuid",
-      "read_only": 1,
-      "reqd": 1,
-      "unique": 1
+      "label": "uuid"
     }
   ],
   "index_web_pages_for_search": 1,
   "is_virtual": 1,
   "links": [],
-  "modified": "2022-01-08 21:32:21.526747",
+  "modified": "2022-01-08 23:23:57.893432",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR VInvoice",

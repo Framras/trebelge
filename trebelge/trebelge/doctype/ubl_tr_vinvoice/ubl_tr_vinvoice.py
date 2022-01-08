@@ -16,7 +16,7 @@ class UBLTRVInvoice(Document):
         pass
 
     def load_from_db(self):
-        pass
+        self.get_list()
 
     def db_update(self):
         pass
