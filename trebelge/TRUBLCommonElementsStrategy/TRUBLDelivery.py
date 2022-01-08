@@ -92,4 +92,4 @@ class TRUBLDelivery(TRUBLCommonElement):
                 document.deliveryterms = deliveryterms
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document
