@@ -55,4 +55,4 @@ class TRUBLAddress(TRUBLCommonElement):
                 document.buildingnumber = buildingnumbers
                 document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

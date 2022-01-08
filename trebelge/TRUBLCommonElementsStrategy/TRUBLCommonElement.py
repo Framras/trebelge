@@ -32,20 +32,6 @@ class TRUBLCommonElement(ABC):
             frappedoc_ = frappe.get_doc(newfrappedoc)
             return frappedoc_.insert()
 
-    @staticmethod
-    def _update_frappedoc(frappedoctype: str, frappedoc: dict, document: Document) -> Document:
-        if len(frappe.get_all(frappedoctype, filters=frappedoc)) == 1:
-            return document
-        else:
-            frappe.rename_doc(frappedoctype,
-                              document.name,
-                              frappe.get_doc(frappedoctype,
-                                             frappe.get_all(frappedoctype, filters=frappedoc)[0]["name"]),
-                              merge=True)
-            return frappe.get_doc(frappedoctype,
-                                  frappe.get_all(frappedoctype,
-                                                 filters=frappedoc)[0]["name"])
-
     @abstractmethod
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         pass
