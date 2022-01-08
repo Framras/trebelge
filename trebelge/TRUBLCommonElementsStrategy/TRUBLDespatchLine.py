@@ -60,28 +60,31 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                     outstandingreason.append(tmp)
             if len(outstandingreason) != 0:
                 frappedoc['outstandingreason'] = outstandingreason
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli(0..n)')
+        shipments: list = []
         shipments_: list = element.findall('./' + cacnamespace + 'Shipment')
         if len(shipments_) != 0:
-            shipments: list = []
             for shipment_ in shipments_:
                 tmp = TRUBLShipment().process_element(shipment_, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     shipments.append(tmp)
-            if len(shipments) != 0:
-                document.shipment = shipments
-                document.save()
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli(0..n)')
+        documentreferences: list = []
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if len(documentreferences_) != 0:
-            documentreferences: list = []
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     documentreferences.append(tmp)
+
+        if len(shipments) + len(documentreferences) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            if len(shipments) != 0:
+                document.shipment = shipments
             if len(documentreferences) != 0:
                 document.documentreference = documentreferences
-                document.save()
+            document.save()
 
         return document

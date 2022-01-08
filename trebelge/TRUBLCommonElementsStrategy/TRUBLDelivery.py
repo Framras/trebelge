@@ -80,18 +80,18 @@ class TRUBLDelivery(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
+        deliveryterms: list = []
         deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
-        if deliveryterms_ is None:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            deliveryterms: list = []
+        if len(deliveryterms_) != 0:
             for deliveryterm_ in deliveryterms_:
                 tmp = TRUBLDeliveryTerms().process_element(deliveryterm_, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     deliveryterms.append(tmp)
-            if len(deliveryterms) != 0:
-                document.deliveryterms = deliveryterms
-                document.save()
+        if len(deliveryterms) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            document.deliveryterms = deliveryterms
+            document.save()
 
         return document
