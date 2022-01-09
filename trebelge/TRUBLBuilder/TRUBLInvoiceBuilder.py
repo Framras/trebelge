@@ -95,7 +95,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         notes_: list = self.root.findall('./' + self._cbc_ns + 'Note')
         if len(notes_) != 0:
-            note: list = []
+            note = list()
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
                 if tmp is not None:
@@ -122,7 +122,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', 'billingreference')
         billingreferences_: list = self.root.findall('./' + self._cac_ns + 'BillingReference')
         if len(billingreferences_) != 0:
-            billingreference: list = []
+            billingreference = list()
             for billingreference_ in billingreferences_:
                 tmp = TRUBLBillingReference().process_element(billingreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -133,7 +133,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['DespatchDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'despatchdocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'DespatchDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference: list = []
+            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -144,7 +144,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['ReceiptDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'receiptdocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'ReceiptDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference: list = []
+            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -156,7 +156,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # 'originatordocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'OriginatorDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference: list = []
+            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -167,7 +167,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['ContractDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'contractdocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'ContractDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference: list = []
+            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -179,7 +179,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # 'additionaldocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'AdditionalDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference: list = []
+            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -240,7 +240,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)', 'delivery')
         deliveries_: list = self.root.findall('./' + self._cac_ns + 'Delivery')
         if len(deliveries_) != 0:
-            delivery: list = []
+            delivery = list()
             for delivery_ in deliveries_:
                 tmp = TRUBLDelivery().process_element(delivery_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -255,7 +255,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
         paymentmeans_: list = self.root.findall('./' + self._cac_ns + 'PaymentMeans')
         if len(paymentmeans_) != 0:
-            paymentmeans: list = []
+            paymentmeans = list()
             for payment_means_ in paymentmeans_:
                 tmp = TRUBLPaymentMeans().process_element(payment_means_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -274,7 +274,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
         allowancecharges_: list = self.root.findall('./' + self._cac_ns + 'AllowanceCharge')
         if len(allowancecharges_) != 0:
-            allowancecharge: list = []
+            allowancecharge = list()
             for allowancecharge_ in allowancecharges_:
                 tmp = TRUBLAllowanceCharge().process_element(allowancecharge_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -318,7 +318,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_taxtotal(self) -> None:
         # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', 'taxtotal')
         taxtotals_: list = self.root.findall('./' + self._cac_ns + 'TaxTotal')
-        taxtotal: list = []
+        taxtotal = list()
         for taxtotal_ in taxtotals_:
             tmp = TRUBLTaxTotal().process_element(taxtotal_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
@@ -329,7 +329,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', 'withholdingtaxtotal')
         withholdingtaxtotals_: list = self.root.findall('./' + self._cac_ns + 'WithholdingTaxTotal')
         if len(withholdingtaxtotals_) != 0:
-            withholdingtaxtotal: list = []
+            withholdingtaxtotal = list()
             for withholdingtaxtotal_ in withholdingtaxtotals_:
                 tmp = TRUBLTaxTotal().process_element(withholdingtaxtotal_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -346,7 +346,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_invoiceline(self) -> None:
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
         invoicelines_: list = self.root.findall('./' + self._cac_ns + 'InvoiceLine')
-        invoiceline: list = []
+        invoiceline = list()
         for invoiceline_ in invoicelines_:
             tmp = TRUBLInvoiceLine().process_element(invoiceline_, self._cbc_ns, self._cac_ns)
             if tmp is not None:

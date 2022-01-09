@@ -64,7 +64,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         notes_: list = self.root.findall('./' + self._cbc_ns + 'Note')
         if len(notes_) != 0:
-            note: list = []
+            note = list()
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
                 if tmp is not None:
@@ -79,7 +79,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...n)', 'orderreference')
         orderreferences_: list = self.root.findall('./' + self._cac_ns + 'OrderReference')
         if len(orderreferences_) != 0:
-            orderreference: list = []
+            orderreference = list()
             for orderreference_ in orderreferences_:
                 tmp = TRUBLBillingReference().process_element(orderreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -112,7 +112,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         # 'additionaldocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'AdditionalDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference: list = []
+            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -177,7 +177,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         # ['Shipment'] = ('cac', Shipment(), 'Seçimli (0...n)', 'shipment')
         shipments_: list = self.root.findall('./' + self._cac_ns + 'Shipment')
         if len(shipments_) != 0:
-            shipment: list = []
+            shipment = list()
             for shipment_ in shipments_:
                 tmp = TRUBLShipment().process_element(shipment_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
@@ -233,7 +233,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
     def build_despatchline(self) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
         despatchlines_: list = self.root.findall('./' + self._cac_ns + 'DespatchLine')
-        despatchline: list = []
+        despatchline = list()
         for despatchline_ in despatchlines_:
             despatchline.append(TRUBLDespatchLine().process_element(despatchline_,
                                                                     self._cbc_ns,
