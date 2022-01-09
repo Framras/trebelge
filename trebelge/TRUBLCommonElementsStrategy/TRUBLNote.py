@@ -11,7 +11,7 @@ class TRUBLNote(TRUBLCommonElement):
         element_ = element.text
         if element_ is None:
             return None
-        if element_.strip == '':
+        if element_.strip() == '':
             return None
 
         return self._get_frappedoc(self._frappeDoctype, dict(note=element_))
