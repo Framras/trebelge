@@ -47,12 +47,13 @@ def get_ebelge_users():
 
 @frappe.whitelist()
 def check_all_xml_files():
+    hXMLFileHandler = InvoiceHandler()
     # for all *.xml files
-    for xmlFile in frappe.get_all('File', filters={"file_name": ["like", "%.xml"], "is_folder": 0},
+    for xmlFile in frappe.get_all('File',
+                                  filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
         # retrieve file path of xmlFile
         filePath: str = frappe.get_site_path() + xmlFile.get('file_url')
-        hXMLFileHandler = InvoiceHandler()
         hXMLFileHandler.handle_xml_file(filePath)
 
     return frappe.utils.now_datetime()

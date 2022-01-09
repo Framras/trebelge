@@ -360,4 +360,3 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def get_document(self) -> None:
         product = self._product.save()
         self.reset()
-        return product

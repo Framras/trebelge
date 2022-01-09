@@ -17,9 +17,9 @@ class InvoiceHandler(AbstractXMLFileHandler):
     _successor: AbstractXMLFileHandler = DespatchAdviceHandler()
 
     def handle_xml_file(self, file_path: str):
-        for namespace in frappe.get_all(
-                self._eBelgeSettingsDoctype, filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
-                fields={"namespace_specification"}):
+        for namespace in frappe.get_all(self._eBelgeSettingsDoctype,
+                                        filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
+                                        fields={"namespace_specification"}):
             if ET.parse(file_path).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
                 builder = TRUBLInvoiceBuilder(file_path)
                 director = TRUBLDirector(builder)
