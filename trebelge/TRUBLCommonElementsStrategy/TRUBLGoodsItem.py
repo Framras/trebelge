@@ -66,7 +66,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
                     frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Description'] = ('cbc', '', 'Seçimli(0..n)')
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
-        if descriptions_ is not None:
+        if len(descriptions_) != 0:
             descriptions: list = []
             for description_ in descriptions_:
                 tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)

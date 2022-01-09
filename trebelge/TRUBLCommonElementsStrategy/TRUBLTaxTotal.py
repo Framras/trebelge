@@ -29,4 +29,4 @@ class TRUBLTaxTotal(TRUBLCommonElement):
             document.taxsubtotal = taxsubtotals
             document.save()
 
-        return self._update_frappedoc(self._frappeDoctype, frappedoc, document)
+        return document

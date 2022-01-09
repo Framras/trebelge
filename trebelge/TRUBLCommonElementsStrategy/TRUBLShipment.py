@@ -133,39 +133,40 @@ class TRUBLShipment(TRUBLCommonElement):
             tmp = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['lastexitportlocation'] = tmp.name
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
+        goodsitem: list = []
         tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')
         if len(tagelements_) != 0:
-            tagelements: list = []
             for tagelement in tagelements_:
                 tmp = TRUBLGoodsItem().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    tagelements.append(tmp)
-            if len(tagelements) != 0:
-                document.goodsitem = tagelements
-                document.save()
+                    goodsitem.append(tmp)
         # ['ShipmentStage'] = ('cac', 'ShipmentStage', 'Seçimli (0...n)')
+        shipmentstage: list = []
         tagelements_: list = element.findall('./' + cacnamespace + 'ShipmentStage')
         if len(tagelements_) != 0:
-            tagelements: list = []
             for tagelement in tagelements_:
                 tmp = TRUBLShipmentStage().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    tagelements.append(tmp)
-            if len(tagelements) != 0:
-                document.shipmentstage = tagelements
-                document.save()
+                    shipmentstage.append(tmp)
         # ['TransportHandlingUnit'] = ('cac', 'TransportHandlingUnit', 'Seçimli (0...n)')
+        transporthandlingunit: list = []
         tagelements_: list = element.findall('./' + cacnamespace + 'TransportHandlingUnit')
         if len(tagelements_) != 0:
-            tagelements: list = []
             for tagelement in tagelements_:
                 tmp = TRUBLTransportHandlingUnit().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    tagelements.append(tmp)
-            if len(tagelements) != 0:
-                document.transporthandlingunit = tagelements
-                document.save()
+                    transporthandlingunit.append(tmp)
+        if len(goodsitem) + len(shipmentstage) + len(transporthandlingunit) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            if len(goodsitem) != 0:
+                document.goodsitem = goodsitem
+            if len(shipmentstage) != 0:
+                document.shipmentstage = shipmentstage
+            if len(transporthandlingunit) != 0:
+                document.transporthandlingunit = transporthandlingunit
+            document.save()
 
         return document

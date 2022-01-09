@@ -38,39 +38,41 @@ class TRUBLPackage(TRUBLCommonElement):
                 frappedoc['packagingmaterial'] = packagingmaterial
         if frappedoc == {}:
             return None
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['ContainedPackage'] = ('cac', 'Package', 'Seçimli (0...n)')
+        containedpackage: list = []
         tagelements_: list = element.findall('./' + cacnamespace + 'ContainedPackage')
         if tagelements_:
-            tagelements: list = []
             for tagelement in tagelements_:
                 tmp = TRUBLPackage().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    tagelements.append(tmp)
-            if len(tagelements) != 0:
-                document.containedpackage = tagelements
-                document.save()
+                    containedpackage.append(tmp)
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
+        goodsitem: list = []
         tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')
         if tagelements_:
-            tagelements: list = []
             for tagelement in tagelements_:
                 tmp = TRUBLGoodsItem().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    tagelements.append(tmp)
-            if len(tagelements) != 0:
-                document.goodsitem = tagelements
-                document.save()
+                    goodsitem.append(tmp)
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)')
+        measurementdimension: list = []
         tagelements_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if tagelements_:
-            tagelements: list = []
             for tagelement in tagelements_:
                 tmp = TRUBLDimension().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    tagelements.append(tmp)
-            if len(tagelements) != 0:
-                document.measurementdimension = tagelements
-                document.save()
+                    measurementdimension.append(tmp)
+
+        if len(containedpackage) + len(goodsitem) + len(measurementdimension) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            if len(containedpackage) != 0:
+                document.containedpackage = containedpackage
+            if len(goodsitem) != 0:
+                document.goodsitem = goodsitem
+            if len(measurementdimension) != 0:
+                document.measurementdimension = measurementdimension
+            document.save()
 
         return document

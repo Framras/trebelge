@@ -67,7 +67,6 @@ class TRUBLParty(TRUBLCommonElement):
             tmp = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['agentparty'] = tmp.name
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
         partyidentifications_: list = element.findall('./' + cacnamespace + 'PartyIdentification')
         partyidentifications: list = []
@@ -75,19 +74,23 @@ class TRUBLParty(TRUBLCommonElement):
             tmp = TRUBLPartyIdentification().process_element(partyidentification, cbcnamespace, cacnamespace)
             if tmp is not None:
                 partyidentifications.append(tmp)
-        if len(partyidentifications) != 0:
-            document.partyidentification = partyidentifications
-            document.save()
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
+        partylegalentities: list = []
         partylegalentity_: Element = element.find('./' + cacnamespace + 'PartyLegalEntity')
-        if partylegalentity_ is not None:
-            partylegalentities: list = []
+        if len(partylegalentity_) != 0:
             for partylegalentity in partylegalentity_:
                 tmp = TRUBLPartyLegalEntity().process_element(partylegalentity, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     partylegalentities.append(tmp)
+
+        if len(partyidentifications) + len(partylegalentities) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            if len(partyidentifications) != 0:
+                document.partyidentification = partyidentifications
             if len(partylegalentities) != 0:
                 document.partylegalentity = partylegalentities
-                document.save()
+            document.save()
 
         return document

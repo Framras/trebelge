@@ -51,41 +51,43 @@ class TRUBLItem(TRUBLCommonElement):
             tmp = TRUBLCountry().process_element(origincountry_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['origincountry'] = tmp.name
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)', 'additionalitemid')
+        additionalitemid: list = []
         additionalitemids_: list = element.findall('./' + cacnamespace + 'AdditionalItemIdentification')
-        if additionalitemids_ is not None:
-            additionalitemid: list = []
+        if len(additionalitemids_) != 0:
             for additionalitemid_ in additionalitemids_:
                 tmp = TRUBLItemIdentification().process_element(additionalitemid_, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     additionalitemid.append(tmp)
-            if len(additionalitemid) != 0:
-                document.additionalitemid = additionalitemid
-                document.save()
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)', 'commodityclassification')
+        commodityclass: list = []
         commodityclassifications_: list = element.findall('./' + cacnamespace + 'CommodityClassification')
-        if commodityclassifications_ is not None:
-            commodityclass: list = []
+        if len(commodityclassifications_) != 0:
             for commodityclassification_ in commodityclassifications_:
                 tmp = TRUBLCommodityClassification().process_element(commodityclassification_,
                                                                      cbcnamespace,
                                                                      cacnamespace)
                 if tmp is not None:
                     commodityclass.append(tmp)
-            if len(commodityclass) != 0:
-                document.commodityclass = commodityclass
-                document.save()
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)', 'iteminstance')
+        iteminstance: list = []
         iteminstances_: list = element.findall('./' + cacnamespace + 'ItemInstance')
-        if iteminstances_ is not None:
-            iteminstance: list = []
+        if len(iteminstances_) != 0:
             for iteminstance_ in iteminstances_:
                 tmp = TRUBLItemInstance().process_element(iteminstance_, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     iteminstance.append(tmp)
+
+        if len(additionalitemid) + len(commodityclass) + len(iteminstance) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            if len(additionalitemid) != 0:
+                document.additionalitemid = additionalitemid
+            if len(commodityclass) != 0:
+                document.commodityclass = commodityclass
             if len(iteminstance) != 0:
                 document.iteminstance = iteminstance
-                document.save()
+            document.save()
 
         return document
