@@ -80,7 +80,7 @@ class TRUBLDelivery(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
-        deliveryterms: list = []
+        deliveryterms = list()
         deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
         if deliveryterms_ is not None:
             for deliveryterm_ in deliveryterms_:

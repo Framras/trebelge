@@ -31,7 +31,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
         # ['RegistrationNationality'] = ('cbc', 'registrationnationality', 'Seçimli (0...n)')
         registrationnationality_: list = element.findall('./' + cbcnamespace + 'RegistrationNationality')
         if registrationnationality_ is not None:
-            registrationnationality: list = []
+            registrationnationality = list()
             for nationality_ in registrationnationality_:
                 if nationality_.text is not None:
                     registrationnationality.append(nationality_.text)
@@ -60,7 +60,7 @@ class TRUBLTransportMeans(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
-        measurementdimension: list = []
+        measurementdimension = list()
         measurementdimension_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if len(measurementdimension_) != 0:
             for dimension_ in measurementdimension_:

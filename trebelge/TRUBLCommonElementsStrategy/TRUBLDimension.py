@@ -33,7 +33,7 @@ class TRUBLDimension(TRUBLCommonElement):
                 frappedoc['maximummeasure'] = maximummeasure_.text
                 frappedoc['maximummeasureunitcode'] = maximummeasure_.attrib.get('unitCode')
         # ['Description'] = ('cbc', 'descriptions', 'Seçimli(0..n)', 'description')
-        descriptions: list = []
+        descriptions = list()
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(descriptions_) != 0:
             for description_ in descriptions_:

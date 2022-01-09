@@ -43,7 +43,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         # ['Note'] = ('cbc', '', 'Seçimli (0...n)')
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
         if len(notes_) != 0:
-            note: list = []
+            note = list()
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, cbcnamespace, cacnamespace)
                 if tmp is not None:
@@ -53,7 +53,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
         rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
         if len(rejectreasons_) != 0:
-            rejectreason: list = []
+            rejectreason = list()
             for rejectreason_ in rejectreasons_:
                 tmp = TRUBLNote().process_element(rejectreason_, cbcnamespace, cacnamespace)
                 if tmp is not None:
@@ -77,7 +77,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
         if tmp is not None:
             frappedoc['linereference'] = tmp.name
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli (0...n)')
-        shipments: list = []
+        shipments = list()
         shipments_: list = element.findall('./' + cacnamespace + 'Shipment')
         if len(shipments_) != 0:
             for shipment_ in shipments_:
@@ -85,7 +85,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
                 if tmp is not None:
                     shipments.append(tmp)
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)')
-        documentreferences: list = []
+        documentreferences = list()
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if len(documentreferences_) != 0:
             for documentreference_ in documentreferences_:

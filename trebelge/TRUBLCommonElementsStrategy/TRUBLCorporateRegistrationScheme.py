@@ -28,7 +28,7 @@ class TRUBLCorporateRegistrationScheme(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['JurisdictionRegionAddress'] = ('cac', 'Address()', 'Seçimli(0..n)', 'jurisdictionregionaddress')
-        addresses: list = []
+        addresses = list()
         jurisdictionregionaddress_: list = element.findall('./' + cacnamespace + 'JurisdictionRegionAddress')
         if len(jurisdictionregionaddress_) != 0:
             for address_ in jurisdictionregionaddress_:

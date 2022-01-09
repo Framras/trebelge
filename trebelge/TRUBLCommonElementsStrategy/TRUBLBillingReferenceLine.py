@@ -21,7 +21,7 @@ class TRUBLBillingReferenceLine(TRUBLCommonElement):
                 frappedoc['amount'] = amount_.text
                 frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge.', 'Seçimli (0...n)', 'allowancecharge')
-        allowancecharge: list = []
+        allowancecharge = list()
         allowancecharges_: list = element.findall('./' + cacnamespace + 'AllowanceCharge')
         if len(allowancecharges_) != 0:
             for allowancecharge_ in allowancecharges_:

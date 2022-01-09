@@ -69,13 +69,13 @@ class TRUBLParty(TRUBLCommonElement):
                 frappedoc['agentparty'] = tmp.name
         # ['PartyIdentification'] = ('cac', PartyIdentification(), 'Zorunlu (1...n)', partyidentification)
         partyidentifications_: list = element.findall('./' + cacnamespace + 'PartyIdentification')
-        partyidentifications: list = []
+        partyidentifications = list()
         for partyidentification in partyidentifications_:
             tmp = TRUBLPartyIdentification().process_element(partyidentification, cbcnamespace, cacnamespace)
             if tmp is not None:
                 partyidentifications.append(tmp)
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
-        partylegalentities: list = []
+        partylegalentities = list()
         partylegalentity_: Element = element.find('./' + cacnamespace + 'PartyLegalEntity')
         if partylegalentity_ is not None:
             for partylegalentity in partylegalentity_:

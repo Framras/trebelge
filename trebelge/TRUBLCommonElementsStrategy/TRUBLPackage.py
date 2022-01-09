@@ -30,7 +30,7 @@ class TRUBLPackage(TRUBLCommonElement):
         # ['PackagingMaterial'] = ('cbc', '', 'Seçimli (0...n)')
         packagingmaterials_: list = element.findall('./' + cbcnamespace + 'PackagingMaterial')
         if packagingmaterials_:
-            packagingmaterial: list = []
+            packagingmaterial = list()
             for packagingmaterial_ in packagingmaterials_:
                 if packagingmaterial_.text is not None:
                     packagingmaterial.append(packagingmaterial_.text)
@@ -39,7 +39,7 @@ class TRUBLPackage(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['ContainedPackage'] = ('cac', 'Package', 'Seçimli (0...n)')
-        containedpackage: list = []
+        containedpackage = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'ContainedPackage')
         if tagelements_:
             for tagelement in tagelements_:
@@ -47,7 +47,7 @@ class TRUBLPackage(TRUBLCommonElement):
                 if tmp is not None:
                     containedpackage.append(tmp)
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
-        goodsitem: list = []
+        goodsitem = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')
         if tagelements_:
             for tagelement in tagelements_:
@@ -55,7 +55,7 @@ class TRUBLPackage(TRUBLCommonElement):
                 if tmp is not None:
                     goodsitem.append(tmp)
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)')
-        measurementdimension: list = []
+        measurementdimension = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if tagelements_:
             for tagelement in tagelements_:

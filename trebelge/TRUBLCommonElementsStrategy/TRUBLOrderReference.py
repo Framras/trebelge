@@ -31,7 +31,7 @@ class TRUBLOrderReference(TRUBLCommonElement):
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            documentreferences: list = []
+            documentreferences = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, cbcnamespace, cacnamespace)
                 if tmp is not None:

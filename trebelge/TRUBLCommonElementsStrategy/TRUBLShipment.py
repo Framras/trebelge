@@ -103,7 +103,7 @@ class TRUBLShipment(TRUBLCommonElement):
         # ['SpecialInstructions'] = ('cbc', '', 'Seçimli (0...n)')
         descriptions_: list = element.findall('./' + cbcnamespace + 'SpecialInstructions')
         if len(descriptions_) != 0:
-            descriptions: list = []
+            descriptions = list()
             for description_ in descriptions_:
                 tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
                 if tmp is not None:
@@ -135,7 +135,7 @@ class TRUBLShipment(TRUBLCommonElement):
             if tmp is not None:
                 frappedoc['lastexitportlocation'] = tmp.name
         # ['GoodsItem'] = ('cac', 'GoodsItem', 'Seçimli (0...n)')
-        goodsitem: list = []
+        goodsitem = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'GoodsItem')
         if len(tagelements_) != 0:
             for tagelement in tagelements_:
@@ -143,7 +143,7 @@ class TRUBLShipment(TRUBLCommonElement):
                 if tmp is not None:
                     goodsitem.append(tmp)
         # ['ShipmentStage'] = ('cac', 'ShipmentStage', 'Seçimli (0...n)')
-        shipmentstage: list = []
+        shipmentstage = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'ShipmentStage')
         if len(tagelements_) != 0:
             for tagelement in tagelements_:
@@ -151,7 +151,7 @@ class TRUBLShipment(TRUBLCommonElement):
                 if tmp is not None:
                     shipmentstage.append(tmp)
         # ['TransportHandlingUnit'] = ('cac', 'TransportHandlingUnit', 'Seçimli (0...n)')
-        transporthandlingunit: list = []
+        transporthandlingunit = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'TransportHandlingUnit')
         if len(tagelements_) != 0:
             for tagelement in tagelements_:

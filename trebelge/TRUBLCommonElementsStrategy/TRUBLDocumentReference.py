@@ -48,7 +48,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
             if tmp is not None:
                 frappedoc['issuerparty'] = tmp.name
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
-        documentdescriptions: list = []
+        documentdescriptions = list()
         documentdescriptions_: list = element.findall('./' + cbcnamespace + 'DocumentDescription')
         if len(documentdescriptions_) != 0:
             for documentdescription_ in documentdescriptions_:

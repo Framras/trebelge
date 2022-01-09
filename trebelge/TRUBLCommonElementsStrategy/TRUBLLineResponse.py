@@ -16,7 +16,7 @@ class TRUBLLineResponse(TRUBLCommonElement):
         if tmp is None:
             return None
         # ['Response'] = ('cac', 'Response', 'Zorunlu(1..n)')
-        responses: list = []
+        responses = list()
         for response_ in element.findall('./' + cacnamespace + 'Response'):
             tmp = TRUBLResponse().process_element(response_, cbcnamespace, cacnamespace)
             if tmp is not None:

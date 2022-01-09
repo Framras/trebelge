@@ -29,7 +29,7 @@ class TRUBLContact(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
-        communications: list = []
+        communications = list()
         othercommunications_: list = element.findall('./' + cacnamespace + 'OtherCommunication')
         if len(othercommunications_) != 0:
             for othercommunication in othercommunications_:

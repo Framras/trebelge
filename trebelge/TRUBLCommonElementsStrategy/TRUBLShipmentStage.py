@@ -25,7 +25,7 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         # ['TransitDirectionCode'] = ('cbc', '', 'Seçimli (0...n)')
         transitdirectioncodes_: list = element.findall('./' + cbcnamespace + 'TransitDirectionCode')
         if len(transitdirectioncodes_) != 0:
-            transitdirectioncode: list = []
+            transitdirectioncode = list()
             for transitdirectioncode_ in transitdirectioncodes_:
                 if transitdirectioncode_.text is not None:
                     transitdirectioncode.append(transitdirectioncode_.text)
@@ -46,7 +46,7 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['DriverPerson'] = ('cac', 'Person', 'Seçimli (0...n)')
-        driverpeople: list = []
+        driverpeople = list()
         driverpeople_: list = element.findall('./' + cacnamespace + 'DriverPerson')
         if len(driverpeople_) != 0:
             for driverperson_ in driverpeople_:

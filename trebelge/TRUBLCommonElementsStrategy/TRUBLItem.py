@@ -52,7 +52,7 @@ class TRUBLItem(TRUBLCommonElement):
             if tmp is not None:
                 frappedoc['origincountry'] = tmp.name
         # ['AdditionalItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...n)', 'additionalitemid')
-        additionalitemid: list = []
+        additionalitemid = list()
         additionalitemids_: list = element.findall('./' + cacnamespace + 'AdditionalItemIdentification')
         if len(additionalitemids_) != 0:
             for additionalitemid_ in additionalitemids_:
@@ -60,7 +60,7 @@ class TRUBLItem(TRUBLCommonElement):
                 if tmp is not None:
                     additionalitemid.append(tmp)
         # ['CommodityClassification'] = ('cac', 'CommodityClassification', 'Seçimli (0...n)', 'commodityclassification')
-        commodityclass: list = []
+        commodityclass = list()
         commodityclassifications_: list = element.findall('./' + cacnamespace + 'CommodityClassification')
         if len(commodityclassifications_) != 0:
             for commodityclassification_ in commodityclassifications_:
@@ -70,7 +70,7 @@ class TRUBLItem(TRUBLCommonElement):
                 if tmp is not None:
                     commodityclass.append(tmp)
         # ['ItemInstance'] = ('cac', 'ItemInstance', 'Seçimli (0...n)', 'iteminstance')
-        iteminstance: list = []
+        iteminstance = list()
         iteminstances_: list = element.findall('./' + cacnamespace + 'ItemInstance')
         if len(iteminstances_) != 0:
             for iteminstance_ in iteminstances_:

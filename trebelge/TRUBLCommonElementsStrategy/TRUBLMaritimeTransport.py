@@ -36,7 +36,7 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
         # ['ShipsRequirements'] = ('cbc', '', 'Seçimli (0...n)')
         shipsrequirements_: list = element.findall('./' + cbcnamespace + 'ShipsRequirements')
         if len(shipsrequirements_) != 0:
-            requirements: list = []
+            requirements = list()
             for shipsrequirement_ in shipsrequirements_:
                 tmp = TRUBLNote().process_element(shipsrequirement_, cbcnamespace, cacnamespace)
                 if tmp is not None:

@@ -45,7 +45,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
         # ['DamageRemarks'] = ('cbc', 'damageremarks', 'Seçimli (0...n)')
         damageremarks_: list = element.findall('./' + cbcnamespace + 'DamageRemarks')
         if len(damageremarks_) != 0:
-            damageremarks: list = []
+            damageremarks = list()
             for damageremark_ in damageremarks_:
                 tmp = damageremark_.text
                 if tmp is not None:
@@ -79,7 +79,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['ActualPackage'] = ('cac', 'Package', 'Seçimli (0...n)', 'actualpackage')
-        actualpackage: list = []
+        actualpackage = list()
         actualpackages_: list = element.findall('./' + cacnamespace + 'ActualPackage')
         if len(actualpackages_) != 0:
             for actualpackage_ in actualpackages_:
@@ -87,7 +87,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     actualpackage.append(tmp)
         # ['TransportEquipment'] = ('cac', 'TransportEquipment', 'Seçimli (0...n)', 'transportequipment')
-        transportequipment: list = []
+        transportequipment = list()
         transportequipment_: list = element.findall('./' + cacnamespace + 'TransportEquipment')
         if len(transportequipment_) != 0:
             for equipment_ in transportequipment_:
@@ -95,7 +95,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     transportequipment.append(tmp)
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...n)', 'transportmeans')
-        transportmeans: list = []
+        transportmeans = list()
         transportmeans_: list = element.findall('./' + cacnamespace + 'TransportMeans')
         if len(transportmeans_) != 0:
             for means_ in transportmeans_:
@@ -103,7 +103,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     transportmeans.append(tmp)
         # ['HazardousGoodsTransit'] = ('cac', 'HazardousGoodsTransit', 'Seçimli (0...n)', 'hazardousgoodstransit')
-        hazardousgoodstransit: list = []
+        hazardousgoodstransit = list()
         hazardousgoodstransit_: list = element.findall('./' + cacnamespace + 'HazardousGoodsTransit')
         if len(hazardousgoodstransit_) != 0:
             for goodstransit_ in hazardousgoodstransit_:
@@ -111,7 +111,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     hazardousgoodstransit.append(tmp)
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
-        measurementdimension: list = []
+        measurementdimension = list()
         measurementdimensions_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if len(measurementdimensions_) != 0:
             for measurementdimension_ in measurementdimensions_:
@@ -119,7 +119,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     measurementdimension.append(tmp)
         # ['ShipmentDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)', 'shipmentdocumentreference')
-        shipmentdocumentreference: list = []
+        shipmentdocumentreference = list()
         shipmentdocumentreferences_: list = element.findall('./' + cacnamespace + 'ShipmentDocumentReference')
         if len(shipmentdocumentreferences_) != 0:
             for shipmentdocumentreference_ in shipmentdocumentreferences_:
@@ -127,7 +127,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     shipmentdocumentreference.append(tmp)
         # ['CustomsDeclaration'] = ('cac', 'CustomsDeclaration', 'Seçimli (0...n)', 'customsdeclaration')
-        customsdeclaration: list = []
+        customsdeclaration = list()
         customsdeclarations_: list = element.findall('./' + cacnamespace + 'CustomsDeclaration')
         if len(customsdeclarations_) != 0:
             for customsdeclaration_ in customsdeclarations_:

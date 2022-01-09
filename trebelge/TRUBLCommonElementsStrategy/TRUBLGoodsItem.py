@@ -67,7 +67,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         # ['Description'] = ('cbc', '', 'Seçimli(0..n)')
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(descriptions_) != 0:
-            descriptions: list = []
+            descriptions = list()
             for description_ in descriptions_:
                 tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
                 if tmp is not None:

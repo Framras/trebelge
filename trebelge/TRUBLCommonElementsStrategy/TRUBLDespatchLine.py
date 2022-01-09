@@ -43,7 +43,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         # ['Note'] = ('cbc', '', 'Seçimli(0..n)')
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
         if len(notes_) != 0:
-            note: list = []
+            note = list()
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, cbcnamespace, cacnamespace)
                 if tmp is not None:
@@ -53,7 +53,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         # ['OutstandingReason'] = ('cbc', '', 'Seçimli(0..n)')
         outstandingreasons_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(outstandingreasons_) != 0:
-            outstandingreason: list = []
+            outstandingreason = list()
             for outstandingreason_ in outstandingreasons_:
                 tmp = TRUBLNote().process_element(outstandingreason_, cbcnamespace, cacnamespace)
                 if tmp is not None:
@@ -61,7 +61,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
             if len(outstandingreason) != 0:
                 frappedoc['outstandingreason'] = outstandingreason
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli(0..n)')
-        shipments: list = []
+        shipments = list()
         shipments_: list = element.findall('./' + cacnamespace + 'Shipment')
         if len(shipments_) != 0:
             for shipment_ in shipments_:
@@ -69,7 +69,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                 if tmp is not None:
                     shipments.append(tmp)
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli(0..n)')
-        documentreferences: list = []
+        documentreferences = list()
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if len(documentreferences_) != 0:
             for documentreference_ in documentreferences_:

@@ -54,7 +54,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             if tmp is not None:
                 frappedoc['taxtotal'] = tmp.name
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...n)')
-        orderlinereference: list = []
+        orderlinereference = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'OrderLineReference')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
@@ -62,7 +62,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                 if tmp is not None:
                     orderlinereference.append(tmp)
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
-        despatchlinereference: list = []
+        despatchlinereference = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'DespatchLineReference')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
@@ -70,7 +70,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                 if tmp is not None:
                     despatchlinereference.append(tmp)
         # ['ReceiptLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
-        receiptlinereference: list = []
+        receiptlinereference = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'ReceiptLineReference')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
@@ -78,7 +78,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                 if tmp is not None:
                     receiptlinereference.append(tmp)
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...n)')
-        delivery: list = []
+        delivery = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'Delivery')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
@@ -86,7 +86,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                 if tmp is not None:
                     delivery.append(tmp)
         # ['WithholdingTaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...n)')
-        withholdingtaxtotal: list = []
+        withholdingtaxtotal = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'WithholdingTaxTotal')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
@@ -94,7 +94,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                 if tmp is not None:
                     withholdingtaxtotal.append(tmp)
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
-        allowancecharge: list = []
+        allowancecharge = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'AllowanceCharge')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
@@ -102,7 +102,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                 if tmp is not None:
                     allowancecharge.append(tmp)
         # ['SubInvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli (0...n)')
-        subinvoiceline: list = []
+        subinvoiceline = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'SubInvoiceLine')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:

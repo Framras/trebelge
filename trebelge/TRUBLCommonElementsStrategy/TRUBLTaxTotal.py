@@ -17,7 +17,7 @@ class TRUBLTaxTotal(TRUBLCommonElement):
                                taxamountcurrencyid=taxamount_.attrib.get('currencyID')
                                )
         # ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
-        taxsubtotals: list = []
+        taxsubtotals = list()
         for taxsubtotal_ in element.findall('./' + cacnamespace + 'TaxSubtotal'):
             tmp = TRUBLTaxSubtotal().process_element(taxsubtotal_, cbcnamespace, cacnamespace)
             if tmp is not None:

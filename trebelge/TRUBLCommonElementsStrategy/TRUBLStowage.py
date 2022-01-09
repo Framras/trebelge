@@ -19,7 +19,7 @@ class TRUBLStowage(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['Location'] = ('cac', 'Location', 'Seçimli (0...n)')
-        locations: list = []
+        locations = list()
         locations_: list = element.findall('./' + cacnamespace + 'Location')
         if len(locations_) != 0:
             for location_ in locations_:
@@ -27,7 +27,7 @@ class TRUBLStowage(TRUBLCommonElement):
                 if tmp is not None:
                     locations.append(tmp)
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
-        measurementdimensions: list = []
+        measurementdimensions = list()
         measurementdimensions_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if len(measurementdimensions_) != 0:
             for measurementdimension_ in measurementdimensions_:
