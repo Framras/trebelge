@@ -13,7 +13,8 @@ class TRUBLTemperature(TRUBLCommonElement):
         # ['Measure'] = ('cbc', '', 'Zorunlu (1)')
         attributeid_: Element = element.find('./' + cbcnamespace + 'AttributeID')
         measure_: Element = element.find('./' + cbcnamespace + 'Measure')
-        if attributeid_ is None or attributeid_.text is None or measure_ is None or measure_.text is None:
+        if attributeid_ is None or attributeid_.text is None \
+                or measure_ is None or measure_.text is None:
             return None
         frappedoc: dict = dict(attributeid=attributeid_.text,
                                measure=measure_.text,

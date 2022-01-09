@@ -16,21 +16,18 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
         cbcsecimli01: list = ['Note', 'PenaltySurchargePercent', 'PaymentDueDate']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None:
-                if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+            if field_ is not None and field_.text is not None:
+                frappedoc[elementtag_.lower()] = field_.text
         # ['Amount'] = ('cbc', 'amount', 'Seçimli (0...1)')
         amount_: Element = element.find('./' + cbcnamespace + 'Amount')
-        if amount_ is not None:
-            if amount_.text is not None:
-                frappedoc['amount'] = amount_.text
-                frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
+        if amount_ is not None and amount_.text is not None:
+            frappedoc['amount'] = amount_.text
+            frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
         # ['PenaltyAmount'] = ('cbc', 'penaltyamount', 'Seçimli (0...1)')
         penaltyamount_: Element = element.find('./' + cbcnamespace + 'PenaltyAmount')
-        if penaltyamount_ is not None:
-            if penaltyamount_.text is not None:
-                frappedoc['penaltyamount'] = penaltyamount_.text
-                frappedoc['penaltyamountcurrencyid'] = penaltyamount_.attrib.get('currencyID')
+        if penaltyamount_ is not None and penaltyamount_.text is not None:
+            frappedoc['penaltyamount'] = penaltyamount_.text
+            frappedoc['penaltyamountcurrencyid'] = penaltyamount_.attrib.get('currencyID')
         # ['SettlementPeriod'] = ('cac', 'settlementperiod', 'Seçimli (0...1)')
         settlementperiod_: Element = element.find('./' + cbcnamespace + 'SettlementPeriod')
         if settlementperiod_ is not None:

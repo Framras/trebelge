@@ -9,7 +9,7 @@ class TRUBLExternalReference(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['URI'] = ('cbc', '', 'Zorunlu(1)')
-        uri_ = element.find('./' + cbcnamespace + 'URI').text
-        if uri_ is None:
+        uri_: Element = element.find('./' + cbcnamespace + 'URI')
+        if uri_ is None or uri_.text is None:
             return None
-        return self._get_frappedoc(self._frappeDoctype, dict(uri=uri_))
+        return self._get_frappedoc(self._frappeDoctype, dict(uri=uri_.text))

@@ -12,9 +12,9 @@ class TRUBLAddress(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         frappedoc: dict = {}
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
-        citysubdivisionname_ = element.find('./' + cbcnamespace + 'CitySubdivisionName').text
+        citysubdivisionname_: Element = element.find('./' + cbcnamespace + 'CitySubdivisionName').text
         # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
-        cityname_ = element.find('./' + cbcnamespace + 'CityName').text
+        cityname_: Element = element.find('./' + cbcnamespace + 'CityName').text
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
         tmp = TRUBLCountry().process_element(country_, cbcnamespace, cacnamespace)
@@ -39,9 +39,8 @@ class TRUBLAddress(TRUBLCommonElement):
                               'Region', 'District']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None:
-                if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+            if field_ is not None and field_.text is not None:
+                frappedoc[elementtag_.lower()] = field_.text
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         buildingnumbers = list()
         buildingnumbers_: list = element.findall('./' + cbcnamespace + 'BuildingNumber')

@@ -12,9 +12,8 @@ class TRUBLBranch(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['Name'] = ('cbc', 'branchname', 'Seçimli(0..1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
-        if name_ is not None:
-            if name_.text is not None:
-                frappedoc['branchname'] = name_.text
+        if name_ is not None and name_.text is not None:
+            frappedoc['branchname'] = name_.text
         # ['FinancialInstitution'] = ('cac', 'FinancialInstitution()', 'Seçimli(0..1)', 'financialinstitution')
         financialinstitution_: Element = element.find('./' + cacnamespace + 'FinancialInstitution')
         if financialinstitution_ is not None:

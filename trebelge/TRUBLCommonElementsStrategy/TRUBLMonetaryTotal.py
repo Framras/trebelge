@@ -32,24 +32,21 @@ class TRUBLMonetaryTotal(TRUBLCommonElement):
                                )
         # ['AllowanceTotalAmount'] = ('cbc', 'allowancetotalamount', 'Seçimli (0...1)')
         allowancetotalamount_: Element = element.find('./' + cbcnamespace + 'AllowanceTotalAmount')
-        if allowancetotalamount_ is not None:
-            if allowancetotalamount_.text is not None:
-                frappedoc['allowancetotalamount'] = allowancetotalamount_.text
-                frappedoc['allowancetotalamountcurrencyid'] = allowancetotalamount_.attrib.get(
-                    'currencyID')
+        if allowancetotalamount_ is not None and allowancetotalamount_.text is not None:
+            frappedoc['allowancetotalamount'] = allowancetotalamount_.text
+            frappedoc['allowancetotalamountcurrencyid'] = allowancetotalamount_.attrib.get(
+                'currencyID')
         # ['ChargeTotalAmount'] = ('cbc', 'chargetotalamount', 'Seçimli (0...1)')
         chargetotalamount_: Element = element.find('./' + cbcnamespace + 'ChargeTotalAmount')
-        if chargetotalamount_ is not None:
-            if chargetotalamount_.text is not None:
-                frappedoc['chargetotalamount'] = chargetotalamount_.text
-                frappedoc['chargetotalamountcurrencyid'] = chargetotalamount_.attrib.get(
-                    'currencyID')
+        if chargetotalamount_ is not None and chargetotalamount_.text is not None:
+            frappedoc['chargetotalamount'] = chargetotalamount_.text
+            frappedoc['chargetotalamountcurrencyid'] = chargetotalamount_.attrib.get(
+                'currencyID')
         # ['PayableRoundingAmount'] = ('cbc', 'payableroundingamount', 'Seçimli (0...1)')
         payableroundingamount_: Element = element.find('./' + cbcnamespace + 'PayableRoundingAmount')
-        if payableroundingamount_ is not None:
-            if payableroundingamount_.text is not None:
-                frappedoc['payableroundingamount'] = payableroundingamount_.text
-                frappedoc['payableroundingamountcurrencyid'] = payableroundingamount_.attrib.get(
-                    'currencyID')
+        if payableroundingamount_ is not None and payableroundingamount_.text is not None:
+            frappedoc['payableroundingamount'] = payableroundingamount_.text
+            frappedoc['payableroundingamountcurrencyid'] = payableroundingamount_.attrib.get(
+                'currencyID')
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc, False)

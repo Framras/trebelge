@@ -12,9 +12,8 @@ class TRUBLLocation(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Seçimli (0...1)')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
-        if id_ is not None:
-            if id_.text is not None:
-                frappedoc['locationid'] = id_.text
+        if id_ is not None and id_.text is not None:
+            frappedoc['locationid'] = id_.text
         # ['Address'] = ('cac', 'Address()', 'Seçimli (0...1)','address')
         address_: Element = element.find('./' + cacnamespace + 'Address')
         if address_ is not None:

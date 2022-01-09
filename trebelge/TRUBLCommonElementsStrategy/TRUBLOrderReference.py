@@ -10,21 +10,21 @@ class TRUBLOrderReference(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
-        id_ = element.find('./' + cbcnamespace + 'ID').text
+        id_: Element = element.find('./' + cbcnamespace + 'ID')
         # ['IssueDate'] = ('cbc', 'issuedate', 'Zorunlu(1)')
-        issuedate_ = element.find('./' + cbcnamespace + 'IssueDate').text
-        if id_ is None or issuedate_ is None:
+        issuedate_: Element = element.find('./' + cbcnamespace + 'IssueDate')
+        if id_ is None or id_.text is None or \
+                issuedate_ is None or issuedate_.text is None:
             return None
-        frappedoc: dict = {'id': id_,
-                           'issuedate': issuedate_}
+        frappedoc: dict = {'id': id_.text,
+                           'issuedate': issuedate_.text}
         # ['SalesOrderID'] = ('cbc', 'salesorderid', 'Seçimli (0...1)')
         # ['OrderTypeCode'] = ('cbc', 'ordertypecode', 'Seçimli (0...1)')
         cbcsecimli01: list = ['SalesOrderID', 'OrderTypeCode']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None:
-                if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+            if field_ is not None and field_.text is not None:
+                frappedoc[elementtag_.lower()] = field_.text
         # ['DocumentReference'] = ('cac', '', 'Seçimli(0..n)', 'documentreference')
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         if len(documentreferences_) == 0:

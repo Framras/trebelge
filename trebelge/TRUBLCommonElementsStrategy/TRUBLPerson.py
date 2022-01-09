@@ -11,27 +11,26 @@ class TRUBLPerson(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
         # ['FirstName'] = ('cbc', 'firstname', 'Zorunlu(1)')
-        firstname_ = element.find('./' + cbcnamespace + 'FirstName').text
+        firstname_: Element = element.find('./' + cbcnamespace + 'FirstName')
         # ['FamilyName'] = ('cbc', 'familyname', 'Zorunlu(1)')
-        familyname_ = element.find('./' + cbcnamespace + 'FamilyName').text
-        if firstname_ is None or familyname_ is None:
+        familyname_: Element = element.find('./' + cbcnamespace + 'FamilyName')
+        if firstname_ is None or firstname_.text is None or \
+                familyname_ is None or familyname_.text is None:
             return None
-        frappedoc: dict = dict(firstname=firstname_,
-                               familyname=familyname_)
+        frappedoc: dict = dict(firstname=firstname_.text,
+                               familyname=familyname_.text)
         # ['MiddleName'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NameSuffix'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NationalityID'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['MiddleName', 'NameSuffix', 'NationalityID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None:
-                if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+            if field_ is not None and field_.text is not None:
+                frappedoc[elementtag_.lower()] = field_.text
         # ['Title'] = ('cbc', 'persontitle', 'Seçimli (0...1)')
         field_: Element = element.find('./' + cbcnamespace + 'Title')
-        if field_ is not None:
-            if field_.text is not None:
-                frappedoc['persontitle'] = field_.text
+        if field_ is not None and field_.text is not None:
+            frappedoc['persontitle'] = field_.text
         # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)', 'financialaccount')
         financialaccount_: Element = element.find('./' + cacnamespace + 'FinancialAccount')
         if financialaccount_ is not None:

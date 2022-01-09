@@ -20,15 +20,13 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
                               'FullyPaidSharesIndicator']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None:
-                if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+            if field_ is not None and field_.text is not None:
+                frappedoc[elementtag_.lower()] = field_.text
         # ['CorporateStockAmount'] = ('cbc', 'corporatestockamount', 'Seçimli (0...1)')
         corporatestockamount_: Element = element.find('./' + cbcnamespace + 'CorporateStockAmount')
-        if corporatestockamount_ is not None:
-            if corporatestockamount_.text is not None:
-                frappedoc['corporatestockamount'] = corporatestockamount_.text
-                frappedoc['corporatestockamountcurrencyid'] = corporatestockamount_.attrib.get('currencyID')
+        if corporatestockamount_ is not None and corporatestockamount_.text is not None:
+            frappedoc['corporatestockamount'] = corporatestockamount_.text
+            frappedoc['corporatestockamountcurrencyid'] = corporatestockamount_.attrib.get('currencyID')
         # ['CorporateRegistrationScheme'] = ('cac', 'CorporateRegistrationScheme()', 'Seçimli (0...1)',
         #                     'corporateregistrationscheme')
         # ['HeadOfficeParty'] = ('cac', 'Party()', 'Seçimli (0...1)', 'headofficeparty')
