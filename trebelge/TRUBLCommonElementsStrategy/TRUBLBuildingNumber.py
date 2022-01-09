@@ -10,4 +10,7 @@ class TRUBLBuildingNumber(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         if element.text is None:
             return None
-        return self._get_frappedoc(self._frappeDoctype, dict(buildingnumber=element.text))
+        if str.strip(element.text) == '':
+            return self._get_frappedoc(self._frappeDoctype, dict(buildingnumber='girilmemiştir'))
+        else:
+            return self._get_frappedoc(self._frappeDoctype, dict(buildingnumber=element.text))
