@@ -15,7 +15,7 @@ class TRUBLAllowanceCharge(TRUBLCommonElement):
         if chargeindicator_ is None or chargeindicator_.text is None or \
                 amount_ is None or amount_.text is None:
             return None
-        frappedoc: dict = dict(chargeindicator=chargeindicator_,
+        frappedoc: dict = dict(chargeindicator=chargeindicator_.text,
                                amount=amount_.text,
                                amountcurrencyid=amount_.attrib.get('currencyID'))
         # ['AllowanceChargeReason'] = ('cbc', 'allowancechargereason', 'Seçimli (0...1)')
