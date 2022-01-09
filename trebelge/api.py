@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import XMLParser
 
-from apps.frappe import frappe
+import frappe
 from trebelge.EbelgeUsers import EbelgeUsers
 from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
 
