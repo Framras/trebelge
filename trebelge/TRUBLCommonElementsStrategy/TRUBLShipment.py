@@ -16,7 +16,7 @@ class TRUBLShipment(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
-        id_ = element.find('./' + cbcnamespace + 'ID')
+        id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_ is not None:
             if id_.text is None:
                 return None
