@@ -17,8 +17,12 @@ class TRUBLPerson(TRUBLCommonElement):
         if firstname_ is None or firstname_.text is None or \
                 familyname_ is None or familyname_.text is None:
             return None
-        frappedoc: dict = dict(firstname=firstname_.text,
-                               familyname=familyname_.text)
+        if str.strip(familyname_.text) == '':
+            frappedoc: dict = dict(firstname=firstname_.text,
+                                   familyname='girilmemiştir')
+        else:
+            frappedoc: dict = dict(firstname=firstname_.text,
+                                   familyname=familyname_.text)
         # ['MiddleName'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NameSuffix'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NationalityID'] = ('cbc', '', 'Seçimli (0...1)')
