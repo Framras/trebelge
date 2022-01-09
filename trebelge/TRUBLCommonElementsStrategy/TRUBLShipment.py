@@ -16,10 +16,11 @@ class TRUBLShipment(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
-        id_ = element.find('./' + cbcnamespace + 'ID').text
-        if id_ is None:
-            return None
-        frappedoc: dict = {'id': id_}
+        id_ = element.find('./' + cbcnamespace + 'ID')
+        if id_ is not None:
+            if id_.text is None:
+                return None
+        frappedoc: dict = {'id': id_.text}
         # ['HandlingCode'] = ('cbc', '', 'Seçimli (0...1)')
         # ['HandlingInstructions'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['HandlingCode', 'HandlingInstructions']
