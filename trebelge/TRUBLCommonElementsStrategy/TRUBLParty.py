@@ -77,7 +77,7 @@ class TRUBLParty(TRUBLCommonElement):
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
         partylegalentities: list = []
         partylegalentity_: Element = element.find('./' + cacnamespace + 'PartyLegalEntity')
-        if len(partylegalentity_) != 0:
+        if partylegalentity_ is not None:
             for partylegalentity in partylegalentity_:
                 tmp = TRUBLPartyLegalEntity().process_element(partylegalentity, cbcnamespace, cacnamespace)
                 if tmp is not None:
