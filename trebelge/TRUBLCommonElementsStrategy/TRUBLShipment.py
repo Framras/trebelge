@@ -19,7 +19,10 @@ class TRUBLShipment(TRUBLCommonElement):
         id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_ is None or id_.text is None:
             return None
-        frappedoc: dict = {'id': id_.text}
+        if id_.text == ' ':
+            frappedoc: dict = {'id': 'girilmemiştir'}
+        else:
+            frappedoc: dict = {'id': id_.text}
         # ['HandlingCode'] = ('cbc', '', 'Seçimli (0...1)')
         # ['HandlingInstructions'] = ('cbc', '', 'Seçimli (0...1)')
         cbcsecimli01: list = ['HandlingCode', 'HandlingInstructions']
