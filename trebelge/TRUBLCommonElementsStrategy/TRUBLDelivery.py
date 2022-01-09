@@ -82,7 +82,7 @@ class TRUBLDelivery(TRUBLCommonElement):
         # ['DeliveryTerms'] = ('cac', 'DeliveryTerms', 'Seçimli (0...n)')
         deliveryterms: list = []
         deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
-        if len(deliveryterms_) != 0:
+        if deliveryterms_ is not None:
             for deliveryterm_ in deliveryterms_:
                 tmp = TRUBLDeliveryTerms().process_element(deliveryterm_, cbcnamespace, cacnamespace)
                 if tmp is not None:
