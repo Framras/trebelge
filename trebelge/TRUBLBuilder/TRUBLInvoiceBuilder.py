@@ -346,12 +346,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_invoiceline(self) -> None:
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
         invoicelines_: list = self.root.findall('./' + self._cac_ns + 'InvoiceLine')
-        invoiceline = list()
+        invoicelines = list()
         for invoiceline_ in invoicelines_:
             tmp = TRUBLInvoiceLine().process_element(invoiceline_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
-                invoiceline.append(tmp)
-        self._product.invoiceline = invoiceline
+                invoicelines.append(tmp)
+        self._product.invoiceline = invoicelines
 
     def build_despatchline(self) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')

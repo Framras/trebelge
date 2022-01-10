@@ -43,10 +43,11 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         frappedoc['item'] = tmp.name
         # ['Price'] = ('cac', 'Price', 'Zorunlu (1)')
         price_: Element = element.find('./' + cacnamespace + 'Price')
-        tmp = TRUBLPrice().process_element(price_, cbcnamespace, cacnamespace)
-        if tmp is None:
-            return None
-        frappedoc['price'] = tmp.name
+        # self._mapping['PriceAmount'] = ('cbc', '', 'Zorunlu(1)')
+        priceamount = price_.find('./' + cbcnamespace + 'PriceAmount')
+        if priceamount is not None and priceamount.text is not None:
+            frappedoc['priceamount'] = priceamount.text
+            frappedoc['priceamountcurrencyid'] = priceamount.attrib.get('currencyID')
         # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
         taxtotal_: Element = element.find('./' + cacnamespace + 'TaxTotal')
         if taxtotal_ is not None:

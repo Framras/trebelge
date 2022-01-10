@@ -21,7 +21,8 @@
     "taxtotal",
     "withholdingtaxtotal",
     "item",
-    "price",
+    "priceamount",
+    "priceamountcurrencyid",
     "subinvoiceline"
   ],
   "fields": [
@@ -124,15 +125,6 @@
       "reqd": 1
     },
     {
-      "description": "Mal/hizmet birim fiyat\u0131 hakk\u0131nda bilgiler buraya girilir.",
-      "fieldname": "price",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Mal/hizmet birim fiyat\u0131",
-      "options": "UBL TR Price",
-      "reqd": 1
-    },
-    {
       "description": "E\u011fer \u00fcr\u00fcn i\u00e7in ek bir birim kodu kullan\u0131lmas\u0131 gerekiyorsa bu eleman\u0131n i\u00e7indeki InvoicedQuantity eleman\u0131 (di\u011fer opsiyonel elemanlar bo\u015f b\u0131rak\u0131larak) kullan\u0131labilir.",
       "fieldname": "subinvoiceline",
       "fieldtype": "Table MultiSelect",
@@ -145,11 +137,27 @@
       "fieldtype": "Table MultiSelect",
       "label": "Kalem iskonto/art\u0131r\u0131m\u0131",
       "options": "UBL TR AllowanceCharges"
+    },
+    {
+      "description": "Mal/hizmet birim fiyat\u0131 hakk\u0131nda bilgiler buraya girilir.",
+      "fieldname": "priceamount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Mal/hizmet birim fiyat\u0131",
+      "reqd": 1
+    },
+    {
+      "fieldname": "priceamountcurrencyid",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Mal/hizmet para birimi",
+      "options": "UBL TR CurrencyCode",
+      "reqd": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2022-01-01 12:26:07.327909",
+  "modified": "2022-01-10 22:34:20.544276",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR InvoiceLine",
