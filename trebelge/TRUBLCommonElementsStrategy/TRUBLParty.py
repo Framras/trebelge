@@ -5,7 +5,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
-from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyIdentification import TRUBLPartyIdentification
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyLegalEntity import TRUBLPartyLegalEntity
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyTaxScheme import TRUBLPartyTaxScheme
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPerson import TRUBLPerson
@@ -70,9 +69,10 @@ class TRUBLParty(TRUBLCommonElement):
         partyidentifications_: list = element.findall('./' + cacnamespace + 'PartyIdentification')
         partyidentifications = list()
         for partyidentification in partyidentifications_:
-            tmp = TRUBLPartyIdentification().process_element(partyidentification, cbcnamespace, cacnamespace)
-            if tmp is not None:
-                partyidentifications.append(tmp)
+            partyidentification_: Element = partyidentification.find('./' + cbcnamespace + 'ID')
+            if partyidentification_ is not None and partyidentification_.text is not None:
+                partyidentifications.append({'id': partyidentification_.text,
+                                             'schemeid': partyidentification_.attrib.get('schemeID')})
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
         partylegalentities = list()
         partylegalentity_: Element = element.find('./' + cacnamespace + 'PartyLegalEntity')
