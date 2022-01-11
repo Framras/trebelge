@@ -37,9 +37,8 @@
     {
       "description": "Taraf e\u011fer kurum ise kurum ismi bu elemana metin olarak girilir.",
       "fieldname": "partyname",
-      "fieldtype": "Link",
-      "label": "Kurum ismi",
-      "options": "UBL TR Partyname"
+      "fieldtype": "Small Text",
+      "label": "Kurum ismi"
     },
     {
       "description": "Taraf\u0131n adresi girilir.",
@@ -87,9 +86,9 @@
     {
       "description": "Taraf\u0131n vergi kimlik numaras\u0131 veya TC kimlik numaras\u0131 metin olarak girilir.",
       "fieldname": "partyidentification",
-      "fieldtype": "Table MultiSelect",
+      "fieldtype": "Table",
       "label": "Vergi kimlik numaras\u0131",
-      "options": "UBL TR PartyIdentifications"
+      "options": "UBL TR PartyIdentification"
     },
     {
       "description": "Taraf\u0131n di\u011fer kay\u0131tl\u0131 oldu\u011fu yerlerin bilgileri ve kay\u0131tl\u0131 oldu\u011fu yerlerdeki kay\u0131t numaralar\u0131 detayl\u0131 olarak girilecektir.",
@@ -101,7 +100,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-30 01:22:16.000354",
+  "modified": "2022-01-11 23:19:01.864906",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Party",

@@ -7,7 +7,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyIdentification import TRUBLPartyIdentification
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyLegalEntity import TRUBLPartyLegalEntity
-from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyName import TRUBLPartyName
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPartyTaxScheme import TRUBLPartyTaxScheme
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPerson import TRUBLPerson
 
@@ -36,7 +35,7 @@ class TRUBLParty(TRUBLCommonElement):
         if tagelement_ is not None:
             partyname_: Element = tagelement_.find('./' + cbcnamespace + 'Name')
             if partyname_ is not None and partyname_.text is not None:
-                frappedoc['partyname'] = tmp.name
+                frappedoc['partyname'] = partyname_.text
         # ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)', 'physicallocation')
         tagelement_: Element = element.find('./' + cacnamespace + 'PhysicalLocation')
         if tagelement_ is not None:
