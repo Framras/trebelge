@@ -71,8 +71,8 @@ class TRUBLParty(TRUBLCommonElement):
         for partyidentification in partyidentifications_:
             partyidentification_: Element = partyidentification.find('./' + cbcnamespace + 'ID')
             if partyidentification_ is not None and partyidentification_.text is not None:
-                partyidentifications.append({'id': partyidentification_.text,
-                                             'schemeid': partyidentification_.attrib.get('schemeID')})
+                partyidentifications.append(dict(id=partyidentification_.text,
+                                                 schemeid=partyidentification_.attrib.get('schemeID')))
         # ['PartyLegalEntity'] = ('cac', PartyLegalEntity(), 'Seçimli (0...n)', 'partylegalentity')
         partylegalentities = list()
         partylegalentity_: Element = element.find('./' + cacnamespace + 'PartyLegalEntity')
