@@ -34,8 +34,8 @@ class TRUBLParty(TRUBLCommonElement):
         # ['PartyName'] = ('cac', PartyName(), 'Seçimli (0...1)', partyname)
         tagelement_: Element = element.find('./' + cacnamespace + 'PartyName')
         if tagelement_ is not None:
-            tmp = TRUBLPartyName().process_element(tagelement_, cbcnamespace, cacnamespace)
-            if tmp is not None:
+            partyname_: Element = tagelement_.find('./' + cbcnamespace + 'Name')
+            if partyname_ is not None and partyname_.text is not None:
                 frappedoc['partyname'] = tmp.name
         # ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)', 'physicallocation')
         tagelement_: Element = element.find('./' + cacnamespace + 'PhysicalLocation')
