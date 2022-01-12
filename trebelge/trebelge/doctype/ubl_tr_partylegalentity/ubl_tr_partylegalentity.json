@@ -50,7 +50,7 @@
     {
       "description": "\u00d6denmi\u015f sermaye bilgisi girilir.",
       "fieldname": "corporatestockamount",
-      "fieldtype": "Data",
+      "fieldtype": "Currency",
       "in_list_view": 1,
       "label": "\u00d6denmi\u015f sermaye"
     },
@@ -84,7 +84,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-22 01:16:48.926704",
+  "modified": "2022-01-13 00:42:34.433306",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR PartyLegalEntity",
