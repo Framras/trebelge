@@ -4,10 +4,12 @@ from xml.etree.ElementTree import Element
 import frappe
 from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
+from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCustomerParty import TRUBLCustomerParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDespatchLine import TRUBLDespatchLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
+from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 from trebelge.TRUBLCommonElementsStrategy.TRUBLSupplierParty import TRUBLSupplierParty
 
@@ -126,9 +128,16 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
     def build_despatchsupplierparty(self) -> None:
         # ['DespatchSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'despatchsupplierparty')
         despatchsupplierparty_: Element = self.root.find('./' + self._cac_ns + 'DespatchSupplierParty')
-        tmp = TRUBLSupplierParty().process_element(despatchsupplierparty_, self._cbc_ns, self._cac_ns)
-        if tmp is not None:
-            self._product.despatchsupplierparty = tmp.name
+        # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
+        party_: Element = despatchsupplierparty_.find('./' + self._cac_ns + 'Party')
+        party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
+        self._product.despatchsupplierparty = party.name
+        # ['DespatchContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'despatchcontact')
+        despatchcontact_: Element = despatchsupplierparty_.find('./' + self._cac_ns + 'DespatchContact')
+        if despatchcontact_ is not None:
+            contact = TRUBLContact().process_element(despatchcontact_, self._cbc_ns, self._cac_ns)
+            if contact is not None:
+                self._product.despatchsuppliercontact = contact.name
 
     def build_accountingcustomerparty(self) -> None:
         # ['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'accountingcustomerparty')
@@ -137,33 +146,61 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
     def build_deliverycustomerparty(self) -> None:
         # ['DeliveryCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'deliverycustomerparty')
         deliverycustomerparty_: Element = self.root.find('./' + self._cac_ns + 'DeliveryCustomerParty')
-        tmp = TRUBLCustomerParty().process_element(deliverycustomerparty_, self._cbc_ns, self._cac_ns)
-        if tmp is not None:
-            self._product.deliverycustomerparty = tmp.name
+        # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
+        party_: Element = deliverycustomerparty_.find('./' + self._cac_ns + 'Party')
+        party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
+        self._product.deliverycustomerparty = party.name
+        # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
+        deliverycontact_: Element = deliverycustomerparty_.find('./' + self._cac_ns + 'DeliveryContact')
+        if deliverycontact_ is not None:
+            contact = TRUBLContact().process_element(deliverycontact_, self._cbc_ns, self._cac_ns)
+            if contact is not None:
+                self._product.deliverycustomercontact = contact.name
 
     def build_buyercustomerparty(self) -> None:
         # ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'buyercustomerparty')
         buyercustomerparty_: Element = self.root.find('./' + self._cac_ns + 'BuyerCustomerParty')
         if buyercustomerparty_ is not None:
-            tmp = TRUBLCustomerParty().process_element(buyercustomerparty_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.buyercustomerparty = tmp.name
+            # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
+            party_: Element = buyercustomerparty_.find('./' + self._cac_ns + 'Party')
+            party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
+            self._product.buyercustomerparty = party.name
+            # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
+            deliverycontact_: Element = buyercustomerparty_.find('./' + self._cac_ns + 'DeliveryContact')
+            if deliverycontact_ is not None:
+                contact = TRUBLContact().process_element(deliverycontact_, self._cbc_ns, self._cac_ns)
+                if contact is not None:
+                    self._product.buyercustomercontact = contact.name
 
     def build_sellersupplierparty(self) -> None:
         # ['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)', 'sellersupplierparty')
         sellersupplierparty_: Element = self.root.find('./' + self._cac_ns + 'SellerSupplierParty')
         if sellersupplierparty_ is not None:
-            tmp = TRUBLSupplierParty().process_element(sellersupplierparty_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.sellersupplierparty = tmp.name
+            # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
+            party_: Element = sellersupplierparty_.find('./' + self._cac_ns + 'Party')
+            party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
+            self._product.sellersupplierparty = party.name
+            # ['DespatchContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'despatchcontact')
+            despatchcontact_: Element = sellersupplierparty_.find('./' + self._cac_ns + 'DespatchContact')
+            if despatchcontact_ is not None:
+                contact = TRUBLContact().process_element(despatchcontact_, self._cbc_ns, self._cac_ns)
+                if contact is not None:
+                    self._product.sellersuppliercontact = contact.name
 
     def build_originatorcustomerparty(self) -> None:
         # ['OriginatorCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'originatorcustomerparty')
         originatorcustomerparty_: Element = self.root.find('./' + self._cac_ns + 'OriginatorCustomerParty')
         if originatorcustomerparty_ is not None:
-            tmp = TRUBLCustomerParty().process_element(originatorcustomerparty_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.originatorcustomerparty = tmp.name
+            # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
+            party_: Element = originatorcustomerparty_.find('./' + self._cac_ns + 'Party')
+            party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
+            self._product.originatorcustomerparty = party.name
+            # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
+            deliverycontact_: Element = originatorcustomerparty_.find('./' + self._cac_ns + 'DeliveryContact')
+            if deliverycontact_ is not None:
+                contact = TRUBLContact().process_element(deliverycontact_, self._cbc_ns, self._cac_ns)
+                if contact is not None:
+                    self._product.originatorcustomercontact = contact.name
 
     def build_taxrepresentativeparty(self) -> None:
         # ['TaxRepresentativeParty'] = ('cac', Party(), 'Seçimli (0..1)', 'taxrepresentativeparty')

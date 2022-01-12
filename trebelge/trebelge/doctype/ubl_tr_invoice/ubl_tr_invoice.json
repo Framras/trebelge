@@ -33,9 +33,13 @@
     "contractdocumentreference",
     "additionaldocumentreference",
     "accountingsupplierparty",
+    "accountingsuppliercontact",
     "accountingcustomerparty",
+    "accountingcustomercontact",
     "buyercustomerparty",
+    "buyercustomercontact",
     "sellersupplierparty",
+    "sellersuppliercontact",
     "taxrepresentativeparty",
     "delivery",
     "paymentmeans",
@@ -243,25 +247,25 @@
       "fieldname": "accountingsupplierparty",
       "fieldtype": "Link",
       "label": "Sat\u0131c\u0131",
-      "options": "UBL TR SupplierParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "accountingcustomerparty",
       "fieldtype": "Link",
       "label": "Al\u0131c\u0131",
-      "options": "UBL TR CustomerParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "buyercustomerparty",
       "fieldtype": "Link",
       "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan Taraf",
-      "options": "UBL TR CustomerParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "sellersupplierparty",
       "fieldtype": "Link",
       "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan Taraf",
-      "options": "UBL TR SupplierParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "taxrepresentativeparty",
@@ -349,11 +353,35 @@
       "fieldtype": "Table MultiSelect",
       "label": "Mal/Hizmet Kalemleri",
       "options": "UBL TR InvoiceLines"
+    },
+    {
+      "fieldname": "sellersuppliercontact",
+      "fieldtype": "Link",
+      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan \u0130lgili",
+      "options": "UBL TR Contact"
+    },
+    {
+      "fieldname": "accountingsuppliercontact",
+      "fieldtype": "Link",
+      "label": "Sat\u0131c\u0131 \u0130lgili",
+      "options": "UBL TR Contact"
+    },
+    {
+      "fieldname": "accountingcustomercontact",
+      "fieldtype": "Link",
+      "label": "Al\u0131c\u0131 \u0130lgili",
+      "options": "UBL TR Contact"
+    },
+    {
+      "fieldname": "buyercustomercontact",
+      "fieldtype": "Link",
+      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan \u0130lgili",
+      "options": "UBL TR Contact"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-31 00:07:53.779930",
+  "modified": "2022-01-12 12:11:12.233962",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Invoice",
