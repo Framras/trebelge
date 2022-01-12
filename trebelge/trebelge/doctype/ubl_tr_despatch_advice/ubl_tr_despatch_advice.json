@@ -21,10 +21,15 @@
     "orderreference",
     "additionaldocumentreference",
     "despatchsupplierparty",
+    "despatchsuppliercontact",
     "deliverycustomerparty",
+    "deliverycustomercontact",
     "buyercustomerparty",
+    "buyercustomercontact",
     "sellersupplierparty",
+    "sellersuppliercontact",
     "originatorcustomerparty",
+    "originatorcustomercontact",
     "shipment",
     "despatchline"
   ],
@@ -120,35 +125,35 @@
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Sevkeden",
-      "options": "UBL TR SupplierParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "deliverycustomerparty",
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Teslim Alan",
-      "options": "UBL TR CustomerParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "buyercustomerparty",
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Sat\u0131n Alan",
-      "options": "UBL TR CustomerParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "sellersupplierparty",
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Satan",
-      "options": "UBL TR SupplierParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "originatorcustomerparty",
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Sevk \u0130rsaliyesindeki Mallar\u0131n Al\u0131nmas\u0131n\u0131 Ba\u015flatan Taraf",
-      "options": "UBL TR CustomerParty"
+      "options": "UBL TR Party"
     },
     {
       "fieldname": "shipment",
@@ -162,11 +167,41 @@
       "fieldtype": "Table MultiSelect",
       "label": "\u0130rsaliye Kalemleri",
       "options": "UBL TR DespatchLines"
+    },
+    {
+      "fieldname": "despatchsuppliercontact",
+      "fieldtype": "Link",
+      "label": "Sevkeden \u0130lgili",
+      "options": "UBL TR Contact"
+    },
+    {
+      "fieldname": "deliverycustomercontact",
+      "fieldtype": "Link",
+      "label": "Teslim Alan \u0130lgili",
+      "options": "UBL TR Contact"
+    },
+    {
+      "fieldname": "buyercustomercontact",
+      "fieldtype": "Link",
+      "label": "Sat\u0131n Alan \u0130lgili",
+      "options": "UBL TR Contact"
+    },
+    {
+      "fieldname": "sellersuppliercontact",
+      "fieldtype": "Link",
+      "label": "Satan \u0130lgili",
+      "options": "UBL TR Contact"
+    },
+    {
+      "fieldname": "originatorcustomercontact",
+      "fieldtype": "Link",
+      "label": "Sevk \u0130rsaliyesindeki Mallar\u0131n Al\u0131nmas\u0131n\u0131 Ba\u015flatan  \u0130lgili",
+      "options": "UBL TR Contact"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2022-01-01 00:34:50.058023",
+  "modified": "2022-01-12 12:23:52.862946",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Despatch Advice",

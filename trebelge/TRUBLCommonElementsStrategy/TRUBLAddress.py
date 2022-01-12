@@ -1,7 +1,6 @@
 from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
-from trebelge.TRUBLCommonElementsStrategy.TRUBLBuildingNumber import TRUBLBuildingNumber
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCountry import TRUBLCountry
 
@@ -46,9 +45,8 @@ class TRUBLAddress(TRUBLCommonElement):
         buildingnumbers_: list = element.findall('./' + cbcnamespace + 'BuildingNumber')
         if len(buildingnumbers_) != 0:
             for buildingnumber in buildingnumbers_:
-                tmp = TRUBLBuildingNumber().process_element(buildingnumber, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    buildingnumbers.append(tmp)
+                if buildingnumber.text is not None and buildingnumber.text.strip() != '':
+                    buildingnumbers.append(buildingnumber.text)
         if len(buildingnumbers) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
