@@ -5,13 +5,11 @@ import frappe
 from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
-from trebelge.TRUBLCommonElementsStrategy.TRUBLCustomerParty import TRUBLCustomerParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDespatchLine import TRUBLDespatchLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
-from trebelge.TRUBLCommonElementsStrategy.TRUBLSupplierParty import TRUBLSupplierParty
 
 
 class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
