@@ -65,6 +65,8 @@ class TRUBLAddress(TRUBLCommonElement):
                             return document
                 return legacy_
         document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-        document.buildingnumber = buildingnumbers
-        document.save()
+        for buildingnumber_ in buildingnumbers:
+            doc_append = document.append(buildingnumber, {})
+            doc_append.buildingnumber = buildingnumber_
+            document.save()
         return document
