@@ -23,9 +23,9 @@ class TRUBLAddress(TRUBLCommonElement):
         if tmp is not None:
             frappedoc['country'] = tmp.name
         if citysubdivisionname_ is not None:
-            frappedoc['citysubdivisionname'] = citysubdivisionname_
+            frappedoc['citysubdivisionname'] = citysubdivisionname_.text
         if cityname_ is not None:
-            frappedoc['cityname'] = cityname_
+            frappedoc['cityname'] = cityname_.text
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
         # ['Room'] = ('cbc', 'room', 'Seçimli (0...1)')
