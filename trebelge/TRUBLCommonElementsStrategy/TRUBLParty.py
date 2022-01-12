@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+import frappe
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
@@ -84,34 +85,40 @@ class TRUBLParty(TRUBLCommonElement):
                     partylegalentities.append(tmp)
 
         if len(partyidentifications) + len(partylegalentities) == 0:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
-            legacy_: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-            partyid: bool = False
-            partylegal: bool = False
-            if legacy_ is not None:
-                if len(partyidentifications) != 0 and \
-                        len(legacy_.partyidentification) != 0 and \
-                        len(legacy_.partyidentification) == len(partyidentifications):
-                    for pid in legacy_.partyidentification:
-                        if partyidentifications.count(dict(id=pid.id,
-                                                           schemeid=pid.schemeID)) != 0:
-                            frappedoc['partyidentification'] = partyidentifications
-                        else:
-                            partyid = True
-                if len(partylegalentities) != 0 and \
-                        len(legacy_.partylegalentity) != 0 and \
-                        len(legacy_.partylegalentity) == len(partylegalentities):
-                    tmpple = list()
-                    for entity in partylegalentities:
-                        tmpple.append(entity.name)
-                    for ple in legacy_.partylegalentity:
-                        if tmpple.count(ple.name) != 0:
-                            frappedoc['partylegalentity'] = partylegalentities
-                        else:
-                            partylegal = True
-            if partyid and partylegal:
-                return legacy_
+            return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        legacy_: Document = frappe.get_doc(self._frappeDoctype,
+                                           frappe.get_all(self._frappeDoctype,
+                                                          filters=frappedoc)[0]["name"])
+        if legacy_ is None:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-
-        return document
+            if len(partyidentifications) != 0:
+                document.partyidentification = partyidentifications
+            if len(partylegalentities) != 0:
+                document.partylegalentity = partylegalentities
+            document.save()
+            return document
+        partyid: bool = False
+        partylegal: bool = False
+        if len(partyidentifications) != 0 and \
+                len(legacy_.partyidentification) != 0 and \
+                len(legacy_.partyidentification) == len(partyidentifications):
+            for pid in legacy_.partyidentification:
+                if partyidentifications.count(dict(id=pid.id,
+                                                   schemeid=pid.schemeID)) != 0:
+                    frappedoc['partyidentification'] = partyidentifications
+                else:
+                    partyid = True
+        if len(partylegalentities) != 0 and \
+                len(legacy_.partylegalentity) != 0 and \
+                len(legacy_.partylegalentity) == len(partylegalentities):
+            tmpple = list()
+            for entity in partylegalentities:
+                tmpple.append(entity.name)
+            for ple in legacy_.partylegalentity:
+                if tmpple.count(ple.name) != 0:
+                    frappedoc['partylegalentity'] = partylegalentities
+                else:
+                    partylegal = True
+        if partyid and partylegal:
+            return legacy_
+        return self._get_frappedoc(self._frappeDoctype, frappedoc, False)
