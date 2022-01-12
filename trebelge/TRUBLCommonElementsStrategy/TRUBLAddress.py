@@ -51,18 +51,19 @@ class TRUBLAddress(TRUBLCommonElement):
                 buildingnumbers.append(buildingnumber.text)
         if len(buildingnumbers) == 0:
             return self._get_frappedoc(self._frappeDoctype, frappedoc)
-        legacy_: Document = frappe.get_doc(self._frappeDoctype,
-                                           frappe.get_all(self._frappeDoctype,
-                                                          filters=frappedoc)[0]["name"])
-        if legacy_ is not None:
-            if len(legacy_.buildingnumber) != 0 and len(legacy_.buildingnumber) == len(buildingnumbers):
-                for bnumber in legacy_.buildingnumber:
-                    if buildingnumbers.count(bnumber.buildingnumber) == 0:
-                        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-                        document.buildingnumber = buildingnumbers
-                        document.save()
-                        return document
-            return legacy_
+        if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) != 0:
+            legacy_: Document = frappe.get_doc(self._frappeDoctype,
+                                               frappe.get_all(self._frappeDoctype,
+                                                              filters=frappedoc)[0]["name"])
+            if legacy_ is not None:
+                if len(legacy_.buildingnumber) != 0 and len(legacy_.buildingnumber) == len(buildingnumbers):
+                    for bnumber in legacy_.buildingnumber:
+                        if buildingnumbers.count(bnumber.buildingnumber) == 0:
+                            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+                            document.buildingnumber = buildingnumbers
+                            document.save()
+                            return document
+                return legacy_
         document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         document.buildingnumber = buildingnumbers
         document.save()
