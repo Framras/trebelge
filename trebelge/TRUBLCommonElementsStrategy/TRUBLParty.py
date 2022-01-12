@@ -86,39 +86,40 @@ class TRUBLParty(TRUBLCommonElement):
 
         if len(partyidentifications) + len(partylegalentities) == 0:
             return self._get_frappedoc(self._frappeDoctype, frappedoc)
-        if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) != 0:
+        if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            if len(partyidentifications) != 0:
+                document.partyidentification = partyidentifications
+            if len(partylegalentities) != 0:
+                document.partylegalentity = partylegalentities
+            document.save()
+            return document
+        if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 1:
             legacy_: Document = frappe.get_doc(self._frappeDoctype,
                                                frappe.get_all(self._frappeDoctype,
                                                               filters=frappedoc)[0]["name"])
-            if legacy_ is not None:
-                partyid: bool = False
-                partylegal: bool = False
-                if len(partyidentifications) != 0 and \
-                        len(legacy_.partyidentification) != 0 and \
-                        len(legacy_.partyidentification) == len(partyidentifications):
-                    for pid in legacy_.partyidentification:
-                        if partyidentifications.count(dict(id=pid.id,
-                                                           schemeid=pid.schemeID)) != 0:
-                            frappedoc['partyidentification'] = partyidentifications
-                        else:
-                            partyid = True
-                if len(partylegalentities) != 0 and \
-                        len(legacy_.partylegalentity) != 0 and \
-                        len(legacy_.partylegalentity) == len(partylegalentities):
-                    tmpple = list()
-                    for entity in partylegalentities:
-                        tmpple.append(entity.name)
-                    for ple in legacy_.partylegalentity:
-                        if tmpple.count(ple.name) != 0:
-                            frappedoc['partylegalentity'] = partylegalentities
-                        else:
-                            partylegal = True
-                if partyid and partylegal:
-                    return legacy_
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-        if len(partyidentifications) != 0:
-            document.partyidentification = partyidentifications
-        if len(partylegalentities) != 0:
-            document.partylegalentity = partylegalentities
-        document.save()
-        return document
+            partyid: bool = False
+            partylegal: bool = False
+            if len(partyidentifications) != 0 and \
+                    len(legacy_.partyidentification) != 0 and \
+                    len(legacy_.partyidentification) == len(partyidentifications):
+                for pid in legacy_.partyidentification:
+                    if partyidentifications.count(dict(id=pid.id,
+                                                       schemeid=pid.schemeID)) != 0:
+                        frappedoc['partyidentification'] = partyidentifications
+                    else:
+                        partyid = True
+            if len(partylegalentities) != 0 and \
+                    len(legacy_.partylegalentity) != 0 and \
+                    len(legacy_.partylegalentity) == len(partylegalentities):
+                tmpple = list()
+                for entity in partylegalentities:
+                    tmpple.append(entity.name)
+                for ple in legacy_.partylegalentity:
+                    if tmpple.count(ple.name) != 0:
+                        frappedoc['partylegalentity'] = partylegalentities
+                    else:
+                        partylegal = True
+            if partyid and partylegal:
+                return legacy_
+            return self._get_frappedoc(self._frappeDoctype, frappedoc, False)
