@@ -43,15 +43,24 @@ class TRUBLAddress(TRUBLCommonElement):
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         buildingnumbers = list()
         buildingnumbers_: list = element.findall('./' + cbcnamespace + 'BuildingNumber')
-        if len(buildingnumbers_) != 0:
-            for buildingnumber in buildingnumbers_:
-                if buildingnumber.text is not None and buildingnumber.text.strip() != '':
-                    buildingnumbers.append(buildingnumber.text)
+        if len(buildingnumbers_) == 0:
+            return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        for buildingnumber in buildingnumbers_:
+            if buildingnumber.text is not None and buildingnumber.text.strip() != '':
+                buildingnumbers.append(buildingnumber.text)
         if len(buildingnumbers) == 0:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
+            return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        legacy_: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        if len(legacy_.buildingnumber) == 0 or len(legacy_.buildingnumber) != len(buildingnumbers):
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             document.buildingnumber = buildingnumbers
             document.save()
-
-        return document
+            return document
+        else:
+            for bnumber in legacy_.buildingnumber:
+                while buildingnumbers.count(bnumber.buildingnumber) != 0:
+                    document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+                    document.buildingnumber = buildingnumbers
+                    document.save()
+                    return document
+            return legacy_

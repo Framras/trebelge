@@ -100,14 +100,14 @@
     {
       "description": "Bina veya blo\u011fa ait d\u0131\u015f kap\u0131 numaras\u0131 girilecektir.",
       "fieldname": "buildingnumber",
-      "fieldtype": "Table MultiSelect",
+      "fieldtype": "Table",
       "label": "D\u0131\u015f kap\u0131 numaras\u0131",
-      "options": "UBL TR BuildingNumbers"
+      "options": "UBL TR BuildingNumber"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-30 18:13:34.845943",
+  "modified": "2022-01-12 12:30:19.597893",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Address",
