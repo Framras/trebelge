@@ -83,20 +83,16 @@ class TRUBLParty(TRUBLCommonElement):
                 tmp = TRUBLPartyLegalEntity().process_element(partylegalentity, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     partylegalentities.append(tmp)
-
-        if len(partyidentifications) + len(partylegalentities) == 0:
-            return self._get_frappedoc(self._frappeDoctype, frappedoc)
         if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            if len(partyidentifications) != 0:
-                for partyidentification_ in partyidentifications:
-                    doc_append = document.append("partyidentification", {})
-                    doc_append.id = partyidentification_.get('id')
-                    doc_append.schemeid = partyidentification_.get('schemeid')
-                    document.save()
+            for partyidentification_ in partyidentifications:
+                doc_append = document.append("partyidentification", {})
+                doc_append.id = partyidentification_.get('id')
+                doc_append.schemeid = partyidentification_.get('schemeid')
+                document.save()
             if len(partylegalentities) != 0:
                 document.partylegalentity = partylegalentities
-            document.save()
+                document.save()
             return document
         if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 1:
             legacy_: Document = frappe.get_doc(self._frappeDoctype,
