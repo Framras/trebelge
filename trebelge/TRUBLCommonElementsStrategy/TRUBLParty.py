@@ -15,12 +15,12 @@ class TRUBLParty(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR Party'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        frappedoc = dict()
         # ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
         postaladdress_: Element = element.find('./' + cacnamespace + 'PostalAddress')
         tmp = TRUBLAddress().process_element(postaladdress_, cbcnamespace, cacnamespace)
-        if tmp is None:
-            return None
-        frappedoc: dict = dict(postaladdress=tmp.name)
+        if tmp is not None:
+            frappedoc['postaladdress'] = tmp.name
         # ['WebsiteURI'] = ('cbc', 'websiteuri', 'Seçimli (0...1)')
         # ['EndpointID'] = ('cbc', 'endpointid', 'Seçimli (0...1)')
         # ['IndustryClassificationCode'] = ('cbc', 'industryclassificationcode', 'Seçimli (0...1)')
