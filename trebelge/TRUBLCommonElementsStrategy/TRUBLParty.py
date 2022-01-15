@@ -112,7 +112,7 @@ class TRUBLParty(TRUBLCommonElement):
                         len(doc.partyidentification) == len(partyidentifications):
                     for pid in doc.partyidentification:
                         if partyidentifications.count(dict(id=pid.id,
-                                                           schemeid=pid.schemeid)) != 0:
+                                                           schemeid=pid.schemeid)) == 0:
                             frappedoc['partyidentification'] = partyidentifications
                         else:
                             partyid = True
