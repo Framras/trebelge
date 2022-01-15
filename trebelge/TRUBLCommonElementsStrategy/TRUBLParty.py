@@ -107,26 +107,27 @@ class TRUBLParty(TRUBLCommonElement):
             for doc in frappe.get_all(self._frappeDoctype, filters=frappedoc):
                 partyid: bool = False
                 partylegal: bool = False
-                if len(partyidentifications) != 0 and \
-                        len(doc.partyidentification) != 0 and \
-                        len(doc.partyidentification) == len(partyidentifications):
-                    for pid in doc.partyidentification:
-                        if partyidentifications.count(dict(id=pid.id,
-                                                           schemeid=pid.schemeid)) == 0:
-                            frappedoc['partyidentification'] = partyidentifications
-                        else:
-                            partyid = True
-                if len(partylegalentities) != 0 and \
-                        len(doc.partylegalentity) != 0 and \
-                        len(doc.partylegalentity) == len(partylegalentities):
-                    tmpple = list()
-                    for entity in partylegalentities:
-                        tmpple.append(entity.name)
-                    for ple in doc.partylegalentity:
-                        if tmpple.count(ple.name) != 0:
-                            frappedoc['partylegalentity'] = partylegalentities
-                        else:
-                            partylegal = True
-                if partyid and partylegal:
-                    return doc
+                if doc.partyidentification is not None:
+                    if len(partyidentifications) != 0 and \
+                            len(doc.partyidentification) != 0 and \
+                            len(doc.partyidentification) == len(partyidentifications):
+                        for pid in doc.partyidentification:
+                            if partyidentifications.count(dict(id=pid.id,
+                                                               schemeid=pid.schemeid)) == 0:
+                                frappedoc['partyidentification'] = partyidentifications
+                            else:
+                                partyid = True
+                    if len(partylegalentities) != 0 and \
+                            len(doc.partylegalentity) != 0 and \
+                            len(doc.partylegalentity) == len(partylegalentities):
+                        tmpple = list()
+                        for entity in partylegalentities:
+                            tmpple.append(entity.name)
+                        for ple in doc.partylegalentity:
+                            if tmpple.count(ple.name) != 0:
+                                frappedoc['partylegalentity'] = partylegalentities
+                            else:
+                                partylegal = True
+                    if partyid and partylegal:
+                        return doc
             return self._get_frappedoc(self._frappeDoctype, frappedoc, False)
