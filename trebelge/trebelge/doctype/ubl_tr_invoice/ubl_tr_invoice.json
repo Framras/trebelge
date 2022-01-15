@@ -350,9 +350,9 @@
     {
       "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
       "fieldname": "invoiceline",
-      "fieldtype": "Table MultiSelect",
+      "fieldtype": "Table",
       "label": "Mal/Hizmet Kalemleri",
-      "options": "UBL TR InvoiceLines"
+      "options": "UBL TR InvoiceLine"
     },
     {
       "fieldname": "sellersuppliercontact",
@@ -381,7 +381,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2022-01-12 12:11:12.233962",
+  "modified": "2022-01-15 18:36:23.124166",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Invoice",
