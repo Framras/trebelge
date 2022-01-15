@@ -3,7 +3,6 @@ import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
 import frappe
-from rebelge.TRUBLCommonElementsStrategy.TRUBLLineReference import TRUBLLineReference
 from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
@@ -13,6 +12,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDoc
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
+from trebelge.TRUBLCommonElementsStrategy.TRUBLLineReference import TRUBLLineReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderLineReference import TRUBLOrderLineReference
