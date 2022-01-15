@@ -41,25 +41,25 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text
                     frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Note'] = ('cbc', '', 'Seçimli(0..n)')
+        notes = list()
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
         if len(notes_) != 0:
-            note = list()
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    note.append(tmp)
-            if len(note) != 0:
-                frappedoc['note'] = note
+                    notes.append(tmp)
+            if len(notes) != 0:
+                frappedoc['note'] = notes
         # ['OutstandingReason'] = ('cbc', '', 'Seçimli(0..n)')
+        outstandingreasons = list()
         outstandingreasons_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(outstandingreasons_) != 0:
-            outstandingreason = list()
             for outstandingreason_ in outstandingreasons_:
                 tmp = TRUBLNote().process_element(outstandingreason_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    outstandingreason.append(tmp)
-            if len(outstandingreason) != 0:
-                frappedoc['outstandingreason'] = outstandingreason
+                    outstandingreasons.append(tmp)
+            if len(outstandingreasons) != 0:
+                frappedoc['outstandingreason'] = outstandingreasons
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli(0..n)')
         shipments = list()
         shipments_: list = element.findall('./' + cacnamespace + 'Shipment')

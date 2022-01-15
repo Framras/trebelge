@@ -41,25 +41,25 @@ class TRUBLReceiptLine(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text
                     frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
         # ['Note'] = ('cbc', '', 'Seçimli (0...n)')
+        notes = list()
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
         if len(notes_) != 0:
-            note = list()
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    note.append(tmp)
-            if len(note) != 0:
-                frappedoc['note'] = note
+                    notes.append(tmp)
+            if len(notes) != 0:
+                frappedoc['note'] = notes
         # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
+        rejectreasons = list()
         rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
         if len(rejectreasons_) != 0:
-            rejectreason = list()
             for rejectreason_ in rejectreasons_:
                 tmp = TRUBLNote().process_element(rejectreason_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    rejectreason.append(tmp)
-            if len(rejectreason) != 0:
-                frappedoc['rejectreason'] = rejectreason
+                    rejectreasons.append(tmp)
+            if len(rejectreasons) != 0:
+                frappedoc['rejectreason'] = rejectreasons
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
         tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)

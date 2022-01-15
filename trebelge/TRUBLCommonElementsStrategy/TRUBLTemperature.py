@@ -21,9 +21,9 @@ class TRUBLTemperature(TRUBLCommonElement):
                                measureunitcode=measure_.attrib.get('unitCode')
                                )
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
+        descriptions = list()
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(descriptions_) != 0:
-            descriptions = list()
             for description_ in descriptions_:
                 tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
                 if tmp is not None:
