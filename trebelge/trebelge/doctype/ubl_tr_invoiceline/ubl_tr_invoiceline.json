@@ -27,14 +27,6 @@
  ],
  "fields": [
   {
-   "description": "Kalem s\u0131ra numaras\u0131 girilir.",
-   "fieldname": "id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Kalem s\u0131ra numaras\u0131",
-   "reqd": 1
-  },
-  {
    "description": "Kalem hakk\u0131nda a\u00e7\u0131klama serbest metin olarak girilir.",
    "fieldname": "note",
    "fieldtype": "Small Text",
@@ -153,11 +145,19 @@
    "label": "Mal/hizmet para birimi",
    "options": "UBL TR CurrencyCode",
    "reqd": 1
+  },
+  {
+   "description": "Kalem s\u0131ra numaras\u0131 girilir.",
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Kalem s\u0131ra numaras\u0131",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-01-15 22:42:28.101963",
+ "modified": "2022-01-16 00:39:20.587749",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR InvoiceLine",
