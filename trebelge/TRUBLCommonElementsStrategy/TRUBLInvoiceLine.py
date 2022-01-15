@@ -33,7 +33,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         note_ = element.find('./' + cbcnamespace + 'Note')
         if note_ is not None:
             if note_.text is not None:
-                frappedoc['note'] = note_
+                frappedoc['note'] = note_.text
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
         tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)
