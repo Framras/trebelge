@@ -352,7 +352,7 @@
       "fieldname": "invoiceline",
       "fieldtype": "Table MultiSelect",
       "label": "Mal/Hizmet Kalemleri",
-      "options": "UBL TR InvoiceLiness"
+      "options": "UBL TR InvoiceLines"
     },
     {
       "fieldname": "sellersuppliercontact",
@@ -381,7 +381,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2022-01-15 22:32:19.702474",
+  "modified": "2022-01-15 22:42:30.814914",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Invoice",

@@ -23,7 +23,7 @@
   "modified": "2022-01-15 22:31:41.612734",
   "modified_by": "Administrator",
   "module": "Trebelge",
-  "name": "UBL TR InvoiceLiness",
+  "name": "UBL TR InvoiceLines",
   "owner": "Administrator",
   "permissions": [],
   "sort_field": "modified",
