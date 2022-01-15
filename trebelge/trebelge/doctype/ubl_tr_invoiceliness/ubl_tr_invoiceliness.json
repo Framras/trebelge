@@ -1,0 +1,31 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2022-01-15 22:31:41.612734",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "invoiceline"
+  ],
+  "fields": [
+    {
+      "fieldname": "invoiceline",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "invoiceline",
+      "options": "UBL TR InvoiceLine"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2022-01-15 22:31:41.612734",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR InvoiceLiness",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

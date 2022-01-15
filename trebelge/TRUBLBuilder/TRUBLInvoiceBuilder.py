@@ -10,11 +10,9 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
-from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
-from trebelge.TRUBLCommonElementsStrategy.TRUBLLineReference import TRUBLLineReference
+from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
-from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderLineReference import TRUBLOrderLineReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentMeans import TRUBLPaymentMeans
@@ -373,131 +371,16 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                                                 self._cac_ns).name
 
     def build_invoiceline(self) -> None:
-        invoicelines = list()
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
         invoicelines_: list = self.root.findall('./' + self._cac_ns + 'InvoiceLine')
+        invoicelines = list()
         for invoiceline_ in invoicelines_:
-            tmp = self._process_invoiceline(invoiceline_)
+            tmp = TRUBLInvoiceLine().process_element(invoiceline_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 invoicelines.append(tmp)
         for invoiceline in invoicelines:
             doc_append = self._product.append("invoiceline", invoiceline)
             self._product.save()
-
-    def _process_invoiceline(self, element: Element):
-        frappedoc = dict()
-        # ['ID'] = ('cbc', '', 'Zorunlu(1)')
-        # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
-        # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
-        id_: Element = element.find('./' + self._cbc_ns + 'ID')
-        invoicedquantity: Element = element.find('./' + self._cbc_ns + 'InvoicedQuantity')
-        lineextensionamount: Element = element.find('./' + self._cbc_ns + 'LineExtensionAmount')
-        if id_ is None or id_.text is None:
-            return None
-        frappedoc['id'] = id_.text
-        if invoicedquantity is None or invoicedquantity.text is None:
-            return None
-        frappedoc['invoicedquantity'] = invoicedquantity.text
-        frappedoc['invoicedquantityunitcode'] = invoicedquantity.attrib.get('unitCode')
-        if lineextensionamount is None or lineextensionamount.text is None:
-            return None
-        frappedoc['lineextensionamount'] = lineextensionamount.text
-        frappedoc['lineextensionamountcurrencyid'] = lineextensionamount.attrib.get('currencyID')
-        # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
-        note_: Element = element.find('./' + self._cbc_ns + 'Note')
-        if note_ is not None and note_.text is not None:
-            frappedoc['note'] = note_.text
-        # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
-        item_: Element = element.find('./' + self._cac_ns + 'Item')
-        tmp = TRUBLItem().process_element(item_, self._cbc_ns, self._cac_ns)
-        if tmp is None:
-            return None
-        frappedoc['item'] = tmp.name
-        # ['Price'] = ('cac', 'Price', 'Zorunlu (1)')
-        price_: Element = element.find('./' + self._cac_ns + 'Price')
-        # self._mapping['PriceAmount'] = ('cbc', '', 'Zorunlu(1)')
-        priceamount = price_.find('./' + self._cbc_ns + 'PriceAmount')
-        if priceamount is None or priceamount.text is None:
-            return None
-        frappedoc['priceamount'] = priceamount.text
-        frappedoc['priceamountcurrencyid'] = priceamount.attrib.get('currencyID')
-        # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
-        taxtotal_: Element = element.find('./' + self._cac_ns + 'TaxTotal')
-        if taxtotal_ is not None:
-            tmp = TRUBLTaxTotal().process_element(taxtotal_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                frappedoc['taxtotal'] = tmp.name
-        orderlinereference = list()
-        # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...n)')
-        tagelements_: list = element.findall('./' + self._cac_ns + 'OrderLineReference')
-        if len(tagelements_) != 0:
-            for tagelement_ in tagelements_:
-                tmp = TRUBLOrderLineReference().process_element(tagelement_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    orderlinereference.append(tmp)
-            if len(orderlinereference) != 0:
-                frappedoc['orderlinereference'] = orderlinereference
-        despatchlinereference = list()
-        # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
-        tagelements_: list = element.findall('./' + self._cac_ns + 'DespatchLineReference')
-        if len(tagelements_) != 0:
-            for tagelement_ in tagelements_:
-                tmp = TRUBLLineReference().process_element(tagelement_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    despatchlinereference.append(tmp)
-            if len(despatchlinereference) != 0:
-                frappedoc['despatchlinereference'] = despatchlinereference
-        receiptlinereference = list()
-        # ['ReceiptLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
-        tagelements_: list = element.findall('./' + self._cac_ns + 'ReceiptLineReference')
-        if len(tagelements_) != 0:
-            for tagelement_ in tagelements_:
-                tmp = TRUBLLineReference().process_element(tagelement_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    receiptlinereference.append(tmp)
-            if len(receiptlinereference) != 0:
-                frappedoc['receiptlinereference'] = receiptlinereference
-        delivery = list()
-        # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...n)')
-        tagelements_: list = element.findall('./' + self._cac_ns + 'Delivery')
-        if len(tagelements_) != 0:
-            for tagelement_ in tagelements_:
-                tmp = TRUBLDelivery().process_element(tagelement_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    delivery.append(tmp)
-            if len(delivery) != 0:
-                frappedoc['delivery'] = delivery
-        withholdingtaxtotal = list()
-        # ['WithholdingTaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...n)')
-        tagelements_: list = element.findall('./' + self._cac_ns + 'WithholdingTaxTotal')
-        if len(tagelements_) != 0:
-            for tagelement_ in tagelements_:
-                tmp = TRUBLTaxTotal().process_element(tagelement_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    withholdingtaxtotal.append(tmp)
-            if len(withholdingtaxtotal) != 0:
-                frappedoc['withholdingtaxtotal'] = withholdingtaxtotal
-        allowancecharge = list()
-        # ['AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
-        tagelements_: list = element.findall('./' + self._cac_ns + 'AllowanceCharge')
-        if len(tagelements_) != 0:
-            for tagelement_ in tagelements_:
-                tmp = TRUBLAllowanceCharge().process_element(tagelement_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    allowancecharge.append(tmp)
-            if len(allowancecharge) != 0:
-                frappedoc['allowancecharge'] = allowancecharge
-        subinvoiceline = list()
-        # ['SubInvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli (0...n)')
-        tagelements_: list = element.findall('./' + self._cac_ns + 'SubInvoiceLine')
-        if len(tagelements_) != 0:
-            for tagelement_ in tagelements_:
-                tmp = TRUBLInvoiceLine().process_element(tagelement_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    subinvoiceline.append(tmp)
-            if len(subinvoiceline) != 0:
-                frappedoc['subinvoiceline'] = subinvoiceline
-        return frappedoc
 
     def build_despatchline(self) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
