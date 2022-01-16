@@ -1,13 +1,14 @@
+import time
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
 import frappe
 from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
-from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDespatchLine import TRUBLDespatchLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
+from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 
@@ -56,7 +57,11 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
-            self._product.issuetime = issuetime_.text
+            try:
+                time.strptime(issuetime_.text, '%H:%M:%S')
+                self._product.issuetime = issuetime_.text
+            except ValueError:
+                pass
         else:
             self._product.issuetime = ""
 
@@ -68,8 +73,9 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
                 if tmp is not None:
-                    note.append(tmp)
-            self._product.note = note
+                    doc_append = self._product.append("note", {})
+                    doc_append.note = tmp.name
+                    self._product.save()
 
     def build_invoiceperiod(self) -> None:
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
@@ -79,12 +85,12 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...n)', 'orderreference')
         orderreferences_: list = self.root.findall('./' + self._cac_ns + 'OrderReference')
         if len(orderreferences_) != 0:
-            orderreference = list()
             for orderreference_ in orderreferences_:
-                tmp = TRUBLBillingReference().process_element(orderreference_, self._cbc_ns, self._cac_ns)
+                tmp = TRUBLOrderReference().process_element(orderreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    orderreference.append(tmp)
-            self._product.orderreference = orderreference
+                    doc_append = self._product.append("orderreference", {})
+                    doc_append.orderreference = tmp.name
+                    self._product.save()
 
     def build_billingreference(self) -> None:
         # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', 'billingreference')
@@ -112,12 +118,12 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         # 'additionaldocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'AdditionalDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    documentreference.append(tmp)
-            self._product.additionaldocumentreference = documentreference
+                    doc_append = self._product.append("additionaldocumentreference", {})
+                    doc_append.documentreference = tmp.name
+                    self._product.save()
 
     def build_accountingsupplierparty(self) -> None:
         # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'accountingsupplierparty')
@@ -209,16 +215,11 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         pass
 
     def build_shipment(self) -> None:
-        # ['Shipment'] = ('cac', Shipment(), 'Seçimli (0...n)', 'shipment')
-        shipments_: list = self.root.findall('./' + self._cac_ns + 'Shipment')
-        if len(shipments_) != 0:
-            shipment = list()
-            for shipment_ in shipments_:
-                tmp = TRUBLShipment().process_element(shipment_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    shipment.append(tmp)
-            if len(shipment) != 0:
-                self._product.shipment = shipment
+        # ['Shipment'] = ('cac', Shipment(), 'Zorunlu (1)', 'shipment')
+        shipment_: Element = self.root.find('./' + self._cac_ns + 'Shipment')
+        shipment = TRUBLShipment().process_element(shipment_, self._cbc_ns, self._cac_ns)
+        if shipment is not None:
+            self._product.shipment = shipment.name
 
     def build_paymentmeans(self) -> None:
         # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
