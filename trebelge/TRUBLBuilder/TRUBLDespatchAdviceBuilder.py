@@ -269,12 +269,12 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
     def build_despatchline(self) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
         despatchlines_: list = self.root.findall('./' + self._cac_ns + 'DespatchLine')
-        despatchline = list()
         for despatchline_ in despatchlines_:
-            despatchline.append(TRUBLDespatchLine().process_element(despatchline_,
-                                                                    self._cbc_ns,
-                                                                    self._cac_ns))
-        self._product.despatchline = despatchline
+            tmp = TRUBLDespatchLine().process_element(despatchline_, self._cbc_ns, self._cac_ns)
+            if tmp is not None:
+                doc_append = self._product.append("despatchline", {})
+                doc_append.despatchline = tmp.name
+                self._product.save()
 
     def get_document(self) -> None:
         product = self._product.save()
