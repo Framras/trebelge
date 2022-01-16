@@ -53,82 +53,69 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             tmp = TRUBLTaxTotal().process_element(taxtotal_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['taxtotal'] = tmp.name
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...n)')
-        orderlinereference = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'OrderLineReference')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLOrderLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    orderlinereference.append(tmp)
+                    doc_append = document.append("orderlinereference", {})
+                    doc_append.orderlinereference = tmp.name
+                    document.save()
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
-        despatchlinereference = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'DespatchLineReference')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    despatchlinereference.append(tmp)
+                    doc_append = document.append("despatchlinereference", {})
+                    doc_append.linereference = tmp.name
+                    document.save()
         # ['ReceiptLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
-        receiptlinereference = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'ReceiptLineReference')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    receiptlinereference.append(tmp)
+                    doc_append = document.append("receiptlinereference", {})
+                    doc_append.linereference = tmp.name
+                    document.save()
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...n)')
-        delivery = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'Delivery')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLDelivery().process_element(tagelement_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    delivery.append(tmp)
+                    doc_append = document.append("delivery", {})
+                    doc_append.delivery = tmp.name
+                    document.save()
         # ['WithholdingTaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...n)')
-        withholdingtaxtotal = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'WithholdingTaxTotal')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLTaxTotal().process_element(tagelement_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    withholdingtaxtotal.append(tmp)
+                    doc_append = document.append("withholdingtaxtotal", {})
+                    doc_append.taxtotal = tmp.name
+                    document.save()
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
-        allowancecharge = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'AllowanceCharge')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLAllowanceCharge().process_element(tagelement_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    allowancecharge.append(tmp)
+                    doc_append = document.append("allowancecharge", {})
+                    doc_append.allowancecharge = tmp.name
+                    document.save()
         # ['SubInvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli (0...n)')
-        subinvoiceline = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'SubInvoiceLine')
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLInvoiceLine().process_element(tagelement_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    subinvoiceline.append(tmp)
-        if len(orderlinereference) + len(despatchlinereference) + len(receiptlinereference) + \
-                len(delivery) + len(withholdingtaxtotal) + len(allowancecharge) + \
-                len(subinvoiceline):
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            if len(orderlinereference) != 0:
-                document.orderlinereference = orderlinereference
-            if len(despatchlinereference) != 0:
-                document.despatchlinereference = despatchlinereference
-            if len(receiptlinereference) != 0:
-                document.receiptlinereference = receiptlinereference
-            if len(delivery) != 0:
-                document.delivery = delivery
-            if len(withholdingtaxtotal) != 0:
-                document.withholdingtaxtotal = withholdingtaxtotal
-            if len(allowancecharge) != 0:
-                document.allowancecharge = allowancecharge
-            if len(subinvoiceline) != 0:
-                document.subinvoiceline = subinvoiceline
-            document.save()
+                    doc_append = document.append("subinvoiceline", {})
+                    doc_append.invoiceline = tmp.name
+                    document.save()
 
         return document
