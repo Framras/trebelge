@@ -94,12 +94,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         notes_: list = self.root.findall('./' + self._cbc_ns + 'Note')
         if len(notes_) != 0:
-            note = list()
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
                 if tmp is not None:
-                    note.append(tmp)
-            self._product.note = note
+                    doc_append = self._product.append("note", {})
+                    doc_append.note = tmp.name
+                    self._product.save()
 
     def build_invoiceperiod(self) -> None:
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
@@ -121,69 +121,69 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', 'billingreference')
         billingreferences_: list = self.root.findall('./' + self._cac_ns + 'BillingReference')
         if len(billingreferences_) != 0:
-            billingreference = list()
             for billingreference_ in billingreferences_:
                 tmp = TRUBLBillingReference().process_element(billingreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    billingreference.append(tmp)
-            self._product.billingreference = billingreference
+                    doc_append = self._product.append("billingreference", {})
+                    doc_append.billingreference = tmp.name
+                    self._product.save()
 
     def build_despatchdocumentreference(self) -> None:
         # ['DespatchDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'despatchdocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'DespatchDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    documentreference.append(tmp)
-            self._product.despatchdocumentreference = documentreference
+                    doc_append = self._product.append("despatchdocumentreference", {})
+                    doc_append.documentreference = tmp.name
+                    self._product.save()
 
     def build_receiptdocumentreference(self) -> None:
         # ['ReceiptDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'receiptdocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'ReceiptDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    documentreference.append(tmp)
-            self._product.receiptdocumentreference = documentreference
+                    doc_append = self._product.append("receiptdocumentreference", {})
+                    doc_append.documentreference = tmp.name
+                    self._product.save()
 
     def build_originatordocumentreference(self) -> None:
         # ['OriginatorDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
         # 'originatordocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'OriginatorDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    documentreference.append(tmp)
-            self._product.originatordocumentreference = documentreference
+                    doc_append = self._product.append("originatordocumentreference", {})
+                    doc_append.documentreference = tmp.name
+                    self._product.save()
 
     def build_contractdocumentreference(self) -> None:
         # ['ContractDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'contractdocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'ContractDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    documentreference.append(tmp)
-            self._product.contractdocumentreference = documentreference
+                    doc_append = self._product.append("contractdocumentreference", {})
+                    doc_append.documentreference = tmp.name
+                    self._product.save()
 
     def build_additionaldocumentreference(self) -> None:
         # ['AdditionalDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
         # 'additionaldocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'AdditionalDocumentReference')
         if len(documentreferences_) != 0:
-            documentreference = list()
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    documentreference.append(tmp)
-            self._product.additionaldocumentreference = documentreference
+                    doc_append = self._product.append("additionaldocumentreference", {})
+                    doc_append.documentreference = tmp.name
+                    self._product.save()
 
     def build_accountingsupplierparty(self) -> None:
         # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'accountingsupplierparty')
@@ -267,12 +267,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)', 'delivery')
         deliveries_: list = self.root.findall('./' + self._cac_ns + 'Delivery')
         if len(deliveries_) != 0:
-            delivery = list()
             for delivery_ in deliveries_:
                 tmp = TRUBLDelivery().process_element(delivery_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    delivery.append(tmp)
-            self._product.delivery = delivery
+                    doc_append = self._product.append("delivery", {})
+                    doc_append.delivery = tmp.name
+                    self._product.save()
 
     def build_shipment(self) -> None:
         # ['Shipment'] = ('cac', Shipment(), 'Seçimli (0...n)', 'shipment')
@@ -282,12 +282,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
         paymentmeans_: list = self.root.findall('./' + self._cac_ns + 'PaymentMeans')
         if len(paymentmeans_) != 0:
-            paymentmeans = list()
             for payment_means_ in paymentmeans_:
                 tmp = TRUBLPaymentMeans().process_element(payment_means_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    paymentmeans.append(tmp)
-            self._product.paymentmeans = paymentmeans
+                    doc_append = self._product.append("paymentmeans", {})
+                    doc_append.paymentmeans = tmp.name
+                    self._product.save()
 
     def build_paymentterms(self) -> None:
         # ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
@@ -301,12 +301,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
         allowancecharges_: list = self.root.findall('./' + self._cac_ns + 'AllowanceCharge')
         if len(allowancecharges_) != 0:
-            allowancecharge = list()
             for allowancecharge_ in allowancecharges_:
                 tmp = TRUBLAllowanceCharge().process_element(allowancecharge_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    allowancecharge.append(tmp)
-            self._product.allowancecharge = allowancecharge
+                    doc_append = self._product.append("allowancecharge", {})
+                    doc_append.allowancecharge = tmp.name
+                    self._product.save()
 
     def build_taxexchangerate(self) -> None:
         # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
@@ -345,23 +345,23 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_taxtotal(self) -> None:
         # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', 'taxtotal')
         taxtotals_: list = self.root.findall('./' + self._cac_ns + 'TaxTotal')
-        taxtotal = list()
         for taxtotal_ in taxtotals_:
             tmp = TRUBLTaxTotal().process_element(taxtotal_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
-                taxtotal.append(tmp)
-        self._product.taxtotal = taxtotal
+                doc_append = self._product.append("taxtotal", {})
+                doc_append.taxtotal = tmp.name
+                self._product.save()
 
     def build_withholdingtaxtotal(self) -> None:
         # ['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', 'withholdingtaxtotal')
         withholdingtaxtotals_: list = self.root.findall('./' + self._cac_ns + 'WithholdingTaxTotal')
         if len(withholdingtaxtotals_) != 0:
-            withholdingtaxtotal = list()
             for withholdingtaxtotal_ in withholdingtaxtotals_:
                 tmp = TRUBLTaxTotal().process_element(withholdingtaxtotal_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
-                    withholdingtaxtotal.append(tmp)
-            self._product.withholdingtaxtotal = withholdingtaxtotal
+                    doc_append = self._product.append("withholdingtaxtotal", {})
+                    doc_append.taxtotal = tmp.name
+                    self._product.save()
 
     def build_legalmonetarytotal(self) -> None:
         # ['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)', 'legalmonetarytotal')
