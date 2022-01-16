@@ -27,4 +27,5 @@ class TRUBLAttachment(TRUBLCommonElement):
             pass
         if frappedoc == {}:
             return None
+
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
