@@ -27,21 +27,19 @@ class TRUBLContact(TRUBLCommonElement):
         if name_ is not None:
             if name_.text is not None:
                 frappedoc['contactname'] = name_.text
-        if frappedoc == {}:
-            return None
-            # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
-            communications = list()
-            othercommunications_: list = element.findall('./' + cacnamespace + 'OtherCommunication')
-            if len(othercommunications_) != 0:
-                for othercommunication in othercommunications_:
-                    tmp = TRUBLCommunication().process_element(othercommunication, cbcnamespace, cacnamespace)
-                    if tmp is not None:
-                        communications.append(tmp)
-            if len(communications) == 0:
-                if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 0:
-                    document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-            else:
-                doc_append = document.append("othercommunication", {})
-                doc_append.othercommunication = tmp.name
-                document.save()
-            return document
+        # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
+        communications = list()
+        othercommunications_: list = element.findall('./' + cacnamespace + 'OtherCommunication')
+        if len(othercommunications_) != 0:
+            for othercommunication in othercommunications_:
+                tmp = TRUBLCommunication().process_element(othercommunication, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    communications.append(tmp)
+        if len(communications) == 0:
+            if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 0:
+                document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+        else:
+            doc_append = document.append("othercommunication", {})
+            doc_append.othercommunication = tmp.name
+            document.save()
+        return document
