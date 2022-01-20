@@ -59,8 +59,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLOrderLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+                doc_append = document.append("orderlinereference", {})
                 if tmp is not None:
-                    doc_append = document.append("orderlinereference", {})
                     doc_append.orderlinereference = tmp.name
                     document.save()
         # ['DespatchLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
@@ -68,8 +68,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+                doc_append = document.append("despatchlinereference", {})
                 if tmp is not None:
-                    doc_append = document.append("despatchlinereference", {})
                     doc_append.linereference = tmp.name
                     document.save()
         # ['ReceiptLineReference'] = ('cac', 'LineReference', 'Seçimli (0...n)')
@@ -77,8 +77,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLLineReference().process_element(tagelement_, cbcnamespace, cacnamespace)
+                doc_append = document.append("receiptlinereference", {})
                 if tmp is not None:
-                    doc_append = document.append("receiptlinereference", {})
                     doc_append.linereference = tmp.name
                     document.save()
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...n)')
@@ -86,8 +86,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLDelivery().process_element(tagelement_, cbcnamespace, cacnamespace)
+                doc_append = document.append("delivery", {})
                 if tmp is not None:
-                    doc_append = document.append("delivery", {})
                     doc_append.delivery = tmp.name
                     document.save()
         # ['WithholdingTaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...n)')
@@ -95,8 +95,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLTaxTotal().process_element(tagelement_, cbcnamespace, cacnamespace)
+                doc_append = document.append("withholdingtaxtotal", {})
                 if tmp is not None:
-                    doc_append = document.append("withholdingtaxtotal", {})
                     doc_append.taxtotal = tmp.name
                     document.save()
         # ['AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
@@ -104,8 +104,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLAllowanceCharge().process_element(tagelement_, cbcnamespace, cacnamespace)
+                doc_append = document.append("allowancecharge", {})
                 if tmp is not None:
-                    doc_append = document.append("allowancecharge", {})
                     doc_append.allowancecharge = tmp.name
                     document.save()
         # ['SubInvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli (0...n)')
@@ -113,8 +113,8 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if len(tagelements_) != 0:
             for tagelement_ in tagelements_:
                 tmp = TRUBLInvoiceLine().process_element(tagelement_, cbcnamespace, cacnamespace)
+                doc_append = document.append("subinvoiceline", {})
                 if tmp is not None:
-                    doc_append = document.append("subinvoiceline", {})
                     doc_append.invoiceline = tmp.name
                     document.save()
 

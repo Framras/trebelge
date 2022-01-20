@@ -94,8 +94,8 @@ class TRUBLParty(TRUBLCommonElement):
 
         if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            doc_append = document.append("partyidentification", {})
             for partyidentification_ in partyidentifications:
-                doc_append = document.append("partyidentification", {})
                 doc_append.id = partyidentification_.get('id')
                 doc_append.schemeid = partyidentification_.get('schemeid')
                 document.save()

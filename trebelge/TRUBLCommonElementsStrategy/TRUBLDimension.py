@@ -35,8 +35,8 @@ class TRUBLDimension(TRUBLCommonElement):
         if len(descriptions_) != 0:
             for description_ in descriptions_:
                 tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
+                doc_append = document.append("description", {})
                 if tmp is not None:
-                    doc_append = document.append("description", {})
                     doc_append.note = tmp.name
                     document.save()
                 return document

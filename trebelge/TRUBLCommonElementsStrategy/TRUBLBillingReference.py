@@ -67,8 +67,8 @@ class TRUBLBillingReference(TRUBLCommonElement):
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            doc_append = document.append("billingreferenceline", {})
             for billingreferenceline in billingreferencelines:
-                doc_append = document.append("billingreferenceline", {})
                 doc_append.billingreferenceline = billingreferenceline
                 document.save()
 

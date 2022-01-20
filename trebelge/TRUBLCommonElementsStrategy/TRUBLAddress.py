@@ -60,15 +60,15 @@ class TRUBLAddress(TRUBLCommonElement):
                     for bnumber in legacy_.buildingnumber:
                         if buildingnumbers.count(bnumber.buildingnumber) == 0:
                             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+                            doc_append = document.append("buildingnumber", {})
                             for buildingnumber in buildingnumbers:
-                                doc_append = document.append("buildingnumber", {})
                                 doc_append.buildingnumber = buildingnumber
                                 document.save()
                             return document
                 return legacy_
         document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+        doc_append = document.append("buildingnumber", {})
         for buildingnumber_ in buildingnumbers:
-            doc_append = document.append("buildingnumber", {})
             doc_append.buildingnumber = buildingnumber_
             document.save()
         return document
