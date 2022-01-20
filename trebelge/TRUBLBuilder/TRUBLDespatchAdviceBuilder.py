@@ -72,8 +72,8 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
             note = list()
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
+                doc_append = self._product.append("note", {})
                 if tmp is not None:
-                    doc_append = self._product.append("note", {})
                     doc_append.note = tmp.name
                     self._product.save()
 
@@ -87,8 +87,8 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         if len(orderreferences_) != 0:
             for orderreference_ in orderreferences_:
                 tmp = TRUBLOrderReference().process_element(orderreference_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("orderreference", {})
                 if tmp is not None:
-                    doc_append = self._product.append("orderreference", {})
                     doc_append.orderreference = tmp.name
                     self._product.save()
 
@@ -120,8 +120,8 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("additionaldocumentreference", {})
                 if tmp is not None:
-                    doc_append = self._product.append("additionaldocumentreference", {})
                     doc_append.documentreference = tmp.name
                     self._product.save()
 
@@ -271,8 +271,8 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         despatchlines_: list = self.root.findall('./' + self._cac_ns + 'DespatchLine')
         for despatchline_ in despatchlines_:
             tmp = TRUBLDespatchLine().process_element(despatchline_, self._cbc_ns, self._cac_ns)
+            doc_append = self._product.append("despatchline", {})
             if tmp is not None:
-                doc_append = self._product.append("despatchline", {})
                 doc_append.despatchline = tmp.name
                 self._product.save()
 

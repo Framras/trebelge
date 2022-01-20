@@ -96,8 +96,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(notes_) != 0:
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
+                doc_append = self._product.append("note", {})
                 if tmp is not None:
-                    doc_append = self._product.append("note", {})
                     doc_append.note = tmp.name
                     self._product.save()
 
@@ -123,8 +123,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(billingreferences_) != 0:
             for billingreference_ in billingreferences_:
                 tmp = TRUBLBillingReference().process_element(billingreference_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("billingreference", {})
                 if tmp is not None:
-                    doc_append = self._product.append("billingreference", {})
                     doc_append.billingreference = tmp.name
                     self._product.save()
 
@@ -134,8 +134,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("despatchdocumentreference", {})
                 if tmp is not None:
-                    doc_append = self._product.append("despatchdocumentreference", {})
                     doc_append.documentreference = tmp.name
                     self._product.save()
 
@@ -145,8 +145,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("receiptdocumentreference", {})
                 if tmp is not None:
-                    doc_append = self._product.append("receiptdocumentreference", {})
                     doc_append.documentreference = tmp.name
                     self._product.save()
 
@@ -157,8 +157,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("originatordocumentreference", {})
                 if tmp is not None:
-                    doc_append = self._product.append("originatordocumentreference", {})
                     doc_append.documentreference = tmp.name
                     self._product.save()
 
@@ -168,8 +168,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("contractdocumentreference", {})
                 if tmp is not None:
-                    doc_append = self._product.append("contractdocumentreference", {})
                     doc_append.documentreference = tmp.name
                     self._product.save()
 
@@ -180,8 +180,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(documentreferences_) != 0:
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("additionaldocumentreference", {})
                 if tmp is not None:
-                    doc_append = self._product.append("additionaldocumentreference", {})
                     doc_append.documentreference = tmp.name
                     self._product.save()
 
@@ -269,8 +269,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(deliveries_) != 0:
             for delivery_ in deliveries_:
                 tmp = TRUBLDelivery().process_element(delivery_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("delivery", {})
                 if tmp is not None:
-                    doc_append = self._product.append("delivery", {})
                     doc_append.delivery = tmp.name
                     self._product.save()
 
@@ -284,8 +284,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(paymentmeans_) != 0:
             for payment_means_ in paymentmeans_:
                 tmp = TRUBLPaymentMeans().process_element(payment_means_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("paymentmeans", {})
                 if tmp is not None:
-                    doc_append = self._product.append("paymentmeans", {})
                     doc_append.paymentmeans = tmp.name
                     self._product.save()
 
@@ -303,8 +303,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(allowancecharges_) != 0:
             for allowancecharge_ in allowancecharges_:
                 tmp = TRUBLAllowanceCharge().process_element(allowancecharge_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("allowancecharge", {})
                 if tmp is not None:
-                    doc_append = self._product.append("allowancecharge", {})
                     doc_append.allowancecharge = tmp.name
                     self._product.save()
 
@@ -347,8 +347,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         taxtotals_: list = self.root.findall('./' + self._cac_ns + 'TaxTotal')
         for taxtotal_ in taxtotals_:
             tmp = TRUBLTaxTotal().process_element(taxtotal_, self._cbc_ns, self._cac_ns)
+            doc_append = self._product.append("taxtotal", {})
             if tmp is not None:
-                doc_append = self._product.append("taxtotal", {})
                 doc_append.taxtotal = tmp.name
                 self._product.save()
 
@@ -358,8 +358,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if len(withholdingtaxtotals_) != 0:
             for withholdingtaxtotal_ in withholdingtaxtotals_:
                 tmp = TRUBLTaxTotal().process_element(withholdingtaxtotal_, self._cbc_ns, self._cac_ns)
+                doc_append = self._product.append("withholdingtaxtotal", {})
                 if tmp is not None:
-                    doc_append = self._product.append("withholdingtaxtotal", {})
                     doc_append.taxtotal = tmp.name
                     self._product.save()
 
@@ -376,8 +376,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         invoicelines_: list = self.root.findall('./' + self._cac_ns + 'InvoiceLine')
         for invoiceline_ in invoicelines_:
             tmp = TRUBLInvoiceLine().process_element(invoiceline_, self._cbc_ns, self._cac_ns)
+            doc_append = self._product.append("invoiceline", {})
             if tmp is not None:
-                doc_append = self._product.append("invoiceline", {})
                 doc_append.invoiceline = tmp.name
                 self._product.save()
 
