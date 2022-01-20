@@ -38,8 +38,9 @@ class TRUBLContact(TRUBLCommonElement):
         if len(communications) == 0:
             if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) != 0:
                 for doc in frappe.get_all(self._frappeDoctype, filters=frappedoc):
-                    if len(doc.othercommunication) == 0:
-                        return doc
+                    if doc.othercommunication is not None:
+                        if len(doc.othercommunication) == 0:
+                            return doc
             else:
                 # TODO othercommunication must be null
                 document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
