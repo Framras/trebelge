@@ -41,18 +41,25 @@ class TRUBLContact(TRUBLCommonElement):
                     if len(doc.othercommunication) == 0:
                         return doc
             else:
+                # TODO othercommunication must be null
                 document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
                 return document
         else:
-            if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 0:
+            if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) != 0:
+                othercomms = list()
+                for communication in communications:
+                    othercomms.append(communication.name)
+                for doc in frappe.get_all(self._frappeDoctype, filters=frappedoc):
+                    commlist = list()
+                    if len(doc.othercommunication) == len(communications):
+                        for comm in doc.othercommunication:
+                            commlist.append(comm.name)
+                            if commlist == othercomms:
+                                return doc
+            else:
                 document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
                 doc_append = document.append("othercommunication", {})
                 for tmp in communications:
                     doc_append.othercommunication = tmp.name
                     document.save()
-            else:
-                for doc in frappe.get_all(self._frappeDoctype, filters=frappedoc):
-                    if partyidentifications.count(dict(id=pid.id,
-                                                       schemeid=pid.schemeid)) == 0:
-                        frappedoc['partyidentification'] = partyidentifications
-        return document
+                    return document
