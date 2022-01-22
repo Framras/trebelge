@@ -385,6 +385,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
         pass
 
+    def build_receiptline(self) -> None:
+        None
+
     def build_senderparty(self) -> None:
         # ['SenderParty'] = ('cac', Party(), 'Zorunlu (1)', 'senderparty')
         pass

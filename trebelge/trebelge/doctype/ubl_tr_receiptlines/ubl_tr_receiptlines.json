@@ -1,0 +1,31 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2022-01-22 21:07:01.125466",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "receiptline"
+  ],
+  "fields": [
+    {
+      "fieldname": "receiptline",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "ReceiptLine",
+      "options": "UBL TR ReceiptLine"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2022-01-22 21:07:01.125466",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR ReceiptLines",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

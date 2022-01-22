@@ -81,3 +81,7 @@ class TRUBLDirector:
         self.builder.build_senderparty()
         self.builder.build_receiverparty()
         self.builder.build_documentresponse()
+
+    def make_tr_ubl_receiptadvice(self) -> None:
+        self.builder.reset()
+        self.builder.build_issuetime()

@@ -141,6 +141,10 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def build_receiptline(self) -> None:
+        None
+
+    @abstractmethod
     def build_senderparty(self) -> None:
         pass
 

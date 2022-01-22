@@ -15,7 +15,7 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
-    _frappeDoctype: str = 'UBL TR ApplicationResponse'
+    _frappeDoctype: str = 'UBL TR Application Response'
 
     def __init__(self, filepath: str) -> None:
         """
@@ -158,6 +158,9 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
 
     def build_despatchline(self) -> None:
         pass
+
+    def build_receiptline(self) -> None:
+        None
 
     def build_senderparty(self) -> None:
         # ['SenderParty'] = ('cac', Party(), 'Zorunlu (1)', 'senderparty')

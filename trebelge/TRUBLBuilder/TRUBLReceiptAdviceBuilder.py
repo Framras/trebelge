@@ -13,13 +13,13 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 
 
-class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
+class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
     """
     The Concrete Builder classes follow the Builder interface and provide
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
-    _frappeDoctype: str = 'UBL TR Despatch Advice'
+    _frappeDoctype: str = 'UBL TR Receipt Advice'
 
     def __init__(self, filepath: str) -> None:
         """
@@ -39,17 +39,17 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         root_: Element = ET.parse(self.filepath).getroot()
         uuid_ = root_.find('./' + self._cbc_ns + 'UUID').text
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
-            despatchadvice_ = frappe.new_doc(self._frappeDoctype)
-            despatchadvice_.uuid = uuid_
-            despatchadvice_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
-            despatchadvice_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
-            despatchadvice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
-            despatchadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
-            despatchadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            despatchadvice_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
-            despatchadvice_.despatchadvicetypecode = root_.find('./' + self._cbc_ns + 'DespatchAdviceTypeCode').text
-            despatchadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
-            despatchadvice_.insert()
+            receiptadvice_ = frappe.new_doc(self._frappeDoctype)
+            receiptadvice_.uuid = uuid_
+            receiptadvice_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
+            receiptadvice_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
+            receiptadvice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
+            receiptadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
+            receiptadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
+            receiptadvice_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
+            receiptadvice_.receiptadvicetypecode = root_.find('./' + self._cbc_ns + 'ReceiptAdviceTypeCode').text
+            receiptadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
+            receiptadvice_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
 
@@ -78,7 +78,6 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
                     self._product.save()
 
     def build_invoiceperiod(self) -> None:
-        # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
         pass
 
     def build_orderreference(self) -> None:
@@ -93,24 +92,22 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
                     self._product.save()
 
     def build_billingreference(self) -> None:
-        # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', 'billingreference')
         pass
 
     def build_despatchdocumentreference(self) -> None:
-        # ['DespatchDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'despatchdocumentreference')
-        pass
+        # ['DespatchDocumentReference'] = ('cac', DocumentReference(), 'Zorunlu (1)', 'despatchdocumentreference')
+        despatchdocumentreference_: Element = self.root.find('./' + self._cac_ns + 'DespatchDocumentReference')
+        self._product.despatchdocumentreference = TRUBLDocumentReference().process_element(despatchdocumentreference_,
+                                                                                           self._cbc_ns,
+                                                                                           self._cac_ns).name
 
     def build_receiptdocumentreference(self) -> None:
-        # ['ReceiptDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'receiptdocumentreference')
         pass
 
     def build_originatordocumentreference(self) -> None:
-        # ['OriginatorDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
-        # 'originatordocumentreference')
         pass
 
     def build_contractdocumentreference(self) -> None:
-        # ['ContractDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'contractdocumentreference')
         pass
 
     def build_additionaldocumentreference(self) -> None:
@@ -126,7 +123,6 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
                     self._product.save()
 
     def build_accountingsupplierparty(self) -> None:
-        # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'accountingsupplierparty')
         pass
 
     def build_despatchsupplierparty(self) -> None:
@@ -144,7 +140,6 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
                 self._product.despatchsuppliercontact = contact.name
 
     def build_accountingcustomerparty(self) -> None:
-        # ['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'accountingcustomerparty')
         pass
 
     def build_deliverycustomerparty(self) -> None:
@@ -192,26 +187,12 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
                     self._product.sellersuppliercontact = contact.name
 
     def build_originatorcustomerparty(self) -> None:
-        # ['OriginatorCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'originatorcustomerparty')
-        originatorcustomerparty_: Element = self.root.find('./' + self._cac_ns + 'OriginatorCustomerParty')
-        if originatorcustomerparty_ is not None:
-            # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
-            party_: Element = originatorcustomerparty_.find('./' + self._cac_ns + 'Party')
-            party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
-            self._product.originatorcustomerparty = party.name
-            # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
-            deliverycontact_: Element = originatorcustomerparty_.find('./' + self._cac_ns + 'DeliveryContact')
-            if deliverycontact_ is not None:
-                contact = TRUBLContact().process_element(deliverycontact_, self._cbc_ns, self._cac_ns)
-                if contact is not None:
-                    self._product.originatorcustomercontact = contact.name
+        pass
 
     def build_taxrepresentativeparty(self) -> None:
-        # ['TaxRepresentativeParty'] = ('cac', Party(), 'Seçimli (0..1)', 'taxrepresentativeparty')
         pass
 
     def build_delivery(self) -> None:
-        # ['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)', 'delivery')
         pass
 
     def build_shipment(self) -> None:
@@ -222,48 +203,36 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
             self._product.shipment = shipment.name
 
     def build_paymentmeans(self) -> None:
-        # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
         pass
 
     def build_paymentterms(self) -> None:
-        # ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
         pass
 
     def build_allowancecharge(self) -> None:
-        # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
         pass
 
     def build_taxexchangerate(self) -> None:
-        # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
         pass
 
     def build_pricingexchangerate(self) -> None:
-        # ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'pricingexchangerate')
         pass
 
     def build_paymentexchangerate(self) -> None:
-        # ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'paymentexchangerate')
         pass
 
     def build_paymentalternativeexchangerate(self) -> None:
-        # ['PaymentAlternativeExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)',
-        # 'paymentalternativeexchangerate')
         pass
 
     def build_taxtotal(self) -> None:
-        # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', 'taxtotal')
         pass
 
     def build_withholdingtaxtotal(self) -> None:
-        # ['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', 'withholdingtaxtotal')
         pass
 
     def build_legalmonetarytotal(self) -> None:
-        # ['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)', 'legalmonetarytotal')
         pass
 
     def build_invoiceline(self) -> None:
-        # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
         pass
 
     def build_despatchline(self) -> None:
@@ -277,18 +246,22 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
                 self._product.save()
 
     def build_receiptline(self) -> None:
-        None
+        # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
+        despatchlines_: list = self.root.findall('./' + self._cac_ns + 'DespatchLine')
+        for despatchline_ in despatchlines_:
+            tmp = TRUBLDespatchLine().process_element(despatchline_, self._cbc_ns, self._cac_ns)
+            doc_append = self._product.append("despatchline", {})
+            if tmp is not None:
+                doc_append.despatchline = tmp.name
+                self._product.save()
 
     def build_senderparty(self) -> None:
-        # ['SenderParty'] = ('cac', Party(), 'Zorunlu (1)', 'senderparty')
         pass
 
     def build_receiverparty(self) -> None:
-        # ['ReceiverParty'] = ('cac', Party(), 'Zorunlu (1)', 'receiverparty')
         pass
 
     def build_documentresponse(self) -> None:
-        # ['DocumentResponse'] = ('cac', DocumentResponse(), 'Zorunlu (1)', 'documentresponse')
         pass
 
     def get_document(self) -> None:
