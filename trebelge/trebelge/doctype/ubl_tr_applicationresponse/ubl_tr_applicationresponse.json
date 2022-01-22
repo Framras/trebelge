@@ -1,0 +1,128 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:uuid",
+  "creation": "2022-01-22 20:06:45.829194",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "ublversionid",
+    "customizationid",
+    "profileid",
+    "id",
+    "uuid",
+    "issuedate",
+    "issuetime",
+    "note",
+    "senderparty",
+    "receiverparty",
+    "documentresponse"
+  ],
+  "fields": [
+    {
+      "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
+      "fieldname": "ublversionid",
+      "fieldtype": "Data",
+      "label": "UBL Versiyon Numaras\u0131",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
+      "fieldname": "customizationid",
+      "fieldtype": "Data",
+      "label": "\u00d6zelle\u015ftirme Numaras\u0131",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "description": "Kullan\u0131lan senaryodur.",
+      "fieldname": "profileid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Senaryo",
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Fatura Numaras\u0131",
+      "reqd": 1
+    },
+    {
+      "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r. Bu numara fatura d\u00fczenleyen taraf\u0131ndan standartlara uygun olarak \u00fcretilip faturalarda kullan\u0131lacakt\u0131r.",
+      "fieldname": "uuid",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenleme tarihi yaz\u0131lacakt\u0131r.",
+      "fieldname": "issuedate",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "D\u00fczenleme Tarihi",
+      "reqd": 1
+    },
+    {
+      "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
+      "fieldname": "issuetime",
+      "fieldtype": "Time",
+      "label": "D\u00fczenleme Zaman\u0131"
+    },
+    {
+      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r. Birden fazla a\u00e7\u0131klama yap\u0131lmak istenmesi halinde eleman\u0131n tekrar kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr.",
+      "fieldname": "note",
+      "fieldtype": "Table MultiSelect",
+      "label": "Not",
+      "options": "UBL TR Notes"
+    },
+    {
+      "fieldname": "senderparty",
+      "fieldtype": "Link",
+      "label": "Uygulama Yan\u0131t\u0131 G\u00f6nderen TarafUygulama Yan\u0131t\u0131 G\u00f6nderen Taraf",
+      "options": "UBL TR Party"
+    },
+    {
+      "fieldname": "receiverparty",
+      "fieldtype": "Link",
+      "label": "Uygulama Yan\u0131t\u0131 Alan Taraf",
+      "options": "UBL TR Party"
+    },
+    {
+      "fieldname": "documentresponse",
+      "fieldtype": "Link",
+      "label": "Belge Yan\u0131t\u0131",
+      "options": "UBL TR DocumentResponse"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2022-01-22 20:18:02.821931",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR ApplicationResponse",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

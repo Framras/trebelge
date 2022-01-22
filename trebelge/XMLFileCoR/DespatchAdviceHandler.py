@@ -4,7 +4,7 @@ import frappe
 from trebelge.TRUBLBuilder.TRUBLDespatchAdviceBuilder import TRUBLDespatchAdviceBuilder
 from trebelge.TRUBLBuilder.TRUBLDirector import TRUBLDirector
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
-from trebelge.XMLFileCoR.ReceiptAdviceHandler import ReceiptAdviceHandler
+from trebelge.XMLFileCoR.ApplicationResponseHandler import ApplicationResponseHandler
 
 
 class DespatchAdviceHandler(AbstractXMLFileHandler):
@@ -14,7 +14,7 @@ class DespatchAdviceHandler(AbstractXMLFileHandler):
     """
     _eBelgeSettingsDoctype: str = 'UBL TR Namespace Specifications'
     _eBelgeTag: str = 'DespatchAdvice'
-    _successor: AbstractXMLFileHandler = ReceiptAdviceHandler()
+    _successor: AbstractXMLFileHandler = ApplicationResponseHandler()
 
     def handle_xml_file(self, file_path: str):
         for namespace in frappe.get_all(

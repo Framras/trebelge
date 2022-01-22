@@ -276,5 +276,17 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
                 doc_append.despatchline = tmp.name
                 self._product.save()
 
+    def build_senderparty(self) -> None:
+        # ['SenderParty'] = ('cac', Party(), 'Zorunlu (1)', 'senderparty')
+        pass
+
+    def build_receiverparty(self) -> None:
+        # ['ReceiverParty'] = ('cac', Party(), 'Zorunlu (1)', 'receiverparty')
+        pass
+
+    def build_documentresponse(self) -> None:
+        # ['DocumentResponse'] = ('cac', DocumentResponse(), 'Zorunlu (1)', 'documentresponse')
+        pass
+
     def get_document(self) -> None:
         product = self._product.save()

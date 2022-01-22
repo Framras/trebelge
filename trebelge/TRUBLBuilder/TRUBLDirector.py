@@ -73,3 +73,11 @@ class TRUBLDirector:
         self.builder.build_originatorcustomerparty()
         self.builder.build_shipment()
         self.builder.build_despatchline()
+
+    def make_tr_ubl_applicationresponse(self) -> None:
+        self.builder.reset()
+        self.builder.build_issuetime()
+        self.builder.build_note()
+        self.builder.build_senderparty()
+        self.builder.build_receiverparty()
+        self.builder.build_documentresponse()

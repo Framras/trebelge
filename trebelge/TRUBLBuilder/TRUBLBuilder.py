@@ -141,5 +141,17 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def build_senderparty(self) -> None:
+        pass
+
+    @abstractmethod
+    def build_receiverparty(self) -> None:
+        pass
+
+    @abstractmethod
+    def build_documentresponse(self) -> None:
+        pass
+
+    @abstractmethod
     def get_document(self) -> Any:
         pass

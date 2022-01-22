@@ -30,14 +30,14 @@
       "fieldtype": "Select",
       "in_list_view": 1,
       "label": "eBelge Type",
-      "options": "Invoice\nDespatchAdvice\nReceiptAdvice",
+      "options": "Invoice\nDespatchAdvice\nReceiptAdvice\nApplicationResponse",
       "reqd": 1,
       "search_index": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-11-17 13:11:32.360602",
+  "modified": "2022-01-22 18:47:50.620191",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Namespace Specifications",
