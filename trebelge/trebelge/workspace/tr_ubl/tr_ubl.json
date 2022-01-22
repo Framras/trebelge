@@ -48,9 +48,27 @@
       "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Uygulama Yan\u0131tlar\u0131m",
+      "link_to": "UBL TR Application Response",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "\u0130rsaliye Yan\u0131tlar\u0131m",
+      "link_to": "UBL TR Receipt Advice",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
     }
   ],
-  "modified": "2022-01-01 00:25:21.004983",
+  "modified": "2022-01-22 23:18:18.956448",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "TR UBL",
