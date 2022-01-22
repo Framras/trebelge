@@ -160,7 +160,7 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
         pass
 
     def build_receiptline(self) -> None:
-        None
+        pass
 
     def build_senderparty(self) -> None:
         # ['SenderParty'] = ('cac', Party(), 'Zorunlu (1)', 'senderparty')

@@ -5,11 +5,11 @@ from xml.etree.ElementTree import Element
 import frappe
 from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDespatchLine import TRUBLDespatchLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
+from trebelge.TRUBLCommonElementsStrategy.TRUBLReceiptLine import TRUBLReceiptLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 
 
@@ -236,23 +236,16 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
         pass
 
     def build_despatchline(self) -> None:
-        # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
-        despatchlines_: list = self.root.findall('./' + self._cac_ns + 'DespatchLine')
-        for despatchline_ in despatchlines_:
-            tmp = TRUBLDespatchLine().process_element(despatchline_, self._cbc_ns, self._cac_ns)
-            doc_append = self._product.append("despatchline", {})
-            if tmp is not None:
-                doc_append.despatchline = tmp.name
-                self._product.save()
+        pass
 
     def build_receiptline(self) -> None:
-        # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
-        despatchlines_: list = self.root.findall('./' + self._cac_ns + 'DespatchLine')
-        for despatchline_ in despatchlines_:
-            tmp = TRUBLDespatchLine().process_element(despatchline_, self._cbc_ns, self._cac_ns)
-            doc_append = self._product.append("despatchline", {})
+        # ['ReceiptLine'] = ('cac', ReceiptLine(), 'Zorunlu (1...n)', 'receiptline')
+        receiptlines_: list = self.root.findall('./' + self._cac_ns + 'ReceiptLine')
+        for receiptline_ in receiptlines_:
+            tmp = TRUBLReceiptLine().process_element(receiptline_, self._cbc_ns, self._cac_ns)
+            doc_append = self._product.append("receiptline", {})
             if tmp is not None:
-                doc_append.despatchline = tmp.name
+                doc_append.receiptline = tmp.name
                 self._product.save()
 
     def build_senderparty(self) -> None:
