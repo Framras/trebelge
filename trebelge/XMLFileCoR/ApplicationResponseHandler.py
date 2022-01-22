@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 import frappe
-from trebelge.TRUBLBuilder.TRUBLApplicationResponse import TRUBLApplicationResponseBuilder
+from trebelge.TRUBLBuilder.TRUBLApplicationResponseBuilder import TRUBLApplicationResponseBuilder
 from trebelge.TRUBLBuilder.TRUBLDirector import TRUBLDirector
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 from trebelge.XMLFileCoR.ReceiptAdviceHandler import ReceiptAdviceHandler
