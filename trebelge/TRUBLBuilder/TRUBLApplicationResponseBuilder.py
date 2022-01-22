@@ -179,10 +179,11 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
     def build_documentresponse(self) -> None:
         # ['DocumentResponse'] = ('cac', DocumentResponse(), 'Zorunlu (1)', 'documentresponse')
         documentresponse_: Element = self.root.find('./' + self._cac_ns + 'DocumentResponse')
-        if documentresponse_ is not None:
-            self._product.documentresponse = TRUBLDocumentResponse().process_element(documentresponse_,
-                                                                                     self._cbc_ns,
-                                                                                     self._cac_ns).name
+        tmp = TRUBLDocumentResponse().process_element(documentresponse_,
+                                                      self._cbc_ns,
+                                                      self._cac_ns)
+        if tmp is not None:
+            self._product.documentresponse = tmp.name
 
     def get_document(self) -> None:
         product = self._product.save()
