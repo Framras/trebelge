@@ -97,9 +97,9 @@
     {
       "description": "Zarar bilgisi girilir.",
       "fieldname": "damageremarks",
-      "fieldtype": "Table",
+      "fieldtype": "Table MultiSelect",
       "label": "Zarar bilgisi",
-      "options": "UBL TR DamageRemarks"
+      "options": "UBL TR Notes"
     },
     {
       "description": "Takip numaras\u0131 girilir.",
@@ -192,7 +192,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-22 13:55:17.632534",
+  "modified": "2022-01-23 09:49:24.246334",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR TransportHandlingUnit",

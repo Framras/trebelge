@@ -6,6 +6,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCustomsDeclaration import TRUBLCu
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDimension import TRUBLDimension
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLHazardousGoodsTransit import TRUBLHazardousGoodsTransit
+from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPackage import TRUBLPackage
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTemperature import TRUBLTemperature
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTransportEquipment import TRUBLTransportEquipment
@@ -43,15 +44,13 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 frappedoc['totalpackagequantity'] = totalpackagequantity_.text
                 frappedoc['totalpackagequantityunitcode'] = totalpackagequantity_.attrib.get('unitCode')
         # ['DamageRemarks'] = ('cbc', 'damageremarks', 'Seçimli (0...n)')
+        damageremarks = list()
         damageremarks_: list = element.findall('./' + cbcnamespace + 'DamageRemarks')
         if len(damageremarks_) != 0:
-            damageremarks = list()
             for damageremark_ in damageremarks_:
-                tmp = damageremark_.text
+                tmp = TRUBLNote().process_element(damageremark_.text, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    damageremarks.append(tmp)
-            if len(damageremarks) != 0:
-                frappedoc['damageremarks'] = damageremarks
+                    damageremarks.append(tmp.name)
         # ['MinimumTemperature'] = ('cac', 'Temperature', 'Seçimli (0...1)')
         minimumtemperature_: Element = element.find('./' + cacnamespace + 'MinimumTemperature')
         if minimumtemperature_ is not None:
@@ -79,13 +78,13 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['ActualPackage'] = ('cac', 'Package', 'Seçimli (0...n)', 'actualpackage')
-        actualpackage = list()
+        actualpackages = list()
         actualpackages_: list = element.findall('./' + cacnamespace + 'ActualPackage')
         if len(actualpackages_) != 0:
             for actualpackage_ in actualpackages_:
                 tmp = TRUBLPackage().process_element(actualpackage_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    actualpackage.append(tmp)
+                    actualpackages.append(tmp.name)
         # ['TransportEquipment'] = ('cac', 'TransportEquipment', 'Seçimli (0...n)', 'transportequipment')
         transportequipment = list()
         transportequipment_: list = element.findall('./' + cacnamespace + 'TransportEquipment')
@@ -93,7 +92,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
             for equipment_ in transportequipment_:
                 tmp = TRUBLTransportEquipment().process_element(equipment_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    transportequipment.append(tmp)
+                    transportequipment.append(tmp.name)
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...n)', 'transportmeans')
         transportmeans = list()
         transportmeans_: list = element.findall('./' + cacnamespace + 'TransportMeans')
@@ -101,7 +100,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
             for means_ in transportmeans_:
                 tmp = TRUBLTransportMeans().process_element(means_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    transportmeans.append(tmp)
+                    transportmeans.append(tmp.name)
         # ['HazardousGoodsTransit'] = ('cac', 'HazardousGoodsTransit', 'Seçimli (0...n)', 'hazardousgoodstransit')
         hazardousgoodstransit = list()
         hazardousgoodstransit_: list = element.findall('./' + cacnamespace + 'HazardousGoodsTransit')
@@ -109,7 +108,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
             for goodstransit_ in hazardousgoodstransit_:
                 tmp = TRUBLHazardousGoodsTransit().process_element(goodstransit_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    hazardousgoodstransit.append(tmp)
+                    hazardousgoodstransit.append(tmp.name)
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
         measurementdimension = list()
         measurementdimensions_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
@@ -117,7 +116,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
             for measurementdimension_ in measurementdimensions_:
                 tmp = TRUBLDimension().process_element(measurementdimension_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    measurementdimension.append(tmp)
+                    measurementdimension.append(tmp.name)
         # ['ShipmentDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)', 'shipmentdocumentreference')
         shipmentdocumentreference = list()
         shipmentdocumentreferences_: list = element.findall('./' + cacnamespace + 'ShipmentDocumentReference')
@@ -125,7 +124,7 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
             for shipmentdocumentreference_ in shipmentdocumentreferences_:
                 tmp = TRUBLDocumentReference().process_element(shipmentdocumentreference_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    shipmentdocumentreference.append(tmp)
+                    shipmentdocumentreference.append(tmp.name)
         # ['CustomsDeclaration'] = ('cac', 'CustomsDeclaration', 'Seçimli (0...n)', 'customsdeclaration')
         customsdeclaration = list()
         customsdeclarations_: list = element.findall('./' + cacnamespace + 'CustomsDeclaration')
@@ -133,15 +132,24 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
             for customsdeclaration_ in customsdeclarations_:
                 tmp = TRUBLCustomsDeclaration().process_element(customsdeclaration_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    customsdeclaration.append(tmp)
+                    customsdeclaration.append(tmp.name)
 
-        if len(actualpackage) + len(transportequipment) + len(transportmeans) + len(hazardousgoodstransit) + \
+        if len(damageremarks) + \
+                len(actualpackages) + len(transportequipment) + len(transportmeans) + len(hazardousgoodstransit) + \
                 len(measurementdimension) + len(shipmentdocumentreference) + len(customsdeclaration) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            if len(actualpackage) != 0:
-                document.actualpackage = actualpackage
+            if len(damageremarks) != 0:
+                doc_append = document.append("damageremarks", {})
+                for damageremark in damageremarks:
+                    doc_append.note = damageremark
+                    document.save()
+            if len(actualpackages) != 0:
+                doc_append = document.append("actualpackage", {})
+                for actualpackage in actualpackages:
+                    doc_append.package = actualpackage
+                    document.save()
             if len(transportequipment) != 0:
                 document.transportequipment = transportequipment
             if len(transportmeans) != 0:
