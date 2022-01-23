@@ -1,13 +1,16 @@
 {
   "actions": [],
+  "allow_import": 1,
   "allow_rename": 1,
+  "autoname": "field:channelcode",
   "creation": "2021-12-02 09:47:06.628114",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
     "channelcode",
-    "description"
+    "description",
+    "explanation"
   ],
   "fields": [
     {
@@ -21,15 +24,22 @@
     {
       "fieldname": "description",
       "fieldtype": "Data",
+      "in_list_view": 1,
       "label": "A\u00e7\u0131klama"
+    },
+    {
+      "fieldname": "explanation",
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
+      "label": "Tan\u0131m"
     }
   ],
-  "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 09:47:06.628114",
+  "modified": "2022-01-24 00:25:32.320977",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Communication Channel Code",
+  "name_case": "UPPER CASE",
   "owner": "Administrator",
   "permissions": [
     {

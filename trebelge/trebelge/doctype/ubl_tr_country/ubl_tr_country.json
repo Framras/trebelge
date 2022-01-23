@@ -1,6 +1,8 @@
 {
   "actions": [],
+  "allow_import": 1,
   "allow_rename": 1,
+  "autoname": "field:identificationcode",
   "creation": "2021-12-05 13:43:12.149361",
   "doctype": "DocType",
   "editable_grid": 1,
@@ -15,7 +17,8 @@
       "fieldname": "identificationcode",
       "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "IdentificationCode"
+      "label": "IdentificationCode",
+      "unique": 1
     },
     {
       "fieldname": "countryname",
@@ -30,12 +33,12 @@
       "options": "Country"
     }
   ],
-  "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-30 18:16:10.008779",
+  "modified": "2022-01-24 00:29:35.884355",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Country",
+  "name_case": "UPPER CASE",
   "owner": "Administrator",
   "permissions": [
     {

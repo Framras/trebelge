@@ -86,13 +86,13 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     actualpackages.append(tmp.name)
         # ['TransportEquipment'] = ('cac', 'TransportEquipment', 'Seçimli (0...n)', 'transportequipment')
-        transportequipment = list()
+        transportequipments = list()
         transportequipment_: list = element.findall('./' + cacnamespace + 'TransportEquipment')
         if len(transportequipment_) != 0:
             for equipment_ in transportequipment_:
                 tmp = TRUBLTransportEquipment().process_element(equipment_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    transportequipment.append(tmp.name)
+                    transportequipments.append(tmp.name)
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...n)', 'transportmeans')
         transportmeans = list()
         transportmeans_: list = element.findall('./' + cacnamespace + 'TransportMeans')
@@ -110,33 +110,33 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 if tmp is not None:
                     hazardousgoodstransit.append(tmp.name)
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli (0...n)', 'measurementdimension')
-        measurementdimension = list()
+        measurementdimensions = list()
         measurementdimensions_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if len(measurementdimensions_) != 0:
             for measurementdimension_ in measurementdimensions_:
                 tmp = TRUBLDimension().process_element(measurementdimension_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    measurementdimension.append(tmp.name)
+                    measurementdimensions.append(tmp.name)
         # ['ShipmentDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...n)', 'shipmentdocumentreference')
-        shipmentdocumentreference = list()
+        shipmentdocumentreferences = list()
         shipmentdocumentreferences_: list = element.findall('./' + cacnamespace + 'ShipmentDocumentReference')
         if len(shipmentdocumentreferences_) != 0:
             for shipmentdocumentreference_ in shipmentdocumentreferences_:
                 tmp = TRUBLDocumentReference().process_element(shipmentdocumentreference_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    shipmentdocumentreference.append(tmp.name)
+                    shipmentdocumentreferences.append(tmp.name)
         # ['CustomsDeclaration'] = ('cac', 'CustomsDeclaration', 'Seçimli (0...n)', 'customsdeclaration')
-        customsdeclaration = list()
+        customsdeclarations = list()
         customsdeclarations_: list = element.findall('./' + cacnamespace + 'CustomsDeclaration')
         if len(customsdeclarations_) != 0:
             for customsdeclaration_ in customsdeclarations_:
                 tmp = TRUBLCustomsDeclaration().process_element(customsdeclaration_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    customsdeclaration.append(tmp.name)
+                    customsdeclarations.append(tmp.name)
 
         if len(damageremarks) + \
-                len(actualpackages) + len(transportequipment) + len(transportmeans) + len(hazardousgoodstransit) + \
-                len(measurementdimension) + len(shipmentdocumentreference) + len(customsdeclaration) == 0:
+                len(actualpackages) + len(transportequipments) + len(transportmeans) + len(hazardousgoodstransit) + \
+                len(measurementdimensions) + len(shipmentdocumentreferences) + len(customsdeclarations) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
@@ -150,18 +150,35 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
                 for actualpackage in actualpackages:
                     doc_append.package = actualpackage
                     document.save()
-            if len(transportequipment) != 0:
-                document.transportequipment = transportequipment
+            if len(transportequipments) != 0:
+                doc_append = document.append("transportequipment", {})
+                for transportequipment in transportequipments:
+                    doc_append.transportequipment = transportequipment
+                    document.save()
             if len(transportmeans) != 0:
-                document.transportmeans = transportmeans
+                doc_append = document.append("transportmeans", {})
+                for transportmeans_ in transportmeans:
+                    doc_append.transportmeans = transportmeans_
+                    document.save()
             if len(hazardousgoodstransit) != 0:
-                document.hazardousgoodstransit = hazardousgoodstransit
-            if len(measurementdimension) != 0:
-                document.measurementdimension = measurementdimension
-            if len(shipmentdocumentreference) != 0:
-                document.shipmentdocumentreference = shipmentdocumentreference
-            if len(customsdeclaration) != 0:
-                document.customsdeclaration = customsdeclaration
-            document.save()
+                doc_append = document.append("hazardousgoodstransit", {})
+                for hazardousgoodstransit_ in hazardousgoodstransit:
+                    doc_append.hazardousgoodstransit = hazardousgoodstransit_
+                    document.save()
+            if len(measurementdimensions) != 0:
+                doc_append = document.append("measurementdimension", {})
+                for measurementdimension in measurementdimensions:
+                    doc_append.dimension = measurementdimension
+                    document.save()
+            if len(shipmentdocumentreferences) != 0:
+                doc_append = document.append("shipmentdocumentreference", {})
+                for shipmentdocumentreference in shipmentdocumentreferences:
+                    doc_append.documentreference = shipmentdocumentreference
+                    document.save()
+            if len(customsdeclarations) != 0:
+                doc_append = document.append("customsdeclaration", {})
+                for customsdeclaration in customsdeclarations:
+                    doc_append.customsdeclaration = customsdeclaration
+                    document.save()
 
         return document

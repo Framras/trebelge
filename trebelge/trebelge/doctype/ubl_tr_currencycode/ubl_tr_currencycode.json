@@ -1,5 +1,6 @@
 {
   "actions": [],
+  "allow_import": 1,
   "allow_rename": 1,
   "autoname": "field:currencycode",
   "creation": "2021-12-02 10:55:40.188267",
@@ -7,7 +8,8 @@
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
-    "currencycode"
+    "currencycode",
+    "currencyname"
   ],
   "fields": [
     {
@@ -17,14 +19,21 @@
       "label": "Currency Code",
       "reqd": 1,
       "unique": 1
+    },
+    {
+      "fieldname": "currencyname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Currency Name"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-02 10:55:40.188267",
+  "modified": "2022-01-24 00:13:21.492999",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR CurrencyCode",
+  "name_case": "UPPER CASE",
   "owner": "Administrator",
   "permissions": [
     {
