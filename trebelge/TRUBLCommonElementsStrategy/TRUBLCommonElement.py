@@ -16,7 +16,7 @@ class TRUBLCommonElement(ABC):
 
     @property
     def nullcriteria(self) -> str:
-        return 'is null'
+        return str('is null')
 
     @staticmethod
     def _get_frappedoc(frappedoctype: str, frappedoc: dict, leaf: bool = True) -> Document:
