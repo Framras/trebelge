@@ -13,7 +13,10 @@ class TRUBLCommonElement(ABC):
     The Context uses this interface to call the algorithm defined by Concrete
     Strategies.
     """
-    nullcriteria = 'is null'
+
+    @property
+    def nullcriteria(self) -> str:
+        return 'is null'
 
     @staticmethod
     def _get_frappedoc(frappedoctype: str, frappedoc: dict, leaf: bool = True) -> Document:
