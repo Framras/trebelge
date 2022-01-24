@@ -62,9 +62,9 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         notes_: list = self.root.findall('./' + self._cbc_ns + 'Note')
         if len(notes_) != 0:
+            doc_append = self._product.append("note", {})
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
-                doc_append = self._product.append("note", {})
                 if tmp is not None:
                     doc_append.note = tmp.name
                     self._product.save()

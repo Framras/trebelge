@@ -69,10 +69,9 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         notes_: list = self.root.findall('./' + self._cbc_ns + 'Note')
         if len(notes_) != 0:
-            note = list()
+            doc_append = self._product.append("note", {})
             for note_ in notes_:
                 tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
-                doc_append = self._product.append("note", {})
                 if tmp is not None:
                     doc_append.note = tmp.name
                     self._product.save()
@@ -84,9 +83,9 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...n)', 'orderreference')
         orderreferences_: list = self.root.findall('./' + self._cac_ns + 'OrderReference')
         if len(orderreferences_) != 0:
+            doc_append = self._product.append("orderreference", {})
             for orderreference_ in orderreferences_:
                 tmp = TRUBLOrderReference().process_element(orderreference_, self._cbc_ns, self._cac_ns)
-                doc_append = self._product.append("orderreference", {})
                 if tmp is not None:
                     doc_append.orderreference = tmp.name
                     self._product.save()
@@ -115,9 +114,9 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
         # 'additionaldocumentreference')
         documentreferences_: list = self.root.findall('./' + self._cac_ns + 'AdditionalDocumentReference')
         if len(documentreferences_) != 0:
+            doc_append = self._product.append("additionaldocumentreference", {})
             for documentreference_ in documentreferences_:
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
-                doc_append = self._product.append("additionaldocumentreference", {})
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
                     self._product.save()
@@ -241,9 +240,9 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
     def build_receiptline(self) -> None:
         # ['ReceiptLine'] = ('cac', ReceiptLine(), 'Zorunlu (1...n)', 'receiptline')
         receiptlines_: list = self.root.findall('./' + self._cac_ns + 'ReceiptLine')
+        doc_append = self._product.append("receiptline", {})
         for receiptline_ in receiptlines_:
             tmp = TRUBLReceiptLine().process_element(receiptline_, self._cbc_ns, self._cac_ns)
-            doc_append = self._product.append("receiptline", {})
             if tmp is not None:
                 doc_append.receiptline = tmp.name
                 self._product.save()
