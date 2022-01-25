@@ -16,16 +16,16 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
         cbcsecimli01: list = ['Note', 'PenaltySurchargePercent', 'PaymentDueDate']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None and field_.text is not None:
+            if field_ is not None and field_.text.strip() != '':
                 frappedoc[elementtag_.lower()] = field_.text
         # ['Amount'] = ('cbc', 'amount', 'Seçimli (0...1)')
         amount_: Element = element.find('./' + cbcnamespace + 'Amount')
-        if amount_ is not None and amount_.text is not None:
+        if amount_ is not None and amount_.text.strip() != '':
             frappedoc['amount'] = amount_.text
             frappedoc['amountcurrencyid'] = amount_.attrib.get('currencyID')
         # ['PenaltyAmount'] = ('cbc', 'penaltyamount', 'Seçimli (0...1)')
         penaltyamount_: Element = element.find('./' + cbcnamespace + 'PenaltyAmount')
-        if penaltyamount_ is not None and penaltyamount_.text is not None:
+        if penaltyamount_ is not None and penaltyamount_.text.strip() != '':
             frappedoc['penaltyamount'] = penaltyamount_.text
             frappedoc['penaltyamountcurrencyid'] = penaltyamount_.attrib.get('currencyID')
         # ['SettlementPeriod'] = ('cac', 'settlementperiod', 'Seçimli (0...1)')

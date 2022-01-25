@@ -14,8 +14,8 @@ class TRUBLPerson(TRUBLCommonElement):
         firstname_: Element = element.find('./' + cbcnamespace + 'FirstName')
         # ['FamilyName'] = ('cbc', 'familyname', 'Zorunlu(1)')
         familyname_: Element = element.find('./' + cbcnamespace + 'FamilyName')
-        if firstname_ is None or firstname_.text is None or \
-                familyname_ is None or familyname_.text is None:
+        if firstname_ is None or firstname_.text.strip() == '' or \
+                familyname_ is None or familyname_.text.strip() == '':
             return None
         if familyname_.text.strip() == '':
             frappedoc: dict = dict(firstname=firstname_.text,
@@ -29,11 +29,11 @@ class TRUBLPerson(TRUBLCommonElement):
         cbcsecimli01: list = ['MiddleName', 'NameSuffix', 'NationalityID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None and field_.text is not None:
+            if field_ is not None and field_.text.strip() != '':
                 frappedoc[elementtag_.lower()] = field_.text
         # ['Title'] = ('cbc', 'persontitle', 'Seçimli (0...1)')
         field_: Element = element.find('./' + cbcnamespace + 'Title')
-        if field_ is not None and field_.text is not None:
+        if field_ is not None and field_.text.strip() != '':
             frappedoc['persontitle'] = field_.text
         # ['FinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)', 'financialaccount')
         financialaccount_: Element = element.find('./' + cacnamespace + 'FinancialAccount')

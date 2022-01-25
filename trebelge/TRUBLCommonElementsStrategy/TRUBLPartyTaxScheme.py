@@ -20,7 +20,7 @@ class TRUBLPartyTaxScheme(TRUBLCommonElement):
         cbcsecimli01: list = ['RegistrationName', 'CompanyID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None and field_.text is not None:
+            if field_ is not None and field_.text.strip() != '':
                 frappedoc[elementtag_.lower()] = field_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

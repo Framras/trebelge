@@ -16,10 +16,10 @@ class TRUBLMonetaryTotal(TRUBLCommonElement):
         taxexclusiveamount_: Element = element.find('./' + cbcnamespace + 'TaxExclusiveAmount')
         taxinclusiveamount_: Element = element.find('./' + cbcnamespace + 'TaxInclusiveAmount')
         payableamount_: Element = element.find('./' + cbcnamespace + 'PayableAmount')
-        if lineextensionamount_ is None or lineextensionamount_.text is None or \
-                taxexclusiveamount_ is None or taxexclusiveamount_.text is None or \
-                taxinclusiveamount_ is None or taxinclusiveamount_.text is None or \
-                payableamount_ is None or payableamount_.text is None:
+        if lineextensionamount_ is None or lineextensionamount_.text.strip() == '' or \
+                taxexclusiveamount_ is None or taxexclusiveamount_.text.strip() == '' or \
+                taxinclusiveamount_ is None or taxinclusiveamount_.text.strip() == '' or \
+                payableamount_ is None or payableamount_.text.strip() == '':
             return None
         frappedoc: dict = dict(lineextensionamount=lineextensionamount_.text,
                                lineextensionamountcurrencyid=lineextensionamount_.attrib.get('currencyID'),

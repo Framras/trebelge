@@ -14,9 +14,9 @@ class TRUBLExchangeRate(TRUBLCommonElement):
         targetcurrencycode_: Element = element.find('./' + cbcnamespace + 'TargetCurrencyCode')
         # ['CalculationRate'] = ('cbc', 'calculationrate', 'Zorunlu(1)')
         calculationrate_: Element = element.find('./' + cbcnamespace + 'CalculationRate')
-        if sourcecurrencycode_ is None or sourcecurrencycode_.text is None or \
-                targetcurrencycode_ is None or targetcurrencycode_.text is None or \
-                calculationrate_ is None or calculationrate_.text is None:
+        if sourcecurrencycode_ is None or sourcecurrencycode_.text.strip() == '' or \
+                targetcurrencycode_ is None or targetcurrencycode_.text.strip() == '' or \
+                calculationrate_ is None or calculationrate_.text.strip() == '':
             return None
         frappedoc: dict = dict(sourcecurrencycode=sourcecurrencycode_.text,
                                targetcurrencycode=targetcurrencycode_.text,
@@ -24,7 +24,7 @@ class TRUBLExchangeRate(TRUBLCommonElement):
                                )
         # ['Date'] = ('cbc', 'date', 'Seçimli (0...1)')
         date_: Element = element.find('./' + cbcnamespace + 'Date')
-        if date_ is not None and date_.text is not None:
+        if date_ is not None and date_.text.strip() != '':
             frappedoc['date'] = date_.text
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

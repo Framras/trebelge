@@ -11,7 +11,7 @@ class TRUBLCommodityClassification(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         itemclassificationcode_: Element = element.find('./' + cbcnamespace + 'ItemClassificationCode')
         # ['ItemClassificationCode'] = ('cbc', 'itemclassificationcode', 'Zorunlu(1)')
-        if itemclassificationcode_ is None or itemclassificationcode_.text is None:
+        if itemclassificationcode_ is None or itemclassificationcode_.text.strip() == '':
             return None
         frappedoc: dict = dict(itemclassificationcode=itemclassificationcode_.text)
         for key in itemclassificationcode_.attrib.keys():
