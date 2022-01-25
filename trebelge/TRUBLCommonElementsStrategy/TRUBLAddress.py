@@ -18,14 +18,16 @@ class TRUBLAddress(TRUBLCommonElement):
         # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
         country_: Element = element.find('./' + cacnamespace + 'Country')
         tmp = TRUBLCountry().process_element(country_, cbcnamespace, cacnamespace)
-        if citysubdivisionname_.text.strip() == '' and cityname_.text.strip() == '' and tmp is None:
-            return None
+        # if citysubdivisionname_.text.strip() == '' and cityname_.text.strip() == '' and tmp is None:
+        #     return None
         if tmp is not None:
             frappedoc['country'] = tmp.name
         if citysubdivisionname_ is not None:
-            frappedoc['citysubdivisionname'] = citysubdivisionname_.text
+            if citysubdivisionname_.text is not None:
+                frappedoc['citysubdivisionname'] = citysubdivisionname_.text.strip()
         if cityname_ is not None:
-            frappedoc['cityname'] = cityname_.text
+            if cityname_.text is not None:
+                frappedoc['cityname'] = cityname_.text.strip()
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
         # ['Room'] = ('cbc', 'room', 'Seçimli (0...1)')
