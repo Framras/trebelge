@@ -55,6 +55,7 @@ class TRUBLBillingReference(TRUBLCommonElement):
                 frappedoc['additionaldocument'] = tmp.name
         if frappedoc == {}:
             return None
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         billingreferencelines = list()
         # ['BillingReferenceLine'] = ('cac', 'BillingReferenceLine', 'Seçimli (0...n)')
         billingreferencelines_: list = element.findall('./' + cacnamespace + 'BillingReferenceLine')
@@ -63,14 +64,9 @@ class TRUBLBillingReference(TRUBLCommonElement):
                 tmp = TRUBLBillingReferenceLine().process_element(billingreferenceline_, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     billingreferencelines.append(tmp.name)
-        if len(billingreferencelines) == 0:
-            frappedoc['billingreferenceline'] = self.nullcriteria
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+        if len(billingreferencelines) != 0:
             doc_append = document.append("billingreferenceline", {})
             for billingreferenceline in billingreferencelines:
                 doc_append.billingreferenceline = billingreferenceline
                 document.save()
-
         return document
