@@ -20,8 +20,9 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
                               'FullyPaidSharesIndicator']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None and field_.text.strip() != '':
-                frappedoc[elementtag_.lower()] = field_.text
+            if field_ is not None:
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['CorporateStockAmount'] = ('cbc', 'corporatestockamount', 'Seçimli (0...1)')
         corporatestockamount_: Element = element.find('./' + cbcnamespace + 'CorporateStockAmount')
         if corporatestockamount_ is not None and corporatestockamount_.text.strip() != '':
