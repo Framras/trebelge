@@ -32,6 +32,7 @@ class TRUBLDirector:
 
     def make_tr_ubl_invoice(self) -> None:
         self.builder.reset()
+        self.builder.build_issuetime()
         self.builder.build_note()
         self.builder.build_invoiceperiod()
         self.builder.build_orderreference()
@@ -61,6 +62,7 @@ class TRUBLDirector:
 
     def make_tr_ubl_despatchadvice(self) -> None:
         self.builder.reset()
+        self.builder.build_issuetime()
         self.builder.build_note()
         self.builder.build_orderreference()
         self.builder.build_additionaldocumentreference()
@@ -74,6 +76,7 @@ class TRUBLDirector:
 
     def make_tr_ubl_applicationresponse(self) -> None:
         self.builder.reset()
+        self.builder.build_issuetime()
         self.builder.build_note()
         self.builder.build_senderparty()
         self.builder.build_receiverparty()
@@ -81,7 +84,7 @@ class TRUBLDirector:
 
     def make_tr_ubl_receiptadvice(self) -> None:
         self.builder.reset()
-        self.builder.build_note()
+        self.builder.build_issuetime()
         self.builder.build_orderreference()
         self.builder.build_despatchdocumentreference()
         self.builder.build_additionaldocumentreference()
