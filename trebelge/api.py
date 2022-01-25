@@ -54,7 +54,6 @@ def check_all_xml_files():
                                   fields={"file_url"}):
         # retrieve file path of xmlFile
         filePath: str = frappe.get_site_path() + xmlFile.get('file_url')
-        frappe.log_error('processing file:' + filePath)
         hXMLFileHandler.handle_xml_file(filePath)
 
     return frappe.utils.now_datetime()

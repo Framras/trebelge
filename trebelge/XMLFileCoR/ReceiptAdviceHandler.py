@@ -20,7 +20,6 @@ class ReceiptAdviceHandler(AbstractXMLFileHandler):
                                         filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
                                         fields={"namespace_specification"}):
             if ET.parse(file_path).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
-                frappe.log_error('processing file' + file_path, 'File')
                 builder = TRUBLReceiptAdviceBuilder(file_path)
                 director = TRUBLDirector(builder)
                 director.make_tr_ubl_receiptadvice()
