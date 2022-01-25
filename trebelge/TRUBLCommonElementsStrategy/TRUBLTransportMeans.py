@@ -60,18 +60,20 @@ class TRUBLTransportMeans(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
-        measurementdimension = list()
         measurementdimension_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
+        dimensions = list()
         if len(measurementdimension_) != 0:
             for dimension_ in measurementdimension_:
                 tmp = TRUBLDimension().process_element(dimension_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    measurementdimension.append(tmp)
-        if len(measurementdimension) == 0:
+                    dimensions.append(tmp.name)
+        if len(dimensions) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            document.measurementdimension = measurementdimension
-            document.save()
+            doc_append = document.append("measurementdimension", {})
+            for dimension in dimensions:
+                doc_append.dimension = dimension
+                document.save()
 
         return document

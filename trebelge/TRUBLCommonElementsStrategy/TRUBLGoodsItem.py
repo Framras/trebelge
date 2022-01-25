@@ -71,9 +71,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
             for description_ in descriptions_:
                 tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    descriptions.append(tmp)
-            if len(descriptions) != 0:
-                frappedoc['description'] = descriptions
+                    descriptions.append(tmp.name)
         # ['OriginAddress'] = ('cac', 'Address', 'Seçimli(0..1)')
         address_: Element = element.find('./' + cacnamespace + 'OriginAddress')
         if address_ is not None:
@@ -83,21 +81,21 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         # ['Item'] = ('cac', 'Item', 'Seçimli(0..n)')
-        items = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'Item')
+        items = list()
         if len(tagelements_) != 0:
             for tagelement in tagelements_:
                 tmp = TRUBLItem().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    items.append(tmp)
+                    items.append(tmp.name)
         # ['FreightAllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli(0..n)')
-        charges = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'FreightAllowanceCharge')
+        charges = list()
         if len(tagelements_) != 0:
             for tagelement in tagelements_:
                 tmp = TRUBLAllowanceCharge().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    charges.append(tmp)
+                    charges.append(tmp.name)
         # ['InvoiceLine'] = ('cac', 'InvoiceLine', 'Seçimli(0..n)')
         lines = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'InvoiceLine')
@@ -105,37 +103,56 @@ class TRUBLGoodsItem(TRUBLCommonElement):
             for tagelement in tagelements_:
                 tmp = TRUBLInvoiceLine().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    lines.append(tmp)
+                    lines.append(tmp.name)
         # ['Temperature'] = ('cac', 'Temperature', 'Seçimli(0..n)')
-        temperature = list()
+        temperatures = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'Temperature')
         if len(tagelements_) != 0:
             for tagelement in tagelements_:
                 tmp = TRUBLTemperature().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    temperature.append(tmp)
+                    temperatures.append(tmp.name)
         # ['MeasurementDimension'] = ('cac', 'Dimension', 'Seçimli(0..n)')
-        dimension = list()
+        dimensions = list()
         tagelements_: list = element.findall('./' + cacnamespace + 'MeasurementDimension')
         if len(tagelements_) != 0:
             for tagelement in tagelements_:
                 tmp = TRUBLDimension().process_element(tagelement, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    dimension.append(tmp)
-        if len(items) + len(charges) + len(lines) + len(temperature) + len(dimension) == 0:
+                    dimensions.append(tmp.name)
+        if len(items) + len(charges) + len(lines) + len(temperatures) + len(dimensions) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            if len(descriptions) != 0:
+                doc_append = document.append("description", {})
+                for description in descriptions:
+                    doc_append.note = description
+                    document.save()
             if len(items) != 0:
-                document.item = items
+                doc_append = document.append("item", {})
+                for item in items:
+                    doc_append.item = item
+                    document.save()
             if len(charges) != 0:
-                document.freightallowancecharge = charges
+                doc_append = document.append("freightallowancecharge", {})
+                for charge in charges:
+                    doc_append.allowancecharge = charge
+                    document.save()
             if len(lines) != 0:
-                document.invoiceline = lines
-            if len(temperature) != 0:
-                document.temperature = temperature
-            if len(dimension) != 0:
-                document.measurementdimension = dimension
-            document.save()
+                doc_append = document.append("invoiceline", {})
+                for line in lines:
+                    doc_append.invoiceline = line
+                    document.save()
+            if len(temperatures) != 0:
+                doc_append = document.append("temperature", {})
+                for temperature in temperatures:
+                    doc_append.temperature = temperature
+                    document.save()
+            if len(dimensions) != 0:
+                doc_append = document.append("measurementdimension", {})
+                for dimension in dimensions:
+                    doc_append.dimension = dimension
+                    document.save()
 
         return document
