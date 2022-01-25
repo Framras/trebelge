@@ -49,21 +49,19 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
             despatchadvice_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
             despatchadvice_.despatchadvicetypecode = root_.find('./' + self._cbc_ns + 'DespatchAdviceTypeCode').text
             despatchadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
+            # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
+            issuetime_: Element = root_.find('./' + self._cbc_ns + 'IssueTime')
+            if issuetime_ is not None:
+                try:
+                    time.strptime(issuetime_.text, '%H:%M:%S')
+                    despatchadvice_.issuetime = issuetime_.text
+                except ValueError:
+                    pass
+            else:
+                despatchadvice_.issuetime = ""
             despatchadvice_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
-
-    def build_issuetime(self) -> None:
-        # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
-        issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
-        if issuetime_ is not None:
-            try:
-                time.strptime(issuetime_.text, '%H:%M:%S')
-                self._product.issuetime = issuetime_.text
-            except ValueError:
-                pass
-        else:
-            self._product.issuetime = ""
 
     def build_note(self) -> None:
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')

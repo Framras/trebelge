@@ -13,10 +13,6 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_issuetime(self) -> None:
-        pass
-
-    @abstractmethod
     def build_note(self) -> None:
         pass
 
