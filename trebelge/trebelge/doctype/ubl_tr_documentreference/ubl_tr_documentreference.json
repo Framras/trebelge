@@ -42,7 +42,7 @@
     {
       "description": "Referans verilen veya eklenen belgenin tipi girilecektir. \u00d6rnek olarak \u201cXSLT\u201d, \u201cREKLAM\u201d, \u201cPROFORMA\u201d, \u201cG\u00d6R\u00dc\u015eME DETAYI\u201d ve benzeri de\u011ferler girilebilir.",
       "fieldname": "documenttype",
-      "fieldtype": "Data",
+      "fieldtype": "Small Text",
       "in_list_view": 1,
       "label": "Belge tipi"
     },
@@ -76,7 +76,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2022-01-25 23:22:33.555302",
+  "modified": "2022-01-25 23:37:40.796921",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR DocumentReference",
