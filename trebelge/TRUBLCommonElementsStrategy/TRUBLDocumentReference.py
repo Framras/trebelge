@@ -16,8 +16,8 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         id_: Element = element.find('./' + cbcnamespace + 'ID')
         # ['IssueDate'] = ('cbc', '', 'Zorunlu (1)', 'issuedate')
         issuedate_ = element.find('./' + cbcnamespace + 'IssueDate').text
-        if id_.attrib.keys() is not None:
-            return None
+        # if id_.attrib.keys() is not None:
+        #     return None
         if id_.text is None or issuedate_ is None:
             return None
         frappedoc: dict = {'id': id_.text, 'issuedate': issuedate_}
