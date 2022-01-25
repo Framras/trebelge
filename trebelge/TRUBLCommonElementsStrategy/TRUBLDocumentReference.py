@@ -12,15 +12,17 @@ class TRUBLDocumentReference(TRUBLCommonElement):
     _frappeDoctype: str = 'UBL TR DocumentReference'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
+        frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Zorunlu (1)', 'id')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
         # ['IssueDate'] = ('cbc', '', 'Zorunlu (1)', 'issuedate')
         issuedate_ = element.find('./' + cbcnamespace + 'IssueDate').text
         # if id_.attrib.keys() is not None:
         #     return None
-        if id_.text is None or issuedate_ is None:
-            return None
-        frappedoc: dict = {'id': id_.text, 'issuedate': issuedate_}
+        if id_.text is not None:
+            frappedoc['id'] = id_.text
+        if issuedate_ is not None:
+            frappedoc['issuedate'] = issuedate_
         # ['DocumentTypeCode'] = ('cbc', '', 'Seçimli (0...1)', 'documenttypecode')
         # ['DocumentType'] = ('cbc', '', 'Seçimli (0...1)', 'documenttype')
         cbcsecimli01: list = ['DocumentTypeCode', 'DocumentType']

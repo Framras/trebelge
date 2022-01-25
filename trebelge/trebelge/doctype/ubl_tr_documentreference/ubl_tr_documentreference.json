@@ -22,8 +22,7 @@
       "fieldname": "id",
       "fieldtype": "Small Text",
       "in_list_view": 1,
-      "label": "S\u0131ra numaras\u0131",
-      "reqd": 1
+      "label": "S\u0131ra numaras\u0131"
     },
     {
       "description": "Belgenin d\u00fczenlenme tarihi girilecektir.",
@@ -76,7 +75,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2022-01-25 23:37:40.796921",
+  "modified": "2022-01-26 00:03:48.783903",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR DocumentReference",
