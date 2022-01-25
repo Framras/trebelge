@@ -47,19 +47,23 @@ class TRUBLDocumentReference(TRUBLCommonElement):
             tmp = TRUBLParty().process_element(issuerparty_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['issuerparty'] = tmp.name
+        if frappedoc == {}:
+            return None
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
-        documentdescriptions = list()
         documentdescriptions_: list = element.findall('./' + cbcnamespace + 'DocumentDescription')
+        documentdescriptions = list()
         if len(documentdescriptions_) != 0:
             for documentdescription_ in documentdescriptions_:
                 tmp = TRUBLNote().process_element(documentdescription_, cbcnamespace, cacnamespace)
                 if tmp is not None:
-                    documentdescriptions.append(tmp)
+                    documentdescriptions.append(tmp.name)
         if len(documentdescriptions) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            document.documentdescription = documentdescriptions
-            document.save()
+            doc_append = document.append("documentdescription", {})
+            for documentdescription in documentdescriptions:
+                doc_append.note = documentdescription
+                document.save()
 
         return document
