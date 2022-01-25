@@ -20,7 +20,7 @@
     {
       "description": "Referans verilen veya eklenen belgenin s\u0131ra numaras\u0131 girilecektir.",
       "fieldname": "id",
-      "fieldtype": "Data",
+      "fieldtype": "Small Text",
       "in_list_view": 1,
       "label": "S\u0131ra numaras\u0131",
       "reqd": 1
@@ -76,7 +76,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-21 21:45:35.487554",
+  "modified": "2022-01-25 23:22:33.555302",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR DocumentReference",
