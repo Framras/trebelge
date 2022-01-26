@@ -28,7 +28,7 @@ class TRUBLGoodsItem(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['DeclaredCustomsValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
         # ['DeclaredForCarriageValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
         # ['DeclaredStatisticsValueAmount'] = ('cbc', '', 'Seçimli(0..1)')
@@ -42,8 +42,8 @@ class TRUBLGoodsItem(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
-                    frappedoc[elementtag_.lower() + 'currencyid'] = field_.attrib.get('currencyID')
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
+                    frappedoc[elementtag_.lower() + 'currencyid'] = field_.attrib.get('currencyID').strip()
         # ['GrossWeightMeasure'] = ('cbc', '', 'Seçimli(0..1)')
         # ['NetWeightMeasure'] = ('cbc', '', 'Seçimli(0..1)')
         # ['ChargeableWeightMeasure'] = ('cbc', '', 'Seçimli(0..1)')
@@ -62,8 +62,8 @@ class TRUBLGoodsItem(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
-                    frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
+                    frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode').strip()
         # ['Description'] = ('cbc', '', 'Seçimli(0..n)')
         descriptions = list()
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')

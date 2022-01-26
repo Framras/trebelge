@@ -14,39 +14,42 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
+        frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
-        # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
-        # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
+        if id_ is not None:
+            if id_.text is not None:
+                frappedoc['id'] = id_.text.strip()
+        # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
         invoicedquantity: Element = element.find('./' + cbcnamespace + 'InvoicedQuantity')
+        if invoicedquantity is not None:
+            if invoicedquantity.text is not None:
+                frappedoc['invoicedquantity'] = invoicedquantity.text.strip()
+                frappedoc['invoicedquantityunitcode'] = invoicedquantity.attrib.get('unitCode').strip()
+        # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
         lineextensionamount: Element = element.find('./' + cbcnamespace + 'LineExtensionAmount')
-        if id_ is None or id_.text is None or \
-                invoicedquantity is None or invoicedquantity.text is None or \
-                lineextensionamount is None or lineextensionamount.text is None:
-            return None
-        frappedoc: dict = {'id': element.find('./' + cbcnamespace + 'ID').text,
-                           'invoicedquantity': invoicedquantity.text,
-                           'invoicedquantityunitcode': invoicedquantity.attrib.get('unitCode'),
-                           'lineextensionamount': lineextensionamount.text,
-                           'lineextensionamountcurrencyid': lineextensionamount.attrib.get('currencyID')}
+        if lineextensionamount is not None:
+            if lineextensionamount.text is not None:
+                frappedoc['lineextensionamount'] = lineextensionamount.text.strip()
+                frappedoc['lineextensionamountcurrencyid'] = lineextensionamount.attrib.get('currencyID').strip()
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...1)')
         note_ = element.find('./' + cbcnamespace + 'Note')
         if note_ is not None:
             if note_.text is not None:
-                frappedoc['note'] = note_.text
+                frappedoc['note'] = note_.text.strip()
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
         tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)
-        if tmp is None:
-            return None
-        frappedoc['item'] = tmp.name
+        if tmp is not None:
+            frappedoc['item'] = tmp.name
         # ['Price'] = ('cac', 'Price', 'Zorunlu (1)')
         price_: Element = element.find('./' + cacnamespace + 'Price')
         # self._mapping['PriceAmount'] = ('cbc', '', 'Zorunlu(1)')
         priceamount = price_.find('./' + cbcnamespace + 'PriceAmount')
-        if priceamount is not None and priceamount.text is not None:
-            frappedoc['priceamount'] = priceamount.text
-            frappedoc['priceamountcurrencyid'] = priceamount.attrib.get('currencyID')
+        if priceamount is not None:
+            if priceamount.text is not None:
+                frappedoc['priceamount'] = priceamount.text.strip()
+                frappedoc['priceamountcurrencyid'] = priceamount.attrib.get('currencyID').strip()
         # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
         taxtotal_: Element = element.find('./' + cacnamespace + 'TaxTotal')
         if taxtotal_ is not None:
@@ -117,5 +120,5 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                 if tmp is not None:
                     doc_append.invoiceline = tmp.name
                     document.save()
-
+        
         return document

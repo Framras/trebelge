@@ -22,7 +22,7 @@ class TRUBLDespatch(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['DespatchAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
         despatchaddress_: Element = element.find('./' + cacnamespace + 'DespatchAddress')
         if despatchaddress_ is not None:

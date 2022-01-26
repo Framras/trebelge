@@ -38,8 +38,8 @@ class TRUBLDespatchLine(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
-                    frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
+                    frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode').strip()
         # ['Note'] = ('cbc', '', 'Seçimli(0..n)')
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
         notes = list()

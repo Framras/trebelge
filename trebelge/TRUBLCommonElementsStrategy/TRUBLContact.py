@@ -21,12 +21,12 @@ class TRUBLContact(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_ is not None:
             if name_.text is not None:
-                frappedoc['contactname'] = name_.text
+                frappedoc['contactname'] = name_.text.strip()
         # ['OtherCommunication'] = ('cac', 'Communication', 'Seçimli(0..n)')
         communications = list()
         othercommunications_: list = element.findall('./' + cacnamespace + 'OtherCommunication')

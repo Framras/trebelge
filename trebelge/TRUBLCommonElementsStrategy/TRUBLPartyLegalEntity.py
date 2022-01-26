@@ -44,4 +44,5 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
                     frappedoc[element_.get('fieldName')] = tmp.name
         if frappedoc == {}:
             return None
+
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

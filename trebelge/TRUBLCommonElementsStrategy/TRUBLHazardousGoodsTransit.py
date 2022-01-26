@@ -21,7 +21,7 @@ class TRUBLHazardousGoodsTransit(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['MaximumTemperature'] = ('cac', 'Temperature', 'Seçimli(0..1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'MaximumTemperature')
         if tagelement_ is not None:

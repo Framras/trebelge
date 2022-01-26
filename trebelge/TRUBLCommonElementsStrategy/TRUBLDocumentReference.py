@@ -15,14 +15,16 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Zorunlu (1)', 'id')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
+        if id_ is not None:
+            if id_.text is not None:
+                frappedoc['id'] = id_.text.strip()
         # ['IssueDate'] = ('cbc', '', 'Zorunlu (1)', 'issuedate')
-        issuedate_ = element.find('./' + cbcnamespace + 'IssueDate').text
+        issuedate_ = element.find('./' + cbcnamespace + 'IssueDate')
         # if id_.attrib.keys() is not None:
         #     return None
-        if id_.text is not None:
-            frappedoc['id'] = id_.text
         if issuedate_ is not None:
-            frappedoc['issuedate'] = issuedate_
+            if issuedate_.text is not None:
+                frappedoc['issuedate'] = issuedate_.text.strip()
         # ['DocumentTypeCode'] = ('cbc', '', 'Seçimli (0...1)', 'documenttypecode')
         # ['DocumentType'] = ('cbc', '', 'Seçimli (0...1)', 'documenttype')
         cbcsecimli01: list = ['DocumentTypeCode', 'DocumentType']
@@ -30,7 +32,7 @@ class TRUBLDocumentReference(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['Attachment'] = ('cac', 'Attachment', 'Seçimli (0...1)', 'attachment')
         attachment_ = element.find('./' + cacnamespace + 'Attachment')
         if attachment_ is not None:

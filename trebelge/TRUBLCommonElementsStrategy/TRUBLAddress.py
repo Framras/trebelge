@@ -41,16 +41,18 @@ class TRUBLAddress(TRUBLCommonElement):
                               'Region', 'District']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None and field_.text is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+            if field_ is not None:
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['BuildingNumber'] = ('cbc', 'buildingnumber', 'Seçimli(0..n)')
         buildingnumbers = list()
         buildingnumbers_: list = element.findall('./' + cbcnamespace + 'BuildingNumber')
         if len(buildingnumbers_) == 0:
             return self._get_frappedoc(self._frappeDoctype, frappedoc)
         for buildingnumber in buildingnumbers_:
-            if buildingnumber.text is not None and buildingnumber.text.strip() != '':
-                buildingnumbers.append(buildingnumber.text)
+            if buildingnumber is not None:
+                if buildingnumber.text is not None:
+                    buildingnumbers.append(buildingnumber.text.strip())
         if len(buildingnumbers) == 0:
             return self._get_frappedoc(self._frappeDoctype, frappedoc)
         if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) != 0:
@@ -68,6 +70,8 @@ class TRUBLAddress(TRUBLCommonElement):
                                 document.save()
                             return document
                 return legacy_
+        if frappedoc == {}:
+            return None
         document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         doc_append = document.append("buildingnumber", {})
         for buildingnumber_ in buildingnumbers:

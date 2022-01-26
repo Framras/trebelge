@@ -14,15 +14,13 @@ class TRUBLCountry(TRUBLCommonElement):
         identificationcode_: Element = element.find('./' + cbcnamespace + 'IdentificationCode')
         if identificationcode_ is not None:
             if identificationcode_.text is not None:
-                frappedoc['identificationcode'] = identificationcode_.text
+                frappedoc['identificationcode'] = identificationcode_.text.strip()
                 if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) == 0:
                     # ['Name'] = ('cbc', 'countryname', 'Zorunlu(1)')
                     countryname = element.find('./' + cbcnamespace + 'Name')
-                    if countryname is None:
-                        return None
-                    if countryname.text is None:
-                        return None
-                    frappedoc['countryname'] = countryname.text
+                    if countryname is not None:
+                        if countryname.text is not None:
+                            frappedoc['countryname'] = countryname.text.strip()
                     # TODO connection to ERPNext Country is pending
                     # TODO this is weird nonconforming xml files without Name filled
         if frappedoc == {}:

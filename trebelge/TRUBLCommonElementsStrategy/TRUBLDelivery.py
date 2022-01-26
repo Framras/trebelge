@@ -26,13 +26,15 @@ class TRUBLDelivery(TRUBLCommonElement):
                               'LatestDeliveryTime', 'TrackingID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
-            if field_ is not None and field_.text is not None:
-                frappedoc[elementtag_.lower()] = field_.text
+            if field_ is not None:
+                if field_.text is not None:
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         quantity_: Element = element.find('./' + cbcnamespace + 'Quantity')
-        if quantity_ is not None and quantity_.text is not None:
-            frappedoc['quantity'] = quantity_.text
-            frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode')
+        if quantity_ is not None:
+            if quantity_.text is not None:
+                frappedoc['quantity'] = quantity_.text.strip()
+                frappedoc['quantityunitcode'] = quantity_.attrib.get('unitCode').strip()
         # ['DeliveryAddress'] = ('cac', 'Address', 'Seçimli (0...1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'DeliveryAddress')
         if tagelement_ is not None:
