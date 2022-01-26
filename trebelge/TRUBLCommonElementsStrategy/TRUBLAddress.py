@@ -13,21 +13,19 @@ class TRUBLAddress(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['CitySubdivisionName'] = ('cbc', 'citysubdivisionname', 'Zorunlu(1)')
         citysubdivisionname_: Element = element.find('./' + cbcnamespace + 'CitySubdivisionName')
-        # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
-        cityname_: Element = element.find('./' + cbcnamespace + 'CityName')
-        # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
-        country_: Element = element.find('./' + cacnamespace + 'Country')
-        tmp = TRUBLCountry().process_element(country_, cbcnamespace, cacnamespace)
-        # if citysubdivisionname_.text.strip() == '' and cityname_.text.strip() == '' and tmp is None:
-        #     return None
-        if tmp is not None:
-            frappedoc['country'] = tmp.name
         if citysubdivisionname_ is not None:
             if citysubdivisionname_.text is not None:
                 frappedoc['citysubdivisionname'] = citysubdivisionname_.text.strip()
+        # ['CityName'] = ('cbc', 'cityname', 'Zorunlu(1)')
+        cityname_: Element = element.find('./' + cbcnamespace + 'CityName')
         if cityname_ is not None:
             if cityname_.text is not None:
                 frappedoc['cityname'] = cityname_.text.strip()
+        # ['Country'] = ('cac', Country(), 'Zorunlu(1)')
+        country_: Element = element.find('./' + cacnamespace + 'Country')
+        tmp = TRUBLCountry().process_element(country_, cbcnamespace, cacnamespace)
+        if tmp is not None:
+            frappedoc['country'] = tmp.name
         # ['ID'] = ('cbc', 'id', 'Seçimli (0...1)')
         # ['Postbox'] = ('cbc', 'postbox', 'Seçimli (0...1)')
         # ['Room'] = ('cbc', 'room', 'Seçimli (0...1)')
