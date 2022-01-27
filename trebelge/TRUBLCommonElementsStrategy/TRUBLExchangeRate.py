@@ -23,7 +23,7 @@ class TRUBLExchangeRate(TRUBLCommonElement):
         calculationrate_: Element = element.find('./' + cbcnamespace + 'CalculationRate')
         if calculationrate_ is not None:
             if calculationrate_.text is not None:
-                frappedoc['calculationrate_'] = calculationrate_.text.strip()
+                frappedoc['calculationrate'] = calculationrate_.text.strip()
         # ['Date'] = ('cbc', 'date', 'Seçimli (0...1)')
         date_: Element = element.find('./' + cbcnamespace + 'Date')
         if date_ is not None:
