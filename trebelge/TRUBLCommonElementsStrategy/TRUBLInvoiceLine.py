@@ -120,5 +120,5 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                 if tmp is not None:
                     doc_append.invoiceline = tmp.name
                     document.save()
-        
+
         return document

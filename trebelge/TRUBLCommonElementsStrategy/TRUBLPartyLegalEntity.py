@@ -25,9 +25,10 @@ class TRUBLPartyLegalEntity(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['CorporateStockAmount'] = ('cbc', 'corporatestockamount', 'Seçimli (0...1)')
         corporatestockamount_: Element = element.find('./' + cbcnamespace + 'CorporateStockAmount')
-        if corporatestockamount_ is not None and corporatestockamount_.text.strip() != '':
-            frappedoc['corporatestockamount'] = corporatestockamount_.text
-            frappedoc['corporatestockamountcurrencyid'] = corporatestockamount_.attrib.get('currencyID')
+        if corporatestockamount_ is not None:
+            if corporatestockamount_.text is not None:
+                frappedoc['corporatestockamount'] = corporatestockamount_.text.strip()
+                frappedoc['corporatestockamountcurrencyid'] = corporatestockamount_.attrib.get('currencyID').strip()
         # ['CorporateRegistrationScheme'] = ('cac', 'CorporateRegistrationScheme()', 'Seçimli (0...1)',
         #                     'corporateregistrationscheme')
         # ['HeadOfficeParty'] = ('cac', 'Party()', 'Seçimli (0...1)', 'headofficeparty')
