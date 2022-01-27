@@ -32,8 +32,7 @@
       "fieldtype": "Data",
       "in_global_search": 1,
       "in_list_view": 1,
-      "label": "Soyad\u0131",
-      "reqd": 1
+      "label": "Soyad\u0131"
     },
     {
       "description": "\u015eahs\u0131n \u00fcnvan\u0131 girilecektir.",
@@ -83,7 +82,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-21 21:42:12.132807",
+  "modified": "2022-01-28 00:23:17.258745",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR Person",

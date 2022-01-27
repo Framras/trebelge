@@ -73,12 +73,12 @@
       "fieldname": "driverperson",
       "fieldtype": "Table MultiSelect",
       "label": "\u015eof\u00f6r bilgileri",
-      "options": "UBL TR Persons"
+      "options": "UBL TR People"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2021-12-04 19:30:33.090309",
+  "modified": "2022-01-28 00:23:38.529486",
   "modified_by": "Administrator",
   "module": "Trebelge",
   "name": "UBL TR ShipmentStage",
