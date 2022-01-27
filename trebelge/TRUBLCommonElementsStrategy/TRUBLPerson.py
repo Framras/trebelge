@@ -13,11 +13,11 @@ class TRUBLPerson(TRUBLCommonElement):
         frappedoc: dict = {}
         # ['FirstName'] = ('cbc', 'firstname', 'Zorunlu(1)')
         firstname_: Element = element.find('./' + cbcnamespace + 'FirstName')
-        # ['FamilyName'] = ('cbc', 'familyname', 'Zorunlu(1)')
-        familyname_: Element = element.find('./' + cbcnamespace + 'FamilyName')
         if firstname_ is not None:
             if firstname_.text is not None:
                 frappedoc['firstname'] = firstname_.text.strip()
+        # ['FamilyName'] = ('cbc', 'familyname', 'Zorunlu(1)')
+        familyname_: Element = element.find('./' + cbcnamespace + 'FamilyName')
         if familyname_ is not None:
             if familyname_.text is not None:
                 frappedoc['firstname'] = familyname_.text.strip()
