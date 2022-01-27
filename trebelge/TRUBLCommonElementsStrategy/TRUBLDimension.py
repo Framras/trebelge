@@ -43,10 +43,13 @@ class TRUBLDimension(TRUBLCommonElement):
                     descriptions.append(tmp.name)
         if frappedoc == {}:
             return None
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-        doc_append = document.append("description", {})
-        if tmp is not None:
-            doc_append.note = tmp.name
-            document.save()
+        if len(descriptions) == 0:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            doc_append = document.append("description", {})
+            for description in descriptions:
+                doc_append.note = description
+                document.save()
 
         return document
