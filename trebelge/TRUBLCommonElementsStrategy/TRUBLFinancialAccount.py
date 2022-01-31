@@ -14,7 +14,8 @@ class TRUBLFinancialAccount(TRUBLCommonElement):
         id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_ is not None:
             if id_.text is not None:
-                frappedoc['id'] = id_.text.strip()
+                if id_.text.strip() != '':
+                    frappedoc['id'] = id_.text.strip()
         # ['CurrencyCode'] = ('cbc', 'currencycode', 'Seçimli (0...1)')
         # ['PaymentNote'] = ('cbc', 'paymentnote', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CurrencyCode', 'PaymentNote']
