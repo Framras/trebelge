@@ -20,7 +20,7 @@ class TRUBLPerson(TRUBLCommonElement):
         familyname_: Element = element.find('./' + cbcnamespace + 'FamilyName')
         if familyname_ is not None:
             if familyname_.text is not None:
-                frappedoc['firstname'] = familyname_.text.strip()
+                frappedoc['familyname'] = familyname_.text.strip()
         # ['MiddleName'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NameSuffix'] = ('cbc', '', 'Seçimli (0...1)')
         # ['NationalityID'] = ('cbc', '', 'Seçimli (0...1)')
