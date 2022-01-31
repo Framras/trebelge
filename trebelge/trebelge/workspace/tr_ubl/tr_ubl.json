@@ -1,79 +1,165 @@
 {
-  "category": "Modules",
-  "charts": [],
-  "creation": "2021-12-29 13:42:54.487479",
-  "developer_mode_only": 0,
-  "disable_user_customization": 0,
-  "docstatus": 0,
-  "doctype": "Workspace",
-  "extends_another_page": 0,
-  "hide_custom": 0,
-  "idx": 0,
-  "is_default": 0,
-  "is_standard": 1,
-  "label": "TR UBL",
-  "links": [
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Firma Ayarlar\u0131",
-      "link_to": "TR GIB eBelge Company Settings",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Dosyalar\u0131 \u0130\u015fle",
-      "link_to": "UBL TR Process Files",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "E-Faturalar\u0131m",
-      "link_to": "UBL TR Invoice",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "E-\u0130rsaliyelerim",
-      "link_to": "UBL TR Despatch Advice",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Uygulama Yan\u0131tlar\u0131m",
-      "link_to": "UBL TR Application Response",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "\u0130rsaliye Yan\u0131tlar\u0131m",
-      "link_to": "UBL TR Receipt Advice",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    }
-  ],
-  "modified": "2022-01-22 23:18:18.956448",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "TR UBL",
-  "owner": "Administrator",
-  "pin_to_bottom": 0,
-  "pin_to_top": 0,
-  "shortcuts": []
+ "cards_label": "E-belge Veri ve \u0130\u015flemleri",
+ "category": "Modules",
+ "charts": [],
+ "creation": "2021-12-29 13:42:54.487479",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends_another_page": 0,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "TR UBL",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Ana Veri ve \u0130\u015flemler",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Firma Ayarlar\u0131",
+   "link_to": "TR GIB eBelge Company Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "only_for": "Turkey",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Dosyalar\u0131 \u0130\u015fle",
+   "link_to": "UBL TR Process Files",
+   "link_type": "DocType",
+   "onboard": 0,
+   "only_for": "Turkey",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "E-Faturalar\u0131m",
+   "link_to": "UBL TR Invoice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "only_for": "Turkey",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "E-\u0130rsaliyelerim",
+   "link_to": "UBL TR Despatch Advice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "only_for": "Turkey",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Uygulama Yan\u0131tlar\u0131m",
+   "link_to": "UBL TR Application Response",
+   "link_type": "DocType",
+   "onboard": 0,
+   "only_for": "Turkey",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u0130rsaliye Yan\u0131tlar\u0131m",
+   "link_to": "UBL TR Receipt Advice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "only_for": "Turkey",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Temel Parametreler",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Namespace Ayarlar\u0131",
+   "link_to": "UBL TR Namespace Specifications",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vergi Tipi Kodu",
+   "link_to": "UBL TR TaxTypeCode",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vergi Bilgileri",
+   "link_to": "UBL TR TaxScheme",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Hesap Bilgisi",
+   "link_to": "UBL TR FinancialAccount",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u00dclke Kodlar\u0131",
+   "link_to": "UBL TR Country",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u0130leti\u015fim Kanal\u0131 Kodlar\u0131",
+   "link_to": "UBL TR Communication Channel Code",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Para Birimi Kodlar\u0131",
+   "link_to": "UBL TR CurrencyCode",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2022-01-31 11:49:34.604947",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "TR UBL",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 0,
+ "shortcuts": []
 }
