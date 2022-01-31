@@ -50,7 +50,8 @@ class TRUBLAddress(TRUBLCommonElement):
         for buildingnumber in buildingnumbers_:
             if buildingnumber is not None:
                 if buildingnumber.text is not None:
-                    buildingnumbers.append(buildingnumber.text.strip())
+                    if buildingnumber.text.strip() != '':
+                        buildingnumbers.append(buildingnumber.text.strip())
         if len(buildingnumbers) == 0:
             return self._get_frappedoc(self._frappeDoctype, frappedoc)
         if len(frappe.get_all(self._frappeDoctype, filters=frappedoc)) != 0:
