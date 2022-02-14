@@ -75,6 +75,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                 invoice_.accountingcost = accountingcost_.text
             invoice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
             invoice_.insert()
+        else:
+            return None
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
 
