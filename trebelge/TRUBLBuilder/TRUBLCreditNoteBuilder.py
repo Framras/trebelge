@@ -13,13 +13,13 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLReceiptLine import TRUBLReceiptLi
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 
 
-class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
+class TRUBLCreditNoteBuilder(TRUBLBuilder):
     """
     The Concrete Builder classes follow the Builder interface and provide
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
-    _frappeDoctype: str = 'UBL TR Receipt Advice'
+    _frappeDoctype: str = 'UBL TR Credit Note'
 
     def __init__(self, filepath: str) -> None:
         """
@@ -39,18 +39,20 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
         root_: Element = ET.parse(self.filepath).getroot()
         uuid_ = root_.find('./' + self._cbc_ns + 'UUID').text
         if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
-            receiptadvice_ = frappe.new_doc(self._frappeDoctype)
-            receiptadvice_.uuid = uuid_
-            receiptadvice_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
-            receiptadvice_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
-            receiptadvice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
-            receiptadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
-            receiptadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            receiptadvice_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
+            creditnote_ = frappe.new_doc(self._frappeDoctype)
+            creditnote_.uuid = uuid_
+            creditnote_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
+            creditnote_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
+            creditnote_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
+            creditnote_.profileexecutionid = root_.find('./' + self._cbc_ns + 'ProfileExecutionID').text
+            creditnote_.id = root_.find('./' + self._cbc_ns + 'ID').text
+            creditnote_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
+            creditnote_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
                                                           "%Y-%m-%d")
-            receiptadvice_.receiptadvicetypecode = root_.find('./' + self._cbc_ns + 'ReceiptAdviceTypeCode').text
-            receiptadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
-            receiptadvice_.insert()
+
+            creditnote_.creditnotetypecode = root_.find('./' + self._cbc_ns + 'CreditNoteTypeCode').text
+            creditnote_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
+            creditnote_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
 

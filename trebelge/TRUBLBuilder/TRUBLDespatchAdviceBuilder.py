@@ -1,4 +1,4 @@
-import time
+from datetime import datetime
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
@@ -46,7 +46,8 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
             despatchadvice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
             despatchadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
             despatchadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            despatchadvice_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
+            despatchadvice_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
+                                                          "%Y-%m-%d")
             despatchadvice_.despatchadvicetypecode = root_.find('./' + self._cbc_ns + 'DespatchAdviceTypeCode').text
             despatchadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
             despatchadvice_.insert()
@@ -58,8 +59,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
             try:
-                time.strptime(issuetime_.text, '%H:%M:%S')
-                self._product.issuetime = issuetime_.text
+                self._product.issuetime = datetime.strptime(issuetime_.text, "%H:%M:%S")
             except ValueError:
                 pass
         else:

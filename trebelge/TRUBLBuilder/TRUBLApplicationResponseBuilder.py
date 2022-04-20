@@ -1,4 +1,4 @@
-import time
+from datetime import datetime
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
@@ -41,7 +41,8 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
             applicationresponse_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
             applicationresponse_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
             applicationresponse_.id = root_.find('./' + self._cbc_ns + 'ID').text
-            applicationresponse_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
+            applicationresponse_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
+                                                               "%Y-%m-%d")
             applicationresponse_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
@@ -51,8 +52,7 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
             try:
-                time.strptime(issuetime_.text, '%H:%M:%S')
-                self._product.issuetime = issuetime_.text
+                self._product.issuetime = datetime.strptime(issuetime_.text, "%H:%M:%S")
             except ValueError:
                 pass
         else:
