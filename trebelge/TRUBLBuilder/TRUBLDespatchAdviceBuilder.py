@@ -47,7 +47,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
             despatchadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
             despatchadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
             despatchadvice_.issuedate = time.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                      "%Y-%m-%d")
+                                                      '%Y-%m-%d')
             despatchadvice_.despatchadvicetypecode = root_.find('./' + self._cbc_ns + 'DespatchAdviceTypeCode').text
             despatchadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
             despatchadvice_.insert()
@@ -59,7 +59,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
             try:
-                self._product.issuetime = time.strptime(issuetime_.text, "%H:%M:%S")
+                self._product.issuetime = time.strptime(issuetime_.text, '%H:%M:%S')
             except ValueError:
                 pass
         else:

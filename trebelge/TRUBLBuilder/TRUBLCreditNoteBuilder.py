@@ -58,10 +58,10 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             creditnote_.id = root_.find('./' + self._cbc_ns + 'ID').text
             creditnote_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
             creditnote_.issuedate = time.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                  "%Y-%m-%d")
+                                                  '%Y-%m-%d')
             taxpointdate_ = root_.find('./' + self._cbc_ns + 'TaxPointDate')
             if taxpointdate_ is not None:
-                creditnote_.taxpointdate = time.strptime(taxpointdate_.text, "%Y-%m-%d")
+                creditnote_.taxpointdate = time.strptime(taxpointdate_.text, '%Y-%m-%d')
             creditnote_.creditnotetypecode = root_.find('./' + self._cbc_ns + 'CreditNoteTypeCode').text
             documentcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode')
             if documentcurrencycode_ is not None:
@@ -98,7 +98,7 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
             try:
-                self._product.issuetime = time.strptime(issuetime_.text, "%H:%M:%S")
+                self._product.issuetime = time.strptime(issuetime_.text, '%H:%M:%S')
             except ValueError:
                 pass
         else:

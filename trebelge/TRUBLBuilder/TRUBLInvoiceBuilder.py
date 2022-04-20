@@ -55,7 +55,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             invoice_.id = root_.find('./' + self._cbc_ns + 'ID').text
             invoice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
             invoice_.issuedate = time.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                               "%Y-%m-%d")
+                                               '%Y-%m-%d')
             invoice_.invoicetypecode = root_.find('./' + self._cbc_ns + 'InvoiceTypeCode').text
             invoice_.documentcurrencycode = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode').text
             taxcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'TaxCurrencyCode')

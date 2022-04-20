@@ -43,7 +43,7 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
             applicationresponse_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
             applicationresponse_.id = root_.find('./' + self._cbc_ns + 'ID').text
             applicationresponse_.issuedate = time.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                           "%Y-%m-%d")
+                                                           '%Y-%m-%d')
             applicationresponse_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
@@ -53,7 +53,7 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
             try:
-                self._product.issuetime = time.strptime(issuetime_.text, "%H:%M:%S")
+                self._product.issuetime = time.strptime(issuetime_.text, '%H:%M:%S')
             except ValueError:
                 pass
         else:
