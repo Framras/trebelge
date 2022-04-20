@@ -308,7 +308,15 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 self._product.paymentterms = tmp.name
 
     def build_allowancecharge(self) -> None:
-        pass
+        # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
+        allowancecharges_: list = self.root.findall('./' + self._cac_ns + 'AllowanceCharge')
+        if len(allowancecharges_) != 0:
+            doc_append = self._product.append("allowancecharge", {})
+            for allowancecharge_ in allowancecharges_:
+                tmp = TRUBLAllowanceCharge().process_element(allowancecharge_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    doc_append.allowancecharge = tmp.name
+                    self._product.save()
 
     def build_taxexchangerate(self) -> None:
         # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
