@@ -19,6 +19,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
+
     _frappeDoctype: str = 'UBL TR Despatch Advice'
 
     def __init__(self, filepath: str) -> None:
@@ -288,6 +289,21 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
 
     def build_documentresponse(self) -> None:
         # ['DocumentResponse'] = ('cac', DocumentResponse(), 'Zorunlu (1)', 'documentresponse')
+        pass
+
+    def build_discrepancyresponse(self) -> None:
+        pass
+
+    def build_statementdocumentreference(self) -> None:
+        pass
+
+    def build_deliveryterms(self) -> None:
+        pass
+
+    def build_creditnoteline(self) -> None:
+        pass
+
+    def build_payeeparty(self) -> None:
         pass
 
     def get_document(self) -> None:

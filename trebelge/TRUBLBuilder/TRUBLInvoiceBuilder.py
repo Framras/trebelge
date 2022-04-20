@@ -27,6 +27,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
+
     _frappeDoctype: str = 'UBL TR Invoice'
 
     def __init__(self, filepath: str) -> None:
@@ -378,7 +379,6 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                                                                 self._cac_ns).name
 
     def build_invoiceline(self) -> None:
-        invoicelines = list()
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
         invoicelines_: list = self.root.findall('./' + self._cac_ns + 'InvoiceLine')
         doc_append = self._product.append("invoiceline", {})
@@ -405,6 +405,15 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
 
     def build_documentresponse(self) -> None:
         # ['DocumentResponse'] = ('cac', DocumentResponse(), 'Zorunlu (1)', 'documentresponse')
+        pass
+
+    def build_payeeparty(self) -> None:
+        pass
+
+    def build_creditnoteline(self) -> None:
+        pass
+
+    def build_deliveryterms(self) -> None:
         pass
 
     def get_document(self) -> None:

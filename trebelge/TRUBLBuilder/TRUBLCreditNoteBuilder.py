@@ -6,7 +6,6 @@ import frappe
 from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
-from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDeliveryTerms import TRUBLDeliveryTerms
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
@@ -403,8 +402,8 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         pass
 
     def build_discrepancyresponse(self) -> None:
+        # <xsd:element ref="cac:DiscrepancyResponse" minOccurs="0" maxOccurs="unbounded"/>
         pass
-
 
     def get_document(self) -> None:
         product = self._product.save()

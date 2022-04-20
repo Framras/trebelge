@@ -19,6 +19,7 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
+
     _frappeDoctype: str = 'UBL TR Receipt Advice'
 
     def __init__(self, filepath: str) -> None:
@@ -47,7 +48,7 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
             receiptadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
             receiptadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
             receiptadvice_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                          "%Y-%m-%d")
+                                                         "%Y-%m-%d")
             receiptadvice_.receiptadvicetypecode = root_.find('./' + self._cbc_ns + 'ReceiptAdviceTypeCode').text
             receiptadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
             receiptadvice_.insert()
@@ -254,6 +255,21 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
         pass
 
     def build_documentresponse(self) -> None:
+        pass
+
+    def build_discrepancyresponse(self) -> None:
+        pass
+
+    def build_statementdocumentreference(self) -> None:
+        pass
+
+    def build_deliveryterms(self) -> None:
+        pass
+
+    def build_creditnoteline(self) -> None:
+        pass
+
+    def build_payeeparty(self) -> None:
         pass
 
     def get_document(self) -> None:
