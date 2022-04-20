@@ -98,8 +98,9 @@ class TRUBLDirector:
     def make_tr_ubl_creditnote(self) -> None:
         self.builder.reset()
         self.builder.build_issuetime()
-        self.builder.build_orderreference()
-        self.builder.build_despatchdocumentreference()
+        self.builder.build_note()
+        self.builder.build_invoiceperiod()
+
         self.builder.build_additionaldocumentreference()
         self.builder.build_deliverycustomerparty()
         self.builder.build_despatchsupplierparty()

@@ -25,6 +25,10 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def build_discrepancyresponse(self) -> None:
+        pass
+
+    @abstractmethod
     def build_orderreference(self) -> None:
         pass
 
@@ -50,6 +54,10 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_additionaldocumentreference(self) -> None:
+        pass
+
+    @abstractmethod
+    def build_statementdocumentreference(self) -> None:
         pass
 
     @abstractmethod
@@ -94,6 +102,10 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_paymentmeans(self) -> None:
+        pass
+
+    @abstractmethod
+    def build_deliveryterms(self) -> None:
         pass
 
     @abstractmethod
@@ -154,6 +166,10 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_receiverparty(self) -> None:
+        pass
+
+    @abstractmethod
+    def build_payeeparty(self) -> None:
         pass
 
     @abstractmethod

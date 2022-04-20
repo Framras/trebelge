@@ -4,15 +4,21 @@ from xml.etree.ElementTree import Element
 
 import frappe
 from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
+from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
 from trebelge.TRUBLCommonElementsStrategy.TRUBLBillingReference import TRUBLBillingReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLContact import TRUBLContact
+from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
+from trebelge.TRUBLCommonElementsStrategy.TRUBLDeliveryTerms import TRUBLDeliveryTerms
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
+from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
+from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
+from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentMeans import TRUBLPaymentMeans
+from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentTerms import TRUBLPaymentTerms
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
-from trebelge.TRUBLCommonElementsStrategy.TRUBLReceiptLine import TRUBLReceiptLine
-from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
+from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
 
 
 class TRUBLCreditNoteBuilder(TRUBLBuilder):
@@ -21,6 +27,7 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
+
     _frappeDoctype: str = 'UBL TR Credit Note'
 
     def __init__(self, filepath: str) -> None:
@@ -78,6 +85,9 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             if accountingcost_ is not None:
                 creditnote_.accountingcost = accountingcost_.text
             creditnote_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
+            buyerreference_: Element = root_.find('./' + self._cbc_ns + 'BuyerReference')
+            if buyerreference_ is not None:
+                creditnote_.buyerreference = buyerreference_.text
             creditnote_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
@@ -188,6 +198,18 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                     doc_append.documentreference = tmp.name
                     self._product.save()
 
+    def build_statementdocumentreference(self) -> None:
+        # ['StatementDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
+        # 'statementdocumentreference')
+        documentreferences_: list = self.root.findall('./' + self._cac_ns + 'StatementDocumentReference')
+        if len(documentreferences_) != 0:
+            doc_append = self._product.append("statementdocumentreference", {})
+            for documentreference_ in documentreferences_:
+                tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    doc_append.documentreference = tmp.name
+                    self._product.save()
+
     def build_accountingsupplierparty(self) -> None:
         # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'accountingsupplierparty')
         accountingsupplierparty_: Element = self.root.find('./' + self._cac_ns + 'AccountingSupplierParty')
@@ -195,26 +217,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         party_: Element = accountingsupplierparty_.find('./' + self._cac_ns + 'Party')
         party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
         self._product.accountingsupplierparty = party.name
-        # ['DespatchContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'despatchcontact')
-        despatchcontact_: Element = accountingsupplierparty_.find('./' + self._cac_ns + 'DespatchContact')
-        if despatchcontact_ is not None:
-            contact = TRUBLContact().process_element(despatchcontact_, self._cbc_ns, self._cac_ns)
-            if contact is not None:
-                self._product.accountingsuppliercontact = contact.name
-
-    def build_despatchsupplierparty(self) -> None:
-        # ['DespatchSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'despatchsupplierparty')
-        despatchsupplierparty_: Element = self.root.find('./' + self._cac_ns + 'DespatchSupplierParty')
-        # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
-        party_: Element = despatchsupplierparty_.find('./' + self._cac_ns + 'Party')
-        party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
-        self._product.despatchsupplierparty = party.name
-        # ['DespatchContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'despatchcontact')
-        despatchcontact_: Element = despatchsupplierparty_.find('./' + self._cac_ns + 'DespatchContact')
-        if despatchcontact_ is not None:
-            contact = TRUBLContact().process_element(despatchcontact_, self._cbc_ns, self._cac_ns)
-            if contact is not None:
-                self._product.despatchsuppliercontact = contact.name
 
     def build_accountingcustomerparty(self) -> None:
         # ['AccountingCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'accountingcustomerparty')
@@ -223,26 +225,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         party_: Element = accountingcustomerparty_.find('./' + self._cac_ns + 'Party')
         party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
         self._product.accountingcustomerparty = party.name
-        # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
-        deliverycontact_: Element = accountingcustomerparty_.find('./' + self._cac_ns + 'DeliveryContact')
-        if deliverycontact_ is not None:
-            contact = TRUBLContact().process_element(deliverycontact_, self._cbc_ns, self._cac_ns)
-            if contact is not None:
-                self._product.accountingcustomercontact = contact.name
-
-    def build_deliverycustomerparty(self) -> None:
-        # ['DeliveryCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'deliverycustomerparty')
-        deliverycustomerparty_: Element = self.root.find('./' + self._cac_ns + 'DeliveryCustomerParty')
-        # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
-        party_: Element = deliverycustomerparty_.find('./' + self._cac_ns + 'Party')
-        party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
-        self._product.deliverycustomerparty = party.name
-        # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
-        deliverycontact_: Element = deliverycustomerparty_.find('./' + self._cac_ns + 'DeliveryContact')
-        if deliverycontact_ is not None:
-            contact = TRUBLContact().process_element(deliverycontact_, self._cbc_ns, self._cac_ns)
-            if contact is not None:
-                self._product.deliverycustomercontact = contact.name
 
     def build_buyercustomerparty(self) -> None:
         # ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'buyercustomerparty')
@@ -252,12 +234,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             party_: Element = buyercustomerparty_.find('./' + self._cac_ns + 'Party')
             party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
             self._product.buyercustomerparty = party.name
-            # ['DeliveryContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'deliverycontact')
-            deliverycontact_: Element = buyercustomerparty_.find('./' + self._cac_ns + 'DeliveryContact')
-            if deliverycontact_ is not None:
-                contact = TRUBLContact().process_element(deliverycontact_, self._cbc_ns, self._cac_ns)
-                if contact is not None:
-                    self._product.buyercustomercontact = contact.name
 
     def build_sellersupplierparty(self) -> None:
         # ['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)', 'sellersupplierparty')
@@ -267,15 +243,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             party_: Element = sellersupplierparty_.find('./' + self._cac_ns + 'Party')
             party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
             self._product.sellersupplierparty = party.name
-            # ['DespatchContact'] = ('cac', 'Contact()', 'Seçimli(0..1)', 'despatchcontact')
-            despatchcontact_: Element = sellersupplierparty_.find('./' + self._cac_ns + 'DespatchContact')
-            if despatchcontact_ is not None:
-                contact = TRUBLContact().process_element(despatchcontact_, self._cbc_ns, self._cac_ns)
-                if contact is not None:
-                    self._product.sellersuppliercontact = contact.name
-
-    def build_originatorcustomerparty(self) -> None:
-        pass
 
     def build_taxrepresentativeparty(self) -> None:
         # ['TaxRepresentativeParty'] = ('cac', Party(), 'Seçimli (0..1)', 'taxrepresentativeparty')
@@ -296,13 +263,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                     doc_append.delivery = tmp.name
                     self._product.save()
 
-    def build_shipment(self) -> None:
-        # ['Shipment'] = ('cac', Shipment(), 'Zorunlu (1)', 'shipment')
-        shipment_: Element = self.root.find('./' + self._cac_ns + 'Shipment')
-        shipment = TRUBLShipment().process_element(shipment_, self._cbc_ns, self._cac_ns)
-        if shipment is not None:
-            self._product.shipment = shipment.name
-
     def build_paymentmeans(self) -> None:
         # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
         paymentmeans_: list = self.root.findall('./' + self._cac_ns + 'PaymentMeans')
@@ -315,12 +275,26 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                     self._product.save()
 
     def build_paymentterms(self) -> None:
-        # ['PaymentTerms'] = ('cac', PaymentTerms(), 'Seçimli (0..1)')
-        paymentterms_: Element = self.root.find('./' + self._cac_ns + 'PaymentTerms')
-        if paymentterms_ is not None:
-            tmp = TRUBLPaymentTerms().process_element(paymentterms_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.paymentterms = tmp.name
+        # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
+        paymentterms_: list = self.root.findall('./' + self._cac_ns + 'PaymentTerms')
+        if len(paymentterms_) != 0:
+            doc_append = self._product.append("paymentterms", {})
+            for payment_terms_ in paymentterms_:
+                tmp = TRUBLPaymentTerms().process_element(payment_terms_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    doc_append.paymentterms = tmp.name
+                    self._product.save()
+
+    def build_deliveryterms(self) -> None:
+        # ['DeliveryTerms'] = ('cac', DeliveryTerms(), 'Seçimli (0...n)', 'deliveryterms')
+        deliveryterms_: list = self.root.findall('./' + self._cac_ns + 'DeliveryTerms')
+        if len(deliveryterms_) != 0:
+            doc_append = self._product.append("deliveryterms", {})
+            for deliveryterm_ in deliveryterms_:
+                tmp = TRUBLDeliveryTerms().process_element(deliveryterm_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    doc_append.deliveryterms = tmp.name
+                    self._product.save()
 
     def build_allowancecharge(self) -> None:
         # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
@@ -368,14 +342,15 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 self._product.paymentalternativeexchangerate = tmp.name
 
     def build_taxtotal(self) -> None:
-        # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', 'taxtotal')
+        # ['TaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', 'taxtotal')
         taxtotals_: list = self.root.findall('./' + self._cac_ns + 'TaxTotal')
-        doc_append = self._product.append("taxtotal", {})
-        for taxtotal_ in taxtotals_:
-            tmp = TRUBLTaxTotal().process_element(taxtotal_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                doc_append.taxtotal = tmp.name
-                self._product.save()
+        if len(taxtotals_) != 0:
+            doc_append = self._product.append("taxtotal", {})
+            for taxtotal_ in taxtotals_:
+                tmp = TRUBLTaxTotal().process_element(taxtotal_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    doc_append.taxtotal = tmp.name
+                    self._product.save()
 
     def build_withholdingtaxtotal(self) -> None:
         pass
@@ -397,6 +372,8 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         pass
 
     def build_creditnoteline(self) -> None:
+        # TODO : Implement this
+        # <xsd:element ref="cac:CreditNoteLine" minOccurs="1" maxOccurs="unbounded"/>
         pass
 
     def build_senderparty(self) -> None:
@@ -405,8 +382,29 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
     def build_receiverparty(self) -> None:
         pass
 
+    def build_payeeparty(self) -> None:
+        # TODO : Implement this
+        # <xsd:element ref="cac:PayeeParty" minOccurs="0" maxOccurs="1"/>
+        pass
+
     def build_documentresponse(self) -> None:
         pass
+
+    def build_shipment(self) -> None:
+        pass
+
+    def build_originatorcustomerparty(self) -> None:
+        pass
+
+    def build_deliverycustomerparty(self) -> None:
+        pass
+
+    def build_despatchsupplierparty(self) -> None:
+        pass
+
+    def build_discrepancyresponse(self) -> None:
+        pass
+
 
     def get_document(self) -> None:
         product = self._product.save()

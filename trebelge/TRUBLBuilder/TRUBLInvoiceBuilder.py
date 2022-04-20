@@ -55,7 +55,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             invoice_.id = root_.find('./' + self._cbc_ns + 'ID').text
             invoice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
             invoice_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                          "%Y-%m-%d")
+                                                   "%Y-%m-%d")
             invoice_.invoicetypecode = root_.find('./' + self._cbc_ns + 'InvoiceTypeCode').text
             invoice_.documentcurrencycode = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode').text
             taxcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'TaxCurrencyCode')
@@ -108,6 +108,10 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLPeriod().process_element(invoiceperiod_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.invoiceperiod = tmp.name
+
+    def build_discrepancyresponse(self) -> None:
+        # TODO : Implement this: maybe a Response of (0..n) cardinality
+        pass
 
     def build_orderreference(self) -> None:
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...1)', 'orderreference')
@@ -184,6 +188,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
                     self._product.save()
+
+    def build_statementdocumentreference(self) -> None:
+        pass
 
     def build_accountingsupplierparty(self) -> None:
         # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'accountingsupplierparty')
