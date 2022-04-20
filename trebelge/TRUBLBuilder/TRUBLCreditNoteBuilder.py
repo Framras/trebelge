@@ -1,5 +1,5 @@
-import time
 import xml.etree.ElementTree as ET
+from datetime import datetime
 from xml.etree.ElementTree import Element
 
 import frappe
@@ -57,8 +57,8 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 creditnote_.profileexecutionid = profileexecutionid_.text
             creditnote_.id = root_.find('./' + self._cbc_ns + 'ID').text
             creditnote_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            creditnote_.issuedate = time.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                  '%Y-%m-%d')
+            creditnote_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
+                                                      '%Y-%m-%d').date()
             taxpointdate_ = root_.find('./' + self._cbc_ns + 'TaxPointDate')
             if taxpointdate_ is not None:
                 creditnote_.taxpointdate = time.strptime(taxpointdate_.text, '%Y-%m-%d')
@@ -98,7 +98,7 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
             try:
-                self._product.issuetime = time.strptime(issuetime_.text, '%H:%M:%S')
+                self._product.issuetime = datetime.strptime(issuetime_.text, '%H:%M:%S')
             except ValueError:
                 pass
         else:
