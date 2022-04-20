@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 
 import frappe
+from trebelge.TRUBLBuilder.TRUBLCreditNoteBuilder import TRUBLCreditNoteBuilder
 from trebelge.TRUBLBuilder.TRUBLDirector import TRUBLDirector
-from trebelge.TRUBLBuilder.TRUBLReceiptAdviceBuilder import TRUBLReceiptAdviceBuilder
 from trebelge.XMLFileCoR.AbstractXMLFileHandler import AbstractXMLFileHandler
 
 
@@ -20,10 +20,9 @@ class CreditNoteHandler(AbstractXMLFileHandler):
                                         filters={"disabled": 0, "ebelge_type": self._eBelgeTag},
                                         fields={"namespace_specification"}):
             if ET.parse(file_path).getroot().tag == namespace.get('namespace_specification') + self._eBelgeTag:
-                # TODO: Construct the relevant Builder
-                builder = TRUBLReceiptAdviceBuilder(file_path)
+                builder = TRUBLCreditNoteBuilder(file_path)
                 director = TRUBLDirector(builder)
-                director.make_tr_ubl_receiptadvice()
+                director.make_tr_ubl_creditnote()
                 builder.get_document()
             else:
                 # TODO: Raise 'File is of unknown type' warning and leave it be

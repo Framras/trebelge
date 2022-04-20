@@ -145,6 +145,10 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def build_creditnote(self) -> None:
+        pass
+
+    @abstractmethod
     def build_senderparty(self) -> None:
         pass
 

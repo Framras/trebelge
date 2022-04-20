@@ -94,3 +94,16 @@ class TRUBLDirector:
         self.builder.build_sellersupplierparty()
         self.builder.build_shipment()
         self.builder.build_receiptline()
+
+    def make_tr_ubl_creditnote(self) -> None:
+        self.builder.reset()
+        self.builder.build_issuetime()
+        self.builder.build_orderreference()
+        self.builder.build_despatchdocumentreference()
+        self.builder.build_additionaldocumentreference()
+        self.builder.build_deliverycustomerparty()
+        self.builder.build_despatchsupplierparty()
+        self.builder.build_buyercustomerparty()
+        self.builder.build_sellersupplierparty()
+        self.builder.build_shipment()
+        self.builder.build_receiptline()
