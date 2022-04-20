@@ -148,7 +148,16 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                     self._product.save()
 
     def build_originatordocumentreference(self) -> None:
-        pass
+        # ['OriginatorDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
+        # 'originatordocumentreference')
+        documentreferences_: list = self.root.findall('./' + self._cac_ns + 'OriginatorDocumentReference')
+        if len(documentreferences_) != 0:
+            doc_append = self._product.append("originatordocumentreference", {})
+            for documentreference_ in documentreferences_:
+                tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    doc_append.documentreference = tmp.name
+                    self._product.save()
 
     def build_contractdocumentreference(self) -> None:
         # ['ContractDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'contractdocumentreference')
