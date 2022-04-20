@@ -46,8 +46,7 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
             despatchadvice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
             despatchadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
             despatchadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            despatchadvice_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                          '%Y-%m-%d').date()
+            despatchadvice_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
             despatchadvice_.despatchadvicetypecode = root_.find('./' + self._cbc_ns + 'DespatchAdviceTypeCode').text
             despatchadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
             despatchadvice_.insert()

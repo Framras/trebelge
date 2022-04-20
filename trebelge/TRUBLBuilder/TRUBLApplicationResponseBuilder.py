@@ -42,8 +42,7 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
             applicationresponse_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
             applicationresponse_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
             applicationresponse_.id = root_.find('./' + self._cbc_ns + 'ID').text
-            applicationresponse_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                               '%Y-%m-%d').date()
+            applicationresponse_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
             applicationresponse_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
