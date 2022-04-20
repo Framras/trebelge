@@ -54,7 +54,7 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             creditnote_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
             profileexecutionid_: Element = root_.find('./' + self._cbc_ns + 'ProfileExecutionID')
             if profileexecutionid_ is not None:
-                creditnote_.taxcurrencycode = profileexecutionid_.text
+                creditnote_.profileexecutionid = profileexecutionid_.text
             creditnote_.id = root_.find('./' + self._cbc_ns + 'ID').text
             creditnote_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
             creditnote_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
@@ -63,7 +63,9 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             if taxpointdate_ is not None:
                 creditnote_.taxpointdate = datetime.strptime(taxpointdate_.text, "%Y-%m-%d")
             creditnote_.creditnotetypecode = root_.find('./' + self._cbc_ns + 'CreditNoteTypeCode').text
-            creditnote_.documentcurrencycode = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode').text
+            documentcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode')
+            if documentcurrencycode_ is not None:
+                creditnote_.documentcurrencycode = documentcurrencycode_.text
             taxcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'TaxCurrencyCode')
             if taxcurrencycode_ is not None:
                 creditnote_.taxcurrencycode = taxcurrencycode_.text
@@ -120,6 +122,11 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             tmp = TRUBLPeriod().process_element(invoiceperiod_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.invoiceperiod = tmp.name
+
+    def build_discrepancyresponse(self) -> None:
+        # TODO : Implement this
+        # <xsd:element ref="cac:DiscrepancyResponse" minOccurs="0" maxOccurs="unbounded"/>
+        pass
 
     def build_orderreference(self) -> None:
         # ['OrderReference'] = ('cac', OrderReference(), 'Seçimli (0...1)', 'orderreference')
@@ -225,6 +232,15 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
         self._product.accountingcustomerparty = party.name
 
+    def build_payeeparty(self) -> None:
+        # <xsd:element ref="cac:PayeeParty" minOccurs="0" maxOccurs="1"/>
+        payeeparty_: Element = self.root.find('./' + self._cac_ns + 'PayeeParty')
+        if payeeparty_ is not None:
+            # ['Party'] = ('cac', 'Party()', 'Zorunlu(1)', 'party')
+            party_: Element = payeeparty_.find('./' + self._cac_ns + 'Party')
+            party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
+            self._product.payeeparty = party.name
+
     def build_buyercustomerparty(self) -> None:
         # ['BuyerCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'buyercustomerparty')
         buyercustomerparty_: Element = self.root.find('./' + self._cac_ns + 'BuyerCustomerParty')
@@ -262,6 +278,17 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                     doc_append.delivery = tmp.name
                     self._product.save()
 
+    def build_deliveryterms(self) -> None:
+        # ['DeliveryTerms'] = ('cac', DeliveryTerms(), 'Seçimli (0...n)', 'deliveryterms')
+        deliveryterms_: list = self.root.findall('./' + self._cac_ns + 'DeliveryTerms')
+        if len(deliveryterms_) != 0:
+            doc_append = self._product.append("deliveryterms", {})
+            for deliveryterm_ in deliveryterms_:
+                tmp = TRUBLDeliveryTerms().process_element(deliveryterm_, self._cbc_ns, self._cac_ns)
+                if tmp is not None:
+                    doc_append.deliveryterms = tmp.name
+                    self._product.save()
+
     def build_paymentmeans(self) -> None:
         # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
         paymentmeans_: list = self.root.findall('./' + self._cac_ns + 'PaymentMeans')
@@ -282,17 +309,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLPaymentTerms().process_element(payment_terms_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.paymentterms = tmp.name
-                    self._product.save()
-
-    def build_deliveryterms(self) -> None:
-        # ['DeliveryTerms'] = ('cac', DeliveryTerms(), 'Seçimli (0...n)', 'deliveryterms')
-        deliveryterms_: list = self.root.findall('./' + self._cac_ns + 'DeliveryTerms')
-        if len(deliveryterms_) != 0:
-            doc_append = self._product.append("deliveryterms", {})
-            for deliveryterm_ in deliveryterms_:
-                tmp = TRUBLDeliveryTerms().process_element(deliveryterm_, self._cbc_ns, self._cac_ns)
-                if tmp is not None:
-                    doc_append.deliveryterms = tmp.name
                     self._product.save()
 
     def build_allowancecharge(self) -> None:
@@ -381,11 +397,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
     def build_receiverparty(self) -> None:
         pass
 
-    def build_payeeparty(self) -> None:
-        # TODO : Implement this
-        # <xsd:element ref="cac:PayeeParty" minOccurs="0" maxOccurs="1"/>
-        pass
-
     def build_documentresponse(self) -> None:
         pass
 
@@ -399,10 +410,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         pass
 
     def build_despatchsupplierparty(self) -> None:
-        pass
-
-    def build_discrepancyresponse(self) -> None:
-        # <xsd:element ref="cac:DiscrepancyResponse" minOccurs="0" maxOccurs="unbounded"/>
         pass
 
     def get_document(self) -> None:

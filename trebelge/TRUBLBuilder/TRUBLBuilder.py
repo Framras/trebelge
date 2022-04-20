@@ -77,6 +77,10 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def build_payeeparty(self) -> None:
+        pass
+
+    @abstractmethod
     def build_buyercustomerparty(self) -> None:
         pass
 
@@ -97,15 +101,15 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def build_deliveryterms(self) -> None:
+        pass
+
+    @abstractmethod
     def build_shipment(self) -> None:
         pass
 
     @abstractmethod
     def build_paymentmeans(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_deliveryterms(self) -> None:
         pass
 
     @abstractmethod
@@ -166,10 +170,6 @@ class TRUBLBuilder(ABC):
 
     @abstractmethod
     def build_receiverparty(self) -> None:
-        pass
-
-    @abstractmethod
-    def build_payeeparty(self) -> None:
         pass
 
     @abstractmethod
