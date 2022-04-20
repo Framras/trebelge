@@ -15,6 +15,7 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
     specific implementations of the building steps. Your program may have
     several variations of Builders, implemented differently.
     """
+
     _frappeDoctype: str = 'UBL TR Application Response'
 
     def __init__(self, filepath: str) -> None:
@@ -184,6 +185,21 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
                                                       self._cac_ns)
         if tmp is not None:
             self._product.documentresponse = tmp.name
+
+    def build_discrepancyresponse(self) -> None:
+        pass
+
+    def build_statementdocumentreference(self) -> None:
+        pass
+
+    def build_payeeparty(self) -> None:
+        pass
+
+    def build_deliveryterms(self) -> None:
+        pass
+
+    def build_creditnoteline(self) -> None:
+        pass
 
     def get_document(self) -> None:
         product = self._product.save()
