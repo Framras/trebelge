@@ -373,7 +373,7 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
     def build_receiptline(self) -> None:
         pass
 
-    def build_creditnote(self) -> None:
+    def build_creditnoteline(self) -> None:
         pass
 
     def build_senderparty(self) -> None:

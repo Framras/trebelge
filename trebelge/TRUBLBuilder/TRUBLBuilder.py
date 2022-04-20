@@ -145,7 +145,7 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
-    def build_creditnote(self) -> None:
+    def build_creditnoteline(self) -> None:
         pass
 
     @abstractmethod
