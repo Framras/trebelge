@@ -57,7 +57,7 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 creditnote_.profileexecutionid = profileexecutionid_.text
             creditnote_.id = root_.find('./' + self._cbc_ns + 'ID').text
             creditnote_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            creditnote_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
+            creditnote_.issuedate = datetime.strftime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
                                                       "%Y-%m-%d")
             taxpointdate_ = root_.find('./' + self._cbc_ns + 'TaxPointDate')
             if taxpointdate_ is not None:
