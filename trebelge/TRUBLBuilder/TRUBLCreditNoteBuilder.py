@@ -46,13 +46,16 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             creditnote_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
             creditnote_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
             creditnote_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
-            creditnote_.profileexecutionid = root_.find('./' + self._cbc_ns + 'ProfileExecutionID').text
+            profileexecutionid_: Element = root_.find('./' + self._cbc_ns + 'ProfileExecutionID')
+            if profileexecutionid_ is not None:
+                creditnote_.taxcurrencycode = profileexecutionid_.text
             creditnote_.id = root_.find('./' + self._cbc_ns + 'ID').text
             creditnote_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
             creditnote_.issuedate = datetime.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
                                                       "%Y-%m-%d")
-            creditnote_.taxpointdate = datetime.strptime(root_.find('./' + self._cbc_ns + 'TaxPointDate').text,
-                                                         "%Y-%m-%d")
+            taxpointdate_ = root_.find('./' + self._cbc_ns + 'TaxPointDate')
+            if taxpointdate_ is not None:
+                creditnote_.taxpointdate = datetime.strptime(taxpointdate_.text, "%Y-%m-%d")
             creditnote_.creditnotetypecode = root_.find('./' + self._cbc_ns + 'CreditNoteTypeCode').text
             creditnote_.documentcurrencycode = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode').text
             taxcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'TaxCurrencyCode')
@@ -68,6 +71,9 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 './' + self._cbc_ns + 'PaymentAlternativeCurrencyCode')
             if paymentalternativecurrencycode_ is not None:
                 creditnote_.paymentalternativecurrencycode = paymentalternativecurrencycode_.text
+            accountingcostcode_: Element = root_.find('./' + self._cbc_ns + 'AccountingCostCode')
+            if accountingcostcode_ is not None:
+                creditnote_.accountingcostcode = accountingcostcode_.text
             accountingcost_: Element = root_.find('./' + self._cbc_ns + 'AccountingCost')
             if accountingcost_ is not None:
                 creditnote_.accountingcost = accountingcost_.text
