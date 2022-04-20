@@ -59,7 +59,7 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
         issuetime_: Element = self.root.find('./' + self._cbc_ns + 'IssueTime')
         if issuetime_ is not None:
             try:
-                self._product.issuetime = datetime.strptime(issuetime_.text, "%H:%M:%S")
+                self._product.issuetime = time.strptime(issuetime_.text, "%H:%M:%S")
             except ValueError:
                 pass
         else:
