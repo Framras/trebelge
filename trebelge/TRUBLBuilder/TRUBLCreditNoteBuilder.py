@@ -1,4 +1,4 @@
-from datetime import datetime
+import time
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
@@ -57,11 +57,11 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 creditnote_.profileexecutionid = profileexecutionid_.text
             creditnote_.id = root_.find('./' + self._cbc_ns + 'ID').text
             creditnote_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            creditnote_.issuedate = datetime.strftime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                      "%Y-%m-%d")
+            creditnote_.issuedate = time.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
+                                                  "%Y-%m-%d")
             taxpointdate_ = root_.find('./' + self._cbc_ns + 'TaxPointDate')
             if taxpointdate_ is not None:
-                creditnote_.taxpointdate = datetime.strptime(taxpointdate_.text, "%Y-%m-%d")
+                creditnote_.taxpointdate = time.strptime(taxpointdate_.text, "%Y-%m-%d")
             creditnote_.creditnotetypecode = root_.find('./' + self._cbc_ns + 'CreditNoteTypeCode').text
             documentcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode')
             if documentcurrencycode_ is not None:

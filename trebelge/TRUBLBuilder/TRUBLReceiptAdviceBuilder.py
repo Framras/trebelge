@@ -1,5 +1,5 @@
+import time
 import xml.etree.ElementTree as ET
-from datetime import datetime
 from xml.etree.ElementTree import Element
 
 import frappe
@@ -46,8 +46,8 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
             receiptadvice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
             receiptadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
             receiptadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            receiptadvice_.issuedate = datetime.strftime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                         "%Y-%m-%d")
+            receiptadvice_.issuedate = time.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
+                                                     "%Y-%m-%d")
             receiptadvice_.receiptadvicetypecode = root_.find('./' + self._cbc_ns + 'ReceiptAdviceTypeCode').text
             receiptadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
             receiptadvice_.insert()

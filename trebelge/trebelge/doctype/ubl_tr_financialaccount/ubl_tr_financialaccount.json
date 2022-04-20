@@ -1,72 +1,72 @@
 {
- "actions": [],
- "allow_rename": 1,
- "creation": "2021-12-02 11:16:02.363807",
- "description": "Hesap Bilgisi\nHesap bilgilerinin tutuldu\u011fu b\u00f6l\u00fcmd\u00fcr.",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "id",
-  "currencycode",
-  "paymentnote",
-  "financialinstitutionbranch"
- ],
- "fields": [
-  {
-   "description": "Hesap numaras\u0131 metin olarak girilir.",
-   "fieldname": "id",
-   "fieldtype": "Data",
-   "in_global_search": 1,
-   "in_list_view": 1,
-   "label": "Hesap numaras\u0131"
-  },
-  {
-   "description": "Hesab\u0131n para birimi kodu girilir.",
-   "fieldname": "currencycode",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Hesab\u0131n para birimi",
-   "options": "UBL TR CurrencyCode"
-  },
-  {
-   "description": "\u00d6deme ile ilgili a\u00e7\u0131klama serbest metin olarak girilir.",
-   "fieldname": "paymentnote",
-   "fieldtype": "Small Text",
-   "in_list_view": 1,
-   "label": "\u00d6deme ile ilgili a\u00e7\u0131klama"
-  },
-  {
-   "description": "Hesab\u0131n bulundu\u011fu banka ve \u015fube bilgileri girilebilir.",
-   "fieldname": "financialinstitutionbranch",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Banka ve \u015fube",
-   "options": "UBL TR Branch"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2022-01-31 11:16:16.397213",
- "modified_by": "Administrator",
- "module": "Trebelge",
- "name": "UBL TR FinancialAccount",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "track_changes": 1
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 11:16:02.363807",
+  "description": "Hesap Bilgisi\nHesap bilgilerinin tutuldu\u011fu b\u00f6l\u00fcmd\u00fcr.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "currencycode",
+    "paymentnote",
+    "financialinstitutionbranch"
+  ],
+  "fields": [
+    {
+      "description": "Hesap numaras\u0131 metin olarak girilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_global_search": 1,
+      "in_list_view": 1,
+      "label": "Hesap numaras\u0131"
+    },
+    {
+      "description": "Hesab\u0131n para birimi kodu girilir.",
+      "fieldname": "currencycode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Hesab\u0131n para birimi",
+      "options": "UBL TR CurrencyCode"
+    },
+    {
+      "description": "\u00d6deme ile ilgili a\u00e7\u0131klama serbest metin olarak girilir.",
+      "fieldname": "paymentnote",
+      "fieldtype": "Small Text",
+      "in_list_view": 1,
+      "label": "\u00d6deme ile ilgili a\u00e7\u0131klama"
+    },
+    {
+      "description": "Hesab\u0131n bulundu\u011fu banka ve \u015fube bilgileri girilebilir.",
+      "fieldname": "financialinstitutionbranch",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Banka ve \u015fube",
+      "options": "UBL TR Branch"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2022-01-31 11:16:16.397213",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR FinancialAccount",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
 }

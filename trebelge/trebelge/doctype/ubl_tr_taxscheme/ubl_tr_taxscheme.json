@@ -1,62 +1,62 @@
 {
- "actions": [],
- "allow_rename": 1,
- "creation": "2021-12-02 08:13:57.772572",
- "description": "Vergi Bilgileri\nBu eleman arac\u0131l\u0131\u011f\u0131yla vergi dairesi ile ilgili bilgiler verilebilece\u011fi gibi vergi ile ilgili bilgiler de verilebilir. Bu eleman\u0131n farkl\u0131 kullan\u0131mlar\u0131 i\u00e7in ilgili belge a\u00e7\u0131klamalar\u0131na bak\u0131n\u0131z.",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "id",
-  "taxschemename",
-  "taxtypecode"
- ],
- "fields": [
-  {
-   "description": "Vergilendirme \u015femas\u0131n\u0131n ID bilgisi girilir.",
-   "fieldname": "id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "ID"
-  },
-  {
-   "description": "Bu eleman \u201cParty\u201d eleman\u0131 i\u00e7erisinde kullan\u0131ld\u0131\u011f\u0131nda vergi dairesi ad\u0131n\u0131 i\u00e7ermektedir. Di\u011fer elemanlar i\u00e7erisinde kullan\u0131m\u0131nda Vergi Kod listesinde hen\u00fcz yer almayan bir verginin s\u00f6z konusu olmas\u0131 durumunda verginin ad\u0131 girilecektir. Kontrol\u00fc Schematron kurallar\u0131 ile yap\u0131lacakt\u0131r.",
-   "fieldname": "taxschemename",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "TaxSchemeName"
-  },
-  {
-   "description": "Vergi Tipi Kodu girilecektir.",
-   "fieldname": "taxtypecode",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "TaxTypeCode",
-   "options": "UBL TR TaxTypeCode"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2022-01-31 11:12:49.204281",
- "modified_by": "Administrator",
- "module": "Trebelge",
- "name": "UBL TR TaxScheme",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "track_changes": 1
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2021-12-02 08:13:57.772572",
+  "description": "Vergi Bilgileri\nBu eleman arac\u0131l\u0131\u011f\u0131yla vergi dairesi ile ilgili bilgiler verilebilece\u011fi gibi vergi ile ilgili bilgiler de verilebilir. Bu eleman\u0131n farkl\u0131 kullan\u0131mlar\u0131 i\u00e7in ilgili belge a\u00e7\u0131klamalar\u0131na bak\u0131n\u0131z.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "id",
+    "taxschemename",
+    "taxtypecode"
+  ],
+  "fields": [
+    {
+      "description": "Vergilendirme \u015femas\u0131n\u0131n ID bilgisi girilir.",
+      "fieldname": "id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "ID"
+    },
+    {
+      "description": "Bu eleman \u201cParty\u201d eleman\u0131 i\u00e7erisinde kullan\u0131ld\u0131\u011f\u0131nda vergi dairesi ad\u0131n\u0131 i\u00e7ermektedir. Di\u011fer elemanlar i\u00e7erisinde kullan\u0131m\u0131nda Vergi Kod listesinde hen\u00fcz yer almayan bir verginin s\u00f6z konusu olmas\u0131 durumunda verginin ad\u0131 girilecektir. Kontrol\u00fc Schematron kurallar\u0131 ile yap\u0131lacakt\u0131r.",
+      "fieldname": "taxschemename",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "TaxSchemeName"
+    },
+    {
+      "description": "Vergi Tipi Kodu girilecektir.",
+      "fieldname": "taxtypecode",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "TaxTypeCode",
+      "options": "UBL TR TaxTypeCode"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2022-01-31 11:12:49.204281",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TaxScheme",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
 }

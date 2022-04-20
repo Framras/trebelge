@@ -1,61 +1,61 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "field:taxtypecode",
- "creation": "2021-12-02 08:18:40.190695",
- "description": "Bu eleman \u201cParty\u201d eleman\u0131 i\u00e7erisinde kullan\u0131ld\u0131\u011f\u0131nda vergi dairesi ad\u0131n\u0131 i\u00e7ermektedir. Di\u011fer elemanlar i\u00e7erisinde kullan\u0131m\u0131nda Vergi Kod listesinde hen\u00fcz yer almayan bir verginin s\u00f6z konusu olmas\u0131 durumunda verginin ad\u0131 girilecektir. Kontrol\u00fc Schematron kurallar\u0131 ile yap\u0131lacakt\u0131r.\nTaxTypeCode: Vergi Tipi Kodu girilecektir. Bknz. Kod listeleri.",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "taxtypecode",
-  "taxtypename",
-  "taxtypeshortname"
- ],
- "fields": [
-  {
-   "fieldname": "taxtypecode",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "VERG\u0130 KODU",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "taxtypename",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "VERG\u0130 ADI"
-  },
-  {
-   "fieldname": "taxtypeshortname",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "KISALTMA"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2022-01-31 11:14:06.538684",
- "modified_by": "Administrator",
- "module": "Trebelge",
- "name": "UBL TR TaxTypeCode",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "track_changes": 1
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:taxtypecode",
+  "creation": "2021-12-02 08:18:40.190695",
+  "description": "Bu eleman \u201cParty\u201d eleman\u0131 i\u00e7erisinde kullan\u0131ld\u0131\u011f\u0131nda vergi dairesi ad\u0131n\u0131 i\u00e7ermektedir. Di\u011fer elemanlar i\u00e7erisinde kullan\u0131m\u0131nda Vergi Kod listesinde hen\u00fcz yer almayan bir verginin s\u00f6z konusu olmas\u0131 durumunda verginin ad\u0131 girilecektir. Kontrol\u00fc Schematron kurallar\u0131 ile yap\u0131lacakt\u0131r.\nTaxTypeCode: Vergi Tipi Kodu girilecektir. Bknz. Kod listeleri.",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "taxtypecode",
+    "taxtypename",
+    "taxtypeshortname"
+  ],
+  "fields": [
+    {
+      "fieldname": "taxtypecode",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "VERG\u0130 KODU",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "taxtypename",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "VERG\u0130 ADI"
+    },
+    {
+      "fieldname": "taxtypeshortname",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "KISALTMA"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2022-01-31 11:14:06.538684",
+  "modified_by": "Administrator",
+  "module": "Trebelge",
+  "name": "UBL TR TaxTypeCode",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
 }

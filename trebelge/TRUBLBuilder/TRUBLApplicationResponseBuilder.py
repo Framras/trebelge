@@ -1,4 +1,4 @@
-from datetime import datetime
+import time
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
@@ -42,8 +42,8 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
             applicationresponse_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
             applicationresponse_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
             applicationresponse_.id = root_.find('./' + self._cbc_ns + 'ID').text
-            applicationresponse_.issuedate = datetime.strftime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
-                                                               "%Y-%m-%d")
+            applicationresponse_.issuedate = time.strptime(root_.find('./' + self._cbc_ns + 'IssueDate').text,
+                                                           "%Y-%m-%d")
             applicationresponse_.insert()
         self.root = root_
         self._product = frappe.get_doc(self._frappeDoctype, uuid_)
