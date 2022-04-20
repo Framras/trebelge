@@ -10,7 +10,7 @@ from trebelge.XMLFileCoR.ReceiptAdviceHandler import ReceiptAdviceHandler
 class ApplicationResponseHandler(AbstractXMLFileHandler):
     """
     This Handler's successor is for DespatchAdvice FileType.
-    CoR Handler method for checking if the FileType is Invoice.
+    CoR Handler method for checking if the FileType is ApplicationResponse.
     """
     _eBelgeSettingsDoctype: str = 'UBL TR Namespace Specifications'
     _eBelgeTag: str = 'ApplicationResponse'
