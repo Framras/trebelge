@@ -1,406 +1,406 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "autoname": "field:uuid",
-  "creation": "2021-12-01 00:20:11.074516",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "ublversionid",
-    "customizationid",
-    "profileid",
-    "id",
-    "copyindicator",
-    "uuid",
-    "issuedate",
-    "issuetime",
-    "invoicetypecode",
-    "note",
-    "documentcurrencycode",
-    "taxcurrencycode",
-    "pricingcurrencycode",
-    "paymentcurrencycode",
-    "paymentalternativecurrencycode",
-    "accountingcost",
-    "linecountnumeric",
-    "invoiceperiod",
-    "orderreference",
-    "billingreference",
-    "despatchdocumentreference",
-    "receiptdocumentreference",
-    "originatordocumentreference",
-    "contractdocumentreference",
-    "additionaldocumentreference",
-    "accountingsupplierparty",
-    "accountingsuppliercontact",
-    "accountingcustomerparty",
-    "accountingcustomercontact",
-    "buyercustomerparty",
-    "buyercustomercontact",
-    "sellersupplierparty",
-    "sellersuppliercontact",
-    "taxrepresentativeparty",
-    "delivery",
-    "paymentmeans",
-    "paymentterms",
-    "allowancecharge",
-    "taxexchangerate",
-    "pricingexchangerate",
-    "paymentexchangerate",
-    "paymentalternativeexchangerate",
-    "taxtotal",
-    "withholdingtaxtotal",
-    "legalmonetarytotal",
-    "invoiceline"
-  ],
-  "fields": [
-    {
-      "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
-      "fieldname": "ublversionid",
-      "fieldtype": "Data",
-      "label": "UBL Versiyon Numaras\u0131",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
-      "fieldname": "customizationid",
-      "fieldtype": "Data",
-      "label": "\u00d6zelle\u015ftirme Numaras\u0131",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "description": "Kullan\u0131lan senaryodur.",
-      "fieldname": "profileid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Senaryo",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "fieldname": "id",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Fatura Numaras\u0131",
-      "reqd": 1
-    },
-    {
-      "description": "Bu elemanda d\u00fczenlenen faturan\u0131n as\u0131l veya suret oldu\u011fu g\u00f6sterilecektir.",
-      "fieldname": "copyindicator",
-      "fieldtype": "Data",
-      "label": "As\u0131l/Suret",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r. Bu numara fatura d\u00fczenleyen taraf\u0131ndan standartlara uygun olarak \u00fcretilip faturalarda kullan\u0131lacakt\u0131r.",
-      "fieldname": "uuid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
-      "reqd": 1,
-      "unique": 1
-    },
-    {
-      "description": "Bu elemana faturan\u0131n d\u00fczenleme tarihi yaz\u0131lacakt\u0131r.",
-      "fieldname": "issuedate",
-      "fieldtype": "Date",
-      "in_list_view": 1,
-      "label": "D\u00fczenleme Tarihi",
-      "reqd": 1
-    },
-    {
-      "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
-      "fieldname": "issuetime",
-      "fieldtype": "Time",
-      "label": "D\u00fczenleme Zaman\u0131"
-    },
-    {
-      "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
-      "fieldname": "invoicetypecode",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Fatura Tip Kodu",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "description": "Bu elemana faturan\u0131n d\u00fczenlendi\u011fi paran\u0131n birim kodu yaz\u0131lacakt\u0131r.",
-      "fieldname": "documentcurrencycode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Belge Para Birim Kodu",
-      "options": "UBL TR CurrencyCode",
-      "reqd": 1,
-      "search_index": 1
-    },
-    {
-      "description": "Fatura \u00fczerinde g\u00f6sterilen vergilerin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi gerekiyorsa bu para biriminin kodu yaz\u0131labilecektir.",
-      "fieldname": "taxcurrencycode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Vergi Para Birimi Kodu",
-      "options": "UBL TR CurrencyCode",
-      "search_index": 1
-    },
-    {
-      "description": "Mal veya hizmet bedellerinin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda bir para birimi ile g\u00f6sterilmesi gerekiyorsa s\u00f6zkonusu para birimi bu elemana kodlanabilecektir.",
-      "fieldname": "pricingcurrencycode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Fiyatland\u0131rma Para Birim Kodu",
-      "options": "UBL TR CurrencyCode",
-      "search_index": 1
-    },
-    {
-      "description": "\u00d6demenin yap\u0131laca\u011f\u0131 para birimi \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda bir para birimi ise bu bedellerin g\u00f6sterildi\u011fi para birimi bu elemana kodlanabilecektir.",
-      "fieldname": "paymentcurrencycode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "\u00d6deme Para Birim Kodu",
-      "options": "UBL TR CurrencyCode",
-      "search_index": 1
-    },
-    {
-      "description": "\u00d6denecek tutar\u0131n belge para birimi ile \u00f6deme para birimi\nd\u0131\u015f\u0131nda ba\u015fka bir para birimi ile de ifade edilmesinin istenmesi halinde s\u00f6z konusu para biriminin kodu bu elemana yaz\u0131labilecektir.",
-      "fieldname": "paymentalternativecurrencycode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Alternatif \u00d6deme Para Birim Kodu",
-      "options": "UBL TR CurrencyCode",
-      "search_index": 1
-    },
-    {
-      "description": "M\u00fckellefin faturan\u0131n tipi olarak ilave bir ay\u0131r\u0131ma gitmesi gerekiyorsa kendi belirleyece\u011fi farkl\u0131 bir fatura tipini bu elemana yazabilir.",
-      "fieldname": "accountingcost",
-      "fieldtype": "Data",
-      "label": "Hesap Kodu"
-    },
-    {
-      "description": "Bu elemana fatura \u00fczerinde yer alan kalem say\u0131s\u0131 yaz\u0131lacakt\u0131r. Mal\u0131n adedi birden fazla olsa dahi bu mal grubu tek bir kalem olarak g\u00f6sterilecektir.",
-      "fieldname": "linecountnumeric",
-      "fieldtype": "Int",
-      "in_list_view": 1,
-      "label": "Kalem Say\u0131s\u0131"
-    },
-    {
-      "fieldname": "invoiceperiod",
-      "fieldtype": "Link",
-      "label": "Fatura D\u00f6nemi",
-      "options": "UBL TR Period"
-    },
-    {
-      "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
-      "fieldname": "orderreference",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Sipari\u015f Bilgileri",
-      "options": "UBL TR OrderReference"
-    },
-    {
-      "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r. Birden fazla a\u00e7\u0131klama yap\u0131lmak istenmesi halinde eleman\u0131n tekrar kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr.",
-      "fieldname": "note",
-      "fieldtype": "Table MultiSelect",
-      "label": "Not",
-      "options": "UBL TR Notes"
-    },
-    {
-      "fieldname": "billingreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "BillingReference",
-      "options": "UBL TR BillingReferences"
-    },
-    {
-      "fieldname": "despatchdocumentreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "\u0130rsaliye Bilgileri",
-      "options": "UBL TR DocumentReferences"
-    },
-    {
-      "fieldname": "receiptdocumentreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "Al\u0131nd\u0131 Bilgileri",
-      "options": "UBL TR DocumentReferences"
-    },
-    {
-      "fieldname": "originatordocumentreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "Ba\u015flang\u0131\u00e7 Dok\u00fcman\u0131 Bilgileri",
-      "options": "UBL TR DocumentReferences"
-    },
-    {
-      "fieldname": "contractdocumentreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "Kontrat Dok\u00fcman\u0131 Bilgileri",
-      "options": "UBL TR DocumentReferences"
-    },
-    {
-      "fieldname": "additionaldocumentreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "\u0130lave Dok\u00fcman",
-      "options": "UBL TR DocumentReferences"
-    },
-    {
-      "fieldname": "accountingsupplierparty",
-      "fieldtype": "Link",
-      "label": "Sat\u0131c\u0131",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "accountingcustomerparty",
-      "fieldtype": "Link",
-      "label": "Al\u0131c\u0131",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "buyercustomerparty",
-      "fieldtype": "Link",
-      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan Taraf",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "sellersupplierparty",
-      "fieldtype": "Link",
-      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan Taraf",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "taxrepresentativeparty",
-      "fieldtype": "Link",
-      "label": "Vergi \u0130\u015fleriyle Sorumlu Taraf",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "delivery",
-      "fieldtype": "Table MultiSelect",
-      "label": "G\u00f6nderim, Ta\u015f\u0131ma, Sevkiyat Bilgileri",
-      "options": "UBL TR Deliveries"
-    },
-    {
-      "description": "Bu elemana \u00f6deme \u015fekli ile ilgili bilgiler yaz\u0131labilecektir.",
-      "fieldname": "paymentmeans",
-      "fieldtype": "Table MultiSelect",
-      "label": "\u00d6deme \u015eekli",
-      "options": "UBL TR Payment Means"
-    },
-    {
-      "description": "Bu elemana \u00f6deme ko\u015fullar\u0131 ve \u00f6demenin yap\u0131lmamas\u0131 halinde uygulanacak m\u00fceyyideler yaz\u0131labilecektir.",
-      "fieldname": "paymentterms",
-      "fieldtype": "Link",
-      "label": "\u00d6deme Ko\u015fullar\u0131",
-      "options": "UBL TR PaymentTerms"
-    },
-    {
-      "description": "Bu eleman fatura b\u00fct\u00fcn\u00fc \u00fczerinden iskonto veya art\u0131r\u0131m yap\u0131lmas\u0131 halinde kullan\u0131lacakt\u0131r.",
-      "fieldname": "allowancecharge",
-      "fieldtype": "Table MultiSelect",
-      "label": "Iskonto / Art\u0131r\u0131m",
-      "options": "UBL TR AllowanceCharges"
-    },
-    {
-      "fieldname": "taxexchangerate",
-      "fieldtype": "Link",
-      "label": "Vergi D\u00f6viz Kuru",
-      "options": "UBL TR ExchangeRate"
-    },
-    {
-      "description": "Bu elemana fatura \u00fczerinde yer alan mal veya hizmet bedellerinin \u201cBelge Para Birimi\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi halinde ilgili d\u00f6viz kuru yaz\u0131lacakt\u0131r.",
-      "fieldname": "pricingexchangerate",
-      "fieldtype": "Link",
-      "label": "Fiyatland\u0131rma D\u00f6viz Kuru",
-      "options": "UBL TR ExchangeRate"
-    },
-    {
-      "fieldname": "paymentexchangerate",
-      "fieldtype": "Link",
-      "label": "\u00d6deme D\u00f6viz Kuru",
-      "options": "UBL TR ExchangeRate"
-    },
-    {
-      "description": "Bu elemana belge para birimi ve \u00f6deme para birimi haricinde faturan\u0131n \u00f6denmesinde kullan\u0131lmas\u0131 istenen alternatif para birimi varsa bu paran\u0131n d\u00f6viz kuru bilgisi yaz\u0131lacakt\u0131r.",
-      "fieldname": "paymentalternativeexchangerate",
-      "fieldtype": "Link",
-      "label": "Alternatif \u00d6deme D\u00f6viz Kuru",
-      "options": "UBL TR ExchangeRate"
-    },
-    {
-      "description": "Bu elemana faturada yer alan vergi ve\tdi\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fckler ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
-      "fieldname": "taxtotal",
-      "fieldtype": "Table MultiSelect",
-      "label": "Toplam Vergi",
-      "options": "UBL TR TaxTotals"
-    },
-    {
-      "description": "Bu elemana tevkifatl\u0131 faturalarda yer alan tevkifat ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
-      "fieldname": "withholdingtaxtotal",
-      "fieldtype": "Table MultiSelect",
-      "label": "Tevkifat Bilgileri",
-      "options": "UBL TR TaxTotals"
-    },
-    {
-      "description": "Bu elemanda faturadaki \u00e7e\u015fitli tutarlar\u0131n toplamlar\u0131 yer alacakt\u0131r.",
-      "fieldname": "legalmonetarytotal",
-      "fieldtype": "Link",
-      "label": "Parasal Toplamlar",
-      "options": "UBL TR MonetaryTotal"
-    },
-    {
-      "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
-      "fieldname": "invoiceline",
-      "fieldtype": "Table MultiSelect",
-      "label": "Mal/Hizmet Kalemleri",
-      "options": "UBL TR InvoiceLines"
-    },
-    {
-      "fieldname": "sellersuppliercontact",
-      "fieldtype": "Link",
-      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan \u0130lgili",
-      "options": "UBL TR Contact"
-    },
-    {
-      "fieldname": "accountingsuppliercontact",
-      "fieldtype": "Link",
-      "label": "Sat\u0131c\u0131 \u0130lgili",
-      "options": "UBL TR Contact"
-    },
-    {
-      "fieldname": "accountingcustomercontact",
-      "fieldtype": "Link",
-      "label": "Al\u0131c\u0131 \u0130lgili",
-      "options": "UBL TR Contact"
-    },
-    {
-      "fieldname": "buyercustomercontact",
-      "fieldtype": "Link",
-      "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan \u0130lgili",
-      "options": "UBL TR Contact"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2022-01-15 22:42:30.814914",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR Invoice",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:uuid",
+ "creation": "2021-12-01 00:20:11.074516",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "ublversionid",
+  "customizationid",
+  "profileid",
+  "id",
+  "copyindicator",
+  "uuid",
+  "issuedate",
+  "issuetime",
+  "invoicetypecode",
+  "note",
+  "documentcurrencycode",
+  "taxcurrencycode",
+  "pricingcurrencycode",
+  "paymentcurrencycode",
+  "paymentalternativecurrencycode",
+  "accountingcost",
+  "linecountnumeric",
+  "invoiceperiod",
+  "orderreference",
+  "billingreference",
+  "despatchdocumentreference",
+  "receiptdocumentreference",
+  "originatordocumentreference",
+  "contractdocumentreference",
+  "additionaldocumentreference",
+  "accountingsupplierparty",
+  "accountingsuppliercontact",
+  "accountingcustomerparty",
+  "accountingcustomercontact",
+  "buyercustomerparty",
+  "buyercustomercontact",
+  "sellersupplierparty",
+  "sellersuppliercontact",
+  "taxrepresentativeparty",
+  "delivery",
+  "paymentmeans",
+  "paymentterms",
+  "allowancecharge",
+  "taxexchangerate",
+  "pricingexchangerate",
+  "paymentexchangerate",
+  "paymentalternativeexchangerate",
+  "taxtotal",
+  "withholdingtaxtotal",
+  "legalmonetarytotal",
+  "invoiceline"
+ ],
+ "fields": [
+  {
+   "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
+   "fieldname": "ublversionid",
+   "fieldtype": "Data",
+   "label": "UBL Versiyon Numaras\u0131",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
+   "fieldname": "customizationid",
+   "fieldtype": "Data",
+   "label": "\u00d6zelle\u015ftirme Numaras\u0131",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "description": "Kullan\u0131lan senaryodur.",
+   "fieldname": "profileid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Senaryo",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Fatura Numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "description": "Bu elemanda d\u00fczenlenen faturan\u0131n as\u0131l veya suret oldu\u011fu g\u00f6sterilecektir.",
+   "fieldname": "copyindicator",
+   "fieldtype": "Data",
+   "label": "As\u0131l/Suret",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r. Bu numara fatura d\u00fczenleyen taraf\u0131ndan standartlara uygun olarak \u00fcretilip faturalarda kullan\u0131lacakt\u0131r.",
+   "fieldname": "uuid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Bu elemana faturan\u0131n d\u00fczenleme tarihi yaz\u0131lacakt\u0131r.",
+   "fieldname": "issuedate",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "D\u00fczenleme Tarihi",
+   "reqd": 1
+  },
+  {
+   "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
+   "fieldname": "issuetime",
+   "fieldtype": "Time",
+   "label": "D\u00fczenleme Zaman\u0131"
+  },
+  {
+   "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
+   "fieldname": "invoicetypecode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Fatura Tip Kodu",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "description": "Bu elemana faturan\u0131n d\u00fczenlendi\u011fi paran\u0131n birim kodu yaz\u0131lacakt\u0131r.",
+   "fieldname": "documentcurrencycode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Belge Para Birim Kodu",
+   "options": "UBL TR CurrencyCode",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "description": "Fatura \u00fczerinde g\u00f6sterilen vergilerin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi gerekiyorsa bu para biriminin kodu yaz\u0131labilecektir.",
+   "fieldname": "taxcurrencycode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vergi Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode",
+   "search_index": 1
+  },
+  {
+   "description": "Mal veya hizmet bedellerinin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda bir para birimi ile g\u00f6sterilmesi gerekiyorsa s\u00f6zkonusu para birimi bu elemana kodlanabilecektir.",
+   "fieldname": "pricingcurrencycode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fiyatland\u0131rma Para Birim Kodu",
+   "options": "UBL TR CurrencyCode",
+   "search_index": 1
+  },
+  {
+   "description": "\u00d6demenin yap\u0131laca\u011f\u0131 para birimi \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda bir para birimi ise bu bedellerin g\u00f6sterildi\u011fi para birimi bu elemana kodlanabilecektir.",
+   "fieldname": "paymentcurrencycode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u00d6deme Para Birim Kodu",
+   "options": "UBL TR CurrencyCode",
+   "search_index": 1
+  },
+  {
+   "description": "\u00d6denecek tutar\u0131n belge para birimi ile \u00f6deme para birimi\nd\u0131\u015f\u0131nda ba\u015fka bir para birimi ile de ifade edilmesinin istenmesi halinde s\u00f6z konusu para biriminin kodu bu elemana yaz\u0131labilecektir.",
+   "fieldname": "paymentalternativecurrencycode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Alternatif \u00d6deme Para Birim Kodu",
+   "options": "UBL TR CurrencyCode",
+   "search_index": 1
+  },
+  {
+   "description": "M\u00fckellefin faturan\u0131n tipi olarak ilave bir ay\u0131r\u0131ma gitmesi gerekiyorsa kendi belirleyece\u011fi farkl\u0131 bir fatura tipini bu elemana yazabilir.",
+   "fieldname": "accountingcost",
+   "fieldtype": "Data",
+   "label": "Hesap Kodu"
+  },
+  {
+   "description": "Bu elemana fatura \u00fczerinde yer alan kalem say\u0131s\u0131 yaz\u0131lacakt\u0131r. Mal\u0131n adedi birden fazla olsa dahi bu mal grubu tek bir kalem olarak g\u00f6sterilecektir.",
+   "fieldname": "linecountnumeric",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Kalem Say\u0131s\u0131"
+  },
+  {
+   "fieldname": "invoiceperiod",
+   "fieldtype": "Link",
+   "label": "Fatura D\u00f6nemi",
+   "options": "UBL TR Period"
+  },
+  {
+   "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
+   "fieldname": "orderreference",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sipari\u015f Bilgileri",
+   "options": "UBL TR OrderReference"
+  },
+  {
+   "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r. Birden fazla a\u00e7\u0131klama yap\u0131lmak istenmesi halinde eleman\u0131n tekrar kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr.",
+   "fieldname": "note",
+   "fieldtype": "Table",
+   "label": "Not",
+   "options": "UBL TR Notes"
+  },
+  {
+   "fieldname": "billingreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "BillingReference",
+   "options": "UBL TR BillingReferences"
+  },
+  {
+   "fieldname": "despatchdocumentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "\u0130rsaliye Bilgileri",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "receiptdocumentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "Al\u0131nd\u0131 Bilgileri",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "originatordocumentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "Ba\u015flang\u0131\u00e7 Dok\u00fcman\u0131 Bilgileri",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "contractdocumentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "Kontrat Dok\u00fcman\u0131 Bilgileri",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "additionaldocumentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "\u0130lave Dok\u00fcman",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "accountingsupplierparty",
+   "fieldtype": "Link",
+   "label": "Sat\u0131c\u0131",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "accountingcustomerparty",
+   "fieldtype": "Link",
+   "label": "Al\u0131c\u0131",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "buyercustomerparty",
+   "fieldtype": "Link",
+   "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan Taraf",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "sellersupplierparty",
+   "fieldtype": "Link",
+   "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan Taraf",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "taxrepresentativeparty",
+   "fieldtype": "Link",
+   "label": "Vergi \u0130\u015fleriyle Sorumlu Taraf",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "delivery",
+   "fieldtype": "Table MultiSelect",
+   "label": "G\u00f6nderim, Ta\u015f\u0131ma, Sevkiyat Bilgileri",
+   "options": "UBL TR Deliveries"
+  },
+  {
+   "description": "Bu elemana \u00f6deme \u015fekli ile ilgili bilgiler yaz\u0131labilecektir.",
+   "fieldname": "paymentmeans",
+   "fieldtype": "Table MultiSelect",
+   "label": "\u00d6deme \u015eekli",
+   "options": "UBL TR Payment Means"
+  },
+  {
+   "description": "Bu elemana \u00f6deme ko\u015fullar\u0131 ve \u00f6demenin yap\u0131lmamas\u0131 halinde uygulanacak m\u00fceyyideler yaz\u0131labilecektir.",
+   "fieldname": "paymentterms",
+   "fieldtype": "Link",
+   "label": "\u00d6deme Ko\u015fullar\u0131",
+   "options": "UBL TR PaymentTerms"
+  },
+  {
+   "description": "Bu eleman fatura b\u00fct\u00fcn\u00fc \u00fczerinden iskonto veya art\u0131r\u0131m yap\u0131lmas\u0131 halinde kullan\u0131lacakt\u0131r.",
+   "fieldname": "allowancecharge",
+   "fieldtype": "Table MultiSelect",
+   "label": "Iskonto / Art\u0131r\u0131m",
+   "options": "UBL TR AllowanceCharges"
+  },
+  {
+   "fieldname": "taxexchangerate",
+   "fieldtype": "Link",
+   "label": "Vergi D\u00f6viz Kuru",
+   "options": "UBL TR ExchangeRate"
+  },
+  {
+   "description": "Bu elemana fatura \u00fczerinde yer alan mal veya hizmet bedellerinin \u201cBelge Para Birimi\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi halinde ilgili d\u00f6viz kuru yaz\u0131lacakt\u0131r.",
+   "fieldname": "pricingexchangerate",
+   "fieldtype": "Link",
+   "label": "Fiyatland\u0131rma D\u00f6viz Kuru",
+   "options": "UBL TR ExchangeRate"
+  },
+  {
+   "fieldname": "paymentexchangerate",
+   "fieldtype": "Link",
+   "label": "\u00d6deme D\u00f6viz Kuru",
+   "options": "UBL TR ExchangeRate"
+  },
+  {
+   "description": "Bu elemana belge para birimi ve \u00f6deme para birimi haricinde faturan\u0131n \u00f6denmesinde kullan\u0131lmas\u0131 istenen alternatif para birimi varsa bu paran\u0131n d\u00f6viz kuru bilgisi yaz\u0131lacakt\u0131r.",
+   "fieldname": "paymentalternativeexchangerate",
+   "fieldtype": "Link",
+   "label": "Alternatif \u00d6deme D\u00f6viz Kuru",
+   "options": "UBL TR ExchangeRate"
+  },
+  {
+   "description": "Bu elemana faturada yer alan vergi ve\tdi\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fckler ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
+   "fieldname": "taxtotal",
+   "fieldtype": "Table MultiSelect",
+   "label": "Toplam Vergi",
+   "options": "UBL TR TaxTotals"
+  },
+  {
+   "description": "Bu elemana tevkifatl\u0131 faturalarda yer alan tevkifat ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
+   "fieldname": "withholdingtaxtotal",
+   "fieldtype": "Table MultiSelect",
+   "label": "Tevkifat Bilgileri",
+   "options": "UBL TR TaxTotals"
+  },
+  {
+   "description": "Bu elemanda faturadaki \u00e7e\u015fitli tutarlar\u0131n toplamlar\u0131 yer alacakt\u0131r.",
+   "fieldname": "legalmonetarytotal",
+   "fieldtype": "Link",
+   "label": "Parasal Toplamlar",
+   "options": "UBL TR MonetaryTotal"
+  },
+  {
+   "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
+   "fieldname": "invoiceline",
+   "fieldtype": "Table MultiSelect",
+   "label": "Mal/Hizmet Kalemleri",
+   "options": "UBL TR InvoiceLines"
+  },
+  {
+   "fieldname": "sellersuppliercontact",
+   "fieldtype": "Link",
+   "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "accountingsuppliercontact",
+   "fieldtype": "Link",
+   "label": "Sat\u0131c\u0131 \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "accountingcustomercontact",
+   "fieldtype": "Link",
+   "label": "Al\u0131c\u0131 \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "buyercustomercontact",
+   "fieldtype": "Link",
+   "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan \u0130lgili",
+   "options": "UBL TR Contact"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-21 23:09:53.593756",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR Invoice",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }

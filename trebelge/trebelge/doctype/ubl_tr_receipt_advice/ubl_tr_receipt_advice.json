@@ -1,189 +1,189 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "autoname": "field:uuid",
-  "creation": "2022-01-22 21:07:06.836240",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "ublversionid",
-    "customizationid",
-    "profileid",
-    "id",
-    "copyindicator",
-    "uuid",
-    "issuedate",
-    "issuetime",
-    "receiptadvicetypecode",
-    "note",
-    "linecountnumeric",
-    "orderreference",
-    "despatchdocumentreference",
-    "additionaldocumentreference",
-    "deliverycustomerparty",
-    "despatchsupplierparty",
-    "buyercustomerparty",
-    "sellersupplierparty",
-    "shipment",
-    "receiptline"
-  ],
-  "fields": [
-    {
-      "fieldname": "ublversionid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "UBL Versiyon Numaras\u0131",
-      "reqd": 1
-    },
-    {
-      "fieldname": "customizationid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "\u00d6zelle\u015ftirme Numaras\u0131",
-      "reqd": 1
-    },
-    {
-      "fieldname": "profileid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Senaryo",
-      "reqd": 1
-    },
-    {
-      "fieldname": "id",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Sevk \u0130rsaliyesi Numaras\u0131",
-      "reqd": 1
-    },
-    {
-      "fieldname": "copyindicator",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "As\u0131l/Suret",
-      "reqd": 1
-    },
-    {
-      "fieldname": "uuid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
-      "reqd": 1,
-      "unique": 1
-    },
-    {
-      "fieldname": "issuedate",
-      "fieldtype": "Date",
-      "in_list_view": 1,
-      "label": "D\u00fczenleme Tarihi",
-      "reqd": 1
-    },
-    {
-      "fieldname": "issuetime",
-      "fieldtype": "Time",
-      "in_list_view": 1,
-      "label": "D\u00fczenleme Zaman\u0131"
-    },
-    {
-      "fieldname": "receiptadvicetypecode",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "\u0130rsaliye Yan\u0131t\u0131 Tipi Kodu"
-    },
-    {
-      "fieldname": "note",
-      "fieldtype": "Table MultiSelect",
-      "label": "Not",
-      "options": "UBL TR Notes"
-    },
-    {
-      "fieldname": "linecountnumeric",
-      "fieldtype": "Int",
-      "label": "Kalem Say\u0131s\u0131"
-    },
-    {
-      "fieldname": "orderreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "Sipari\u015f Bilgileri",
-      "options": "UBL TR OrderReferences"
-    },
-    {
-      "fieldname": "despatchdocumentreference",
-      "fieldtype": "Link",
-      "label": "Sevk Dok\u00fcman\u0131",
-      "options": "UBL TR DocumentReferences"
-    },
-    {
-      "fieldname": "additionaldocumentreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "\u0130lave Dok\u00fcman",
-      "options": "UBL TR DocumentReferences"
-    },
-    {
-      "fieldname": "deliverycustomerparty",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Teslim Alan",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "despatchsupplierparty",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Sevkeden",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "buyercustomerparty",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Sat\u0131n Alan",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "sellersupplierparty",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Satan",
-      "options": "UBL TR Party"
-    },
-    {
-      "fieldname": "shipment",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "G\u00f6nderi",
-      "options": "UBL TR Shipment"
-    },
-    {
-      "fieldname": "receiptline",
-      "fieldtype": "Table MultiSelect",
-      "label": "Teslim Al\u0131nan Mal Kalemleri",
-      "options": "UBL TR ReceiptLines"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2022-01-22 21:07:06.836240",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR Receipt Advice",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:uuid",
+ "creation": "2022-01-22 21:07:06.836240",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "ublversionid",
+  "customizationid",
+  "profileid",
+  "id",
+  "copyindicator",
+  "uuid",
+  "issuedate",
+  "issuetime",
+  "receiptadvicetypecode",
+  "note",
+  "linecountnumeric",
+  "orderreference",
+  "despatchdocumentreference",
+  "additionaldocumentreference",
+  "deliverycustomerparty",
+  "despatchsupplierparty",
+  "buyercustomerparty",
+  "sellersupplierparty",
+  "shipment",
+  "receiptline"
+ ],
+ "fields": [
+  {
+   "fieldname": "ublversionid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "UBL Versiyon Numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customizationid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u00d6zelle\u015ftirme Numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "fieldname": "profileid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Senaryo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sevk \u0130rsaliyesi Numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "fieldname": "copyindicator",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "As\u0131l/Suret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "uuid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "issuedate",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "D\u00fczenleme Tarihi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "issuetime",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "D\u00fczenleme Zaman\u0131"
+  },
+  {
+   "fieldname": "receiptadvicetypecode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0130rsaliye Yan\u0131t\u0131 Tipi Kodu"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Table",
+   "label": "Not",
+   "options": "UBL TR Notes"
+  },
+  {
+   "fieldname": "linecountnumeric",
+   "fieldtype": "Int",
+   "label": "Kalem Say\u0131s\u0131"
+  },
+  {
+   "fieldname": "orderreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "Sipari\u015f Bilgileri",
+   "options": "UBL TR OrderReferences"
+  },
+  {
+   "fieldname": "despatchdocumentreference",
+   "fieldtype": "Link",
+   "label": "Sevk Dok\u00fcman\u0131",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "additionaldocumentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "\u0130lave Dok\u00fcman",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "deliverycustomerparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Teslim Alan",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "despatchsupplierparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sevkeden",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "buyercustomerparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sat\u0131n Alan",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "sellersupplierparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Satan",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "shipment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "G\u00f6nderi",
+   "options": "UBL TR Shipment"
+  },
+  {
+   "fieldname": "receiptline",
+   "fieldtype": "Table MultiSelect",
+   "label": "Teslim Al\u0131nan Mal Kalemleri",
+   "options": "UBL TR ReceiptLines"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-21 23:13:55.901217",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR Receipt Advice",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }

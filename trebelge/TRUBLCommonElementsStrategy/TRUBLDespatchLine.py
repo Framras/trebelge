@@ -4,7 +4,6 @@ from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderLineReference import TRUBLOrderLineReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipment import TRUBLShipment
 
@@ -45,17 +44,17 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         notes = list()
         if len(notes_) != 0:
             for note_ in notes_:
-                tmp = TRUBLNote().process_element(note_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    notes.append(tmp.name)
+                element_ = note_.text
+                if element_ is not None and element_.strip() != '':
+                    notes.append(element_.strip())
         # ['OutstandingReason'] = ('cbc', '', 'Seçimli(0..n)')
         outstandingreasons_: list = element.findall('./' + cbcnamespace + 'Description')
         outstandingreasons = list()
         if len(outstandingreasons_) != 0:
             for outstandingreason_ in outstandingreasons_:
-                tmp = TRUBLNote().process_element(outstandingreason_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    outstandingreasons.append(tmp.name)
+                element_ = outstandingreason_.text
+                if element_ is not None and element_.strip() != '':
+                    outstandingreasons.append(element_.strip())
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli(0..n)')
         shipments_: list = element.findall('./' + cacnamespace + 'Shipment')
         shipments = list()
@@ -78,14 +77,12 @@ class TRUBLDespatchLine(TRUBLCommonElement):
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         if len(notes) != 0:
-            doc_append = document.append("note", {})
             for note in notes:
-                doc_append.note = note
+                document.append("note", dict(note=note))
                 document.save()
         if len(outstandingreasons) != 0:
-            doc_append = document.append("outstandingreason", {})
             for outstandingreason in outstandingreasons:
-                doc_append.note = outstandingreason
+                document.append("outstandingreason", dict(note=outstandingreason))
                 document.save()
         if len(shipments) != 0:
             doc_append = document.append("shipment", {})

@@ -1,382 +1,382 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-04 17:01:58.264416",
-  "description": "Ta\u015f\u0131nan Mal: Ta\u015f\u0131mas\u0131 ger\u00e7ekle\u015fen mallar hakk\u0131ndaki bilgileri i\u00e7erir.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "id",
-    "description",
-    "hazardousriskindicator",
-    "declaredcustomsvalueamount",
-    "declaredcustomsvalueamountcurrencyid",
-    "declaredforcarriagevalueamount",
-    "declaredforcarriagevalueamountcurrencyid",
-    "declaredstatisticsvalueamount",
-    "declaredstatisticsvalueamountcurrencyid",
-    "freeonboardvalueamount",
-    "freeonboardvalueamountcurrencyid",
-    "insurancevalueamount",
-    "insurancevalueamountcurrencyid",
-    "valueamount",
-    "valueamountcurrencyid",
-    "grossweightmeasure",
-    "grossweightmeasureunitcode",
-    "netweightmeasure",
-    "netweightmeasureunitcode",
-    "chargableweightmeasure",
-    "chargableweightmeasureunitcode",
-    "grossvolumemeasure",
-    "grossvolumemeasureunitcode",
-    "netvolumemeasure",
-    "netvolumemeasureunitcode",
-    "quantity",
-    "quantityunitcode",
-    "requiredcustomsid",
-    "customsstatuscode",
-    "customstariffquantity",
-    "customstariffquantityunitcode",
-    "customsimportclassifiedindicator",
-    "chargeablequantity",
-    "chargeablequantityunitcode",
-    "returnablequantity",
-    "returnablequantityunitcode",
-    "traceid",
-    "item",
-    "freightallowancecharge",
-    "invoiceline",
-    "temperature",
-    "originaddress",
-    "measurementdimension"
-  ],
-  "fields": [
-    {
-      "description": "\u0130lgili \u00fcr\u00fcn\u00fc belge i\u00e7inde tekil olarak tan\u0131mlar.",
-      "fieldname": "id",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "\u00dcr\u00fcn ayrac\u0131"
-    },
-    {
-      "description": "Serbet metin olarak a\u00e7\u0131klama girilebilir.",
-      "fieldname": "description",
-      "fieldtype": "Table MultiSelect",
-      "label": "A\u00e7\u0131klama",
-      "options": "UBL TR Notes"
-    },
-    {
-      "description": "\u00dcr\u00fcn tehlikeli madde kategorisinde say\u0131l\u0131p say\u0131lamayaca\u011f\u0131n\u0131 g\u00f6steren bilgi.",
-      "fieldname": "hazardousriskindicator",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Tehlikeli madde g\u00f6stergesi"
-    },
-    {
-      "description": "G\u00fcmr\u00fck de\u011feri tutar\u0131 girilir.",
-      "fieldname": "declaredcustomsvalueamount",
-      "fieldtype": "Currency",
-      "in_list_view": 1,
-      "label": "G\u00fcmr\u00fck de\u011feri"
-    },
-    {
-      "fieldname": "declaredcustomsvalueamountcurrencyid",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "G\u00fcmr\u00fck de\u011feri para birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "Nakliye tutar\u0131 (navlun) girilir.",
-      "fieldname": "declaredforcarriagevalueamount",
-      "fieldtype": "Currency",
-      "in_list_view": 1,
-      "label": "Nakliye tutar\u0131"
-    },
-    {
-      "fieldname": "declaredforcarriagevalueamountcurrencyid",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Nakliye tutar\u0131 para birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "\u00dcr\u00fcn\u00fcn GTIP k\u0131ymet de\u011feri girilir.",
-      "fieldname": "declaredstatisticsvalueamount",
-      "fieldtype": "Currency",
-      "in_list_view": 1,
-      "label": "GTIP k\u0131ymet de\u011feri"
-    },
-    {
-      "fieldname": "declaredstatisticsvalueamountcurrencyid",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "GTIP k\u0131ymet de\u011feri para birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "FOB tutar\u0131 girilir.",
-      "fieldname": "freeonboardvalueamount",
-      "fieldtype": "Currency",
-      "in_list_view": 1,
-      "label": "FOB tutar\u0131"
-    },
-    {
-      "fieldname": "freeonboardvalueamountcurrencyid",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "FOB tutar\u0131 para birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "Sigorta tutar\u0131 girilir.",
-      "fieldname": "insurancevalueamount",
-      "fieldtype": "Currency",
-      "in_list_view": 1,
-      "label": "Sigorta tutar\u0131"
-    },
-    {
-      "fieldname": "insurancevalueamountcurrencyid",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Sigorta tutar\u0131 para birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "\u00dcr\u00fcn\u00fcn de\u011feri girilir. Ana seviyedeki Shipment'\u0131n alt\u0131nda kullan\u0131m\u0131nda toplam tutar bilgisi girilebilir.",
-      "fieldname": "valueamount",
-      "fieldtype": "Currency",
-      "in_list_view": 1,
-      "label": "\u00dcr\u00fcn\u00fcn de\u011feri"
-    },
-    {
-      "fieldname": "valueamountcurrencyid",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "\u00dcr\u00fcn\u00fcn de\u011feri para birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "Br\u00fct a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
-      "fieldname": "grossweightmeasure",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "Br\u00fct a\u011f\u0131rl\u0131k"
-    },
-    {
-      "fieldname": "grossweightmeasureunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Br\u00fct a\u011f\u0131rl\u0131k \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Net a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
-      "fieldname": "netweightmeasure",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "Net a\u011f\u0131rl\u0131k"
-    },
-    {
-      "fieldname": "netweightmeasureunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Net a\u011f\u0131rl\u0131k \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Belli bir \u00fccretin uygulanabilece\u011fi br\u00fct a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
-      "fieldname": "chargableweightmeasure",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "\u00dccret uygulanan br\u00fct a\u011f\u0131rl\u0131k"
-    },
-    {
-      "fieldname": "chargableweightmeasureunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "\u00dccret uygulanan br\u00fct a\u011f\u0131rl\u0131k \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Br\u00fct hacim girilir.",
-      "fieldname": "grossvolumemeasure",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "Br\u00fct hacim"
-    },
-    {
-      "fieldname": "grossvolumemeasureunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Br\u00fct hacim \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Net hacim girilir.",
-      "fieldname": "netvolumemeasure",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "Net hacim"
-    },
-    {
-      "fieldname": "netvolumemeasureunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Net hacim \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Miktar girilir.",
-      "fieldname": "quantity",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "Miktar"
-    },
-    {
-      "fieldname": "quantityunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Miktar \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "\u00dcr\u00fcn\u00fcn veya mal\u0131n GTIP numaras\u0131 girilir.",
-      "fieldname": "requiredcustomsid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "GTIP numaras\u0131"
-    },
-    {
-      "description": "G\u00fcmr\u00fck durum kodu girilir.",
-      "fieldname": "customsstatuscode",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "G\u00fcmr\u00fck durum kodu"
-    },
-    {
-      "description": "\u0130statistiksel, tarife veya mali ama\u00e7l\u0131 g\u00fcmr\u00fck mal miktar\u0131 girilir.",
-      "fieldname": "customstariffquantity",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "G\u00fcmr\u00fck miktar\u0131"
-    },
-    {
-      "fieldname": "customstariffquantityunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "G\u00fcmr\u00fck miktar\u0131 \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Mallar\u0131n g\u00fcmr\u00fckte ithalat i\u00e7in s\u0131n\u0131fland\u0131r\u0131lm\u0131\u015f olup olmad\u0131\u011f\u0131n\u0131 belirtir.",
-      "fieldname": "customsimportclassifiedindicator",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "\u0130thalat s\u0131n\u0131fland\u0131rmas\u0131"
-    },
-    {
-      "description": "Belli bir \u00fccretin uygulanabilece\u011fi miktar girilir.",
-      "fieldname": "chargeablequantity",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "\u00dccretin uygulanabilece\u011fi miktar"
-    },
-    {
-      "fieldname": "chargeablequantityunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "\u00dccretin uygulanabilece\u011fi \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Mallar\u0131n ne kadar\u0131n\u0131n geri gelebilece\u011fi girilir.",
-      "fieldname": "returnablequantity",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "Geri gelebilecek miktar"
-    },
-    {
-      "fieldname": "returnablequantityunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Geri gelebilecek \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Takip numaras\u0131 girilir.",
-      "fieldname": "traceid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Takip numaras\u0131"
-    },
-    {
-      "description": "Mallar\u0131n fatura kalemleriyle olan ili\u015fkileri girilir.",
-      "fieldname": "item",
-      "fieldtype": "Table MultiSelect",
-      "label": "Fatura kalemleri",
-      "options": "UBL TR Items"
-    },
-    {
-      "description": "Ta\u015f\u0131ma bedelinde indirim/fiyat art\u0131r\u0131m\u0131 var ise girilir.",
-      "fieldname": "freightallowancecharge",
-      "fieldtype": "Table MultiSelect",
-      "label": "Ta\u015f\u0131ma bedeli indirim/fiyat art\u0131r\u0131m\u0131",
-      "options": "UBL TR AllowanceCharges"
-    },
-    {
-      "description": "Birim fiyat ve kalem toplam fiyat bilgileri girilir.",
-      "fieldname": "invoiceline",
-      "fieldtype": "Table MultiSelect",
-      "label": "Birim fiyat ve kalem toplam fiyat bilgileri",
-      "options": "UBL TR InvoiceLines"
-    },
-    {
-      "description": "Sevkiyattaki mallar ile ilgili her t\u00fcrl\u00fc s\u0131cakl\u0131k bilgisi girilebilir.",
-      "fieldname": "temperature",
-      "fieldtype": "Table MultiSelect",
-      "label": "S\u0131cakl\u0131k bilgisi",
-      "options": "UBL TR Temperatures"
-    },
-    {
-      "description": "\u00dcr\u00fcnlerin \u00fcretildi\u011fi adres girilir.",
-      "fieldname": "originaddress",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "\u00dcr\u00fcnlerin \u00fcretildi\u011fi adres",
-      "options": "UBL TR Address"
-    },
-    {
-      "description": "\u00dcr\u00fcnlerin di\u011fer \u00f6l\u00e7\u00fcmleri girilir.",
-      "fieldname": "measurementdimension",
-      "fieldtype": "Table MultiSelect",
-      "label": "\u00dcr\u00fcnlerin di\u011fer \u00f6l\u00e7\u00fcmleri",
-      "options": "UBL TR Dimensions"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2021-12-22 10:26:30.967553",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR GoodsItem",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-04 17:01:58.264416",
+ "description": "Ta\u015f\u0131nan Mal: Ta\u015f\u0131mas\u0131 ger\u00e7ekle\u015fen mallar hakk\u0131ndaki bilgileri i\u00e7erir.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "id",
+  "description",
+  "hazardousriskindicator",
+  "declaredcustomsvalueamount",
+  "declaredcustomsvalueamountcurrencyid",
+  "declaredforcarriagevalueamount",
+  "declaredforcarriagevalueamountcurrencyid",
+  "declaredstatisticsvalueamount",
+  "declaredstatisticsvalueamountcurrencyid",
+  "freeonboardvalueamount",
+  "freeonboardvalueamountcurrencyid",
+  "insurancevalueamount",
+  "insurancevalueamountcurrencyid",
+  "valueamount",
+  "valueamountcurrencyid",
+  "grossweightmeasure",
+  "grossweightmeasureunitcode",
+  "netweightmeasure",
+  "netweightmeasureunitcode",
+  "chargableweightmeasure",
+  "chargableweightmeasureunitcode",
+  "grossvolumemeasure",
+  "grossvolumemeasureunitcode",
+  "netvolumemeasure",
+  "netvolumemeasureunitcode",
+  "quantity",
+  "quantityunitcode",
+  "requiredcustomsid",
+  "customsstatuscode",
+  "customstariffquantity",
+  "customstariffquantityunitcode",
+  "customsimportclassifiedindicator",
+  "chargeablequantity",
+  "chargeablequantityunitcode",
+  "returnablequantity",
+  "returnablequantityunitcode",
+  "traceid",
+  "item",
+  "freightallowancecharge",
+  "invoiceline",
+  "temperature",
+  "originaddress",
+  "measurementdimension"
+ ],
+ "fields": [
+  {
+   "description": "\u0130lgili \u00fcr\u00fcn\u00fc belge i\u00e7inde tekil olarak tan\u0131mlar.",
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u00dcr\u00fcn ayrac\u0131"
+  },
+  {
+   "description": "Serbet metin olarak a\u00e7\u0131klama girilebilir.",
+   "fieldname": "description",
+   "fieldtype": "Table",
+   "label": "A\u00e7\u0131klama",
+   "options": "UBL TR Notes"
+  },
+  {
+   "description": "\u00dcr\u00fcn tehlikeli madde kategorisinde say\u0131l\u0131p say\u0131lamayaca\u011f\u0131n\u0131 g\u00f6steren bilgi.",
+   "fieldname": "hazardousriskindicator",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tehlikeli madde g\u00f6stergesi"
+  },
+  {
+   "description": "G\u00fcmr\u00fck de\u011feri tutar\u0131 girilir.",
+   "fieldname": "declaredcustomsvalueamount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "G\u00fcmr\u00fck de\u011feri"
+  },
+  {
+   "fieldname": "declaredcustomsvalueamountcurrencyid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "G\u00fcmr\u00fck de\u011feri para birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "Nakliye tutar\u0131 (navlun) girilir.",
+   "fieldname": "declaredforcarriagevalueamount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Nakliye tutar\u0131"
+  },
+  {
+   "fieldname": "declaredforcarriagevalueamountcurrencyid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Nakliye tutar\u0131 para birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "\u00dcr\u00fcn\u00fcn GTIP k\u0131ymet de\u011feri girilir.",
+   "fieldname": "declaredstatisticsvalueamount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "GTIP k\u0131ymet de\u011feri"
+  },
+  {
+   "fieldname": "declaredstatisticsvalueamountcurrencyid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "GTIP k\u0131ymet de\u011feri para birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "FOB tutar\u0131 girilir.",
+   "fieldname": "freeonboardvalueamount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "FOB tutar\u0131"
+  },
+  {
+   "fieldname": "freeonboardvalueamountcurrencyid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "FOB tutar\u0131 para birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "Sigorta tutar\u0131 girilir.",
+   "fieldname": "insurancevalueamount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Sigorta tutar\u0131"
+  },
+  {
+   "fieldname": "insurancevalueamountcurrencyid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sigorta tutar\u0131 para birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "\u00dcr\u00fcn\u00fcn de\u011feri girilir. Ana seviyedeki Shipment'\u0131n alt\u0131nda kullan\u0131m\u0131nda toplam tutar bilgisi girilebilir.",
+   "fieldname": "valueamount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "\u00dcr\u00fcn\u00fcn de\u011feri"
+  },
+  {
+   "fieldname": "valueamountcurrencyid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u00dcr\u00fcn\u00fcn de\u011feri para birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "Br\u00fct a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
+   "fieldname": "grossweightmeasure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Br\u00fct a\u011f\u0131rl\u0131k"
+  },
+  {
+   "fieldname": "grossweightmeasureunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Br\u00fct a\u011f\u0131rl\u0131k \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Net a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
+   "fieldname": "netweightmeasure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Net a\u011f\u0131rl\u0131k"
+  },
+  {
+   "fieldname": "netweightmeasureunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Net a\u011f\u0131rl\u0131k \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Belli bir \u00fccretin uygulanabilece\u011fi br\u00fct a\u011f\u0131rl\u0131\u011f\u0131 girilir.",
+   "fieldname": "chargableweightmeasure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "\u00dccret uygulanan br\u00fct a\u011f\u0131rl\u0131k"
+  },
+  {
+   "fieldname": "chargableweightmeasureunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u00dccret uygulanan br\u00fct a\u011f\u0131rl\u0131k \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Br\u00fct hacim girilir.",
+   "fieldname": "grossvolumemeasure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Br\u00fct hacim"
+  },
+  {
+   "fieldname": "grossvolumemeasureunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Br\u00fct hacim \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Net hacim girilir.",
+   "fieldname": "netvolumemeasure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Net hacim"
+  },
+  {
+   "fieldname": "netvolumemeasureunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Net hacim \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Miktar girilir.",
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Miktar"
+  },
+  {
+   "fieldname": "quantityunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Miktar \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "\u00dcr\u00fcn\u00fcn veya mal\u0131n GTIP numaras\u0131 girilir.",
+   "fieldname": "requiredcustomsid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "GTIP numaras\u0131"
+  },
+  {
+   "description": "G\u00fcmr\u00fck durum kodu girilir.",
+   "fieldname": "customsstatuscode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "G\u00fcmr\u00fck durum kodu"
+  },
+  {
+   "description": "\u0130statistiksel, tarife veya mali ama\u00e7l\u0131 g\u00fcmr\u00fck mal miktar\u0131 girilir.",
+   "fieldname": "customstariffquantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "G\u00fcmr\u00fck miktar\u0131"
+  },
+  {
+   "fieldname": "customstariffquantityunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "G\u00fcmr\u00fck miktar\u0131 \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Mallar\u0131n g\u00fcmr\u00fckte ithalat i\u00e7in s\u0131n\u0131fland\u0131r\u0131lm\u0131\u015f olup olmad\u0131\u011f\u0131n\u0131 belirtir.",
+   "fieldname": "customsimportclassifiedindicator",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0130thalat s\u0131n\u0131fland\u0131rmas\u0131"
+  },
+  {
+   "description": "Belli bir \u00fccretin uygulanabilece\u011fi miktar girilir.",
+   "fieldname": "chargeablequantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "\u00dccretin uygulanabilece\u011fi miktar"
+  },
+  {
+   "fieldname": "chargeablequantityunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u00dccretin uygulanabilece\u011fi \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Mallar\u0131n ne kadar\u0131n\u0131n geri gelebilece\u011fi girilir.",
+   "fieldname": "returnablequantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Geri gelebilecek miktar"
+  },
+  {
+   "fieldname": "returnablequantityunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Geri gelebilecek \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Takip numaras\u0131 girilir.",
+   "fieldname": "traceid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Takip numaras\u0131"
+  },
+  {
+   "description": "Mallar\u0131n fatura kalemleriyle olan ili\u015fkileri girilir.",
+   "fieldname": "item",
+   "fieldtype": "Table MultiSelect",
+   "label": "Fatura kalemleri",
+   "options": "UBL TR Items"
+  },
+  {
+   "description": "Ta\u015f\u0131ma bedelinde indirim/fiyat art\u0131r\u0131m\u0131 var ise girilir.",
+   "fieldname": "freightallowancecharge",
+   "fieldtype": "Table MultiSelect",
+   "label": "Ta\u015f\u0131ma bedeli indirim/fiyat art\u0131r\u0131m\u0131",
+   "options": "UBL TR AllowanceCharges"
+  },
+  {
+   "description": "Birim fiyat ve kalem toplam fiyat bilgileri girilir.",
+   "fieldname": "invoiceline",
+   "fieldtype": "Table MultiSelect",
+   "label": "Birim fiyat ve kalem toplam fiyat bilgileri",
+   "options": "UBL TR InvoiceLines"
+  },
+  {
+   "description": "Sevkiyattaki mallar ile ilgili her t\u00fcrl\u00fc s\u0131cakl\u0131k bilgisi girilebilir.",
+   "fieldname": "temperature",
+   "fieldtype": "Table MultiSelect",
+   "label": "S\u0131cakl\u0131k bilgisi",
+   "options": "UBL TR Temperatures"
+  },
+  {
+   "description": "\u00dcr\u00fcnlerin \u00fcretildi\u011fi adres girilir.",
+   "fieldname": "originaddress",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u00dcr\u00fcnlerin \u00fcretildi\u011fi adres",
+   "options": "UBL TR Address"
+  },
+  {
+   "description": "\u00dcr\u00fcnlerin di\u011fer \u00f6l\u00e7\u00fcmleri girilir.",
+   "fieldname": "measurementdimension",
+   "fieldtype": "Table MultiSelect",
+   "label": "\u00dcr\u00fcnlerin di\u011fer \u00f6l\u00e7\u00fcmleri",
+   "options": "UBL TR Dimensions"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-21 23:09:32.939340",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR GoodsItem",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }

@@ -1,58 +1,58 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-21 21:03:08.342448",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "referenceid",
-    "responsecode",
-    "description"
-  ],
-  "fields": [
-    {
-      "fieldname": "referenceid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Yan\u0131t Ayrac\u0131",
-      "reqd": 1
-    },
-    {
-      "fieldname": "responsecode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Yan\u0131t Kodu",
-      "options": "UBL TR ResponseCode"
-    },
-    {
-      "fieldname": "description",
-      "fieldtype": "Table MultiSelect",
-      "label": "Tan\u0131mlama",
-      "options": "UBL TR Notes"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2021-12-21 21:23:10.156738",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR Response",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC"
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-21 21:03:08.342448",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "referenceid",
+  "responsecode",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "referenceid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Yan\u0131t Ayrac\u0131",
+   "reqd": 1
+  },
+  {
+   "fieldname": "responsecode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Yan\u0131t Kodu",
+   "options": "UBL TR ResponseCode"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Table",
+   "label": "Tan\u0131mlama",
+   "options": "UBL TR Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-21 23:13:26.922195",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR Response",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
 }

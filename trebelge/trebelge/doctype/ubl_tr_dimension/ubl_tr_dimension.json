@@ -1,100 +1,100 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-04 09:35:17.641102",
-  "description": "Boyut: Boyut bilgileri girilir.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "attributeid",
-    "measure",
-    "measureunitcode",
-    "description",
-    "minimummeasure",
-    "minimummeasureunitcode",
-    "maximummeasure",
-    "maximummeasureunitcode"
-  ],
-  "fields": [
-    {
-      "description": "Hangi \u00f6zelli\u011fin \u00f6l\u00e7\u00fcld\u00fc\u011f\u00fc girilir.",
-      "fieldname": "attributeid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "\u00d6zellik"
-    },
-    {
-      "description": "\u00d6l\u00e7\u00fcm girilir.",
-      "fieldname": "measure",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "\u00d6l\u00e7\u00fcm"
-    },
-    {
-      "fieldname": "measureunitcode",
-      "fieldtype": "Link",
-      "label": "\u00d6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "A\u00e7\u0131klama girilir.",
-      "fieldname": "description",
-      "fieldtype": "Table MultiSelect",
-      "label": "A\u00e7\u0131klama",
-      "options": "UBL TR Notes"
-    },
-    {
-      "description": "Minimum \u00f6l\u00e7\u00fcm girilir.",
-      "fieldname": "minimummeasure",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "En d\u00fc\u015f\u00fck \u00f6l\u00e7\u00fcm"
-    },
-    {
-      "fieldname": "minimummeasureunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "En d\u00fc\u015f\u00fck \u00f6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Maximum \u00f6l\u00e7\u00fcm girilir.",
-      "fieldname": "maximummeasure",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "En y\u00fcksek \u00f6l\u00e7\u00fcm"
-    },
-    {
-      "fieldname": "maximummeasureunitcode",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "En y\u00fcksek \u00f6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2021-12-21 22:04:03.810784",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR Dimension",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-04 09:35:17.641102",
+ "description": "Boyut: Boyut bilgileri girilir.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "attributeid",
+  "measure",
+  "measureunitcode",
+  "description",
+  "minimummeasure",
+  "minimummeasureunitcode",
+  "maximummeasure",
+  "maximummeasureunitcode"
+ ],
+ "fields": [
+  {
+   "description": "Hangi \u00f6zelli\u011fin \u00f6l\u00e7\u00fcld\u00fc\u011f\u00fc girilir.",
+   "fieldname": "attributeid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u00d6zellik"
+  },
+  {
+   "description": "\u00d6l\u00e7\u00fcm girilir.",
+   "fieldname": "measure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "\u00d6l\u00e7\u00fcm"
+  },
+  {
+   "fieldname": "measureunitcode",
+   "fieldtype": "Link",
+   "label": "\u00d6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "A\u00e7\u0131klama girilir.",
+   "fieldname": "description",
+   "fieldtype": "Table",
+   "label": "A\u00e7\u0131klama",
+   "options": "UBL TR Notes"
+  },
+  {
+   "description": "Minimum \u00f6l\u00e7\u00fcm girilir.",
+   "fieldname": "minimummeasure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "En d\u00fc\u015f\u00fck \u00f6l\u00e7\u00fcm"
+  },
+  {
+   "fieldname": "minimummeasureunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "En d\u00fc\u015f\u00fck \u00f6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Maximum \u00f6l\u00e7\u00fcm girilir.",
+   "fieldname": "maximummeasure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "En y\u00fcksek \u00f6l\u00e7\u00fcm"
+  },
+  {
+   "fieldname": "maximummeasureunitcode",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "En y\u00fcksek \u00f6l\u00e7\u00fcm \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-21 23:14:50.328590",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR Dimension",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }

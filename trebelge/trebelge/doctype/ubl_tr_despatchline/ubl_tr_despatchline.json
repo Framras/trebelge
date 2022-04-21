@@ -1,143 +1,143 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-03 21:11:59.088053",
-  "description": "\u0130rsaliye Kalemleri: Bu elemanda irsaliyede yer alan g\u00f6nderilere ait bilgiler yer alacakt\u0131r.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "id",
-    "note",
-    "deliveredquantity",
-    "deliveredquantityunitcode",
-    "outstandingquantity",
-    "outstandingquantityunitcode",
-    "outstandingreason",
-    "oversupplyquantity",
-    "oversupplyquantityunitcode",
-    "orderlinereference",
-    "documentreference",
-    "item",
-    "shipment"
-  ],
-  "fields": [
-    {
-      "description": "\u0130rsaliye kalemi numaras\u0131 girilir.",
-      "fieldname": "id",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "\u0130rsaliye kalemi numaras\u0131",
-      "reqd": 1
-    },
-    {
-      "description": "Kalem ile ilgili a\u00e7\u0131klama girilir.",
-      "fieldname": "note",
-      "fieldtype": "Table MultiSelect",
-      "label": "A\u00e7\u0131klama",
-      "options": "UBL TR Notes"
-    },
-    {
-      "description": "G\u00f6nderimi ger\u00e7ekle\u015ftirilen mal adedi girilir.",
-      "fieldname": "deliveredquantity",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "G\u00f6nderilen adet"
-    },
-    {
-      "fieldname": "deliveredquantityunitcode",
-      "fieldtype": "Link",
-      "label": "G\u00f6nderilen \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "\u0130leriki bir tarihte g\u00f6nderilecek mal adedi bilgisi girilir.",
-      "fieldname": "outstandingquantity",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "G\u00f6nderilecek adet"
-    },
-    {
-      "fieldname": "outstandingquantityunitcode",
-      "fieldtype": "Link",
-      "label": "G\u00f6nderilecek \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "\u0130leriki tarihte g\u00f6nderilecek mal\u0131n sebebi girilir.",
-      "fieldname": "outstandingreason",
-      "fieldtype": "Table MultiSelect",
-      "label": "Bakiye A\u00e7\u0131klamas\u0131",
-      "options": "UBL TR Notes"
-    },
-    {
-      "description": "Fazla miktarda g\u00f6nderilen mal\u0131n adedi girilir.",
-      "fieldname": "oversupplyquantity",
-      "fieldtype": "Float",
-      "in_list_view": 1,
-      "label": "Fazla g\u00f6nderilen adet"
-    },
-    {
-      "fieldname": "oversupplyquantityunitcode",
-      "fieldtype": "Link",
-      "label": "Fazla g\u00f6nderilen adet \u00f6l\u00e7\u00fc birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "\u0130lgili sipari\u015f dok\u00fcman\u0131 kalemine referans girilir.",
-      "fieldname": "orderlinereference",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Sipari\u015f Kalemi Referans\u0131",
-      "options": "UBL TR OrderLineReference",
-      "reqd": 1
-    },
-    {
-      "description": "\u0130lgili dok\u00fcmanlara referans girilir.",
-      "fieldname": "documentreference",
-      "fieldtype": "Table MultiSelect",
-      "label": "\u0130lgili dok\u00fcmanlar",
-      "options": "UBL TR DocumentReferences"
-    },
-    {
-      "description": "Mal bilgisi girilir.",
-      "fieldname": "item",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Mal",
-      "options": "UBL TR Item",
-      "reqd": 1
-    },
-    {
-      "description": "\u00dcr\u00fcn birim fiyat\u0131 bilgisi girilir.",
-      "fieldname": "shipment",
-      "fieldtype": "Table MultiSelect",
-      "label": "G\u00f6nderi",
-      "options": "UBL TR Shipments"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2021-12-03 21:11:59.088053",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR DespatchLine",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-03 21:11:59.088053",
+ "description": "\u0130rsaliye Kalemleri: Bu elemanda irsaliyede yer alan g\u00f6nderilere ait bilgiler yer alacakt\u0131r.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "id",
+  "note",
+  "deliveredquantity",
+  "deliveredquantityunitcode",
+  "outstandingquantity",
+  "outstandingquantityunitcode",
+  "outstandingreason",
+  "oversupplyquantity",
+  "oversupplyquantityunitcode",
+  "orderlinereference",
+  "documentreference",
+  "item",
+  "shipment"
+ ],
+ "fields": [
+  {
+   "description": "\u0130rsaliye kalemi numaras\u0131 girilir.",
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0130rsaliye kalemi numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "description": "Kalem ile ilgili a\u00e7\u0131klama girilir.",
+   "fieldname": "note",
+   "fieldtype": "Table",
+   "label": "A\u00e7\u0131klama",
+   "options": "UBL TR Notes"
+  },
+  {
+   "description": "G\u00f6nderimi ger\u00e7ekle\u015ftirilen mal adedi girilir.",
+   "fieldname": "deliveredquantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "G\u00f6nderilen adet"
+  },
+  {
+   "fieldname": "deliveredquantityunitcode",
+   "fieldtype": "Link",
+   "label": "G\u00f6nderilen \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "\u0130leriki bir tarihte g\u00f6nderilecek mal adedi bilgisi girilir.",
+   "fieldname": "outstandingquantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "G\u00f6nderilecek adet"
+  },
+  {
+   "fieldname": "outstandingquantityunitcode",
+   "fieldtype": "Link",
+   "label": "G\u00f6nderilecek \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "\u0130leriki tarihte g\u00f6nderilecek mal\u0131n sebebi girilir.",
+   "fieldname": "outstandingreason",
+   "fieldtype": "Table",
+   "label": "Bakiye A\u00e7\u0131klamas\u0131",
+   "options": "UBL TR Notes"
+  },
+  {
+   "description": "Fazla miktarda g\u00f6nderilen mal\u0131n adedi girilir.",
+   "fieldname": "oversupplyquantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Fazla g\u00f6nderilen adet"
+  },
+  {
+   "fieldname": "oversupplyquantityunitcode",
+   "fieldtype": "Link",
+   "label": "Fazla g\u00f6nderilen adet \u00f6l\u00e7\u00fc birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "\u0130lgili sipari\u015f dok\u00fcman\u0131 kalemine referans girilir.",
+   "fieldname": "orderlinereference",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sipari\u015f Kalemi Referans\u0131",
+   "options": "UBL TR OrderLineReference",
+   "reqd": 1
+  },
+  {
+   "description": "\u0130lgili dok\u00fcmanlara referans girilir.",
+   "fieldname": "documentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "\u0130lgili dok\u00fcmanlar",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "description": "Mal bilgisi girilir.",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Mal",
+   "options": "UBL TR Item",
+   "reqd": 1
+  },
+  {
+   "description": "\u00dcr\u00fcn birim fiyat\u0131 bilgisi girilir.",
+   "fieldname": "shipment",
+   "fieldtype": "Table MultiSelect",
+   "label": "G\u00f6nderi",
+   "options": "UBL TR Shipments"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-21 23:11:49.091994",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR DespatchLine",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }

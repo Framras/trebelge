@@ -1,11 +1,9 @@
-import xml.etree.ElementTree as ET
 from datetime import datetime
 from xml.etree.ElementTree import Element
 
 import frappe
 from trebelge.TRUBLBuilder.TRUBLBuilder import TRUBLBuilder
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentResponse import TRUBLDocumentResponse
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 
 
@@ -56,11 +54,10 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
         notes_: list = self.root.findall('./' + self._cbc_ns + 'Note')
         if len(notes_) != 0:
-            doc_append = self._product.append("note", {})
             for note_ in notes_:
-                tmp = TRUBLNote().process_element(note_, self._cbc_ns, self._cbc_ns)
-                if tmp is not None:
-                    doc_append.note = tmp.name
+                element_ = note_.text
+                if element_ is not None and element_.strip() != '':
+                    self._product.append("note", dict(note=element_.strip()))
                     self._product.save()
 
     def build_invoiceperiod(self) -> None:
