@@ -1,4 +1,3 @@
-import xml.etree.ElementTree as ET
 from datetime import datetime
 from xml.etree.ElementTree import Element
 
@@ -29,68 +28,62 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
 
     _frappeDoctype: str = 'UBL TR Credit Note'
 
-    def __init__(self, filepath: str) -> None:
+    def __init__(self, root: Element, cac_ns: str, cbc_ns: str, uuid: str) -> None:
         """
         A fresh builder instance should contain a blank product object, which is
         used in further assembly.
         """
-        self.filepath = filepath
-        self._cbc_ns = None
-        self._cac_ns = None
-        self.root = None
+        self.root = root
+        self._cac_ns = cac_ns
+        self._cbc_ns = cbc_ns
+        self._uuid = uuid
         self._product = None
 
     def reset(self) -> None:
-        _namespaces = dict([node for _, node in ET.iterparse(self.filepath, events=['start-ns'])])
-        self._cac_ns = str('{' + _namespaces.get('cac') + '}')
-        self._cbc_ns = str('{' + _namespaces.get('cbc') + '}')
-        root_: Element = ET.parse(self.filepath).getroot()
-        uuid_ = root_.find('./' + self._cbc_ns + 'UUID').text
-        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
+        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': self._uuid})) == 0:
             creditnote_ = frappe.new_doc(self._frappeDoctype)
-            creditnote_.uuid = uuid_
-            creditnote_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
-            creditnote_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
-            creditnote_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
-            profileexecutionid_: Element = root_.find('./' + self._cbc_ns + 'ProfileExecutionID')
+            creditnote_.uuid = self._uuid
+            creditnote_.ublversionid = self.root.find('./' + self._cbc_ns + 'UBLVersionID').text
+            creditnote_.customizationid = self.root.find('./' + self._cbc_ns + 'CustomizationID').text
+            creditnote_.profileid = self.root.find('./' + self._cbc_ns + 'ProfileID').text
+            profileexecutionid_: Element = self.root.find('./' + self._cbc_ns + 'ProfileExecutionID')
             if profileexecutionid_ is not None:
                 creditnote_.profileexecutionid = profileexecutionid_.text
-            creditnote_.id = root_.find('./' + self._cbc_ns + 'ID').text
-            creditnote_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            creditnote_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
-            taxpointdate_ = root_.find('./' + self._cbc_ns + 'TaxPointDate')
+            creditnote_.id = self.root.find('./' + self._cbc_ns + 'ID').text
+            creditnote_.copyindicator = self.root.find('./' + self._cbc_ns + 'CopyIndicator').text
+            creditnote_.issuedate = self.root.find('./' + self._cbc_ns + 'IssueDate').text
+            taxpointdate_ = self.root.find('./' + self._cbc_ns + 'TaxPointDate')
             if taxpointdate_ is not None:
-                creditnote_.taxpointdate = time.strptime(taxpointdate_.text, '%Y-%m-%d')
-            creditnote_.creditnotetypecode = root_.find('./' + self._cbc_ns + 'CreditNoteTypeCode').text
-            documentcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'DocumentCurrencyCode')
+                creditnote_.taxpointdate = taxpointdate_.text
+            creditnote_.creditnotetypecode = self.root.find('./' + self._cbc_ns + 'CreditNoteTypeCode').text
+            documentcurrencycode_: Element = self.root.find('./' + self._cbc_ns + 'DocumentCurrencyCode')
             if documentcurrencycode_ is not None:
                 creditnote_.documentcurrencycode = documentcurrencycode_.text
-            taxcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'TaxCurrencyCode')
+            taxcurrencycode_: Element = self.root.find('./' + self._cbc_ns + 'TaxCurrencyCode')
             if taxcurrencycode_ is not None:
                 creditnote_.taxcurrencycode = taxcurrencycode_.text
-            pricingcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'PricingCurrencyCode')
+            pricingcurrencycode_: Element = self.root.find('./' + self._cbc_ns + 'PricingCurrencyCode')
             if pricingcurrencycode_ is not None:
                 creditnote_.pricingcurrencycode = pricingcurrencycode_.text
-            paymentcurrencycode_: Element = root_.find('./' + self._cbc_ns + 'PaymentCurrencyCode')
+            paymentcurrencycode_: Element = self.root.find('./' + self._cbc_ns + 'PaymentCurrencyCode')
             if paymentcurrencycode_ is not None:
                 creditnote_.paymentcurrencycode = paymentcurrencycode_.text
-            paymentalternativecurrencycode_: Element = root_.find(
+            paymentalternativecurrencycode_: Element = self.root.find(
                 './' + self._cbc_ns + 'PaymentAlternativeCurrencyCode')
             if paymentalternativecurrencycode_ is not None:
                 creditnote_.paymentalternativecurrencycode = paymentalternativecurrencycode_.text
-            accountingcostcode_: Element = root_.find('./' + self._cbc_ns + 'AccountingCostCode')
+            accountingcostcode_: Element = self.root.find('./' + self._cbc_ns + 'AccountingCostCode')
             if accountingcostcode_ is not None:
                 creditnote_.accountingcostcode = accountingcostcode_.text
-            accountingcost_: Element = root_.find('./' + self._cbc_ns + 'AccountingCost')
+            accountingcost_: Element = self.root.find('./' + self._cbc_ns + 'AccountingCost')
             if accountingcost_ is not None:
                 creditnote_.accountingcost = accountingcost_.text
-            creditnote_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
-            buyerreference_: Element = root_.find('./' + self._cbc_ns + 'BuyerReference')
+            creditnote_.linecountnumeric = self.root.find('./' + self._cbc_ns + 'LineCountNumeric').text
+            buyerreference_: Element = self.root.find('./' + self._cbc_ns + 'BuyerReference')
             if buyerreference_ is not None:
                 creditnote_.buyerreference = buyerreference_.text
             creditnote_.insert()
-        self.root = root_
-        self._product = frappe.get_doc(self._frappeDoctype, uuid_)
+        self._product = frappe.get_doc(self._frappeDoctype, self._uuid)
 
     def build_issuetime(self) -> None:
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')

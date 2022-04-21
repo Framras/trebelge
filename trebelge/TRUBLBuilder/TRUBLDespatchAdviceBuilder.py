@@ -1,4 +1,3 @@
-import xml.etree.ElementTree as ET
 from datetime import datetime
 from xml.etree.ElementTree import Element
 
@@ -21,37 +20,31 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
 
     _frappeDoctype: str = 'UBL TR Despatch Advice'
 
-    def __init__(self, filepath: str) -> None:
+    def __init__(self, root: Element, cac_ns: str, cbc_ns: str, uuid: str) -> None:
         """
         A fresh builder instance should contain a blank product object, which is
         used in further assembly.
         """
-        self.filepath = filepath
-        self._cbc_ns = None
-        self._cac_ns = None
-        self.root = None
+        self.root = root
+        self._cac_ns = cac_ns
+        self._cbc_ns = cbc_ns
+        self._uuid = uuid
         self._product = None
 
     def reset(self) -> None:
-        _namespaces = dict([node for _, node in ET.iterparse(self.filepath, events=['start-ns'])])
-        self._cac_ns = str('{' + _namespaces.get('cac') + '}')
-        self._cbc_ns = str('{' + _namespaces.get('cbc') + '}')
-        root_: Element = ET.parse(self.filepath).getroot()
-        uuid_ = root_.find('./' + self._cbc_ns + 'UUID').text
-        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
+        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': self._uuid})) == 0:
             despatchadvice_ = frappe.new_doc(self._frappeDoctype)
-            despatchadvice_.uuid = uuid_
-            despatchadvice_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
-            despatchadvice_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
-            despatchadvice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
-            despatchadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
-            despatchadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            despatchadvice_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
-            despatchadvice_.despatchadvicetypecode = root_.find('./' + self._cbc_ns + 'DespatchAdviceTypeCode').text
-            despatchadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
+            despatchadvice_.uuid = self._uuid
+            despatchadvice_.ublversionid = self.root.find('./' + self._cbc_ns + 'UBLVersionID').text
+            despatchadvice_.customizationid = self.root.find('./' + self._cbc_ns + 'CustomizationID').text
+            despatchadvice_.profileid = self.root.find('./' + self._cbc_ns + 'ProfileID').text
+            despatchadvice_.id = self.root.find('./' + self._cbc_ns + 'ID').text
+            despatchadvice_.copyindicator = self.root.find('./' + self._cbc_ns + 'CopyIndicator').text
+            despatchadvice_.issuedate = self.root.find('./' + self._cbc_ns + 'IssueDate').text
+            despatchadvice_.despatchadvicetypecode = self.root.find('./' + self._cbc_ns + 'DespatchAdviceTypeCode').text
+            despatchadvice_.linecountnumeric = self.root.find('./' + self._cbc_ns + 'LineCountNumeric').text
             despatchadvice_.insert()
-        self.root = root_
-        self._product = frappe.get_doc(self._frappeDoctype, uuid_)
+        self._product = frappe.get_doc(self._frappeDoctype, self._uuid)
 
     def build_issuetime(self) -> None:
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')

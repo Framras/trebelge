@@ -1,4 +1,3 @@
-import xml.etree.ElementTree as ET
 from datetime import datetime
 from xml.etree.ElementTree import Element
 
@@ -21,37 +20,31 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
 
     _frappeDoctype: str = 'UBL TR Receipt Advice'
 
-    def __init__(self, filepath: str) -> None:
+    def __init__(self, root: Element, cac_ns: str, cbc_ns: str, uuid: str) -> None:
         """
         A fresh builder instance should contain a blank product object, which is
         used in further assembly.
         """
-        self.filepath = filepath
-        self._cbc_ns = None
-        self._cac_ns = None
-        self.root = None
+        self.root = root
+        self._cac_ns = cac_ns
+        self._cbc_ns = cbc_ns
+        self._uuid = uuid
         self._product = None
 
     def reset(self) -> None:
-        _namespaces = dict([node for _, node in ET.iterparse(self.filepath, events=['start-ns'])])
-        self._cac_ns = str('{' + _namespaces.get('cac') + '}')
-        self._cbc_ns = str('{' + _namespaces.get('cbc') + '}')
-        root_: Element = ET.parse(self.filepath).getroot()
-        uuid_ = root_.find('./' + self._cbc_ns + 'UUID').text
-        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': uuid_})) == 0:
+        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': self._uuid})) == 0:
             receiptadvice_ = frappe.new_doc(self._frappeDoctype)
-            receiptadvice_.uuid = uuid_
-            receiptadvice_.ublversionid = root_.find('./' + self._cbc_ns + 'UBLVersionID').text
-            receiptadvice_.customizationid = root_.find('./' + self._cbc_ns + 'CustomizationID').text
-            receiptadvice_.profileid = root_.find('./' + self._cbc_ns + 'ProfileID').text
-            receiptadvice_.id = root_.find('./' + self._cbc_ns + 'ID').text
-            receiptadvice_.copyindicator = root_.find('./' + self._cbc_ns + 'CopyIndicator').text
-            receiptadvice_.issuedate = root_.find('./' + self._cbc_ns + 'IssueDate').text
-            receiptadvice_.receiptadvicetypecode = root_.find('./' + self._cbc_ns + 'ReceiptAdviceTypeCode').text
-            receiptadvice_.linecountnumeric = root_.find('./' + self._cbc_ns + 'LineCountNumeric').text
+            receiptadvice_.uuid = self._uuid
+            receiptadvice_.ublversionid = self.root.find('./' + self._cbc_ns + 'UBLVersionID').text
+            receiptadvice_.customizationid = self.root.find('./' + self._cbc_ns + 'CustomizationID').text
+            receiptadvice_.profileid = self.root.find('./' + self._cbc_ns + 'ProfileID').text
+            receiptadvice_.id = self.root.find('./' + self._cbc_ns + 'ID').text
+            receiptadvice_.copyindicator = self.root.find('./' + self._cbc_ns + 'CopyIndicator').text
+            receiptadvice_.issuedate = self.root.find('./' + self._cbc_ns + 'IssueDate').text
+            receiptadvice_.receiptadvicetypecode = self.root.find('./' + self._cbc_ns + 'ReceiptAdviceTypeCode').text
+            receiptadvice_.linecountnumeric = self.root.find('./' + self._cbc_ns + 'LineCountNumeric').text
             receiptadvice_.insert()
-        self.root = root_
-        self._product = frappe.get_doc(self._frappeDoctype, uuid_)
+        self._product = frappe.get_doc(self._frappeDoctype, self._uuid)
 
     def build_issuetime(self) -> None:
         # ['IssueTime'] = ('cbc', 'issuetime', 'Seçimli (0...1)')
