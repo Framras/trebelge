@@ -40,26 +40,6 @@ class TRUBLReceiptLine(TRUBLCommonElement):
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
                     frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode')
-        # ['Note'] = ('cbc', '', 'Seçimli (0...n)')
-        notes = list()
-        notes_: list = element.findall('./' + cbcnamespace + 'Note')
-        if len(notes_) != 0:
-            for note_ in notes_:
-                tmp = TRUBLNote().process_element(note_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    notes.append(tmp)
-            if len(notes) != 0:
-                frappedoc['note'] = notes
-        # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
-        rejectreasons = list()
-        rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
-        if len(rejectreasons_) != 0:
-            for rejectreason_ in rejectreasons_:
-                tmp = TRUBLNote().process_element(rejectreason_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    rejectreasons.append(tmp)
-            if len(rejectreasons) != 0:
-                frappedoc['rejectreason'] = rejectreasons
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         item_: Element = element.find('./' + cacnamespace + 'Item')
         tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)
@@ -101,5 +81,22 @@ class TRUBLReceiptLine(TRUBLCommonElement):
             if len(documentreferences) != 0:
                 document.documentreference = documentreferences
             document.save()
+
+        # TODO : Optimize this
+        # ['Note'] = ('cbc', '', 'Seçimli (0...n)')
+        notes_: list = element.findall('./' + cbcnamespace + 'Note')
+        if len(notes_) != 0:
+            for note_ in notes_:
+                element_ = note_.text
+                if element_ is not None and element_.strip() != '':
+                    document.append("note", dict(note=element_.strip()))
+        # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
+        rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
+        if len(rejectreasons_) != 0:
+            for rejectreason_ in rejectreasons_:
+                element_ = rejectreason_.text
+                if element_ is not None and element_.strip() != '':
+                    document.append("rejectreason", dict(note=element_.strip()))
+        document.save()
 
         return document
