@@ -32,6 +32,7 @@ class CreditNoteHandler(AbstractXMLFileHandler):
                     director = TRUBLDirector(builder)
                     director.make_tr_ubl_creditnote()
                     builder.get_document()
+                    frappe.db.commit()
             else:
                 # TODO: Raise 'File is of unknown type' warning and leave it be
                 pass

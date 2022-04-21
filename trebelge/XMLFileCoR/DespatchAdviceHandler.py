@@ -33,5 +33,6 @@ class DespatchAdviceHandler(AbstractXMLFileHandler):
                     director = TRUBLDirector(builder)
                     director.make_tr_ubl_despatchadvice()
                     builder.get_document()
+                    frappe.db.commit()
             else:
                 self._successor.handle_xml_file(file_path)
