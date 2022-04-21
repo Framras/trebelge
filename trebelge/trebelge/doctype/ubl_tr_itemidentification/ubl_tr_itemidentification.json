@@ -1,48 +1,47 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "autoname": "field:id",
-  "creation": "2021-12-03 19:20:00.973090",
-  "description": "Kalem Kimli\u011fi: \u00dcr\u00fcn numaraland\u0131rlmas\u0131 i\u00e7in kullan\u0131l\u0131r. Her t\u00fcrl\u00fc numaraland\u0131r\u0131lma i\u00e7in kullan\u0131labilir. \u00d6rne\u011fin, ila\u00e7 sekt\u00f6r\u00fcnde PluKod\u2019u veya otomotiv sekt\u00f6r\u00fcnde arac\u0131n motor numaras\u0131 gibi.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "id"
-  ],
-  "fields": [
-    {
-      "description": "\u00dcr\u00fcn numaras\u0131 girilir.",
-      "fieldname": "id",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "\u00dcr\u00fcn numaras\u0131",
-      "reqd": 1,
-      "unique": 1
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2022-01-11 01:49:55.945736",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR ItemIdentification",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:id",
+ "creation": "2021-12-03 19:20:00.973090",
+ "description": "Kalem Kimli\u011fi: \u00dcr\u00fcn numaraland\u0131rlmas\u0131 i\u00e7in kullan\u0131l\u0131r. Her t\u00fcrl\u00fc numaraland\u0131r\u0131lma i\u00e7in kullan\u0131labilir. \u00d6rne\u011fin, ila\u00e7 sekt\u00f6r\u00fcnde PluKod\u2019u veya otomotiv sekt\u00f6r\u00fcnde arac\u0131n motor numaras\u0131 gibi.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "id"
+ ],
+ "fields": [
+  {
+   "description": "\u00dcr\u00fcn numaras\u0131 girilir.",
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u00dcr\u00fcn numaras\u0131",
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-21 13:33:15.263000",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR ItemIdentification",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }
