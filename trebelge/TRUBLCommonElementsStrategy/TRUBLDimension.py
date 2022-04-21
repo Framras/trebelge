@@ -2,7 +2,6 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 
 
 class TRUBLDimension(TRUBLCommonElement):
@@ -33,23 +32,18 @@ class TRUBLDimension(TRUBLCommonElement):
             if maximummeasure_.text is not None:
                 frappedoc['maximummeasure'] = maximummeasure_.text.strip()
                 frappedoc['maximummeasureunitcode'] = maximummeasure_.attrib.get('unitCode').strip()
-        # ['Description'] = ('cbc', 'descriptions', 'Seçimli(0..n)', 'description')
-        descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
-        descriptions = list()
-        if len(descriptions_) != 0:
-            for description_ in descriptions_:
-                tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    descriptions.append(tmp.name)
         if frappedoc == {}:
             return None
-        if len(descriptions) == 0:
+        # ['Description'] = ('cbc', 'descriptions', 'Seçimli(0..n)', 'description')
+        descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
+        if len(descriptions_) == 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            doc_append = document.append("description", {})
-            for description in descriptions:
-                doc_append.note = description
-                document.save()
+            for description_ in descriptions_:
+                element_ = description_.text
+                if element_ is not None and element_.strip() != '':
+                    document.append("description", dict(note=element_.strip()))
+                    document.save()
 
         return document

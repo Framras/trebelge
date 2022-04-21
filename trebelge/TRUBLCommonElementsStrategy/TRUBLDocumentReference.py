@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAttachment import TRUBLAttachment
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPeriod import TRUBLPeriod
 
@@ -53,21 +52,14 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                 frappedoc['issuerparty'] = tmp.name
         if frappedoc == {}:
             return None
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['DocumentDescription'] = ('cbc', '', 'Seçimli(0..n)', 'documentdescription')
         documentdescriptions_: list = element.findall('./' + cbcnamespace + 'DocumentDescription')
-        documentdescriptions = list()
         if len(documentdescriptions_) != 0:
             for documentdescription_ in documentdescriptions_:
-                tmp = TRUBLNote().process_element(documentdescription_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    documentdescriptions.append(tmp.name)
-        if len(documentdescriptions) == 0:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
-            doc_append = document.append("documentdescription", {})
-            for documentdescription in documentdescriptions:
-                doc_append.note = documentdescription
-                document.save()
+                element_ = documentdescription_.text
+                if element_ is not None and element_.strip() != '':
+                    document.append("documentdescription", dict(note=element_.strip()))
+                    document.save()
 
         return document

@@ -7,7 +7,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDimension import TRUBLDimension
 from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTemperature import TRUBLTemperature
 
 
@@ -69,9 +68,9 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(descriptions_) != 0:
             for description_ in descriptions_:
-                tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    descriptions.append(tmp.name)
+                element_ = description_.text
+                if element_ is not None and element_.strip() != '':
+                    descriptions.append(element_.strip())
         # ['OriginAddress'] = ('cac', 'Address', 'Seçimli(0..1)')
         address_: Element = element.find('./' + cacnamespace + 'OriginAddress')
         if address_ is not None:
@@ -125,9 +124,8 @@ class TRUBLGoodsItem(TRUBLCommonElement):
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             if len(descriptions) != 0:
-                doc_append = document.append("description", {})
                 for description in descriptions:
-                    doc_append.note = description
+                    document.append("description", dict(note=description))
                     document.save()
             if len(items) != 0:
                 doc_append = document.append("item", {})

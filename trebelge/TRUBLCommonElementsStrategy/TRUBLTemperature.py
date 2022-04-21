@@ -2,7 +2,6 @@ from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 
 
 class TRUBLTemperature(TRUBLCommonElement):
@@ -20,15 +19,14 @@ class TRUBLTemperature(TRUBLCommonElement):
                                measure=measure_.text,
                                measureunitcode=measure_.attrib.get('unitCode')
                                )
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
         # ['Description'] = ('cbc', '', 'Seçimli (0...n)')
-        descriptions = list()
         descriptions_: list = element.findall('./' + cbcnamespace + 'Description')
         if len(descriptions_) != 0:
             for description_ in descriptions_:
-                tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    descriptions.append(tmp)
-            if len(descriptions) != 0:
-                frappedoc['description'] = descriptions
+                element_ = description_.text
+                if element_ is not None and element_.strip() != '':
+                    document.append("description", dict(note=element_.strip()))
+                    document.save()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return document

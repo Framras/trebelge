@@ -4,7 +4,6 @@ from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 
 
 class TRUBLMaritimeTransport(TRUBLCommonElement):
@@ -33,16 +32,6 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
             if nettonnagemeasure_.text is not None:
                 frappedoc['nettonnagemeasure'] = nettonnagemeasure_.text
                 frappedoc['nettonnagemeasureunitcode'] = nettonnagemeasure_.attrib.get('unitCode')
-        # ['ShipsRequirements'] = ('cbc', '', 'Seçimli (0...n)')
-        requirements = list()
-        shipsrequirements_: list = element.findall('./' + cbcnamespace + 'ShipsRequirements')
-        if len(shipsrequirements_) != 0:
-            for shipsrequirement_ in shipsrequirements_:
-                tmp = TRUBLNote().process_element(shipsrequirement_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    requirements.append(tmp)
-            if len(requirements) != 0:
-                frappedoc['shipsrequirements'] = requirements
         # ['RegistryCertificateDocumentReference'] = ('cac', 'DocumentReference', 'Seçimli (0...1)')
         # ['RegistryPortLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
         cacsecimli01: list = \
@@ -58,4 +47,14 @@ class TRUBLMaritimeTransport(TRUBLCommonElement):
                     frappedoc[element_.get('fieldName')] = tmp.name
         if frappedoc == {}:
             return None
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        document = self._get_frappedoc(self._frappeDoctype, frappedoc)
+        # ['ShipsRequirements'] = ('cbc', '', 'Seçimli (0...n)')
+        shipsrequirements_: list = element.findall('./' + cbcnamespace + 'ShipsRequirements')
+        if len(shipsrequirements_) != 0:
+            for shipsrequirement_ in shipsrequirements_:
+                element_ = shipsrequirement_.text
+                if element_ is not None and element_.strip() != '':
+                    document.append("shipsrequirements", dict(note=element_.strip()))
+                    document.save()
+
+        return document

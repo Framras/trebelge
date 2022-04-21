@@ -5,7 +5,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLAddress import TRUBLAddress
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLGoodsItem import TRUBLGoodsItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLocation import TRUBLLocation
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLShipmentStage import TRUBLShipmentStage
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTransportHandlingUnit import TRUBLTransportHandlingUnit
 
@@ -90,16 +89,6 @@ class TRUBLShipment(TRUBLCommonElement):
         if freeonboardvalueamount_ is not None and freeonboardvalueamount_.text is not None:
             frappedoc['freeonboardvalueamount'] = freeonboardvalueamount_.text
             frappedoc['freeonboardvalueamountcurrencyid'] = freeonboardvalueamount_.attrib.get('currencyID')
-        # ['SpecialInstructions'] = ('cbc', '', 'Seçimli (0...n)')
-        descriptions_: list = element.findall('./' + cbcnamespace + 'SpecialInstructions')
-        if len(descriptions_) != 0:
-            descriptions = list()
-            for description_ in descriptions_:
-                tmp = TRUBLNote().process_element(description_, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    descriptions.append(tmp)
-            if len(descriptions) != 0:
-                frappedoc['specialinstructions'] = descriptions
         # ['Delivery'] = ('cac', 'Delivery', 'Seçimli (0...1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'Delivery')
         if tagelement_ is not None:
@@ -159,5 +148,14 @@ class TRUBLShipment(TRUBLCommonElement):
             if len(transporthandlingunit) != 0:
                 document.transporthandlingunit = transporthandlingunit
             document.save()
+
+        # ['SpecialInstructions'] = ('cbc', '', 'Seçimli (0...n)')
+        descriptions_: list = element.findall('./' + cbcnamespace + 'SpecialInstructions')
+        if len(descriptions_) != 0:
+            for description_ in descriptions_:
+                element_ = description_.text
+                if element_ is not None and element_.strip() != '':
+                    document.append("specialinstructions", dict(note=element_.strip()))
+                    document.save()
 
         return document

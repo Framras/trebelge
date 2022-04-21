@@ -6,7 +6,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCustomsDeclaration import TRUBLCu
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDimension import TRUBLDimension
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLHazardousGoodsTransit import TRUBLHazardousGoodsTransit
-from trebelge.TRUBLCommonElementsStrategy.TRUBLNote import TRUBLNote
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPackage import TRUBLPackage
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTemperature import TRUBLTemperature
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTransportEquipment import TRUBLTransportEquipment
@@ -48,9 +47,9 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
         damageremarks_: list = element.findall('./' + cbcnamespace + 'DamageRemarks')
         if len(damageremarks_) != 0:
             for damageremark_ in damageremarks_:
-                tmp = TRUBLNote().process_element(damageremark_.text, cbcnamespace, cacnamespace)
-                if tmp is not None:
-                    damageremarks.append(tmp.name)
+                element_ = damageremark_.text
+                if element_ is not None and element_.strip() != '':
+                    damageremarks.append(element_.strip())
         # ['MinimumTemperature'] = ('cac', 'Temperature', 'Seçimli (0...1)')
         minimumtemperature_: Element = element.find('./' + cacnamespace + 'MinimumTemperature')
         if minimumtemperature_ is not None:
@@ -141,9 +140,8 @@ class TRUBLTransportHandlingUnit(TRUBLCommonElement):
         else:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             if len(damageremarks) != 0:
-                doc_append = document.append("damageremarks", {})
                 for damageremark in damageremarks:
-                    doc_append.note = damageremark
+                    document.append("damageremarks", dict(note=damageremark))
                     document.save()
             if len(actualpackages) != 0:
                 doc_append = document.append("actualpackage", {})
