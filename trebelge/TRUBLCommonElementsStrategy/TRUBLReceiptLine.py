@@ -89,6 +89,7 @@ class TRUBLReceiptLine(TRUBLCommonElement):
                 element_ = note_.text
                 if element_ is not None and element_.strip() != '':
                     document.append("note", dict(note=element_.strip()))
+                    document.save()
         # ['RejectReason'] = ('cbc', '', 'Seçimli (0...n)')
         rejectreasons_: list = element.findall('./' + cbcnamespace + 'RejectReason')
         if len(rejectreasons_) != 0:
@@ -96,6 +97,6 @@ class TRUBLReceiptLine(TRUBLCommonElement):
                 element_ = rejectreason_.text
                 if element_ is not None and element_.strip() != '':
                     document.append("rejectreason", dict(note=element_.strip()))
-        document.save()
+                    document.save()
 
         return document
