@@ -25,5 +25,6 @@ class ReceiptAdviceHandler(AbstractXMLFileHandler):
                 director = TRUBLDirector(builder)
                 director.make_tr_ubl_receiptadvice()
                 builder.get_document()
+                frappe.db.commit()
             else:
                 self._successor.handle_xml_file(file_path)
