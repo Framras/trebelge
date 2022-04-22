@@ -1,135 +1,135 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-03 13:02:54.044629",
-  "description": "Vergi Ara Toplam\u0131: Vergi ve di\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fcklerin hesaplamas\u0131 ile ilgili bilgilere yer verilecektir.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "taxableamount",
-    "taxableamountcurrencyid",
-    "taxamount",
-    "taxamountcurrencyid",
-    "calculationsequencenumeric",
-    "transactioncurrencytaxamount",
-    "transactioncurrencytaxamountcurrencyid",
-    "percent",
-    "baseunitmeasure",
-    "baseunitmeasureunitcode",
-    "perunitamount",
-    "perunitamountcurrencyid",
-    "taxcategory"
-  ],
-  "fields": [
-    {
-      "description": "Verginin \u00fczerinden hesapland\u0131\u011f\u0131 tutar (matrah) bilgisi girilecektir.",
-      "fieldname": "taxableamount",
-      "fieldtype": "Currency",
-      "label": "Matrah"
-    },
-    {
-      "fieldname": "taxableamountcurrencyid",
-      "fieldtype": "Link",
-      "label": "Matrah Para Birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "Hesaplanan Vergi Tutar\u0131d\u0131r.",
-      "fieldname": "taxamount",
-      "fieldtype": "Currency",
-      "in_list_view": 1,
-      "label": "Hesaplanan Vergi",
-      "reqd": 1
-    },
-    {
-      "fieldname": "taxamountcurrencyid",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Hesaplanan Vergi Para Birimi",
-      "options": "UBL TR CurrencyCode",
-      "reqd": 1
-    },
-    {
-      "description": "Vergi hesaplamas\u0131nda belli bir s\u0131ra izlenmesi veya birden fazla vergi hesaplamas\u0131 yap\u0131lmas\u0131 halinde ilgili s\u0131ra numaras\u0131 girilecektir.",
-      "fieldname": "calculationsequencenumeric",
-      "fieldtype": "Int",
-      "label": "S\u0131ra Numaras\u0131"
-    },
-    {
-      "description": "Belge para birimi cinsinden toplam vergi tutar\u0131d\u0131r.",
-      "fieldname": "transactioncurrencytaxamount",
-      "fieldtype": "Currency",
-      "label": "Toplam vergi tutar\u0131"
-    },
-    {
-      "fieldname": "transactioncurrencytaxamountcurrencyid",
-      "fieldtype": "Link",
-      "label": "Toplam Vergi Tutar\u0131 Para Birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "Vergi oran\u0131 girilebilecektir.",
-      "fieldname": "percent",
-      "fieldtype": "Percent",
-      "label": "Vergi Oran\u0131"
-    },
-    {
-      "description": "Vergileme \u00f6l\u00e7\u00fcs\u00fc olarak miktar(kilogram, metre vb.) kullan\u0131lmas\u0131 halinde ilgili tarife bilgileri bu elemana girilecektir.",
-      "fieldname": "baseunitmeasure",
-      "fieldtype": "Float",
-      "label": "Vergileme Miktar \u00d6l\u00e7\u00fcs\u00fc"
-    },
-    {
-      "fieldname": "baseunitmeasureunitcode",
-      "fieldtype": "Link",
-      "label": "Vergileme Miktar \u00d6l\u00e7\u00fc Birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "Vergileme \u00f6l\u00e7\u00fcs\u00fc olarak tutar(perakende sat\u0131\u015f fiyat\u0131 gibi.) kullan\u0131lmas\u0131 halinde ilgili tarife bilgileri bu elemana girilecektir.",
-      "fieldname": "perunitamount",
-      "fieldtype": "Currency",
-      "label": "Vergileme Tutar \u00d6l\u00e7\u00fcs\u00fc"
-    },
-    {
-      "fieldname": "perunitamountcurrencyid",
-      "fieldtype": "Link",
-      "label": "Vergileme Tutar \u00d6l\u00e7\u00fc Para Birimi",
-      "options": "UBL TR CurrencyCode"
-    },
-    {
-      "description": "Verginin t\u00fcr\u00fc ile ilgili bilgiler girilecektir.",
-      "fieldname": "taxcategory",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Verginin T\u00fcr\u00fc",
-      "options": "UBL TR TaxCategory",
-      "reqd": 1
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2021-12-03 13:02:54.044629",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR TaxSubtotal",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-03 13:02:54.044629",
+ "description": "Vergi Ara Toplam\u0131: Vergi ve di\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fcklerin hesaplamas\u0131 ile ilgili bilgilere yer verilecektir.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "taxableamount",
+  "taxableamountcurrencyid",
+  "taxamount",
+  "taxamountcurrencyid",
+  "calculationsequencenumeric",
+  "transactioncurrencytaxamount",
+  "transactioncurrencytaxamountcurrencyid",
+  "percent",
+  "baseunitmeasure",
+  "baseunitmeasureunitcode",
+  "perunitamount",
+  "perunitamountcurrencyid",
+  "taxcategory"
+ ],
+ "fields": [
+  {
+   "description": "Verginin \u00fczerinden hesapland\u0131\u011f\u0131 tutar (matrah) bilgisi girilecektir.",
+   "fieldname": "taxableamount",
+   "fieldtype": "Currency",
+   "label": "Matrah"
+  },
+  {
+   "fieldname": "taxableamountcurrencyid",
+   "fieldtype": "Link",
+   "label": "Matrah Para Birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "Hesaplanan Vergi Tutar\u0131d\u0131r.",
+   "fieldname": "taxamount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Hesaplanan Vergi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "taxamountcurrencyid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Hesaplanan Vergi Para Birimi",
+   "options": "UBL TR CurrencyCode",
+   "reqd": 1
+  },
+  {
+   "description": "Vergi hesaplamas\u0131nda belli bir s\u0131ra izlenmesi veya birden fazla vergi hesaplamas\u0131 yap\u0131lmas\u0131 halinde ilgili s\u0131ra numaras\u0131 girilecektir.",
+   "fieldname": "calculationsequencenumeric",
+   "fieldtype": "Int",
+   "label": "S\u0131ra Numaras\u0131"
+  },
+  {
+   "description": "Belge para birimi cinsinden toplam vergi tutar\u0131d\u0131r.",
+   "fieldname": "transactioncurrencytaxamount",
+   "fieldtype": "Currency",
+   "label": "Toplam vergi tutar\u0131"
+  },
+  {
+   "fieldname": "transactioncurrencytaxamountcurrencyid",
+   "fieldtype": "Link",
+   "label": "Toplam Vergi Tutar\u0131 Para Birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "Vergi oran\u0131 girilebilecektir.",
+   "fieldname": "percent",
+   "fieldtype": "Percent",
+   "label": "Vergi Oran\u0131"
+  },
+  {
+   "description": "Vergileme \u00f6l\u00e7\u00fcs\u00fc olarak miktar(kilogram, metre vb.) kullan\u0131lmas\u0131 halinde ilgili tarife bilgileri bu elemana girilecektir.",
+   "fieldname": "baseunitmeasure",
+   "fieldtype": "Float",
+   "label": "Vergileme Miktar \u00d6l\u00e7\u00fcs\u00fc"
+  },
+  {
+   "fieldname": "baseunitmeasureunitcode",
+   "fieldtype": "Link",
+   "label": "Vergileme Miktar \u00d6l\u00e7\u00fc Birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Vergileme \u00f6l\u00e7\u00fcs\u00fc olarak tutar(perakende sat\u0131\u015f fiyat\u0131 gibi.) kullan\u0131lmas\u0131 halinde ilgili tarife bilgileri bu elemana girilecektir.",
+   "fieldname": "perunitamount",
+   "fieldtype": "Currency",
+   "label": "Vergileme Tutar \u00d6l\u00e7\u00fcs\u00fc"
+  },
+  {
+   "fieldname": "perunitamountcurrencyid",
+   "fieldtype": "Link",
+   "label": "Vergileme Tutar \u00d6l\u00e7\u00fc Para Birimi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "Verginin t\u00fcr\u00fc ile ilgili bilgiler girilecektir.",
+   "fieldname": "taxcategory",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Verginin T\u00fcr\u00fc",
+   "options": "UBL TR TaxCategory",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-22 10:27:06.071756",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR TaxSubtotal",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }
