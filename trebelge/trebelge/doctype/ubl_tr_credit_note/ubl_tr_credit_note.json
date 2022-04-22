@@ -226,23 +226,20 @@
    "fieldname": "lineextensionamount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Mal/Hizmet Toplam Tutar\u0131",
-   "reqd": 1
+   "label": "Mal/Hizmet Toplam Tutar\u0131"
   },
   {
    "description": "Vergiler hari\u00e7, \u0131skonto veya art\u0131r\u0131m dahil toplam tutar girilir.(Vergi Matrah\u0131).",
    "fieldname": "taxexclusiveamount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Vergi Matrah\u0131",
-   "reqd": 1
+   "label": "Vergi Matrah\u0131"
   },
   {
    "description": "Vergiler, \u0131skonto ve art\u0131r\u0131m dahil toplam tutar girilir.",
    "fieldname": "taxinclusiveamount",
    "fieldtype": "Currency",
-   "label": "Vergiler Dahil Toplam Tutar",
-   "reqd": 1
+   "label": "Vergiler Dahil Toplam Tutar"
   },
   {
    "description": "Toplam iskonto tutar\u0131 girilir.",
@@ -266,8 +263,7 @@
    "description": "\u00d6denecek tutar girilir.",
    "fieldname": "payableamount",
    "fieldtype": "Currency",
-   "label": "\u00d6denecek tutar",
-   "reqd": 1
+   "label": "\u00d6denecek tutar"
   },
   {
    "fieldname": "column_break_24",
@@ -278,23 +274,19 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Mal/Hizmet Toplam Tutar\u0131 d\u00f6viz cinsi",
-   "options": "UBL TR CurrencyCode",
-   "reqd": 1
+   "options": "UBL TR CurrencyCode"
   },
   {
    "fieldname": "taxexclusiveamountcurrencyid",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Vergi Matrah\u0131 d\u00f6viz cinsi",
-   "options": "UBL TR CurrencyCode",
-   "reqd": 1
+   "options": "UBL TR CurrencyCode"
   },
   {
    "fieldname": "taxinclusiveamountcurrencyid",
    "fieldtype": "Link",
    "label": "Vergiler Dahil Toplam Tutar d\u00f6viz cinsi",
-   "options": "UBL TR CurrencyCode",
-   "reqd": 1
+   "options": "UBL TR CurrencyCode"
   },
   {
    "fieldname": "allowancetotalamountcurrencyid",
@@ -318,8 +310,7 @@
    "fieldname": "payableamountcurrencyid",
    "fieldtype": "Link",
    "label": "\u00d6denecek tutar d\u00f6viz cinsi",
-   "options": "UBL TR CurrencyCode",
-   "reqd": 1
+   "options": "UBL TR CurrencyCode"
   },
   {
    "fieldname": "section_break_32",
@@ -550,7 +541,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-22 22:48:50.721906",
+ "modified": "2022-04-22 22:59:32.046849",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Credit Note",
