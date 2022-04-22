@@ -1,3 +1,4 @@
+from datetime import datetime
 from xml.etree.ElementTree import Element
 
 from frappe.model.document import Document
@@ -22,13 +23,28 @@ class TRUBLDelivery(TRUBLCommonElement):
         # ['LatestDeliveryDate'] = ('cbc', '', 'Seçimli (0...1)')
         # ['LatestDeliveryTime'] = ('cbc', '', 'Seçimli(0..1)')
         # ['TrackingID'] = ('cbc', '', 'Seçimli(0..1)')
-        cbcsecimli01: list = ['ID', 'ActualDeliveryDate', 'ActualDeliveryTime', 'LatestDeliveryDate',
-                              'LatestDeliveryTime', 'TrackingID']
+        cbcsecimli01: list = ['ID', 'ActualDeliveryDate', 'LatestDeliveryDate', 'TrackingID']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text.strip()
+        # ['ActualDeliveryTime'] = ('cbc', '', 'Seçimli (0...1)')
+        actualdeliverytime_: Element = element.find('./' + cbcnamespace + 'ActualDeliveryTime')
+        if actualdeliverytime_ is not None:
+            try:
+                actualdeliverytime = datetime.strptime(actualdeliverytime_.text, '%H:%M:%S')
+            except ValueError:
+                pass
+            frappedoc['actualdeliverytime'] = actualdeliverytime
+        # ['LatestDeliveryTime'] = ('cbc', '', 'Seçimli (0...1)')
+        latestdeliverytime_: Element = element.find('./' + cbcnamespace + 'LatestDeliveryTime')
+        if latestdeliverytime_ is not None:
+            try:
+                latestdeliverytime = datetime.strptime(latestdeliverytime_.text, '%H:%M:%S')
+            except ValueError:
+                pass
+            frappedoc['latestdeliverytime'] = latestdeliverytime
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         quantity_: Element = element.find('./' + cbcnamespace + 'Quantity')
         if quantity_ is not None:

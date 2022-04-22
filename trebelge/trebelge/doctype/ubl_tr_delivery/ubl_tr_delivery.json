@@ -1,143 +1,157 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-02 20:15:08.701805",
-  "description": "G\u00f6nderim, Ta\u015f\u0131ma, Sevkiyat Bilgileri: \u00dcr\u00fcn tesliman bilgileri detayl\u0131 olarak girilir.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "id",
-    "quantity",
-    "quantityunitcode",
-    "actualdeliverydate",
-    "actualdeliverytime",
-    "trackingid",
-    "deliveryaddress",
-    "alternativedeliverylocation",
-    "estimateddeliveryperiod",
-    "carrierparty",
-    "deliveryparty",
-    "despatch",
-    "deliveryterms",
-    "shipment"
-  ],
-  "fields": [
-    {
-      "description": "Teslimat\u0131 belge i\u00e7erisinde tekil olarak tan\u0131mlar.",
-      "fieldname": "id",
-      "fieldtype": "Data",
-      "label": "Teslimat ayrac\u0131"
-    },
-    {
-      "description": "\u00dcr\u00fcn miktar\u0131 girilir.",
-      "fieldname": "quantity",
-      "fieldtype": "Float",
-      "label": "\u00dcr\u00fcn miktar\u0131"
-    },
-    {
-      "fieldname": "quantityunitcode",
-      "fieldtype": "Link",
-      "label": "\u00dcr\u00fcn miktar\u0131 birimi",
-      "options": "UBL TR Unitcodes"
-    },
-    {
-      "description": "Ger\u00e7ekle\u015fen teslim tarihi yaz\u0131l\u0131r.",
-      "fieldname": "actualdeliverydate",
-      "fieldtype": "Date",
-      "label": "Teslim tarihi"
-    },
-    {
-      "description": "Ger\u00e7ekle\u015fen teslim zaman\u0131 yaz\u0131l\u0131r.",
-      "fieldname": "actualdeliverytime",
-      "fieldtype": "Time",
-      "label": "Teslim zaman\u0131"
-    },
-    {
-      "description": "Takip numaras\u0131 girilir.",
-      "fieldname": "trackingid",
-      "fieldtype": "Data",
-      "label": "Takip numaras\u0131"
-    },
-    {
-      "description": "Teslimat adresi girilir.",
-      "fieldname": "deliveryaddress",
-      "fieldtype": "Link",
-      "label": "Teslimat adresi",
-      "options": "UBL TR Address"
-    },
-    {
-      "description": "Alternatif teslim yeri girilir.",
-      "fieldname": "alternativedeliverylocation",
-      "fieldtype": "Link",
-      "label": "Alternatif teslim yeri",
-      "options": "UBL TR Location"
-    },
-    {
-      "description": "Tahmini teslim d\u00f6nemi girilir.",
-      "fieldname": "estimateddeliveryperiod",
-      "fieldtype": "Link",
-      "label": "Tahmini teslim d\u00f6nemi",
-      "options": "UBL TR Period"
-    },
-    {
-      "description": "Ta\u015f\u0131y\u0131c\u0131 taraf girilir.",
-      "fieldname": "carrierparty",
-      "fieldtype": "Link",
-      "label": "Ta\u015f\u0131y\u0131c\u0131",
-      "options": "UBL TR Party"
-    },
-    {
-      "description": "Teslimat yap\u0131lacak (\u00fcr\u00fcnleri teslim alacak) taraf girilir.",
-      "fieldname": "deliveryparty",
-      "fieldtype": "Link",
-      "label": "Teslimat yap\u0131lacak",
-      "options": "UBL TR Party"
-    },
-    {
-      "description": "G\u00f6nderi bilgisi girilir.",
-      "fieldname": "despatch",
-      "fieldtype": "Link",
-      "label": "G\u00f6nderi bilgisi",
-      "options": "UBL TR Despatch"
-    },
-    {
-      "description": "Teslimat \u015fartlar\u0131 girilir.",
-      "fieldname": "deliveryterms",
-      "fieldtype": "Table MultiSelect",
-      "label": "Teslimat \u015fartlar\u0131",
-      "options": "UBL TR DeliveryTerm Lines"
-    },
-    {
-      "description": "Y\u00fck/kargo bilgileri girilir.",
-      "fieldname": "shipment",
-      "fieldtype": "Link",
-      "label": "Y\u00fck/kargo bilgileri",
-      "options": "UBL TR Shipment"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2022-01-01 12:25:43.961225",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR Delivery",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-02 20:15:08.701805",
+ "description": "G\u00f6nderim, Ta\u015f\u0131ma, Sevkiyat Bilgileri: \u00dcr\u00fcn tesliman bilgileri detayl\u0131 olarak girilir.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "id",
+  "quantity",
+  "quantityunitcode",
+  "actualdeliverydate",
+  "actualdeliverytime",
+  "latestdeliverydate",
+  "latestdeliverytime",
+  "trackingid",
+  "deliveryaddress",
+  "alternativedeliverylocation",
+  "estimateddeliveryperiod",
+  "carrierparty",
+  "deliveryparty",
+  "despatch",
+  "deliveryterms",
+  "shipment"
+ ],
+ "fields": [
+  {
+   "description": "Teslimat\u0131 belge i\u00e7erisinde tekil olarak tan\u0131mlar.",
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "label": "Teslimat ayrac\u0131"
+  },
+  {
+   "description": "\u00dcr\u00fcn miktar\u0131 girilir.",
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "label": "\u00dcr\u00fcn miktar\u0131"
+  },
+  {
+   "fieldname": "quantityunitcode",
+   "fieldtype": "Link",
+   "label": "\u00dcr\u00fcn miktar\u0131 birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Ger\u00e7ekle\u015fen teslim tarihi yaz\u0131l\u0131r.",
+   "fieldname": "actualdeliverydate",
+   "fieldtype": "Date",
+   "label": "Teslim tarihi"
+  },
+  {
+   "description": "Ger\u00e7ekle\u015fen teslim zaman\u0131 yaz\u0131l\u0131r.",
+   "fieldname": "actualdeliverytime",
+   "fieldtype": "Time",
+   "label": "Teslim zaman\u0131"
+  },
+  {
+   "description": "Takip numaras\u0131 girilir.",
+   "fieldname": "trackingid",
+   "fieldtype": "Data",
+   "label": "Takip numaras\u0131"
+  },
+  {
+   "description": "Teslimat adresi girilir.",
+   "fieldname": "deliveryaddress",
+   "fieldtype": "Link",
+   "label": "Teslimat adresi",
+   "options": "UBL TR Address"
+  },
+  {
+   "description": "Alternatif teslim yeri girilir.",
+   "fieldname": "alternativedeliverylocation",
+   "fieldtype": "Link",
+   "label": "Alternatif teslim yeri",
+   "options": "UBL TR Location"
+  },
+  {
+   "description": "Tahmini teslim d\u00f6nemi girilir.",
+   "fieldname": "estimateddeliveryperiod",
+   "fieldtype": "Link",
+   "label": "Tahmini teslim d\u00f6nemi",
+   "options": "UBL TR Period"
+  },
+  {
+   "description": "Ta\u015f\u0131y\u0131c\u0131 taraf girilir.",
+   "fieldname": "carrierparty",
+   "fieldtype": "Link",
+   "label": "Ta\u015f\u0131y\u0131c\u0131",
+   "options": "UBL TR Party"
+  },
+  {
+   "description": "Teslimat yap\u0131lacak (\u00fcr\u00fcnleri teslim alacak) taraf girilir.",
+   "fieldname": "deliveryparty",
+   "fieldtype": "Link",
+   "label": "Teslimat yap\u0131lacak",
+   "options": "UBL TR Party"
+  },
+  {
+   "description": "G\u00f6nderi bilgisi girilir.",
+   "fieldname": "despatch",
+   "fieldtype": "Link",
+   "label": "G\u00f6nderi bilgisi",
+   "options": "UBL TR Despatch"
+  },
+  {
+   "description": "Teslimat \u015fartlar\u0131 girilir.",
+   "fieldname": "deliveryterms",
+   "fieldtype": "Table MultiSelect",
+   "label": "Teslimat \u015fartlar\u0131",
+   "options": "UBL TR DeliveryTerm Lines"
+  },
+  {
+   "description": "Y\u00fck/kargo bilgileri girilir.",
+   "fieldname": "shipment",
+   "fieldtype": "Link",
+   "label": "Y\u00fck/kargo bilgileri",
+   "options": "UBL TR Shipment"
+  },
+  {
+   "description": "Son teslim tarihi girilir.",
+   "fieldname": "latestdeliverydate",
+   "fieldtype": "Date",
+   "label": "Son teslim tarihi"
+  },
+  {
+   "description": "Son teslim zaman\u0131 girilir.",
+   "fieldname": "latestdeliverytime",
+   "fieldtype": "Time",
+   "label": "Son teslim zaman\u0131"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-22 12:03:42.899657",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR Delivery",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }
