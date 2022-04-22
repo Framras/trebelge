@@ -9,7 +9,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDeliveryTerms import TRUBLDeliveryTerms
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
-from trebelge.TRUBLCommonElementsStrategy.TRUBLMonetaryTotal import TRUBLMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentMeans import TRUBLPaymentMeans
@@ -363,9 +362,37 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
     def build_legalmonetarytotal(self) -> None:
         # ['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)', 'legalmonetarytotal')
         legalmonetarytotal_: Element = self.root.find('./' + self._cac_ns + 'LegalMonetaryTotal')
-        self._product.legalmonetarytotal = TRUBLMonetaryTotal().process_element(legalmonetarytotal_,
-                                                                                self._cbc_ns,
-                                                                                self._cac_ns).name
+        # ['LineExtensionAmount'] = ('cbc', 'lineextensionamount', 'Zorunlu(1)')
+        lineextensionamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'LineExtensionAmount')
+        self._product.lineextensionamount = lineextensionamount_.text.strip()
+        self._product.lineextensionamountcurrencyid = lineextensionamount_.attrib.get('currencyID')
+        # ['TaxExclusiveAmount'] = ('cbc', 'taxexclusiveamount', 'Zorunlu(1)')
+        taxexclusiveamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'TaxExclusiveAmount')
+        self._product.taxexclusiveamount = taxexclusiveamount_.text.strip()
+        self._product.taxexclusiveamountcurrencyid = taxexclusiveamount_.attrib.get('currencyID')
+        # ['TaxInclusiveAmount'] = ('cbc', 'taxinclusiveamount', 'Zorunlu(1)')
+        taxinclusiveamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'TaxInclusiveAmount')
+        self._product.taxinclusiveamount = taxinclusiveamount_.text.strip()
+        self._product.taxinclusiveamountcurrencyid = taxinclusiveamount_.attrib.get('currencyID')
+        # ['PayableAmount'] = ('cbc', 'payableamount', 'Zorunlu(1)')
+        payableamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'PayableAmount')
+        self._product.payableamount = payableamount_.text.strip()
+        self._product.payableamountcurrencyid = payableamount_.attrib.get('currencyID')
+        # ['AllowanceTotalAmount'] = ('cbc', 'allowancetotalamount', 'Seçimli (0...1)')
+        allowancetotalamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'AllowanceTotalAmount')
+        if allowancetotalamount_ is not None and allowancetotalamount_.text is not None:
+            self._product.allowancetotalamount = allowancetotalamount_.text.strip()
+            self._product.allowancetotalamountcurrencyid = allowancetotalamount_.attrib.get('currencyID')
+        # ['ChargeTotalAmount'] = ('cbc', 'chargetotalamount', 'Seçimli (0...1)')
+        chargetotalamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'ChargeTotalAmount')
+        if chargetotalamount_ is not None and chargetotalamount_.text is not None:
+            self._product.chargetotalamount = chargetotalamount_.text.strip()
+            self._product.chargetotalamountcurrencyid = chargetotalamount_.attrib.get('currencyID')
+        # ['PayableRoundingAmount'] = ('cbc', 'payableroundingamount', 'Seçimli (0...1)')
+        payableroundingamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'PayableRoundingAmount')
+        if payableroundingamount_ is not None and payableroundingamount_.text is not None:
+            self._product.payableroundingamount = payableroundingamount_.text.strip()
+            self._product.payableroundingamountcurrencyid = payableroundingamount_.attrib.get('currencyID')
 
     def build_invoiceline(self) -> None:
         pass

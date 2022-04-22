@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestUBLTRInvoice(unittest.TestCase):
+class TestUBLTRCreditNote(unittest.TestCase):
 	pass

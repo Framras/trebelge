@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:uuid",
- "creation": "2022-04-22 22:21:38.652600",
+ "creation": "2022-04-22 22:47:10.777205",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -10,12 +10,14 @@
   "ublversionid",
   "customizationid",
   "profileid",
+  "profileexecutioniid",
   "id",
   "copyindicator",
   "uuid",
   "issuedate",
   "issuetime",
-  "invoicetypecode",
+  "taxpointdate",
+  "creditnotetypecode",
   "note",
   "documentcurrencycode",
   "taxcurrencycode",
@@ -39,36 +41,42 @@
   "payableroundingamountcurrencyid",
   "payableamountcurrencyid",
   "section_break_32",
+  "accountingcostcode",
   "accountingcost",
   "linecountnumeric",
+  "buyerreference",
   "invoiceperiod",
+  "discrepancyresponse",
   "orderreference",
   "billingreference",
   "despatchdocumentreference",
   "receiptdocumentreference",
-  "originatordocumentreference",
   "contractdocumentreference",
   "additionaldocumentreference",
+  "statementdocumentreference",
+  "originatordocumentreference",
   "accountingsupplierparty",
   "accountingsuppliercontact",
   "accountingcustomerparty",
   "accountingcustomercontact",
+  "payeeparty",
+  "payeecontact",
   "buyercustomerparty",
   "buyercustomercontact",
   "sellersupplierparty",
   "sellersuppliercontact",
   "taxrepresentativeparty",
   "delivery",
+  "deliveryterms",
   "paymentmeans",
   "paymentterms",
-  "allowancecharge",
   "taxexchangerate",
   "pricingexchangerate",
   "paymentexchangerate",
   "paymentalternativeexchangerate",
+  "allowancecharge",
   "taxtotal",
-  "withholdingtaxtotal",
-  "invoiceline"
+  "creditnoteline"
  ],
  "fields": [
   {
@@ -95,6 +103,11 @@
    "label": "Senaryo",
    "reqd": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "profileexecutioniid",
+   "fieldtype": "Data",
+   "label": "Profile Execution ID"
   },
   {
    "fieldname": "id",
@@ -135,11 +148,16 @@
    "label": "D\u00fczenleme Zaman\u0131"
   },
   {
+   "fieldname": "taxpointdate",
+   "fieldtype": "Date",
+   "label": "TaxPointDate"
+  },
+  {
    "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
-   "fieldname": "invoicetypecode",
+   "fieldname": "creditnotetypecode",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Fatura Tip Kodu",
+   "label": "CreditNoteTypeCode",
    "reqd": 1,
    "search_index": 1
   },
@@ -308,6 +326,11 @@
    "fieldtype": "Section Break"
   },
   {
+   "fieldname": "accountingcostcode",
+   "fieldtype": "Data",
+   "label": "AccountingCostCode"
+  },
+  {
    "description": "M\u00fckellefin faturan\u0131n tipi olarak ilave bir ay\u0131r\u0131ma gitmesi gerekiyorsa kendi belirleyece\u011fi farkl\u0131 bir fatura tipini bu elemana yazabilir.",
    "fieldname": "accountingcost",
    "fieldtype": "Data",
@@ -321,10 +344,21 @@
    "label": "Kalem Say\u0131s\u0131"
   },
   {
+   "fieldname": "buyerreference",
+   "fieldtype": "Data",
+   "label": "BuyerReference"
+  },
+  {
    "fieldname": "invoiceperiod",
    "fieldtype": "Link",
    "label": "Fatura D\u00f6nemi",
    "options": "UBL TR Period"
+  },
+  {
+   "description": "&lt;xsd:element ref=\"cac:DiscrepancyResponse\" minOccurs=\"0\" maxOccurs=\"unbounded\"/&gt;",
+   "fieldname": "discrepancyresponse",
+   "fieldtype": "Data",
+   "label": "DiscrepancyResponse"
   },
   {
    "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
@@ -353,12 +387,6 @@
    "options": "UBL TR DocumentReferences"
   },
   {
-   "fieldname": "originatordocumentreference",
-   "fieldtype": "Table MultiSelect",
-   "label": "Ba\u015flang\u0131\u00e7 Dok\u00fcman\u0131 Bilgileri",
-   "options": "UBL TR DocumentReferences"
-  },
-  {
    "fieldname": "contractdocumentreference",
    "fieldtype": "Table MultiSelect",
    "label": "Kontrat Dok\u00fcman\u0131 Bilgileri",
@@ -368,6 +396,17 @@
    "fieldname": "additionaldocumentreference",
    "fieldtype": "Table MultiSelect",
    "label": "\u0130lave Dok\u00fcman",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "statementdocumentreference",
+   "fieldtype": "Data",
+   "label": "StatementDocumentReference"
+  },
+  {
+   "fieldname": "originatordocumentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "Ba\u015flang\u0131\u00e7 Dok\u00fcman\u0131 Bilgileri",
    "options": "UBL TR DocumentReferences"
   },
   {
@@ -392,6 +431,18 @@
    "fieldname": "accountingcustomercontact",
    "fieldtype": "Link",
    "label": "Al\u0131c\u0131 \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "payeeparty",
+   "fieldtype": "Link",
+   "label": "Payee Party",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "payeecontact",
+   "fieldtype": "Link",
+   "label": "Payee Contact",
    "options": "UBL TR Contact"
   },
   {
@@ -431,6 +482,11 @@
    "options": "UBL TR Deliveries"
   },
   {
+   "fieldname": "deliveryterms",
+   "fieldtype": "Data",
+   "label": "DeliveryTerms"
+  },
+  {
    "description": "Bu elemana \u00f6deme \u015fekli ile ilgili bilgiler yaz\u0131labilecektir.",
    "fieldname": "paymentmeans",
    "fieldtype": "Table MultiSelect",
@@ -443,13 +499,6 @@
    "fieldtype": "Link",
    "label": "\u00d6deme Ko\u015fullar\u0131",
    "options": "UBL TR PaymentTerms"
-  },
-  {
-   "description": "Bu eleman fatura b\u00fct\u00fcn\u00fc \u00fczerinden iskonto veya art\u0131r\u0131m yap\u0131lmas\u0131 halinde kullan\u0131lacakt\u0131r.",
-   "fieldname": "allowancecharge",
-   "fieldtype": "Table MultiSelect",
-   "label": "Iskonto / Art\u0131r\u0131m",
-   "options": "UBL TR AllowanceCharges"
   },
   {
    "fieldname": "taxexchangerate",
@@ -478,6 +527,13 @@
    "options": "UBL TR ExchangeRate"
   },
   {
+   "description": "Bu eleman fatura b\u00fct\u00fcn\u00fc \u00fczerinden iskonto veya art\u0131r\u0131m yap\u0131lmas\u0131 halinde kullan\u0131lacakt\u0131r.",
+   "fieldname": "allowancecharge",
+   "fieldtype": "Table MultiSelect",
+   "label": "Iskonto / Art\u0131r\u0131m",
+   "options": "UBL TR AllowanceCharges"
+  },
+  {
    "description": "Bu elemana faturada yer alan vergi ve\tdi\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fckler ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
    "fieldname": "taxtotal",
    "fieldtype": "Table MultiSelect",
@@ -485,26 +541,19 @@
    "options": "UBL TR TaxTotals"
   },
   {
-   "description": "Bu elemana tevkifatl\u0131 faturalarda yer alan tevkifat ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
-   "fieldname": "withholdingtaxtotal",
-   "fieldtype": "Table MultiSelect",
-   "label": "Tevkifat Bilgileri",
-   "options": "UBL TR TaxTotals"
-  },
-  {
    "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
-   "fieldname": "invoiceline",
-   "fieldtype": "Table MultiSelect",
-   "label": "Mal/Hizmet Kalemleri",
-   "options": "UBL TR InvoiceLines"
+   "fieldname": "creditnoteline",
+   "fieldtype": "Data",
+   "label": "CreditNoteLine",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-22 22:48:31.678513",
+ "modified": "2022-04-22 22:48:50.721906",
  "modified_by": "Administrator",
  "module": "Trebelge",
- "name": "UBL TR Invoice",
+ "name": "UBL TR Credit Note",
  "owner": "Administrator",
  "permissions": [
   {
