@@ -33,18 +33,16 @@ class TRUBLDelivery(TRUBLCommonElement):
         actualdeliverytime_: Element = element.find('./' + cbcnamespace + 'ActualDeliveryTime')
         if actualdeliverytime_ is not None:
             try:
-                actualdeliverytime = datetime.strptime(actualdeliverytime_.text, '%H:%M:%S')
+                frappedoc['actualdeliverytime'] = datetime.strptime(actualdeliverytime_.text, '%H:%M:%S')
             except ValueError:
                 pass
-            frappedoc['actualdeliverytime'] = actualdeliverytime
         # ['LatestDeliveryTime'] = ('cbc', '', 'Seçimli (0...1)')
         latestdeliverytime_: Element = element.find('./' + cbcnamespace + 'LatestDeliveryTime')
         if latestdeliverytime_ is not None:
             try:
-                latestdeliverytime = datetime.strptime(latestdeliverytime_.text, '%H:%M:%S')
+                frappedoc['latestdeliverytime'] = datetime.strptime(latestdeliverytime_.text, '%H:%M:%S')
             except ValueError:
                 pass
-            frappedoc['latestdeliverytime'] = latestdeliverytime
         # ['Quantity'] = ('cbc', '', 'Seçimli (0...1)')
         quantity_: Element = element.find('./' + cbcnamespace + 'Quantity')
         if quantity_ is not None:
