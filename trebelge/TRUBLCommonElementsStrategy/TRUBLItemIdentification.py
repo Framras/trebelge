@@ -11,7 +11,8 @@ class TRUBLItemIdentification(TRUBLCommonElement):
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
         id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_ is not None:
-            if id_.text is not None:
-                return self._get_frappedoc(self._frappeDoctype, {'id': id_.text.strip()})
+            element_ = id_.text
+            if element_ is not None and element_.strip() != '':
+                return self._get_frappedoc(self._frappeDoctype, {'id': element_.strip()})
 
         return None
