@@ -103,7 +103,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 element_ = note_.text
                 if element_ is not None and element_.strip() != '':
                     self._product.append("note", dict(note=element_.strip()))
-                    self._product.save()
 
     def build_invoiceperiod(self) -> None:
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
@@ -130,7 +129,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                     self._product.description = tmp['description']
                 except KeyError:
                     pass
-                self._product.save()
 
     def build_discrepancyresponse(self) -> None:
         # TODO : Implement this
@@ -154,7 +152,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLBillingReference().process_element(billingreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.billingreference = tmp.name
-                    self._product.save()
 
     def build_despatchdocumentreference(self) -> None:
         # ['DespatchDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'despatchdocumentreference')
@@ -165,7 +162,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
-                    self._product.save()
 
     def build_receiptdocumentreference(self) -> None:
         # ['ReceiptDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'receiptdocumentreference')
@@ -176,7 +172,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
-                    self._product.save()
 
     def build_originatordocumentreference(self) -> None:
         # ['OriginatorDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
@@ -188,7 +183,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
-                    self._product.save()
 
     def build_contractdocumentreference(self) -> None:
         # ['ContractDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)', 'contractdocumentreference')
@@ -199,7 +193,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
-                    self._product.save()
 
     def build_additionaldocumentreference(self) -> None:
         # ['AdditionalDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
@@ -211,7 +204,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
-                    self._product.save()
 
     def build_statementdocumentreference(self) -> None:
         # ['StatementDocumentReference'] = ('cac', DocumentReference(), 'Seçimli (0...n)',
@@ -223,7 +215,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
-                    self._product.save()
 
     def build_accountingsupplierparty(self) -> None:
         # ['AccountingSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'accountingsupplierparty')
@@ -285,7 +276,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLDelivery().process_element(delivery_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.delivery = tmp.name
-                    self._product.save()
 
     def build_deliveryterms(self) -> None:
         # ['DeliveryTerms'] = ('cac', DeliveryTerms(), 'Seçimli (0...n)', 'deliveryterms')
@@ -296,7 +286,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLDeliveryTerms().process_element(deliveryterm_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.deliveryterms = tmp.name
-                    self._product.save()
 
     def build_paymentmeans(self) -> None:
         # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
@@ -307,7 +296,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLPaymentMeans().process_element(payment_means_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.paymentmeans = tmp.name
-                    self._product.save()
 
     def build_paymentterms(self) -> None:
         # ['PaymentMeans'] = ('cac', PaymentMeans(), 'Seçimli (0...n)', 'paymentmeans')
@@ -318,7 +306,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLPaymentTerms().process_element(payment_terms_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.paymentterms = tmp.name
-                    self._product.save()
 
     def build_allowancecharge(self) -> None:
         # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
@@ -329,7 +316,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLAllowanceCharge().process_element(allowancecharge_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.allowancecharge = tmp.name
-                    self._product.save()
 
     def build_taxexchangerate(self) -> None:
         # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
@@ -374,7 +360,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
                 tmp = TRUBLTaxTotal().process_element(taxtotal_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.taxtotal = tmp.name
-                    self._product.save()
 
     def build_withholdingtaxtotal(self) -> None:
         pass
@@ -413,7 +398,6 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             self._product.payableroundingamountcurrencyid = tmp['payableroundingamountcurrencyid']
         except KeyError:
             pass
-        self._product.save()
 
     def build_invoiceline(self) -> None:
         pass

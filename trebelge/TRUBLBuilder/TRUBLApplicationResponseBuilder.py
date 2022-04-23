@@ -58,7 +58,6 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
                 element_ = note_.text
                 if element_ is not None and element_.strip() != '':
                     self._product.append("note", dict(note=element_.strip()))
-                    self._product.save()
 
     def build_invoiceperiod(self) -> None:
         pass

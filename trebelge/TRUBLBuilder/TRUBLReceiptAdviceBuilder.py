@@ -64,7 +64,6 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
                 element_ = note_.text
                 if element_ is not None and element_.strip() != '':
                     self._product.append("note", dict(note=element_.strip()))
-                    self._product.save()
 
     def build_invoiceperiod(self) -> None:
         pass
@@ -78,7 +77,6 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
                 tmp = TRUBLOrderReference().process_element(orderreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.orderreference = tmp.name
-                    self._product.save()
 
     def build_billingreference(self) -> None:
         pass
@@ -109,7 +107,6 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
                 tmp = TRUBLDocumentReference().process_element(documentreference_, self._cbc_ns, self._cac_ns)
                 if tmp is not None:
                     doc_append.documentreference = tmp.name
-                    self._product.save()
 
     def build_accountingsupplierparty(self) -> None:
         pass
@@ -211,7 +208,6 @@ class TRUBLReceiptAdviceBuilder(TRUBLBuilder):
             tmp = TRUBLReceiptLine().process_element(receiptline_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 doc_append.receiptline = tmp.name
-                self._product.save()
 
     def build_senderparty(self) -> None:
         pass
