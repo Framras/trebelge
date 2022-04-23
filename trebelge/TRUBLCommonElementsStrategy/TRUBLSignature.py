@@ -14,3 +14,6 @@ class TRUBLSignature(TRUBLCommonElement):
         # ['DigitalSignatureAttachment'] = ('cac', 'Attachment', 'Zorunlu(1)')
 
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass
