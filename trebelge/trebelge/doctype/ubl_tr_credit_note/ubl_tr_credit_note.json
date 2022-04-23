@@ -45,7 +45,16 @@
   "accountingcost",
   "linecountnumeric",
   "buyerreference",
-  "invoiceperiod",
+  "period_section",
+  "startdate",
+  "enddate",
+  "durationmeasure",
+  "description",
+  "column_break_43",
+  "starttime",
+  "endtime",
+  "unitcode",
+  "section_break_41",
   "discrepancyresponse",
   "orderreference",
   "billingreference",
@@ -340,12 +349,6 @@
    "label": "BuyerReference"
   },
   {
-   "fieldname": "invoiceperiod",
-   "fieldtype": "Link",
-   "label": "Fatura D\u00f6nemi",
-   "options": "UBL TR Period"
-  },
-  {
    "description": "&lt;xsd:element ref=\"cac:DiscrepancyResponse\" minOccurs=\"0\" maxOccurs=\"unbounded\"/&gt;",
    "fieldname": "discrepancyresponse",
    "fieldtype": "Data",
@@ -537,11 +540,67 @@
    "fieldtype": "Data",
    "label": "CreditNoteLine",
    "reqd": 1
+  },
+  {
+   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih",
+   "fieldname": "startdate",
+   "fieldtype": "Date",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih"
+  },
+  {
+   "fieldname": "section_break_41",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman",
+   "fieldname": "starttime",
+   "fieldtype": "Time",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
+  },
+  {
+   "description": "D\u00f6nemin bitti\u011fi tarih",
+   "fieldname": "enddate",
+   "fieldtype": "Date",
+   "label": "D\u00f6nemin bitti\u011fi tarih"
+  },
+  {
+   "description": "D\u00f6nemin bitti\u011fi zaman",
+   "fieldname": "endtime",
+   "fieldtype": "Time",
+   "label": "D\u00f6nemin bitti\u011fi zaman"
+  },
+  {
+   "description": "D\u00f6nem s\u00fcresi numerik olarak, d\u00f6nem aral\u0131\u011f\u0131 tipi\u2019de \u201cunitCode\u201d attribute de\u011ferine y\u0131l i\u00e7in \u201cANN\u201d, ay i\u00e7in \u201cMON\u201d, g\u00fcn i\u00e7in \u201cDAY\u201d ve saat i\u00e7in \u201cHUR\u201d girilmesi gerekmektedir.",
+   "fieldname": "durationmeasure",
+   "fieldtype": "Int",
+   "label": "D\u00f6nem s\u00fcresi"
+  },
+  {
+   "fieldname": "unitcode",
+   "fieldtype": "Link",
+   "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
+  },
+  {
+   "fieldname": "column_break_43",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Belgelerde d\u00f6nem kullan\u0131lmas\u0131 halinde d\u00f6nem bu elemanda g\u00f6sterilir.",
+   "fieldname": "period_section",
+   "fieldtype": "Section Break",
+   "label": "Credit Note D\u00f6nemi"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-22 22:59:32.046849",
+ "modified": "2022-04-23 12:40:24.797068",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Credit Note",

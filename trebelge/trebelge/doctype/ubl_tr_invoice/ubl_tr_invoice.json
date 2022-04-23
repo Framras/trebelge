@@ -41,7 +41,16 @@
   "section_break_32",
   "accountingcost",
   "linecountnumeric",
-  "invoiceperiod",
+  "period_section",
+  "startdate",
+  "enddate",
+  "durationmeasure",
+  "description",
+  "column_break_40",
+  "starttime",
+  "endtime",
+  "unitcode",
+  "section_break_44",
   "orderreference",
   "billingreference",
   "despatchdocumentreference",
@@ -312,12 +321,6 @@
    "label": "Kalem Say\u0131s\u0131"
   },
   {
-   "fieldname": "invoiceperiod",
-   "fieldtype": "Link",
-   "label": "Fatura D\u00f6nemi",
-   "options": "UBL TR Period"
-  },
-  {
    "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
    "fieldname": "orderreference",
    "fieldtype": "Link",
@@ -488,11 +491,67 @@
    "fieldtype": "Table MultiSelect",
    "label": "Mal/Hizmet Kalemleri",
    "options": "UBL TR InvoiceLines"
+  },
+  {
+   "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman\nkullan\u0131lacakt\u0131r.",
+   "fieldname": "period_section",
+   "fieldtype": "Section Break",
+   "label": "Fatura D\u00f6nemi"
+  },
+  {
+   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih",
+   "fieldname": "startdate",
+   "fieldtype": "Date",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih"
+  },
+  {
+   "description": "D\u00f6nemin bitti\u011fi tarih",
+   "fieldname": "enddate",
+   "fieldtype": "Date",
+   "label": "D\u00f6nemin bitti\u011fi tarih"
+  },
+  {
+   "description": "D\u00f6nem s\u00fcresi numerik olarak, d\u00f6nem aral\u0131\u011f\u0131 tipi\u2019de \u201cunitCode\u201d attribute de\u011ferine y\u0131l i\u00e7in \u201cANN\u201d, ay i\u00e7in \u201cMON\u201d, g\u00fcn i\u00e7in \u201cDAY\u201d ve saat i\u00e7in \u201cHUR\u201d girilmesi gerekmektedir.",
+   "fieldname": "durationmeasure",
+   "fieldtype": "Int",
+   "label": "D\u00f6nem s\u00fcresi"
+  },
+  {
+   "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
+  },
+  {
+   "fieldname": "column_break_40",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman",
+   "fieldname": "starttime",
+   "fieldtype": "Time",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
+  },
+  {
+   "description": "D\u00f6nemin bitti\u011fi zaman",
+   "fieldname": "endtime",
+   "fieldtype": "Time",
+   "label": "D\u00f6nemin bitti\u011fi zaman"
+  },
+  {
+   "fieldname": "unitcode",
+   "fieldtype": "Link",
+   "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "fieldname": "section_break_44",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-22 23:09:16.860105",
+ "modified": "2022-04-23 12:47:53.417294",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",
