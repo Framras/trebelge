@@ -72,10 +72,31 @@
   "paymentmeans",
   "paymentterms",
   "allowancecharge",
-  "taxexchangerate",
-  "pricingexchangerate",
-  "paymentexchangerate",
-  "paymentalternativeexchangerate",
+  "section_vergidovizkuru",
+  "taxsourcecurrencycode",
+  "taxcalculationrate",
+  "column_break_70",
+  "taxtargetcurrencycode",
+  "taxcurrencydate",
+  "section_fiyatlandirmadovizkuru",
+  "pricingsourcecurrencycode",
+  "pricingcalculationrate",
+  "column_break_75",
+  "pricingtargetcurrencycode",
+  "pricingcurrencydate",
+  "section_odemedovizkuru",
+  "paymentsourcecurrencycode",
+  "paymentcalculationrate",
+  "column_break_82",
+  "paymenttargetcurrencycode",
+  "paymentcurrencydate",
+  "section_alternatifodemedovizkuru",
+  "alternativesourcecurrencycode",
+  "alternativecalculationrate",
+  "column_break_88",
+  "alternativetargetcurrencycode",
+  "alternativecurrencydate",
+  "section_break_75",
   "taxtotal",
   "withholdingtaxtotal",
   "invoiceline"
@@ -447,32 +468,6 @@
    "options": "UBL TR AllowanceCharges"
   },
   {
-   "fieldname": "taxexchangerate",
-   "fieldtype": "Link",
-   "label": "Vergi D\u00f6viz Kuru",
-   "options": "UBL TR ExchangeRate"
-  },
-  {
-   "description": "Bu elemana fatura \u00fczerinde yer alan mal veya hizmet bedellerinin \u201cBelge Para Birimi\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi halinde ilgili d\u00f6viz kuru yaz\u0131lacakt\u0131r.",
-   "fieldname": "pricingexchangerate",
-   "fieldtype": "Link",
-   "label": "Fiyatland\u0131rma D\u00f6viz Kuru",
-   "options": "UBL TR ExchangeRate"
-  },
-  {
-   "fieldname": "paymentexchangerate",
-   "fieldtype": "Link",
-   "label": "\u00d6deme D\u00f6viz Kuru",
-   "options": "UBL TR ExchangeRate"
-  },
-  {
-   "description": "Bu elemana belge para birimi ve \u00f6deme para birimi haricinde faturan\u0131n \u00f6denmesinde kullan\u0131lmas\u0131 istenen alternatif para birimi varsa bu paran\u0131n d\u00f6viz kuru bilgisi yaz\u0131lacakt\u0131r.",
-   "fieldname": "paymentalternativeexchangerate",
-   "fieldtype": "Link",
-   "label": "Alternatif \u00d6deme D\u00f6viz Kuru",
-   "options": "UBL TR ExchangeRate"
-  },
-  {
    "description": "Bu elemana faturada yer alan vergi ve\tdi\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fckler ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
    "fieldname": "taxtotal",
    "fieldtype": "Table MultiSelect",
@@ -557,11 +552,144 @@
    "fieldname": "notlar_section",
    "fieldtype": "Section Break",
    "label": "Notlar"
+  },
+  {
+   "fieldname": "section_vergidovizkuru",
+   "fieldtype": "Section Break",
+   "label": "Vergi D\u00f6viz Kuru"
+  },
+  {
+   "description": "D\u00f6viz Kuru: Kur bilgileri ve kurun tarihi girilir.",
+   "fieldname": "section_odemedovizkuru",
+   "fieldtype": "Section Break",
+   "label": "\u00d6deme D\u00f6viz Kuru"
+  },
+  {
+   "description": "D\u00f6viz Kuru: Kur bilgileri ve kurun tarihi girilir.",
+   "fieldname": "section_alternatifodemedovizkuru",
+   "fieldtype": "Section Break",
+   "label": "Alternatif \u00d6deme D\u00f6viz Kuru"
+  },
+  {
+   "fieldname": "section_break_75",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_fiyatlandirmadovizkuru",
+   "fieldtype": "Section Break",
+   "label": "Fiyatland\u0131rma D\u00f6viz Kuru"
+  },
+  {
+   "fieldname": "column_break_70",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_75",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_82",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "alternativesourcecurrencycode",
+   "fieldtype": "Link",
+   "label": "Kaynak Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "fieldname": "alternativecalculationrate",
+   "fieldtype": "Currency",
+   "label": "D\u00f6viz kuru"
+  },
+  {
+   "fieldname": "column_break_88",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "alternativetargetcurrencycode",
+   "fieldtype": "Link",
+   "label": "Hedef Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "Kaynak Para Birimi Kodu",
+   "fieldname": "taxsourcecurrencycode",
+   "fieldtype": "Link",
+   "label": "Kaynak Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "description": "D\u00f6viz kuru girilir.",
+   "fieldname": "taxcalculationrate",
+   "fieldtype": "Currency",
+   "label": "D\u00f6viz kuru"
+  },
+  {
+   "description": "Hedef Para Birimi Kodu",
+   "fieldname": "taxtargetcurrencycode",
+   "fieldtype": "Link",
+   "label": "Hedef Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "fieldname": "taxcurrencydate",
+   "fieldtype": "Date",
+   "label": "Kurun tarihi"
+  },
+  {
+   "fieldname": "pricingsourcecurrencycode",
+   "fieldtype": "Link",
+   "label": "Kaynak Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "fieldname": "pricingcalculationrate",
+   "fieldtype": "Currency",
+   "label": "D\u00f6viz kuru"
+  },
+  {
+   "fieldname": "pricingtargetcurrencycode",
+   "fieldtype": "Link",
+   "label": "Hedef Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "fieldname": "pricingcurrencydate",
+   "fieldtype": "Date",
+   "label": "Kurun tarihi"
+  },
+  {
+   "fieldname": "paymentsourcecurrencycode",
+   "fieldtype": "Link",
+   "label": "Kaynak Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "fieldname": "paymentcalculationrate",
+   "fieldtype": "Currency",
+   "label": "D\u00f6viz kuru"
+  },
+  {
+   "fieldname": "paymenttargetcurrencycode",
+   "fieldtype": "Link",
+   "label": "Hedef Para Birimi Kodu",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "fieldname": "paymentcurrencydate",
+   "fieldtype": "Date",
+   "label": "Kurun tarihi"
+  },
+  {
+   "fieldname": "alternativecurrencydate",
+   "fieldtype": "Date",
+   "label": "Kurun tarihi"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-23 16:38:52.623903",
+ "modified": "2022-04-23 19:30:00.482379",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",

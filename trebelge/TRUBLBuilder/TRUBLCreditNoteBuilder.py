@@ -321,25 +321,52 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         # ['TaxExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'taxexchangerate')
         taxexchangerate_: Element = self.root.find('./' + self._cac_ns + 'TaxExchangeRate')
         if taxexchangerate_ is not None:
-            tmp = TRUBLExchangeRate().process_element(taxexchangerate_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.taxexchangerate = tmp.name
+            tmp: dict = TRUBLExchangeRate().process_elementasdict(taxexchangerate_, self._cbc_ns, self._cac_ns)
+            if tmp != {}:
+                try:
+                    self._product.taxsourcecurrencycode = tmp['sourcecurrencycode']
+                    self._product.taxtargetcurrencycode = tmp['targetcurrencycode']
+                    self._product.taxcalculationrate = tmp['calculationrate']
+                except KeyError:
+                    pass
+                try:
+                    self._product.taxcurrencydate = tmp['date']
+                except KeyError:
+                    pass
 
     def build_pricingexchangerate(self) -> None:
         # ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'pricingexchangerate')
         pricingexchangerate_: Element = self.root.find('./' + self._cac_ns + 'PricingExchangeRate')
         if pricingexchangerate_ is not None:
-            tmp = TRUBLExchangeRate().process_element(pricingexchangerate_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.pricingexchangerate = tmp.name
+            tmp: dict = TRUBLExchangeRate().process_elementasdict(pricingexchangerate_, self._cbc_ns, self._cac_ns)
+            if tmp != {}:
+                try:
+                    self._product.pricingsourcecurrencycode = tmp['sourcecurrencycode']
+                    self._product.pricingtargetcurrencycode = tmp['targetcurrencycode']
+                    self._product.pricingcalculationrate = tmp['calculationrate']
+                except KeyError:
+                    pass
+                try:
+                    self._product.pricingcurrencydate = tmp['date']
+                except KeyError:
+                    pass
 
     def build_paymentexchangerate(self) -> None:
         # ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'paymentexchangerate')
         paymentexchangerate_: Element = self.root.find('./' + self._cac_ns + 'PaymentExchangeRate')
         if paymentexchangerate_ is not None:
-            tmp = TRUBLExchangeRate().process_element(paymentexchangerate_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.paymentexchangerate = tmp.name
+            tmp: dict = TRUBLExchangeRate().process_elementasdict(paymentexchangerate_, self._cbc_ns, self._cac_ns)
+            if tmp != {}:
+                try:
+                    self._product.paymentsourcecurrencycode = tmp['sourcecurrencycode']
+                    self._product.paymenttargetcurrencycode = tmp['targetcurrencycode']
+                    self._product.paymentcalculationrate = tmp['calculationrate']
+                except KeyError:
+                    pass
+                try:
+                    self._product.paymentcurrencydate = tmp['date']
+                except KeyError:
+                    pass
 
     def build_paymentalternativeexchangerate(self) -> None:
         # ['PaymentAlternativeExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)',
@@ -347,9 +374,18 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         paymentalternativeexchangerate_: Element = self.root.find(
             './' + self._cac_ns + 'PaymentAlternativeExchangeRate')
         if paymentalternativeexchangerate_ is not None:
-            tmp = TRUBLExchangeRate().process_element(paymentalternativeexchangerate_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.paymentalternativeexchangerate = tmp.name
+            tmp: dict = TRUBLExchangeRate().process_elementasdict(paymentalternativeexchangerate_, self._cbc_ns, self._cac_ns)
+            if tmp != {}:
+                try:
+                    self._product.alternativesourcecurrencycode = tmp['sourcecurrencycode']
+                    self._product.alternativetargetcurrencycode = tmp['targetcurrencycode']
+                    self._product.alternativecalculationrate = tmp['calculationrate']
+                except KeyError:
+                    pass
+                try:
+                    self._product.alternativecurrencydate = tmp['date']
+                except KeyError:
+                    pass
 
     def build_taxtotal(self) -> None:
         # ['TaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', 'taxtotal')
