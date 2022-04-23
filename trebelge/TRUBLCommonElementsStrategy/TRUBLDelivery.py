@@ -58,37 +58,42 @@ class TRUBLDelivery(TRUBLCommonElement):
         # ['AlternativeDeliveryLocation'] = ('cac', 'Location', 'Seçimli (0...1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'AlternativeDeliveryLocation')
         if tagelement_ is not None:
-            tmp = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['alternativedeliverylocation'] = tmp.name
         # ['EstimatedDeliveryPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'EstimatedDeliveryPeriod')
         if tagelement_ is not None:
-            tmp = TRUBLPeriod().process_element(tagelement_, cbcnamespace, cacnamespace)
-            if tmp is not None:
-                frappedoc['estimateddeliveryperiod'] = tmp.name
+            tmp: dict = TRUBLPeriod().process_elementasdict(tagelement_, cbcnamespace, cacnamespace)
+            if tmp != {}:
+                for key in ['startdate', 'starttime', 'enddate', 'endtime', 'durationmeasure',
+                            'durationmeasure_unitcode', 'description']:
+                    try:
+                        frappedoc[key] = tmp[key]
+                    except KeyError:
+                        pass
         # ['CarrierParty'] = ('cac', 'Party', 'Seçimli (0...1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'CarrierParty')
         if tagelement_ is not None:
-            tmp = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['carrierparty'] = tmp.name
         # ['DeliveryParty'] = ('cac', 'Party', 'Seçimli (0...1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'DeliveryParty')
         if tagelement_ is not None:
-            tmp = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['deliveryparty'] = tmp.name
         # ['Despatch'] = ('cac', 'Despatch', 'Seçimli (0...1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'Despatch')
         if tagelement_ is not None:
-            tmp = TRUBLDespatch().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLDespatch().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['despatch'] = tmp.name
         # ['Shipment'] = ('cac', 'Shipment', 'Seçimli (0...1)')
         tagelement_: Element = element.find('./' + cacnamespace + 'Shipment')
         if tagelement_ is not None:
-            tmp = TRUBLShipment().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLShipment().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['shipment'] = tmp.name
         if frappedoc == {}:
@@ -98,7 +103,7 @@ class TRUBLDelivery(TRUBLCommonElement):
         deliveryterms_: Element = element.find('./' + cacnamespace + 'DeliveryTerms')
         if deliveryterms_ is not None:
             for deliveryterm_ in deliveryterms_:
-                tmp = TRUBLDeliveryTerms().process_element(deliveryterm_, cbcnamespace, cacnamespace)
+                tmp: Document = TRUBLDeliveryTerms().process_element(deliveryterm_, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     deliveryterms.append(tmp)
         if len(deliveryterms) == 0:
@@ -109,3 +114,6 @@ class TRUBLDelivery(TRUBLCommonElement):
             document.save()
 
         return document
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

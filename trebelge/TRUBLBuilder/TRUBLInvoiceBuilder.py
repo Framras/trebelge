@@ -94,9 +94,27 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
         invoiceperiod_: Element = self.root.find('./' + self._cac_ns + 'InvoicePeriod')
         if invoiceperiod_ is not None:
-            tmp = TRUBLPeriod().process_element(invoiceperiod_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.invoiceperiod = tmp.name
+            tmp: dict = TRUBLPeriod().process_elementasdict(invoiceperiod_, self._cbc_ns, self._cac_ns)
+            if tmp != {}:
+                try:
+                    self._product.startdate = tmp['startdate']
+                    self._product.starttime = tmp['starttime']
+                except KeyError:
+                    pass
+                try:
+                    self._product.enddate = tmp['enddate']
+                    self._product.endtime = tmp['endtime']
+                except KeyError:
+                    pass
+                try:
+                    self._product.durationmeasure = tmp['durationmeasure']
+                    self._product.durationmeasure_unitcode = tmp['durationmeasure_unitcode']
+                except KeyError:
+                    pass
+                try:
+                    self._product.description = tmp['description']
+                except KeyError:
+                    pass
                 self._product.save()
 
     def build_discrepancyresponse(self) -> None:

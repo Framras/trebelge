@@ -34,9 +34,14 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         # ['TransitPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
         transitperiod_: Element = element.find('./' + cbcnamespace + 'TransitPeriod')
         if transitperiod_ is not None:
-            tmp = TRUBLPeriod.process_element(transitperiod_, cbcnamespace, cacnamespace)
-            if tmp is not None:
-                frappedoc['transitperiod'] = tmp.name
+            tmp = TRUBLPeriod.process_elementasdict(transitperiod_, cbcnamespace, cacnamespace)
+            if tmp != {}:
+                for key in ['startdate', 'starttime', 'enddate', 'endtime', 'durationmeasure',
+                            'durationmeasure_unitcode', 'description']:
+                    try:
+                        frappedoc[key] = tmp[key]
+                    except KeyError:
+                        pass
         # ['TransportMeans'] = ('cac', 'TransportMeans', 'Seçimli (0...1)')
         transportmeans_: Element = element.find('./' + cbcnamespace + 'TransportMeans')
         if transportmeans_ is not None:

@@ -41,9 +41,14 @@ class TRUBLDocumentReference(TRUBLCommonElement):
         # ['ValidityPeriod'] = ('cac', 'Period', 'Seçimli (0...1)', 'validityperiod')
         validityperiod_ = element.find('./' + cacnamespace + 'ValidityPeriod')
         if validityperiod_ is not None:
-            tmp = TRUBLPeriod().process_element(validityperiod_, cbcnamespace, cacnamespace)
-            if tmp is not None:
-                frappedoc['validityperiod'] = tmp.name
+            tmp = TRUBLPeriod().process_elementasdict(validityperiod_, cbcnamespace, cacnamespace)
+            if tmp != {}:
+                for key in ['startdate', 'starttime', 'enddate', 'endtime', 'durationmeasure',
+                            'durationmeasure_unitcode', 'description']:
+                    try:
+                        frappedoc[key] = tmp[key]
+                    except KeyError:
+                        pass
         # ['IssuerParty'] = ('cac', 'Party', 'Seçimli (0...1)', 'issuerparty')
         issuerparty_ = element.find('./' + cacnamespace + 'IssuerParty')
         if issuerparty_ is not None:
@@ -63,3 +68,6 @@ class TRUBLDocumentReference(TRUBLCommonElement):
                     document.save()
 
         return document
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

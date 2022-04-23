@@ -34,9 +34,14 @@ class TRUBLPaymentTerms(TRUBLCommonElement):
         # ['SettlementPeriod'] = ('cac', 'settlementperiod', 'Seçimli (0...1)')
         settlementperiod_: Element = element.find('./' + cbcnamespace + 'SettlementPeriod')
         if settlementperiod_ is not None:
-            tmp = TRUBLPeriod().process_element(settlementperiod_, cbcnamespace, cacnamespace)
-            if tmp is not None:
-                frappedoc['settlementperiod'] = tmp.name
+            tmp: dict = TRUBLPeriod().process_elementasdict(settlementperiod_, cbcnamespace, cacnamespace)
+            if tmp != {}:
+                for key in ['startdate', 'starttime', 'enddate', 'endtime', 'durationmeasure',
+                            'durationmeasure_unitcode', 'description']:
+                    try:
+                        frappedoc[key] = tmp[key]
+                    except KeyError:
+                        pass
         if frappedoc == {}:
             return None
 
