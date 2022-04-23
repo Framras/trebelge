@@ -25,7 +25,13 @@ class TRUBLLegalMonetaryTotal(TRUBLCommonElement):
                           taxinclusiveamount=taxinclusiveamount_.text.strip(),
                           taxinclusiveamountcurrencyid=taxinclusiveamount_.attrib.get('currencyID'),
                           payableamount=payableamount_.text.strip(),
-                          payableamountcurrencyid=payableamount_.attrib.get('currencyID')
+                          payableamountcurrencyid=payableamount_.attrib.get('currencyID'),
+                          allowancetotalamount='',
+                          allowancetotalamountcurrencyid='',
+                          chargetotalamount='',
+                          chargetotalamountcurrencyid='',
+                          payableroundingamount='',
+                          payableroundingamountcurrencyid=''
                           )
         # ['AllowanceTotalAmount'] = ('cbc', 'allowancetotalamount', 'Seçimli (0...1)')
         allowancetotalamount_: Element = element.find('./' + cbcnamespace + 'AllowanceTotalAmount')
