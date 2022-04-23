@@ -7,17 +7,19 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "ublversionid",
-  "customizationid",
-  "profileid",
-  "profileexecutioniid",
-  "id",
-  "copyindicator",
   "uuid",
+  "ublversionid",
+  "profileid",
+  "id",
   "issuedate",
-  "issuetime",
   "taxpointdate",
+  "column_break_7",
+  "customizationid",
+  "profileexecutioniid",
+  "copyindicator",
+  "issuetime",
   "creditnotetypecode",
+  "notlar_section",
   "note",
   "documentcurrencycode",
   "taxcurrencycode",
@@ -137,7 +139,6 @@
    "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r. Bu numara fatura d\u00fczenleyen taraf\u0131ndan standartlara uygun olarak \u00fcretilip faturalarda kullan\u0131lacakt\u0131r.",
    "fieldname": "uuid",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
    "reqd": 1,
    "unique": 1
@@ -157,6 +158,7 @@
    "label": "D\u00fczenleme Zaman\u0131"
   },
   {
+   "description": "The date of the Invoice, used to indicate the point at which tax becomes applicable.",
    "fieldname": "taxpointdate",
    "fieldtype": "Date",
    "label": "TaxPointDate"
@@ -596,11 +598,20 @@
    "fieldtype": "Link",
    "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
    "options": "UBL TR Unitcodes"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notlar_section",
+   "fieldtype": "Section Break",
+   "label": "Notlar"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-23 13:58:49.458356",
+ "modified": "2022-04-23 16:44:01.798580",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Credit Note",

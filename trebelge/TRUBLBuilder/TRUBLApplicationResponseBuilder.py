@@ -191,4 +191,4 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
         pass
 
     def get_document(self) -> None:
-        product = self._product.save()
+        self._product.save()

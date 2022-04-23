@@ -1,21 +1,22 @@
 {
  "actions": [],
- "allow_rename": 1,
  "autoname": "field:uuid",
  "creation": "2022-04-22 22:21:38.652600",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "uuid",
   "ublversionid",
-  "customizationid",
   "profileid",
   "id",
-  "copyindicator",
-  "uuid",
   "issuedate",
+  "column_break_6",
+  "customizationid",
+  "copyindicator",
   "issuetime",
   "invoicetypecode",
+  "notlar_section",
   "note",
   "documentcurrencycode",
   "taxcurrencycode",
@@ -547,11 +548,20 @@
    "fieldtype": "Link",
    "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
    "options": "UBL TR Unitcodes"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notlar_section",
+   "fieldtype": "Section Break",
+   "label": "Notlar"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-23 14:00:52.127443",
+ "modified": "2022-04-23 16:38:52.623903",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",

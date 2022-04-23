@@ -34,7 +34,7 @@ class TRUBLShipmentStage(TRUBLCommonElement):
         # ['TransitPeriod'] = ('cac', 'Period', 'Seçimli (0...1)')
         transitperiod_: Element = element.find('./' + cbcnamespace + 'TransitPeriod')
         if transitperiod_ is not None:
-            tmp: dict = TRUBLPeriod.process_elementasdict(transitperiod_, cbcnamespace, cacnamespace)
+            tmp: dict = TRUBLPeriod().process_elementasdict(transitperiod_, cbcnamespace, cacnamespace)
             if tmp != {}:
                 for key in ['startdate', 'starttime', 'enddate', 'endtime', 'durationmeasure',
                             'durationmeasure_unitcode', 'description']:

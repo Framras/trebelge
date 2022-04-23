@@ -59,8 +59,9 @@ class TRUBLAddress(TRUBLCommonElement):
                                                frappe.get_all(self._frappeDoctype,
                                                               filters=frappedoc)[0]["name"])
             if legacy_ is not None:
-                if len(legacy_.buildingnumber) != 0 and len(legacy_.buildingnumber) == len(buildingnumbers):
-                    for bnumber in legacy_.buildingnumber:
+                if len(legacy_.get_value('buildingnumber')) != 0 and len(legacy_.get_value('buildingnumber')) == len(
+                        buildingnumbers):
+                    for bnumber in legacy_.get_value('buildingnumber'):
                         if buildingnumbers.count(bnumber.buildingnumber) == 0:
                             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
                             doc_append = document.append("buildingnumber", {})
