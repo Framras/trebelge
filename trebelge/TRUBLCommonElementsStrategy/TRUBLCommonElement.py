@@ -39,3 +39,7 @@ class TRUBLCommonElement(ABC):
     @abstractmethod
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         pass
+
+    @abstractmethod
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

@@ -9,6 +9,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 from trebelge.TRUBLCommonElementsStrategy.TRUBLDocumentReference import TRUBLDocumentReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLExchangeRate import TRUBLExchangeRate
 from trebelge.TRUBLCommonElementsStrategy.TRUBLInvoiceLine import TRUBLInvoiceLine
+from trebelge.TRUBLCommonElementsStrategy.TRUBLLegalMonetaryTotal import TRUBLLegalMonetaryTotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderReference import TRUBLOrderReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLParty import TRUBLParty
 from trebelge.TRUBLCommonElementsStrategy.TRUBLPaymentMeans import TRUBLPaymentMeans
@@ -75,10 +76,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if issuetime_ is not None:
             try:
                 self._product.issuetime = datetime.strptime(issuetime_.text, '%H:%M:%S')
+                self._product.save()
             except ValueError:
                 pass
-        else:
-            self._product.issuetime = ""
 
     def build_note(self) -> None:
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
@@ -97,6 +97,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLPeriod().process_element(invoiceperiod_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.invoiceperiod = tmp.name
+                self._product.save()
 
     def build_discrepancyresponse(self) -> None:
         # TODO : Implement this: maybe a Response of (0..n) cardinality
@@ -109,6 +110,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLOrderReference().process_element(orderreference_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.orderreference = tmp.name
+                self._product.save()
 
     def build_billingreference(self) -> None:
         # ['BillingReference'] = ('cac', BillingReference(), 'Seçimli (0...n)', 'billingreference')
@@ -188,6 +190,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         party_: Element = accountingsupplierparty_.find('./' + self._cac_ns + 'Party')
         party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
         self._product.accountingsupplierparty = party.name
+        self._product.save()
 
     def build_despatchsupplierparty(self) -> None:
         # ['DespatchSupplierParty'] = ('cac', SupplierParty(), 'Zorunlu (1)', 'despatchsupplierparty')
@@ -200,6 +203,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         party_: Element = accountingcustomerparty_.find('./' + self._cac_ns + 'Party')
         party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
         self._product.accountingcustomerparty = party.name
+        self._product.save()
 
     def build_deliverycustomerparty(self) -> None:
         # ['DeliveryCustomerParty'] = ('cac', CustomerParty(), 'Zorunlu (1)', 'deliverycustomerparty')
@@ -213,6 +217,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             party_: Element = buyercustomerparty_.find('./' + self._cac_ns + 'Party')
             party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
             self._product.buyercustomerparty = party.name
+            self._product.save()
 
     def build_sellersupplierparty(self) -> None:
         # ['SellerSupplierParty'] = ('cac', SupplierParty(), 'Seçimli (0..1)', 'sellersupplierparty')
@@ -222,6 +227,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             party_: Element = sellersupplierparty_.find('./' + self._cac_ns + 'Party')
             party = TRUBLParty().process_element(party_, self._cbc_ns, self._cac_ns)
             self._product.sellersupplierparty = party.name
+            self._product.save()
 
     def build_originatorcustomerparty(self) -> None:
         # ['OriginatorCustomerParty'] = ('cac', CustomerParty(), 'Seçimli (0..1)', 'originatorcustomerparty')
@@ -234,6 +240,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLParty().process_element(taxrepresentativeparty_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.taxrepresentativeparty = tmp.name
+                self._product.save()
 
     def build_delivery(self) -> None:
         # ['Delivery'] = ('cac', Delivery(), 'Seçimli (0...n)', 'delivery')
@@ -268,6 +275,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLPaymentTerms().process_element(paymentterms_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.paymentterms = tmp.name
+                self._product.save()
 
     def build_allowancecharge(self) -> None:
         # ['AllowanceCharge'] = ('cac', AllowanceCharge(), 'Seçimli (0...n)', 'allowancecharge')
@@ -287,6 +295,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLExchangeRate().process_element(taxexchangerate_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.taxexchangerate = tmp.name
+                self._product.save()
 
     def build_pricingexchangerate(self) -> None:
         # ['PricingExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'pricingexchangerate')
@@ -295,6 +304,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLExchangeRate().process_element(pricingexchangerate_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.pricingexchangerate = tmp.name
+                self._product.save()
 
     def build_paymentexchangerate(self) -> None:
         # ['PaymentExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)', 'paymentexchangerate')
@@ -303,6 +313,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLExchangeRate().process_element(paymentexchangerate_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.paymentexchangerate = tmp.name
+                self._product.save()
 
     def build_paymentalternativeexchangerate(self) -> None:
         # ['PaymentAlternativeExchangeRate'] = ('cac', ExchangeRate(), 'Seçimli (0..1)',
@@ -313,6 +324,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLExchangeRate().process_element(paymentalternativeexchangerate_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.paymentalternativeexchangerate = tmp.name
+                self._product.save()
 
     def build_taxtotal(self) -> None:
         # ['TaxTotal'] = ('cac', TaxTotal(), 'Zorunlu (1...n)', 'taxtotal')
@@ -338,37 +350,38 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_legalmonetarytotal(self) -> None:
         # ['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)', 'legalmonetarytotal')
         legalmonetarytotal_: Element = self.root.find('./' + self._cac_ns + 'LegalMonetaryTotal')
+        tmp = TRUBLLegalMonetaryTotal().process_elementasdict(legalmonetarytotal_, self._cbc_ns, self._cac_ns)
         # ['LineExtensionAmount'] = ('cbc', 'lineextensionamount', 'Zorunlu(1)')
-        lineextensionamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'LineExtensionAmount')
-        self._product.lineextensionamount = lineextensionamount_.text.strip()
-        self._product.lineextensionamountcurrencyid = lineextensionamount_.attrib.get('currencyID')
+        self._product.lineextensionamount = tmp['lineextensionamount']
+        self._product.lineextensionamountcurrencyid = tmp['lineextensionamountcurrencyid']
         # ['TaxExclusiveAmount'] = ('cbc', 'taxexclusiveamount', 'Zorunlu(1)')
-        taxexclusiveamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'TaxExclusiveAmount')
-        self._product.taxexclusiveamount = taxexclusiveamount_.text.strip()
-        self._product.taxexclusiveamountcurrencyid = taxexclusiveamount_.attrib.get('currencyID')
+        self._product.taxexclusiveamount = tmp['taxexclusiveamount']
+        self._product.taxexclusiveamountcurrencyid = tmp['taxexclusiveamountcurrencyid']
         # ['TaxInclusiveAmount'] = ('cbc', 'taxinclusiveamount', 'Zorunlu(1)')
-        taxinclusiveamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'TaxInclusiveAmount')
-        self._product.taxinclusiveamount = taxinclusiveamount_.text.strip()
-        self._product.taxinclusiveamountcurrencyid = taxinclusiveamount_.attrib.get('currencyID')
+        self._product.taxinclusiveamount = tmp['taxinclusiveamount']
+        self._product.taxinclusiveamountcurrencyid = tmp['taxinclusiveamountcurrencyid']
         # ['PayableAmount'] = ('cbc', 'payableamount', 'Zorunlu(1)')
-        payableamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'PayableAmount')
-        self._product.payableamount = payableamount_.text.strip()
-        self._product.payableamountcurrencyid = payableamount_.attrib.get('currencyID')
+        self._product.payableamount = tmp['payableamount']
+        self._product.payableamountcurrencyid = tmp['payableamountcurrencyid']
         # ['AllowanceTotalAmount'] = ('cbc', 'allowancetotalamount', 'Seçimli (0...1)')
-        allowancetotalamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'AllowanceTotalAmount')
-        if allowancetotalamount_ is not None and allowancetotalamount_.text is not None:
-            self._product.allowancetotalamount = allowancetotalamount_.text.strip()
-            self._product.allowancetotalamountcurrencyid = allowancetotalamount_.attrib.get('currencyID')
+        try:
+            self._product.allowancetotalamount = tmp['allowancetotalamount']
+            self._product.allowancetotalamountcurrencyid = tmp['allowancetotalamountcurrencyid']
+        except KeyError:
+            pass
         # ['ChargeTotalAmount'] = ('cbc', 'chargetotalamount', 'Seçimli (0...1)')
-        chargetotalamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'ChargeTotalAmount')
-        if chargetotalamount_ is not None and chargetotalamount_.text is not None:
-            self._product.chargetotalamount = chargetotalamount_.text.strip()
-            self._product.chargetotalamountcurrencyid = chargetotalamount_.attrib.get('currencyID')
+        try:
+            self._product.chargetotalamount = tmp['chargetotalamount']
+            self._product.chargetotalamountcurrencyid = tmp['chargetotalamountcurrencyid']
+        except KeyError:
+            pass
         # ['PayableRoundingAmount'] = ('cbc', 'payableroundingamount', 'Seçimli (0...1)')
-        payableroundingamount_: Element = legalmonetarytotal_.find('./' + self._cbc_ns + 'PayableRoundingAmount')
-        if payableroundingamount_ is not None and payableroundingamount_.text is not None:
-            self._product.payableroundingamount = payableroundingamount_.text.strip()
-            self._product.payableroundingamountcurrencyid = payableroundingamount_.attrib.get('currencyID')
+        try:
+            self._product.payableroundingamount = tmp['payableroundingamount']
+            self._product.payableroundingamountcurrencyid = tmp['payableroundingamountcurrencyid']
+        except KeyError:
+            pass
+        self._product.save()
 
     def build_invoiceline(self) -> None:
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
