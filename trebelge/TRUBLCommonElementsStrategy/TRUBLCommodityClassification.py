@@ -23,3 +23,6 @@ class TRUBLCommodityClassification(TRUBLCommonElement):
                 return self._get_frappedoc(self._frappeDoctype, frappedoc)
 
         return None
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

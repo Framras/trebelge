@@ -131,3 +131,6 @@ class TRUBLParty(TRUBLCommonElement):
                     if partyid and partylegal:
                         return doc
             return self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

@@ -66,3 +66,6 @@ class TRUBLContact(TRUBLCommonElement):
                     doc_append.othercommunication = tmp.name
                     document.save()
                     return document
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

@@ -24,3 +24,6 @@ class TRUBLBranch(TRUBLCommonElement):
         if frappedoc == {}:
             return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

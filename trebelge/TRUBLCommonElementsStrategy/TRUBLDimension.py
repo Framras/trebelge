@@ -47,3 +47,6 @@ class TRUBLDimension(TRUBLCommonElement):
                     document.save()
 
         return document
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

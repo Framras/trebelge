@@ -13,3 +13,6 @@ class TRUBLExternalReference(TRUBLCommonElement):
         if uri_ is None or uri_.text.strip() == '':
             return None
         return self._get_frappedoc(self._frappeDoctype, dict(uri=uri_.text))
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

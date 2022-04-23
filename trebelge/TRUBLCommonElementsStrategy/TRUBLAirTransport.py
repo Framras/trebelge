@@ -15,3 +15,6 @@ class TRUBLAirTransport(TRUBLCommonElement):
                 return self._get_frappedoc(self._frappeDoctype, dict(aircraftid=aircraftid_.text.strip()))
 
         return None
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

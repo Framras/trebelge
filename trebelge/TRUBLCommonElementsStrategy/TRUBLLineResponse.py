@@ -25,3 +25,6 @@ class TRUBLLineResponse(TRUBLCommonElement):
             return None
         return self._get_frappedoc(self._frappeDoctype, dict(linereference=tmp.name,
                                                              response=responses))
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass

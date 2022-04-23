@@ -13,3 +13,6 @@ class TRUBLFinancialInstitution(TRUBLCommonElement):
         if name_ is None or name_.text.strip() == '':
             return None
         return self._get_frappedoc(self._frappeDoctype, dict(financialinstitution=name_.text))
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        pass
