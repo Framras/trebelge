@@ -25,28 +25,22 @@ class TRUBLLegalMonetaryTotal(TRUBLCommonElement):
                           taxinclusiveamount=taxinclusiveamount_.text.strip(),
                           taxinclusiveamountcurrencyid=taxinclusiveamount_.attrib.get('currencyID'),
                           payableamount=payableamount_.text.strip(),
-                          payableamountcurrencyid=payableamount_.attrib.get('currencyID'),
-                          allowancetotalamount='',
-                          allowancetotalamountcurrencyid='',
-                          chargetotalamount='',
-                          chargetotalamountcurrencyid='',
-                          payableroundingamount='',
-                          payableroundingamountcurrencyid=''
+                          payableamountcurrencyid=payableamount_.attrib.get('currencyID')
                           )
         # ['AllowanceTotalAmount'] = ('cbc', 'allowancetotalamount', 'Seçimli (0...1)')
         allowancetotalamount_: Element = element.find('./' + cbcnamespace + 'AllowanceTotalAmount')
         if allowancetotalamount_ is not None and allowancetotalamount_.text is not None:
-            frappedata.allowancetotalamount = allowancetotalamount_.text.strip()
-            frappedata.allowancetotalamountcurrencyid = allowancetotalamount_.attrib.get('currencyID')
+            frappedata['allowancetotalamount'] = allowancetotalamount_.text.strip()
+            frappedata['allowancetotalamountcurrencyid'] = allowancetotalamount_.attrib.get('currencyID')
         # ['ChargeTotalAmount'] = ('cbc', 'chargetotalamount', 'Seçimli (0...1)')
         chargetotalamount_: Element = element.find('./' + cbcnamespace + 'ChargeTotalAmount')
         if chargetotalamount_ is not None and chargetotalamount_.text is not None:
-            frappedata.chargetotalamount = chargetotalamount_.text.strip()
-            frappedata.chargetotalamountcurrencyid = chargetotalamount_.attrib.get('currencyID')
+            frappedata['chargetotalamount'] = chargetotalamount_.text.strip()
+            frappedata['chargetotalamountcurrencyid'] = chargetotalamount_.attrib.get('currencyID')
         # ['PayableRoundingAmount'] = ('cbc', 'payableroundingamount', 'Seçimli (0...1)')
         payableroundingamount_: Element = element.find('./' + cbcnamespace + 'PayableRoundingAmount')
         if payableroundingamount_ is not None and payableroundingamount_.text is not None:
-            frappedata.payableroundingamount = payableroundingamount_.text.strip()
-            frappedata.payableroundingamountcurrencyid = payableroundingamount_.attrib.get('currencyID')
+            frappedata['payableroundingamount'] = payableroundingamount_.text.strip()
+            frappedata['payableroundingamountcurrencyid'] = payableroundingamount_.attrib.get('currencyID')
 
         return frappedata
