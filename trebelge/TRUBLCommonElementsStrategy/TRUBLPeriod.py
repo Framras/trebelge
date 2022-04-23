@@ -6,11 +6,11 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLPeriod(TRUBLCommonElement):
-    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         pass
 
-    def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        frappedoc: dict = {}
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        frappedata: dict = {}
         # ['StartDate'] = ('cbc', 'startdate', 'Seçimli (0...1)')
         # ['StartTime'] = ('cbc', 'starttime', 'Seçimli (0...1)')
         # ['EndDate'] = ('cbc', 'enddate', 'Seçimli (0...1)')
@@ -21,27 +21,25 @@ class TRUBLPeriod(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text.strip()
+                    frappedata[elementtag_.lower()] = field_.text.strip()
         # ['StartTime'] = ('cbc', '', 'Seçimli (0...1)')
         starttime_: Element = element.find('./' + cbcnamespace + 'StartTime')
         if starttime_ is not None:
             try:
-                frappedoc['starttime'] = datetime.strptime(starttime_.text, '%H:%M:%S')
+                frappedata['starttime'] = datetime.strptime(starttime_.text, '%H:%M:%S')
             except ValueError:
                 pass
         # ['EndTime'] = ('cbc', '', 'Seçimli (0...1)')
         endtime_: Element = element.find('./' + cbcnamespace + 'EndTime')
         if endtime_ is not None:
             try:
-                frappedoc['endtime'] = datetime.strptime(endtime_.text, '%H:%M:%S')
+                frappedata['endtime'] = datetime.strptime(endtime_.text, '%H:%M:%S')
             except ValueError:
                 pass
         # ['DurationMeasure'] = ('cbc', 'durationmeasure', 'Seçimli (0...1)')
         durationmeasure_: Element = element.find('./' + cbcnamespace + 'DurationMeasure')
         if durationmeasure_ is not None:
-            frappedoc['durationmeasure'] = durationmeasure_.text.strip()
-            frappedoc['unitcode'] = durationmeasure_.attrib.get('unitCode').strip()
-        if frappedoc == {}:
-            return None
+            frappedata['durationmeasure'] = durationmeasure_.text.strip()
+            frappedata['durationmeasure_unitcode'] = durationmeasure_.attrib.get('unitCode').strip()
 
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        return frappedata

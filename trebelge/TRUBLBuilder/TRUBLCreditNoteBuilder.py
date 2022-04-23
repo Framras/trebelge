@@ -109,9 +109,15 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
         # ['InvoicePeriod'] = ('cac', Period(), 'Seçimli (0...1)', 'invoiceperiod')
         invoiceperiod_: Element = self.root.find('./' + self._cac_ns + 'InvoicePeriod')
         if invoiceperiod_ is not None:
-            tmp = TRUBLPeriod().process_element(invoiceperiod_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                self._product.invoiceperiod = tmp.name
+            tmp = TRUBLPeriod().process_elementasdict(invoiceperiod_, self._cbc_ns, self._cac_ns)
+            if tmp != {}:
+                self._product.startdate = tmp['startdate']
+                self._product.starttime = tmp['starttime']
+                self._product.enddate = tmp['enddate']
+                self._product.endtime = tmp['endtime']
+                durationmeasure
+                unitcode
+                description
 
     def build_discrepancyresponse(self) -> None:
         # TODO : Implement this

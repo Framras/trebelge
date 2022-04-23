@@ -53,7 +53,7 @@
   "column_break_43",
   "starttime",
   "endtime",
-  "unitcode",
+  "durationmeasure_unitcode",
   "section_break_41",
   "discrepancyresponse",
   "orderreference",
@@ -576,12 +576,6 @@
    "label": "D\u00f6nem s\u00fcresi"
   },
   {
-   "fieldname": "unitcode",
-   "fieldtype": "Link",
-   "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
-   "options": "UBL TR Unitcodes"
-  },
-  {
    "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
    "fieldname": "description",
    "fieldtype": "Small Text",
@@ -596,11 +590,17 @@
    "fieldname": "period_section",
    "fieldtype": "Section Break",
    "label": "Credit Note D\u00f6nemi"
+  },
+  {
+   "fieldname": "durationmeasure_unitcode",
+   "fieldtype": "Link",
+   "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
+   "options": "UBL TR Unitcodes"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-23 12:40:24.797068",
+ "modified": "2022-04-23 13:58:49.458356",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Credit Note",

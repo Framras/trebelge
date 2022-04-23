@@ -22,7 +22,7 @@
   "column_break_13",
   "starttime",
   "endtime",
-  "unitcode"
+  "durationmeasure_unitcode"
  ],
  "fields": [
   {
@@ -114,7 +114,7 @@
    "label": "D\u00f6nemin bitti\u011fi zaman"
   },
   {
-   "fieldname": "unitcode",
+   "fieldname": "durationmeasure_unitcode",
    "fieldtype": "Link",
    "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
    "options": "UBL TR Unitcodes"
@@ -122,7 +122,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-23 13:38:10.336654",
+ "modified": "2022-04-23 14:00:21.562679",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR PaymentTerms",

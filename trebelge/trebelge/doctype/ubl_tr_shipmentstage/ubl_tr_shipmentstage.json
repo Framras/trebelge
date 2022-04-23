@@ -20,7 +20,7 @@
   "column_break_11",
   "starttime",
   "endtime",
-  "unitcode",
+  "durationmeasure_unitcode",
   "section_break_15",
   "transportmeans",
   "driverperson"
@@ -121,19 +121,19 @@
    "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
   },
   {
-   "fieldname": "unitcode",
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "durationmeasure_unitcode",
    "fieldtype": "Link",
    "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
    "options": "UBL TR Unitcodes"
-  },
-  {
-   "fieldname": "section_break_15",
-   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-23 13:44:00.236304",
+ "modified": "2022-04-23 13:59:48.382255",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR ShipmentStage",

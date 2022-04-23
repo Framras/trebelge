@@ -21,7 +21,7 @@
   "column_break_12",
   "starttime",
   "endtime",
-  "unitcode",
+  "durationmeasure_unitcode",
   "section_break_16",
   "issuerparty"
  ],
@@ -121,19 +121,19 @@
    "label": "D\u00f6nemin bitti\u011fi zaman"
   },
   {
-   "fieldname": "unitcode",
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "durationmeasure_unitcode",
    "fieldtype": "Link",
    "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
    "options": "UBL TR Unitcodes"
-  },
-  {
-   "fieldname": "section_break_16",
-   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-23 13:24:11.809361",
+ "modified": "2022-04-23 14:01:03.250569",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR DocumentReference",
