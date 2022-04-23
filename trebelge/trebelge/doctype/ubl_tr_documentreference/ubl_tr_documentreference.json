@@ -13,7 +13,16 @@
   "documenttype",
   "documentdescription",
   "attachment",
-  "validityperiod",
+  "period_section",
+  "startdate",
+  "enddate",
+  "durationmeasure",
+  "description",
+  "column_break_12",
+  "starttime",
+  "endtime",
+  "unitcode",
+  "section_break_16",
   "issuerparty"
  ],
  "fields": [
@@ -52,13 +61,6 @@
    "options": "UBL TR Attachment"
   },
   {
-   "description": "Referans verilen ya da eklenen belgenin ge\u00e7erlilik s\u00fcresi girilebilir.",
-   "fieldname": "validityperiod",
-   "fieldtype": "Link",
-   "label": "Ge\u00e7erlilik s\u00fcresi",
-   "options": "UBL TR Period"
-  },
-  {
    "description": "Referans verilen ya da eklenen belgeyi yay\u0131nlayan taraf bilgisi girilebilir.",
    "fieldname": "issuerparty",
    "fieldtype": "Link",
@@ -71,11 +73,67 @@
    "fieldtype": "Table",
    "label": "A\u00e7\u0131klama",
    "options": "UBL TR Notes"
+  },
+  {
+   "description": "Referans verilen ya da eklenen belgenin ge\u00e7erlilik s\u00fcresi girilebilir.",
+   "fieldname": "period_section",
+   "fieldtype": "Section Break",
+   "label": "Belgenin ge\u00e7erlilik s\u00fcresi"
+  },
+  {
+   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih",
+   "fieldname": "startdate",
+   "fieldtype": "Date",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih"
+  },
+  {
+   "description": "D\u00f6nemin bitti\u011fi tarih",
+   "fieldname": "enddate",
+   "fieldtype": "Date",
+   "label": "D\u00f6nemin bitti\u011fi tarih"
+  },
+  {
+   "description": "D\u00f6nem s\u00fcresi numerik olarak, d\u00f6nem aral\u0131\u011f\u0131 tipi\u2019de \u201cunitCode\u201d attribute de\u011ferine y\u0131l i\u00e7in \u201cANN\u201d, ay i\u00e7in \u201cMON\u201d, g\u00fcn i\u00e7in \u201cDAY\u201d ve saat i\u00e7in \u201cHUR\u201d girilmesi gerekmektedir.",
+   "fieldname": "durationmeasure",
+   "fieldtype": "Int",
+   "label": "D\u00f6nem s\u00fcresi"
+  },
+  {
+   "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman",
+   "fieldname": "starttime",
+   "fieldtype": "Time",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
+  },
+  {
+   "description": "D\u00f6nemin bitti\u011fi zaman",
+   "fieldname": "endtime",
+   "fieldtype": "Time",
+   "label": "D\u00f6nemin bitti\u011fi zaman"
+  },
+  {
+   "fieldname": "unitcode",
+   "fieldtype": "Link",
+   "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-21 23:14:43.495477",
+ "modified": "2022-04-23 13:24:11.809361",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR DocumentReference",

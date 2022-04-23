@@ -1,103 +1,158 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-04 19:30:33.090309",
-  "description": "G\u00f6nderi Fazlar\u0131: Bu elemana ta\u015f\u0131ma faz bilgileri yaz\u0131l\u0131r.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "id",
-    "transportmodecode",
-    "transportmeanstypecode",
-    "transitdirectioncode",
-    "instructions",
-    "transitperiod",
-    "transportmeans",
-    "driverperson"
-  ],
-  "fields": [
-    {
-      "description": "A\u015fama bilgisi numaras\u0131 girilir.",
-      "fieldname": "id",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "A\u015fama numaras\u0131"
-    },
-    {
-      "description": "Bu ta\u015f\u0131ma faz\u0131n\u0131n hangi modda (hava, deniz, kara) ger\u00e7ekle\u015fti\u011fi bilgisi girilir.",
-      "fieldname": "transportmodecode",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Ta\u015f\u0131ma faz\u0131 modu"
-    },
-    {
-      "description": "Bu ta\u015f\u0131ma faz\u0131n\u0131n nas\u0131l bir ara\u00e7 ile ger\u00e7ekle\u015fti\u011fi bilgisi girilir (\u00f6rne\u011fin, kamyon, t\u0131r, gemi)",
-      "fieldname": "transportmeanstypecode",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Ta\u015f\u0131ma faz\u0131 arac\u0131"
-    },
-    {
-      "description": "Bu fazda ger\u00e7ekle\u015ftirilen ta\u015f\u0131man\u0131n g\u00fczergah\u0131 kodlu olarak girilir.",
-      "fieldname": "transitdirectioncode",
-      "fieldtype": "Table",
-      "label": "Faz g\u00fczergah\u0131",
-      "options": "UBL TR TransitDirectionCode"
-    },
-    {
-      "description": "Fazla ilgili detay bilgi girilir (\u00f6rne\u011fin g\u00fczergah)",
-      "fieldname": "instructions",
-      "fieldtype": "Small Text",
-      "in_list_view": 1,
-      "label": "Detay bilgi"
-    },
-    {
-      "description": "Faz\u0131n ger\u00e7ekle\u015fme zaman\u0131 girilir.",
-      "fieldname": "transitperiod",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Ta\u015f\u0131ma s\u00fcresi",
-      "options": "UBL TR Period"
-    },
-    {
-      "description": "Ta\u015f\u0131mada kullan\u0131lan vas\u0131ta hakk\u0131nda detay bilgi girilir (\u00f6rne\u011fin kamyon plaka numaras\u0131)",
-      "fieldname": "transportmeans",
-      "fieldtype": "Link",
-      "in_list_view": 1,
-      "label": "Vas\u0131ta Bilgisi",
-      "options": "UBL TR TransportMeans"
-    },
-    {
-      "description": "\u015eof\u00f6r bilgileri girilir.",
-      "fieldname": "driverperson",
-      "fieldtype": "Table MultiSelect",
-      "label": "\u015eof\u00f6r bilgileri",
-      "options": "UBL TR People"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2022-01-28 00:23:38.529486",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR ShipmentStage",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-04 19:30:33.090309",
+ "description": "G\u00f6nderi Fazlar\u0131: Bu elemana ta\u015f\u0131ma faz bilgileri yaz\u0131l\u0131r.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "id",
+  "transportmodecode",
+  "transportmeanstypecode",
+  "transitdirectioncode",
+  "instructions",
+  "period_section",
+  "startdate",
+  "enddate",
+  "durationmeasure",
+  "description",
+  "column_break_11",
+  "starttime",
+  "endtime",
+  "unitcode",
+  "section_break_15",
+  "transportmeans",
+  "driverperson"
+ ],
+ "fields": [
+  {
+   "description": "A\u015fama bilgisi numaras\u0131 girilir.",
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "A\u015fama numaras\u0131"
+  },
+  {
+   "description": "Bu ta\u015f\u0131ma faz\u0131n\u0131n hangi modda (hava, deniz, kara) ger\u00e7ekle\u015fti\u011fi bilgisi girilir.",
+   "fieldname": "transportmodecode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ta\u015f\u0131ma faz\u0131 modu"
+  },
+  {
+   "description": "Bu ta\u015f\u0131ma faz\u0131n\u0131n nas\u0131l bir ara\u00e7 ile ger\u00e7ekle\u015fti\u011fi bilgisi girilir (\u00f6rne\u011fin, kamyon, t\u0131r, gemi)",
+   "fieldname": "transportmeanstypecode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ta\u015f\u0131ma faz\u0131 arac\u0131"
+  },
+  {
+   "description": "Bu fazda ger\u00e7ekle\u015ftirilen ta\u015f\u0131man\u0131n g\u00fczergah\u0131 kodlu olarak girilir.",
+   "fieldname": "transitdirectioncode",
+   "fieldtype": "Table",
+   "label": "Faz g\u00fczergah\u0131",
+   "options": "UBL TR TransitDirectionCode"
+  },
+  {
+   "description": "Fazla ilgili detay bilgi girilir (\u00f6rne\u011fin g\u00fczergah)",
+   "fieldname": "instructions",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Detay bilgi"
+  },
+  {
+   "description": "Ta\u015f\u0131mada kullan\u0131lan vas\u0131ta hakk\u0131nda detay bilgi girilir (\u00f6rne\u011fin kamyon plaka numaras\u0131)",
+   "fieldname": "transportmeans",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vas\u0131ta Bilgisi",
+   "options": "UBL TR TransportMeans"
+  },
+  {
+   "description": "\u015eof\u00f6r bilgileri girilir.",
+   "fieldname": "driverperson",
+   "fieldtype": "Table MultiSelect",
+   "label": "\u015eof\u00f6r bilgileri",
+   "options": "UBL TR People"
+  },
+  {
+   "fieldname": "period_section",
+   "fieldtype": "Section Break",
+   "label": "Ta\u015f\u0131ma s\u00fcresi"
+  },
+  {
+   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih",
+   "fieldname": "startdate",
+   "fieldtype": "Date",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih"
+  },
+  {
+   "description": "D\u00f6nemin bitti\u011fi tarih",
+   "fieldname": "enddate",
+   "fieldtype": "Date",
+   "label": "D\u00f6nemin bitti\u011fi tarih"
+  },
+  {
+   "description": "D\u00f6nem s\u00fcresi numerik olarak, d\u00f6nem aral\u0131\u011f\u0131 tipi\u2019de \u201cunitCode\u201d attribute de\u011ferine y\u0131l i\u00e7in \u201cANN\u201d, ay i\u00e7in \u201cMON\u201d, g\u00fcn i\u00e7in \u201cDAY\u201d ve saat i\u00e7in \u201cHUR\u201d girilmesi gerekmektedir.",
+   "fieldname": "durationmeasure",
+   "fieldtype": "Int",
+   "label": "D\u00f6nem s\u00fcresi"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman",
+   "fieldname": "starttime",
+   "fieldtype": "Time",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
+  },
+  {
+   "description": "D\u00f6nemin bitti\u011fi zaman",
+   "fieldname": "endtime",
+   "fieldtype": "Time",
+   "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
+  },
+  {
+   "fieldname": "unitcode",
+   "fieldtype": "Link",
+   "label": "D\u00f6nem aral\u0131\u011f\u0131 tipi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-23 13:44:00.236304",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR ShipmentStage",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }
