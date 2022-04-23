@@ -115,7 +115,6 @@
    "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r. Bu numara fatura d\u00fczenleyen taraf\u0131ndan standartlara uygun olarak \u00fcretilip faturalarda kullan\u0131lacakt\u0131r.",
    "fieldname": "uuid",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
    "reqd": 1,
    "unique": 1
@@ -493,7 +492,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-22 23:00:03.884243",
+ "modified": "2022-04-22 23:09:16.860105",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",
