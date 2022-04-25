@@ -1,62 +1,72 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-02 08:34:07.150555",
-  "description": "Bu eleman arac\u0131l\u0131\u011f\u0131yla Taraf\u0131n(Party) vergi dairesi ile ilgili bilgiler verilir.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "registrationname",
-    "companyid",
-    "taxscheme"
-  ],
-  "fields": [
-    {
-      "description": "\u0130hracat faturas\u0131nda ilgili \u00fclkedeki kurumun resmi \u00fcnvan\u0131 yaz\u0131l\u0131r.",
-      "fieldname": "registrationname",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Resmi \u00fcnvan"
-    },
-    {
-      "description": "\u0130hracat faturas\u0131nda ilgili \u00fclkedeki kurumun vergi kay\u0131t kodu yaz\u0131l\u0131r.",
-      "fieldname": "companyid",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Vergi kay\u0131t kodu"
-    },
-    {
-      "description": "\u201cTaxScheme/Name\u201d eleman\u0131 bu kullan\u0131m i\u00e7in zorunludur. Vergi Dairesi ad\u0131 \u201cTaxScheme/Name\u201d i\u00e7ine metin olarak girilmesi gerekir. XSD\u2019de \u201cTaxScheme/Name\u201d se\u00e7imli olarak tan\u0131mlanmas\u0131na ra\u011fmen bu zorunluluk kontrol\u00fc ikinci faz do\u011frulamada Schematron kurallar\u0131 ile ger\u00e7ekle\u015ftirilecektir.",
-      "fieldname": "taxscheme",
-      "fieldtype": "Link",
-      "label": "Vergi Dairesi",
-      "options": "UBL TR TaxScheme",
-      "reqd": 1
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2021-12-25 22:11:17.412546",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR PartyTaxScheme",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-02 08:34:07.150555",
+ "description": "Bu eleman arac\u0131l\u0131\u011f\u0131yla Taraf\u0131n(Party) vergi dairesi ile ilgili bilgiler verilir.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "registrationname",
+  "companyid",
+  "taxschemeid",
+  "taxschemename",
+  "taxtypecode"
+ ],
+ "fields": [
+  {
+   "description": "\u0130hracat faturas\u0131nda ilgili \u00fclkedeki kurumun resmi \u00fcnvan\u0131 yaz\u0131l\u0131r.",
+   "fieldname": "registrationname",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resmi \u00fcnvan"
+  },
+  {
+   "description": "\u0130hracat faturas\u0131nda ilgili \u00fclkedeki kurumun vergi kay\u0131t kodu yaz\u0131l\u0131r.",
+   "fieldname": "companyid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vergi kay\u0131t kodu"
+  },
+  {
+   "fieldname": "taxschemeid",
+   "fieldtype": "Data",
+   "label": "Vergi Bilgileri"
+  },
+  {
+   "fieldname": "taxschemename",
+   "fieldtype": "Data",
+   "label": "Vergi Dairesi/Vergi Kodu"
+  },
+  {
+   "fieldname": "taxtypecode",
+   "fieldtype": "Link",
+   "label": "Vergi Tipi Kodu",
+   "options": "UBL TR TaxTypeCode"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-25 16:38:14.664486",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR PartyTaxScheme",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }

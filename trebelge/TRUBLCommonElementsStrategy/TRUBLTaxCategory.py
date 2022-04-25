@@ -27,7 +27,20 @@ class TRUBLTaxCategory(TRUBLCommonElement):
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
         tmp = TRUBLTaxScheme().process_element(taxscheme_, cbcnamespace, cacnamespace)
         if tmp is not None:
-            frappedoc['taxscheme'] = tmp.name
+            tmp: dict = TRUBLTaxScheme().process_elementasdict(taxscheme_, cbcnamespace, cacnamespace)
+            if tmp != {}:
+                try:
+                    frappedoc['taxschemeid'] = tmp['id']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxschemename'] = tmp['taxschemename']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxtypecode'] = tmp['taxtypecode']
+                except KeyError:
+                    pass
         if frappedoc == {}:
             return None
         return self._get_frappedoc(self._frappeDoctype, frappedoc)

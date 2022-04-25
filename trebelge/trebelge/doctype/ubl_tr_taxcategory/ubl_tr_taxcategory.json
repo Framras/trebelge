@@ -10,7 +10,9 @@
   "taxcategoryname",
   "taxexemptionreasoncode",
   "taxexemptionreason",
-  "taxscheme"
+  "taxschemeid",
+  "taxschemename",
+  "taxtypecode"
  ],
  "fields": [
   {
@@ -32,18 +34,25 @@
    "label": "A\u00e7\u0131klama"
   },
   {
-   "description": "Uygulanan vergi t\u00fcr\u00fc hakk\u0131nda bilgiler girilir.",
-   "fieldname": "taxscheme",
+   "fieldname": "taxschemeid",
+   "fieldtype": "Data",
+   "label": "Uygulanan vergi t\u00fcr\u00fc"
+  },
+  {
+   "fieldname": "taxschemename",
+   "fieldtype": "Data",
+   "label": "Vergi Dairesi/Vergi Kodu"
+  },
+  {
+   "fieldname": "taxtypecode",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Uygulanan vergi t\u00fcr\u00fc",
-   "options": "UBL TR TaxScheme",
-   "reqd": 1
+   "label": "Vergi Tipi Kodu",
+   "options": "UBL TR TaxTypeCode"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-22 10:44:36.887357",
+ "modified": "2022-04-25 16:40:56.894711",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR TaxCategory",

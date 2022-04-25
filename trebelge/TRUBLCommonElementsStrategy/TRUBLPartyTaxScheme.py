@@ -13,9 +13,20 @@ class TRUBLPartyTaxScheme(TRUBLCommonElement):
         # ['TaxScheme'] = ('cac', 'TaxScheme()', 'Zorunlu (1)', 'taxscheme')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
         if taxscheme_ is not None:
-            tmp = TRUBLTaxScheme().process_element(taxscheme_, cbcnamespace, cacnamespace)
-            if tmp is not None:
-                frappedoc['taxscheme'] = tmp.name
+            tmp: dict = TRUBLTaxScheme().process_elementasdict(taxscheme_, cbcnamespace, cacnamespace)
+            if tmp != {}:
+                try:
+                    frappedoc['taxschemeid'] = tmp['id']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxschemename'] = tmp['taxschemename']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxtypecode'] = tmp['taxtypecode']
+                except KeyError:
+                    pass
         # ['RegistrationName'] = ('cbc', 'registrationname', 'Seçimli (0...1)')
         # ['CompanyID'] = ('cbc', 'companyid', 'Seçimli (0...1)')
         cbcsecimli01: list = ['RegistrationName', 'CompanyID']
