@@ -18,7 +18,7 @@ class TRUBLParty(TRUBLCommonElement):
         frappedoc = dict()
         # ['PostalAddress'] = ('cac', Address(), 'Zorunlu (1)', 'postaladdress')
         postaladdress_: Element = element.find('./' + cacnamespace + 'PostalAddress')
-        tmp = TRUBLAddress().process_element(postaladdress_, cbcnamespace, cacnamespace)
+        tmp: Document = TRUBLAddress().process_element(postaladdress_, cbcnamespace, cacnamespace)
         if tmp is not None:
             frappedoc['postaladdress'] = tmp.name
         # ['WebsiteURI'] = ('cbc', 'websiteuri', 'Seçimli (0...1)')
@@ -39,12 +39,11 @@ class TRUBLParty(TRUBLCommonElement):
         # ['PhysicalLocation'] = ('cac', Location(), 'Seçimli (0...1)', 'physicallocation')
         tagelement_: Element = element.find('./' + cacnamespace + 'PhysicalLocation')
         if tagelement_ is not None:
-            tmp = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLLocation().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['physicallocation'] = tmp.name
         # ['PartyTaxScheme'] = ('cac', PartyTaxScheme(), 'Seçimli (0...1)', 'partytaxscheme')
         tagelement_: Element = element.find('./' + cacnamespace + 'PartyTaxScheme')
-        tagelement_: Element = element.find('./' + cacnamespace + 'Contact')
         if tagelement_ is not None:
             tmp: dict = TRUBLPartyTaxScheme().process_elementasdict(tagelement_, cbcnamespace, cacnamespace)
             if tmp != {}:
@@ -69,20 +68,21 @@ class TRUBLParty(TRUBLCommonElement):
                 except KeyError:
                     pass
         # ['Contact'] = ('cac', Contact(), 'Seçimli (0...1)', 'contact')
+        tagelement_: Element = element.find('./' + cacnamespace + 'Contact')
         if tagelement_ is not None:
-            tmp = TRUBLContact().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLContact().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['contact'] = tmp.name
         # ['Person'] = ('cac', Person(), 'Seçimli (0...1)', 'person')
         tagelement_: Element = element.find('./' + cacnamespace + 'Person')
         if tagelement_ is not None:
-            tmp = TRUBLPerson().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLPerson().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['person'] = tmp.name
         # ['AgentParty'] = ('cac', Party(), 'Seçimli (0...1)', 'agentparty')
         tagelement_: Element = element.find('./' + cacnamespace + 'AgentParty')
         if tagelement_ is not None:
-            tmp = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
+            tmp: Document = TRUBLParty().process_element(tagelement_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['agentparty'] = tmp.name
 
@@ -99,7 +99,7 @@ class TRUBLParty(TRUBLCommonElement):
         partylegalentity_: list = element.findall('./' + cacnamespace + 'PartyLegalEntity')
         if len(partylegalentity_) != 0:
             for partylegalentity in partylegalentity_:
-                tmp = TRUBLPartyLegalEntity().process_element(partylegalentity, cbcnamespace, cacnamespace)
+                tmp: Document = TRUBLPartyLegalEntity().process_element(partylegalentity, cbcnamespace, cacnamespace)
                 if tmp is not None:
                     partylegalentities.append(tmp)
         if frappedoc == {}:
