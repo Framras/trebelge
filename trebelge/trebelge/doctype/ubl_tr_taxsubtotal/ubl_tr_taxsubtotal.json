@@ -19,7 +19,13 @@
   "baseunitmeasureunitcode",
   "perunitamount",
   "perunitamountcurrencyid",
-  "taxcategory"
+  "verginin_t\u00fcr\u00fc_section",
+  "taxcategoryname",
+  "taxexemptionreasoncode",
+  "taxexemptionreason",
+  "taxschemeid",
+  "taxschemename",
+  "taxtypecode"
  ],
  "fields": [
   {
@@ -99,18 +105,49 @@
    "options": "UBL TR CurrencyCode"
   },
   {
-   "description": "Verginin t\u00fcr\u00fc ile ilgili bilgiler girilecektir.",
-   "fieldname": "taxcategory",
+   "description": "Vergi T\u00fcr\u00fc: Belge \u00fczerinde yer alan vergi t\u00fcr\u00fc, muafiyet ve istisnalara ili\u015fkin bilgiler girilir.",
+   "fieldname": "verginin_t\u00fcr\u00fc_section",
+   "fieldtype": "Section Break",
+   "label": "Verginin T\u00fcr\u00fc"
+  },
+  {
+   "description": "Vergi t\u00fcr\u00fc ismi girilebilecektir.",
+   "fieldname": "taxcategoryname",
+   "fieldtype": "Data",
+   "label": "Vergi t\u00fcr\u00fc"
+  },
+  {
+   "description": "Vergi muafiyet, istisna sebepleri bu alana kodlu olarak girilecektir.",
+   "fieldname": "taxexemptionreasoncode",
+   "fieldtype": "Data",
+   "label": "\u0130stisna sebebi"
+  },
+  {
+   "description": "Vergi muafiyet, istisna sebepleri bu alana serbest metin olarak girilecektir.",
+   "fieldname": "taxexemptionreason",
+   "fieldtype": "Small Text",
+   "label": "A\u00e7\u0131klama"
+  },
+  {
+   "fieldname": "taxschemeid",
+   "fieldtype": "Data",
+   "label": "Uygulanan vergi t\u00fcr\u00fc"
+  },
+  {
+   "fieldname": "taxschemename",
+   "fieldtype": "Data",
+   "label": "Vergi Dairesi/Vergi Kodu"
+  },
+  {
+   "fieldname": "taxtypecode",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Verginin T\u00fcr\u00fc",
-   "options": "UBL TR TaxCategory",
-   "reqd": 1
+   "label": "Vergi Tipi Kodu",
+   "options": "UBL TR TaxTypeCode"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-22 10:27:06.071756",
+ "modified": "2022-04-25 17:13:05.357350",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR TaxSubtotal",

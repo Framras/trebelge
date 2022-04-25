@@ -6,15 +6,17 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxScheme import TRUBLTaxScheme
 
 
 class TRUBLTaxCategory(TRUBLCommonElement):
-    _frappeDoctype: str = 'UBL TR TaxCategory'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
-        frappedoc: dict = {}
+        pass
+
+    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        frappedata: dict = {}
         # ['Name'] = ('cbc', 'name', 'Seçimli (0...1)')
         name_: Element = element.find('./' + cbcnamespace + 'Name')
         if name_ is not None:
             if name_.text is not None:
-                frappedoc['taxcategoryname'] = name_.text.strip()
+                frappedata['taxcategoryname'] = name_.text.strip()
         # ['TaxExemptionReasonCode'] = ('cbc', 'taxexemptionreasoncode', 'Seçimli (0...1)')
         # ['TaxExemptionReason'] = ('cbc', 'taxexemptionreason', 'Seçimli (0...1)')
         cbcsecimli01: list = ['TaxExemptionReasonCode', 'TaxExemptionReason']
@@ -22,28 +24,22 @@ class TRUBLTaxCategory(TRUBLCommonElement):
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
                 if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text.strip()
+                    frappedata[elementtag_.lower()] = field_.text.strip()
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
-        tmp = TRUBLTaxScheme().process_element(taxscheme_, cbcnamespace, cacnamespace)
-        if tmp is not None:
-            tmp: dict = TRUBLTaxScheme().process_elementasdict(taxscheme_, cbcnamespace, cacnamespace)
-            if tmp != {}:
-                try:
-                    frappedoc['taxschemeid'] = tmp['id']
-                except KeyError:
-                    pass
-                try:
-                    frappedoc['taxschemename'] = tmp['taxschemename']
-                except KeyError:
-                    pass
-                try:
-                    frappedoc['taxtypecode'] = tmp['taxtypecode']
-                except KeyError:
-                    pass
-        if frappedoc == {}:
-            return None
-        return self._get_frappedoc(self._frappeDoctype, frappedoc)
+        tmp: dict = TRUBLTaxScheme().process_elementasdict(taxscheme_, cbcnamespace, cacnamespace)
+        if tmp != {}:
+            try:
+                frappedata['taxschemeid'] = tmp['id']
+            except KeyError:
+                pass
+            try:
+                frappedata['taxschemename'] = tmp['taxschemename']
+            except KeyError:
+                pass
+            try:
+                frappedata['taxtypecode'] = tmp['taxtypecode']
+            except KeyError:
+                pass
 
-    def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
-        pass
+        return frappedata

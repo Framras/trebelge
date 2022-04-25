@@ -5,7 +5,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 
 
 class TRUBLTaxScheme(TRUBLCommonElement):
-    _frappeDoctype: str = 'UBL TR TaxScheme'
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         pass

@@ -1,124 +1,158 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "creation": "2021-12-02 00:08:22.559020",
-  "description": "Taraf: Taraflar\u0131 (kurum ve \u015fah\u0131slar) tan\u0131mlamak i\u00e7in kullan\u0131l\u0131r.",
-  "doctype": "DocType",
-  "editable_grid": 1,
-  "engine": "InnoDB",
-  "field_order": [
-    "websiteuri",
-    "industryclassificationcode",
-    "partyidentification",
-    "partyname",
-    "postaladdress",
-    "physicallocation",
-    "partytaxscheme",
-    "partylegalentity",
-    "contact",
-    "person",
-    "agentparty"
-  ],
-  "fields": [
-    {
-      "description": "Taraf\u0131n web sayfas\u0131 adresi metin olarak girilir.",
-      "fieldname": "websiteuri",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Web sayfas\u0131"
-    },
-    {
-      "description": "Taraf\u0131n ana faaliyet (NACE) kodu girilecektir.",
-      "fieldname": "industryclassificationcode",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Ana faaliyet (NACE) kodu"
-    },
-    {
-      "description": "Taraf e\u011fer kurum ise kurum ismi bu elemana metin olarak girilir.",
-      "fieldname": "partyname",
-      "fieldtype": "Small Text",
-      "label": "Kurum ismi"
-    },
-    {
-      "description": "Taraf\u0131n adresi girilir.",
-      "fieldname": "postaladdress",
-      "fieldtype": "Link",
-      "label": "Adres",
-      "options": "UBL TR Address"
-    },
-    {
-      "description": "Taraf\u0131n var ise depo bilgileri girilir.",
-      "fieldname": "physicallocation",
-      "fieldtype": "Link",
-      "label": "Depo",
-      "options": "UBL TR Location"
-    },
-    {
-      "description": "Taraf\u0131n vergi kimlik numaras\u0131 girilmi\u015fse bu alana vergi dairesi ad\u0131 girilir.",
-      "fieldname": "partytaxscheme",
-      "fieldtype": "Link",
-      "label": "Vergi dairesi",
-      "options": "UBL TR PartyTaxScheme"
-    },
-    {
-      "description": "Taraf\u0131n ileti\u015fim bilgileri girilir.",
-      "fieldname": "contact",
-      "fieldtype": "Link",
-      "label": "\u0130leti\u015fim",
-      "options": "UBL TR Contact"
-    },
-    {
-      "description": "Taraf e\u011fer \u015fah\u0131ssa bu eleman kullan\u0131l\u0131r.",
-      "fieldname": "person",
-      "fieldtype": "Link",
-      "label": "\u015eah\u0131s",
-      "options": "UBL TR Person"
-    },
-    {
-      "description": "Taraf\u0131n \u015fubesine ait bilgiler bu elemana girilir. Departman bilgileri AgentParty\u2019nin i\u00e7indeki AgentParty\u2019e yaz\u0131labilir.",
-      "fieldname": "agentparty",
-      "fieldtype": "Link",
-      "label": "\u015eube",
-      "options": "UBL TR Party"
-    },
-    {
-      "description": "Taraf\u0131n vergi kimlik numaras\u0131 veya TC kimlik numaras\u0131 metin olarak girilir.",
-      "fieldname": "partyidentification",
-      "fieldtype": "Table",
-      "label": "Vergi kimlik numaras\u0131",
-      "options": "UBL TR PartyIdentification"
-    },
-    {
-      "description": "Taraf\u0131n di\u011fer kay\u0131tl\u0131 oldu\u011fu yerlerin bilgileri ve kay\u0131tl\u0131 oldu\u011fu yerlerdeki kay\u0131t numaralar\u0131 detayl\u0131 olarak girilecektir.",
-      "fieldname": "partylegalentity",
-      "fieldtype": "Table MultiSelect",
-      "label": "Di\u011fer kay\u0131tlar",
-      "options": "UBL TR PartyLegalEntities"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2022-01-13 12:09:50.979369",
-  "modified_by": "Administrator",
-  "module": "Trebelge",
-  "name": "UBL TR Party",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "track_changes": 1
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-02 00:08:22.559020",
+ "description": "Taraf: Taraflar\u0131 (kurum ve \u015fah\u0131slar) tan\u0131mlamak i\u00e7in kullan\u0131l\u0131r.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "websiteuri",
+  "industryclassificationcode",
+  "partyidentification",
+  "partyname",
+  "postaladdress",
+  "physicallocation",
+  "vergi_bilgileri_section",
+  "registrationname",
+  "companyid",
+  "taxschemeid",
+  "taxschemename",
+  "taxtypecode",
+  "section_break_13",
+  "partylegalentity",
+  "contact",
+  "person",
+  "agentparty"
+ ],
+ "fields": [
+  {
+   "description": "Taraf\u0131n web sayfas\u0131 adresi metin olarak girilir.",
+   "fieldname": "websiteuri",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Web sayfas\u0131"
+  },
+  {
+   "description": "Taraf\u0131n ana faaliyet (NACE) kodu girilecektir.",
+   "fieldname": "industryclassificationcode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ana faaliyet (NACE) kodu"
+  },
+  {
+   "description": "Taraf e\u011fer kurum ise kurum ismi bu elemana metin olarak girilir.",
+   "fieldname": "partyname",
+   "fieldtype": "Small Text",
+   "label": "Kurum ismi"
+  },
+  {
+   "description": "Taraf\u0131n adresi girilir.",
+   "fieldname": "postaladdress",
+   "fieldtype": "Link",
+   "label": "Adres",
+   "options": "UBL TR Address"
+  },
+  {
+   "description": "Taraf\u0131n var ise depo bilgileri girilir.",
+   "fieldname": "physicallocation",
+   "fieldtype": "Link",
+   "label": "Depo",
+   "options": "UBL TR Location"
+  },
+  {
+   "description": "Taraf\u0131n ileti\u015fim bilgileri girilir.",
+   "fieldname": "contact",
+   "fieldtype": "Link",
+   "label": "\u0130leti\u015fim",
+   "options": "UBL TR Contact"
+  },
+  {
+   "description": "Taraf e\u011fer \u015fah\u0131ssa bu eleman kullan\u0131l\u0131r.",
+   "fieldname": "person",
+   "fieldtype": "Link",
+   "label": "\u015eah\u0131s",
+   "options": "UBL TR Person"
+  },
+  {
+   "description": "Taraf\u0131n \u015fubesine ait bilgiler bu elemana girilir. Departman bilgileri AgentParty\u2019nin i\u00e7indeki AgentParty\u2019e yaz\u0131labilir.",
+   "fieldname": "agentparty",
+   "fieldtype": "Link",
+   "label": "\u015eube",
+   "options": "UBL TR Party"
+  },
+  {
+   "description": "Taraf\u0131n vergi kimlik numaras\u0131 veya TC kimlik numaras\u0131 metin olarak girilir.",
+   "fieldname": "partyidentification",
+   "fieldtype": "Table",
+   "label": "Vergi kimlik numaras\u0131",
+   "options": "UBL TR PartyIdentification"
+  },
+  {
+   "description": "Taraf\u0131n di\u011fer kay\u0131tl\u0131 oldu\u011fu yerlerin bilgileri ve kay\u0131tl\u0131 oldu\u011fu yerlerdeki kay\u0131t numaralar\u0131 detayl\u0131 olarak girilecektir.",
+   "fieldname": "partylegalentity",
+   "fieldtype": "Table MultiSelect",
+   "label": "Di\u011fer kay\u0131tlar",
+   "options": "UBL TR PartyLegalEntities"
+  },
+  {
+   "fieldname": "vergi_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Vergi Bilgileri"
+  },
+  {
+   "fieldname": "registrationname",
+   "fieldtype": "Data",
+   "label": "Resmi \u00fcnvan"
+  },
+  {
+   "fieldname": "companyid",
+   "fieldtype": "Data",
+   "label": "Vergi kay\u0131t kodu"
+  },
+  {
+   "fieldname": "taxschemeid",
+   "fieldtype": "Data",
+   "label": "Vergi Bilgileri"
+  },
+  {
+   "fieldname": "taxschemename",
+   "fieldtype": "Data",
+   "label": "Vergi Dairesi/Vergi Kodu"
+  },
+  {
+   "fieldname": "taxtypecode",
+   "fieldtype": "Link",
+   "label": "Vergi Tipi Kodu",
+   "options": "UBL TR TaxTypeCode"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-04-25 17:07:39.354974",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR Party",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
 }

@@ -19,9 +19,32 @@ class TRUBLTaxSubtotal(TRUBLCommonElement):
         # ['TaxCategory'] = ('cac', 'taxcategory', 'Zorunlu(1)')
         taxcategory_: Element = element.find('./' + cacnamespace + 'TaxCategory')
         if taxcategory_ is not None:
-            tmp = TRUBLTaxCategory().process_element(taxcategory_, cbcnamespace, cacnamespace)
-            if tmp is not None:
-                frappedoc['taxcategory'] = tmp.name
+            tmp = TRUBLTaxCategory().process_elementasdict(taxcategory_, cbcnamespace, cacnamespace)
+            if tmp != {}:
+                try:
+                    frappedoc['taxcategoryname'] = tmp['taxcategoryname']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxexemptionreasoncode'] = tmp['taxexemptionreasoncode']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxexemptionreason'] = tmp['taxexemptionreason']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxschemeid'] = tmp['taxschemeid']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxschemename'] = tmp['taxschemename']
+                except KeyError:
+                    pass
+                try:
+                    frappedoc['taxtypecode'] = tmp['taxtypecode']
+                except KeyError:
+                    pass
         # ['CalculationSequenceNumeric'] = ('cbc', 'calculationsequencenumeric', 'Seçimli (0...1)')
         # ['Percent'] = ('cbc', 'percent', 'Seçimli (0...1)')
         cbcsecimli01: list = ['CalculationSequenceNumeric', 'Percent']
