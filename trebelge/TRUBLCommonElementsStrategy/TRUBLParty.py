@@ -47,26 +47,11 @@ class TRUBLParty(TRUBLCommonElement):
         if tagelement_ is not None:
             tmp: dict = TRUBLPartyTaxScheme().process_elementasdict(tagelement_, cbcnamespace, cacnamespace)
             if tmp != {}:
-                try:
-                    frappedoc['registrationname'] = tmp['registrationname']
-                except KeyError:
-                    pass
-                try:
-                    frappedoc['companyid'] = tmp['companyid']
-                except KeyError:
-                    pass
-                try:
-                    frappedoc['taxschemeid'] = tmp['taxschemeid']
-                except KeyError:
-                    pass
-                try:
-                    frappedoc['taxschemename'] = tmp['taxschemename']
-                except KeyError:
-                    pass
-                try:
-                    frappedoc['taxtypecode'] = tmp['taxtypecode']
-                except KeyError:
-                    pass
+                for key in tmp.keys():
+                    try:
+                        frappedoc[key] = tmp[key]
+                    except KeyError:
+                        pass
         # ['Contact'] = ('cac', Contact(), 'Seçimli (0...1)', 'contact')
         tagelement_: Element = element.find('./' + cacnamespace + 'Contact')
         if tagelement_ is not None:
