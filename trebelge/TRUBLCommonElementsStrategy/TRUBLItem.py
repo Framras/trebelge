@@ -24,7 +24,7 @@ class TRUBLItem(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                if field_.text.strip() is not None:
+                if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['BuyersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)', 'buyersitemid')
         # Alıcının mal/hizmete verdiği
