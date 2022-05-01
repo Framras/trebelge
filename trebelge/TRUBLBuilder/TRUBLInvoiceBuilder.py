@@ -344,7 +344,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         paymentalternativeexchangerate_: Element = self.root.find(
             './' + self._cac_ns + 'PaymentAlternativeExchangeRate')
         if paymentalternativeexchangerate_ is not None:
-            tmp: dict = TRUBLExchangeRate().process_elementasdict(paymentalternativeexchangerate_, self._cbc_ns, self._cac_ns)
+            tmp: dict = TRUBLExchangeRate().process_elementasdict(paymentalternativeexchangerate_, self._cbc_ns,
+                                                                  self._cac_ns)
             if tmp != {}:
                 try:
                     self._product.alternativesourcecurrencycode = tmp['sourcecurrencycode']
@@ -414,11 +415,12 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
     def build_invoiceline(self) -> None:
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')
         invoicelines_: list = self.root.findall('./' + self._cac_ns + 'InvoiceLine')
-        doc_append = self._product.append("invoiceline", {})
+        # doc_append = self._product.append("invoiceline", {})
         for invoiceline_ in invoicelines_:
-            tmp = TRUBLInvoiceLine().process_element(invoiceline_, self._cbc_ns, self._cac_ns)
-            if tmp is not None:
-                doc_append.invoiceline = tmp.name
+            #     tmp = TRUBLInvoiceLine().process_element(invoiceline_, self._cbc_ns, self._cac_ns)
+            #     if tmp is not None:
+            #         doc_append.invoiceline = tmp.name
+            self._product.append("invoiceline", dict(invoiceline=invoiceline_))
 
     def build_despatchline(self) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
