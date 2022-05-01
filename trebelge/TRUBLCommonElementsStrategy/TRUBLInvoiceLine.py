@@ -16,17 +16,23 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
         frappedoc: dict = {}
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
+        # Kalem sıra numarası girilir.
         id_: Element = element.find('./' + cbcnamespace + 'ID')
         if id_ is not None:
             if id_.text is not None:
                 frappedoc['id'] = id_.text.strip()
         # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
+        # Mal/hizmet miktarı birimi ile birlikte
+        # girilir.
         invoicedquantity: Element = element.find('./' + cbcnamespace + 'InvoicedQuantity')
         if invoicedquantity is not None:
             if invoicedquantity.text is not None:
                 frappedoc['invoicedquantity'] = invoicedquantity.text.strip()
                 frappedoc['invoicedquantityunitcode'] = invoicedquantity.attrib.get('unitCode').strip()
         # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
+        # Mal/hizmet miktarı ile Mal/hizmet
+        # birim fiyatının çarpımı ile bulunan tutardır (varsa iskonto
+        # düşülür).
         lineextensionamount: Element = element.find('./' + cbcnamespace + 'LineExtensionAmount')
         if lineextensionamount is not None:
             if lineextensionamount.text is not None:
@@ -38,13 +44,15 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             if note_.text is not None:
                 frappedoc['note'] = note_.text.strip()
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
+        # Mal/hizmet hakkında bilgiler buraya girilir.
         item_: Element = element.find('./' + cacnamespace + 'Item')
         tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)
         if tmp is not None:
             frappedoc['item'] = tmp.name
         # ['Price'] = ('cac', 'Price', 'Zorunlu (1)')
+        # Mal/hizmet birim fiyatı hakkında bilgiler buraya girilir.
         price_: Element = element.find('./' + cacnamespace + 'Price')
-        # self._mapping['PriceAmount'] = ('cbc', '', 'Zorunlu(1)')
+        # ['PriceAmount'] = ('cbc', '', 'Zorunlu(1)')
         priceamount = price_.find('./' + cbcnamespace + 'PriceAmount')
         if priceamount is not None:
             if priceamount.text is not None:
