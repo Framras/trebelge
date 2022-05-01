@@ -8,7 +8,6 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLLineReference import TRUBLLineRef
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderLineReference import TRUBLOrderLineReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxSubtotal import TRUBLTaxSubtotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
-from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
 
 
 class TRUBLInvoiceLine(TRUBLCommonElement):
@@ -18,6 +17,7 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         pass
 
     def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
+        from trebelge.TRUBLCommonElementsStrategy.TRUBLDelivery import TRUBLDelivery
         frappedata: dict = {}
         # ['ID'] = ('cbc', '', 'Zorunlu(1)')
         # Kalem sıra numarası girilir.
