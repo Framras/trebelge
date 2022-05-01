@@ -8,11 +8,14 @@
  "engine": "InnoDB",
  "field_order": [
   "id",
-  "note",
+  "item",
   "invoicedquantity",
   "invoicedquantityunitcode",
+  "priceamount",
+  "priceamountcurrencyid",
   "lineextensionamount",
   "lineextensionamountcurrencyid",
+  "note",
   "orderlinereference",
   "despatchlinereference",
   "receiptlinereference",
@@ -22,13 +25,11 @@
   "taxamountcurrencyid",
   "taxsubtotals",
   "withholdingtaxtotal",
-  "item",
-  "priceamount",
-  "priceamountcurrencyid",
   "subinvoiceline"
  ],
  "fields": [
   {
+   "columns": 1,
    "description": "Kalem s\u0131ra numaras\u0131 girilir.",
    "fieldname": "id",
    "fieldtype": "Data",
@@ -40,10 +41,10 @@
    "description": "Kalem hakk\u0131nda a\u00e7\u0131klama serbest metin olarak girilir.",
    "fieldname": "note",
    "fieldtype": "Small Text",
-   "in_list_view": 1,
    "label": "A\u00e7\u0131klama"
   },
   {
+   "columns": 1,
    "description": "Mal/hizmet miktar\u0131 birimi ile birlikte girilir.",
    "fieldname": "invoicedquantity",
    "fieldtype": "Float",
@@ -52,6 +53,7 @@
    "reqd": 1
   },
   {
+   "columns": 1,
    "fieldname": "invoicedquantityunitcode",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -63,14 +65,12 @@
    "description": "Mal/hizmet miktar\u0131 ile Mal/hizmet birim fiyat\u0131n\u0131n \u00e7arp\u0131m\u0131 ile bulunan tutard\u0131r (varsa iskonto d\u00fc\u015f\u00fcl\u00fcr).",
    "fieldname": "lineextensionamount",
    "fieldtype": "Currency",
-   "in_list_view": 1,
    "label": "Mal/hizmet tutar\u0131",
    "reqd": 1
   },
   {
    "fieldname": "lineextensionamountcurrencyid",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Mal/hizmet tutar\u0131 para birimi",
    "options": "UBL TR CurrencyCode",
    "reqd": 1
@@ -118,6 +118,7 @@
    "options": "UBL TR TaxTotals"
   },
   {
+   "columns": 2,
    "description": "Mal/hizmet hakk\u0131nda bilgiler buraya girilir.",
    "fieldname": "item",
    "fieldtype": "Link",
@@ -127,17 +128,17 @@
    "reqd": 1
   },
   {
+   "columns": 1,
    "description": "Mal/hizmet birim fiyat\u0131 hakk\u0131nda bilgiler buraya girilir.",
    "fieldname": "priceamount",
    "fieldtype": "Currency",
-   "in_list_view": 1,
    "label": "Mal/hizmet birim fiyat\u0131",
    "reqd": 1
   },
   {
+   "columns": 1,
    "fieldname": "priceamountcurrencyid",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Mal/hizmet para birimi",
    "options": "UBL TR CurrencyCode",
    "reqd": 1
@@ -171,7 +172,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-01 22:00:25.655770",
+ "modified": "2022-05-01 23:04:11.446432",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR InvoiceLine",
