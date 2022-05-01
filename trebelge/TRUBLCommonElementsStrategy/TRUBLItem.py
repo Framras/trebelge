@@ -92,9 +92,7 @@ class TRUBLItem(TRUBLCommonElement):
                 if tmp is not None:
                     iteminstances.append(tmp)
 
-        if len(additionalitemids) + len(commodityclassifications) + len(iteminstances) == 0:
-            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
-        else:
+        if len(additionalitemids) + len(commodityclassifications) + len(iteminstances) != 0:
             document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
             if len(additionalitemids) != 0:
                 document.additionalitemid = additionalitemids
@@ -103,6 +101,8 @@ class TRUBLItem(TRUBLCommonElement):
             if len(iteminstances) != 0:
                 document.iteminstance = iteminstances
             document.save()
+        else:
+            document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc)
 
         return document
 
