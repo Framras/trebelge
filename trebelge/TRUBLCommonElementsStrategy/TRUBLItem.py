@@ -14,10 +14,9 @@ class TRUBLItem(TRUBLCommonElement):
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['Name'] = ('cbc', 'itemname', 'Zorunlu (1)')
         # Mal/hizmet adı serbest metin olarak girilir.
-        itemname_ = element.find('./' + cbcnamespace + 'Name').text
-        if itemname_ is None:
-            return None
-        frappedoc: dict = dict(itemname=itemname_)
+        itemname_ = element.find('./' + cbcnamespace + 'Name')
+        if itemname_ is not None:
+            frappedoc: dict = dict(itemname=itemname_.text.strip())
         # ['Description'] = ('cbc', '', 'Seçimli (0...1)')
         # ['Keyword'] = ('cbc', '', 'Seçimli (0...1)')
         # ['BrandName'] = ('cbc', '', 'Seçimli (0...1)')
@@ -26,8 +25,8 @@ class TRUBLItem(TRUBLCommonElement):
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
             if field_ is not None:
-                if field_.text is not None:
-                    frappedoc[elementtag_.lower()] = field_.text
+                if field_.text.strip() is not None:
+                    frappedoc[elementtag_.lower()] = field_.text.strip()
         # ['BuyersItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)', 'buyersitemid')
         # Alıcının mal/hizmete verdiği
         # tanımlama bilgisi girilir.
