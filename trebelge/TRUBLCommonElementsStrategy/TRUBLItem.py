@@ -15,8 +15,7 @@ class TRUBLItem(TRUBLCommonElement):
         # ['Name'] = ('cbc', 'itemname', 'Zorunlu (1)')
         # Mal/hizmet adı serbest metin olarak girilir.
         itemname_ = element.find('./' + cbcnamespace + 'Name')
-        if itemname_ is not None:
-            frappedoc: dict = dict(itemname=itemname_.text.strip())
+        frappedoc: dict = dict(itemname=itemname_.text.strip())
         # ['Description'] = ('cbc', '', 'Seçimli (0...1)')
         # ['Keyword'] = ('cbc', '', 'Seçimli (0...1)')
         # ['BrandName'] = ('cbc', '', 'Seçimli (0...1)')
