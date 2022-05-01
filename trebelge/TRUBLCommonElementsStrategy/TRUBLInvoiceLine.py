@@ -6,6 +6,7 @@ from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonE
 from trebelge.TRUBLCommonElementsStrategy.TRUBLItem import TRUBLItem
 from trebelge.TRUBLCommonElementsStrategy.TRUBLLineReference import TRUBLLineReference
 from trebelge.TRUBLCommonElementsStrategy.TRUBLOrderLineReference import TRUBLOrderLineReference
+from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxSubtotal import TRUBLTaxSubtotal
 from trebelge.TRUBLCommonElementsStrategy.TRUBLTaxTotal import TRUBLTaxTotal
 
 
@@ -53,18 +54,33 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         # Mal/hizmet birim fiyatı hakkında bilgiler buraya girilir.
         price_: Element = element.find('./' + cacnamespace + 'Price')
         # ['PriceAmount'] = ('cbc', '', 'Zorunlu(1)')
-        priceamount = price_.find('./' + cbcnamespace + 'PriceAmount')
+        priceamount: Element = price_.find('./' + cbcnamespace + 'PriceAmount')
         if priceamount is not None:
             if priceamount.text is not None:
                 frappedoc['priceamount'] = priceamount.text.strip()
                 frappedoc['priceamountcurrencyid'] = priceamount.attrib.get('currencyID').strip()
+        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
         # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
         taxtotal_: Element = element.find('./' + cacnamespace + 'TaxTotal')
         if taxtotal_ is not None:
-            tmp = TRUBLTaxTotal().process_element(taxtotal_, cbcnamespace, cacnamespace)
-            if tmp is not None:
-                frappedoc['taxtotal'] = tmp.name
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+            # ['TaxAmount'] = ('cbc', 'taxamount', 'Zorunlu(1)')
+            taxamount_: Element = taxtotal_.find('./' + cbcnamespace + 'TaxAmount')
+            if taxamount_ is not None:
+                if taxamount_.text != '':
+                    document.taxamount = taxamount_.text.strip()
+                    document.taxamountcurrencyid = taxamount_.attrib.get('currencyID')
+                    document.save()
+            # ['TaxSubtotal'] = ('cac', 'taxsubtotals', 'Zorunlu(1..n)', 'taxsubtotal')
+            taxsubtotals = list()
+            for taxsubtotal_ in taxtotal_.findall('./' + cacnamespace + 'TaxSubtotal'):
+                tmp = TRUBLTaxSubtotal().process_element(taxsubtotal_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    taxsubtotals.append(tmp)
+            if len(taxsubtotals) != 0:
+                doc_append = document.append("taxsubtotals", {})
+                for taxsubtotal in taxsubtotals:
+                    doc_append.taxsubtotals = taxsubtotal.name
+                    document.save()
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Seçimli (0...n)')
         tagelements_: list = element.findall('./' + cacnamespace + 'OrderLineReference')
         if len(tagelements_) != 0:

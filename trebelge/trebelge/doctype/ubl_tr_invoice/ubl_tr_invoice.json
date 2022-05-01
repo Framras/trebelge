@@ -485,9 +485,9 @@
   {
    "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
    "fieldname": "invoiceline",
-   "fieldtype": "Table MultiSelect",
+   "fieldtype": "Table",
    "label": "Mal/Hizmet Kalemleri",
-   "options": "UBL TR InvoiceLines"
+   "options": "UBL TR InvoiceLine"
   },
   {
    "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman\nkullan\u0131lacakt\u0131r.",
@@ -690,7 +690,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-25 18:58:03.026565",
+ "modified": "2022-05-01 22:01:11.500445",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",
