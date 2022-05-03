@@ -99,6 +99,7 @@
   "section_break_75",
   "taxtotal",
   "withholdingtaxtotal",
+  "section_last",
   "invoicelinesummary"
  ],
  "fields": [
@@ -686,11 +687,16 @@
    "fieldtype": "Table",
    "label": "Mal/Hizmet Kalemleri",
    "options": "UBL TR InvoiceLine Summary"
+  },
+  {
+   "fieldname": "section_last",
+   "fieldtype": "Section Break",
+   "label": "Mal/Hizmet Kalemleri"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-03 15:17:45.569771",
+ "modified": "2022-05-03 16:11:07.696631",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",
