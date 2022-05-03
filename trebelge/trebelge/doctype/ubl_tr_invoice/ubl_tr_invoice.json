@@ -99,7 +99,7 @@
   "section_break_75",
   "taxtotal",
   "withholdingtaxtotal",
-  "invoiceline"
+  "invoicelinesummary"
  ],
  "fields": [
   {
@@ -483,13 +483,6 @@
    "options": "UBL TR TaxTotals"
   },
   {
-   "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
-   "fieldname": "invoiceline",
-   "fieldtype": "Table",
-   "label": "Mal/Hizmet Kalemleri",
-   "options": "UBL TR InvoiceLine"
-  },
-  {
    "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman\nkullan\u0131lacakt\u0131r.",
    "fieldname": "period_section",
    "fieldtype": "Section Break",
@@ -686,11 +679,18 @@
    "fieldname": "alternativecurrencydate",
    "fieldtype": "Date",
    "label": "Kurun tarihi"
+  },
+  {
+   "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
+   "fieldname": "invoicelinesummary",
+   "fieldtype": "Table",
+   "label": "Mal/Hizmet Kalemleri",
+   "options": "UBL TR InvoiceLine Summary"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-01 22:01:11.500445",
+ "modified": "2022-05-03 15:17:45.569771",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",
