@@ -27,10 +27,9 @@
    "columns": 1,
    "description": "Mal/hizmet hakk\u0131nda bilgiler buraya girilir.",
    "fieldname": "item",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Mal/hizmet",
-   "options": "UBL TR Item",
    "reqd": 1
   },
   {
@@ -60,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-03 15:25:22.638429",
+ "modified": "2022-05-03 15:55:07.134457",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR InvoiceLine Summary",
