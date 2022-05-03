@@ -422,8 +422,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                 self._product.append("invoicelinesummary",
                                      dict(id=tmp.get_value('id'),
                                           item=frappe.db.get_value('UBL TR Item', tmp.get_value('item'), 'itemname'),
-                                          invoiced=str(tmp.get_value('invoicedquantity')) + " " + tmp.get_value(
-                                              'invoicedquantityunitcode'),
+                                          invoiced=str(tmp.get_value('invoicedquantity')) + " " + frappe.db.get_value(
+                                              'UBL TR Unitcodes', tmp.get_value('invoicedquantityunitcode'),
+                                              'unitcodename'),
                                           price=str(tmp.get_value('priceamount')) + " " + tmp.get_value(
                                               'priceamountcurrencyid'),
                                           lineextension=str(tmp.get_value('lineextensionamount')) + " " + tmp.get_value(
