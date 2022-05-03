@@ -229,7 +229,13 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         for despatchline_ in despatchlines_:
             tmp = TRUBLDespatchLine().process_element(despatchline_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
-                doc_append.despatchline = tmp.name
+                self._product.append("despatchline",
+                                     dict(id=tmp.get_value('id'),
+                                          item=frappe.db.get_value('UBL TR Item', tmp.get_value('item'), 'itemname'),
+                                          delivered=str(tmp.get_value('deliveredquantity')) + " " + frappe.db.get_value(
+                                              'UBL TR Unitcodes', tmp.get_value('deliveredquantityunitcode'),
+                                              'unitcodename'),
+                                          despatchline=tmp.name))
 
     def build_receiptline(self) -> None:
         pass

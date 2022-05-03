@@ -32,6 +32,7 @@
   "originatorcustomerparty",
   "originatorcustomercontact",
   "shipment",
+  "section_break_27",
   "despatchline"
  ],
  "fields": [
@@ -164,9 +165,9 @@
   },
   {
    "fieldname": "despatchline",
-   "fieldtype": "Table MultiSelect",
+   "fieldtype": "Table",
    "label": "\u0130rsaliye Kalemleri",
-   "options": "UBL TR DespatchLines"
+   "options": "UBL TR DespatchLine Summary"
   },
   {
    "fieldname": "despatchsuppliercontact",
@@ -206,11 +207,16 @@
    "fieldname": "notlar_section",
    "fieldtype": "Section Break",
    "label": "Notlar"
+  },
+  {
+   "fieldname": "section_break_27",
+   "fieldtype": "Section Break",
+   "label": "\u0130rsaliye Kalemleri"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-23 16:40:47.973701",
+ "modified": "2022-05-04 00:10:17.003977",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Despatch Advice",
