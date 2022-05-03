@@ -13,25 +13,35 @@ class TRUBLDespatchLine(TRUBLCommonElement):
 
     def process_element(self, element: Element, cbcnamespace: str, cacnamespace: str) -> Document:
         # ['ID'] = ('cbc', 'id', 'Zorunlu(1)')
+        # İrsaliye kalemi numarası girilir.
         id_ = element.find('./' + cbcnamespace + 'ID').text
         if id_ is None:
             return None
         frappedoc: dict = {'id': id_}
         # ['OrderLineReference'] = ('cac', 'OrderLineReference', 'Zorunlu(1)')
+        # İlgili sipariş dokümanı kalemine referans
+        # girilir.
         orderlinereference_: Element = element.find('./' + cacnamespace + 'OrderLineReference')
         tmp = TRUBLOrderLineReference().process_element(orderlinereference_, cbcnamespace, cacnamespace)
         if tmp is None:
             return None
         frappedoc['orderlinereference'] = tmp.name
         # ['Item'] = ('cac', 'Item', 'Zorunlu(1)')
+        # Mal bilgisi girilir.
         item_: Element = element.find('./' + cacnamespace + 'Item')
         tmp = TRUBLItem().process_element(item_, cbcnamespace, cacnamespace)
         if tmp is None:
             return None
         frappedoc['item'] = tmp.name
         # ['DeliveredQuantity'] = ('cbc', '', 'Seçimli (0...1)')
+        # Gönderimi gerçekleştirilen mal adedi
+        # girilir.
         # ['OutstandingQuantity'] = ('cbc', '', 'Seçimli(0..1)')
+        # İleriki bir tarihte gönderilecek mal adedi
+        # bilgisi girilir.
         # ['OversupplyQuantity'] = ('cbc', '', 'Seçimli(0..1)')
+        # Fazla miktarda gönderilen malın adedi
+        # girilir.
         cbcsecimli01: list = ['DeliveredQuantity', 'OutstandingQuantity', 'OversupplyQuantity']
         for elementtag_ in cbcsecimli01:
             field_: Element = element.find('./' + cbcnamespace + elementtag_)
@@ -40,6 +50,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                     frappedoc[elementtag_.lower()] = field_.text.strip()
                     frappedoc[elementtag_.lower() + 'unitcode'] = field_.attrib.get('unitCode').strip()
         # ['Note'] = ('cbc', '', 'Seçimli(0..n)')
+        # Kalem ile ilgili açıklama girilir.
         notes_: list = element.findall('./' + cbcnamespace + 'Note')
         notes = list()
         if len(notes_) != 0:
@@ -48,6 +59,8 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                 if element_ is not None and element_.strip() != '':
                     notes.append(element_.strip())
         # ['OutstandingReason'] = ('cbc', '', 'Seçimli(0..n)')
+        # İleriki tarihte gönderilecek malın sebebi
+        # girilir.
         outstandingreasons_: list = element.findall('./' + cbcnamespace + 'Description')
         outstandingreasons = list()
         if len(outstandingreasons_) != 0:
@@ -64,6 +77,7 @@ class TRUBLDespatchLine(TRUBLCommonElement):
                 if tmp is not None:
                     shipments.append(tmp.name)
         # ['DocumentReference'] = ('cac', 'DocumentReference', 'Seçimli(0..n)')
+        # İlgili dokümanlara referans girilir.
         documentreferences_: list = element.findall('./' + cacnamespace + 'DocumentReference')
         documentreferences = list()
         if len(documentreferences_) != 0:
