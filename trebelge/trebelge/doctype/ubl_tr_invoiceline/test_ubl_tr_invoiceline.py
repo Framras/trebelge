@@ -4,6 +4,5 @@
 # import frappe
 import unittest
 
-
 class TestUBLTRInvoiceLine(unittest.TestCase):
-    pass
+	pass

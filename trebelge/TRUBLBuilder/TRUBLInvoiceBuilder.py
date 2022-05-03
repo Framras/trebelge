@@ -426,6 +426,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
                                               'invoicedquantityunitcode'),
                                           price=str(tmp.get_value('priceamount')) + " " + tmp.get_value(
                                               'priceamountcurrencyid'),
+                                          lineextension=str(tmp.get_value('lineextensionamount')) + " " + tmp.get_value(
+                                              'lineextensionamountcurrencyid'),
                                           invoiceline=tmp.name))
 
     def build_despatchline(self) -> None:

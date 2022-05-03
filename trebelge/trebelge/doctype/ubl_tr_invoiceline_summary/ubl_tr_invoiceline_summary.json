@@ -11,6 +11,7 @@
   "item",
   "invoiced",
   "price",
+  "lineextension",
   "invoiceline"
  ],
  "fields": [
@@ -24,7 +25,7 @@
    "reqd": 1
   },
   {
-   "columns": 1,
+   "columns": 2,
    "description": "Mal/hizmet hakk\u0131nda bilgiler buraya girilir.",
    "fieldname": "item",
    "fieldtype": "Small Text",
@@ -33,7 +34,7 @@
    "reqd": 1
   },
   {
-   "columns": 1,
+   "columns": 2,
    "description": "Mal/hizmet miktar\u0131 birimi ile birlikte girilir.",
    "fieldname": "invoiced",
    "fieldtype": "Data",
@@ -42,7 +43,7 @@
    "reqd": 1
   },
   {
-   "columns": 1,
+   "columns": 2,
    "description": "Mal/hizmet birim fiyat\u0131 hakk\u0131nda bilgiler buraya girilir.",
    "fieldname": "price",
    "fieldtype": "Data",
@@ -57,12 +58,19 @@
    "in_list_view": 1,
    "label": "Line Details",
    "options": "UBL TR InvoiceLine"
+  },
+  {
+   "columns": 2,
+   "fieldname": "lineextension",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mal/hizmet tutar\u0131"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-03 16:12:49.167745",
+ "modified": "2022-05-03 16:37:03.000454",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR InvoiceLine Summary",
