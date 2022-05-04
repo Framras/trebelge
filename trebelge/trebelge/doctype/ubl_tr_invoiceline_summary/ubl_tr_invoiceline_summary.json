@@ -8,6 +8,7 @@
  "field_order": [
   "id",
   "itemname",
+  "item",
   "invoiced",
   "price",
   "lineextension",
@@ -17,6 +18,7 @@
   {
    "columns": 1,
    "description": "Kalem s\u0131ra numaras\u0131 girilir.",
+   "fetch_from": "invoiceline.id",
    "fieldname": "id",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -59,17 +61,25 @@
   {
    "columns": 2,
    "description": "Mal/hizmet hakk\u0131nda bilgiler buraya girilir.",
+   "fetch_from": "item.itemname",
    "fieldname": "itemname",
    "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Mal/hizmet",
    "reqd": 1
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Mal",
+   "options": "UBL TR Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-04 11:46:57.518422",
+ "modified": "2022-05-04 13:59:23.497906",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR InvoiceLine Summary",
