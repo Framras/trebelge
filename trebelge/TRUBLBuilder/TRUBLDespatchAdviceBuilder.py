@@ -225,7 +225,6 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
     def build_despatchline(self) -> None:
         # ['DespatchLine'] = ('cac', DespatchLine(), 'Zorunlu (1...n)', 'despatchline')
         despatchlines_: list = self.root.findall('./' + self._cac_ns + 'DespatchLine')
-        doc_append = self._product.append("despatchline", {})
         for despatchline_ in despatchlines_:
             tmp = TRUBLDespatchLine().process_element(despatchline_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
