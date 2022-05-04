@@ -8,17 +8,28 @@
  "engine": "InnoDB",
  "field_order": [
   "id",
+  "section_break_2",
+  "itemname",
+  "column_break_3",
+  "item",
+  "section_break_6",
   "note",
+  "delivered",
   "deliveredquantity",
+  "column_break_5",
   "deliveredquantityunitcode",
+  "outstanding",
   "outstandingquantity",
-  "outstandingquantityunitcode",
   "outstandingreason",
+  "column_break_10",
+  "outstandingquantityunitcode",
+  "oversupply",
   "oversupplyquantity",
+  "column_break_14",
   "oversupplyquantityunitcode",
+  "section_break_17",
   "orderlinereference",
   "documentreference",
-  "item",
   "shipment"
  ],
  "fields": [
@@ -64,6 +75,7 @@
    "options": "UBL TR Unitcodes"
   },
   {
+   "columns": 2,
    "description": "\u0130leriki tarihte g\u00f6nderilecek mal\u0131n sebebi girilir.",
    "fieldname": "outstandingreason",
    "fieldtype": "Table",
@@ -109,16 +121,62 @@
    "reqd": 1
   },
   {
-   "description": "\u00dcr\u00fcn birim fiyat\u0131 bilgisi girilir.",
    "fieldname": "shipment",
    "fieldtype": "Table MultiSelect",
    "label": "G\u00f6nderi",
    "options": "UBL TR Shipments"
+  },
+  {
+   "fieldname": "delivered",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "outstanding",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "oversupply",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "item.itemname",
+   "fieldname": "itemname",
+   "fieldtype": "Small Text",
+   "label": "Kalem Ad\u0131",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-04-21 23:11:49.091994",
+ "modified": "2022-05-04 13:32:58.146635",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR DespatchLine",
