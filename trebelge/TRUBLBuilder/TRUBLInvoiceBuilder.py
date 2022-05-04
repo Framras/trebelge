@@ -420,7 +420,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             tmp = TRUBLInvoiceLine().process_element(invoiceline_, self._cbc_ns, self._cac_ns)
             if tmp is not None:
                 self._product.append("invoicelinesummary",
-                                     dict(invoiced=str(tmp.get_value('invoicedquantity')) + " " + frappe.db.get_value(
+                                     dict(itemname=frappe.db.get_value('UBL TR Item', tmp.get_value('item'),
+                                                                       'itemname'),
+                                          invoiced=str(tmp.get_value('invoicedquantity')) + " " + frappe.db.get_value(
                                               'UBL TR Unitcodes', tmp.get_value('invoicedquantityunitcode'),
                                               'unitcodename'),
                                           price=str(tmp.get_value('priceamount')) + " " + tmp.get_value(
