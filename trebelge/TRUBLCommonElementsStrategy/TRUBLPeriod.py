@@ -42,4 +42,7 @@ class TRUBLPeriod(TRUBLCommonElement):
             frappedata['durationmeasure'] = durationmeasure_.text.strip()
             frappedata['durationmeasure_unitcode'] = durationmeasure_.attrib.get('unitCode').strip()
 
-        return frappedata
+        if frappedata == {}:
+            return None
+        else:
+            return frappedata
