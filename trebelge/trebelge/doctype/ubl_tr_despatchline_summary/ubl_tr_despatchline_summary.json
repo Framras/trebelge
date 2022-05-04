@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-05-04 14:15:23.192378",
+ "description": "\u0130rsaliye Kalemleri: Bu elemanda irsaliyede yer alan g\u00f6nderilere ait bilgiler yer alacakt\u0131r.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "id",
+  "item",
+  "itemname",
+  "delivered",
+  "despatchline"
+ ],
+ "fields": [
+  {
+   "description": "\u0130rsaliye kalemi numaras\u0131 girilir.",
+   "fetch_from": "despatchline.id",
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0130rsaliye kalemi numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "description": "Mal bilgisi girilir.",
+   "fetch_from": "despatchline.item",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Mal",
+   "options": "UBL TR Item"
+  },
+  {
+   "columns": 2,
+   "fetch_from": "item.itemname",
+   "fieldname": "itemname",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Kalem"
+  },
+  {
+   "description": "G\u00f6nderimi ger\u00e7ekle\u015ftirilen mal adedi girilir.",
+   "fieldname": "delivered",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "G\u00f6nderilen adet",
+   "reqd": 1
+  },
+  {
+   "fieldname": "despatchline",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Line Details",
+   "options": "UBL TR DespatchLine"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-05-04 14:15:23.192378",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR DespatchLine Summary",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
