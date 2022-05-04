@@ -63,13 +63,14 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Line Details",
-   "options": "UBL TR InvoiceLine"
+   "options": "UBL TR InvoiceLine",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-04 14:42:56.246187",
+ "modified": "2022-05-04 15:51:06.669821",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR InvoiceLine Summary",
