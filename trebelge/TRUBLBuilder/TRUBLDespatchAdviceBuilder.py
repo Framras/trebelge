@@ -231,7 +231,8 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
             if tmp is not None:
                 self._product.append("despatchline",
                                      dict(id=tmp.get_value('id'),
-                                          item=frappe.db.get_value('UBL TR Item', tmp.get_value('item'), 'itemname'),
+                                          itemname=frappe.db.get_value('UBL TR Item', tmp.get_value('item'),
+                                                                       'itemname'),
                                           delivered=str(tmp.get_value('deliveredquantity')) + " " + frappe.db.get_value(
                                               'UBL TR Unitcodes', tmp.get_value('deliveredquantityunitcode'),
                                               'unitcodename'),

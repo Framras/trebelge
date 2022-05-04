@@ -4,10 +4,11 @@
  "creation": "2022-05-04 00:08:47.772885",
  "description": "\u0130rsaliye Kalemleri: Bu elemanda irsaliyede yer alan g\u00f6nderilere ait bilgiler yer alacakt\u0131r.",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "id",
-  "item",
+  "itemname",
   "delivered",
   "despatchline"
  ],
@@ -18,14 +19,6 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "\u0130rsaliye kalemi numaras\u0131",
-   "reqd": 1
-  },
-  {
-   "description": "Mal bilgisi girilir.",
-   "fieldname": "item",
-   "fieldtype": "Small Text",
-   "in_list_view": 1,
-   "label": "Mal",
    "reqd": 1
   },
   {
@@ -41,12 +34,20 @@
    "in_list_view": 1,
    "label": "Line Details",
    "options": "UBL TR DespatchLine"
+  },
+  {
+   "description": "Mal bilgisi girilir.",
+   "fieldname": "itemname",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Mal",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-04 00:58:38.074605",
+ "modified": "2022-05-04 11:44:38.167412",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR DespatchLine Summary",
