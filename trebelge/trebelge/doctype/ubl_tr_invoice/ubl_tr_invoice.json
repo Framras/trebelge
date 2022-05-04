@@ -16,6 +16,27 @@
   "copyindicator",
   "issuetime",
   "invoicetypecode",
+  "section_break_56",
+  "accountingsupplierparty",
+  "accountingsupplierpartyname",
+  "accountingsuppliercontact",
+  "column_break_60",
+  "accountingcustomerparty",
+  "accountingcustomerpartyname",
+  "accountingcustomercontact",
+  "section_last",
+  "invoicelinesummary",
+  "section_break_64",
+  "buyercustomerparty",
+  "buyercustomerpartyname",
+  "buyercustomercontact",
+  "column_break_68",
+  "sellersupplierparty",
+  "sellersupplierpartyname",
+  "sellersuppliercontact",
+  "section_break_72",
+  "taxrepresentativeparty",
+  "taxrepresentativepartyname",
   "section_break_13",
   "documentcurrencycode",
   "taxcurrencycode",
@@ -59,24 +80,7 @@
   "originatordocumentreference",
   "contractdocumentreference",
   "additionaldocumentreference",
-  "section_break_56",
-  "accountingsupplierparty",
-  "accountingsupplierpartyname",
-  "accountingsuppliercontact",
-  "column_break_60",
-  "accountingcustomerparty",
-  "accountingcustomerpartyname",
-  "accountingcustomercontact",
-  "section_break_64",
-  "buyercustomerparty",
-  "buyercustomerpartyname",
-  "buyercustomercontact",
-  "column_break_68",
-  "sellersupplierparty",
-  "sellersupplierpartyname",
-  "sellersuppliercontact",
-  "section_break_72",
-  "taxrepresentativeparty",
+  "section_break_73",
   "delivery",
   "paymentmeans",
   "paymentterms",
@@ -108,14 +112,11 @@
   "section_break_75",
   "taxtotal",
   "withholdingtaxtotal",
-  "section_last",
-  "invoicelinesummary",
   "notlar_section",
   "note"
  ],
  "fields": [
   {
-   "description": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN), d\u00fczenlenen faturan\u0131n evrensel e\u015fsizli\u011fini sa\u011flayan numarad\u0131r. Bu numara fatura d\u00fczenleyen taraf\u0131ndan standartlara uygun olarak \u00fcretilip faturalarda kullan\u0131lacakt\u0131r.",
    "fieldname": "uuid",
    "fieldtype": "Data",
    "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
@@ -123,7 +124,6 @@
    "unique": 1
   },
   {
-   "description": "XSD dok\u00fcman\u0131n\u0131n UBL versiyonu yaz\u0131lacakt\u0131r.",
    "fieldname": "ublversionid",
    "fieldtype": "Data",
    "label": "UBL Versiyon Numaras\u0131",
@@ -131,7 +131,6 @@
    "search_index": 1
   },
   {
-   "description": "Kullan\u0131lan senaryodur.",
    "fieldname": "profileid",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -148,7 +147,6 @@
    "reqd": 1
   },
   {
-   "description": "Bu elemana faturan\u0131n d\u00fczenleme tarihi yaz\u0131lacakt\u0131r.",
    "fieldname": "issuedate",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -160,7 +158,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "UBL\u2019 in \u00f6zelle\u015ftirme numaras\u0131d\u0131r.",
    "fieldname": "customizationid",
    "fieldtype": "Data",
    "label": "\u00d6zelle\u015ftirme Numaras\u0131",
@@ -168,7 +165,6 @@
    "search_index": 1
   },
   {
-   "description": "Bu elemanda d\u00fczenlenen faturan\u0131n as\u0131l veya suret oldu\u011fu g\u00f6sterilecektir.",
    "fieldname": "copyindicator",
    "fieldtype": "Data",
    "label": "As\u0131l/Suret",
@@ -176,13 +172,11 @@
    "search_index": 1
   },
   {
-   "description": "Bu elemana faturan\u0131n d\u00fczenleme saati yaz\u0131labilecektir.",
    "fieldname": "issuetime",
    "fieldtype": "Time",
    "label": "D\u00fczenleme Zaman\u0131"
   },
   {
-   "description": "Bu elemanda UBL-TR i\u00e7erisinde yer alan fatura tiplerine ait kodlar yaz\u0131lacakt\u0131r.",
    "fieldname": "invoicetypecode",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -195,7 +189,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "description": "Bu elemana faturan\u0131n d\u00fczenlendi\u011fi paran\u0131n birim kodu yaz\u0131lacakt\u0131r.",
    "fieldname": "documentcurrencycode",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -205,7 +198,6 @@
    "search_index": 1
   },
   {
-   "description": "Fatura \u00fczerinde g\u00f6sterilen vergilerin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda ba\u015fka bir para birimi ile g\u00f6sterilmesi gerekiyorsa bu para biriminin kodu yaz\u0131labilecektir.",
    "fieldname": "taxcurrencycode",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -214,7 +206,6 @@
    "search_index": 1
   },
   {
-   "description": "Mal veya hizmet bedellerinin \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda bir para birimi ile g\u00f6sterilmesi gerekiyorsa s\u00f6zkonusu para birimi bu elemana kodlanabilecektir.",
    "fieldname": "pricingcurrencycode",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -227,7 +218,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "\u00d6demenin yap\u0131laca\u011f\u0131 para birimi \u201cBelge Para Birim Kodu\u201d d\u0131\u015f\u0131nda bir para birimi ise bu bedellerin g\u00f6sterildi\u011fi para birimi bu elemana kodlanabilecektir.",
    "fieldname": "paymentcurrencycode",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -236,7 +226,6 @@
    "search_index": 1
   },
   {
-   "description": "\u00d6denecek tutar\u0131n belge para birimi ile \u00f6deme para birimi\nd\u0131\u015f\u0131nda ba\u015fka bir para birimi ile de ifade edilmesinin istenmesi halinde s\u00f6z konusu para biriminin kodu bu elemana yaz\u0131labilecektir.",
    "fieldname": "paymentalternativecurrencycode",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -246,51 +235,43 @@
   },
   {
    "collapsible": 1,
-   "description": "Parasal Toplam: Parasal toplamlar ile genel tutarlar\u0131n girildi\u011fi elemand\u0131r.",
    "fieldname": "legalmonetarytotal",
    "fieldtype": "Section Break",
    "label": "Parasal Toplamlar"
   },
   {
-   "description": "Mal/hizmet miktar\u0131 ile Mal/hizmet birim fiyat\u0131n\u0131n \u00e7arp\u0131m\u0131 ile bulunan tutard\u0131r.",
    "fieldname": "lineextensionamount",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Mal/Hizmet Toplam Tutar\u0131"
   },
   {
-   "description": "Vergiler hari\u00e7, \u0131skonto veya art\u0131r\u0131m dahil toplam tutar girilir.(Vergi Matrah\u0131).",
    "fieldname": "taxexclusiveamount",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Vergi Matrah\u0131"
   },
   {
-   "description": "Vergiler, \u0131skonto ve art\u0131r\u0131m dahil toplam tutar girilir.",
    "fieldname": "taxinclusiveamount",
    "fieldtype": "Currency",
    "label": "Vergiler Dahil Toplam Tutar"
   },
   {
-   "description": "Toplam iskonto tutar\u0131 girilir.",
    "fieldname": "allowancetotalamount",
    "fieldtype": "Currency",
    "label": "Toplam \u0130skonto"
   },
   {
-   "description": "Toplam fiyat art\u0131r\u0131m\u0131 tutar\u0131 girilir.",
    "fieldname": "chargetotalamount",
    "fieldtype": "Currency",
    "label": "Toplam Art\u0131r\u0131m"
   },
   {
-   "description": "Yuvarlama tutar\u0131 girilir.",
    "fieldname": "payableroundingamount",
    "fieldtype": "Currency",
    "label": "Yuvarlama tutar\u0131"
   },
   {
-   "description": "\u00d6denecek tutar girilir.",
    "fieldname": "payableamount",
    "fieldtype": "Currency",
    "label": "\u00d6denecek tutar"
@@ -348,44 +329,37 @@
    "fieldtype": "Section Break"
   },
   {
-   "description": "M\u00fckellefin faturan\u0131n tipi olarak ilave bir ay\u0131r\u0131ma gitmesi gerekiyorsa kendi belirleyece\u011fi farkl\u0131 bir fatura tipini bu elemana yazabilir.",
    "fieldname": "accountingcost",
    "fieldtype": "Data",
    "label": "Hesap Kodu"
   },
   {
-   "description": "Bu elemana fatura \u00fczerinde yer alan kalem say\u0131s\u0131 yaz\u0131lacakt\u0131r. Mal\u0131n adedi birden fazla olsa dahi bu mal grubu tek bir kalem olarak g\u00f6sterilecektir.",
    "fieldname": "linecountnumeric",
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Kalem Say\u0131s\u0131"
   },
   {
-   "description": "Faturada d\u00f6nem bilgisine yer verilmesi halinde bu eleman\nkullan\u0131lacakt\u0131r.",
    "fieldname": "period_section",
    "fieldtype": "Section Break",
    "label": "Fatura D\u00f6nemi"
   },
   {
-   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih",
    "fieldname": "startdate",
    "fieldtype": "Date",
    "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 tarih"
   },
   {
-   "description": "D\u00f6nemin bitti\u011fi tarih",
    "fieldname": "enddate",
    "fieldtype": "Date",
    "label": "D\u00f6nemin bitti\u011fi tarih"
   },
   {
-   "description": "D\u00f6nem s\u00fcresi numerik olarak, d\u00f6nem aral\u0131\u011f\u0131 tipi\u2019de \u201cunitCode\u201d attribute de\u011ferine y\u0131l i\u00e7in \u201cANN\u201d, ay i\u00e7in \u201cMON\u201d, g\u00fcn i\u00e7in \u201cDAY\u201d ve saat i\u00e7in \u201cHUR\u201d girilmesi gerekmektedir.",
    "fieldname": "durationmeasure",
    "fieldtype": "Int",
    "label": "D\u00f6nem s\u00fcresi"
   },
   {
-   "description": "D\u00f6nemin a\u00e7\u0131klamas\u0131 serbest metin olarak girilecektir.",
    "fieldname": "description",
    "fieldtype": "Small Text",
    "label": "D\u00f6nemin a\u00e7\u0131klamas\u0131"
@@ -395,13 +369,11 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman",
    "fieldname": "starttime",
    "fieldtype": "Time",
    "label": "D\u00f6nemin ba\u015flad\u0131\u011f\u0131 zaman"
   },
   {
-   "description": "D\u00f6nemin bitti\u011fi zaman",
    "fieldname": "endtime",
    "fieldtype": "Time",
    "label": "D\u00f6nemin bitti\u011fi zaman"
@@ -417,7 +389,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "description": "Sipari\u015f bilgilerinin g\u00f6sterilmesinde ve sipari\u015f belgesinin faturaya eklenmesinde bu eleman kullan\u0131labilecektir.",
    "fieldname": "orderreference",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -560,7 +531,8 @@
    "fieldname": "taxrepresentativeparty",
    "fieldtype": "Link",
    "label": "Vergi \u0130\u015fleriyle Sorumlu Taraf",
-   "options": "UBL TR Party"
+   "options": "UBL TR Party",
+   "read_only": 1
   },
   {
    "fieldname": "delivery",
@@ -569,21 +541,18 @@
    "options": "UBL TR Deliveries"
   },
   {
-   "description": "Bu elemana \u00f6deme \u015fekli ile ilgili bilgiler yaz\u0131labilecektir.",
    "fieldname": "paymentmeans",
    "fieldtype": "Table MultiSelect",
    "label": "\u00d6deme \u015eekli",
    "options": "UBL TR Payment Means"
   },
   {
-   "description": "Bu elemana \u00f6deme ko\u015fullar\u0131 ve \u00f6demenin yap\u0131lmamas\u0131 halinde uygulanacak m\u00fceyyideler yaz\u0131labilecektir.",
    "fieldname": "paymentterms",
    "fieldtype": "Link",
    "label": "\u00d6deme Ko\u015fullar\u0131",
    "options": "UBL TR PaymentTerms"
   },
   {
-   "description": "Bu eleman fatura b\u00fct\u00fcn\u00fc \u00fczerinden iskonto veya art\u0131r\u0131m yap\u0131lmas\u0131 halinde kullan\u0131lacakt\u0131r.",
    "fieldname": "allowancecharge",
    "fieldtype": "Table MultiSelect",
    "label": "Iskonto / Art\u0131r\u0131m",
@@ -595,14 +564,12 @@
    "label": "Vergi D\u00f6viz Kuru"
   },
   {
-   "description": "Kaynak Para Birimi Kodu",
    "fieldname": "taxsourcecurrencycode",
    "fieldtype": "Link",
    "label": "Kaynak Para Birimi Kodu",
    "options": "UBL TR CurrencyCode"
   },
   {
-   "description": "D\u00f6viz kuru girilir.",
    "fieldname": "taxcalculationrate",
    "fieldtype": "Currency",
    "label": "D\u00f6viz kuru"
@@ -612,7 +579,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "Hedef Para Birimi Kodu",
    "fieldname": "taxtargetcurrencycode",
    "fieldtype": "Link",
    "label": "Hedef Para Birimi Kodu",
@@ -655,7 +621,6 @@
    "label": "Kurun tarihi"
   },
   {
-   "description": "D\u00f6viz Kuru: Kur bilgileri ve kurun tarihi girilir.",
    "fieldname": "section_odemedovizkuru",
    "fieldtype": "Section Break",
    "label": "\u00d6deme D\u00f6viz Kuru"
@@ -687,7 +652,6 @@
    "label": "Kurun tarihi"
   },
   {
-   "description": "D\u00f6viz Kuru: Kur bilgileri ve kurun tarihi girilir.",
    "fieldname": "section_alternatifodemedovizkuru",
    "fieldtype": "Section Break",
    "label": "Alternatif \u00d6deme D\u00f6viz Kuru"
@@ -723,14 +687,12 @@
    "fieldtype": "Section Break"
   },
   {
-   "description": "Bu elemana faturada yer alan vergi ve\tdi\u011fer yasal y\u00fck\u00fcml\u00fcl\u00fckler ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
    "fieldname": "taxtotal",
    "fieldtype": "Table MultiSelect",
    "label": "Toplam Vergi",
    "options": "UBL TR TaxTotals"
   },
   {
-   "description": "Bu elemana tevkifatl\u0131 faturalarda yer alan tevkifat ile ilgili bilgiler yaz\u0131lacakt\u0131r.",
    "fieldname": "withholdingtaxtotal",
    "fieldtype": "Table MultiSelect",
    "label": "Tevkifat Bilgileri",
@@ -742,7 +704,6 @@
    "label": "Mal/Hizmet Kalemleri"
   },
   {
-   "description": "Bu elemanda faturada yer alan mal ve/veya hizmetlere ait bilgiler yer alacakt\u0131r.",
    "fieldname": "invoicelinesummary",
    "fieldtype": "Table",
    "label": "Mal/Hizmet Kalemleri",
@@ -754,16 +715,25 @@
    "label": "Notlar"
   },
   {
-   "description": "Faturada yer verilmek istenen genel a\u00e7\u0131klamalar i\u00e7in bu eleman kullan\u0131lacakt\u0131r. Birden fazla a\u00e7\u0131klama yap\u0131lmak istenmesi halinde eleman\u0131n tekrar kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr.",
    "fieldname": "note",
    "fieldtype": "Table",
    "label": "Not",
    "options": "UBL TR Notes"
+  },
+  {
+   "fetch_from": "taxrepresentativeparty.partyname",
+   "fieldname": "taxrepresentativepartyname",
+   "fieldtype": "Small Text",
+   "label": "Kurum ismi"
+  },
+  {
+   "fieldname": "section_break_73",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-04 16:22:46.241520",
+ "modified": "2022-05-04 16:45:40.912989",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",
