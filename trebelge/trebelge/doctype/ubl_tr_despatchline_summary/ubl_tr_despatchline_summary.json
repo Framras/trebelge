@@ -20,7 +20,8 @@
    "fieldname": "id",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "\u0130rsaliye kalemi numaras\u0131"
+   "label": "\u0130rsaliye kalemi numaras\u0131",
+   "reqd": 1
   },
   {
    "columns": 2,
@@ -58,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-04 13:45:28.847556",
+ "modified": "2022-05-04 14:02:07.381754",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR DespatchLine Summary",
