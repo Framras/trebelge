@@ -1,0 +1,241 @@
+{
+ "actions": [],
+ "autoname": "field:uuid",
+ "creation": "2022-05-04 14:43:47.621647",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "uuid",
+  "ublversionid",
+  "id",
+  "issuedate",
+  "column_break_5",
+  "customizationid",
+  "profileid",
+  "copyindicator",
+  "issuetime",
+  "despatchadvicetypecode",
+  "notlar_section",
+  "note",
+  "linecountnumeric",
+  "orderreference",
+  "additionaldocumentreference",
+  "despatchsupplierparty",
+  "despatchsuppliercontact",
+  "deliverycustomerparty",
+  "deliverycustomercontact",
+  "buyercustomerparty",
+  "buyercustomercontact",
+  "sellersupplierparty",
+  "sellersuppliercontact",
+  "originatorcustomerparty",
+  "originatorcustomercontact",
+  "shipment",
+  "section_break_27",
+  "despatchline"
+ ],
+ "fields": [
+  {
+   "fieldname": "uuid",
+   "fieldtype": "Data",
+   "label": "Evrensel Tekil Tan\u0131mlama Numaras\u0131 (ETTN)",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "ublversionid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "UBL Versiyon Numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sevk \u0130rsaliyesi Numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "fieldname": "issuedate",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "D\u00fczenleme Tarihi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customizationid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u00d6zelle\u015ftirme Numaras\u0131",
+   "reqd": 1
+  },
+  {
+   "fieldname": "profileid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Senaryo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "copyindicator",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "As\u0131l/Suret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "issuetime",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "D\u00fczenleme Zaman\u0131"
+  },
+  {
+   "fieldname": "despatchadvicetypecode",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tip Kodu",
+   "reqd": 1
+  },
+  {
+   "fieldname": "notlar_section",
+   "fieldtype": "Section Break",
+   "label": "Notlar"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Table",
+   "label": "Not",
+   "options": "UBL TR Notes"
+  },
+  {
+   "fieldname": "linecountnumeric",
+   "fieldtype": "Int",
+   "label": "Kalem Say\u0131s\u0131"
+  },
+  {
+   "fieldname": "orderreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "Sipari\u015f Bilgileri",
+   "options": "UBL TR OrderReferences"
+  },
+  {
+   "fieldname": "additionaldocumentreference",
+   "fieldtype": "Table MultiSelect",
+   "label": "\u0130lave Dok\u00fcman",
+   "options": "UBL TR DocumentReferences"
+  },
+  {
+   "fieldname": "despatchsupplierparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sevkeden",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "despatchsuppliercontact",
+   "fieldtype": "Link",
+   "label": "Sevkeden \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "deliverycustomerparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Teslim Alan",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "deliverycustomercontact",
+   "fieldtype": "Link",
+   "label": "Teslim Alan \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "buyercustomerparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sat\u0131n Alan",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "buyercustomercontact",
+   "fieldtype": "Link",
+   "label": "Sat\u0131n Alan \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "sellersupplierparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Satan",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "sellersuppliercontact",
+   "fieldtype": "Link",
+   "label": "Satan \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "originatorcustomerparty",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sevk \u0130rsaliyesindeki Mallar\u0131n Al\u0131nmas\u0131n\u0131 Ba\u015flatan Taraf",
+   "options": "UBL TR Party"
+  },
+  {
+   "fieldname": "originatorcustomercontact",
+   "fieldtype": "Link",
+   "label": "Sevk \u0130rsaliyesindeki Mallar\u0131n Al\u0131nmas\u0131n\u0131 Ba\u015flatan  \u0130lgili",
+   "options": "UBL TR Contact"
+  },
+  {
+   "fieldname": "shipment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "G\u00f6nderi",
+   "options": "UBL TR Shipment"
+  },
+  {
+   "fieldname": "section_break_27",
+   "fieldtype": "Section Break",
+   "label": "\u0130rsaliye Kalemleri"
+  },
+  {
+   "fieldname": "despatchline",
+   "fieldtype": "Table",
+   "label": "\u0130rsaliye Kalemleri",
+   "options": "UBL TR DespatchLine Summary"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-05-04 14:43:47.621647",
+ "modified_by": "Administrator",
+ "module": "Trebelge",
+ "name": "UBL TR Despatch Advice",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
