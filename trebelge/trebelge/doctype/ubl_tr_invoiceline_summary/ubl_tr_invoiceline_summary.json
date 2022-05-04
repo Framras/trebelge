@@ -6,7 +6,6 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "id",
   "itemname",
   "invoiced",
   "price",
@@ -14,16 +13,6 @@
   "invoiceline"
  ],
  "fields": [
-  {
-   "columns": 1,
-   "description": "Kalem s\u0131ra numaras\u0131 girilir.",
-   "fetch_from": "invoiceline.id",
-   "fieldname": "id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Kalem s\u0131ra numaras\u0131",
-   "reqd": 1
-  },
   {
    "columns": 2,
    "description": "Mal/hizmet hakk\u0131nda bilgiler buraya girilir.",
@@ -70,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-05-04 15:51:06.669821",
+ "modified": "2022-05-04 17:13:37.486625",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR InvoiceLine Summary",

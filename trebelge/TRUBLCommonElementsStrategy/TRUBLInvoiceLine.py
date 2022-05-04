@@ -23,16 +23,14 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             if id_.text is not None:
                 frappedoc['id'] = id_.text.strip()
         # ['InvoicedQuantity'] = ('cbc', '', 'Zorunlu (1)')
-        # Mal/hizmet miktarı birimi ile birlikte
-        # girilir.
+        # Mal/hizmet miktarı birimi ile birlikte girilir.
         invoicedquantity: Element = element.find('./' + cbcnamespace + 'InvoicedQuantity')
         if invoicedquantity is not None:
             if invoicedquantity.text is not None:
                 frappedoc['invoicedquantity'] = invoicedquantity.text.strip()
                 frappedoc['invoicedquantityunitcode'] = invoicedquantity.attrib.get('unitCode').strip()
         # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
-        # Mal/hizmet miktarı ile Mal/hizmet
-        # birim fiyatının çarpımı ile bulunan tutardır (varsa iskonto
+        # Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutardır (varsa iskonto
         # düşülür).
         lineextensionamount: Element = element.find('./' + cbcnamespace + 'LineExtensionAmount')
         if lineextensionamount is not None:
