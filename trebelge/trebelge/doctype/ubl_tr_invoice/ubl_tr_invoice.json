@@ -18,9 +18,11 @@
   "invoicetypecode",
   "notlar_section",
   "note",
+  "section_break_13",
   "documentcurrencycode",
   "taxcurrencycode",
   "pricingcurrencycode",
+  "column_break_17",
   "paymentcurrencycode",
   "paymentalternativecurrencycode",
   "legalmonetarytotal",
@@ -59,14 +61,23 @@
   "originatordocumentreference",
   "contractdocumentreference",
   "additionaldocumentreference",
+  "section_break_56",
   "accountingsupplierparty",
+  "accountingsupplierpartyname",
   "accountingsuppliercontact",
+  "column_break_60",
   "accountingcustomerparty",
+  "accountingcustomerpartyname",
   "accountingcustomercontact",
+  "section_break_64",
   "buyercustomerparty",
+  "buyercustomerpartyname",
   "buyercustomercontact",
+  "column_break_68",
   "sellersupplierparty",
+  "sellersupplierpartyname",
   "sellersuppliercontact",
+  "section_break_72",
   "taxrepresentativeparty",
   "delivery",
   "paymentmeans",
@@ -457,7 +468,8 @@
    "fieldname": "accountingsupplierparty",
    "fieldtype": "Link",
    "label": "Sat\u0131c\u0131",
-   "options": "UBL TR Party"
+   "options": "UBL TR Party",
+   "read_only": 1
   },
   {
    "fieldname": "accountingsuppliercontact",
@@ -469,7 +481,8 @@
    "fieldname": "accountingcustomerparty",
    "fieldtype": "Link",
    "label": "Al\u0131c\u0131",
-   "options": "UBL TR Party"
+   "options": "UBL TR Party",
+   "read_only": 1
   },
   {
    "fieldname": "accountingcustomercontact",
@@ -481,7 +494,8 @@
    "fieldname": "buyercustomerparty",
    "fieldtype": "Link",
    "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Alan Taraf",
-   "options": "UBL TR Party"
+   "options": "UBL TR Party",
+   "read_only": 1
   },
   {
    "fieldname": "buyercustomercontact",
@@ -493,7 +507,8 @@
    "fieldname": "sellersupplierparty",
    "fieldtype": "Link",
    "label": "Faturadaki Hizmeti/\u00dcr\u00fcn\u00fc Sa\u011flayan Taraf",
-   "options": "UBL TR Party"
+   "options": "UBL TR Party",
+   "read_only": 1
   },
   {
    "fieldname": "sellersuppliercontact",
@@ -692,11 +707,63 @@
    "fieldtype": "Table",
    "label": "Mal/Hizmet Kalemleri",
    "options": "UBL TR InvoiceLine Summary"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_56",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "accountingsupplierparty.partyname",
+   "fieldname": "accountingsupplierpartyname",
+   "fieldtype": "Small Text",
+   "label": "Kurum ismi"
+  },
+  {
+   "fieldname": "column_break_60",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "accountingcustomerparty.partyname",
+   "fieldname": "accountingcustomerpartyname",
+   "fieldtype": "Small Text",
+   "label": "Kurum ismi"
+  },
+  {
+   "fieldname": "section_break_64",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "buyercustomerparty.partyname",
+   "fieldname": "buyercustomerpartyname",
+   "fieldtype": "Small Text",
+   "label": "Kurum ismi"
+  },
+  {
+   "fieldname": "column_break_68",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "sellersupplierparty.partyname",
+   "fieldname": "sellersupplierpartyname",
+   "fieldtype": "Small Text",
+   "label": "Kurum ismi"
+  },
+  {
+   "fieldname": "section_break_72",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-04 14:42:16.264322",
+ "modified": "2022-05-04 15:38:04.213059",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "UBL TR Invoice",
