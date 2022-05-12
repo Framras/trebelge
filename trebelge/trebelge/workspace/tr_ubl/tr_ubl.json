@@ -161,9 +161,18 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u00d6l\u00e7\u00fc Birimleri",
+   "link_to": "UBL TR Unitcodes",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2022-05-12 16:16:42.870951",
+ "modified": "2022-05-12 16:30:03.104605",
  "modified_by": "Administrator",
  "module": "Trebelge",
  "name": "TR UBL",
