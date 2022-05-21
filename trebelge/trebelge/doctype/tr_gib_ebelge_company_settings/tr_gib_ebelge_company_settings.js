@@ -2,7 +2,6 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('TR GIB eBelge Company Settings', {
-	// refresh: function(frm) {
 	initiate_ebelge_parties: function(frm){
         frappe.call({
             method: "trebelge.api.check_all_ebelge_parties",
@@ -12,7 +11,6 @@ frappe.ui.form.on('TR GIB eBelge Company Settings', {
                 frm.set_value("last_run", r.message);
                 frm.save();
             }
-        })
+        });
 	}
-	// }
 });
