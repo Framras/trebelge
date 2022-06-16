@@ -1,3 +1,5 @@
+import xml.etree.ElementTree as ET
+from xml.etree.ElementTree import Element
 from xml.etree.ElementTree import XMLParser
 
 import frappe
@@ -57,3 +59,19 @@ def check_all_xml_files():
         hXMLFileHandler.handle_xml_file(filePath)
 
     return frappe.utils.now_datetime()
+
+
+@frappe.whitelist()
+def search_by_title(search_string: str):
+    root_: Element = ET.parse(
+        frappe.get_site_path("private", "files", "KullaniciListesiXml", "newUserPkList.xml")
+    ).getroot()
+    titles_: list = root_.findall('./User/Title')
+    titles = list()
+    for title in titles_:
+        if search_string in title.text:
+            titles.append(title.text)
+    if len(titles) > 0:
+        return titles
+    else:
+        return ""

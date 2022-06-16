@@ -2,6 +2,8 @@ class EbelgeUsers:  # The target object of the parser
     def __init__(self):
         self.tax_id = ""
         self.is_tax_data = False
+        self.name = ""
+        self.is_name = False
         self.activity_count = 0
         self.is_einvoice_document = False
         self.is_edespatchadvice_document = False
@@ -12,6 +14,8 @@ class EbelgeUsers:  # The target object of the parser
     def start(self, tag, attrib):  # Called for each opening tag.
         if tag == "Identifier":
             self.is_tax_data = True
+        elif tag == "Title":
+            self.is_name = True
         elif tag == "Document":
             self.activity_count = 0
             if attrib["type"] == "Invoice":
@@ -24,6 +28,8 @@ class EbelgeUsers:  # The target object of the parser
     def end(self, tag):  # Called for each closing tag.
         if tag == "Identifier":
             self.is_tax_data = False
+        elif tag == "Title":
+            self.is_name = False
         elif tag == "CreationTime":
             self.activity_count += 1
         elif tag == "DeletionTime":
@@ -36,12 +42,19 @@ class EbelgeUsers:  # The target object of the parser
                     self.is_eirsaliye_user = True
         elif tag == "Documents":
             self.return_data[self.tax_id] = dict(
-                [("is_efatura_user", self.is_efatura_user), ("is_eirsaliye_user", self.is_eirsaliye_user)])
+                [
+                    ("is_efatura_user", self.is_efatura_user),
+                    ("is_eirsaliye_user", self.is_eirsaliye_user),
+                    ("name", self.name)
+                ]
+            )
             self.setup()
 
     def data(self, data):
         if self.is_tax_data:
             self.tax_id = data
+        elif self.is_name:
+            self.name = data
 
     def close(self):  # Called when all data has been parsed.
         return self.return_data
@@ -49,6 +62,8 @@ class EbelgeUsers:  # The target object of the parser
     def setup(self):
         self.tax_id = ""
         self.is_tax_data = False  #
+        self.name = ""
+        self.is_name = False
         self.activity_count = 0  # use when document is of ebelge type to determine if active
         self.is_einvoice_document = False
         self.is_edespatchadvice_document = False
