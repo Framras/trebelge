@@ -13,4 +13,15 @@ frappe.ui.form.on('TR GIB eBelge Company Settings', {
             }
         });
 	}
+	refill_user_table: function(frm){
+        frappe.call({
+            method: "trebelge.api.refill_ebelge_users",
+            args:{
+            },
+            callback: function(r){
+                frm.set_value("last_run", r.message);
+                frm.save();
+            }
+        });
+	}
 });
