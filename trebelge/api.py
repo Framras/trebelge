@@ -9,7 +9,6 @@ from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
 @frappe.whitelist()
 def check_all_ebelge_parties():
     ebelge_users = get_ebelge_users()
-    store_ebelge_users(ebelge_users)
     for party_type in ["Customer", "Supplier"]:
         for party in frappe.get_all(party_type, filters={"tax_id": ["not in", None], "disabled": 0},
                                     fields={"name", "tax_id", "is_efatura_user", "is_eirsaliye_user"}):
