@@ -1,4 +1,5 @@
 import frappe
+from frappe.model.document import Document
 
 
 class EbelgeUsers:  # The target object of the parser
@@ -40,26 +41,30 @@ class EbelgeUsers:  # The target object of the parser
                     self.is_eirsaliye_user = True
         elif tag == "Documents":
             for party_type in self.party_types:
-                if frappe.db.exists(party_type, {"tax_id": self.tax_id, "disabled": 0}):
-                    parties: list = frappe.get_all(party_type, filters={"tax_id": self.tax_id, "disabled": 0},
-                                                   fields={"name", "tax_id", "is_efatura_user", "is_eirsaliye_user"})
+                parties: list = frappe.get_all(party_type, filters={"tax_id": self.tax_id, "disabled": 0},
+                                               fields={"name"})
+                if len(parties) != 0:
                     for party in parties:
+                        doc: Document = frappe.get_doc(party_type, party.name)
+                        save_doc = False
                         if self.is_efatura_user:
-                            if party.is_efatura_user != 1:
-                                doc = frappe.get_doc(party_type, party.name)
-                                doc.db_set("is_efatura_user", 1)
+                            if doc.is_efatura_user != 1:
+                                doc.is_efatura_user = 1
+                                save_doc = True
                         else:
-                            if party.is_efatura_user == 1:
-                                doc = frappe.get_doc(party_type, party.name)
-                                doc.db_set("is_efatura_user", 0)
+                            if doc.is_efatura_user == 1:
+                                doc.is_efatura_user = 0
+                                save_doc = True
                         if self.is_eirsaliye_user:
-                            if party.is_eirsaliye_user != 1:
-                                doc = frappe.get_doc(party_type, party.name)
-                                doc.db_set("is_eirsaliye_user", 1)
+                            if doc.is_eirsaliye_user != 1:
+                                doc.is_eirsaliye_user = 1
+                                save_doc = True
                         else:
-                            if party.is_eirsaliye_user == 1:
-                                doc = frappe.get_doc(party_type, party.name)
-                                doc.db_set("is_eirsaliye_user", 0)
+                            if doc.is_eirsaliye_user == 1:
+                                doc.is_eirsaliye_user = 0
+                                save_doc = True
+                        if save_doc:
+                            doc.save()
             self.return_data.append(self.tax_id)
 
             self.setup()
@@ -72,13 +77,17 @@ class EbelgeUsers:  # The target object of the parser
         for party_type in self.party_types:
             for party in frappe.get_all(party_type,
                                         filters={"tax_id": ["not in", self.return_data], "disabled": 0},
-                                        fields={"name", "is_efatura_user", "is_eirsaliye_user"}):
-                if party.is_efatura_user == 1:
-                    doc = frappe.get_doc(party_type, party.name)
-                    doc.db_set("is_efatura_user", 0)
-                if party.is_eirsaliye_user == 1:
-                    doc = frappe.get_doc(party_type, party.name)
-                    doc.db_set("is_eirsaliye_user", 0)
+                                        fields={"name"}):
+                doc: Document = frappe.get_doc(party_type, party.name)
+                save_doc = False
+                if doc.is_efatura_user == 1:
+                    doc.is_efatura_user = 0
+                    save_doc = True
+                if doc.is_eirsaliye_user == 1:
+                    doc.is_eirsaliye_user = 0
+                    save_doc = True
+                if save_doc:
+                    doc.save()
 
         return frappe.utils.now_datetime()
 
