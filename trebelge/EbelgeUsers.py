@@ -1,3 +1,6 @@
+import frappe
+
+
 class EbelgeUsers:  # The target object of the parser
     def __init__(self):
         self.tax_id = ""
@@ -7,7 +10,8 @@ class EbelgeUsers:  # The target object of the parser
         self.is_edespatchadvice_document = False
         self.is_efatura_user = False
         self.is_eirsaliye_user = False
-        self.return_data = dict()
+        self.party_types = ["Customer", "Supplier"]
+        self.return_data = list()
 
     def start(self, tag, attrib):  # Called for each opening tag.
         if tag == "Identifier":
@@ -35,12 +39,29 @@ class EbelgeUsers:  # The target object of the parser
                 elif self.is_edespatchadvice_document:
                     self.is_eirsaliye_user = True
         elif tag == "Documents":
-            self.return_data[self.tax_id] = dict(
-                [
-                    ("is_efatura_user", self.is_efatura_user),
-                    ("is_eirsaliye_user", self.is_eirsaliye_user)
-                ]
-            )
+            for party_type in self.party_types:
+                if frappe.db.exists(party_type, {"tax_id": self.tax_id, "disabled": 0}):
+                    parties: list = frappe.get_all(party_type, filters={"tax_id": self.tax_id, "disabled": 0},
+                                                   fields={"name", "tax_id", "is_efatura_user", "is_eirsaliye_user"})
+                    for party in parties:
+                        if self.is_efatura_user:
+                            if party.is_efatura_user != 1:
+                                doc = frappe.get_doc(party_type, party.name)
+                                doc.db_set("is_efatura_user", 1)
+                        else:
+                            if party.is_efatura_user == 1:
+                                doc = frappe.get_doc(party_type, party.name)
+                                doc.db_set("is_efatura_user", 0)
+                        if self.is_eirsaliye_user:
+                            if party.is_eirsaliye_user != 1:
+                                doc = frappe.get_doc(party_type, party.name)
+                                doc.db_set("is_eirsaliye_user", 1)
+                        else:
+                            if party.is_eirsaliye_user == 1:
+                                doc = frappe.get_doc(party_type, party.name)
+                                doc.db_set("is_eirsaliye_user", 0)
+            self.return_data.append(self.tax_id)
+
             self.setup()
 
     def data(self, data):
@@ -48,7 +69,18 @@ class EbelgeUsers:  # The target object of the parser
             self.tax_id = data
 
     def close(self):  # Called when all data has been parsed.
-        return self.return_data
+        for party_type in self.party_types:
+            for party in frappe.get_all(party_type,
+                                        filters={"tax_id": ["not in", self.return_data], "disabled": 0},
+                                        fields={"name", "is_efatura_user", "is_eirsaliye_user"}):
+                if party.is_efatura_user == 1:
+                    doc = frappe.get_doc(party_type, party.name)
+                    doc.db_set("is_efatura_user", 0)
+                if party.is_eirsaliye_user == 1:
+                    doc = frappe.get_doc(party_type, party.name)
+                    doc.db_set("is_eirsaliye_user", 0)
+
+        return frappe.utils.now_datetime()
 
     def setup(self):
         self.tax_id = ""
