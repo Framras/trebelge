@@ -13,7 +13,7 @@ frappe.ui.form.on('TR GIB eBelge Company Settings', {
             }
         });
 	}
-});
+})
 frappe.ui.form.on('TR GIB eBelge Company Settings', {
 	refill_user_table: function(frm){
         frappe.call({
