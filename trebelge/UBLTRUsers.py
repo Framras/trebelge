@@ -45,15 +45,14 @@ class UBLTRUsers:  # The target object of the parser
                 elif self.is_edespatchadvice_document:
                     self.is_eirsaliye_user = True
         elif tag == "Documents":
-            newdoc = frappe.get_doc({
+            doc = frappe.get_doc({
                 'doctype': self.doctype,
                 'tax_id': self.tax_id,
                 'company_title': self.title,
                 'is_efatura_user': self.is_efatura_user,
                 'is_eirsaliye_user': self.is_eirsaliye_user
             })
-            frappe.enqueue(newdoc.insert, queue="short", timeout=None, event=None,
-                           is_async=False, job_name=None)
+            doc.insert()
             self.setup()
 
     def data(self, data):
