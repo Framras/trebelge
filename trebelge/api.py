@@ -48,13 +48,12 @@ def get_ebelge_users():
 
 @frappe.whitelist()
 def refill_ebelge_users():
-    _doctype: str = "UBL TR User List"
+    _doctype = "UBL TR User List"
     for legacy in frappe.get_all(doctype=_doctype, fields=["name"]):
-        frappe.delete_doc(doctype=_doctype, name=legacy.get("name"))
+        frappe.delete_doc(doctype=_doctype, name=legacy.name)
     parser = XMLParser(target=UBLTRUsers())
     parser.feed(
-        frappe.read_file(frappe.get_site_path("private", "files", "KullaniciListesiXml", "newUserPkList.xml"))
-    )
+        frappe.read_file(frappe.get_site_path("private", "files", "KullaniciListesiXml", "newUserPkList.xml")))
     return parser.close()
 
 
