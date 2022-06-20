@@ -1,7 +1,13 @@
-class EbelgeUsers:  # The target object of the parser
+import frappe
+
+
+class UBLTRUsers:  # The target object of the parser
     def __init__(self):
+        self.doctype = "UBL TR User List"
         self.tax_id = ""
         self.is_tax_data = False
+        self.title = ""
+        self.is_title = False
         self.activity_count = 0
         self.is_einvoice_document = False
         self.is_edespatchadvice_document = False
@@ -12,6 +18,8 @@ class EbelgeUsers:  # The target object of the parser
     def start(self, tag, attrib):  # Called for each opening tag.
         if tag == "Identifier":
             self.is_tax_data = True
+        elif tag == "Title":
+            self.is_title = True
         elif tag == "Document":
             self.activity_count = 0
             if attrib["type"] == "Invoice":
@@ -24,6 +32,8 @@ class EbelgeUsers:  # The target object of the parser
     def end(self, tag):  # Called for each closing tag.
         if tag == "Identifier":
             self.is_tax_data = False
+        elif tag == "Title":
+            self.is_title = False
         elif tag == "CreationTime":
             self.activity_count += 1
         elif tag == "DeletionTime":
@@ -35,24 +45,31 @@ class EbelgeUsers:  # The target object of the parser
                 elif self.is_edespatchadvice_document:
                     self.is_eirsaliye_user = True
         elif tag == "Documents":
-            self.return_data[self.tax_id] = dict(
-                [
-                    ("is_efatura_user", self.is_efatura_user),
-                    ("is_eirsaliye_user", self.is_eirsaliye_user)
-                ]
-            )
+            newdoc = frappe.get_doc({
+                'doctype': self.doctype,
+                'tax_id': self.tax_id,
+                'company_title': self.title,
+                'is_efatura_user': self.is_efatura_user,
+                'is_eirsaliye_user': self.is_eirsaliye_user
+            })
+            frappe.enqueue(newdoc.insert, queue="short", timeout=None, event=None,
+                           is_async=False, job_name=None)
             self.setup()
 
     def data(self, data):
         if self.is_tax_data:
             self.tax_id = data
+        elif self.is_title:
+            self.title = data
 
     def close(self):  # Called when all data has been parsed.
-        return self.return_data
+        return self.tax_id
 
     def setup(self):
         self.tax_id = ""
         self.is_tax_data = False  #
+        self.title = ""
+        self.is_title = False
         self.activity_count = 0  # use when document is of ebelge type to determine if active
         self.is_einvoice_document = False
         self.is_edespatchadvice_document = False
