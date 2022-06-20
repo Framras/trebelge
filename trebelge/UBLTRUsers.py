@@ -45,13 +45,11 @@ class UBLTRUsers:  # The target object of the parser
                 elif self.is_edespatchadvice_document:
                     self.is_eirsaliye_user = True
         elif tag == "Documents":
-            doc = frappe.get_doc({
-                'doctype': self.doctype,
-                'tax_id': self.tax_id,
-                'company_title': self.title,
-                'is_efatura_user': self.is_efatura_user,
-                'is_eirsaliye_user': self.is_eirsaliye_user
-            })
+            doc = frappe.new_doc(self.doctype)
+            doc.tax_id = self.tax_id
+            doc.company_title = self.title
+            doc.is_efatura_user = self.is_efatura_user
+            doc.is_eirsaliye_user = self.is_eirsaliye_user
             doc.insert()
             self.setup()
 
