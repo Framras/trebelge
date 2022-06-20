@@ -1,3 +1,5 @@
+import xml.etree.ElementTree as ET
+from xml.etree.ElementTree import Element
 from xml.etree.ElementTree import XMLParser
 
 import frappe
@@ -8,7 +10,6 @@ from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
 @frappe.whitelist()
 def check_all_ebelge_parties():
     ebelge_users = get_ebelge_users()
-    store_ebelge_users(ebelge_users)
     for party_type in ["Customer", "Supplier"]:
         for party in frappe.get_all(party_type, filters={"tax_id": ["not in", None], "disabled": 0},
                                     fields={"name", "tax_id", "is_efatura_user", "is_eirsaliye_user"}):
@@ -46,22 +47,6 @@ def get_ebelge_users():
     return parser.close()
 
 
-def store_ebelge_users(ebelge_users: dict):
-    _doctype = "UBL TR User List"
-    for legacy in frappe.get_all(doctype=_doctype, fields=["name"]):
-        frappe.delete_doc(doctype=_doctype, name=legacy.name)
-    for tax_id in ebelge_users.keys():
-        ebelge_user = ebelge_users.get(tax_id)
-        # create a new document
-        doc = frappe.new_doc(_doctype)
-        doc.tax_id = tax_id
-        doc.is_efatura_user = ebelge_user.get("is_efatura_user")
-        doc.is_eirsaliye_user = ebelge_user.get("is_eirsaliye_user")
-        doc.company_title = ebelge_user.get("company_title")
-        doc.insert()
-    return ""
-
-
 @frappe.whitelist()
 def check_all_xml_files():
     hXMLFileHandler = InvoiceHandler()
@@ -74,3 +59,19 @@ def check_all_xml_files():
         hXMLFileHandler.handle_xml_file(filePath)
 
     return frappe.utils.now_datetime()
+
+
+@frappe.whitelist()
+def search_by_title(search_string: str):
+    root_: Element = ET.parse(
+        frappe.get_site_path("private", "files", "KullaniciListesiXml", "newUserPkList.xml")
+    ).getroot()
+    titles_: list = root_.findall('./User/Title')
+    titles = list()
+    for title in titles_:
+        if search_string in title.text:
+            titles.append(title.text)
+    if len(titles) > 0:
+        return titles
+    else:
+        return ""
