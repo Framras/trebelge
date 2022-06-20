@@ -2,7 +2,6 @@ from xml.etree.ElementTree import XMLParser
 
 import frappe
 from trebelge.EbelgeUsers import EbelgeUsers
-from trebelge.UBLTRUsers import UBLTRUsers
 from trebelge.XMLFileCoR.InvoiceHandler import InvoiceHandler
 
 
@@ -47,15 +46,20 @@ def get_ebelge_users():
     return parser.close()
 
 
-@frappe.whitelist()
-def refill_ebelge_users():
+def store_ebelge_users(ebelge_users: dict):
     _doctype = "UBL TR User List"
     for legacy in frappe.get_all(doctype=_doctype, fields=["name"]):
         frappe.delete_doc(doctype=_doctype, name=legacy.name)
-    parser = XMLParser(target=UBLTRUsers())
-    parser.feed(
-        frappe.read_file(frappe.get_site_path("private", "files", "KullaniciListesiXml", "newUserPkList.xml")))
-    return parser.close()
+    for tax_id in ebelge_users.keys():
+        ebelge_user = ebelge_users.get(tax_id)
+        # create a new document
+        doc = frappe.new_doc(_doctype)
+        doc.tax_id = tax_id
+        doc.is_efatura_user = ebelge_user.get("is_efatura_user")
+        doc.is_eirsaliye_user = ebelge_user.get("is_eirsaliye_user")
+        doc.company_title = ebelge_user.get("company_title")
+        doc.insert()
+    return ""
 
 
 @frappe.whitelist()
