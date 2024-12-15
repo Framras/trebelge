@@ -83,7 +83,7 @@
    "dt": "Purchase Receipt",
    "fetch_from": null,
    "fetch_if_empty": 0,
-   "fieldname": "custom_irsaliye_tarihi",
+   "fieldname": "irsaliye_tarihi",
    "fieldtype": "Date",
    "hidden": 0,
    "hide_border": 0,
