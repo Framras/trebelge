@@ -106,7 +106,7 @@
    "modified": "2024-12-10 11:17:00.858257",
    "modified_by": "Administrator",
    "module": "Trtaxoffices",
-   "name": "Purchase Receipt-custom_irsaliye_tarihi",
+   "name": "Purchase Receipt-irsaliye_tarihi",
    "no_copy": 0,
    "non_negative": 0,
    "options": null,
