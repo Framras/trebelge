@@ -131,27 +131,6 @@
  ],
  "custom_perms": [],
  "doctype": "Customer",
- "links": [
-  {
-   "creation": "2013-06-11 14:26:44",
-   "custom": 0,
-   "docstatus": 0,
-   "group": "Allowed Items",
-   "hidden": 0,
-   "idx": 1,
-   "is_child_table": 0,
-   "link_doctype": "Party Specific Item",
-   "link_fieldname": "party",
-   "modified": "2024-12-06 12:54:32.026891",
-   "modified_by": "Administrator",
-   "name": "409lr2er6n",
-   "owner": "Administrator",
-   "parent": "Customer",
-   "parent_doctype": null,
-   "parentfield": "links",
-   "parenttype": "DocType",
-   "table_fieldname": null
-  }
- ],
+ "links": [],
  "sync_on_migrate": 1
 }
