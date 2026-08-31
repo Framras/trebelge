@@ -14,27 +14,21 @@ def check_all_ebelge_parties():
             if party["tax_id"] in ebelge_users:
                 if ebelge_users[party["tax_id"]]["is_efatura_user"]:
                     if party["is_efatura_user"] != 1:
-                        doc = frappe.get_doc(party_type, party.name)
-                        doc.db_set("is_efatura_user", 1)
+                        frappe.db.set_value(party_type, party.name,"is_efatura_user", 1)
                 else:
                     if party["is_efatura_user"] == 1:
-                        doc = frappe.get_doc(party_type, party.name)
-                        doc.db_set("is_efatura_user", 0)
+                        frappe.db.set_value(party_type, party.name,"is_efatura_user", 0)
                 if ebelge_users[party["tax_id"]]["is_eirsaliye_user"]:
                     if party["is_eirsaliye_user"] != 1:
-                        doc = frappe.get_doc(party_type, party.name)
-                        doc.db_set("is_eirsaliye_user", 1)
+                        frappe.db.set_value(party_type, party.name,"is_eirsaliye_user", 1)
                 else:
                     if party["is_eirsaliye_user"] == 1:
-                        doc = frappe.get_doc(party_type, party.name)
-                        doc.db_set("is_eirsaliye_user", 0)
+                        frappe.db.set_value(party_type, party.name,"is_eirsaliye_user", 0)
             else:
                 if party["is_efatura_user"] == 1:
-                    doc = frappe.get_doc(party_type, party.name)
-                    doc.db_set("is_efatura_user", 0)
+                    frappe.db.set_value(party_type, party.name,"is_efatura_user", 0)
                 if party["is_eirsaliye_user"] == 1:
-                    doc = frappe.get_doc(party_type, party.name)
-                    doc.db_set("is_eirsaliye_user", 0)
+                    frappe.db.set_value(party_type, party.name,"is_eirsaliye_user", 0)
     return frappe.utils.now_datetime()
 
 
@@ -52,8 +46,9 @@ def check_all_xml_files():
     for xmlFile in frappe.get_all('File',
                                   filters={"file_name": ["like", "%.xml"], "is_folder": 0},
                                   fields={"file_url"}):
-        # retrieve file path of xmlFile
-        filePath: str = frappe.get_site_path() + xmlFile.get('file_url')
-        hXMLFileHandler.handle_xml_file(filePath)
+        file_url = xmlFile.get('file_url')
+        # Strip leading slash to prevent absolute path resolution issues
+        file_path = frappe.get_site_path(file_url.lstrip('/'))
+        hXMLFileHandler.handle_xml_file(file_path)
 
     return frappe.utils.now_datetime()

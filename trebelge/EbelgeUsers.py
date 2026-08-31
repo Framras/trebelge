@@ -7,7 +7,7 @@ class EbelgeUsers:  # The target object of the parser
         self.is_edespatchadvice_document = False
         self.is_efatura_user = False
         self.is_eirsaliye_user = False
-        self.return_data = dict()
+        self.return_data: dict[str, dict[str, bool]] = {}
 
     def start(self, tag, attrib):  # Called for each opening tag.
         if tag == "Identifier":

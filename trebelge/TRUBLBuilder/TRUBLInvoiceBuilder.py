@@ -39,7 +39,7 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         self._product = None
 
     def reset(self) -> None:
-        if len(frappe.get_all(self._frappeDoctype, filters={'uuid': self._uuid})) == 0:
+        if not frappe.db.exists(self._frappeDoctype, {'uuid': self._uuid}):
             invoice_ = frappe.new_doc(self._frappeDoctype)
             invoice_.uuid = self._uuid
             invoice_.ublversionid = self.root.find('./' + self._cbc_ns + 'UBLVersionID').text
@@ -76,8 +76,8 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
         if issuetime_ is not None:
             try:
                 self._product.issuetime = datetime.strptime(issuetime_.text, '%H:%M:%S')
-            except ValueError:
-                pass
+            except ValueError as e:
+                frappe.log_error(title=f"UBL Parse Error - {self._uuid}", message=str(e))
 
     def build_note(self) -> None:
         # ['Note'] = ('cbc', 'note', 'Seçimli (0...n)', 'note')
