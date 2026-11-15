@@ -1,0 +1,2798 @@
+{
+  "guides": {
+    "kimlik-dogrulama-baslarken/kimlik-dogrulama-genel-bilgilendirme": {
+      "title": "Genel Bilgilendirme",
+      "content": "Kimlik Doğrulama servisi, entegrasyon sürecinin ilk adımıdır. Yapılan her işlem mutlaka aktif bir oturum ile gerçekleştirilmelidir.\n\n## Servis adresi\n\n| Servis | Endpoint |\n|---|---|\n| AuthenticationWS | `https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl` |\n\n## Ortak kullanılan eleman: REQUEST_HEADER\n\nAşağıdaki alanlar **tüm ürünlerin** web servis isteklerinde `REQUEST_HEADER` objesi içinde gönderilir. Ürün bazlı sayfalarda tekrar edilmez.\n\n| Parametre | Tip | Zorunluluk | Açıklama |\n|---|---|---|---|\n| `SESSION_ID` | String | Evet | Login metodundan dönen oturum bilgisi. Sonraki tüm metod çağrılarında gönderilmelidir. |\n| `APPLICATION_NAME` | String | Evet | Metodu çağıran uygulamanın adı. |\n| `CHANNEL_NAME` | String | Evet | Metodun çağrıldığı kanal adı. |\n| `COMPRESSED` | String | Hayır | İçeriğin ZIP formatında sıkıştırılmış gönderildiği/talep edildiği bilgisi. Belge gönderim ve okuma servislerinde bu değere göre işlem yapılır. |\n| `CLIENT_TXN_ID` | String | Hayır | İstemci uygulamanın ürettiği işlem numarası. İstek/yanıt eşleştirmesi için kullanılabilir. |\n\n## Portal\n\nTest ortamı için: https://portaltest.izibiz.com.tr — erişim bilgileri: entegrasyon@izibiz.com.tr\n"
+    },
+    "kimlik-dogrulama-baslarken/kimlik-dogrulama-dikkat-edilmesi-gereken-hususlar": {
+      "title": "Dikkat Edilmesi Gereken Hususlar",
+      "content": "Uygulamanızı tasarlarken aşağıdaki hususlara dikkat edilmelidir.\n\n1. Oturum **Login** metodu ile açılır ve dönen `SESSION_ID` sonraki tüm isteklerde kullanılır.\n2. Açılan oturum sistemde **8 saat aktif** kalır. Her belge gönderiminde oturum açıp kapatmak gerekmez.\n3. \"Aktif session bulunamadı\" hatası dönerse yeni oturum açılmalıdır.\n4. Her istekte `REQUEST_HEADER` içindeki `SESSION_ID`, `APPLICATION_NAME` ve `CHANNEL_NAME` alanları dolu gönderilmelidir.\n5. `CLIENT_TXN_ID` göndererek istek/yanıt eşleştirmesi yapmanız, hata durumlarında destek sürecini hızlandırır.\n6. Mükellef listesi **GetGibUserList** ile sıkıştırılmış XML olarak çekilir; sonuç zipten çıkarılıp işlenmelidir. Bu liste sık çekilmemeli, günlük olarak güncellenmelidir.\n7. Kullanıcı uygulamayı kapattığında **Logout** metodu ile oturum kapatılmalıdır.\n"
+    },
+    "e-fatura-baslarken/e-fatura-genel-bilgilendirme": {
+      "title": "Genel Bilgilendirme",
+      "content": "e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendi sistemine çekmesini sağlayan web servis uygulamasıdır.\n\n## Servis adresi\n\n| Servis | Endpoint |\n|---|---|\n| E-Fatura WS | `https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl` |\n\nKimlik doğrulama için ortak `AuthenticationWS` servisi kullanılır; `REQUEST_HEADER` alanları Kimlik Doğrulama bölümünde açıklanmıştır.\n\n## Genel kurallar\n\n- Faturalar **UBL-TR** formatında hazırlanmalıdır. Her faturanın içinde, faturanın görüntülenmesini sağlayan **XSLT** dokümanı bulunmalıdır.\n- Alıcının birden fazla posta kutusu (PK) varsa gönderim öncesi kullanıcıya seçtirilmelidir. Tek PK varsa seçim yapılmadan gönderilebilir.\n- **GetInvoice** ile tek seferde en fazla **100 fatura** çekilir.\n- Ticari faturaya **8 gün** içinde kabul/red yanıtı gönderilebilir; elektronik ortamda en fazla **1 yanıt** gönderilir.\n- Temel faturalar için yanıt gönderimi kısıtlanmalıdır.\n\n## Test hesabı\n\n| Gönderici VKN | Gönderici Etiket | Alıcı VKN | Alıcı Etiket |\n|---|---|---|---|\n| 4840847211 | `urn:mail:defaultgb@izibiz.com.tr` | 4840847211 | `urn:mail:defaultpk@izibiz.com.tr` |\n\n## Portal\n\nBelgelerin durumunu kontrol etmek ve içerik doğrulaması yapmak için: https://portaltest.izibiz.com.tr — erişim bilgileri: entegrasyon@izibiz.com.tr\n\n## Durum Kodları\n\n### Giden Fatura Durumları (STATUS)\n\n| Durum Kodu | Durum Açıklaması | STATUS_SUBSTATUS | Alınacak Aksiyon |\n|---|---|---|---|\n| 100 | DURUM HENÜZ GÜNCELLENMEDİ | LOAD_SUCCEED | Durum sorgulaması yapmaya devam edilecek |\n| 101 | KUYRUĞA EKLENDİ | LOAD_SUCCEED | Fatura yükleme başarılı |\n| 102 | TASLAK İŞLENİYOR | LOAD_PROCESSING | Belge işleniyor |\n| 103 | PAKETLENİYOR | PACKAGE_PROCESSING | Belge GİB'e göndermek için zarflanıyor |\n| 104 | PAKETLENDİ | PACKAGE_SUCCEED | Belge zarflandı, GİB'e gönderilecek |\n| 105 | PAKETLEME HATASI | PACKAGE_FAILED | Belge zarflanırken hata oluştu, tekrar denenecektir |\n| 106 | İMZALANIYOR | SIGN_PROCESSING | Belge imzalanıyor |\n| 107 | İMZALANDI | SIGN_SUCCEED | Belge imzalandı |\n| 109 | GİB'DEN YANIT BEKLİYOR | SEND_WAIT_GIB_RESPONSE | Belge GİB'e gönderildi |\n| 110 | ALICIDAN YANIT BEKLİYOR | SEND_WAIT_SYSTEM_RESPONSE | Belge alıcıya ulaştırıldı, sistem yanıtı bekleniyor |\n| 111 | ALICIDAN ONAY BEKLİYOR | SEND_WAIT_APPLICATION_RESPONSE | Ticari belge alıcıdan onay bekliyor |\n| 112 | KABUL EDİLDİ | ACCEPTED_SUCCEED | Belge kabul edildi |\n| 117 | RET EDİLDİ | REJECTED_WAIT_SYSTEM_RESPONSE | Red alıcıdan yanıt bekliyor |\n| 120 | RET EDİLDİ | REJECTED_SUCCEED | Belge ret edildi |\n| 134 | ZAMAN AŞIMI OLUŞTU | SEND_TIMEOUT | Belge GİB'e gönderilirken zaman aşımına uğradı |\n| 135 | GÖNDERİLİYOR | SEND_PROCESSING | Belge GİB'e gönderiliyor |\n| 136 | GÖNDERME İŞLEMİ BAŞARISIZ | SEND_FAILED | Belge GİB'e gönderilirken hata oluştu |\n| 137 | GÖNDERİLDİ | SEND_SUCCEED | Belge GİB'e gönderildi |\n| 139 | OTOMATİK GÖNDERİM HATASI | AUTO_FAILED | Otomatik gönderim hatası |\n| 140 | FATURA NUMARASI ATANDI | LOAD_ID_ASSIGNED | Belge numarası atandı |\n| 141 | FATURA NUMARASI ATANMA BEKLENİYOR | LOAD_WAIT_ID_ASSIGNED | Belge numarası atanması bekleniyor |\n\n### Gelen Fatura Durumları (STATUS)\n\n| Durum Kodu | Durum Açıklaması | STATUS_SUBSTATUS | Alınacak Aksiyon |\n|---|---|---|---|\n| 122 | KABUL EDİLDİ | ACCEPTED_SUCCEED |  |\n| 123 | KABUL İŞLENİYOR | ACCEPTED_PROCESSING |  |\n| 124 | KABUL GİB'DEN YANIT BEKLİYOR | ACCEPT_GIB_RESPONSE |  |\n| 125 | KABUL ALICIDAN YANIT BEKLİYOR | ACCEPT_WAIT_SYSTEM_RESPONSE |  |\n| 126 | KABUL İŞLEMİ BAŞARISIZ | ACCEPT_FAILED |  |\n| 127 | RED ALICIDAN YANIT BEKLİYOR | REJECT_WAIT_SYSTEM_RESPONSE |  |\n| 128 | RED GİB'DE YANIT BEKLİYOR | REJECT_WAIT_GIB_RESPONSE |  |\n| 129 | RED İŞLENİYOR | REJECT_PROCESSING |  |\n| 130 | REDDEDİLDİ | REJECT_SUCCEED |  |\n| 131 | RED İŞLEMİ BAŞARISIZ | FAILED |  |\n| 132 | ALINDI | RECEIVE_WAIT_APPLICATION_RESPONSE | Ticari fatura yanıt bekliyor |\n| 133 | ALINDI | RECEIVE_SUCCEED | Temel fatura alındı |\n| 134 | ZAMAN AŞIMI OLUŞTU | ACCEPT/REJECT_TIMEOUT | İşlem sistem tarafından otomatik tekrarlanacaktır |\n\n### GİB Durum Kodları (GIB_STATUS_CODE)\n\n| Kod | Açıklama | Alınacak Aksiyon |\n|---|---|---|\n| 1000 | ZARF KUYRUĞA EKLENDİ | Durum kodunun güncellenmesi beklenmelidir. |\n| 1100 | ZARF İŞLENİYOR | Durum kodunun güncellenmesi beklenmelidir. |\n| 1110 | ZIP DOSYASI DEĞİL | Belge yeniden gönderilmeli |\n| 1111 | ZARF ID UZUNLUĞU GEÇERSİZ | Belge yeniden gönderilmeli |\n| 1120 | ZARF ARŞİVDEN KOPYALANAMADI | Belge yeniden gönderilmeli |\n| 1130 | ZIP AÇILAMADI | Belge yeniden gönderilmeli |\n| 1131 | ZIP BİR DOSYA İÇERMELİ | Belge yeniden gönderilmeli |\n| 1132 | XML DOSYASI DEĞİL | Belge yeniden gönderilmeli |\n| 1133 | ZARF ID VE XML DOSYASININ ADI AYNI OLMALI | Belge yeniden gönderilmeli |\n| 1140 | DOKUMAN AYRIŞTIRILAMADI | Belge yeniden gönderilmeli |\n| 1141 | ZARF ID YOK | Belge yeniden gönderilmeli |\n| 1142 | ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI | Belge yeniden gönderilmeli |\n| 1143 | GEÇERSİZ VERSİYON | Belge yeniden gönderilmeli |\n| 1150 | SCHEMATRON KONTROL SONUCU HATALI | Belge yeniden gönderilmeli |\n| 1160 | XML ŞEMA KONTROLÜNDEN GEÇEMEDİ | Belge yeniden gönderilmeli |\n| 1161 | İMZA SAHİBİ TCKN VKN ALINAMADI | Belge yeniden gönderilmeli |\n| 1162 | İMZA KAYDEDİLEMEDİ | Belge yeniden gönderilmeli |\n| 1163 | GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR BELGEYİ İÇERMEKTEDİR | Belge yeniden gönderilmeli |\n| 1170 | YETKİ KONTROL EDİLEMEDİ | Belge yeniden gönderilmeli |\n| 1171 | GÖNDERİCİ BİRİM YETKİSİ YOK | Belge yeniden gönderilmeli |\n| 1172 | POSTA KUTUSU YETKİSİ YOK | Belge yeniden gönderilmeli |\n| 1175 | İMZA YETKİSİ KONTROL EDİLEMEDİ | Belge yeniden gönderilmeli |\n| 1176 | İMZA SAHİBİ YETKİSİZ | Belge yeniden gönderilmeli |\n| 1177 | GEÇERSİZ İMZA | Belge yeniden gönderilmeli |\n| 1180 | ADRES KONTROL EDİLEMEDİ | Belge yeniden gönderilmeli |\n| 1181 | ADRES BULUNAMADI | Belge yeniden gönderilmeli |\n| 1182 | KULLANICI EKLENEMEDİ | Belge yeniden gönderilmeli |\n| 1183 | KULLANICI SİLİNEMEDİ | Belge yeniden gönderilmeli |\n| 1190 | SİSTEM YANITI HAZIRLANAMADI | Belge yeniden gönderilmeli |\n| 1195 | SİSTEM HATASI | Belge yeniden gönderilmeli |\n| 1200 | ZARF BAŞARIYLA İŞLENDİ | Belgede sorun tespit edilmedi, sonraki aşamalara geçilecek. |\n| 1210 | DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ | GİB'in tekrar gönderme denemesi sonlandıktan sonra 1215 alınırsa belge yeniden gönderilmeli |\n| 1215 | DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI | Belge yeniden gönderilmeli |\n| 1220 | HEDEFTEN SİSTEM YANITI GELMEDİ | Ardından 1230 alınırsa belge yeniden gönderilmeli |\n| 1230 | HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ | Belge yeniden gönderilmeli |\n| 1300 | BAŞARIYLA TAMAMLANDI | Başarılı olan belge aynı numara ile gönderilemez. |\n"
+    },
+    "e-fatura-baslarken/e-fatura-dikkat-edilmesi-gereken-hususlar": {
+      "title": "Dikkat Edilmesi Gereken Hususlar",
+      "content": "Uygulamanızı tasarlarken aşağıdaki hususlara dikkat edilmelidir.\n\n1. Oturum **Login** ile açılır; `SESSION_ID` 8 saat aktif kalır ve tüm kullanım süresi boyunca aynı değer kullanılabilir.\n2. **GetGibUserList** ile GİB e-fatura mükellef listesi **her 2 saatte bir** çekilmeli, cari listenizdeki firmaların e-fatura mükellefi olup olmadığı güncellenmelidir.\n3. e-Fatura mükellefi firmalara kesilen faturalar UBL-TR formatına dönüştürülerek gönderilir. Her faturada XSLT dokümanı bulunmalıdır.\n4. Gönderim **SendInvoice** ile yapılır. Alıcının birden fazla posta kutusu varsa kullanıcıya seçtirilmelidir; tek PK varsa seçim yapılmadan gönderilebilir.\n5. Durum sorgulaması **GetInvoiceStatus** ile yapılır. Nihai duruma erişene kadar **en az 4 saatte bir** sorgulanmalıdır; sık sorgulama yapmayınız.\n6. Gelen faturalar **GetInvoice** ile çekilir; tek seferde en fazla 100 fatura döner. Dönen listede 100 fatura varsa servis tekrar çağrılmalı, 100'den azsa tekrar sorgulanmamalıdır. Zamanlayıcı ile çekiliyorsa aralık **en az 15 dakika** olmalıdır.\n7. Teslim alınan faturalar **MarkInvoice** ile okundu olarak işaretlenmelidir; aksi hâlde aynı faturalar tekrar döner.\n8. Gelen ticari faturaya kabul/red yanıtı **SendInvoiceResponseWithServerSign** ile gönderilir.\n9. Yanıt süresi **8 gündür**; süre dolduktan sonra kabul/red engellenmelidir. Temel faturalar için yanıt gönderimi kısıtlanmalıdır.\n10. Bir ticari faturaya elektronik ortamda **en fazla 1 yanıt** gönderilebilir; başarılı yanıt sonrası ikinci gönderim kısıtlanmalıdır.\n11. Kullanıcı uygulamayı kapattığında **Logout** ile oturum kapatılmalıdır.\n"
+    },
+    "e-arsiv-baslarken/e-arsiv-genel-bilgilendirme": {
+      "title": "Genel Bilgilendirme",
+      "content": "E-Arşiv Fatura servisi, e-Fatura mükellefi olmayan firmalara veya nihai tüketiciye düzenlenen faturaların özel entegratör sistemine gönderilmesini ve GİB'e raporlanmasını sağlayan web servis uygulamasıdır.\n\n## Servis adresi\n\n| Servis | Endpoint |\n|---|---|\n| EArşiv WS | `https://efaturatest.izibiz.com.tr/EArchiveWS?wsdl` |\n\nKimlik doğrulama için ortak `AuthenticationWS` servisi kullanılır; `REQUEST_HEADER` alanları Kimlik Doğrulama bölümünde açıklanmıştır.\n\n## Belge yapısı\n\nE-Arşiv faturaları UBL-TR formatında hazırlanır. Aşağıdaki alanlar e-Arşiv'e özeldir:\n\n| Alan | Kural |\n|---|---|\n| `cbc:ProfileID` | `EARSIVFATURA` olmalıdır. Farklı bir değer gönderilirse sistem bu alanı otomatik olarak `EARSIVFATURA` yazar. |\n| `cbc:IssueTime` | Zorunludur (faturanın düzenlenme saati). |\n| `AdditionalDocumentReference` | `DocumentTypeCode` ve `DocumentType` alanları zorunludur. |\n| `PaymentMeans` | İnternet üzerinden yapılan satışlarda zorunludur. |\n| `Delivery` | İnternet üzerinden yapılan satışlarda kargo bilgisi olarak zorunludur. |\n\n## Seri kullanımı\n\n- E-Fatura ve E-Arşiv faturaları **farklı seri** ile düzenlenmelidir.\n- İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturalarının, diğer satışlardan (E-Fatura veya E-Arşiv) **farklı seriden** düzenlenmesi zorunludur.\n\n## Portal\n\nBelgelerin durumunu kontrol etmek ve içerik doğrulaması yapmak için: https://portaltest.izibiz.com.tr — erişim bilgileri: entegrasyon@izibiz.com.tr\n\n## Durum Kodları\n\n### E-Arşiv Fatura Durumları (STATUS)\n\n| Durum Kodu | Durum Açıklaması |\n|---|---|\n| 100 | KUYRUĞA EKLENDİ |\n| 105 | TASLAK OLARAK EKLENDİ |\n| 110 | İŞLENİYOR |\n| 120 | RAPORLANACAK |\n| 130 | RAPORLANDI |\n| 150 | RAPORLANMADAN İPTAL EDİLDİ. RAPORLANMAYACAK. |\n| 200 | FATURA ID BULUNAMADI |\n\n### E-Arşiv E-Posta Gönderim Durumları (EMAIL_STATUS)\n\n| Durum Kodu | Durum Açıklaması |\n|---|---|\n| 100 | HENÜZ İŞLENMEDİ |\n| 110 | İŞLENİYOR |\n| 120 | İŞLENDİ |\n| 130 | E-MAIL GÖNDERİM SONLANDI |\n"
+    },
+    "e-arsiv-baslarken/e-arsiv-dikkat-edilmesi-gereken-hususlar": {
+      "title": "Dikkat Edilmesi Gereken Hususlar",
+      "content": "Uygulamanızı tasarlarken aşağıdaki hususlara dikkat edilmelidir.\n\n1. Oturum **Login** ile açılır; `SESSION_ID` 8 saat aktif kalır ve tüm kullanım süresi boyunca aynı değer kullanılabilir.\n2. Fatura gönderimi **WriteToArchiveExtended** ile UBL formatında yapılır.\n3. Fatura okuma **ReadFromArchive** ile yapılır; belge XML, PDF veya HTML formatında istenebilir.\n4. Hata tespiti veya müşterinin malı iade etmesi nedeniyle iptal edilen faturalar **CancelEArchiveInvoice** ile GİB'e bildirilmek üzere gönderilir.\n5. Durum sorgulaması **GetEArchiveInvoiceStatus** ile yapılır; faturanın durumu, e-posta durumu ve raporlanma durumu birlikte döner.\n6. GİB'e raporlanan e-Arşiv raporları **GetEArchiveReport** ile listelenir, rapor detayı **ReadEArchiveReport** ile sorgulanır.\n7. Daha önce yüklenmiş bir faturanın e-postasını tekrar göndermek için **GetEmailEarchiveInvoice** kullanılır.\n8. E-Fatura ve E-Arşiv faturaları **farklı seri** ile düzenlenmelidir.\n9. İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları, diğer satışlardan **farklı seriden** düzenlenmek zorundadır.\n10. `ProfileID` alanı `EARSIVFATURA` olmalıdır. Farklı bir değer gönderilirse sistem bu alanı otomatik olarak düzeltir.\n11. `IssueTime` (düzenlenme saati) alanı zorunludur.\n12. `AdditionalDocumentReference` içindeki `DocumentTypeCode` ve `DocumentType` alanları zorunludur.\n13. İnternet üzerinden yapılan satışlarda `PaymentMeans` (ödeme şekli) ve `Delivery` (kargo bilgileri) zorunludur.\n14. Kullanıcı uygulamayı kapattığında **Logout** ile oturum kapatılmalıdır.\n"
+    },
+    "e-arsiv-baslarken/gelen-earsiv-on-kosullar": {
+      "title": "Gelen E-Arşiv Fatura – Ön Koşullar",
+      "content": "GİB İnteraktif Vergi Dairesi (5.000/30.000 portalı) üzerinden müşterilerimize kesilen **gelen e-Arşiv Fatura** belgeleri, **Gelen E-Arşiv Fatura** servisleri ile API üzerinden listelenebilir, görüntülenebilir ve indirilebilir.\n\n## Ön Koşullar\n\nGelen E-SMM, E-Arşiv ve E-Müstahsil ürünlerini kullanabilmek için aşağıdaki adımların tamamlanmış olması gerekir:\n\n1. izibiz portalında **Hesap İşlemleri > Ürün & Servisler > Servisler** ekranından **Gelen E-Arşiv Servisi** satın alınmış olmalıdır.\n2. Ürün için **tarih seçilerek** **Başvur** butonu ile başvuru yapılmalıdır.\n3. Başvuru sırasında açılan pop-up ekranına **GİB giriş bilgileri** yazılmalıdır.\n\n> Servis satın alınmadan ve GİB giriş bilgileri tanımlanmadan gelen belge servisleri kullanılamaz.\n\n## Kullanılabilecek Servisler\n\n| Servis | Açıklama |\n|---|---|\n| **Gelen E-Arşiv Fatura Listeleme** | Gelen belgeleri tarih, belge no, ETTN, gönderici ve okunma durumuna göre sayfalı listeler. |\n| **Gelen E-Arşiv Fatura Görüntüleme** | Tek belgeyi HTML, PDF veya UBL (XML) olarak görüntüler. |\n| **Gelen E-Arşiv Fatura İndirme** | Seçilen belgeleri HTML, PDF veya UBL (XML) olarak zip içinde indirir. |"
+    },
+    "e-irsaliye-baslarken/e-irsaliye-genel-bilgilendirme": {
+      "title": "Genel Bilgilendirme",
+      "content": "e-İrsaliye servisi, irsaliye gönderimini sağlayan web servis uygulamasıdır.\n\n## Servis adresi\n\n| Servis | Endpoint |\n|---|---|\n| E-İrsaliye WS | `https://efaturatest.izibiz.com.tr/EIrsaliyeWS?wsdl` |\n\nKimlik doğrulama için ortak `AuthenticationWS` servisi kullanılır; `REQUEST_HEADER` alanları Kimlik Doğrulama bölümünde açıklanmıştır.\n\n## İşleyiş\n\n- Hazırlanan e-İrsaliye XML dosyasının gönderici ve alıcısı, ürünleri **sevk eden** ve **teslim alan** firma bilgilerini içerir. XML içerisinde GİB Başkanlığı'na ait bilgi bulunmaz.\n- Alıcısı e-İrsaliye mükellefi olan firmalara belge, firmanın **posta kutusu etiketine** gönderilir.\n- Alıcısı e-İrsaliye mükellefi **olmayan** firmalara ait belgeler, GİB'de açılan **sanal posta kutusu** etiketine gönderilir: `3900892152-urn:mail:irsaliyepk@gib.gov.tr`\n- Gönderilen e-İrsaliye GİB sisteminde başarıyla işlendikten sonra irsaliye yazdırılıp kargoya verilebilir.\n\n## Belge yapısı\n\n- e-İrsaliyeler **UBL-TR DespatchAdvice** formatında hazırlanır.\n- Her e-İrsaliye içinde, belgenin görüntülenmesini sağlayan **XSLT** dokümanı bulunmalıdır.\n\n## Test hesabı\n\n| Gönderici VKN | Gönderici Etiket | Alıcı VKN | Alıcı Etiket |\n|---|---|---|---|\n| 4840847211 | `urn:mail:defaultgb@izibiz.com.tr` | 4840847211 | `urn:mail:defaultpk@izibiz.com.tr` |\n\n## Portal\n\nBelgelerin durumunu kontrol etmek ve içerik doğrulaması yapmak için: https://portaltest.izibiz.com.tr — erişim bilgileri: entegrasyon@izibiz.com.tr\n\n## Durum Kodları\n\n### E-İrsaliye Durumları (STATUS_CODE)\n\n| Durum | Kod | Açıklama |\n|---|---|---|\n| DURUM_HENUZ_GUNCELLENMEDI | 100 | DURUM HENÜZ GÜNCELLENMEDİ |\n| LOAD_SUCCEED | 101 | KUYRUĞA EKLENDİ |\n| LOAD_PROCESSING | 102 | TASLAK İŞLENİYOR |\n| PACKAGE_PROCESSING | 103 | PAKETLENİYOR |\n| PACKAGE_SUCCEED | 104 | PAKETLENDİ |\n| PACKAGE_FAILED | 105 | PAKETLEME HATASI |\n| SIGN_PROCESSING | 106 | İMZALANIYOR |\n| SIGN_FAILED | 106 | İMZALAMA HATASI |\n| SIGN_SUCCEED | 107 | İMZALANDI |\n| RECEIVE_SUCCEED | 133 | BAŞARIYLA ALINDI |\n| SEND_TIMEOUT | 134 | GÖNDERME İŞLEMİ SİSTEM TARAFINDAN TEKRAR DENENECEKTİR |\n| RECEIVE_TIMEOUT | 134 | ALMA İŞLEMİ SİSTEM TARAFINDAN TEKRAR DENENECEKTİR |\n| SEND_PROCESSING | 135 | GÖNDERİLİYOR |\n| SEND_FAILED | 136 | GÖNDERME İŞLEMİ BAŞARISIZ |\n| SEND_SUCCEED | 137 | GÖNDERME İŞLEMİ BAŞARILI |\n\n### GİB Durum Kodları (GIB_STATUS_CODE)\n\n| Kod | Açıklama | Alınacak Aksiyon |\n|---|---|---|\n| 1000 | ZARF KUYRUĞA EKLENDİ | Durum kodunun güncellenmesi beklenmelidir. |\n| 1100 | ZARF İŞLENİYOR | Durum kodunun güncellenmesi beklenmelidir. |\n| 1110 | ZIP DOSYASI DEĞİL | Belge yeniden gönderilmeli |\n| 1111 | ZARF ID UZUNLUĞU GEÇERSİZ | Belge yeniden gönderilmeli |\n| 1120 | ZARF ARŞİVDEN KOPYALANAMADI | Belge yeniden gönderilmeli |\n| 1130 | ZIP AÇILAMADI | Belge yeniden gönderilmeli |\n| 1131 | ZIP BİR DOSYA İÇERMELİ | Belge yeniden gönderilmeli |\n| 1132 | XML DOSYASI DEĞİL | Belge yeniden gönderilmeli |\n| 1133 | ZARF ID VE XML DOSYASININ ADI AYNI OLMALI | Belge yeniden gönderilmeli |\n| 1140 | DOKUMAN AYRIŞTIRILAMADI | Belge yeniden gönderilmeli |\n| 1141 | ZARF ID YOK | Belge yeniden gönderilmeli |\n| 1142 | ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI | Belge yeniden gönderilmeli |\n| 1143 | GEÇERSİZ VERSİYON | Belge yeniden gönderilmeli |\n| 1150 | SCHEMATRON KONTROL SONUCU HATALI | Belge yeniden gönderilmeli |\n| 1160 | XML ŞEMA KONTROLÜNDEN GEÇEMEDİ | Belge yeniden gönderilmeli |\n| 1161 | İMZA SAHİBİ TCKN VKN ALINAMADI | Belge yeniden gönderilmeli |\n| 1162 | İMZA KAYDEDİLEMEDİ | Belge yeniden gönderilmeli |\n| 1163 | GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR BELGEYİ İÇERMEKTEDİR | Belge yeniden gönderilmeli |\n| 1170 | YETKİ KONTROL EDİLEMEDİ | Belge yeniden gönderilmeli |\n| 1171 | GÖNDERİCİ BİRİM YETKİSİ YOK | Belge yeniden gönderilmeli |\n| 1172 | POSTA KUTUSU YETKİSİ YOK | Belge yeniden gönderilmeli |\n| 1175 | İMZA YETKİSİ KONTROL EDİLEMEDİ | Belge yeniden gönderilmeli |\n| 1176 | İMZA SAHİBİ YETKİSİZ | Belge yeniden gönderilmeli |\n| 1177 | GEÇERSİZ İMZA | Belge yeniden gönderilmeli |\n| 1180 | ADRES KONTROL EDİLEMEDİ | Belge yeniden gönderilmeli |\n| 1181 | ADRES BULUNAMADI | Belge yeniden gönderilmeli |\n| 1182 | KULLANICI EKLENEMEDİ | Belge yeniden gönderilmeli |\n| 1183 | KULLANICI SİLİNEMEDİ | Belge yeniden gönderilmeli |\n| 1190 | SİSTEM YANITI HAZIRLANAMADI | Belge yeniden gönderilmeli |\n| 1195 | SİSTEM HATASI | Belge yeniden gönderilmeli |\n| 1200 | ZARF BAŞARIYLA İŞLENDİ | Belgede sorun tespit edilmedi, sonraki aşamalara geçilecek. |\n| 1210 | DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ | GİB'in tekrar gönderme denemesi sonlandıktan sonra 1215 alınırsa belge yeniden gönderilmeli |\n| 1215 | DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI | Belge yeniden gönderilmeli |\n| 1220 | HEDEFTEN SİSTEM YANITI GELMEDİ | Ardından 1230 alınırsa belge yeniden gönderilmeli |\n| 1230 | HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ | Belge yeniden gönderilmeli |\n| 1300 | BAŞARIYLA TAMAMLANDI | Başarılı olan belge aynı numara ile gönderilemez. |\n"
+    },
+    "e-irsaliye-baslarken/e-irsaliye-dikkat-edilmesi-gereken-hususlar": {
+      "title": "Dikkat Edilmesi Gereken Hususlar",
+      "content": "E-İrsaliye uygulamanızı tasarlarken aşağıdaki hususlara dikkat edilmelidir.\n\n1. Oturum **Login** ile açılır; `SESSION_ID` 8 saat aktif kalır ve tüm kullanım süresi boyunca aynı değer kullanılabilir.\n2. **GetGibUserList** ile GİB e-İrsaliye mükellef listesinin **her 2 saatte bir** çekilmesi önerilir. Güncel listeyi çektikten sonra cari listenizdeki firmaların e-İrsaliye mükellefi olup olmadığı güncellenmelidir.\n3. e-İrsaliyeler **UBL-TR DespatchAdvice** formatında hazırlanır ve her belgede XSLT dokümanı bulunmalıdır.\n4. Taslak yükleme **LoadDespatchAdvice** ile yapılır.\n5. Gönderim **SendDespatchAdvice** ile yapılır. Alıcı mükellefin birden fazla posta kutusu varsa kullanıcıya seçtirilmelidir; tek PK varsa seçim yapılmadan gönderilebilir.\n6. Alıcı e-İrsaliye mükellefi değilse belge, GİB sanal posta kutusuna gönderilir: `3900892152-urn:mail:irsaliyepk@gib.gov.tr`\n7. Durum sorgulaması **GetDespatchAdviceStatus** ile yapılır. Nihai duruma erişene kadar **en az 4 saatte bir** sorgulanmalıdır; sık sorgulama yapmayınız.\n8. Gelen irsaliyeler **GetDespatchAdvice** ile çekilir; tek seferde en fazla **100 belge** döner. Dönen listede 100 kayıt varsa servis tekrar çağrılmalı, 100'den azsa tekrar sorgulanmamalıdır.\n9. Teslim alınan irsaliyeler **MarkDespatchAdvice** ile okundu olarak işaretlenmelidir; aksi hâlde aynı kayıtlar tekrar döner.\n10. İrsaliye yazdırılıp kargoya verilmeden önce belgenin GİB sisteminde başarıyla işlendiği teyit edilmelidir.\n11. Kullanıcı uygulamayı kapattığında **Logout** ile oturum kapatılmalıdır.\n"
+    }
+  },
+  "soap": {
+    "kimlik-soap-webservice/authenticationws-auth": {
+      "title": "AuthenticationWS",
+      "wsdl_url": "https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl",
+      "namespace": "http://schemas.i2i.com/ei/wsdl",
+      "description": "",
+      "operations": [
+        {
+          "name": "Oturum Açma (Login)",
+          "slug": "oturum-acma-login",
+          "soap_action": "LoginRequest",
+          "description": "* Web servis istemcisinin(client) özel entegratör platformuna kimlik doğrulayarak giriş yapmasını sağlar.\n* Bu servise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır.\n* **Login** işleminden dönen işlem ID parametresi daha sonra çağrılacak tüm metotlarda `HEADER_REQUEST.SESSION_ID` elemanı olarak gönderilmelidir.\n\n<aside class=\"notice\">DİKKAT: Açılan oturum sistemimizde 8 saat aktif kalmaktadır. Her fatura gönderiminde oturum açma ve kapatmak zorunda değilsiniz.\n</aside>",
+          "is_login": true,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Her webservis isteğinde gönderilmesi beklen ortak elemandır."
+            },
+            {
+              "name": "USER_NAME",
+              "required": true,
+              "description": "Sisteme tanımlı kullanıcı adı. **Test hesabı için entegrasyon@izibiz.com.tr e-posta adresiyle iletişime geçebilirsiniz.**"
+            },
+            {
+              "name": "PASSWORD",
+              "required": true,
+              "description": "Sisteme tanımlı kullanıcıya ait şifre."
+            }
+          ]
+        }
+      ]
+    },
+    "soap-ws/authenticationws-gi-buser": {
+      "title": "AuthenticationWS-GIBUser",
+      "wsdl_url": "https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl",
+      "namespace": "http://schemas.i2i.com/ei/wsdl",
+      "description": "",
+      "operations": [
+        {
+          "name": "Mükellef Sorgulama (CheckUser)",
+          "slug": "mukellef-sorgulama-checkuser",
+          "soap_action": "CheckUserRequest",
+          "description": "* Mükellefin, Gelir İdaresi Başkanlığı sistemine kayıtlı olup olmadığının kontrol edildiği servistir.\n* Sorgulanan VKN GİB sistemine kayıtlıysa, sistemde tanımlanmış etiket listesi dönülmektedir.\n* Sorgulanan VKN GİB sistemine kayıtlı değilse liste boş dönülür. **Sonuç boş ise firma mükellef değildir.**\n\nServisten dönen parametreler şu şekildedir:\n\nParametre | Tip        | Açıklama\n--------- | ----------- | -----------\n**USER.IDENTIFIER** | String | Mükellefe ait VKNsı.\n**USER.ALIAS** | String | Mükellefe ait GB veya PK etiketi.\n**USER.TITLE** | String | Firmanın GİB sisteminde tanımlı ünvanı.\n**USER.TYPE** | String | Firmanın GİB sisteminde tanımlı tipi. `OZEL` veya `KAMU` olabilir.\n**USER.REGISTER_TIME** | Date | Firmanın GİB sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11\n**USER.UNIT** | String | Etiketin tipi. `GB` veya `PK` \n**USER.ALIAS_CREATION_TIME** | DateTime | Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur."
+            },
+            {
+              "name": "USER",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "DOCUMENT_TYPE",
+              "required": true,
+              "description": "Mükelleffiyet kontrol edilecek ürün tipi. E-Fatura için INVOICE, E-İrsaliye için DESPATCHADVICE gönderilmelidir."
+            }
+          ]
+        },
+        {
+          "name": "Mükellef Listesi Dosyası Çekme (GetGibUserList)",
+          "slug": "mukellef-listesi-dosyasi-cekme-getgibuserlist",
+          "soap_action": "GetGibUserListRequest",
+          "description": "E-Fatura ve E-İrsaliye sistemine kayıtlı firmalara ait GB/PK etiketlerinin sıkıştırılmış olarak istenilen tipte dönüldüğü servistir.\n\nServisten dönen parametreler şu şekildedir:\n\nParametre | Tip        | Açıklama\n--------- | ----------- | -----------\n**CONTENT** | Base64Encoded | Kriterlere uygun mükelleflere ait GB ve PK adresleri\n\n<aside class=\"success\">\nSonuç sıkıştırılmış XML dosyası içerisinde `USER` tipinde değer dönülmektedir. Sonuç istemci tarafına çekildikten sonra zipten çıkarılmalı ve XML dosya işlenmelidir.\n</aside>\n\n**XML dosyasının içerisinde bulunan USER objesinin elamanları şu şekildedir :**\n\nEleman | Tip        | Açıklama\n--------- | ----------- | -----------\n**USER.IDENTIFIER** | String | Mükellefe ait VKNsı.\n**USER.ALIAS** | String | Mükellefe ait GB veya PK etiketi. format: urn:mail:defaultgb@firma.com\n**USER.TITLE** | String | Firmanın GİB e-fatura sisteminde tanımlı ünvanı.\n**USER.TYPE** | String | Firmanın GİB e-fatura sisteminde tanımlı tipi. `OZEL` veya `KAMU` olabilir.\n**USER.UNIT** | String | Etiketin tipi. `GB` veya `PK`\n**USER.DOCUMENT_TYPE** | String | E-Fatura için `INVOICE`, E-İrsaliye için `DESPATCHADVICE` dönülmektedir.\n**USER.REGISTER_TIME** | DateTime | Firmanın GİB e-fatura sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11\n**USER.ALIAS_CREATION_TIME** | DateTime | Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11\n**USER.DELETED** | String | Eleman sadece silinmiş etiketlerde bulunur. Değeri `Y` olur. Silinmemiş etiket",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "TYPE",
+              "required": false,
+              "description": "Listenin dönüleceği dosya tipi. XML ve CSV olabilir. Varsayılan XMLdir."
+            },
+            {
+              "name": "DOCUMENT_TYPE",
+              "required": false,
+              "description": "Mükellef listesi çekilmek istenilen ürün tipi. E-Fatura için INVOICE, E-İrsaliye için DESPATCHADVICE gönderilmelidir. Her iki ürüne ait etiketleri çekmek için ALL değeri gönderilebilir. Parametre gönd"
+            },
+            {
+              "name": "REGISTER_TIME_START",
+              "required": false,
+              "description": "Mükellefiyet başlangıç tarihi. Belirli bir tarihten sonra e-fatura veya e-irsaliye mükellefi sisteme dahil olmuş mükellefleri çekmek için kullanılabilir. Eğer tarih içerisinde saat bilgisi gönderilirs"
+            },
+            {
+              "name": "ALIAS_TYPE",
+              "required": false,
+              "description": "Mükelleflerin etiketlerine göre çekmek için kullanılır. Sadece Gönderici Birim etiketini çekmek için GB, Posta Kutusu etiketini çekmek için PK gönderilmelidir. Bütün etiketleri çekmek için ALL değeri "
+            },
+            {
+              "name": "ALIAS_MODIFY_DATE",
+              "required": false,
+              "description": "Etiket durum değişiklik tarihi. Belirli bir tarihten sonra sisteme eklenen veya silinen etiketleri çekmek için kullanılabilir. Bu parametre gönderilirse gönderilen tarihten sonra sisteme eklenen veya "
+            }
+          ]
+        }
+      ]
+    },
+    "efatura-soap-webservice/einvoicews": {
+      "title": "E-Fatura WS (EInvoiceWS)",
+      "wsdl_url": "https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl",
+      "namespace": "http://schemas.i2i.com/ei/wsdl",
+      "description": "# Amacı\ne-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.\n\n\n# Dikkat Edilecek Hususlar\n\nUygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:\n\n1. Kimlik Doğrulama (Authentication) Webservisinde bulunan Login servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.\n2. Kimlik Doğrulama (Authentication) Webservisinde bulunan GetGibUserList servisi ile GIB e-fatura mükellef listesini her 2 saatte özel entegratör platformundan çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.\n3. E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.\n4. SendInvoice metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.\n5. GetInvoiceStatus metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. Sık sorgulama yapmayınız.\n6. GetInvoice metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yap",
+      "operations": [
+        {
+          "name": "Fatura Gönderme (SendInvoice)",
+          "slug": "fatura-gonderme-sendinvoice",
+          "soap_action": "SendInvoiceRequest",
+          "description": "* Tekli veya çoklu fatura gönderimini destekler.\n* Bu işlemden sonra gönderilen faturaların durumları GetInvoiceStatus servisi ile kontrol edilmelidir.\n* Faturanın durumu GIB’de hatalı olduğu zaman bu servis ile faturayı aynı fatura numarası ve aynı ETTN ile tekrar gönderilebilir.\n* Fatura yüklenirken fatura şema ve şematron kontrolü ve tekillik kontrolünden geçirilir. Fatura XML içerisinde hata varsa sisteme yüklenmez. Fatura XML içerisinde ki sorun düzeltilerek tekrar gönderilmelidir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Her webservis isteğinde gönderilmesi beklen ortak elemandır"
+            },
+            {
+              "name": "SENDER",
+              "required": false,
+              "description": "Faturayı gönderen tarafın VKN/TCKNsi. VKN/TCKN vkn attribute içerisine, gönderici birim (GB) etiketini alias attribute eklenmelidir. Eğer eleman gönderilmezse oturum açılan kullanıcının bağlı olduğu h"
+            },
+            {
+              "name": "RECEIVER",
+              "required": false,
+              "description": "Faturanın alıcı tarafının VKN/TCKNsi. VKN/TCKN vkn attribute içerisine, posta kutusu (PK) etiketini alias attribute içerisine eklenmelidir. Eğer eleman gönderilmezse fatura içerisinde ki alıcı taraf ("
+            },
+            {
+              "name": "XSLT_NAME",
+              "required": false,
+              "description": "Faturaya eklenecek şablon adı. Fatura içerisinde şablon gönderilmediği durumlarda portalda tanımlanmış bir şablonu faturaya eklemek için kullanılır.  Şablonun adını yazınız. Özel desteklenen değerler:"
+            },
+            {
+              "name": "SERI_PREFIX",
+              "required": false,
+              "description": "Faturaya numara ataması sistem tarafından yapılması için kullanılır. Numara atanacak seri ön eki portalda tanımlı olması gerekir. Maksimum 3 hane büyük harf kullanılmalıdır."
+            },
+            {
+              "name": "DISABLE_DATE_CONTROL",
+              "required": false,
+              "description": "Fatura yüklenirken yapılan geriye dönük belge yükleme kontrolünü yüklenen fatura için devre dışı bırakır."
+            },
+            {
+              "name": "INVOICE",
+              "required": true,
+              "description": "Gönderilecek fatura bilgileri. Bir istek ile çoklu fatura gönderimi yapmak için INVOICE elemanı çoklanmalıdır."
+            },
+            {
+              "name": "ECOMMERCE_UPLOAD",
+              "required": false,
+              "description": "Pazaryerinde yapılan satışlar için düzenlenen faturaların pazaryerlerine yüklenmesi için kullanılır. Eğer XML içerisine eklemek istemiyorsanız bu alanı kullanarak gönderim yapabilirsiniz. Eğer UBL Fat"
+            }
+          ]
+        },
+        {
+          "name": "Taslak Fatura Yükleme (LoadInvoice)",
+          "slug": "taslak-fatura-yukleme-loadinvoice",
+          "soap_action": "LoadInvoiceRequest",
+          "description": "* FATURA Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı E-Fatura sistemine yükler.\n* Eğer fatura numarası atanmışsa (16 hane ise) şema ve şematron kontrolünden geçirilir. Fatura numarası atanmamışsa şema ve şematron kontrolü yapılmaz.\n* Aynı faturanın tekrar yüklenmesine müsade edilir. Farklı kayıt oluşturulmaz. Oluşan kayıt yeni içerik ile güncellenir.\n",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Her webservis isteğinde gönderilmesi beklen ortak elemandır"
+            },
+            {
+              "name": "INVOICE",
+              "required": true,
+              "description": "Gönderilecek fatura bilgileri. Bir istek ile çoklu fatura gönderimi yapmak için INVOICE elemanı çoklanmalıdır."
+            }
+          ]
+        },
+        {
+          "name": "Fatura Listeleme (GetInvoice)",
+          "slug": "fatura-listeleme-getinvoice",
+          "soap_action": "GetInvoiceRequest",
+          "description": "* E-Fatura sisteminde satış (giden) veya alış (gelen) faturaların üst başlık ve dosyalarını sorgulamak için kullanılır.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Her webservis isteğinde gönderilmesi beklen ortak elemandır"
+            },
+            {
+              "name": "INVOICE_SEARCH_KEY",
+              "required": true,
+              "description": "Belge sorgulamak için kullanılacak kriterler. En az bir parametre gönderilmelidir."
+            },
+            {
+              "name": "HEADER_ONLY",
+              "required": false,
+              "description": "Değerler: Y/N : Fatura dosya ile beraber mi yoksa sadece özet üst bilgisi mi sorgulanmak istenildiğini belirler. Eleman gönderilmezse veya N değeri gönderilirse faturalar üst başlık ve dosya ile berab"
+            }
+          ]
+        },
+        {
+          "name": "Fatura Durum Sorgulama (GetInvoiceStatus)",
+          "slug": "fatura-durum-sorgulama-getinvoicestatus",
+          "soap_action": "GetInvoiceStatusRequest",
+          "description": "* E-Fatura sisteminde bulunan bir veya birden fazla taslak, gelen ve giden faturaların durumunu sorgulamayı sağlayan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur."
+            },
+            {
+              "name": "MARK",
+              "required": false,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Fatura Görüntüleme (GetInvoiceWithType)",
+          "slug": "fatura-goruntuleme-getinvoicewithtype",
+          "soap_action": "GetInvoiceWithTypeRequest",
+          "description": "* E-Fatura sisteminden bulunan bir faturanın görselini çekmek için tasarlanmış servistir.\n* Faturaların HTML ve PDF görsellerini çekebilirsiniz.\n* Fatura görseli içerisinde ki XSLT ile yapılacaktır. Eğer fatura içerisinde ki şablonda sorun varsa hata fırlatılacaktır.\n* İçerik sıkıştırılmış olarak dönülmektedir. İstemciye çektikten sonra unzip edilmelidir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur. Bu serviste COMPRESSED elemanı dikkate alınmamaktadır. Talep edilen formatta sıkıştırılmış/ziplenmiş olarak dönülecekt"
+            },
+            {
+              "name": "INVOICE_SEARCH_KEY",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "HEADER_ONLY",
+              "required": false,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Fatura Alındı/Okundu İşaretleme (MarkInvoice)",
+          "slug": "fatura-alindi-okundu-i-saretleme-markinvoice",
+          "soap_action": "MarkInvoiceRequest",
+          "description": "* E-Fatura sisteminde bir veya birden fazla faturayı alındı/alınmadı olarak işaretlemek için geliştirilmiş servistir.\n* GetInvoice servisi ile müşteri ortamına başarı alınan faturaların tekrar sorgulandığında listede gelmemesi için MarkInvoice servisi ile alındı olarak işaretlenmeli.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur."
+            },
+            {
+              "name": "MARK",
+              "required": false,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Fatura Durum Sorgulama (GetInvoiceStatusAll)",
+          "slug": "fatura-durum-sorgulama-getinvoicestatusall",
+          "soap_action": "GetInvoiceStatusAllRequest",
+          "description": "* E-Fatura sisteminde bulunan bir veya birden fazla taslak, gelen ve giden faturaların durumunu sorgulamayı sağlayan servistir.\n\nServisten dönen parametreler şu şekildedir:\n\nParametre | Tip        | Açıklama\n--------- | ----------- | -----------\n**INVOICE_STATUS** | ComplexType | Sorgu kriterine uyan fatura(lar)ın listesi. Fatura numarası `ID`, fatura evrensel tekil tanımlama numarası  `UUID` attribute içerisinde dönülmektedir.\n**INVOICE_STATUS.STATUS** | String | Faturanın e-fatura sisteminde ki durumu. Detay için **Fatura Durumları** başlığını inceleyiniz.\n**INVOICE_STATUS.STATUS_DESCRIPTION** | String | Fatura durum açıklaması. Detay için **Fatura Durumları** başlığını inceleyiniz.\n**INVOICE_STATUS.GIB_STATUS_CODE** | String | Faturanın GİB'de ki durum kodu. Faturanın GİB'de ki durumu e-fatura sistemi tarafından henüz sorgulanmadıysa eleman dönülmez. Detay için **GİB Durum Kodları** başlığını inceleyiniz.\n**INVOICE_STATUS.GIB_STATUS_DESCRIPTION** | String | Faturanın GİB'de ki durumunun kodunun açıklaması. Faturanın GİB'de ki durumu e-fatura sistemi tarafından henüz sorgulanmadıysa eleman dönülmez. Detay için **GİB Durum Kodları** başlığını inceleyiniz.  \n**INVOICE_STATUS.RESPONSE_CODE** | String | Ticari fatura için verilen yanıtı içeren zarfın durum kodu. Eğer faturanın senaryosu TICARIFATURA değilse eleman dönülmez.\n**INVOICE_STATUS.RESPONSE_DESC** | String | Ticari fatura için verilen yanıtı içeren zarfın durum açıklaması. Eğer faturanın senaryosu TICARIFATURA değilse ",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "\tRequest Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur."
+            },
+            {
+              "name": "UUID",
+              "required": true,
+              "description": "Durumu sorgulanacak faturanın GUID formatında Evrensel Tekil Tanımlama Numarası. Birden fazla fatura durum sorgulamak için INVOICE elementini çoklayınız."
+            }
+          ]
+        },
+        {
+          "name": "Ticari Faturaya Yanıt Gönderme (SendInvoiceResponseWithServerSign)",
+          "slug": "ticari-faturaya-yanit-gonderme-sendinvoiceresponsewithserversign",
+          "soap_action": "SendInvoiceResponseWithServerSignRequest",
+          "description": "",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "STATUS",
+              "required": true,
+              "description": "Faturaya verilecek yanıt. KABUL veya RED değeri alabilir."
+            },
+            {
+              "name": "INVOICE",
+              "required": true,
+              "description": "\tYanıt gönderilecek fatura listesi"
+            },
+            {
+              "name": "DESCRIPTION",
+              "required": true,
+              "description": "Yanıt ile beraber gönderilecek mesaj. Ret edilen faturalar için Red Sebebi bu alana yazılabilir. STATUS KABUL ise ve bu alan gönderilmezse Fatura kabul edildi, STATUS RED ise Reddedildi mesajı varsayı"
+            }
+          ]
+        }
+      ]
+    },
+    "soap-ws2/earchivews": {
+      "title": "EArşiv WS (EArchiveWS)",
+      "wsdl_url": "https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl",
+      "namespace": "http://schemas.i2i.com/ei/wsdl",
+      "description": "",
+      "operations": [
+        {
+          "name": "E-Arşiv Gönderme (WriteToArchiveExtended)",
+          "slug": "e-arsiv-gonderme-writetoarchiveextended",
+          "soap_action": "ArchiveInvoiceExtendedRequest",
+          "description": "E-Fatura mükellefi olmayan firma veya nihai tüketiciye düzenlenen faturaların özel entegratör sistemine gönderilmesi ve raporlamasını sağlayan webservis uygulamasıdır.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka COMPRESSED elemanı eklenmeli ve N değeri gönderilmelidir"
+            },
+            {
+              "name": "ArchiveInvoiceExtendedContent",
+              "required": true,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "E-Arşiv Fatura Okuma (ReadFromArchive)",
+          "slug": "e-arsiv-fatura-okuma-readfromarchive",
+          "soap_action": "ArchiveInvoiceReadRequest",
+          "description": "Özel entegratör sistemine gönderilen e-arşiv faturalarının farklı formatlarda (XML,HTML,PDF) okumasını sağlayan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "INVOICEID",
+              "required": true,
+              "description": "Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir. GUID formatında"
+            },
+            {
+              "name": "PORTAL_DIRECTION",
+              "required": true,
+              "description": "OUT değeri gönderilecek."
+            },
+            {
+              "name": "PROFILE",
+              "required": true,
+              "description": "faturayı almak istediğini formattır. PDF, HTML, XML değeri alabilir. XML değeri gönderilmezse faturanın imzalı UBL-TR XML dosyası dönülecektir."
+            }
+          ]
+        },
+        {
+          "name": "E-Arşiv Durum Sorgulama (GetEArchiveStatus)",
+          "slug": "e-arsiv-durum-sorgulama-getearchivestatus",
+          "soap_action": "GetEArchiveInvoiceStatusRequest",
+          "description": "Özel entegratör platformuna gönderilen bir veya birden çok faturanın durumunu sorgulamayı sağlayan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur."
+            },
+            {
+              "name": "UUID",
+              "required": true,
+              "description": "Durumu sorgulanacak faturanın Evrensel Tekil Tanımlama Numarası (ETTN). GUID formatında. Birden fazla faturanın durumunu sorgulamak için bu parametre çoklanır."
+            }
+          ]
+        },
+        {
+          "name": "E-Arşiv Fatura İptal (CancelEArchiveInvoice)",
+          "slug": "e-arsiv-fatura-i-ptal-cancelearchiveinvoice",
+          "soap_action": "CancelEArchiveInvoiceRequest",
+          "description": "* Özel entegratör platformuna gönderildikten veya GİB'e raporlandıktan sonra eksik veya hata tespit edilen veya müşteri tarafından iade edilen belgenin GIB'e iptal fatura durumunda raporlanmasını sağlayan servistir.\n* GİB'e raporlamadan tespit edilmiş bir hata sebebi ile hiç raporlanmamasını istenildiği durumlarda belge numarası farklı bir faturaya atanarak gönderilebilir.\n* İptal edilen değil ama silinen fatura müteselsilliği bozmamak için tekrar yüklenmelidir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "CancelEArsivInvoiceContent",
+              "required": true,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "E-Arşiv Faturasını E-Posta Olarak Tekrar Gönderme (GetEmailEarchiveInvoice)",
+          "slug": "e-arsiv-faturasini-e-posta-olarak-tekrar-gonderme-getemailearchiveinvoice",
+          "soap_action": "GetEmailEarchiveInvoiceRequest",
+          "description": "* E-Arşiv faturasını yükledikten sonra e-posta olarak aynı veya farklı e-postalara tekrar gönderilmesini sağlayan servistir.\n* Birden fazla e-postaya göndermek için virgül (,) ile ayırarak gönderilmelidir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur."
+            },
+            {
+              "name": "FATURA_UUID",
+              "required": true,
+              "description": "E-Posta olarak iletilecek faturanın Evrensel Tekil Tanımlama Numarası (ETTN). GUID formatında."
+            },
+            {
+              "name": "FATURA_ID",
+              "required": false,
+              "description": "Kullanılmamaktadır"
+            },
+            {
+              "name": "EMAIL",
+              "required": true,
+              "description": "E-Arşiv faturasının iletileceği e-posta adresi. E-Posta formatında olmalıdır. Birden fazla e-postaya göndermek için virgül (,) ile ayırarak gönderilmelidir."
+            }
+          ]
+        },
+        {
+          "name": "E-Arşiv Fatura Sayılarını Sorgulama (EArchiveInvoiceCount)",
+          "slug": "e-arsiv-fatura-sayilarini-sorgulama-earchiveinvoicecount",
+          "soap_action": "EArchiveInvoiceCountRequest",
+          "description": "",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ISSUE_DATE_START",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "ISSUE_DATE_END",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "CDATE_START",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "CDATE_END",
+              "required": false,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "E-Arşiv Rapor Listesini Çekme (GetEArchiveReport)",
+          "slug": "e-arsiv-rapor-listesini-cekme-getearchivereport",
+          "soap_action": "EArchiveInvoiceCountRequest",
+          "description": "Özel entegratör platformunda mükellefe ait oluşturulan bir döneme ait rapor listesini çekmek için kullanılır. Bu servis sadece rapor listesini döndecektir. Servisin döndüğü raporlara ait içerikleri almak için ReadEArchiveReport servisi kullanılabilir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur."
+            },
+            {
+              "name": "REPORT_PERIOD",
+              "required": true,
+              "description": "Rapor listesinin alınmak istenilen dönem bilgisi. Örnek: Mayıs 2018 dönemi için 201805"
+            },
+            {
+              "name": "REPORT_STATUS_FLAG",
+              "required": true,
+              "description": "Rapor durumunun sonuca eklenmesi isteniyorsa Y, değilse N değeri gönderilmelidir."
+            }
+          ]
+        },
+        {
+          "name": "E-Arşiv Rapor Çekme (ReadEArchiveReport)",
+          "slug": "e-arsiv-rapor-cekme-readearchivereport",
+          "soap_action": "ReadEArchiveReportRequest",
+          "description": "Mükellef için GİB'e gönderilen raporun imzalı XML dosyasını okumayı sağlayan servistir",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "RAPOR_NO",
+              "required": true,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "soap-ws3/e-irsaliye": {
+      "title": "E-İrsaliye (EIrsaliyeWS)",
+      "wsdl_url": "https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl",
+      "namespace": "http://schemas.i2i.com/ei/wsdl",
+      "description": "",
+      "operations": [
+        {
+          "name": "E-İrsaliye Gönderme (SendDespatchAdvice)",
+          "slug": "e-i-rsaliye-gonderme-senddespatchadvice",
+          "soap_action": "SendDespatchAdvice",
+          "description": "* E-İrsaliye Platformu üzerinden 1 ya da daha fazla e-irsaliyeyi GIB (Gelir İdaresi Başkanlığı) E-İrsaliye sistemine gönderir.\n* E-İrsaliye gönderim esnasında hatalı duruma geçen irsaliyeler bu servis ile tekrar gönderilebilir.\n* Bir alıcıya birden fazla irsaliye gönderilebilir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "SENDER",
+              "required": false,
+              "description": "İrsaliye gönderen tarafın vergi kimlik numarasını vkn attribute içerisine, gönderici birim etiketini alias attribute eklenmelidir. Eğer eleman gönderilmezse oturum açılan kullanıcının bağlı olduğu hes"
+            },
+            {
+              "name": "RECEIVER",
+              "required": true,
+              "description": "E-İrsaliye mükellefi ise firmanın VKN/TCKNosunu vkn attribute içerisine, posta kutusu etiketini alias attribute içerisine eklenmelidir. Eğer E-irsaliye mükellefi değil ise GİB'de tanımlanan sanal etik"
+            },
+            {
+              "name": "DESPATCHADVICE",
+              "required": false,
+              "description": "İrsaliyenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Bir istek ile çoklu XML gönderimi yapılabilir. Birden fazla irsaliye göndermek için DESPATCHADVICE elemanı çoklanmalıdır."
+            }
+          ]
+        },
+        {
+          "name": "Taslak İrsaliye Yükleme (LoadDespatchAdvice)",
+          "slug": "taslak-i-rsaliye-yukleme-loaddespatchadvice",
+          "soap_action": "LoadDespatchAdviceRequest",
+          "description": "* Özel entegratör platformu üzerinden 1 yada daha fazla irsaliyeyi sisteme yükler.\n* Eğer irsaliye numarası atanmışsa (16 hane ise) şema ve şematron kontrolünden geçirilir. İrsaliye numarası atanmamışsa şema ve şematron kontrolü yapılmaz.\n* Aynı İrsaliye tekrar taslaklara yüklenmesine müsade edilir. Farklı kayıt oluşturulmaz. Oluşan kayıt yeni içerik ile güncellenir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur. İrsaliye sıkıştırılarak/ziplenerek gönderiliyorsa COMPRESSED alanı gönderilmeyebilir veya Y olarak gönderilebilir. XML"
+            },
+            {
+              "name": "DESPATCHADVICE",
+              "required": true,
+              "description": "İrsaliye numarasını ID attribute içerisine, Evrensel tekil tanımlama numarasını (ETTN) UUID attribute eklenmelidir."
+            }
+          ]
+        },
+        {
+          "name": "E-İrsaliye Yanıtı Gönderme (SendReceiptAdvice)",
+          "slug": "e-i-rsaliye-yaniti-gonderme-sendreceiptadvice",
+          "soap_action": "SendReceiptAdviceRequest",
+          "description": "E-İrsaliye Yanıtı belgesinin özel entegratör sistemlerine gönderilmesini sağlayan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "İstek başlığı. Oturum ve işlem bilgilerini taşır."
+            },
+            {
+              "name": "SENDER",
+              "required": false,
+              "description": "Gönderen taraf. vkn ve alias öznitelikleriyle belirtilir."
+            },
+            {
+              "name": "RECEIVER",
+              "required": false,
+              "description": "Alıcı taraf. vkn ve alias öznitelikleriyle belirtilir."
+            },
+            {
+              "name": "ID_ASSIGN_FLAG",
+              "required": false,
+              "description": "true verilirse belge numarası özel entegratör tarafından atanır."
+            },
+            {
+              "name": "ID_ASSIGN_PREFIX",
+              "required": false,
+              "description": "Belge numarası özel entegratör tarafından atanacaksa kullanılacak 3 karakterlik seri öneki."
+            },
+            {
+              "name": "XSLT_NAME",
+              "required": false,
+              "description": "Belgeye uygulanacak görsel şablonun (XSLT) adı."
+            },
+            {
+              "name": "RECEIPTADVICE",
+              "required": false,
+              "description": "Gönderilecek e-İrsaliye Yanıtı. Tekrarlanabilir. ID, UUID ve DIRECTION öznitelikleriyle kullanılır."
+            }
+          ]
+        },
+        {
+          "name": "E-İrsaliye Okuma (GetDespatchAdvice) @",
+          "slug": "e-i-rsaliye-okuma-getdespatchadvice",
+          "soap_action": "GetDespatchAdviceRequest",
+          "description": "* E-İrsaliye sisteminden giden imzalı irsaliye veya gelen irsaliyeyi ERP/muhasebe paketine çekmek için kullanılır.\n* İrsaliye özet bilgilerini veya irsaliye özet bilgileri ile beraber XML içeriğini de çekmek için kullanılabilir.\n* Entegrasyon yapan iş ortaklarımızdan yeni gelen bütün irsaliye içerikleri (XML) beraber müşteri ortamına çekilmesini tavsiye ediyoruz.\n* İçerik ile beraber en fazla 100 fatura çekilebilir.\n* Fatura özet bilgileri ile en fazla 25000 adet fatura dönülmektedir.\n* Alıcı tarafından zamanlanmış fatura çekme özelliği eklenecekse en fazla 15 dakika aralığında olmalıdır.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Request Header objesi içerisinde SESSION_ID ve APPLICATION_NAME alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka COMPRESSED elemanı eklenmeli ve N değeri gönderilmelidir"
+            },
+            {
+              "name": "SEARCH_KEY",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "HEADER_ONLY",
+              "required": false,
+              "description": "Sadece özet değerler mi yoksa içerik ile beraber mi okunmak istenildiğini belirleyen parametredir. Eleman gönderilmezse veya N değeri gönderilirse irsaliyeler XML ile beraber dönülür. Y değeri gönderi"
+            }
+          ]
+        },
+        {
+          "name": "Taslak E-İrsaliye Yanıtı Yükleme (LoadReceiptAdvice)",
+          "slug": "taslak-e-i-rsaliye-yaniti-yukleme-loadreceiptadvice",
+          "soap_action": "LoadReceiptAdviceRequest",
+          "description": "Taslak E-İrsaliye Yanıtı belgelerini yüklemek için kullanılan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "İstek başlığı. Oturum ve işlem bilgilerini taşır."
+            },
+            {
+              "name": "RECEIPTADVICE",
+              "required": true,
+              "description": "Yüklenecek taslak e-İrsaliye Yanıtı. Tekrarlanabilir: tek çağrıda birden fazla belge yüklenebilir."
+            }
+          ]
+        },
+        {
+          "name": "E-İrsaliye Durum Sorgulama (GetDespatchAdviceStatus)",
+          "slug": "e-i-rsaliye-durum-sorgulama-getdespatchadvicestatus",
+          "soap_action": "GetDespatchAdviceStatusRequest",
+          "description": "* Entegrasyon platformunda bulunan bir veya birden fazla taslak, gelen ve giden irsaliyenin durumunu sorgulamayı sağlayan servistir.\n* Birden fazla belge durumu sorgulamak için DESPATCHADVICEINFO parametresi çoklanabilir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "Sorgulanacak belge numarası ID attribute içerisine, Evrensel Tekil Tanımlama Numarası (ETTN) ise UUID attribute eklenmelidir. DIRECTION attribute kullanılmamaktadır."
+            },
+            {
+              "name": "UUID",
+              "required": true,
+              "description": "Sorgulanacak belge numarası ID attribute içerisine, Evrensel Tekil Tanımlama Numarası (ETTN) ise UUID attribute eklenmelidir. DIRECTION attribute kullanılmamaktadır."
+            }
+          ]
+        },
+        {
+          "name": "E-İrsaliye Yanıtı Okuma (GetReceiptAdvice)",
+          "slug": "e-i-rsaliye-yaniti-okuma-getreceiptadvice",
+          "soap_action": "GetReceiptAdviceRequest",
+          "description": "Sistemde bulunan e-İrsaliye yanıtlarını okumak için kullanılan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "İstek başlığı. Oturum ve işlem bilgilerini taşır."
+            },
+            {
+              "name": "SEARCH_KEY",
+              "required": false,
+              "description": "Arama kriterlerini taşıyan kap."
+            },
+            {
+              "name": "HEADER_ONLY",
+              "required": false,
+              "description": "Y verildiğinde yalnızca belge özeti döner, N verildiğinde CONTENT da gönderilir. Varsayılan N."
+            }
+          ]
+        },
+        {
+          "name": "E-İrsaliye Yanıtı Durumu Okuma (GetReceiptAdviceStatus)",
+          "slug": "e-i-rsaliye-yaniti-durumu-okuma-getreceiptadvicestatus",
+          "soap_action": "GetReceiptAdviceStatusRequest",
+          "description": "Sistemde bulunan e-İrsaliye yanıtlarının durumlarını okumak için kullanılan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "İstek başlığı. Oturum ve işlem bilgilerini taşır."
+            },
+            {
+              "name": "UUID",
+              "required": true,
+              "description": "Durumu sorgulanacak e-İrsaliye Yanıtının ETTN değeri. Tekrarlanabilir: birden fazla UUID elemanı gönderilerek tek çağrıda çoklu sorgulama yapılabilir."
+            }
+          ]
+        },
+        {
+          "name": "E-İrsaliye Yanıtını Okundu İşaretleme (MarkReceiptAdvice)",
+          "slug": "e-i-rsaliye-yanitini-okundu-i-saretleme-markreceiptadvice",
+          "soap_action": "MarkReceiptAdviceRequest",
+          "description": "E-İrsaliye Yanıtı belgelerini okundu/okunmadı olarak işaretlemek için kullanılan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "İstek başlığı. Oturum ve işlem bilgilerini taşır."
+            },
+            {
+              "name": "MARK",
+              "required": false,
+              "description": "İşaretleme kabı. value özniteliği ile belgenin okundu (READ) veya okunmadı (UNREAD) olarak işaretleneceği belirtilir."
+            }
+          ]
+        },
+        {
+          "name": "E-İrsaliyeyi Okundu İşaretleme (MarkDespatchAdvice)",
+          "slug": "e-i-rsaliyeyi-okundu-i-saretleme-markdespatchadvice",
+          "soap_action": "MarkDespatchAdviceRequest",
+          "description": "E-İrsaliye belgelerini okundu/okunmadı olarak işaretlemek için kullanılan servistir.",
+          "is_login": false,
+          "params": [
+            {
+              "name": "REQUEST_HEADER",
+              "required": true,
+              "description": "İstek başlığı. Oturum ve işlem bilgilerini taşır."
+            },
+            {
+              "name": "MARK",
+              "required": false,
+              "description": "İşaretleme kabı. value özniteliği ile belgenin okundu (READ) veya okunmadı (UNREAD) olarak işaretleneceği belirtilir."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "endpoints": {
+    "authentication-api/auth-token": {
+      "title": "Oturum Açma - v1/auth/token",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v1}}/auth/token",
+      "description": "",
+      "body_type": "json",
+      "is_login": true,
+      "token_path": "data.accessToken",
+      "body": [
+        {
+          "name": "username",
+          "required": true,
+          "description": "Sistemde tanımlı kullanıcı adı"
+        },
+        {
+          "name": "password",
+          "required": true,
+          "description": "Sistemde tanımlı kullanıcının şifresi"
+        }
+      ],
+      "query": [],
+      "headers": []
+    },
+    "authentication-api/musteri-olarak-token-alma": {
+      "title": "Müşteri Olarak Token Alma",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/auth/token",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "username",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "password",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "query": [],
+      "headers": []
+    },
+    "authentication-api/token-uzatma": {
+      "title": "Token Uzatma",
+      "method": "PUT",
+      "path": "{{baseUrl}}/{{version}}/auth/token",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "gib-user-services-rest-api/nace-faaliyet-sorgulama-servisi": {
+      "title": "Nace - Faaliyet Sorgulama Servisi",
+      "method": "GET",
+      "path": "{{baseUrl}}/v2/taxpayers/{vkn}",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [
+        {
+          "name": "includeActivities",
+          "required": false,
+          "description": "Yanıtta NACE faaliyet kodlarının dahil edilip edilmeyeceği"
+        },
+        {
+          "name": "enforceFromGib",
+          "required": false,
+          "description": "Verinin önbellek yerine doğrudan GİB üzerinden çekilmesini zorunlu kılar"
+        },
+        {
+          "name": "documentDate",
+          "required": false,
+          "description": "Faaliyet bilgisinin fatura tarihine göre sorgulanması"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "gib-user-services-rest-api/gib-users-binary": {
+      "title": "Mükellef Listesini Zip Olarak İndir",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{version}}/resources/gib-users/binary",
+      "description": "GİB e-Fatura kayıtlı kullanıcı listesinin tamamını zip dosyası olarak indirir. Tekil mükellef sorgulama için SOAP tarafındaki `AuthenticationWS-GIBUser` servisi kullanılır.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/e-fatura-rest-api": {
+      "title": "Fatura Gönderme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/einvoices",
+      "description": "JSON gövde ile e-Fatura gönderir.\n\n**Önemli:** Her gönderimde `content.uuid` ve `content.documentNo` **benzersiz** olmalıdır. Aşağıdaki senaryodaki değerler doğrulama amacıyla bir kez kullanılmıştır; tekrar gönderirken bu iki alanı değiştirin. `assignNumber: true` verilse dahi `documentNo` boş bırakılamaz (hata 802), ancak sunucu kendi seri numarasını atar.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "documentAction",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "assignNumber",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "seriePrefix",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "selectedSeriesId",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "xsltName",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "compressed",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "mailFlag",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "mailAddress",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "schematronControl",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "sendingType",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "ecommerceUpload",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "receiverAlias",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "content",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/incoming-invoice-response": {
+      "title": "Gelen e-Fatura Yanıtlama (Kabul/Red)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/inbox/{id}/response",
+      "description": "Ticari faturaya kabul veya red yanıtı gönderir. `{id}` gelen fatura kaydının id değeridir. Red işleminde `description` zorunludur.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-einvoice-send": {
+      "title": "e-Fatura Gönderme (v2)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/send",
+      "description": "JSON gövde ile e-Fatura gönderir. Belge içeriği `content` nesnesinde taşınır.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "isVuk507",
+          "required": false,
+          "description": "VUK 507 kapsamında gönderim yapılıp yapılmayacağı"
+        },
+        {
+          "name": "mailFlag",
+          "required": false,
+          "description": "Belgenin alıcıya e-posta ile iletilip iletilmeyeceği"
+        },
+        {
+          "name": "mailAdress",
+          "required": false,
+          "description": "mailFlag true ise gönderim yapılacak e-posta adresleri"
+        },
+        {
+          "name": "xsltName",
+          "required": false,
+          "description": "Görüntüleme şablonu adı"
+        },
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "seriePrefix",
+          "required": false,
+          "description": "Belge seri ön eki"
+        },
+        {
+          "name": "assignNumber",
+          "required": false,
+          "description": "Numaranın İzibiz tarafından atanıp atanmayacağı"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Fatura içeriği: uuid, documentNo, profile, issueDate, issueTime, currencyCode, supplierParty, customerParty, lines, taxTotal, notes, allowanceCharge"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-earchive-load": {
+      "title": "e-Arşiv Yükleme (v2)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/load",
+      "description": "JSON gövde ile e-Arşiv faturası yükler. XSLT eki `additionalReferences` içinde Base64 olarak gönderilir; örnekte içerik yer tutucu ile kısaltılmıştır.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "assignNumber",
+          "required": false,
+          "description": "Numaranın İzibiz tarafından atanıp atanmayacağı"
+        },
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "mailFlag",
+          "required": false,
+          "description": "Belgenin alıcıya e-posta ile iletilip iletilmeyeceği"
+        },
+        {
+          "name": "mailAdress",
+          "required": false,
+          "description": "mailFlag true ise gönderim yapılacak e-posta adresleri"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Fatura içeriği: uuid, documentNo, profile (EARSIVFATURA), documentTypeCode, issueDate, issueTime, currencyCode, sendingType, earchiveType, orderRefere"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-earchive-cancel": {
+      "title": "e-Arşiv İptal",
+      "method": "DELETE",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/cancel",
+      "description": "Gövdede verilen UUID listesindeki e-Arşiv faturalarını iptal eder.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-send-json": {
+      "title": "E-Arşiv Gönderme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/earchives",
+      "description": "JSON gövde ile e-Arşiv faturası gönderir. Belge tipi `content.documentTypeCode`, gönderim şekli `additionalReferences` içindeki `SendingType` ve `EArchiveType` ile belirlenir.\n\n**Önemli:** Her gönderimde `content.uuid` ve `content.documentNo` **benzersiz** olmalıdır. Aşağıdaki senaryolardaki değerler doğrulama amacıyla birer kez kullanılmıştır; tekrar gönderirken bu iki alanı değiştirin.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "documentAction",
+          "required": false,
+          "description": "SEND: gönder, DRAFT: taslak olarak kaydet"
+        },
+        {
+          "name": "assignNumber",
+          "required": false,
+          "description": "Numaranın İzibiz tarafından atanıp atanmayacağı"
+        },
+        {
+          "name": "seriePrefix",
+          "required": false,
+          "description": "Belge seri ön eki"
+        },
+        {
+          "name": "xsltName",
+          "required": false,
+          "description": "Görüntüleme şablonu adı"
+        },
+        {
+          "name": "mailFlag",
+          "required": false,
+          "description": "Belgenin alıcıya e-posta ile iletilip iletilmeyeceği"
+        },
+        {
+          "name": "mailAdress",
+          "required": false,
+          "description": "mailFlag true ise gönderim yapılacak e-posta adresleri"
+        },
+        {
+          "name": "content",
+          "required": false,
+          "description": "Fatura içeriği: profile, documentTypeCode, documentNo, uuid, issueDate, issueTime, currencyCode, supplierParty, customerParty, taxTotal, legalMonetary"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-send-ubl": {
+      "title": "UBL ile E-Arşiv Gönderme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/earchives/ubl",
+      "description": "Hazır UBL içeriğini Base64 olarak gönderir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Base64 kodlanmış UBL içeriği"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-belge-gonderme": {
+      "title": "Belge Gönderme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/send",
+      "description": "JSON gövde ile e-İrsaliye gönderir.\n\n**Görüntüleme şablonu zorunludur.** İki yoldan biri kullanılır: gövdeye `xsltName` alanı eklenir (örn. `DEFAULT`), ya da `content.additionalReferences` içinde `documentType: \"XSLT\"` kaydıyla şablon Base64 olarak gömülür. İkisi de yoksa servis `XSLT_NOT_FOUND_IN_DOCUMENT` hatası verir.\n\n**Diğer kurallar:**\n- Her gönderimde `content.uuid` ve `content.documentNo` benzersiz olmalıdır.\n- Plaka boşluksuz yazılır: `34ABC1234`.\n- `shipment.delivery.despatch.actualDespatchDate` irsaliye tarihinden önce olamaz.\n- `shipment.transportHandlingUnits[].transportEquipments[]` kullanılacaksa `schemeID` zorunludur (örn. `DORSE`).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-ubl-ile-belge-gonderme": {
+      "title": "UBL ile Belge Gönderme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/send/ubl",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-yaniti-belge-gonderme": {
+      "title": "E-İrsaliye Yanıtı Belge Gönderme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatch-responses/send",
+      "description": "JSON gövde ile e-İrsaliye yanıtı gönderir.\n\n**Yanıt verilecek irsaliye** `content.despatchDocumentReference` alanında belirtilir. Bu alan **dizi** olmalıdır; nesne olarak gönderilirse servis JSON ayrıştırma hatası verir. Her öğe `id` (yanıtlanan irsaliyenin UUID değeri) ve `issueDate` alanlarını taşır.\n\n**Görüntüleme şablonu zorunludur:** gövdeye `xsltName` eklenir (örn. `DEFAULT`) ya da `content.additionalReferences` içinde `documentType: \"XSLT\"` kaydıyla şablon Base64 olarak gömülür.\n\nHer gönderimde `content.uuid` ve `content.documentNo` benzersiz olmalıdır. Satır bazında kabul/red `lines[].receivedQuantity`, `rejectedQuantity` ve `rejectReason` ile bildirilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "authentication-api/kanal-olarak-token-alma": {
+      "title": "Kanal Olarak Token Alma",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/auth/token",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "username",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "password",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "query": [],
+      "headers": []
+    },
+    "authentication-api/satis-olarak-token-alma": {
+      "title": "Satış Olarak Token Alma",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/auth/token",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "username",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "password",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "query": [],
+      "headers": []
+    },
+    "authentication-api/destek-olarak-token-alma": {
+      "title": "Destek Olarak Token Alma",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/auth/token",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "username",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "password",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "query": [],
+      "headers": []
+    },
+    "einvoice-v1-api/incoming-invoice-list": {
+      "title": "Gelen e-Fatura Listeleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/inbox",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [
+        {
+          "name": "dateType",
+          "required": true,
+          "description": "Alabileceği değerler = DELIVERY: İşlem Tarihi, DOCUMENT: Belge Tarihi. Varsayılan değer DELIVERY"
+        },
+        {
+          "name": "startDate",
+          "required": false,
+          "description": "Sorgulamada kullanılacak tarih aralığının başlangıç tarihini belirtir. Seçilen dateType değerine göre filtreleme bu tarihten itibaren yapılır. (YYYY-M"
+        },
+        {
+          "name": "endDate",
+          "required": false,
+          "description": "Sorgulamada kullanılacak tarih aralığının bitiş tarihini belirtir. Seçilen dateType değerine göre filtreleme bu tarihe kadar yapılır. Date (YYYY-MM-DD"
+        },
+        {
+          "name": "status",
+          "required": false,
+          "description": "Faturaların durumuna göre filtreleme yapar. Alabileceği değerler = WaitingForResponse: Yanıt Bekleniyor. "
+        },
+        {
+          "name": "page",
+          "required": true,
+          "description": "Sayfalama için kullanılacak sayfa numarasıdır. Varsayılan değer = 0"
+        },
+        {
+          "name": "pageSize",
+          "required": true,
+          "description": "Bir sayfada döndürülecek maksimum kayıt sayısını belirtir. Varsayılan değer = 100"
+        },
+        {
+          "name": "sortProperty",
+          "required": false,
+          "description": "Sonuçların sıralanacağı alanı belirtir. Alabileceği değerler = createDate: Oluşturulma Tarihi, deliveryDate: İşlem Tarihi. Varsayılan değer = createDa"
+        },
+        {
+          "name": "sort",
+          "required": false,
+          "description": "Sonuçların sıralama yönünü belirtir. Alabileceği değerler = asc: Artan sıralama, desc: Azalan sıralama. Varsayılan değer = asc"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/taslak-ubl-gonderme-numara-ata-kaydet": {
+      "title": "Taslak - UBL Gönderme Numara Ata Kaydet",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/einvoices/ubl",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "assignNumber",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "seriePrefix",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "compressed",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "documentAction",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "content",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/outgoing-invoice-list": {
+      "title": "Giden e-Fatura Listeleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/outbox",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [
+        {
+          "name": "uuid",
+          "required": false,
+          "description": "Tek bir belgeyi UUID ile sorgulamak için kullanılır. Verildiğinde tarih/durum filtreleri dikkate alınmaz."
+        },
+        {
+          "name": "dateType",
+          "required": false,
+          "description": "DELIVERY: İşlem Tarihi, DOCUMENT: Belge Tarihi. Varsayılan DELIVERY"
+        },
+        {
+          "name": "startDate",
+          "required": false,
+          "description": "Başlangıç tarihi (YYYY-MM-DD)"
+        },
+        {
+          "name": "endDate",
+          "required": false,
+          "description": "Bitiş tarihi (YYYY-MM-DD)"
+        },
+        {
+          "name": "status",
+          "required": false,
+          "description": "Belge durumu. Örn: WaitingForResponse, Rejected, UnDelivered, ResponseTimeExpired"
+        },
+        {
+          "name": "page",
+          "required": false,
+          "description": "Sayfa numarası (0 tabanlı)"
+        },
+        {
+          "name": "pageSize",
+          "required": false,
+          "description": "Sayfa başına kayıt sayısı"
+        },
+        {
+          "name": "sortProperty",
+          "required": false,
+          "description": "Sıralanacak alan"
+        },
+        {
+          "name": "sort",
+          "required": false,
+          "description": "asc / desc"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/incoming-invoice-lookup-statuses": {
+      "title": "Gelen e-Fatura Durumları (Lookup Status)",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/inbox/lookup-statuses",
+      "description": "Gelen e-Fatura listeleme servisinde `status` parametresine verilebilecek durum kodlarını döner.\n\nDoğrulandı: 200, 7 durum kodu döndü. e-Fatura bu eski yolu kullanmaya devam eder; diğer ürünlerdeki `{{v2}}/{ürün}/lookup/{scope}` deseni e-Fatura'da 403 verir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/outgoing-invoice-lookup-statuses": {
+      "title": "Giden e-Fatura Durumları (Lookup Status)",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/outbox/lookup-statuses",
+      "description": "Giden e-Fatura listeleme servisinde `status` parametresine verilebilecek durum kodlarını döner.\n\nDoğrulandı: 200, 19 durum kodu döndü. e-Fatura bu eski yolu kullanmaya devam eder; diğer ürünlerdeki `{{v2}}/{ürün}/lookup/{scope}` deseni e-Fatura'da 403 verir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/incoming-invoice-preview": {
+      "title": "Gelen e-Fatura Görüntüleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/inbox/{id}/preview/{format}",
+      "description": "`{id}` gelen fatura kaydının id değeri, `{format}` görüntüleme biçimidir (html, pdf, ubl).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/incoming-invoice-download": {
+      "title": "Gelen e-Fatura İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/inbox/download/{format}",
+      "description": "`{format}` indirme biçimidir (pdf, ubl, html). Gövdede indirilecek gelen fatura id listesi gönderilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/outgoing-invoice-preview": {
+      "title": "Giden e-Fatura Görüntüleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/outbox/{id}/preview/{format}",
+      "description": "`{id}` giden fatura kaydının id değeri, `{format}` görüntüleme biçimidir (html, pdf, ubl).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/outgoing-invoice-download": {
+      "title": "Giden e-Fatura İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/outbox/download/{format}",
+      "description": "`{format}` indirme biçimidir (pdf, ubl, html). Gövdede indirilecek giden fatura id listesi gönderilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/outgoing-invoice-bulk-preview": {
+      "title": "Giden e-Fatura Toplu Önizleme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/outbox/preview",
+      "description": "Birden fazla giden faturanın önizlemesini tek istekte alır. Gövdede id listesi gönderilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/outgoing-invoice-import-parse": {
+      "title": "Giden e-Fatura Satır Yükleme (Excel Ayrıştırma)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/outbox/import/parse",
+      "description": "Excel dosyasını ayrıştırıp fatura satırlarının önizlemesini döner; kayıt oluşturmaz.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "documentType",
+          "required": true,
+          "description": "Belge tipi"
+        },
+        {
+          "name": "type",
+          "required": true,
+          "description": "Kaynak dosya tipi"
+        },
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Base64 kodlanmış Excel içeriği"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v1-api/incoming-invoice-read-flag": {
+      "title": "Gelen e-Fatura Okundu/Okunmadı Yapma",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v1}}/einvoices/inbox/{flagType}-read-flag/{status}",
+      "description": "`{flagType}`: portal | erp, `{status}`: READ | UNREAD. Gövdede işlem yapılacak belgeler id, documentUuid veya documentNo ile belirtilebilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-inbox-check-status": {
+      "title": "Gelen Belge Durum Sorgulama",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/inbox/check-status",
+      "description": "Gövdede verilen UUID listesi için gelen belgelerin durumunu toplu sorgular. Tek belge için `GET {{baseUrl}}/{{v2}}/einvoices/inbox/{uuid}/check-status` kullanılabilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-outbox-check-status": {
+      "title": "Giden Belge Durum Sorgulama",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/outbox/check-status",
+      "description": "Gövdede verilen UUID listesi için giden belgelerin durumunu toplu sorgular. Tek belge için `GET {{baseUrl}}/{{v2}}/einvoices/outbox/{uuid}/check-status` kullanılabilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-inbox-check-status-single": {
+      "title": "Gelen Belge Tekil Durum Sorgulama",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/inbox/{uuid}/check-status",
+      "description": "Tek bir gelen belgenin durumunu döner. `{uuid}` belge UUID değeridir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-outbox-check-status-single": {
+      "title": "Giden Belge Tekil Durum Sorgulama",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/outbox/{uuid}/check-status",
+      "description": "Tek bir giden belgenin durumunu döner. `{uuid}` belge UUID değeridir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-inbox-view": {
+      "title": "Gelen Belge Görüntüleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/inbox/{uuid}/view/{format}",
+      "description": "`{uuid}` belge UUID değeri, `{format}` görüntüleme biçimidir (html, pdf, ubl).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-inbox-download": {
+      "title": "Gelen Belge İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/inbox/download/{format}",
+      "description": "`{format}` indirme biçimidir (html, pdf, ubl). Gövdede indirilecek belgelerin UUID listesi gönderilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-outbox-preview-by-id": {
+      "title": "Giden Belge Görüntüleme (ID ile)",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/outbox/{id}/preview/{format}",
+      "description": "`{id}` giden belge kaydının id değeri, `{format}` görüntüleme biçimidir (html, pdf).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-outbox-view-by-uuid": {
+      "title": "Giden Belge Görüntüleme (UUID ile)",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/outbox/{uuid}/view/{format}",
+      "description": "`{uuid}` belge UUID değeri, `{format}` görüntüleme biçimidir (html, pdf, ubl).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-outbox-download": {
+      "title": "Giden Belge İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/outbox/download/{format}",
+      "description": "`{format}` indirme biçimidir (html, pdf, ubl). Gövdede indirilecek belgelerin UUID listesi gönderilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-outbox-preview-ubl": {
+      "title": "Sistemde Olmayan Belge Önizleme (UBL)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/outbox/preview/ubl/{format}",
+      "description": "Sisteme kayıtlı olmayan bir belgenin UBL içeriğinden önizleme üretir. `{format}`: html, pdf, ubl.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "xsltName",
+          "required": false,
+          "description": "Görüntüleme şablonu adı"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Base64 kodlanmış UBL içeriği"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-outbox-preview-json": {
+      "title": "Sistemde Olmayan Belge Önizleme (JSON)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/outbox/preview/{format}",
+      "description": "Sisteme kayıtlı olmayan bir belgenin JSON içeriğinden önizleme üretir. `{format}`: html, pdf, ubl. Gövde yapısı `e-Fatura Gönderme (v2)` ucundaki `content` ile aynıdır.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "xsltName",
+          "required": false,
+          "description": "Görüntüleme şablonu adı"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Belge içeriği (JSON)"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-draft-view": {
+      "title": "Taslak Belge Görüntüleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/draft/{idOrUuid}/view/{format}",
+      "description": "`{idOrUuid}` taslak kaydının id ya da UUID değeri, `{format}` görüntüleme biçimidir (html, pdf, ubl).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "einvoice-v2-api/v2-draft-download": {
+      "title": "Taslak Belge İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/einvoices/draft/download/{format}",
+      "description": "`{format}` indirme biçimidir (html, pdf, ubl). Gövdede indirilecek taslak belgelerin UUID listesi gönderilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/e-arsiv-listeleme": {
+      "title": "E-Arşiv Listeleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v1}}/earchives",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [
+        {
+          "name": "dateType",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "pageSize",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "page",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "sort",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "startDate",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "direction",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        },
+        {
+          "name": "Accept-Language",
+          "required": true
+        },
+        {
+          "name": "vendor",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-send-via-einvoices": {
+      "title": "E-Arşiv Gönderme (einvoices/send ile)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/einvoices/send",
+      "description": "e-Arşiv faturasını e-Fatura gönderim ucu üzerinden gönderir. `content.profile` = EARSIVFATURA verilir. Aynı belge `POST {{baseUrl}}/{{version}}/earchives` ile de gönderilebilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "xsltName",
+          "required": false,
+          "description": "Görüntüleme şablonu adı"
+        },
+        {
+          "name": "assignNumber",
+          "required": false,
+          "description": "Numaranın İzibiz tarafından atanıp atanmayacağı"
+        },
+        {
+          "name": "seriePrefix",
+          "required": false,
+          "description": "Belge seri ön eki"
+        },
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "isVuk507",
+          "required": false,
+          "description": "VUK 507 kapsamında gönderim"
+        },
+        {
+          "name": "mailFlag",
+          "required": false,
+          "description": "Belgenin alıcıya e-posta ile iletilip iletilmeyeceği"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Fatura içeriği (profile = EARSIVFATURA)"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-status-query": {
+      "title": "E-Arşiv Fatura Durum Sorgulama",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{version}}/earchives",
+      "description": "Belge numarası (`documentNo`) verilen e-Arşiv faturasını sorgular ve durum bilgisini döner.\n\nSorgulanacak belge numarasını **Query** sekmesindeki `documentNo` alanına yazın; istek o numarayla gönderilir (ör. `UAB2026000002990`).\n\nYanıttaki `data.contents[]` içinde durum alanları:\n- `statusDesc` — durum açıklaması (ör. `Raporlandı`)\n- `statusCode` — durum kodu (ör. `100`)\n\nNumara bulunamazsa `contents` boş, `totalElements` `0` döner.\n\n> Not: Bu endpoint `uuid` parametresiyle filtreleme yapmaz; parametre yok sayılır ve tüm liste döner. Tekil sorgu için `documentNo` kullanın.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [
+        {
+          "name": "documentNo",
+          "required": true,
+          "description": "Sorgulanacak e-Arşiv faturasının belge numarası (16 karakter, ör. UAB2026000002990)"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        },
+        {
+          "name": "Accept-Language",
+          "required": false
+        }
+      ]
+    },
+    "rest-api2/e-arsiv-fatura-i-ndirme-ubl": {
+      "title": "E-Arşiv Fatura İndirme - UBL",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/earchives/download/ubl",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        },
+        {
+          "name": "Accept-Language",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-preview": {
+      "title": "E-Arşiv Fatura Görüntüleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{version}}/earchives/{id}/preview/{format}",
+      "description": "`{id}` e-Arşiv fatura kaydının id değeri, `{format}` görüntüleme biçimidir (html, pdf).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-get-ubl": {
+      "title": "E-Arşiv Fatura UBL Sorgulama",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{version}}/earchives/{id}/ubl",
+      "description": "Belgenin UBL içeriğini döner. `{id}` e-Arşiv fatura kaydının id değeridir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-get-xml": {
+      "title": "E-Arşiv Fatura XML Çekme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{version}}/earchives/{id}/xml",
+      "description": "Belgenin ham XML içeriğini döner. `{id}` e-Arşiv fatura kaydının id değeridir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-download": {
+      "title": "E-Arşiv Fatura İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/earchives/download/{format}",
+      "description": "`{format}` indirme biçimidir (ubl, html, pdf). Gövdede indirilecek belgelerin id listesi gönderilir. UBL indirme için kategorideki ayrı endpoint de kullanılabilir.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-preview-ubl-v2": {
+      "title": "UBL ile Belge Görüntüleme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/earchives/outbox/preview/ubl/{format}",
+      "description": "Sistemde kayıtlı olmayan bir belgenin UBL içeriğinden önizleme üretir. `{format}`: html, pdf, ubl.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "xsltName",
+          "required": false,
+          "description": "Görüntüleme şablonu adı"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Base64 kodlanmış UBL içeriği"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-preview-json-v2": {
+      "title": "JSON ile Belge Görüntüleme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/earchives/outbox/preview/{format}",
+      "description": "Sistemde kayıtlı olmayan bir belgenin JSON içeriğinden önizleme üretir. `{format}`: html, pdf, ubl.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "xsltName",
+          "required": false,
+          "description": "Görüntüleme şablonu adı"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Belge içeriği (JSON)"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-validate": {
+      "title": "Şema-Şematron Kontrolü",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/earchives/validate",
+      "description": "Gönderim öncesi UBL içeriğini şema ve şematron kurallarına göre doğrular.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Base64 kodlanmış UBL içeriği"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-import-parse": {
+      "title": "İçe Aktarma Önizleme (Excel)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/earchives/import/parse",
+      "description": "Excel dosyasını ayrıştırıp içe aktarılacak belgelerin önizlemesini döner.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "documentType",
+          "required": true,
+          "description": "Belge tipi"
+        },
+        {
+          "name": "type",
+          "required": true,
+          "description": "Kaynak dosya tipi"
+        },
+        {
+          "name": "compressed",
+          "required": false,
+          "description": "İçeriğin sıkıştırılmış gönderilip gönderilmediği"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "description": "Base64 kodlanmış Excel içeriği"
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-inbox-list": {
+      "title": "Gelen E-Arşiv Fatura Listeleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/earchives/inbox",
+      "description": "Gelen belgeleri sayfalı olarak listeler. Tüm filtreler opsiyoneldir.\n\nYanıttaki `id` değeri; **Gelen E-Arşiv Fatura Görüntüleme** ve **Gelen E-Arşiv Fatura İndirme** servislerinde belge kimliği olarak, `portalReadStatus` ise belgenin portalda okunup okunmadığı bilgisi olarak kullanılır.\n\n**Yanıt alanları (`data.contents[]`):**\n\n| Alan | Açıklama |\n|---|---|\n| `id` | Belge kimliği. Görüntüleme ve indirme işlemlerinde kullanılır. |\n| `uuid` | Belgenin ETTN değeri. |\n| `documentNo` | Belge numarası. |\n| `issueDate` | Belge tarihi. |\n| `direction` | Yön (`IN`: gelen). |\n| `amount` / `taxAmount` / `currency` | Tutar, vergi tutarı ve para birimi. |\n| `portalReadStatus` | Portalda okunma durumu. |\n| `documentStatus` | Belge durumu. |\n| `sender` / `receiver` | Gönderici ve alıcı bilgileri. |\n\nSayfalama bilgisi `data.pageable` (`page`, `size`, `totalElements`, `totalPages`) altında döner.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [
+        {
+          "name": "startDate",
+          "required": false,
+          "description": "Başlangıç tarihi (YYYY-MM-DD)"
+        },
+        {
+          "name": "endDate",
+          "required": false,
+          "description": "Bitiş tarihi (YYYY-MM-DD)"
+        },
+        {
+          "name": "page",
+          "required": false,
+          "description": "Sayfa numarası (0'dan başlar)"
+        },
+        {
+          "name": "pageSize",
+          "required": false,
+          "description": "Sayfa başına kayıt sayısı"
+        },
+        {
+          "name": "documentNo",
+          "required": false,
+          "description": "Belge numarası"
+        },
+        {
+          "name": "uuid",
+          "required": false,
+          "description": "Belgenin ETTN değeri"
+        },
+        {
+          "name": "senderIdentifier",
+          "required": false,
+          "description": "Göndericinin VKN/TCKN değeri"
+        },
+        {
+          "name": "portalReadStatus",
+          "required": false,
+          "description": "Portalda okunma durumu (true / false)"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-inbox-view": {
+      "title": "Gelen E-Arşiv Fatura Görüntüleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/earchives/inbox/{{earchiveInboxId}}/view/{{inboxViewFormat}}",
+      "description": "GİB İnteraktif Vergi Dairesi (5.000/30.000 portalı) üzerinden müşterilerimize kesilen **gelen e-Arşiv Fatura** belgeleri için kullanılır.\n\nTek bir gelen belgeyi HTML, PDF veya UBL (XML) olarak görüntüler. Görüntüleme formatı hazır senaryolardan seçilir.\n\n- `{{earchiveInboxId}}`: **Gelen E-Arşiv Fatura Listeleme** yanıtındaki `id` değeri.\n- `{{inboxViewFormat}}`: `html` | `pdf` | `ubl`\n\n**Yanıt:** Zarf (data/error) **yoktur**; belge içeriği doğrudan döner. Yanıtın `Content-Type` değeri istekteki `Content-Type` header'ından alınır (`text/html`, `application/pdf`, `application/xml`).",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        },
+        {
+          "name": "Content-Type",
+          "required": true
+        }
+      ]
+    },
+    "rest-api2/earchive-inbox-download": {
+      "title": "Gelen E-Arşiv Fatura İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/earchives/inbox/download/{{inboxDownloadFormat}}",
+      "description": "GİB İnteraktif Vergi Dairesi (5.000/30.000 portalı) üzerinden müşterilerimize kesilen **gelen e-Arşiv Fatura** belgeleri için kullanılır.\n\nSeçilen gelen belgeleri HTML, PDF veya UBL (XML) formatında **zip** dosyası içinde indirir. İndirme formatı hazır senaryolardan seçilir.\n\n- `{{inboxDownloadFormat}}`: `html` | `pdf` | `ubl`\n- Gövde: belge `id` listesi (`id` zorunlu). Değerler **Gelen E-Arşiv Fatura Listeleme** yanıtından alınır.\n\n**Yanıt alanları:**\n\n| Alan | Açıklama |\n|---|---|\n| `data.filename` | Zip dosyasının adı. |\n| `data.content` | Base64 kodlanmış zip içeriği. |",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [
+        {
+          "name": "id",
+          "required": true,
+          "description": "İndirilecek belgenin kimliği (liste elemanı). Birden fazla belge için dizi çoklanır."
+        }
+      ],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        },
+        {
+          "name": "Content-Type",
+          "required": false
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-durum-sorgulama": {
+      "title": "Durum Sorgulama",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/{{despatchDirection}}/check-status",
+      "description": "`{{despatchDirection}}` yön bilgisidir: `outbox` (giden) veya `inbox` (gelen). Değeri seçili ortamın değişkenlerinden gelir; portalda ortam değişkenleri panelinden değiştirebilirsiniz. Bu segment zorunludur; verilmezse servis 403 döner.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-listeleme": {
+      "title": "E-İrsaliye Listeleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/{{despatchDirection}}",
+      "description": "`{{despatchDirection}}` yön bilgisidir: `outbox` (giden) veya `inbox` (gelen). Değeri seçili ortamın değişkenlerinden gelir; portalda ortam değişkenleri panelinden değiştirebilirsiniz. Bu segment zorunludur; verilmezse servis 403 döner.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [
+        {
+          "name": "direction",
+          "required": false,
+          "description": "Sorgulanacak belge yönü (OUT: giden, IN: gelen)"
+        },
+        {
+          "name": "startDate",
+          "required": false,
+          "description": "Sorgu başlangıç tarihi"
+        },
+        {
+          "name": "endDate",
+          "required": false,
+          "description": "Sorgu bitiş tarihi"
+        },
+        {
+          "name": "page",
+          "required": false,
+          "description": "Sayfa numarası"
+        },
+        {
+          "name": "pageSize",
+          "required": false,
+          "description": "Sayfa boyutu"
+        },
+        {
+          "name": "sortProperties",
+          "required": false,
+          "description": "Sıralama kriterleri"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-okundu-okunmadi-yapma": {
+      "title": "Okundu/Okunmadı Yapma",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/inbox/{flagType}-read-flag/{status}",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-belge-goruntuleme": {
+      "title": "Belge Görüntüleme (HTML)",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/{{despatchDirection}}/{{despatchId}}/view/html",
+      "description": "Belgeyi **HTML** formatında görüntüler.\n\nYoldaki değerler seçili ortamın değişkenlerinden gelir; portalda ortam değişkenleri panelinden değiştirebilirsiniz:\n\n- `{{despatchDirection}}`: yön bilgisi, `outbox` (giden) veya `inbox` (gelen). Bu segment zorunludur; verilmezse servis 403 döner.\n- `{{despatchId}}`: belge kaydının id değeri (ör. `57266`).\n\nDiğer formatlar için **Belge Görüntüleme (PDF)** ve **Belge Görüntüleme (UBL)** endpoint'lerini kullanın.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-belge-goruntuleme-pdf": {
+      "title": "Belge Görüntüleme (PDF)",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/{{despatchDirection}}/{{despatchId}}/view/pdf",
+      "description": "Belgeyi **PDF** formatında görüntüler.\n\nYoldaki değerler seçili ortamın değişkenlerinden gelir; portalda ortam değişkenleri panelinden değiştirebilirsiniz:\n\n- `{{despatchDirection}}`: yön bilgisi, `outbox` (giden) veya `inbox` (gelen). Bu segment zorunludur; verilmezse servis 403 döner.\n- `{{despatchId}}`: belge kaydının id değeri (ör. `57266`).\n\nDiğer formatlar için **Belge Görüntüleme (HTML)** ve **Belge Görüntüleme (UBL)** endpoint'lerini kullanın.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-belge-goruntuleme-ubl": {
+      "title": "Belge Görüntüleme (UBL)",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/{{despatchDirection}}/{{despatchId}}/view/ubl",
+      "description": "Belgeyi **UBL** formatında görüntüler.\n\nYoldaki değerler seçili ortamın değişkenlerinden gelir; portalda ortam değişkenleri panelinden değiştirebilirsiniz:\n\n- `{{despatchDirection}}`: yön bilgisi, `outbox` (giden) veya `inbox` (gelen). Bu segment zorunludur; verilmezse servis 403 döner.\n- `{{despatchId}}`: belge kaydının id değeri (ör. `57266`).\n\nDiğer formatlar için **Belge Görüntüleme (HTML)** ve **Belge Görüntüleme (PDF)** endpoint'lerini kullanın.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-belge-indirme": {
+      "title": "Belge İndirme (HTML)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/{{despatchDirection}}/download/html",
+      "description": "Gövdede gönderilen id listesindeki belgeleri **HTML** formatında indirir.\n\n`{{despatchDirection}}` yön bilgisidir: `outbox` (giden) veya `inbox` (gelen). Değeri seçili ortamın değişkenlerinden gelir; portalda ortam değişkenleri panelinden değiştirebilirsiniz. Bu segment zorunludur; verilmezse servis 403 döner.\n\nDiğer formatlar için **Belge İndirme (PDF)** ve **Belge İndirme (UBL)** endpoint'lerini kullanın.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-belge-indirme-pdf": {
+      "title": "Belge İndirme (PDF)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/{{despatchDirection}}/download/pdf",
+      "description": "Gövdede gönderilen id listesindeki belgeleri **PDF** formatında indirir.\n\n`{{despatchDirection}}` yön bilgisidir: `outbox` (giden) veya `inbox` (gelen). Değeri seçili ortamın değişkenlerinden gelir; portalda ortam değişkenleri panelinden değiştirebilirsiniz. Bu segment zorunludur; verilmezse servis 403 döner.\n\nDiğer formatlar için **Belge İndirme (HTML)** ve **Belge İndirme (UBL)** endpoint'lerini kullanın.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-belge-indirme-ubl": {
+      "title": "Belge İndirme (UBL)",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/{{despatchDirection}}/download/ubl",
+      "description": "Gövdede gönderilen id listesindeki belgeleri **UBL** formatında indirir.\n\n`{{despatchDirection}}` yön bilgisidir: `outbox` (giden) veya `inbox` (gelen). Değeri seçili ortamın değişkenlerinden gelir; portalda ortam değişkenleri panelinden değiştirebilirsiniz. Bu segment zorunludur; verilmezse servis 403 döner.\n\nDiğer formatlar için **Belge İndirme (HTML)** ve **Belge İndirme (PDF)** endpoint'lerini kullanın.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-giden-belge-ubl-indirme": {
+      "title": "Giden Belge UBL İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/outbox/download/ubl",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-sistemde-olmayan-belgenin-onizlemesi": {
+      "title": "Sistemde Olmayan Belgenin Önizlemesi",
+      "method": "POST",
+      "path": "{{baseUrl}}/v2/edespatches/outbox/preview/ubl/{format}",
+      "description": "",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-sema-sematron-kontrolu": {
+      "title": "Şema-Şematron Kontrolü",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatches/outbox/validate",
+      "description": "Gönderilecek e-İrsaliye belgesinin şema ve şematron kontrolünün yapılması.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-ice-aktarma-onizleme": {
+      "title": "İçe Aktarma Önizleme",
+      "method": "POST",
+      "path": "{{baseUrl}}/v2/edespatches/import/parse",
+      "description": "Excel veya XML formatındaki e-İrsaliye belgesinin içe aktarılmadan önce ayrıştırılıp önizlemesinin alınması.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-giden-belge-satir-yukleme": {
+      "title": "Giden Belge Satır Yükleme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{version}}/edespatches/outbox/import/parse",
+      "description": "Excel dosyasındaki satırların giden e-İrsaliye belgesi olarak sisteme yüklenmesi.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-yaniti-durum-sorgulama": {
+      "title": "E-İrsaliye Yanıtı Durum Sorgulama",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatch-responses/{direction}/check-status",
+      "description": "Gönderilen e-İrsaliye yanıtının işlem durumunun sorgulanması.\n\n`{direction}` yön bilgisidir: `inbox` (gelen) veya `outbox` (giden). Bu segment zorunludur; verilmezse servis 403 döner.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-yaniti-listeleme": {
+      "title": "E-İrsaliye Yanıtı Listeleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/edespatch-responses/{direction}",
+      "description": "Gelen veya giden e-İrsaliye yanıtlarının filtrelenerek listelenmesi.\n\n`{direction}` yön bilgisidir: `inbox` (gelen) veya `outbox` (giden). Bu segment zorunludur; verilmezse servis 403 döner.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [
+        {
+          "name": "directionType",
+          "required": true,
+          "description": "Yön (IN: Gelen, OUT: Giden)"
+        },
+        {
+          "name": "startDate",
+          "required": false,
+          "description": "Başlangıç tarihi"
+        },
+        {
+          "name": "endDate",
+          "required": false,
+          "description": "Bitiş tarihi"
+        },
+        {
+          "name": "page",
+          "required": false,
+          "description": "Sayfa numarası"
+        },
+        {
+          "name": "pageSize",
+          "required": false,
+          "description": "Sayfa boyutu"
+        },
+        {
+          "name": "sort",
+          "required": false,
+          "description": "Sıralama yönü (asc/desc)"
+        },
+        {
+          "name": "sortProperty",
+          "required": false,
+          "description": "Sıralama alanı"
+        },
+        {
+          "name": "status",
+          "required": false,
+          "description": "Durum filtresi (yalnızca gelen için)"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-yaniti-belge-goruntuleme": {
+      "title": "E-İrsaliye Yanıtı Belge Görüntüleme",
+      "method": "GET",
+      "path": "{{baseUrl}}/{{v2}}/edespatch-responses/{direction}/{id}/view/{format}",
+      "description": "`{id}` yanıt kaydının id değeri, `{format}` görüntüleme biçimidir (html, pdf, ubl).\n\n`{direction}` yön bilgisidir: `inbox` (gelen) veya `outbox` (giden). Bu segment zorunludur; verilmezse servis 403 döner.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-yaniti-belge-indirme": {
+      "title": "E-İrsaliye Yanıtı Belge İndirme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatch-responses/{direction}/download/{format}",
+      "description": "`{format}` indirme biçimidir (ubl, html, pdf). Gövdede indirilecek yanıtların id listesi gönderilir.\n\n`{direction}` yön bilgisidir: `inbox` (gelen) veya `outbox` (giden). Bu segment zorunludur; verilmezse servis 403 döner.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-yaniti-okundu-okunmadi-yapma": {
+      "title": "E-İrsaliye Yanıtı Okundu/Okunmadı Yapma",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatch-responses/{flagType}-read-flag/{status}",
+      "description": "Gelen e-İrsaliye yanıtının Portal veya ERP tarafında okundu/okunmadı olarak işaretlenmesi.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    },
+    "rest-api3/e-irsaliye-yaniti-ubl-ile-belge-gonderme": {
+      "title": "E-İrsaliye Yanıtı UBL ile Belge Gönderme",
+      "method": "POST",
+      "path": "{{baseUrl}}/{{v2}}/edespatch-responses/send/ubl",
+      "description": "UBL formatında e-İrsaliye yanıtı belgesinin gönderilmesi.",
+      "body_type": "json",
+      "is_login": false,
+      "token_path": "",
+      "body": [],
+      "query": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "required": true
+        }
+      ]
+    }
+  }
+}
