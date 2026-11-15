@@ -49,6 +49,9 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             invoice_.copyindicator = self.root.find('./' + self._cbc_ns + 'CopyIndicator').text
             invoice_.issuedate = self.root.find('./' + self._cbc_ns + 'IssueDate').text
             invoice_.invoicetypecode = self.root.find('./' + self._cbc_ns + 'InvoiceTypeCode').text
+            from trebelge.codelists import warn_on_read
+            warn_on_read("ProfileID", invoice_.profileid)
+            warn_on_read("InvoiceTypeCode", invoice_.invoicetypecode)
             invoice_.documentcurrencycode = self.root.find('./' + self._cbc_ns + 'DocumentCurrencyCode').text
             taxcurrencycode_: Element = self.root.find('./' + self._cbc_ns + 'TaxCurrencyCode')
             if taxcurrencycode_ is not None:

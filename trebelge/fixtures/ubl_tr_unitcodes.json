@@ -1,0 +1,34 @@
+[
+ {
+  "doctype": "UBL TR Unitcodes",
+  "name": "C62",
+  "unitcode": "C62",
+  "unitcodename": "Adet",
+  "description": "UNECE Rec.20 one",
+  "type": "UNECE Rec.20"
+ },
+ {
+  "doctype": "UBL TR Unitcodes",
+  "name": "KGM",
+  "unitcode": "KGM",
+  "unitcodename": "Kilogram",
+  "description": "UNECE Rec.20 kilogram",
+  "type": "UNECE Rec.20"
+ },
+ {
+  "doctype": "UBL TR Unitcodes",
+  "name": "MTR",
+  "unitcode": "MTR",
+  "unitcodename": "Metre",
+  "description": "UNECE Rec.20 metre",
+  "type": "UNECE Rec.20"
+ },
+ {
+  "doctype": "UBL TR Unitcodes",
+  "name": "LTR",
+  "unitcode": "LTR",
+  "unitcodename": "Litre",
+  "description": "UNECE Rec.20 litre",
+  "type": "UNECE Rec.20"
+ }
+]

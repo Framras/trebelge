@@ -118,6 +118,19 @@ scheduler_events = {
 
 # before_tests = "trebelge.install.before_tests"
 
+after_migrate = ["trebelge.codelists.load_code_lists"]
+
+# Fixture files live in trebelge/fixtures and are imported on migrate.
+# after_migrate loads any row that is not already in the database.
+fixtures = [
+    {"dt": "UBL TR ProfileID"},
+    {"dt": "UBL TR InvoiceTypeCode"},
+    {"dt": "UBL TR Paymentmeanscode"},
+    {"dt": "UBL TR TaxExemptionReasonCode"},
+    {"dt": "UBL TR Withholdingtaxcode"},
+    {"dt": "UBL TR Unitcodes"},
+]
+
 # Overriding Methods
 # ------------------------------
 #

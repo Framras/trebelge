@@ -24,5 +24,9 @@ class TRUBLTaxScheme(TRUBLCommonElement):
         if name_ is not None:
             if name_.text is not None:
                 frappedata['taxschemename'] = name_.text.strip()
+        taxtypecode = frappedata.get('taxtypecode')
+        if taxtypecode and str(taxtypecode).isdigit() and int(taxtypecode) >= 600:
+            from trebelge.codelists import warn_on_read
+            warn_on_read('WithholdingTaxCode', str(taxtypecode))
 
         return frappedata

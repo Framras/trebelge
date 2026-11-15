@@ -1,0 +1,62 @@
+[
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "SATIS",
+  "invoicetypecode": "SATIS",
+  "description": "Satış"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "IADE",
+  "invoicetypecode": "IADE",
+  "description": "İade"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "TEVKIFAT",
+  "invoicetypecode": "TEVKIFAT",
+  "description": "Tevkifat"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "ISTISNA",
+  "invoicetypecode": "ISTISNA",
+  "description": "İstisna"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "OZELMATRAH",
+  "invoicetypecode": "OZELMATRAH",
+  "description": "Özel Matrah"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "IHRACKAYITLI",
+  "invoicetypecode": "IHRACKAYITLI",
+  "description": "İhraç Kayıtlı"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "YTBSATIS",
+  "invoicetypecode": "YTBSATIS",
+  "description": "Yatırım Teşvik Satış"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "YTBISTISNA",
+  "invoicetypecode": "YTBISTISNA",
+  "description": "Yatırım Teşvik İstisna"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "YTBIADE",
+  "invoicetypecode": "YTBIADE",
+  "description": "Yatırım Teşvik İade"
+ },
+ {
+  "doctype": "UBL TR InvoiceTypeCode",
+  "name": "SGK",
+  "invoicetypecode": "SGK",
+  "description": "SGK"
+ }
+]

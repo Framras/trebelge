@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+import frappe
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLAllowanceCharge import TRUBLAllowanceCharge
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
@@ -28,7 +29,11 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if invoicedquantity is not None:
             if invoicedquantity.text is not None:
                 frappedoc['invoicedquantity'] = invoicedquantity.text.strip()
-                frappedoc['invoicedquantityunitcode'] = invoicedquantity.attrib.get('unitCode').strip()
+                unitcode = invoicedquantity.attrib.get('unitCode')
+                if unitcode is not None:
+                    frappedoc['invoicedquantityunitcode'] = unitcode.strip()
+                    from trebelge.codelists import warn_on_read
+                    warn_on_read("UnitCode", unitcode.strip())
         # ['LineExtensionAmount'] = ('cbc', '', 'Zorunlu (1)')
         # Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutardır (varsa iskonto
         # düşülür).
@@ -69,7 +74,9 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             baseunit = basequantity.attrib.get('unitCode')
             if baseunit is not None:
                 frappedoc['basequantityunitcode'] = baseunit.strip()
-        document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+                from trebelge.codelists import warn_on_read
+                warn_on_read("UnitCode", baseunit.strip())
+        document: Document = self._insert_invoiceline(frappedoc)
         # ['Price/AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
         # Birim fiyat altındaki iskonto/artırım. Satır AllowanceCharge döngüsünden ayrı tutulur.
         priceallowances: list = price_.findall('./' + cacnamespace + 'AllowanceCharge')
@@ -166,6 +173,17 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
                     document.save()
 
         return document
+
+    def _insert_invoiceline(self, frappedoc: dict) -> Document:
+        """Insert the line. An unknown unit code is logged and does not stop parsing."""
+        from trebelge.codelists import is_known
+
+        document = frappe.get_doc({"doctype": self._frappeDoctype, **frappedoc})
+        for unit in (frappedoc.get("invoicedquantityunitcode"), frappedoc.get("basequantityunitcode")):
+            if unit and not is_known("UnitCode", unit):
+                document.flags.ignore_links = True
+                break
+        return document.insert()
 
     def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:
         pass

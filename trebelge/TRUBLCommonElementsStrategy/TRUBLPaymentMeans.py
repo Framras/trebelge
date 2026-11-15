@@ -1,5 +1,6 @@
 from xml.etree.ElementTree import Element
 
+import frappe
 from frappe.model.document import Document
 from trebelge.TRUBLCommonElementsStrategy.TRUBLCommonElement import TRUBLCommonElement
 from trebelge.TRUBLCommonElementsStrategy.TRUBLFinancialAccount import TRUBLFinancialAccount
@@ -13,6 +14,9 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
         paymentmeanscode = element.find('./' + cbcnamespace + 'PaymentMeansCode').text
         if paymentmeanscode is None:
             return None
+        paymentmeanscode = paymentmeanscode.strip()
+        from trebelge.codelists import is_known, warn_on_read
+        warn_on_read("PaymentMeansCode", paymentmeanscode)
         frappedoc: dict = dict(paymentmeanscode=paymentmeanscode)
         # ['PaymentDueDate'] = ('cbc', '', 'Seçimli (0...1)')
         # ['PaymentChannelCode'] = ('cbc', '', 'Seçimli (0...1)')
@@ -43,6 +47,10 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
             if tmp is not None:
                 frappedoc['payeefinancialaccount'] = tmp.name
 
+        if not is_known("PaymentMeansCode", paymentmeanscode):
+            document = frappe.get_doc({"doctype": self._frappeDoctype, **frappedoc})
+            document.flags.ignore_links = True
+            return document.insert()
         return self._get_frappedoc(self._frappeDoctype, frappedoc)
 
     def process_elementasdict(self, element: Element, cbcnamespace: str, cacnamespace: str) -> dict:

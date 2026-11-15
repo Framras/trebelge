@@ -25,6 +25,9 @@ class TRUBLTaxCategory(TRUBLCommonElement):
             if field_ is not None:
                 if field_.text is not None:
                     frappedata[elementtag_.lower()] = field_.text.strip()
+        if frappedata.get('taxexemptionreasoncode'):
+            from trebelge.codelists import warn_on_read
+            warn_on_read('TaxExemptionReasonCode', frappedata['taxexemptionreasoncode'])
         # ['TaxScheme'] = ('cac', 'taxscheme', 'Zorunlu(1)')
         taxscheme_: Element = element.find('./' + cacnamespace + 'TaxScheme')
         tmp: dict = TRUBLTaxScheme().process_elementasdict(taxscheme_, cbcnamespace, cacnamespace)

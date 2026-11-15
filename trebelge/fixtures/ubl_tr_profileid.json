@@ -1,0 +1,44 @@
+[
+ {
+  "doctype": "UBL TR ProfileID",
+  "name": "TEMELFATURA",
+  "profileid": "TEMELFATURA",
+  "description": "Temel Fatura"
+ },
+ {
+  "doctype": "UBL TR ProfileID",
+  "name": "TICARIFATURA",
+  "profileid": "TICARIFATURA",
+  "description": "Ticari Fatura"
+ },
+ {
+  "doctype": "UBL TR ProfileID",
+  "name": "EARSIVFATURA",
+  "profileid": "EARSIVFATURA",
+  "description": "e-Arşiv Fatura"
+ },
+ {
+  "doctype": "UBL TR ProfileID",
+  "name": "IHRACAT",
+  "profileid": "IHRACAT",
+  "description": "İhracat"
+ },
+ {
+  "doctype": "UBL TR ProfileID",
+  "name": "YATIRIMTESVIK",
+  "profileid": "YATIRIMTESVIK",
+  "description": "Yatırım Teşvik"
+ },
+ {
+  "doctype": "UBL TR ProfileID",
+  "name": "SGK",
+  "profileid": "SGK",
+  "description": "SGK"
+ },
+ {
+  "doctype": "UBL TR ProfileID",
+  "name": "TEMELIRSALIYE",
+  "profileid": "TEMELIRSALIYE",
+  "description": "Temel İrsaliye"
+ }
+]

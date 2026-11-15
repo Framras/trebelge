@@ -1,0 +1,793 @@
+[
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "001",
+  "id": "001",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "101",
+  "id": "101",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "102",
+  "id": "102",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "103",
+  "id": "103",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "104",
+  "id": "104",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "105",
+  "id": "105",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "106",
+  "id": "106",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "107",
+  "id": "107",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "108",
+  "id": "108",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "151",
+  "id": "151",
+  "invoicetypecode": "",
+  "list": ""
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "201",
+  "id": "201",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "202",
+  "id": "202",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "204",
+  "id": "204",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "205",
+  "id": "205",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "206",
+  "id": "206",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "207",
+  "id": "207",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "208",
+  "id": "208",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "209",
+  "id": "209",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "211",
+  "id": "211",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "212",
+  "id": "212",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "213",
+  "id": "213",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "214",
+  "id": "214",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "215",
+  "id": "215",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "216",
+  "id": "216",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "217",
+  "id": "217",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "218",
+  "id": "218",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "219",
+  "id": "219",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "220",
+  "id": "220",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "221",
+  "id": "221",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "223",
+  "id": "223",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "225",
+  "id": "225",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "226",
+  "id": "226",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "227",
+  "id": "227",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "228",
+  "id": "228",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "229",
+  "id": "229",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "230",
+  "id": "230",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "231",
+  "id": "231",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "232",
+  "id": "232",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "233",
+  "id": "233",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "234",
+  "id": "234",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "235",
+  "id": "235",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "236",
+  "id": "236",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "237",
+  "id": "237",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "238",
+  "id": "238",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "239",
+  "id": "239",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "240",
+  "id": "240",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "241",
+  "id": "241",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "242",
+  "id": "242",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "250",
+  "id": "250",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "301",
+  "id": "301",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "302",
+  "id": "302",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "303",
+  "id": "303",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "304",
+  "id": "304",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "305",
+  "id": "305",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "306",
+  "id": "306",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "307",
+  "id": "307",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "308",
+  "id": "308",
+  "invoicetypecode": "ISTISNA",
+  "list": "YATIRIMTESVIK"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "309",
+  "id": "309",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "310",
+  "id": "310",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "311",
+  "id": "311",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "312",
+  "id": "312",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "313",
+  "id": "313",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "314",
+  "id": "314",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "315",
+  "id": "315",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "316",
+  "id": "316",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "317",
+  "id": "317",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "318",
+  "id": "318",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "319",
+  "id": "319",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "320",
+  "id": "320",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "321",
+  "id": "321",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "322",
+  "id": "322",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "323",
+  "id": "323",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "324",
+  "id": "324",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "325",
+  "id": "325",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "326",
+  "id": "326",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "327",
+  "id": "327",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "328",
+  "id": "328",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "329",
+  "id": "329",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "330",
+  "id": "330",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "331",
+  "id": "331",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "332",
+  "id": "332",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "333",
+  "id": "333",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "334",
+  "id": "334",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "335",
+  "id": "335",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "336",
+  "id": "336",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "337",
+  "id": "337",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "338",
+  "id": "338",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "339",
+  "id": "339",
+  "invoicetypecode": "ISTISNA",
+  "list": "YATIRIMTESVIK"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "340",
+  "id": "340",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "341",
+  "id": "341",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "342",
+  "id": "342",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "343",
+  "id": "343",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "344",
+  "id": "344",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "350",
+  "id": "350",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "351",
+  "id": "351",
+  "invoicetypecode": "",
+  "list": ""
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "501",
+  "id": "501",
+  "invoicetypecode": "ISTISNA",
+  "list": "ISTISNA"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "555",
+  "id": "555",
+  "invoicetypecode": "",
+  "list": ""
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "701",
+  "id": "701",
+  "invoicetypecode": "IHRACKAYITLI",
+  "list": "IHRACKAYITLI"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "702",
+  "id": "702",
+  "invoicetypecode": "IHRACKAYITLI",
+  "list": "IHRACKAYITLI"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "703",
+  "id": "703",
+  "invoicetypecode": "IHRACKAYITLI",
+  "list": "IHRACKAYITLI"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "704",
+  "id": "704",
+  "invoicetypecode": "IHRACKAYITLI",
+  "list": "IHRACKAYITLI"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "801",
+  "id": "801",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "802",
+  "id": "802",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "803",
+  "id": "803",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "804",
+  "id": "804",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "805",
+  "id": "805",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "806",
+  "id": "806",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "807",
+  "id": "807",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "808",
+  "id": "808",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "809",
+  "id": "809",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "810",
+  "id": "810",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "811",
+  "id": "811",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ },
+ {
+  "doctype": "UBL TR TaxExemptionReasonCode",
+  "name": "812",
+  "id": "812",
+  "invoicetypecode": "OZELMATRAH",
+  "list": "OZELMATRAH"
+ }
+]

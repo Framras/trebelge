@@ -1,0 +1,514 @@
+[
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "601-30",
+  "withholdingtaxcode": "601-30",
+  "code": "601",
+  "percent": 30,
+  "rate": "3/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "601-40",
+  "withholdingtaxcode": "601-40",
+  "code": "601",
+  "percent": 40,
+  "rate": "4/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "602-90",
+  "withholdingtaxcode": "602-90",
+  "code": "602",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "603-50",
+  "withholdingtaxcode": "603-50",
+  "code": "603",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "603-70",
+  "withholdingtaxcode": "603-70",
+  "code": "603",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "604-50",
+  "withholdingtaxcode": "604-50",
+  "code": "604",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "605-50",
+  "withholdingtaxcode": "605-50",
+  "code": "605",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "606-90",
+  "withholdingtaxcode": "606-90",
+  "code": "606",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "607-90",
+  "withholdingtaxcode": "607-90",
+  "code": "607",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "608-90",
+  "withholdingtaxcode": "608-90",
+  "code": "608",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "609-50",
+  "withholdingtaxcode": "609-50",
+  "code": "609",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "609-70",
+  "withholdingtaxcode": "609-70",
+  "code": "609",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "610-90",
+  "withholdingtaxcode": "610-90",
+  "code": "610",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "611-90",
+  "withholdingtaxcode": "611-90",
+  "code": "611",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "612-70",
+  "withholdingtaxcode": "612-70",
+  "code": "612",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "612-90",
+  "withholdingtaxcode": "612-90",
+  "code": "612",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "613-70",
+  "withholdingtaxcode": "613-70",
+  "code": "613",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "613-90",
+  "withholdingtaxcode": "613-90",
+  "code": "613",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "614-50",
+  "withholdingtaxcode": "614-50",
+  "code": "614",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "615-50",
+  "withholdingtaxcode": "615-50",
+  "code": "615",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "615-70",
+  "withholdingtaxcode": "615-70",
+  "code": "615",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "616-50",
+  "withholdingtaxcode": "616-50",
+  "code": "616",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "617-70",
+  "withholdingtaxcode": "617-70",
+  "code": "617",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "618-70",
+  "withholdingtaxcode": "618-70",
+  "code": "618",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "619-70",
+  "withholdingtaxcode": "619-70",
+  "code": "619",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "620-70",
+  "withholdingtaxcode": "620-70",
+  "code": "620",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "621-90",
+  "withholdingtaxcode": "621-90",
+  "code": "621",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "622-90",
+  "withholdingtaxcode": "622-90",
+  "code": "622",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "623-50",
+  "withholdingtaxcode": "623-50",
+  "code": "623",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "624-20",
+  "withholdingtaxcode": "624-20",
+  "code": "624",
+  "percent": 20,
+  "rate": "2/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "625-30",
+  "withholdingtaxcode": "625-30",
+  "code": "625",
+  "percent": 30,
+  "rate": "3/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "626-20",
+  "withholdingtaxcode": "626-20",
+  "code": "626",
+  "percent": 20,
+  "rate": "2/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "627-40",
+  "withholdingtaxcode": "627-40",
+  "code": "627",
+  "percent": 40,
+  "rate": "4/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "627-50",
+  "withholdingtaxcode": "627-50",
+  "code": "627",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "650-20",
+  "withholdingtaxcode": "650-20",
+  "code": "650",
+  "percent": 20,
+  "rate": "2/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "650-30",
+  "withholdingtaxcode": "650-30",
+  "code": "650",
+  "percent": 30,
+  "rate": "3/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "650-50",
+  "withholdingtaxcode": "650-50",
+  "code": "650",
+  "percent": 50,
+  "rate": "5/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "650-70",
+  "withholdingtaxcode": "650-70",
+  "code": "650",
+  "percent": 70,
+  "rate": "7/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "650-90",
+  "withholdingtaxcode": "650-90",
+  "code": "650",
+  "percent": 90,
+  "rate": "9/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "801-100",
+  "withholdingtaxcode": "801-100",
+  "code": "801",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "802-100",
+  "withholdingtaxcode": "802-100",
+  "code": "802",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "803-100",
+  "withholdingtaxcode": "803-100",
+  "code": "803",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "804-100",
+  "withholdingtaxcode": "804-100",
+  "code": "804",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "805-100",
+  "withholdingtaxcode": "805-100",
+  "code": "805",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "806-100",
+  "withholdingtaxcode": "806-100",
+  "code": "806",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "807-100",
+  "withholdingtaxcode": "807-100",
+  "code": "807",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "808-100",
+  "withholdingtaxcode": "808-100",
+  "code": "808",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "809-100",
+  "withholdingtaxcode": "809-100",
+  "code": "809",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "810-100",
+  "withholdingtaxcode": "810-100",
+  "code": "810",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "811-100",
+  "withholdingtaxcode": "811-100",
+  "code": "811",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "812-100",
+  "withholdingtaxcode": "812-100",
+  "code": "812",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "813-100",
+  "withholdingtaxcode": "813-100",
+  "code": "813",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "814-100",
+  "withholdingtaxcode": "814-100",
+  "code": "814",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "815-100",
+  "withholdingtaxcode": "815-100",
+  "code": "815",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "816-100",
+  "withholdingtaxcode": "816-100",
+  "code": "816",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "817-100",
+  "withholdingtaxcode": "817-100",
+  "code": "817",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "818-100",
+  "withholdingtaxcode": "818-100",
+  "code": "818",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "819-100",
+  "withholdingtaxcode": "819-100",
+  "code": "819",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "820-100",
+  "withholdingtaxcode": "820-100",
+  "code": "820",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "821-100",
+  "withholdingtaxcode": "821-100",
+  "code": "821",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "822-100",
+  "withholdingtaxcode": "822-100",
+  "code": "822",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "823-100",
+  "withholdingtaxcode": "823-100",
+  "code": "823",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "824-100",
+  "withholdingtaxcode": "824-100",
+  "code": "824",
+  "percent": 100,
+  "rate": "10/10"
+ },
+ {
+  "doctype": "UBL TR Withholdingtaxcode",
+  "name": "825-100",
+  "withholdingtaxcode": "825-100",
+  "code": "825",
+  "percent": 100,
+  "rate": "10/10"
+ }
+]
