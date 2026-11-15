@@ -8,6 +8,7 @@
   "engine": "InnoDB",
   "field_order": [
     "paymentmeanscode",
+    "paymentid",
     "paymentduedate",
     "paymentchannelcode",
     "instructionnote",
@@ -15,6 +16,12 @@
     "payeefinancialaccount"
   ],
   "fields": [
+    {
+      "description": "\u00d6deme referans numaras\u0131 girilir. Birden fazla ise sat\u0131r sat\u0131r tutulur.",
+      "fieldname": "paymentid",
+      "fieldtype": "Small Text",
+      "label": "\u00d6deme referans numaras\u0131"
+    },
     {
       "description": "\u00d6deme \u015feklinin kodu girilir. Bu eleman i\u00e7in UN/EDIFACT 4461 \u00d6deme \u00c7e\u015fitleri Kod Listesi kullan\u0131lacakt\u0131r.",
       "fieldname": "paymentmeanscode",

@@ -57,6 +57,7 @@ class TRUBLDirector:
         self.builder.build_paymentalternativeexchangerate()
         self.builder.build_taxtotal()
         self.builder.build_withholdingtaxtotal()
+        self.builder.build_prepaidpayment()
         self.builder.build_legalmonetarytotal()
         self.builder.build_invoiceline()
 

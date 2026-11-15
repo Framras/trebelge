@@ -50,6 +50,13 @@ class TRUBLItem(TRUBLCommonElement):
             tmp = TRUBLItemIdentification().process_element(manufacturersitemid_, cbcnamespace, cacnamespace)
             if tmp is not None:
                 frappedoc['manufacturersitemid'] = tmp.name
+        # ['StandardItemIdentification'] = ('cac', 'ItemIdentification', 'Seçimli (0...1)', 'standarditemid')
+        # Barkod / GTIN gibi standart mal tanımlama bilgisi.
+        standarditemid_: Element = element.find('./' + cacnamespace + 'StandardItemIdentification')
+        if standarditemid_ is not None:
+            tmp = TRUBLItemIdentification().process_element(standarditemid_, cbcnamespace, cacnamespace)
+            if tmp is not None:
+                frappedoc['standarditemid'] = tmp.name
         # ['OriginCountry'] = ('cac', 'Country', 'Seçimli (0...1)', 'origincountry')
         # Menşei bilgisi girilebilir.
         origincountry_: Element = element.find('./' + cacnamespace + 'OriginCountry')

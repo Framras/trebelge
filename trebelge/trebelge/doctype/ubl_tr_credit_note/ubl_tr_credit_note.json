@@ -34,6 +34,7 @@
   "chargetotalamount",
   "payableroundingamount",
   "payableamount",
+  "prepaidamount",
   "column_break_24",
   "lineextensionamountcurrencyid",
   "taxexclusiveamountcurrencyid",
@@ -42,6 +43,7 @@
   "chargetotalamountcurrencyid",
   "payableroundingamountcurrencyid",
   "payableamountcurrencyid",
+  "prepaidamountcurrencyid",
   "section_break_32",
   "accountingcostcode",
   "accountingcost",
@@ -298,6 +300,12 @@
    "label": "\u00d6denecek tutar"
   },
   {
+   "description": "Toplam avans tutar\u0131 girilir.",
+   "fieldname": "prepaidamount",
+   "fieldtype": "Currency",
+   "label": "Avans tutar\u0131"
+  },
+  {
    "fieldname": "column_break_24",
    "fieldtype": "Column Break"
   },
@@ -342,6 +350,12 @@
    "fieldname": "payableamountcurrencyid",
    "fieldtype": "Link",
    "label": "\u00d6denecek tutar d\u00f6viz cinsi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "fieldname": "prepaidamountcurrencyid",
+   "fieldtype": "Link",
+   "label": "Avans tutar\u0131 d\u00f6viz cinsi",
    "options": "UBL TR CurrencyCode"
   },
   {

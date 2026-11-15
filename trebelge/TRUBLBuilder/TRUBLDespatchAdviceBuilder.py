@@ -214,6 +214,9 @@ class TRUBLDespatchAdviceBuilder(TRUBLBuilder):
         # ['WithholdingTaxTotal'] = ('cac', TaxTotal(), 'Seçimli (0...n)', 'withholdingtaxtotal')
         pass
 
+    def build_prepaidpayment(self) -> None:
+        pass
+
     def build_legalmonetarytotal(self) -> None:
         # ['LegalMonetaryTotal'] = ('cac', MonetaryTotal(), 'Zorunlu (1)', 'legalmonetarytotal')
         pass

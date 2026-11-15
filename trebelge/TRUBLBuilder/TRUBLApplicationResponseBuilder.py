@@ -140,6 +140,9 @@ class TRUBLApplicationResponseBuilder(TRUBLBuilder):
     def build_withholdingtaxtotal(self) -> None:
         pass
 
+    def build_prepaidpayment(self) -> None:
+        pass
+
     def build_legalmonetarytotal(self) -> None:
         pass
 

@@ -42,5 +42,10 @@ class TRUBLLegalMonetaryTotal(TRUBLCommonElement):
         if payableroundingamount_ is not None and payableroundingamount_.text is not None:
             frappedata['payableroundingamount'] = payableroundingamount_.text.strip()
             frappedata['payableroundingamountcurrencyid'] = payableroundingamount_.attrib.get('currencyID')
+        # ['PrepaidAmount'] = ('cbc', 'prepaidamount', 'Seçimli (0...1)')
+        prepaidamount_: Element = element.find('./' + cbcnamespace + 'PrepaidAmount')
+        if prepaidamount_ is not None and prepaidamount_.text is not None:
+            frappedata['prepaidamount'] = prepaidamount_.text.strip()
+            frappedata['prepaidamountcurrencyid'] = prepaidamount_.attrib.get('currencyID')
 
         return frappedata

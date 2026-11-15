@@ -145,6 +145,10 @@ class TRUBLBuilder(ABC):
         pass
 
     @abstractmethod
+    def build_prepaidpayment(self) -> None:
+        pass
+
+    @abstractmethod
     def build_legalmonetarytotal(self) -> None:
         pass
 

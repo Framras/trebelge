@@ -411,6 +411,34 @@ class TRUBLInvoiceBuilder(TRUBLBuilder):
             self._product.payableroundingamountcurrencyid = tmp['payableroundingamountcurrencyid']
         except KeyError:
             pass
+        # ['PrepaidAmount'] = ('cbc', 'prepaidamount', 'Seçimli (0...1)')
+        try:
+            self._product.prepaidamount = tmp['prepaidamount']
+            self._product.prepaidamountcurrencyid = tmp['prepaidamountcurrencyid']
+        except KeyError:
+            pass
+
+    def build_prepaidpayment(self) -> None:
+        # ['PrepaidPayment'] = ('cac', Payment(), 'Seçimli (0...n)', 'prepaidpayment')
+        # Avans ödemesinin numarası, tutarı ve tarihi.
+        for prepaid_ in self.root.findall('./' + self._cac_ns + 'PrepaidPayment'):
+            row: dict = {}
+            id_: Element = prepaid_.find('./' + self._cbc_ns + 'ID')
+            if id_ is not None and id_.text:
+                row['id'] = id_.text.strip()
+            paid_: Element = prepaid_.find('./' + self._cbc_ns + 'PaidAmount')
+            if paid_ is not None and paid_.text:
+                row['paidamount'] = paid_.text.strip()
+                currency = paid_.attrib.get('currencyID')
+                if currency:
+                    row['paidamountcurrencyid'] = currency.strip()
+            date_: Element = prepaid_.find('./' + self._cbc_ns + 'ReceivedDate')
+            if date_ is None or not (date_.text and date_.text.strip()):
+                date_ = prepaid_.find('./' + self._cbc_ns + 'PaidDate')
+            if date_ is not None and date_.text and date_.text.strip():
+                row['receiveddate'] = date_.text.strip()
+            if row:
+                self._product.append("prepaidpayment", row)
 
     def build_invoiceline(self) -> None:
         # ['InvoiceLine'] = ('cac', InvoiceLine(), 'Zorunlu (1...n)', 'invoiceline')

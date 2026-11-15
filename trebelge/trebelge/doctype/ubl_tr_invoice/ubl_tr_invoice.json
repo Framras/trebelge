@@ -52,6 +52,7 @@
   "chargetotalamount",
   "payableroundingamount",
   "payableamount",
+  "prepaidamount",
   "column_break_24",
   "lineextensionamountcurrencyid",
   "taxexclusiveamountcurrencyid",
@@ -60,6 +61,7 @@
   "chargetotalamountcurrencyid",
   "payableroundingamountcurrencyid",
   "payableamountcurrencyid",
+  "prepaidamountcurrencyid",
   "section_break_32",
   "accountingcost",
   "linecountnumeric",
@@ -83,6 +85,7 @@
   "section_break_73",
   "delivery",
   "paymentmeans",
+  "prepaidpayment",
   "paymentterms",
   "allowancecharge",
   "section_vergidovizkuru",
@@ -277,6 +280,12 @@
    "label": "\u00d6denecek tutar"
   },
   {
+   "description": "Toplam avans tutar\u0131 girilir.",
+   "fieldname": "prepaidamount",
+   "fieldtype": "Currency",
+   "label": "Avans tutar\u0131"
+  },
+  {
    "fieldname": "column_break_24",
    "fieldtype": "Column Break"
   },
@@ -322,6 +331,12 @@
    "fieldname": "payableamountcurrencyid",
    "fieldtype": "Link",
    "label": "\u00d6denecek tutar d\u00f6viz cinsi",
+   "options": "UBL TR CurrencyCode"
+  },
+  {
+   "fieldname": "prepaidamountcurrencyid",
+   "fieldtype": "Link",
+   "label": "Avans tutar\u0131 d\u00f6viz cinsi",
    "options": "UBL TR CurrencyCode"
   },
   {
@@ -545,6 +560,13 @@
    "fieldtype": "Table MultiSelect",
    "label": "\u00d6deme \u015eekli",
    "options": "UBL TR Payment Means"
+  },
+  {
+   "description": "Avans \u00f6demesinin numaras\u0131, tutar\u0131 ve tarihi.",
+   "fieldname": "prepaidpayment",
+   "fieldtype": "Table",
+   "label": "Avans \u00f6demesi",
+   "options": "UBL TR PrepaidPayment"
   },
   {
    "fieldname": "paymentterms",

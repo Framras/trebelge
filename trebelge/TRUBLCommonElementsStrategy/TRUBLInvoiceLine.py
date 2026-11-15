@@ -42,6 +42,10 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
         if note_ is not None:
             if note_.text is not None:
                 frappedoc['note'] = note_.text.strip()
+        # ['FreeOfChargeIndicator'] = ('cbc', 'freeofchargeindicator', 'Seçimli (0...1)')
+        freeofcharge_: Element = element.find('./' + cbcnamespace + 'FreeOfChargeIndicator')
+        if freeofcharge_ is not None and freeofcharge_.text is not None:
+            frappedoc['freeofchargeindicator'] = 1 if freeofcharge_.text.strip().lower() in ('true', '1') else 0
         # ['Item'] = ('cac', 'Item', 'Zorunlu (1)')
         # Mal/hizmet hakkında bilgiler buraya girilir.
         item_: Element = element.find('./' + cacnamespace + 'Item')
@@ -57,7 +61,25 @@ class TRUBLInvoiceLine(TRUBLCommonElement):
             if priceamount.text is not None:
                 frappedoc['priceamount'] = priceamount.text.strip()
                 frappedoc['priceamountcurrencyid'] = priceamount.attrib.get('currencyID').strip()
+        # ['BaseQuantity'] = ('cbc', 'basequantity', 'Seçimli (0...1)')
+        # Fiyatın uygulandığı miktar ve birimi. Satır miktarından ayrıdır.
+        basequantity: Element = price_.find('./' + cbcnamespace + 'BaseQuantity')
+        if basequantity is not None and basequantity.text is not None:
+            frappedoc['basequantity'] = basequantity.text.strip()
+            baseunit = basequantity.attrib.get('unitCode')
+            if baseunit is not None:
+                frappedoc['basequantityunitcode'] = baseunit.strip()
         document: Document = self._get_frappedoc(self._frappeDoctype, frappedoc, False)
+        # ['Price/AllowanceCharge'] = ('cac', 'AllowanceCharge', 'Seçimli (0...n)')
+        # Birim fiyat altındaki iskonto/artırım. Satır AllowanceCharge döngüsünden ayrı tutulur.
+        priceallowances: list = price_.findall('./' + cacnamespace + 'AllowanceCharge')
+        if len(priceallowances) != 0:
+            for priceallowance_ in priceallowances:
+                tmp = TRUBLAllowanceCharge().process_element(priceallowance_, cbcnamespace, cacnamespace)
+                if tmp is not None:
+                    doc_append = document.append("priceallowancecharge", {})
+                    doc_append.allowancecharge = tmp.name
+                    document.save()
         # ['TaxTotal'] = ('cac', 'TaxTotal', 'Seçimli (0...1)')
         taxtotal_: Element = element.find('./' + cacnamespace + 'TaxTotal')
         if taxtotal_ is not None:

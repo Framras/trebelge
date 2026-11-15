@@ -23,6 +23,13 @@ class TRUBLPaymentMeans(TRUBLCommonElement):
             if field_ is not None:
                 if field_.text is not None:
                     frappedoc[elementtag_.lower()] = field_.text
+        # ['PaymentID'] = ('cbc', 'paymentid', 'Seçimli (0...n)')
+        paymentids: list = []
+        for paymentid_ in element.findall('./' + cbcnamespace + 'PaymentID'):
+            if paymentid_.text is not None and paymentid_.text.strip() != '':
+                paymentids.append(paymentid_.text.strip())
+        if paymentids:
+            frappedoc['paymentid'] = "\n".join(paymentids)
         # ['PayerFinancialAccount'] = ('cac', 'FinancialAccount', 'Seçimli (0...1)')
         payerfinancialaccount_ = element.find('./' + cacnamespace + 'PayerFinancialAccount')
         if payerfinancialaccount_ is not None:

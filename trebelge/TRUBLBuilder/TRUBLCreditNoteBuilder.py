@@ -434,6 +434,15 @@ class TRUBLCreditNoteBuilder(TRUBLBuilder):
             self._product.payableroundingamountcurrencyid = tmp['payableroundingamountcurrencyid']
         except KeyError:
             pass
+        # ['PrepaidAmount'] = ('cbc', 'prepaidamount', 'Seçimli (0...1)')
+        try:
+            self._product.prepaidamount = tmp['prepaidamount']
+            self._product.prepaidamountcurrencyid = tmp['prepaidamountcurrencyid']
+        except KeyError:
+            pass
+
+    def build_prepaidpayment(self) -> None:
+        pass
 
     def build_invoiceline(self) -> None:
         pass

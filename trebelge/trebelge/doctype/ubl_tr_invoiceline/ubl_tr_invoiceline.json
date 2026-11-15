@@ -13,6 +13,10 @@
   "invoicedquantityunitcode",
   "priceamount",
   "priceamountcurrencyid",
+  "basequantity",
+  "basequantityunitcode",
+  "priceallowancecharge",
+  "freeofchargeindicator",
   "lineextensionamount",
   "lineextensionamountcurrencyid",
   "note",
@@ -80,6 +84,33 @@
    "label": "Mal/hizmet para birimi",
    "options": "UBL TR CurrencyCode",
    "reqd": 1
+  },
+  {
+   "description": "Fiyat\u0131n uyguland\u0131\u011f\u0131 miktar.",
+   "fieldname": "basequantity",
+   "fieldtype": "Float",
+   "label": "Fiyat\u0131n uyguland\u0131\u011f\u0131 miktar"
+  },
+  {
+   "description": "BaseQuantity birim kodu.",
+   "fieldname": "basequantityunitcode",
+   "fieldtype": "Link",
+   "label": "Fiyat birimi",
+   "options": "UBL TR Unitcodes"
+  },
+  {
+   "description": "Birim fiyat alt\u0131ndaki iskonto veya art\u0131r\u0131m. Kalem iskonto/art\u0131r\u0131m\u0131ndan ayr\u0131d\u0131r.",
+   "fieldname": "priceallowancecharge",
+   "fieldtype": "Table MultiSelect",
+   "label": "Birim fiyat iskonto/art\u0131r\u0131m\u0131",
+   "options": "UBL TR AllowanceCharges"
+  },
+  {
+   "default": "0",
+   "description": "Bedelsiz kalem ise i\u015faretlenir.",
+   "fieldname": "freeofchargeindicator",
+   "fieldtype": "Check",
+   "label": "Bedelsiz kalem"
   },
   {
    "description": "Mal/hizmet miktar\u0131 ile Mal/hizmet birim fiyat\u0131n\u0131n \u00e7arp\u0131m\u0131 ile bulunan tutard\u0131r (varsa iskonto d\u00fc\u015f\u00fcl\u00fcr).",
